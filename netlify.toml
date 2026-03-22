@@ -1,0 +1,17 @@
+[build]
+  publish = "."
+
+# Netlify Identity の有効化
+[[plugins]]
+  package = "@netlify/plugin-netlify-identity"
+
+# CMSのリダイレクト
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog/index.html"
+  status = 200

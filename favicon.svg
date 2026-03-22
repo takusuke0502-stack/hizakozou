@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#1d4ed8"/>
+  <!-- 膝関節アイコン（シンプル） -->
+  <g stroke="white" stroke-width="3" stroke-linecap="round" fill="none">
+    <!-- 大腿骨 -->
+    <line x1="32" y1="6" x2="32" y2="26"/>
+    <!-- 大腿骨下端 -->
+    <path d="M24 26 Q32 22 40 26"/>
+    <!-- 脛骨上端 -->
+    <path d="M23 32 Q32 36 41 32"/>
+    <!-- 脛骨 -->
+    <line x1="32" y1="32" x2="32" y2="56"/>
+    <!-- 膝蓋骨 -->
+    <ellipse cx="32" cy="29" rx="6" ry="4" stroke="white" stroke-width="2.5"/>
+  </g>
+</svg>
