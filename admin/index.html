@@ -6,17 +6,13 @@
   <meta name="robots" content="noindex" />
   <title>Content Manager</title>
 
-  <!-- Identity -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 
 <body>
 
 <script>
-  // 🔥 これが超重要
   window.CMS_MANUAL_INIT = true;
 
   if (window.netlifyIdentity) {
@@ -29,8 +25,10 @@
     });
   }
 
-  // 🔥 CMS起動
-  window.CMS.init();
+  // 🔥 ここが追加ポイント
+  window.CMS.init({
+    config: '/admin/config.yml'
+  });
 </script>
 
 </body>
