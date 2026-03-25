@@ -8,21 +8,29 @@
   <link rel="canonical" href="https://hizakozou.jp/">
 
   <!-- ファビコン -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="icon" type="image/svg+xml" href="image/favicon.svg">
+  <link rel="icon" type="image/png" href="image/favicon.png">
+  <link rel="apple-touch-icon" href="image/favicon.png">
 
+  <!-- OGP（SNSシェア時の表示設定） -->
   <meta property="og:locale" content="ja_JP">
   <meta property="og:url" content="https://hizakozou.jp/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="柏市で膝の痛みなら整体院ひざこぞう｜国家資格者が対応">
   <meta property="og:description" content="柏駅西口徒歩9分・バス1分。膝の痛みを中心に、腰痛など慢性的なお悩みにも対応。国家資格を持つ院長が丁寧に施術します。">
   <meta property="og:site_name" content="整体院ひざこぞう">
-  <meta property="og:image" content="https://hizakozou.jp/ogp.jpg">
+  <meta property="og:image" content="https://hizakozou.jp/image/ogp.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="整体院ひざこぞう｜柏市で膝の痛みに特化した整体院">
+  
+  <!-- Twitter/X カード設定 -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hizakozou">
   <meta name="twitter:title" content="柏市で膝の痛みなら整体院ひざこぞう｜国家資格者が対応">
   <meta name="twitter:description" content="柏駅西口徒歩9分・バス1分。膝の痛みを中心に、腰痛など慢性的なお悩みにも対応。国家資格者が丁寧に施術します。">
-  <meta name="twitter:image" content="https://hizakozou.jp/ogp.jpg">
+  <meta name="twitter:image" content="https://hizakozou.jp/image/ogp.jpg">
+  <meta name="twitter:image:alt" content="整体院ひざこぞう｜柏市で膝の痛みに特化した整体院">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,12 +71,6 @@
         "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
         "opens": "09:00",
         "closes": "19:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Sunday",
-        "opens": "00:00",
-        "closes": "00:00"
       }
     ]
   }
@@ -103,7 +105,8 @@
     .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background-color: #2563eb; border-radius: 2px; }
     @media (min-width: 768px) { .section-title { font-size: 2.5rem; } }
     .card-shadow { box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08), 0 4px 10px -5px rgba(0,0,0,0.04); }
-    section { scroll-margin-top: 80px; }
+    :root { --header-h: 80px; }
+    section { scroll-margin-top: var(--header-h); }
     @keyframes pulse-soft { 0%,100% { transform: scale(1); } 50% { transform: scale(1.03); } }
     .btn-pulse { animation: pulse-soft 2.5s infinite ease-in-out; }
     @media (prefers-reduced-motion: reduce) {
@@ -126,12 +129,7 @@
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
       <div class="flex flex-col cursor-pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})">
         <span class="text-[10px] md:text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded inline-block w-max mb-1">柏市 / 国家資格者による整体</span>
-        <img
-          src="hizakozou_svg.svg"
-          alt="整体院ひざこぞう"
-          class="h-16 md:h-20 w-auto object-contain"
-          loading="eager"
-        >
+        <span class="text-2xl md:text-3xl font-black text-slate-800 tracking-tight mt-0.5">整体院ひざこぞう</span>
       </div>
 
       <nav class="hidden xl:flex items-center gap-5 font-bold text-sm text-slate-600" aria-label="メインナビゲーション">
@@ -162,7 +160,6 @@
     <!-- モバイルナビ -->
     <nav id="mobileNav" class="hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-slate-100 p-4 flex flex-col gap-2 font-bold z-40 max-h-[80vh] overflow-y-auto" aria-label="モバイルナビゲーション">
       <a href="#troubles"     class="mobile-nav-link p-3 bg-slate-50 rounded-lg text-slate-700">膝痛・慢性痛のお悩み</a>
-      <!-- 【変更】「医学的エビデンスに基づく施術」→「体全体から原因を探る施術」 -->
       <a href="#approach"     class="mobile-nav-link p-3 bg-slate-50 rounded-lg text-slate-700">体全体から原因を探る施術</a>
       <a href="#seo-guide"    class="mobile-nav-link p-3 bg-blue-50 text-blue-700 rounded-lg">なぜ痛みが長引くのか？</a>
       <a href="#flow"         class="mobile-nav-link p-3 bg-slate-50 rounded-lg text-slate-700">施術の流れ</a>
@@ -186,7 +183,7 @@
             柏駅西口 徒歩9分・バス1分 / エレベーター完備 / 完全予約制（待ち時間なし）
           </div>
           <h1 class="text-3xl md:text-5xl lg:text-5xl font-black text-slate-900 leading-[1.4] tracking-tight">
-            膝の痛み、<span class="text-blue-700">我慢していませんか？</span>
+            柏市で膝の痛みに悩むあなたへ。<br class="hidden md:block"><span class="text-blue-700">もう、我慢しなくていいです。</span>
           </h1>
           <div class="space-y-3 text-base md:text-lg font-bold text-slate-700 leading-relaxed">
             <p>痛みがあると、できないことが少しずつ増えていきます。</p>
@@ -212,8 +209,19 @@
               キャンペーンの詳細を見る
             </a>
           </div>
+          <div class="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer"
+               class="flex items-center justify-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white font-black py-4 px-8 rounded-xl text-lg shadow-md transition">
+              <i data-lucide="message-circle" class="w-6 h-6" aria-hidden="true"></i>
+              LINEで今すぐ予約（無料）
+            </a>
+            <a href="tel:0471143274"
+               class="flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-900 text-white font-black py-4 px-8 rounded-xl text-lg shadow-md transition">
+              <i data-lucide="phone" class="w-6 h-6" aria-hidden="true"></i>
+              04-7114-3274
+            </a>
+          </div>
         </div>
-
 
       </div>
     </section>
@@ -442,7 +450,7 @@
             <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-2xl shadow-md border border-slate-100">
               <h3 class="text-lg font-black text-slate-800 mb-2">まず、じっくり話を聞かせてください</h3>
               <!-- パス修正 -->
-              <img src="image/monnsinn.webp" alt="整体院ひざこぞう カウンセリング・問診の様子" class="w-full h-48 object-cover rounded-xl mb-4 border border-slate-100" loading="lazy" decoding="async">
+              <img src="image/monnsinn.webp" alt="整体院ひざこぞう カウンセリング・問診の様子" class="w-full h-48 object-cover rounded-xl mb-4 border border-slate-100" loading="eager" decoding="async" fetchpriority="high">
               <p class="text-sm font-bold text-slate-600 leading-relaxed">いつから痛むのか、どんな時に辛いのかをじっくりお伺いします。施術中も「今どう感じますか」と声をかけながら進めるため、会話の中から体の状態をより深く把握できます。不安なことは何でもお話しください。</p>
             </div>
           </li>
@@ -499,7 +507,7 @@
             <div class="space-y-4 text-slate-100 font-bold leading-loose text-[15px]">
               <p>はじめまして、院長の川上 卓哉です。</p>
               <p>学生時代、膝の痛みで大好きなサッカーができなくなりました。練習を横目に見ながら、「いつ治るのか」「また走れるのか」という不安を毎日抱えていたことを今でもよく覚えています。</p>
-              <p>実は、膝だけではありません。私は社会人になってから指定難病の「クローン病」を患い、長期間の入院を経験しました。思うように動けない体、原因がはっきりしない不調、先が見えない日々——。そのときに初めて、「当たり前に体が動く」ということがどれほど貴重なことかを、身をもって知りました。</p>
+              <p>実は、膝だけではありません。私は20歳（専門学生時代）のときに指定難病の「クローン病」を患い、長期間の入院を経験しました。思うように動けない体、原因がはっきりしない不調、先が見えない日々——。そのときに初めて、「当たり前に体が動く」ということがどれほど貴重なことかを、身をもって知りました。</p>
               <p>当院では、施術中もできるだけ話しかけるようにしています。「最近どんなときに痛みますか」「昨日は何をしていましたか」——そうした会話の中に、体の状態を読み解くヒントが隠れていることが多いからです。</p>
               <p>膝の痛みを改善するには、膝だけを診ていても限界があります。胸椎の硬さ、股関節の動き、足首や足の指の使い方——これらがすべて膝の負担に関わっています。結果として、腰痛や股関節痛など他の慢性的な不調も一緒に楽になる方が多く、「膝で来たのに肩まで楽になった」と言っていただくこともあります。</p>
               <p class="bg-blue-800/50 p-4 rounded-xl border-l-4 border-yellow-400 text-white">だから当院では、「痛みを取ること」だけを目標にしていません。「また旅行に行けた」「孫と一緒に歩けた」——そういった、痛みの向こうにある日常を取り戻すことを、いつも一緒に考えながら施術しています。</p>
@@ -518,51 +526,86 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div class="bg-white p-8 rounded-3xl card-shadow relative">
             <i data-lucide="quote" class="absolute top-6 right-6 w-10 h-10 text-slate-100" aria-hidden="true"></i>
+            <div class="flex gap-1 mb-3" aria-label="評価：5つ星中5つ星">
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+            </div>
             <h3 class="text-lg font-black text-slate-800 mb-4">「正座もできなかった膝が、気づけば痛みを忘れていました」</h3>
             <p class="text-sm text-slate-600 font-bold leading-relaxed mb-6 relative z-10">膝が痛み始め、正座も曲げ伸ばしもできない状態で飛び込みました。週2回通院し、毎日のリハビリを続けているうちに、気がつけば痛みがほとんど気にならなくなっていました。その方に合った施術とアドバイスをしてくださるので、同じように悩んでいる方にお伝えしたいです。</p>
             <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
               <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-black text-sm">K.K様</div>
-              <p class="text-xs font-bold text-slate-500">柏市近隣在住 / 60代女性</p>
+              <p class="text-xs font-bold text-slate-500">60代女性</p>
             </div>
           </div>
 
           <div class="bg-white p-8 rounded-3xl card-shadow relative">
             <i data-lucide="quote" class="absolute top-6 right-6 w-10 h-10 text-slate-100" aria-hidden="true"></i>
+            <div class="flex gap-1 mb-3" aria-label="評価：5つ星中5つ星">
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+            </div>
             <h3 class="text-lg font-black text-slate-800 mb-4">「手術を勧められていた股関節痛が、薬なしで過ごせるように」</h3>
             <p class="text-sm text-slate-600 font-bold leading-relaxed mb-6 relative z-10">変形性股関節症と診断され、「我慢できなくなったら手術」と言われ不安な日々でした。回数を重ねるうちに少しずつ痛みが落ち着き、今では薬も湿布もほとんど使わなくなりました。ストレッチも教わり、自分でもケアできるようになって安心感があります。</p>
             <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
               <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-black text-sm">T.K様</div>
-              <p class="text-xs font-bold text-slate-500">柏市近隣在住 / 50代女性</p>
+              <p class="text-xs font-bold text-slate-500">50代女性</p>
             </div>
           </div>
 
           <div class="bg-white p-8 rounded-3xl card-shadow relative">
             <i data-lucide="quote" class="absolute top-6 right-6 w-10 h-10 text-slate-100" aria-hidden="true"></i>
+            <div class="flex gap-1 mb-3" aria-label="評価：5つ星中5つ星">
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+            </div>
             <h3 class="text-lg font-black text-slate-800 mb-4">「腰に爆弾を抱えているような毎日から解放されました」</h3>
             <p class="text-sm text-slate-600 font-bold leading-relaxed mb-6 relative z-10">ぎっくり腰を繰り返しており、常に腰に爆弾を抱えているような不安な毎日でした。根本的に改善したいと来院し、全身のバランスを整えてもらうことで腰痛がほとんど出なくなりました。姿勢も良くなり、周りからも「若返った」と言われるようになりました。</p>
             <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
               <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-black text-sm">匿名様</div>
-              <p class="text-xs font-bold text-slate-500">流山市在住 / 50代男性</p>
+              <p class="text-xs font-bold text-slate-500">50代男性</p>
             </div>
           </div>
 
           <div class="bg-white p-8 rounded-3xl card-shadow relative">
             <i data-lucide="quote" class="absolute top-6 right-6 w-10 h-10 text-slate-100" aria-hidden="true"></i>
+            <div class="flex gap-1 mb-3" aria-label="評価：5つ星中5つ星">
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+            </div>
             <h3 class="text-lg font-black text-slate-800 mb-4">「半年通っても変わらなかった肩の痛みが楽になりました」</h3>
             <p class="text-sm text-slate-600 font-bold leading-relaxed mb-6 relative z-10">左肩から腕にかけて激痛があり、夜も眠れず服の着替えも辛い毎日。他の整骨院に半年通っても変化がなく、こちらに来院しました。丁寧なカウンセリングと痛みの少ない施術で、通うたびに肩が動きやすくなりました。自宅でのケアも教わり、日常生活がずいぶん楽になっています。</p>
             <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
               <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-black text-sm">匿名様</div>
-              <p class="text-xs font-bold text-slate-500">松戸市在住 / 40代女性</p>
+              <p class="text-xs font-bold text-slate-500">40代女性</p>
             </div>
           </div>
 
           <div class="bg-white p-8 rounded-3xl card-shadow relative md:col-span-2">
             <i data-lucide="quote" class="absolute top-6 right-6 w-10 h-10 text-slate-100" aria-hidden="true"></i>
+            <div class="flex gap-1 mb-3" aria-label="評価：5つ星中5つ星">
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+              <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400" aria-hidden="true"></i>
+            </div>
             <h3 class="text-lg font-black text-slate-800 mb-4">「手術を迷っていましたが、旅行で長時間歩けるようになりました」</h3>
             <p class="text-sm text-slate-600 font-bold leading-relaxed mb-6 relative z-10">少し歩くと足がしびれて歩けなくなる状態で、手術を勧められていました。手術には踏み切れず、こちらに辿り着きました。施術と教えていただいたトレーニングを根気よく続けた結果、歩ける距離がどんどん伸びていきました。今では旅行で長時間歩いても気にならなくなり、行動の幅が広がりました。手術を迷っている方は、まず一度相談してみてください。</p>
             <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
               <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-black text-sm">匿名様</div>
-              <p class="text-xs font-bold text-slate-500">柏市在住 / 60代男性</p>
+              <p class="text-xs font-bold text-slate-500">60代男性</p>
             </div>
           </div>
 
@@ -582,45 +625,45 @@
           <p class="text-slate-600 font-bold mb-2">リラックスして施術を受けていただけるよう、清潔で明るい空間づくりを心がけています。</p>
           <p class="text-sm text-slate-500 font-medium">※画像はタップ（クリック）すると拡大してご覧いただけます。</p>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6" role="list" aria-label="院内ギャラリー">
+        <ul class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 list-none p-0 m-0" aria-label="院内ギャラリー">
           <!-- パス修正 -->
-          <div role="listitem" class="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition bg-slate-50 cursor-pointer" tabindex="0" aria-label="外観写真を拡大">
+          <li class="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition bg-slate-50 cursor-pointer" tabindex="0" aria-label="外観写真を拡大">
             <img src="image/gaikann.webp" alt="整体院ひざこぞう 柏市あけぼの BoaSorte柏の外観" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
               <i data-lucide="zoom-in" class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-8 h-8 drop-shadow-md" aria-hidden="true"></i>
             </div>
-          </div>
-          <div role="listitem" class="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition bg-slate-50 cursor-pointer" tabindex="0" aria-label="外玄関写真を拡大">
+          </li>
+          <li class="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition bg-slate-50 cursor-pointer" tabindex="0" aria-label="外玄関写真を拡大">
             <img src="image/sotogenkan.webp" alt="整体院ひざこぞう アクセス 建物外玄関・エントランス" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
               <i data-lucide="zoom-in" class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-8 h-8 drop-shadow-md" aria-hidden="true"></i>
             </div>
-          </div>
-          <div role="listitem" class="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition bg-slate-50 cursor-pointer" tabindex="0" aria-label="院内入口写真を拡大">
+          </li>
+          <li class="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition bg-slate-50 cursor-pointer" tabindex="0" aria-label="院内入口写真を拡大">
             <img src="image/rouka.webp" alt="整体院ひざこぞう 清潔で明るい院内入口・受付スペース" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
               <i data-lucide="zoom-in" class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-8 h-8 drop-shadow-md" aria-hidden="true"></i>
             </div>
-          </div>
-          <div role="listitem" class="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition bg-slate-50 cursor-pointer" tabindex="0" aria-label="カウンセリングスペース写真を拡大">
+          </li>
+          <li class="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition bg-slate-50 cursor-pointer" tabindex="0" aria-label="カウンセリングスペース写真を拡大">
             <img src="image/counseling.webp" alt="整体院ひざこぞう 問診・相談を行うカウンセリングスペース" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
               <i data-lucide="zoom-in" class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-8 h-8 drop-shadow-md" aria-hidden="true"></i>
             </div>
-          </div>
-          <div role="listitem" class="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition bg-slate-50 cursor-pointer" tabindex="0" aria-label="施術ベッド写真を拡大">
+          </li>
+          <li class="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition bg-slate-50 cursor-pointer" tabindex="0" aria-label="施術ベッド写真を拡大">
             <img src="image/sejutubed.webp" alt="整体院ひざこぞう 清潔に整頓された施術ベッド・施術スペース" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
               <i data-lucide="zoom-in" class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-8 h-8 drop-shadow-md" aria-hidden="true"></i>
             </div>
-          </div>
-          <div role="listitem" class="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition bg-slate-50 cursor-pointer" tabindex="0" aria-label="タオル・器具写真を拡大">
+          </li>
+          <li class="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition bg-slate-50 cursor-pointer" tabindex="0" aria-label="タオル・器具写真を拡大">
             <img src="image/heyazzenntai.webp" alt="整体院ひざこぞう 清潔なタオルと運動療法で使用するゴムバンド" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
               <i data-lucide="zoom-in" class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-8 h-8 drop-shadow-md" aria-hidden="true"></i>
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -1058,8 +1101,7 @@
   <footer class="bg-slate-900 text-slate-300 py-12 text-center md:pb-12 pb-32">
     <div class="container mx-auto px-4">
       <div class="bg-white rounded-2xl px-6 py-3 inline-block mb-4">
-        <!-- ロゴ画像がimageフォルダにある場合は "image/hizakozou_svg.svg" に変更してください -->
-        <img src="hizakozou_svg.svg" alt="整体院ひざこぞう" class="h-10 w-auto object-contain" loading="lazy" decoding="async">
+        <span class="text-xl font-black text-slate-800 tracking-tight">整体院ひざこぞう</span>
       </div>
       <p class="text-sm font-bold mb-8">千葉県柏市 / 膝痛・慢性痛専門</p>
       <nav class="flex flex-wrap justify-center gap-6 text-sm font-bold mb-8" aria-label="フッターナビゲーション">
@@ -1086,15 +1128,15 @@
     <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl scale-95 transition-transform duration-300">
   </div>
 
-  <!-- モバイル固定CTA -->
-  <div class="fixed bottom-0 left-0 right-0 md:hidden bg-white shadow-[0_-5px_20px_rgba(0,0,0,0.1)] p-3 z-50 flex gap-2 border-t border-slate-200">
-    <a href="tel:0471143274" class="flex-1 bg-blue-600 text-white py-3.5 rounded-xl font-black flex flex-col items-center justify-center shadow-md active:scale-95 transition-transform">
-      <div class="flex items-center gap-1 text-lg leading-none"><i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i> 電話予約</div>
-      <span class="text-[10px] opacity-90 mt-1 font-normal">タップで発信</span>
+  <!-- スマホ固定CTAバー -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-slate-200 shadow-[0_-5px_20px_rgba(0,0,0,0.1)] p-3 flex gap-3">
+    <a href="tel:0471143274"
+       class="flex-1 flex items-center justify-center gap-2 bg-slate-800 text-white font-black py-3 rounded-xl text-sm shadow transition active:scale-95">
+      <i data-lucide="phone" class="w-4 h-4" aria-hidden="true"></i> 電話する
     </a>
-    <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="flex-1 bg-[#06C755] text-white py-3.5 rounded-xl font-black flex flex-col items-center justify-center shadow-md active:scale-95 transition-transform">
-      <div class="flex items-center gap-1 text-lg leading-none"><i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i> LINE予約</div>
-      <span class="text-[10px] opacity-90 mt-1 font-normal">24時間受付</span>
+    <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer"
+       class="flex-1 flex items-center justify-center gap-2 bg-[#06C755] text-white font-black py-3 rounded-xl text-sm shadow transition active:scale-95">
+      <i data-lucide="message-circle" class="w-4 h-4" aria-hidden="true"></i> LINEで予約
     </a>
   </div>
 
@@ -1169,38 +1211,59 @@
       }
     });
 
-    // MicroCMS
+    // MicroCMS ブログ取得
     (async () => {
       const container = document.getElementById('microcms-blog-container');
       if (!container) return;
+
+      // APIキー（※MicroCMS管理画面でドメイン制限・GET専用に設定済みであること）
+      const MICROCMS_API_KEY = '2BxAuwOHmLXSqUA7gHVTvV1SlPEJrbbWeDMW';
+      const MICROCMS_ENDPOINT = 'https://hizakozou.microcms.io/api/v1/blogs?limit=3';
+
       try {
-        const res  = await fetch('https://hizakozou.microcms.io/api/v1/blogs?limit=3', { headers: { 'X-MICROCMS-API-KEY': '2BxAuwOHmLXSqUA7gHVTvV1SlPEJrbbWeDMW' } });
-        if (!res.ok) throw new Error();
+        const res = await fetch(MICROCMS_ENDPOINT, {
+          headers: { 'X-MICROCMS-API-KEY': MICROCMS_API_KEY }
+        });
+        if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
         const data = await res.json();
-        if (!data.contents?.length) { container.innerHTML = '<p class="text-center text-slate-500 col-span-3 font-bold py-10">現在、記事を準備中です。</p>'; return; }
+        
+        if (!data.contents?.length) {
+          container.innerHTML = '<p class="text-center text-slate-500 col-span-3 font-bold py-10">現在、記事を準備中です。</p>';
+          return;
+        }
+
         container.innerHTML = data.contents.map(b => {
-          const date = new Date(b.publishedAt).toLocaleDateString('ja-JP').replace(/\//g,'.');
-          const img  = b.eyecatch?.url || 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80';
+          const date = new Date(b.publishedAt).toLocaleDateString('ja-JP').replace(/\//g, '.');
+          const img  = b.eyecatch?.url
+            ? `${b.eyecatch.url}?w=600&h=400&fit=crop&fm=webp&q=75`
+            : 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80';
+            
           return `<a href="blog-detail.html?id=${b.id}" class="group block bg-white rounded-3xl overflow-hidden card-shadow hover:shadow-xl transition-all duration-300 border border-slate-100">
-            <div class="h-48 overflow-hidden bg-slate-100"><img src="${img}" alt="${b.title} | 整体院ひざこぞうブログ" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async"></div>
+            <div class="h-48 overflow-hidden bg-slate-100">
+              <img src="${img}" alt="${b.title} | 整体院ひざこぞうブログ" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async" width="600" height="400">
+            </div>
             <div class="p-6">
-              <p class="text-xs font-bold text-blue-600 mb-2 flex items-center gap-1"><i data-lucide="calendar" class="w-3 h-3" aria-hidden="true"></i><time datetime="${b.publishedAt}">${date}</time></p>
+              <p class="text-xs font-bold text-blue-600 mb-2 flex items-center gap-1">
+                <i data-lucide="calendar" class="w-3 h-3" aria-hidden="true"></i>
+                <time datetime="${b.publishedAt}">${date}</time>
+              </p>
               <h3 class="text-base font-black text-slate-800 leading-tight group-hover:text-blue-600 transition">${b.title}</h3>
             </div>
           </a>`;
         }).join('');
         lucide.createIcons();
-      } catch { container.innerHTML = '<p class="text-center text-slate-500 col-span-3 font-bold py-10">記事を取得できませんでした。</p>'; }
+      } catch (err) {
+        console.error('MicroCMS fetch error:', err);
+        container.innerHTML = '<p class="text-center text-slate-500 col-span-3 font-bold py-10">記事を取得できませんでした。</p>';
+      }
     })();
 
     // キャンペーン日付
     function updateCampaignDate() {
-      const today  = new Date();
-      const dow    = today.getDay();
-      const until  = (1 - dow + 7) % 7 || 7;
-      const next   = new Date(today);
-      next.setDate(today.getDate() + until);
-      const label  = `${next.getMonth()+1}月${next.getDate()}日(月)`;
+      const today   = new Date();
+      const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+      const weekdays = ['日','月','火','水','木','金','土'];
+      const label   = `${lastDay.getMonth()+1}月${lastDay.getDate()}日(${weekdays[lastDay.getDay()]})`;
       document.querySelectorAll('#campaign-date').forEach(el => el.textContent = label);
     }
     updateCampaignDate();
@@ -1232,11 +1295,22 @@
     });
 
     // ギャラリーキーボード操作
-    document.querySelectorAll('[role="listitem"][tabindex="0"]').forEach(el => {
+    document.querySelectorAll('li[tabindex="0"]').forEach(el => {
       const img = el.querySelector('img');
       el.addEventListener('click', () => openLightbox(img.src, img.alt));
       el.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') { e.preventDefault(); openLightbox(img.src, img.alt); } });
     });
+
+    // 固定CTAバーのアイコンを初期化
+    lucide.createIcons({ nodes: document.querySelectorAll('.fixed [data-lucide]') });
+
+    // ヘッダー高さに応じてスクロール位置を自動調整
+    function syncHeaderHeight() {
+      const h = document.getElementById('header')?.offsetHeight || 80;
+      document.documentElement.style.setProperty('--header-h', h + 'px');
+    }
+    syncHeaderHeight();
+    window.addEventListener('resize', syncHeaderHeight);
   </script>
 </body>
 </html>
