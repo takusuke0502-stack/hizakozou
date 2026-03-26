@@ -147,12 +147,6 @@
     .back{padding:2.5rem 1rem;text-align:center;background:#fff}
     .back__link{display:inline-flex;align-items:center;gap:.5rem;color:var(--blue-600);font-size:1rem;font-weight:900;transition:color .2s}
     .back__link:hover{color:#1e40af}
-    /* Footer */
-    footer{background:var(--slate-900);color:#cbd5e1;padding:3rem 1rem;text-align:center}
-    .footer__logo{background:#fff;border-radius:var(--radius-xl);padding:.75rem 1.5rem;display:inline-block;margin-bottom:1rem}
-    .footer__logo span{font-size:1.25rem;font-weight:900;color:var(--slate-800)}
-    .footer__tagline{font-size:14px;font-weight:700;margin-bottom:1.5rem}
-    .footer__note{font-size:10px;color:#64748b;font-weight:700}
     /* Mobile CTA */
     .mobile-cta{position:fixed;bottom:0;left:0;right:0;background:#fff;box-shadow:0 -5px 20px rgba(0,0,0,.1);padding:.75rem;z-index:50;display:flex;gap:.5rem;border-top:1px solid var(--slate-200)}
     @media(min-width:768px){.mobile-cta{display:none}}
@@ -161,6 +155,38 @@
     .mobile-cta__btn--tel{background:var(--blue-600)}.mobile-cta__btn--line{background:var(--green-line)}
     .mobile-cta__sub{font-size:10px;opacity:.85;font-weight:400}
   </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "歯科と整体、どちらに行けばいいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "噛み合わせや歯ぎしりの影響が大きい場合は歯科が優先されます。首・肩の緊張や姿勢の崩れが関係している場合は当院のアプローチが有効です。両方関わっているケースも多く、歯科と並行して通われる方もいらっしゃいます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "マウスピースを使っていますが、それだけでは良くなりません。",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "マウスピースは歯への負担を減らす効果はありますが、姿勢の問題や筋肉の緊張は解決しません。並行して首・肩まわりの緊張を緩め姿勢を改善することで症状がさらに軽減されるケースが多いです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "あごがカクカク鳴るだけで、痛みはありません。通った方がいいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "音だけで痛みがない場合、すぐに施術が必要というわけではありません。ただし音の出方が変わってきた、口が開きにくくなってきたなどの変化がある場合は早めにご相談ください。"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
   <header class="site-header">
@@ -413,6 +439,55 @@
       </div>
     </section>
 
+    <section style="padding:3rem 1rem;background:#f8fafc;border-top:1px solid #e2e8f0;">
+      <div class="container max-w-4xl">
+        <p style="text-align:center;font-size:13px;font-weight:700;color:#2563eb;letter-spacing:.08em;margin-bottom:.75rem;">RELATED SYMPTOMS</p>
+        <h2 style="text-align:center;font-size:1.375rem;font-weight:900;color:#1e3a8a;margin-bottom:.75rem;">こんな症状も関係しているかもしれません</h2>
+        <p style="text-align:center;font-size:14px;font-weight:700;color:#475569;margin-bottom:2rem;line-height:1.8;">顎関節症は首や肩の姿勢と連動しているため、上半身の不調を併発しやすくなります。<br>気になる症状があれば、あわせてご相談ください。</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
+          <a href="shoulder-stiffness.html" style="display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:1rem;padding:1.25rem;text-decoration:none;transition:all .2s;box-shadow:0 2px 8px rgba(37,99,235,.06);" onmouseover="this.style.borderColor='#2563eb';this.style.boxShadow='0 4px 16px rgba(37,99,235,.15)'" onmouseout="this.style.borderColor='#dbeafe';this.style.boxShadow='0 2px 8px rgba(37,99,235,.06)'">
+            <div style="display:flex;align-items:center;gap:.625rem;">
+              <div style="width:2.5rem;height:2.5rem;background:#dbeafe;border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i data-lucide="activity" style="width:1.125rem;height:1.125rem;color:#2563eb;" aria-hidden="true"></i>
+              </div>
+              <div>
+                <p style="font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.3;">肩こり</p>
+                <p style="font-size:11px;font-weight:700;color:#64748b;margin-top:.125rem;">肩こり・首こり・頭痛</p>
+              </div>
+            </div>
+            <p style="font-size:13px;font-weight:700;color:#475569;line-height:1.7;">頭が前に出る「スマホ首（ストレートネック）」などの不良姿勢は、肩こりと顎関節症の両方を引き起こす根本的な原因です。</p>
+            <span style="font-size:13px;font-weight:900;color:#2563eb;display:flex;align-items:center;gap:.25rem;">詳しく見る <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
+          </a>
+          <a href="frozen-shoulder.html" style="display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:1rem;padding:1.25rem;text-decoration:none;transition:all .2s;box-shadow:0 2px 8px rgba(37,99,235,.06);" onmouseover="this.style.borderColor='#2563eb';this.style.boxShadow='0 4px 16px rgba(37,99,235,.15)'" onmouseout="this.style.borderColor='#dbeafe';this.style.boxShadow='0 2px 8px rgba(37,99,235,.06)'">
+            <div style="display:flex;align-items:center;gap:.625rem;">
+              <div style="width:2.5rem;height:2.5rem;background:#dbeafe;border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i data-lucide="activity" style="width:1.125rem;height:1.125rem;color:#2563eb;" aria-hidden="true"></i>
+              </div>
+              <div>
+                <p style="font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.3;">五十肩</p>
+                <p style="font-size:11px;font-weight:700;color:#64748b;margin-top:.125rem;">肩の強い痛み・腕が上がらない</p>
+              </div>
+            </div>
+            <p style="font-size:13px;font-weight:700;color:#475569;line-height:1.7;">姿勢の崩れから肩関節や肩甲骨の動きが悪くなることで、五十肩のような強い肩の痛みに発展することがあります。</p>
+            <span style="font-size:13px;font-weight:900;color:#2563eb;display:flex;align-items:center;gap:.25rem;">詳しく見る <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
+          </a>
+          <a href="thoracic-outlet.html" style="display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:1rem;padding:1.25rem;text-decoration:none;transition:all .2s;box-shadow:0 2px 8px rgba(37,99,235,.06);" onmouseover="this.style.borderColor='#2563eb';this.style.boxShadow='0 4px 16px rgba(37,99,235,.15)'" onmouseout="this.style.borderColor='#dbeafe';this.style.boxShadow='0 2px 8px rgba(37,99,235,.06)'">
+            <div style="display:flex;align-items:center;gap:.625rem;">
+              <div style="width:2.5rem;height:2.5rem;background:#dbeafe;border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i data-lucide="zap" style="width:1.125rem;height:1.125rem;color:#2563eb;" aria-hidden="true"></i>
+              </div>
+              <div>
+                <p style="font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.3;">胸郭出口症候群</p>
+                <p style="font-size:11px;font-weight:700;color:#64748b;margin-top:.125rem;">腕や手のしびれ・冷え</p>
+              </div>
+            </div>
+            <p style="font-size:13px;font-weight:700;color:#475569;line-height:1.7;">首回りの筋肉（斜角筋など）が過度に緊張することで神経が圧迫され、腕や手のしびれを引き起こしやすくなります。</p>
+            <span style="font-size:13px;font-weight:900;color:#2563eb;display:flex;align-items:center;gap:.25rem;">詳しく見る <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section class="cta">
       <div class="container max-w-3xl">
         <h2 class="cta__title">顎関節症でお悩みの方へ</h2>
@@ -439,29 +514,51 @@
     </div>
   </main>
 
-  <footer>
-    <div class="container">
-      <div class="footer__logo"><span>整体院ひざこぞう</span></div>
-      <p class="footer__tagline">千葉県柏市 / 膝痛・慢性痛専門</p>
-      <p class="footer__note">※個人の感想であり、成果を保証するものではありません。<br>&copy; 2026 整体院ひざこぞう All Rights Reserved.</p>
+  <footer style="background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;">
+    <div class="container" style="max-width:800px;">
+      <div style="text-align:center;margin-bottom:2rem;">
+        <div style="background:#fff;border-radius:1rem;padding:.75rem 1.5rem;display:inline-block;margin-bottom:.75rem;">
+          <span style="font-size:1.25rem;font-weight:900;color:#1e293b;">整体院ひざこぞう</span>
+        </div>
+        <p style="font-size:14px;font-weight:700;color:#94a3b8;">千葉県柏市 / 膝痛・慢性痛専門</p>
+      </div>
+      <div style="border-top:1px solid #1e293b;padding-top:1.5rem;margin-bottom:1.5rem;">
+        <p style="font-size:11px;font-weight:700;color:#64748b;letter-spacing:.1em;text-align:center;margin-bottom:1rem;">対応している症状</p>
+        <ul style="display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.5rem;list-style:none;padding:0;margin:0;">
+          <li><a href="../symptoms/knee-osteoarthritis.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">変形性膝関節症</a></li>
+          <li><a href="../symptoms/hip-osteoarthritis.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">変形性股関節症</a></li>
+          <li><a href="../symptoms/lower-back-pain.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">腰痛</a></li>
+          <li><a href="../symptoms/sciatica.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">坐骨神経痛</a></li>
+          <li><a href="../symptoms/spinal-stenosis.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">脊柱管狭窄症</a></li>
+          <li><a href="../symptoms/frozen-shoulder.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">五十肩</a></li>
+          <li><a href="../symptoms/shoulder-stiffness.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">肩こり</a></li>
+          <li><a href="../symptoms/thoracic-outlet.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">胸郭出口症候群</a></li>
+          <li><a href="../symptoms/tmj.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">顎関節症</a></li>
+        </ul>
+      </div>
+      <div style="border-top:1px solid #1e293b;padding-top:1.5rem;text-align:center;">
+        <p style="font-size:10px;color:#475569;font-weight:700;line-height:2;">※個人の感想であり、成果を保証するものではありません。<br>&copy; 2026 整体院ひざこぞう All Rights Reserved.</p>
+      </div>
     </div>
   </footer>
 
   <div class="mobile-cta">
     <a href="tel:0471143274" class="mobile-cta__btn mobile-cta__btn--tel">
-      <div style="display:flex;align-items:center;gap:.25rem;">
+      <div style="display:flex;align-items:center;gap:0.25rem;font-size:1.125rem;">
         <i data-lucide="phone" style="width:1.25rem;height:1.25rem;" aria-hidden="true"></i> 電話予約
       </div>
       <span class="mobile-cta__sub">タップで発信</span>
     </a>
     <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="mobile-cta__btn mobile-cta__btn--line">
-      <div style="display:flex;align-items:center;gap:.25rem;">
+      <div style="display:flex;align-items:center;gap:0.25rem;font-size:1.125rem;">
         <i data-lucide="message-circle" style="width:1.25rem;height:1.25rem;" aria-hidden="true"></i> LINE予約
       </div>
       <span class="mobile-cta__sub">24時間受付</span>
     </a>
   </div>
 
-  <script>lucide.createIcons();</script>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>
