@@ -53,7 +53,6 @@
 }
   </script>
 
-  <!-- 既存Tailwind CSS（省略せず元ファイルと同一） -->
   <script src="https://unpkg.com/lucide@0.344.0"></script>
   <style>
     /* ===== Base ===== */
@@ -384,13 +383,6 @@
     .back__link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--blue-600); font-size: 1rem; font-weight: 900; transition: color 0.2s; }
     .back__link:hover { color: var(--blue-800); }
 
-    /* ===== Footer ===== */
-    footer { background: var(--slate-900); color: #cbd5e1; padding: 3rem 1rem; text-align: center; }
-    .footer__logo { background: #fff; border-radius: var(--radius-xl); padding: 0.75rem 1.5rem; display: inline-block; margin-bottom: 1rem; }
-    .footer__logo span { font-size: 1.25rem; font-weight: 900; color: var(--slate-800); }
-    .footer__tagline { font-size: 14px; font-weight: 700; margin-bottom: 1.5rem; }
-    .footer__note { font-size: 10px; color: #64748b; font-weight: 700; }
-
     /* ===== Mobile CTA ===== */
     .mobile-cta {
       position: fixed; bottom: 0; left: 0; right: 0;
@@ -414,7 +406,6 @@
 </head>
 <body>
 
-  <!-- ヘッダー -->
   <header class="site-header">
     <div class="container site-header__inner">
       <a href="../">
@@ -433,7 +424,6 @@
 
   <main>
 
-    <!-- パンくず -->
     <div class="breadcrumb">
       <div class="container max-w-4xl">
         <nav aria-label="パンくずリスト" class="breadcrumb__nav">
@@ -446,7 +436,6 @@
       </div>
     </div>
 
-    <!-- ヒーロー -->
     <section class="hero">
       <div class="container max-w-4xl hero__inner">
         <div class="hero__label">
@@ -461,7 +450,6 @@
       </div>
     </section>
 
-    <!-- こんなお悩み -->
     <section class="concerns">
       <div class="container max-w-4xl">
         <h2 class="section-title">こんなお悩みはありませんか？</h2>
@@ -509,7 +497,6 @@
       </div>
     </section>
 
-    <!-- 腰痛の原因 -->
     <section class="cause">
       <div class="container max-w-4xl">
         <h2 class="section-title">腰痛はなぜ起こるのか</h2>
@@ -518,7 +505,6 @@
           <p>腰痛の多くは「<span class="highlight">過緊張</span>」と「<span class="highlight">過可動</span>」が組み合わさった状態です。腰そのものが悪いというより、腰が全身の問題を一手に引き受けてしまうことで発症します。</p>
         </div>
 
-        <!-- メカニズムフロー -->
         <div class="mechanism">
           <p class="mechanism__title">腰痛が起きるメカニズム</p>
           <div class="mechanism__flow">
@@ -550,7 +536,6 @@
           <p>ぎっくり腰は、猫背（腰椎後弯位）から急に動いたり重い物を持ったりした瞬間に、多裂筋や椎間関節に過剰な負担がかかって発症します。多裂筋は本来「体幹を安定させるサボり筋」であるはずが、一瞬で過負荷になるのです。</p>
         </div>
 
-        <!-- 悪循環 -->
         <div class="vicious-cycle">
           <p class="vicious-cycle__title">
             <i data-lucide="alert-triangle" style="width:1.125rem;height:1.125rem;" aria-hidden="true"></i>
@@ -575,7 +560,6 @@
       </div>
     </section>
 
-    <!-- 当院のアプローチ -->
     <section class="approach">
       <div class="container max-w-4xl">
         <h2 class="section-title">当院の腰痛へのアプローチ</h2>
@@ -631,7 +615,6 @@
       </div>
     </section>
 
-    <!-- 通院頻度 -->
     <section class="frequency">
       <div class="container max-w-4xl">
         <h2 class="section-title">通院頻度の目安</h2>
@@ -662,7 +645,6 @@
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="faq">
       <div class="container max-w-3xl">
         <h2 class="section-title">腰痛に関するよくあるご質問</h2>
@@ -720,7 +702,55 @@
       </div>
     </section>
 
-    <!-- CTA -->
+    <section style="padding:3rem 1rem;background:#f8fafc;border-top:1px solid #e2e8f0;">
+      <div class="container max-w-4xl">
+        <p style="text-align:center;font-size:13px;font-weight:700;color:#2563eb;letter-spacing:.08em;margin-bottom:.75rem;">RELATED SYMPTOMS</p>
+        <h2 style="text-align:center;font-size:1.375rem;font-weight:900;color:#1e3a8a;margin-bottom:.75rem;">こんな症状も関係しているかもしれません</h2>
+        <p style="text-align:center;font-size:14px;font-weight:700;color:#475569;margin-bottom:2rem;line-height:1.8;">痛みをかばう姿勢が続くと、別の部位にも負担がかかりやすくなります。<br>気になる症状があれば、あわせてご相談ください。</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
+          <a href="knee-osteoarthritis.html" style="display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:1rem;padding:1.25rem;text-decoration:none;transition:all .2s;box-shadow:0 2px 8px rgba(37,99,235,.06);" onmouseover="this.style.borderColor='#2563eb';this.style.boxShadow='0 4px 16px rgba(37,99,235,.15)'" onmouseout="this.style.borderColor='#dbeafe';this.style.boxShadow='0 2px 8px rgba(37,99,235,.06)'">
+            <div style="display:flex;align-items:center;gap:.625rem;">
+              <div style="width:2.5rem;height:2.5rem;background:#dbeafe;border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i data-lucide="activity" style="width:1.125rem;height:1.125rem;color:#2563eb;" aria-hidden="true"></i>
+              </div>
+              <div>
+                <p style="font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.3;">変形性膝関節症</p>
+                <p style="font-size:11px;font-weight:700;color:#64748b;margin-top:.125rem;">膝の痛み・水がたまる</p>
+              </div>
+            </div>
+            <p style="font-size:13px;font-weight:700;color:#475569;line-height:1.7;">腰の痛みをかばうことで歩き方が崩れ、膝に過剰な負担がかかって痛みが連鎖するケースが多く見られます。</p>
+            <span style="font-size:13px;font-weight:900;color:#2563eb;display:flex;align-items:center;gap:.25rem;">詳しく見る <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
+          </a>
+          <a href="hip-osteoarthritis.html" style="display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:1rem;padding:1.25rem;text-decoration:none;transition:all .2s;box-shadow:0 2px 8px rgba(37,99,235,.06);" onmouseover="this.style.borderColor='#2563eb';this.style.boxShadow='0 4px 16px rgba(37,99,235,.15)'" onmouseout="this.style.borderColor='#dbeafe';this.style.boxShadow='0 2px 8px rgba(37,99,235,.06)'">
+            <div style="display:flex;align-items:center;gap:.625rem;">
+              <div style="width:2.5rem;height:2.5rem;background:#dbeafe;border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i data-lucide="disc" style="width:1.125rem;height:1.125rem;color:#2563eb;" aria-hidden="true"></i>
+              </div>
+              <div>
+                <p style="font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.3;">変形性股関節症</p>
+                <p style="font-size:11px;font-weight:700;color:#64748b;margin-top:.125rem;">股関節の痛み・歩行困難</p>
+              </div>
+            </div>
+            <p style="font-size:13px;font-weight:700;color:#475569;line-height:1.7;">股関節の動きが硬くなると、代わりに腰が過剰に動くことになり、慢性的な腰痛の根本原因になりやすいです。</p>
+            <span style="font-size:13px;font-weight:900;color:#2563eb;display:flex;align-items:center;gap:.25rem;">詳しく見る <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
+          </a>
+          <a href="sciatica.html" style="display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:1rem;padding:1.25rem;text-decoration:none;transition:all .2s;box-shadow:0 2px 8px rgba(37,99,235,.06);" onmouseover="this.style.borderColor='#2563eb';this.style.boxShadow='0 4px 16px rgba(37,99,235,.15)'" onmouseout="this.style.borderColor='#dbeafe';this.style.boxShadow='0 2px 8px rgba(37,99,235,.06)'">
+            <div style="display:flex;align-items:center;gap:.625rem;">
+              <div style="width:2.5rem;height:2.5rem;background:#dbeafe;border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i data-lucide="git-branch" style="width:1.125rem;height:1.125rem;color:#2563eb;" aria-hidden="true"></i>
+              </div>
+              <div>
+                <p style="font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.3;">坐骨神経痛</p>
+                <p style="font-size:11px;font-weight:700;color:#64748b;margin-top:.125rem;">お尻から足への痛み・しびれ</p>
+              </div>
+            </div>
+            <p style="font-size:13px;font-weight:700;color:#475569;line-height:1.7;">慢性的な腰痛を放置したり、腰に過度な負担がかかり続けると、お尻から足にかけてのしびれや痛みに進行することがあります。</p>
+            <span style="font-size:13px;font-weight:900;color:#2563eb;display:flex;align-items:center;gap:.25rem;">詳しく見る <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section class="cta">
       <div class="container max-w-3xl">
         <h2 class="cta__title">腰痛でお悩みの方へ</h2>
@@ -743,7 +773,6 @@
       </div>
     </section>
 
-    <!-- トップへ戻る -->
     <div class="back">
       <a href="../" class="back__link">
         <i data-lucide="arrow-left" style="width:1.25rem;height:1.25rem;" aria-hidden="true"></i>
@@ -753,19 +782,34 @@
 
   </main>
 
-  <!-- フッター -->
-  <footer>
-    <div class="container">
-      <div class="footer__logo"><span>整体院ひざこぞう</span></div>
-      <p class="footer__tagline">千葉県柏市 / 膝痛・慢性痛専門</p>
-      <p class="footer__note">
-        ※個人の感想であり、成果を保証するものではありません。<br>
-        &copy; 2026 整体院ひざこぞう All Rights Reserved.
-      </p>
+  <footer style="background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;">
+    <div class="container" style="max-width:800px;">
+      <div style="text-align:center;margin-bottom:2rem;">
+        <div style="background:#fff;border-radius:1rem;padding:.75rem 1.5rem;display:inline-block;margin-bottom:.75rem;">
+          <span style="font-size:1.25rem;font-weight:900;color:#1e293b;">整体院ひざこぞう</span>
+        </div>
+        <p style="font-size:14px;font-weight:700;color:#94a3b8;">千葉県柏市 / 膝痛・慢性痛専門</p>
+      </div>
+      <div style="border-top:1px solid #1e293b;padding-top:1.5rem;margin-bottom:1.5rem;">
+        <p style="font-size:11px;font-weight:700;color:#64748b;letter-spacing:.1em;text-align:center;margin-bottom:1rem;">対応している症状</p>
+        <ul style="display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.5rem;list-style:none;padding:0;margin:0;">
+          <li><a href="../symptoms/knee-osteoarthritis.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">変形性膝関節症</a></li>
+          <li><a href="../symptoms/hip-osteoarthritis.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">変形性股関節症</a></li>
+          <li><a href="../symptoms/lower-back-pain.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">腰痛</a></li>
+          <li><a href="../symptoms/sciatica.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">坐骨神経痛</a></li>
+          <li><a href="../symptoms/spinal-stenosis.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">脊柱管狭窄症</a></li>
+          <li><a href="../symptoms/frozen-shoulder.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">五十肩</a></li>
+          <li><a href="../symptoms/shoulder-stiffness.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">肩こり</a></li>
+          <li><a href="../symptoms/thoracic-outlet.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">胸郭出口症候群</a></li>
+          <li><a href="../symptoms/tmj.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">顎関節症</a></li>
+        </ul>
+      </div>
+      <div style="border-top:1px solid #1e293b;padding-top:1.5rem;text-align:center;">
+        <p style="font-size:10px;color:#475569;font-weight:700;line-height:2;">※個人の感想であり、成果を保証するものではありません。<br>&copy; 2026 整体院ひざこぞう All Rights Reserved.</p>
+      </div>
     </div>
   </footer>
 
-  <!-- モバイル固定CTA -->
   <div class="mobile-cta">
     <a href="tel:0471143274" class="mobile-cta__btn mobile-cta__btn--tel">
       <div style="display:flex;align-items:center;gap:0.25rem;font-size:1.125rem;">
