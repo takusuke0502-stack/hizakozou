@@ -3,692 +3,586 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>お役立ち情報・ブログ｜整体院ひざこぞう（柏市）</title>
-  <meta name="description" content="整体院ひざこぞうのお役立ち情報。膝痛・腰痛・慢性痛のセルフケア方法や院からのお知らせを発信しています。">
-  <meta property="og:title" content="お役立ち情報・ブログ｜整体院ひざこぞう">
-  <meta property="og:description" content="膝痛・腰痛・慢性痛のセルフケア方法や院からのお知らせを発信しています。">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://hizakozou.jp/blog.html">
+  <title>記事を読み込み中... | 整体院ひざこぞう</title>
+  <meta name="description" content="整体院ひざこぞうのお役立ち情報・ブログ記事">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --primary: #1a6b5a;
-      --primary-light: #e8f4f0;
-      --primary-dark: #134d41;
-      --accent: #e8a020;
-      --text: #1a1a1a;
-      --text-secondary: #555;
-      --border: #e0e0e0;
-      --bg: #f8f8f6;
-      --white: #ffffff;
+      --color-primary: #1e3a8a;
+      --color-primary-light: #eff6ff;
+      --color-accent: #2563eb;
+      --color-text: #334155;
+      --color-text-muted: #64748b;
+      --color-border: #e2e8f0;
+      --color-bg: #f8fafc;
+      --color-white: #ffffff;
+      --font-main: 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', sans-serif;
       --radius: 12px;
-      --shadow: 0 2px 16px rgba(0,0,0,0.08);
+      --shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
 
     body {
-      font-family: 'Noto Sans JP', sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.7;
+      font-family: var(--font-main);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.8;
+      font-size: 16px;
     }
 
-    /* HEADER */
+    /* ===== HEADER ===== */
     header {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
     .header-inner {
       max-width: 1100px;
       margin: 0 auto;
       padding: 0 20px;
-      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      height: 64px;
     }
-    .logo {
+    .header-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
       display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
+      flex-direction: column;
+      line-height: 1.2;
     }
-    .logo-badge {
-      background: var(--primary);
-      color: white;
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: 700;
+    .header-logo span {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--color-text-muted);
     }
-    .logo-name {
-      font-family: 'Noto Serif JP', serif;
-      font-weight: 700;
-      font-size: 18px;
-      color: var(--primary-dark);
-    }
-    nav { display: flex; gap: 20px; align-items: center; }
-    nav a {
-      text-decoration: none;
-      color: var(--text-secondary);
-      font-size: 13px;
-      transition: color 0.2s;
-    }
-    nav a:hover { color: var(--primary); }
-    .nav-cta {
-      background: var(--primary);
-      color: white !important;
-      padding: 8px 16px;
+    .header-nav { display: flex; gap: 8px; }
+    .btn-line {
+      background: #2563eb;
+      color: #fff;
+      border: none;
       border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
       font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .nav-cta:hover { background: var(--primary-dark) !important; }
-
-    /* PAGE HERO */
-    .page-hero {
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-      color: white;
-      padding: 60px 20px 50px;
-      text-align: center;
-    }
-    .page-hero .label {
-      display: inline-block;
-      background: rgba(255,255,255,0.2);
-      font-size: 12px;
-      padding: 4px 12px;
-      border-radius: 20px;
-      margin-bottom: 16px;
-      letter-spacing: 0.1em;
-    }
-    .page-hero h1 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(22px, 4vw, 34px);
+    .btn-tel {
+      background: var(--color-primary);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
       font-weight: 700;
-      margin-bottom: 12px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .page-hero p { font-size: 14px; opacity: 0.85; }
 
-    /* BREADCRUMB */
-    .breadcrumb {
+    /* ===== LAYOUT ===== */
+    .container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 12px 20px;
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
-    .breadcrumb a { color: var(--primary); text-decoration: none; }
-    .breadcrumb span { margin: 0 6px; }
-
-    /* MAIN LAYOUT */
-    .main-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 20px 80px;
+      padding: 40px 20px 100px;
       display: grid;
       grid-template-columns: 1fr 300px;
       gap: 40px;
       align-items: start;
     }
 
-    /* BLOG SECTION */
-    .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    /* ===== BREADCRUMB ===== */
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
       margin-bottom: 24px;
     }
-    .section-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--primary-dark);
-    }
-    .post-count { font-size: 13px; color: var(--text-secondary); }
-
-    .category-filter {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
-    }
-    .cat-btn {
-      background: var(--white);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      font-size: 13px;
-      padding: 6px 14px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: 'Noto Sans JP', sans-serif;
-    }
-    .cat-btn:hover, .cat-btn.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: white;
-    }
-
-    .blog-grid { display: grid; gap: 20px; }
-
-    .blog-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      display: grid;
-      grid-template-columns: 200px 1fr;
+    .breadcrumb a {
+      color: var(--color-primary);
       text-decoration: none;
-      color: var(--text);
-      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .blog-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* ===== ARTICLE ===== */
+    .article-wrap {
+      background: var(--color-white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
-    .card-img {
-      width: 200px;
-      height: 140px;
+
+    .article-eyecatch {
+      width: 100%;
+      max-height: 400px;
       object-fit: cover;
       display: block;
     }
-    .card-img-placeholder {
-      width: 200px;
-      height: 140px;
-      background: linear-gradient(135deg, var(--primary-light), #d0ebe4);
+    .article-eyecatch-placeholder {
+      width: 100%;
+      height: 200px;
+      background: var(--color-primary-light);
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-    }
-    .card-body {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .card-meta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .card-category {
-      background: var(--primary-light);
-      color: var(--primary);
-      font-size: 11px;
-      padding: 2px 10px;
-      border-radius: 20px;
-      font-weight: 700;
-    }
-    .card-date { font-size: 12px; color: var(--text-secondary); }
-    .card-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 1.5;
-      margin-bottom: 8px;
-    }
-    .card-excerpt {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .card-read-more {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 13px;
-      color: var(--primary);
-      font-weight: 700;
-      margin-top: 12px;
+      font-size: 3rem;
     }
 
-    /* States */
-    .loading-state { text-align: center; padding: 60px 20px; color: var(--text-secondary); }
-    .loading-spinner {
-      width: 40px; height: 40px;
-      border: 3px solid var(--border);
-      border-top-color: var(--primary);
+    .article-body {
+      padding: 36px 40px 48px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .article-date {
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+    }
+    .article-tag {
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 20px;
+    }
+
+    .article-title {
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 32px;
+      color: var(--color-text);
+    }
+
+    /* 記事本文スタイル */
+    .article-content {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: #2a2a2a;
+    }
+    .article-content h1,
+    .article-content h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 36px 0 16px;
+      padding: 10px 16px;
+      background: var(--color-primary-light);
+      border-left: 4px solid var(--color-primary);
+      border-radius: 0 8px 8px 0;
+      color: var(--color-primary);
+    }
+    .article-content h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 28px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--color-primary-light);
+      color: var(--color-text);
+    }
+    .article-content p {
+      margin-bottom: 20px;
+    }
+    .article-content ul,
+    .article-content ol {
+      margin: 16px 0 20px 1.5em;
+    }
+    .article-content li {
+      margin-bottom: 8px;
+    }
+    .article-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .article-content a {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+    .article-content blockquote {
+      border-left: 4px solid var(--color-border);
+      padding: 12px 20px;
+      margin: 20px 0;
+      color: var(--color-text-muted);
+      background: #f5f5f5;
+      border-radius: 0 8px 8px 0;
+    }
+    .article-content strong { font-weight: 700; }
+    .article-content em { font-style: italic; }
+
+    /* ===== DISCLAIMER ===== */
+    .disclaimer {
+      margin-top: 40px;
+      padding: 16px 20px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    /* ===== BACK LINK ===== */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--color-primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-top: 32px;
+      padding: 10px 20px;
+      border: 2px solid var(--color-primary);
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .back-link:hover {
+      background: var(--color-primary);
+      color: #fff;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar { display: flex; flex-direction: column; gap: 24px; }
+
+    .sidebar-card {
+      background: var(--color-white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+    .sidebar-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--color-primary-light);
+      color: var(--color-primary);
+    }
+
+    .cta-card {
+      background: var(--color-primary);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+    }
+    .cta-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .cta-card p {
+      font-size: 0.82rem;
+      opacity: 0.88;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .cta-card .btn-green {
+      display: block;
+      background: #2563eb;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .cta-card .btn-white {
+      display: block;
+      background: #fff;
+      color: var(--color-primary);
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* 最新記事リスト */
+    .recent-list { list-style: none; }
+    .recent-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .recent-list li:last-child { border-bottom: none; }
+    .recent-list a {
+      text-decoration: none;
+      color: var(--color-text);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      display: block;
+    }
+    .recent-list a:hover { color: var(--color-primary); }
+    .recent-list .r-date {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: 3px;
+    }
+
+    /* ===== STATUS ===== */
+    .status-box {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--color-text-muted);
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--color-border);
+      border-top-color: var(--color-primary);
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
       margin: 0 auto 16px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .error-state, .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .error-state h3 { font-size: 18px; margin-bottom: 8px; }
-    .error-state p, .empty-state p { font-size: 14px; color: var(--text-secondary); }
-
-    /* Pagination */
-    .pagination {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 40px;
-    }
-    .page-btn {
-      width: 40px; height: 40px;
-      display: flex; align-items: center; justify-content: center;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--white);
-      cursor: pointer;
-      font-size: 14px;
-      font-family: 'Noto Sans JP', sans-serif;
-      color: var(--text);
-      transition: all 0.2s;
-    }
-    .page-btn:hover, .page-btn.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: white;
-    }
-
-    /* SIDEBAR */
-    .sidebar-widget {
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-    .widget-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--primary-dark);
-      border-left: 3px solid var(--primary);
-      padding-left: 12px;
-      margin-bottom: 16px;
-    }
-    .cta-widget {
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: white;
-    }
-    .cta-widget .widget-title { color: white; border-color: var(--accent); }
-    .cta-widget p { font-size: 13px; opacity: 0.9; margin-bottom: 16px; line-height: 1.7; }
-    .cta-btn {
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 12px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      margin-bottom: 10px;
-      transition: opacity 0.2s;
-    }
-    .cta-btn:hover { opacity: 0.9; }
-    .cta-btn.line { background: #06C755; }
-    .cta-btn.tel { background: transparent; border: 1px solid rgba(255,255,255,0.5); }
-
-    .recent-list { list-style: none; }
-    .recent-list li { border-bottom: 1px solid var(--border); padding: 10px 0; }
-    .recent-list li:last-child { border-bottom: none; }
-    .recent-list a {
-      text-decoration: none;
-      color: var(--text);
-      font-size: 13px;
-      line-height: 1.5;
-      transition: color 0.2s;
-    }
-    .recent-list a:hover { color: var(--primary); }
-    .recent-date { display: block; font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
-
-    .category-list { list-style: none; }
-    .category-list li { border-bottom: 1px solid var(--border); }
-    .category-list li:last-child { border-bottom: none; }
-    .category-list a {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 14px;
-      transition: color 0.2s;
-      cursor: pointer;
-    }
-    .category-list a:hover { color: var(--primary); }
-    .cat-count {
-      background: var(--primary-light);
-      color: var(--primary);
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 10px;
-      font-weight: 700;
-    }
-
-    /* FOOTER CTA */
-    .footer-cta {
-      background: var(--primary-dark);
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
-    }
-    .footer-cta h2 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(20px, 3vw, 28px);
-      margin-bottom: 12px;
-    }
-    .footer-cta p { font-size: 14px; opacity: 0.8; margin-bottom: 32px; }
-    .footer-cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .footer-cta-btns a {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 15px;
-      transition: opacity 0.2s;
-    }
-    .footer-cta-btns a:hover { opacity: 0.9; }
-    .btn-line { background: #06C755; color: white; }
-    .btn-tel { background: var(--accent); color: white; }
-
+    /* ===== FOOTER ===== */
     footer {
-      background: #111;
-      color: rgba(255,255,255,0.6);
+      background: #1a1a1a;
+      color: #aaa;
       text-align: center;
       padding: 24px 20px;
-      font-size: 12px;
+      font-size: 0.8rem;
     }
-    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    footer a { color: #aaa; text-decoration: none; }
 
-    /* MOBILE BAR */
-    .mobile-bar {
-      display: none;
+    /* ===== FLOATING CTA ===== */
+    .floating-cta {
       position: fixed;
-      bottom: 0; left: 0; right: 0;
-      z-index: 200;
-      background: var(--white);
-      border-top: 1px solid var(--border);
-      padding: 8px 16px;
-      gap: 12px;
-    }
-    .mobile-bar a {
-      flex: 1;
+      bottom: 0;
+      left: 0;
+      right: 0;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 10px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      color: white;
+      z-index: 200;
     }
-    .mobile-bar .m-tel { background: var(--primary); }
-    .mobile-bar .m-line { background: #06C755; }
+    .floating-cta a {
+      flex: 1;
+      padding: 14px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: #fff;
+    }
+    .floating-cta .f-tel { background: #1e3a8a; }
+    .floating-cta .f-line { background: #2563eb; }
 
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      .main-wrap { grid-template-columns: 1fr; padding-bottom: 100px; }
+      .container {
+        grid-template-columns: 1fr;
+        padding: 24px 16px 100px;
+      }
+      .article-body { padding: 24px 20px 36px; }
       .sidebar { order: -1; }
-      .blog-card { grid-template-columns: 1fr; }
-      .card-img, .card-img-placeholder { width: 100%; height: 180px; }
-      nav { display: none; }
-      .mobile-bar { display: flex; }
+      .header-nav .btn-tel { display: none; }
     }
   </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
   <div class="header-inner">
-    <a href="/" class="logo">
-      <span class="logo-badge">国家資格者</span>
-      <span class="logo-name">整体院ひざこぞう</span>
+    <a href="https://hizakozou.jp" class="header-logo">
+      整体院ひざこぞう
+      <span>柏市 / 膝痛・慢性痛専門</span>
     </a>
-    <nav>
-      <a href="/#troubles">お悩み</a>
-      <a href="/#approach">施術法</a>
-      <a href="/#profile">院長</a>
-      <a href="/#price">料金</a>
-      <a href="/blog.html" style="color: var(--primary); font-weight: 700;">ブログ</a>
-      <a href="https://lin.ee/X01F2mP" class="nav-cta" target="_blank">LINE予約</a>
+    <nav class="header-nav">
+      <a href="tel:0471143274" class="btn-tel">📞 04-7114-3274</a>
+      <a href="https://lin.ee/X01F2mP" class="btn-line" target="_blank" rel="noopener">LINE予約</a>
     </nav>
   </div>
 </header>
 
-<div class="page-hero">
-  <span class="label">BLOG</span>
-  <h1>お役立ち情報・お知らせ</h1>
-  <p>ご自宅でできるケア方法や、当院からのお知らせを発信しています</p>
-</div>
-
-<div class="breadcrumb">
-  <a href="/">ホーム</a><span>›</span>お役立ち情報・ブログ
-</div>
-
-<div class="main-wrap">
-  <main class="blog-section">
-    <div class="section-header">
-      <h2 class="section-title">すべての記事</h2>
-      <span class="post-count" id="postCount"></span>
+<!-- MAIN -->
+<div class="container">
+  <!-- 記事本体 -->
+  <main>
+    <div class="breadcrumb">
+      <a href="https://hizakozou.jp">ホーム</a> &gt;
+      <a href="https://hizakozou.jp/blog.html">お役立ち情報</a> &gt;
+      <span id="breadcrumb-title">記事</span>
     </div>
-    <div class="category-filter" id="categoryFilter">
-      <button class="cat-btn active" onclick="filterByCategory('all', this)">すべて</button>
-    </div>
-    <div id="blogGrid">
-      <div class="loading-state">
-        <div class="loading-spinner"></div>
-        <p>記事を読み込んでいます…</p>
+
+    <div id="article-container">
+      <div class="status-box">
+        <div class="spinner"></div>
+        <p>記事を読み込み中...</p>
       </div>
     </div>
-    <div class="pagination" id="pagination"></div>
   </main>
 
+  <!-- サイドバー -->
   <aside class="sidebar">
-    <div class="sidebar-widget cta-widget">
-      <div class="widget-title">まずはご相談ください</div>
-      <p>初回1,980円の体験コースをご用意しています。お気軽にLINEまたはお電話でどうぞ。</p>
-      <a href="https://lin.ee/X01F2mP" class="cta-btn line" target="_blank">📱 LINEで無料相談</a>
-      <a href="tel:0471143274" class="cta-btn tel">📞 04-7114-3274</a>
+    <!-- CTA -->
+    <div class="cta-card">
+      <h3>まずは気軽にご相談を</h3>
+      <p>初回カウンセリング＋全身整体<br>通常10,000円 → <strong>1,980円</strong></p>
+      <a href="https://lin.ee/X01F2mP" class="btn-green" target="_blank" rel="noopener">💬 LINEで予約（無料）</a>
+      <a href="tel:0471143274" class="btn-white">📞 04-7114-3274</a>
     </div>
-    <div class="sidebar-widget">
-      <div class="widget-title">最新記事</div>
-      <ul class="recent-list" id="recentList">
-        <li style="color:#aaa;font-size:13px;padding:8px 0">読み込み中…</li>
+
+    <!-- 最新記事 -->
+    <div class="sidebar-card">
+      <h3>最新記事</h3>
+      <ul class="recent-list" id="recent-list">
+        <li><span style="color:#ccc;font-size:0.8rem;">読み込み中...</span></li>
       </ul>
     </div>
-    <div class="sidebar-widget">
-      <div class="widget-title">カテゴリー</div>
-      <ul class="category-list" id="categoryList">
-        <li style="color:#aaa;font-size:13px;padding:8px 0">読み込み中…</li>
+
+    <!-- 症状リンク -->
+    <div class="sidebar-card">
+      <h3>対応している症状</h3>
+      <ul class="recent-list">
+        <li><a href="https://hizakozou.jp/symptoms/knee-osteoarthritis.html">変形性膝関節症</a></li>
+        <li><a href="https://hizakozou.jp/symptoms/lower-back-pain.html">腰痛</a></li>
+        <li><a href="https://hizakozou.jp/symptoms/sciatica.html">坐骨神経痛</a></li>
+        <li><a href="https://hizakozou.jp/symptoms/spinal-stenosis.html">脊柱管狭窄症</a></li>
+        <li><a href="https://hizakozou.jp/symptoms/frozen-shoulder.html">五十肩</a></li>
+        <li><a href="https://hizakozou.jp/symptoms/hip-osteoarthritis.html">変形性股関節症</a></li>
       </ul>
     </div>
   </aside>
 </div>
 
-<div class="footer-cta">
-  <h2>まずは話しに来てください。<br>それだけで大丈夫です。</h2>
-  <p>初回カウンセリング＋全身整体　通常10,000円 → <strong style="color:var(--accent)">1,980円</strong>（初回限定）</p>
-  <div class="footer-cta-btns">
-    <a href="https://lin.ee/X01F2mP" class="btn-line" target="_blank">📱 LINEで今すぐ予約</a>
-    <a href="tel:0471143274" class="btn-tel">📞 04-7114-3274</a>
-  </div>
-</div>
-
 <footer>
-  <p>© 2026 整体院ひざこぞう All Rights Reserved. ｜ <a href="/">トップページ</a></p>
-  <p style="margin-top:6px">千葉県柏市あけぼの4-4-3 BoaSorte柏 305｜営業時間 9:00〜19:00（日祝定休）</p>
+  <p><a href="https://hizakozou.jp">整体院ひざこぞう</a> | 千葉県柏市あけぼの4-4-3 BoaSorte柏 305</p>
+  <p style="margin-top:6px;">© 2026 整体院ひざこぞう All Rights Reserved.</p>
 </footer>
 
-<div class="mobile-bar">
-  <a href="tel:0471143274" class="m-tel">📞 電話する</a>
-  <a href="https://lin.ee/X01F2mP" class="m-line" target="_blank">📱 LINEで予約</a>
+<div class="floating-cta">
+  <a href="tel:0471143274" class="f-tel">📞 電話する</a>
+  <a href="https://lin.ee/X01F2mP" class="f-line" target="_blank" rel="noopener">💬 LINEで予約</a>
 </div>
 
 <script>
   const API_ENDPOINT = 'https://hizakozou.microcms.io/api/v1/blogs';
   const API_KEY = '2BxAuwOHmLXSqUA7gHVTvV1SlPEJrbbWeDMW';
-  const PER_PAGE = 10;
 
-  let allPosts = [], filteredPosts = [], currentPage = 1;
-
-  function formatDate(str) {
-    const d = new Date(str);
-    return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+  function formatDate(dateStr) {
+    const d = new Date(dateStr);
+    return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
   }
 
-  function stripHtml(html) {
-    const t = document.createElement('div');
-    t.innerHTML = html || '';
-    return t.textContent || '';
-  }
+  // URLから記事IDを取得
+  const params = new URLSearchParams(window.location.search);
+  const articleId = params.get('id');
 
-  async function fetchPosts() {
+  async function loadArticle() {
+    const container = document.getElementById('article-container');
+
+    if (!articleId) {
+      container.innerHTML = `
+        <div class="status-box">
+          <p style="color:#c0392b;">記事が見つかりませんでした。</p>
+          <a href="https://hizakozou.jp/blog.html" class="back-link" style="margin:20px auto;display:inline-flex;">← ブログ一覧へ戻る</a>
+        </div>`;
+      return;
+    }
+
     try {
-      const res = await fetch(`${API_ENDPOINT}?limit=100`, {
+      const res = await fetch(`${API_ENDPOINT}/${articleId}`, {
         headers: { 'X-MICROCMS-API-KEY': API_KEY }
       });
-      if (!res.ok) throw new Error(res.status);
-      const data = await res.json();
-      return data.contents || [];
-    } catch(e) {
-      console.error('MicroCMS fetch error:', e);
-      return null;
-    }
-  }
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const article = await res.json();
 
-  function renderGrid(posts, page) {
-    const grid = document.getElementById('blogGrid');
-    const pagePosts = posts.slice((page-1)*PER_PAGE, page*PER_PAGE);
-    if (!pagePosts.length) {
-      grid.innerHTML = '<div class="empty-state"><p>記事がまだありません。</p></div>';
-      return;
-    }
-    grid.innerHTML = pagePosts.map(post => {
-      const img = post.eyecatch
-        ? `<img class="card-img" src="${post.eyecatch.url}" alt="${post.title}" loading="lazy">`
-        : `<div class="card-img-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1a6b5a" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>`;
-      const cat = post.category?.name || post.category || '';
-      const excerpt = stripHtml(post.body || post.content || '').slice(0, 80);
-      const date = formatDate(post.publishedAt || post.createdAt);
-      return `<a href="/blog/${post.id}.html" class="blog-card">
-        ${img}
-        <div class="card-body">
-          <div>
-            <div class="card-meta">
-              ${cat ? `<span class="card-category">${cat}</span>` : ''}
-              <span class="card-date">${date}</span>
+      // タイトルをページタイトルに反映
+      document.title = `${article.title} | 整体院ひざこぞう`;
+      document.getElementById('breadcrumb-title').textContent = article.title;
+
+      // アイキャッチ
+      const eyecatchHtml = (article.eyecatch?.url || article.thumbnail?.url)
+        ? `<img class="article-eyecatch" src="${article.eyecatch?.url || article.thumbnail?.url}" alt="${article.title}">`
+        : `<div class="article-eyecatch-placeholder">📝</div>`;
+
+      // カテゴリ
+      const tagHtml = article.category?.name
+        ? `<span class="article-tag">${article.category.name}</span>`
+        : '';
+
+      // 日付
+      const dateHtml = article.publishedAt
+        ? `<span class="article-date">${formatDate(article.publishedAt)}</span>`
+        : '';
+
+      // 本文
+      const content = article.content || article.body || '';
+
+      container.innerHTML = `
+        <div class="article-wrap">
+          ${eyecatchHtml}
+          <div class="article-body">
+            <div class="article-meta">
+              ${dateHtml}
+              ${tagHtml}
             </div>
-            <h3 class="card-title">${post.title}</h3>
-            ${excerpt ? `<p class="card-excerpt">${excerpt}…</p>` : ''}
+            <h1 class="article-title">${article.title}</h1>
+            <div class="article-content">${content}</div>
+            <div class="disclaimer">
+              ※当記事は情報提供を目的としており、医療行為の代替となるものではありません。症状が続く場合は専門家にご相談ください。
+            </div>
+            <a href="https://hizakozou.jp/blog.html" class="back-link">← ブログ一覧へ戻る</a>
           </div>
-          <span class="card-read-more">続きを読む →</span>
-        </div>
-      </a>`;
-    }).join('');
-  }
-
-  function renderPagination(total, page) {
-    const totalPages = Math.ceil(total / PER_PAGE);
-    const pag = document.getElementById('pagination');
-    if (totalPages <= 1) { pag.innerHTML = ''; return; }
-    let html = '';
-    if (page > 1) html += `<button class="page-btn" onclick="goToPage(${page-1})">‹</button>`;
-    for (let i = 1; i <= totalPages; i++) {
-      html += `<button class="page-btn${i===page?' active':''}" onclick="goToPage(${i})">${i}</button>`;
-    }
-    if (page < totalPages) html += `<button class="page-btn" onclick="goToPage(${page+1})">›</button>`;
-    pag.innerHTML = html;
-  }
-
-  function goToPage(page) {
-    currentPage = page;
-    renderGrid(filteredPosts, currentPage);
-    renderPagination(filteredPosts.length, currentPage);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function filterByCategory(cat, btn) {
-    currentPage = 1;
-    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-    filteredPosts = cat === 'all' ? allPosts : allPosts.filter(p => (p.category?.name || p.category || '') === cat);
-    document.getElementById('postCount').textContent = `全${filteredPosts.length}件`;
-    renderGrid(filteredPosts, currentPage);
-    renderPagination(filteredPosts.length, currentPage);
-  }
-
-  function renderRecent(posts) {
-    const list = document.getElementById('recentList');
-    if (!posts.length) { list.innerHTML = '<li style="color:#aaa;font-size:13px;padding:8px 0">記事がありません</li>'; return; }
-    list.innerHTML = posts.slice(0, 5).map(p => `
-      <li><a href="/blog/${p.id}.html">
-        ${p.title}
-        <span class="recent-date">${formatDate(p.publishedAt || p.createdAt)}</span>
-      </a></li>`).join('');
-  }
-
-  function renderCategories(posts) {
-    const catMap = {};
-    posts.forEach(p => {
-      const cat = p.category?.name || p.category || 'その他';
-      catMap[cat] = (catMap[cat] || 0) + 1;
-    });
-    const filter = document.getElementById('categoryFilter');
-    const list = document.getElementById('categoryList');
-    if (!Object.keys(catMap).length) {
-      list.innerHTML = '<li style="color:#aaa;font-size:13px;padding:8px 0">カテゴリーなし</li>';
-      return;
-    }
-    Object.keys(catMap).forEach(cat => {
-      const btn = document.createElement('button');
-      btn.className = 'cat-btn';
-      btn.textContent = cat;
-      btn.onclick = () => filterByCategory(cat, btn);
-      filter.appendChild(btn);
-    });
-    list.innerHTML = Object.entries(catMap).map(([cat, count]) => `
-      <li><a onclick="filterByCategory('${cat}',null);document.querySelector('.main-wrap').scrollIntoView({behavior:'smooth'})">
-        ${cat}<span class="cat-count">${count}</span>
-      </a></li>`).join('');
-  }
-
-  async function init() {
-    const posts = await fetchPosts();
-    if (posts === null) {
-      document.getElementById('blogGrid').innerHTML = `
-        <div class="error-state">
-          <h3>記事の読み込みに失敗しました</h3>
-          <p>しばらく経ってから再度お試しください。</p>
         </div>`;
-      document.getElementById('recentList').innerHTML = '';
-      document.getElementById('categoryList').innerHTML = '';
-      return;
+
+    } catch (err) {
+      console.error('MicroCMS fetch error:', err);
+      container.innerHTML = `
+        <div class="status-box">
+          <p style="color:#c0392b;">記事の読み込みに失敗しました。<br>しばらく時間をおいて再度お試しください。</p>
+          <a href="https://hizakozou.jp/blog.html" class="back-link" style="margin:20px auto;display:inline-flex;">← ブログ一覧へ戻る</a>
+        </div>`;
     }
-    allPosts = filteredPosts = posts;
-    document.getElementById('postCount').textContent = `全${posts.length}件`;
-    renderGrid(filteredPosts, currentPage);
-    renderPagination(filteredPosts.length, currentPage);
-    renderRecent(posts);
-    renderCategories(posts);
   }
 
-  init();
+  async function loadRecentPosts() {
+    try {
+      const res = await fetch(`${API_ENDPOINT}?limit=5&orders=-publishedAt`, {
+        headers: { 'X-MICROCMS-API-KEY': API_KEY }
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      const list = document.getElementById('recent-list');
+      if (!data.contents || data.contents.length === 0) {
+        list.innerHTML = '<li><span style="color:#ccc;font-size:0.8rem;">記事なし</span></li>';
+        return;
+      }
+      list.innerHTML = data.contents.map(a => `
+        <li>
+          <a href="https://hizakozou.jp/blog-detail.html?id=${a.id}">
+            ${a.title}
+            <div class="r-date">${a.publishedAt ? formatDate(a.publishedAt) : ''}</div>
+          </a>
+        </li>`).join('');
+    } catch (e) { /* サイレントに失敗 */ }
+  }
+
+  loadArticle();
+  loadRecentPosts();
 </script>
 </body>
 </html>
