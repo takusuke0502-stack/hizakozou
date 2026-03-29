@@ -26,24 +26,24 @@ const sourceFiles = (await fs.readdir(sourceDir))
 
 const posts = [];
 const symptomPageMap = {
-  "変形性膝関節症": { href: "../../symptoms/knee-osteoarthritis.html", label: "変形性膝関節症" },
-  "腰痛": { href: "../../symptoms/lower-back-pain.html", label: "腰痛" },
-  "坐骨神経痛": { href: "../../symptoms/sciatica.html", label: "坐骨神経痛" },
-  "脊柱管狭窄症": { href: "../../symptoms/spinal-stenosis.html", label: "脊柱管狭窄症" },
-  "肩こり": { href: "../../symptoms/shoulder-stiffness.html", label: "肩こり" },
-  "四十肩": { href: "../../symptoms/frozen-shoulder.html", label: "四十肩・五十肩" },
-  "五十肩": { href: "../../symptoms/frozen-shoulder.html", label: "四十肩・五十肩" },
-  "手根管症候群": { href: "../../symptoms/carpal-tunnel.html", label: "手根管症候群" },
-  "頚椎症": { href: "../../symptoms/cervical-spondylosis.html", label: "頚椎症" },
-  "股関節痛": { href: "../../symptoms/hip-osteoarthritis.html", label: "股関節の痛み" },
-  "変形性股関節症": { href: "../../symptoms/hip-osteoarthritis.html", label: "変形性股関節症" },
-  "膝に水がたまる": { href: "../../symptoms/knee-effusion.html", label: "膝に水がたまる" },
-  "膝の外側の痛み": { href: "../../symptoms/knee-lateral-pain.html", label: "膝の外側の痛み" },
-  "鵞足炎": { href: "../../symptoms/pes-anserine-bursitis.html", label: "鵞足炎" },
-  "足底腱膜炎": { href: "../../symptoms/plantar-fasciitis.html", label: "足底腱膜炎" },
-  "胸郭出口症候群": { href: "../../symptoms/thoracic-outlet.html", label: "胸郭出口症候群" },
-  "顎関節症": { href: "../../symptoms/tmj.html", label: "顎関節症" },
-  "肘の痛み": { href: "../../symptoms/elbow-tendinopathy.html", label: "肘の痛み" }
+  "変形性膝関節症": { href: "../../symptoms/knee-osteoarthritis.html", label: "変形性膝関節症", summary: "階段や立ち上がりで膝が気になる方に向けたページです。" },
+  "腰痛": { href: "../../symptoms/lower-back-pain.html", label: "腰痛", summary: "膝をかばって腰までつらいときの考え方も整理しています。" },
+  "坐骨神経痛": { href: "../../symptoms/sciatica.html", label: "坐骨神経痛", summary: "しびれや脚への違和感が気になる方はこちらをご覧ください。" },
+  "脊柱管狭窄症": { href: "../../symptoms/spinal-stenosis.html", label: "脊柱管狭窄症", summary: "歩く距離で症状が変わるときの見方をまとめています。" },
+  "肩こり": { href: "../../symptoms/shoulder-stiffness.html", label: "肩こり", summary: "首肩まわりの重だるさや慢性的な負担が気になる方向けです。" },
+  "四十肩": { href: "../../symptoms/frozen-shoulder.html", label: "四十肩・五十肩", summary: "肩が上がりにくい時期の考え方をまとめています。" },
+  "五十肩": { href: "../../symptoms/frozen-shoulder.html", label: "四十肩・五十肩", summary: "肩が上がりにくい時期の考え方をまとめています。" },
+  "手根管症候群": { href: "../../symptoms/carpal-tunnel.html", label: "手根管症候群", summary: "手のしびれや使いにくさが気になる方に向けたページです。" },
+  "頚椎症": { href: "../../symptoms/cervical-spondylosis.html", label: "頚椎症", summary: "首から腕にかけての痛みやしびれを整理したページです。" },
+  "股関節痛": { href: "../../symptoms/hip-osteoarthritis.html", label: "股関節の痛み", summary: "歩行時に股関節の負担も気になる方におすすめです。" },
+  "変形性股関節症": { href: "../../symptoms/hip-osteoarthritis.html", label: "変形性股関節症", summary: "股関節の動かしづらさや歩きにくさを整理しています。" },
+  "膝に水がたまる": { href: "../../symptoms/knee-effusion.html", label: "膝に水がたまる", summary: "腫れや熱っぽさがある膝の変化が気になる方へ。" },
+  "膝の外側の痛み": { href: "../../symptoms/knee-lateral-pain.html", label: "膝の外側の痛み", summary: "歩く・走るときの膝の外側の負担を整理したページです。" },
+  "鵞足炎": { href: "../../symptoms/pes-anserine-bursitis.html", label: "鵞足炎", summary: "膝の内側に出る痛みや違和感が気になる方向けです。" },
+  "足底腱膜炎": { href: "../../symptoms/plantar-fasciitis.html", label: "足底腱膜炎", summary: "足裏の負担が膝や歩き方に影響している方にも役立ちます。" },
+  "胸郭出口症候群": { href: "../../symptoms/thoracic-outlet.html", label: "胸郭出口症候群", summary: "腕のだるさやしびれが続くときの見方をまとめています。" },
+  "顎関節症": { href: "../../symptoms/tmj.html", label: "顎関節症", summary: "あごの違和感や食いしばりが気になる方に向けたページです。" },
+  "肘の痛み": { href: "../../symptoms/elbow-tendinopathy.html", label: "肘の痛み", summary: "仕事や家事で肘が使いづらいときの考え方をまとめています。" }
 };
 
 for (const file of sourceFiles) {
@@ -247,6 +247,7 @@ function buildPostHtml(post) {
             ${post.relatedSymptoms.map((item) => `
               <a class="related-link-card" href="${item.href}">
                 <span class="related-link-card__label">${escapeHtml(item.label)}</span>
+                <span class="related-link-card__summary">${escapeHtml(item.summary || "")}</span>
                 <span class="related-link-card__meta">症状ページを見る</span>
               </a>
             `).join("")}

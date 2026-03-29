@@ -350,6 +350,14 @@ img {
   margin-bottom: 6px;
 }
 
+.related-link-card__summary {
+  display: block;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
 .related-link-card__meta {
   display: block;
   color: var(--muted);
