@@ -25,6 +25,26 @@ const sourceFiles = (await fs.readdir(sourceDir))
   .sort();
 
 const posts = [];
+const symptomPageMap = {
+  "変形性膝関節症": { href: "../../symptoms/knee-osteoarthritis.html", label: "変形性膝関節症" },
+  "腰痛": { href: "../../symptoms/lower-back-pain.html", label: "腰痛" },
+  "坐骨神経痛": { href: "../../symptoms/sciatica.html", label: "坐骨神経痛" },
+  "脊柱管狭窄症": { href: "../../symptoms/spinal-stenosis.html", label: "脊柱管狭窄症" },
+  "肩こり": { href: "../../symptoms/shoulder-stiffness.html", label: "肩こり" },
+  "四十肩": { href: "../../symptoms/frozen-shoulder.html", label: "四十肩・五十肩" },
+  "五十肩": { href: "../../symptoms/frozen-shoulder.html", label: "四十肩・五十肩" },
+  "手根管症候群": { href: "../../symptoms/carpal-tunnel.html", label: "手根管症候群" },
+  "頚椎症": { href: "../../symptoms/cervical-spondylosis.html", label: "頚椎症" },
+  "股関節痛": { href: "../../symptoms/hip-osteoarthritis.html", label: "股関節の痛み" },
+  "変形性股関節症": { href: "../../symptoms/hip-osteoarthritis.html", label: "変形性股関節症" },
+  "膝に水がたまる": { href: "../../symptoms/knee-effusion.html", label: "膝に水がたまる" },
+  "膝の外側の痛み": { href: "../../symptoms/knee-lateral-pain.html", label: "膝の外側の痛み" },
+  "鵞足炎": { href: "../../symptoms/pes-anserine-bursitis.html", label: "鵞足炎" },
+  "足底腱膜炎": { href: "../../symptoms/plantar-fasciitis.html", label: "足底腱膜炎" },
+  "胸郭出口症候群": { href: "../../symptoms/thoracic-outlet.html", label: "胸郭出口症候群" },
+  "顎関節症": { href: "../../symptoms/tmj.html", label: "顎関節症" },
+  "肘の痛み": { href: "../../symptoms/elbow-tendinopathy.html", label: "肘の痛み" }
+};
 
 for (const file of sourceFiles) {
   const fullPath = path.join(sourceDir, file);
@@ -127,6 +147,10 @@ function buildPost(parsed, fileName) {
   const seoMarkdown = buildSeoBody(parsed.meta, parsed.body);
   const html = markdownToHtml(seoMarkdown);
   const excerpt = createDescription(lead || parsed.body, parsed.meta.title, 90);
+  const relatedSymptoms = parsed.meta.symptoms
+    .map((name) => symptomPageMap[name])
+    .filter(Boolean)
+    .slice(0, 3);
 
   return {
     slug: parsed.meta.slug,
@@ -138,6 +162,7 @@ function buildPost(parsed, fileName) {
     region: parsed.meta.region,
     tags: parsed.meta.tags,
     symptoms: parsed.meta.symptoms,
+    relatedSymptoms,
     heroImage: parsed.meta.heroImage,
     excerpt,
     url: `blog/posts/${parsed.meta.slug}.html`,
@@ -215,6 +240,19 @@ function buildPostHtml(post) {
   const title = `${escapeHtml(post.title)} | 整体院ひざこぞう`;
   const canonical = `https://hizakozou.jp/${post.url}`;
   const ogImage = absoluteAssetUrl(post.heroImage);
+  const relatedSymptomsHtml = post.relatedSymptoms.length
+    ? `<section class="related-section">
+          <h2>関連する症状ページ</h2>
+          <div class="related-links">
+            ${post.relatedSymptoms.map((item) => `
+              <a class="related-link-card" href="${item.href}">
+                <span class="related-link-card__label">${escapeHtml(item.label)}</span>
+                <span class="related-link-card__meta">症状ページを見る</span>
+              </a>
+            `).join("")}
+          </div>
+        </section>`
+    : "";
 
   return `<!DOCTYPE html>
 <html lang="ja">
@@ -258,6 +296,7 @@ function buildPostHtml(post) {
           <div class="article-content">
             ${post.html}
           </div>
+          ${relatedSymptomsHtml}
           <div class="article-note">
             <p>当記事は情報提供を目的としたもので、医療行為の代替ではありません。症状の強さや経過によっては、医療機関での検査が必要な場合があります。</p>
           </div>
