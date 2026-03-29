@@ -1,0 +1,8 @@
+{
+  "name": "hizakozou-static-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:blog": "node scripts/generate-blog.mjs --all"
+  }
+}
