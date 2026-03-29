@@ -116,6 +116,16 @@
     .frequency__phase-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
     .frequency__phase-dot--a{background:var(--blue-600)}.frequency__phase-dot--b{background:#60a5fa}.frequency__phase-dot--c{background:#93c5fd}
     .frequency__phase-label{font-size:12px;font-weight:700;color:var(--slate-600)}
+    .visual-guide{padding:0 0 72px}
+    .visual-guide__grid{display:grid;gap:20px}
+    @media(min-width:768px){.visual-guide__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .visual-guide__card{background:#fff;border:1px solid var(--slate-200);border-radius:24px;overflow:hidden;box-shadow:var(--shadow-sm)}
+    .visual-guide__card--illust{padding:28px 24px;display:flex;flex-direction:column;justify-content:center}
+    .visual-guide__illust{width:100%;max-width:220px;align-self:center;margin-bottom:18px}
+    .visual-guide__image{width:100%;height:220px;object-fit:cover;display:block}
+    .visual-guide__body{padding:20px 22px 24px}
+    .visual-guide__title{font-size:18px;line-height:1.6;font-weight:800;color:var(--ink);margin:0 0 10px}
+    .visual-guide__text{margin:0;color:var(--slate-700);line-height:1.9;font-size:14px}
     /* FAQ */
     .faq{padding:4rem 0;background:var(--slate-100)}
     .faq__list{display:flex;flex-direction:column;gap:1rem}
@@ -295,6 +305,32 @@
       </div>
     </section>
 
+    <section class="visual-guide">
+      <div class="container">
+        <h2 class="section-title">ご相談から施術までのイメージ</h2>
+        <div class="visual-guide__grid">
+          <article class="visual-guide__card visual-guide__card--illust">
+            <img src="../image/27212_color.svg" alt="膝の外側の不調に悩む方のイラスト" class="visual-guide__illust" loading="lazy" decoding="async">
+            <h3 class="visual-guide__title">膝の外側の痛みも整理しながら進めます</h3>
+            <p class="visual-guide__text">歩く、走る、階段の上り下りなど、どの動きで気になるかを確認しながら進めます。</p>
+          </article>
+          <article class="visual-guide__card">
+            <img src="../image/medical-interview.webp" alt="整体院ひざこぞう カウンセリングの様子" class="visual-guide__image feature-photo" loading="lazy" decoding="async" width="800" height="600">
+            <div class="visual-guide__body">
+              <h3 class="visual-guide__title">最初に状態や経過を確認します</h3>
+              <p class="visual-guide__text">膝だけでなく股関節や足首の使い方も含めて確認し、その日に無理のない進め方をご提案します。</p>
+            </div>
+          </article>
+          <article class="visual-guide__card">
+            <img src="../image/clinic-hallway.webp" alt="整体院ひざこぞう 院内入口の様子" class="visual-guide__image feature-photo" loading="lazy" decoding="async" width="800" height="600">
+            <div class="visual-guide__body">
+              <h3 class="visual-guide__title">落ち着いて相談しやすい環境です</h3>
+              <p class="visual-guide__text">スポーツや日常生活への影響も含めて相談しやすいよう、落ち着いてお話しいただける時間を大切にしています。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
     <section class="cause">
       <div class="container max-w-4xl">
         <h2 class="section-title">膝の外側の痛みはなぜ起こるのか</h2>
