@@ -28,6 +28,7 @@
     a{color:inherit;text-decoration:none}
     img,svg{display:block;max-width:100%}
     .feature-photo{filter:brightness(1.08) contrast(.95) saturate(.95);transform:translateZ(0)}
+    .feature-photo--full{object-fit:contain !important;background:#fff;padding:.5rem}
     ul,ol{list-style:none}
     :root{--blue-900:#1e3a8a;--blue-800:#1e40af;--blue-600:#2563eb;--blue-200:#bfdbfe;--blue-100:#dbeafe;--blue-50:#eff6ff;--slate-900:#0f172a;--slate-800:#1e293b;--slate-700:#334155;--slate-600:#475569;--slate-500:#64748b;--slate-200:#e2e8f0;--slate-100:#f1f5f9;--green-line:#06C755;--radius-xl:1rem;--radius-2xl:1.5rem;--shadow-card:0 10px 25px -5px rgba(0,0,0,.08),0 4px 10px -5px rgba(0,0,0,.04)}
     .container{width:100%;margin:0 auto;padding:0 1rem}
@@ -123,6 +124,7 @@
     .visual-guide__card--illust{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem 1.5rem;text-align:center;background:linear-gradient(135deg,#eff6ff,#ffffff)}
     .visual-guide__illust{width:min(220px,100%);height:auto;margin-bottom:1rem}
     .visual-guide__image{width:100%;height:220px;object-fit:cover}
+    .visual-guide__image--full{object-fit:contain;background:#fff;padding:.5rem}
     .visual-guide__body{padding:1.25rem}
     .visual-guide__title{font-size:1rem;font-weight:900;color:var(--blue-800);margin-bottom:.5rem}
     .visual-guide__text{font-size:14px;font-weight:700;color:var(--slate-600);line-height:1.8}
@@ -304,7 +306,7 @@
         <h2 class="section-title">ご相談から施術までのイメージ</h2>
         <div class="visual-guide__grid">
           <article class="visual-guide__card">
-            <img src="../image/youtuukokannsetu.svg" alt="腰から脚にかけてのつらさが気になる方のイメージ" class="visual-guide__image feature-photo" loading="lazy" decoding="async" width="1200" height="675">
+            <img src="../image/youtuukokannsetu.svg" alt="腰から脚にかけてのつらさが気になる方のイメージ" class="visual-guide__image visual-guide__image--full feature-photo" loading="lazy" decoding="async" width="1200" height="675">
             <div class="visual-guide__body">
               <h3 class="visual-guide__title">腰から脚にかけてのつらさを整理します</h3>
               <p class="visual-guide__text">脚へ広がる違和感や座っているときのつらさなど、日常の困りごとを確認しながら進めます。</p>
@@ -374,7 +376,7 @@
       <div class="container max-w-4xl">
         <h2 class="section-title">当院の坐骨神経痛へのアプローチ</h2>
         <p class="approach__intro">神経まわりの負担を減らし、支えに必要な筋肉を使いやすくし、日常で悪化しにくい体の使い方へ整える3ステップで改善を目指します</p>
-        <img src="../image/youtuu.jpg" alt="腰から脚にかけてのつらさが気になる方のイメージ" class="feature-photo" style="width:100%; max-height:320px; object-fit:cover; border-radius:1rem; box-shadow:0 10px 25px -5px rgba(0,0,0,0.08); margin-bottom:2.5rem; border:1px solid #e2e8f0;" loading="lazy" decoding="async" width="1200" height="675">
+        <img src="../image/youtuu.jpg" alt="腰から脚にかけてのつらさが気になる方のイメージ" class="feature-photo feature-photo--full" style="width:100%; max-height:320px; object-fit:cover; border-radius:1rem; box-shadow:0 10px 25px -5px rgba(0,0,0,0.08); margin-bottom:2.5rem; border:1px solid #e2e8f0;" loading="lazy" decoding="async" width="1200" height="675">
         <div class="msm-steps">
           <div class="msm-step">
             <div class="msm-step__header">

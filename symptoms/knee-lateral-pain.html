@@ -28,6 +28,7 @@
     a{color:inherit;text-decoration:none}
     img,svg{display:block;max-width:100%}
     .feature-photo{filter:brightness(1.08) contrast(.95) saturate(.95);transform:translateZ(0)}
+    .feature-photo--full{object-fit:contain !important;background:#fff;padding:.5rem}
     ul,ol{list-style:none}
     :root{--blue-900:#1e3a8a;--blue-800:#1e40af;--blue-600:#2563eb;--blue-200:#bfdbfe;--blue-100:#dbeafe;--blue-50:#eff6ff;--slate-900:#0f172a;--slate-800:#1e293b;--slate-700:#334155;--slate-600:#475569;--slate-500:#64748b;--slate-200:#e2e8f0;--slate-100:#f1f5f9;--green-line:#06C755;--radius-xl:1rem;--radius-2xl:1.5rem;--shadow-card:0 10px 25px -5px rgba(0,0,0,.08),0 4px 10px -5px rgba(0,0,0,.04)}
     .container{width:100%;margin:0 auto;padding:0 1rem}
@@ -123,6 +124,7 @@
     .visual-guide__card--illust{padding:28px 24px;display:flex;flex-direction:column;justify-content:center}
     .visual-guide__illust{width:100%;max-width:220px;align-self:center;margin-bottom:18px}
     .visual-guide__image{width:100%;height:220px;object-fit:cover;display:block}
+    .visual-guide__image--full{object-fit:contain;background:#fff;padding:.5rem}
     .visual-guide__body{padding:20px 22px 24px}
     .visual-guide__title{font-size:18px;line-height:1.6;font-weight:800;color:var(--ink);margin:0 0 10px}
     .visual-guide__text{margin:0;color:var(--slate-700);line-height:1.9;font-size:14px}
@@ -310,7 +312,7 @@
         <h2 class="section-title">ご相談から施術までのイメージ</h2>
         <div class="visual-guide__grid">
           <article class="visual-guide__card">
-            <img src="../image/hiza.jpg" alt="膝の外側の痛みが気になる方のイメージ" class="visual-guide__image feature-photo" loading="lazy" decoding="async" width="1200" height="675">
+            <img src="../image/hiza.jpg" alt="膝の外側の痛みが気になる方のイメージ" class="visual-guide__image visual-guide__image--full feature-photo" loading="lazy" decoding="async" width="1200" height="675">
             <div class="visual-guide__body">
               <h3 class="visual-guide__title">膝の外側に負担が出る動きを整理します</h3>
               <p class="visual-guide__text">歩く、走る、階段の上り下りなど、どの動きで気になりやすいかを確認しながら進めます。</p>
@@ -379,7 +381,7 @@
       <div class="container max-w-4xl">
         <h2 class="section-title">当院の膝外側の痛みへのアプローチ</h2>
         <p class="approach__intro">腸脛靭帯・半月板への摩擦ストレスを減らし、股関節のサボり筋を再起動し、骨盤が安定した動作を定着させる3段階で根本改善を目指します</p>
-        <img src="../image/knee pain.jpg" alt="膝の外側の痛みが気になる方のイメージ" class="feature-photo" style="width:100%; max-height:320px; object-fit:cover; border-radius:1rem; box-shadow:0 10px 25px -5px rgba(0,0,0,0.08); margin-bottom:2.5rem; border:1px solid #e2e8f0;" loading="lazy" decoding="async" width="1200" height="675">
+        <img src="../image/knee pain.jpg" alt="膝の外側の痛みが気になる方のイメージ" class="feature-photo feature-photo--full" style="width:100%; max-height:320px; object-fit:cover; border-radius:1rem; box-shadow:0 10px 25px -5px rgba(0,0,0,0.08); margin-bottom:2.5rem; border:1px solid #e2e8f0;" loading="lazy" decoding="async" width="1200" height="675">
         <div class="msm-steps">
           <div class="msm-step">
             <div class="msm-step__header">
