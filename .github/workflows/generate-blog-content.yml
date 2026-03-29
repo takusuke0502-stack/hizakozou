@@ -1,0 +1,52 @@
+name: Generate blog content
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_file:
+        description: "対象の元原稿ファイル名または content/source 配下のパス。空欄なら全件生成します。"
+        required: false
+        default: ""
+      commit_changes:
+        description: "生成後にコミットして push する"
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate blog files
+        run: |
+          if [ -n "${{ inputs.source_file }}" ]; then
+            node scripts/generate-blog.mjs --source "${{ inputs.source_file }}"
+          else
+            node scripts/generate-blog.mjs --all
+          fi
+
+      - name: Commit generated files
+        if: ${{ inputs.commit_changes }}
+        run: |
+          if [ -z "$(git status --short)" ]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/seo content/meo blog blog.html blog-detail.html
+          git commit -m "Generate blog content"
+          git push
