@@ -7,7 +7,7 @@ category: 膝の痛み
 region: 柏市
 tags: 膝痛,歩行,慢性痛
 symptoms: 変形性膝関節症,腰痛,坐骨神経痛
-heroImage: /image/clinic-hallway.webp
+heroImage: /image/hiza2.jpg
 draft: false
 ---
 歩くと膝が気になると、「歩かない方がいいのか」「少し頑張って歩いた方がいいのか」で迷う方は少なくありません。

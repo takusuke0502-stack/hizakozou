@@ -7,7 +7,7 @@ category: 膝の痛み
 region: 柏市
 tags: 膝痛,慢性痛,セルフケア
 symptoms: 変形性膝関節症,腰痛,坐骨神経痛
-heroImage: /image/medical-interview.webp
+heroImage: /image/hiza.jpg
 draft: false
 ---
 膝の痛みが続くと、「なるべく動かさない方がいいのかな」「このまま悪くなるのでは」と不安になる方は少なくありません。
