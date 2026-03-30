@@ -243,6 +243,34 @@ function buildPostHtml(post) {
         </section>`
     : "";
 
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": post.description,
+        "datePublished": post.date,
+        "dateModified": post.date,
+        "image": ogImage,
+        "url": canonical,
+        "author": { "@type": "Organization", "name": "整体院ひざこぞう", "url": "https://hizakozou.jp" },
+        "publisher": { "@type": "Organization", "name": "整体院ひざこぞう", "url": "https://hizakozou.jp" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hizakozou.jp/" },
+          { "@type": "ListItem", "position": 2, "name": "ブログ", "item": "https://hizakozou.jp/blog/" },
+          { "@type": "ListItem", "position": 3, "name": post.title, "item": canonical }
+        ]
+      }
+    ]
+  });
+
+  // コンテンツ内のh1をh2に変換（ページの<h1>は article-title として別途表示）
+  const articleContentHtml = post.html.replace(/<h1>/g, "<h2>").replace(/<\/h1>/g, "</h2>");
+
   return `<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -258,6 +286,7 @@ function buildPostHtml(post) {
   <meta property="og:image" content="${ogImage}">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="../assets/blog.css">
+  <script type="application/ld+json">${jsonLd}</script>
 </head>
 <body>
   <header class="site-header">
@@ -283,7 +312,7 @@ function buildPostHtml(post) {
           <h1 class="article-title">${escapeHtml(post.title)}</h1>
           <p class="article-lead">${escapeHtml(post.description)}</p>
           <div class="article-content">
-            ${post.html}
+            ${articleContentHtml}
           </div>
           ${relatedSymptomsHtml}
           <div class="article-note">
