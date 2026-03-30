@@ -186,8 +186,8 @@ img {
 .post-card__image {
   width: 100%;
   aspect-ratio: 5 / 3;
-  object-fit: cover;
-  background: #e2e8f0;
+  object-fit: contain;
+  background: #fff;
 }
 
 .post-card__body {
