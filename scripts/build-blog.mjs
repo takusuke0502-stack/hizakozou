@@ -1,0 +1,728 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+
+const rootDir = process.cwd();
+const dataPath = path.join(rootDir, "data", "blog-posts.json");
+const templatesDir = path.join(rootDir, "templates");
+const blogDir = path.join(rootDir, "blog");
+const postsDir = path.join(blogDir, "posts");
+const symptomsDir = path.join(rootDir, "symptoms");
+
+const symptomConfigs = {
+  "knee-osteoarthritis.html": {
+    symptomKey: "knee-osteoarthritis",
+    label: "変形性膝関節症",
+    keywords: ["変形性膝関節症", "膝痛", "階段", "歩き始め", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"]
+  },
+  "knee-effusion.html": {
+    symptomKey: "knee-effusion",
+    label: "膝に水がたまる",
+    keywords: ["膝に水がたまる", "膝の腫れ", "膝痛", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"]
+  },
+  "knee-lateral-pain.html": {
+    symptomKey: "knee-lateral-pain",
+    label: "膝の外側の痛み",
+    keywords: ["膝の外側", "膝痛", "歩行", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"]
+  },
+  "pes-anserine-bursitis.html": {
+    symptomKey: "pes-anserine-bursitis",
+    label: "膝の内側の痛み",
+    keywords: ["膝の内側", "鵞足炎", "膝痛", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"]
+  },
+  "lower-back-pain.html": {
+    symptomKey: "lower-back-pain",
+    label: "腰痛",
+    keywords: ["腰痛", "腰", "立ち上がり", "歩行不安"],
+    categoryHints: ["lower-back-pain", "exercise-therapy", "knee-pain"]
+  },
+  "sciatica.html": {
+    symptomKey: "sciatica",
+    label: "坐骨神経痛",
+    keywords: ["坐骨神経痛", "お尻", "脚のしびれ", "しびれ"],
+    categoryHints: ["lower-back-pain", "exercise-therapy"]
+  },
+  "spinal-stenosis.html": {
+    symptomKey: "spinal-stenosis",
+    label: "脊柱管狭窄症",
+    keywords: ["脊柱管狭窄症", "間欠性跛行", "腰", "脚のしびれ"],
+    categoryHints: ["lower-back-pain", "exercise-therapy"]
+  },
+  "hip-osteoarthritis.html": {
+    symptomKey: "hip-osteoarthritis",
+    label: "変形性股関節症",
+    keywords: ["変形性股関節症", "股関節", "歩きづらい", "膝をかばう"],
+    categoryHints: ["lower-back-pain", "exercise-therapy", "knee-pain"]
+  },
+  "shoulder-stiffness.html": {
+    symptomKey: "shoulder-stiffness",
+    label: "肩こり",
+    keywords: ["肩こり", "首こり", "姿勢", "慢性痛"],
+    categoryHints: ["exercise-therapy"]
+  },
+  "frozen-shoulder.html": {
+    symptomKey: "frozen-shoulder",
+    label: "五十肩",
+    keywords: ["五十肩", "肩", "腕が上がらない", "慢性痛"],
+    categoryHints: ["exercise-therapy"]
+  },
+  "cervical-spondylosis.html": {
+    symptomKey: "cervical-spondylosis",
+    label: "頚椎症",
+    keywords: ["頚椎症", "首の痛み", "しびれ", "慢性痛"],
+    categoryHints: ["exercise-therapy"]
+  },
+  "thoracic-outlet.html": {
+    symptomKey: "thoracic-outlet",
+    label: "胸郭出口症候群",
+    keywords: ["胸郭出口症候群", "腕のしびれ", "首肩", "慢性痛"],
+    categoryHints: ["exercise-therapy"]
+  },
+  "carpal-tunnel.html": {
+    symptomKey: "carpal-tunnel",
+    label: "手根管症候群",
+    keywords: ["手根管症候群", "手のしびれ", "慢性痛"],
+    categoryHints: ["exercise-therapy"]
+  },
+  "elbow-tendinopathy.html": {
+    symptomKey: "elbow-tendinopathy",
+    label: "肘の痛み",
+    keywords: ["肘の痛み", "肘", "慢性痛"],
+    categoryHints: ["exercise-therapy"]
+  },
+  "plantar-fasciitis.html": {
+    symptomKey: "plantar-fasciitis",
+    label: "足底筋膜炎",
+    keywords: ["足底筋膜炎", "足裏", "歩行", "慢性痛"],
+    categoryHints: ["exercise-therapy", "knee-pain"]
+  },
+  "tmj.html": {
+    symptomKey: "tmj",
+    label: "顎関節症",
+    keywords: ["顎関節症", "顎", "慢性痛"],
+    categoryHints: ["exercise-therapy"]
+  }
+};
+
+const relatedArticlesStyles = `
+/* BLOG_RELATED_ARTICLES_STYLES_START */
+.related-articles{padding:3.25rem 1rem;background:#f8fbff;border-top:1px solid #dbeafe}
+.related-articles__eyebrow{text-align:center;font-size:13px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin-bottom:.75rem}
+.related-articles__title{text-align:center;font-size:1.5rem;font-weight:900;color:#1e3a8a;margin-bottom:.75rem}
+.related-articles__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
+.related-articles__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-article-card{display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:1rem;padding:1.25rem;text-decoration:none;box-shadow:0 2px 10px rgba(37,99,235,.06);transition:transform .2s,border-color .2s,box-shadow .2s}
+.related-article-card:hover{transform:translateY(-2px);border-color:#93c5fd;box-shadow:0 10px 20px rgba(37,99,235,.12)}
+.related-article-card__meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
+.related-article-card__pill{display:inline-flex;align-items:center;border-radius:9999px;background:#eff6ff;color:#2563eb;font-size:11px;font-weight:900;padding:.25rem .625rem}
+.related-article-card__time{font-size:11px;font-weight:700;color:#64748b}
+.related-article-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
+.related-article-card__desc{font-size:13px;font-weight:700;color:#475569;line-height:1.8}
+.related-article-card__link{display:inline-flex;align-items:center;gap:.35rem;font-size:13px;font-weight:900;color:#2563eb}
+@media(min-width:768px){.related-articles__title{font-size:1.75rem}}
+/* BLOG_RELATED_ARTICLES_STYLES_END */
+`.trim();
+
+await buildBlog();
+
+async function buildBlog() {
+  const [rawData, indexTemplate, postTemplate] = await Promise.all([
+    fs.readFile(dataPath, "utf8"),
+    fs.readFile(path.join(templatesDir, "blog-index-template.html"), "utf8"),
+    fs.readFile(path.join(templatesDir, "blog-post-template.html"), "utf8")
+  ]);
+
+  const blogData = JSON.parse(rawData);
+  validateBlogData(blogData);
+
+  const categoryMap = new Map(blogData.categories.map((category) => [category.slug, category]));
+  const posts = [...blogData.posts]
+    .map((post) => normalizePost(post, blogData.site, categoryMap))
+    .sort((a, b) => b.date.localeCompare(a.date));
+
+  await fs.mkdir(postsDir, { recursive: true });
+
+  await Promise.all((await fs.readdir(postsDir, { withFileTypes: true })).map(async (entry) => {
+    if (entry.name === ".gitkeep") return;
+    await fs.rm(path.join(postsDir, entry.name), { recursive: true, force: true });
+  }));
+
+  const indexHtml = renderTemplate(indexTemplate, {
+    SEO_HEAD: buildIndexSeo(blogData.site),
+    CSS_PATH: "assets/blog.css",
+    HOME_PATH: "../index.html",
+    BLOG_PATH: "./",
+    CONTACT_PATH: "../index.html#contact",
+    SITE_NAME: blogData.site.name,
+    SITE_SUBTITLE: blogData.site.subtitle,
+    PAGE_CONTENT: buildIndexContent(blogData.site, posts, categoryMap)
+  });
+
+  await fs.writeFile(path.join(blogDir, "index.html"), indexHtml, "utf8");
+
+  for (const post of posts) {
+    const postDir = path.join(postsDir, post.slug);
+    await fs.mkdir(postDir, { recursive: true });
+    const relatedPosts = posts.filter((item) => item.slug !== post.slug && item.category.slug === post.category.slug).slice(0, 2);
+    const postHtml = renderTemplate(postTemplate, {
+      SEO_HEAD: buildPostSeo(blogData.site, post),
+      CSS_PATH: "../../assets/blog.css",
+      HOME_PATH: "../../../index.html",
+      BLOG_PATH: "../../",
+      CONTACT_PATH: "../../../index.html#contact",
+      SITE_NAME: blogData.site.name,
+      SITE_SUBTITLE: blogData.site.subtitle,
+      PAGE_CONTENT: buildPostContent(blogData.site, post, relatedPosts)
+    });
+    await fs.writeFile(path.join(postDir, "index.html"), postHtml, "utf8");
+  }
+
+  await updateSymptomPages(blogData.site, posts);
+
+  await fs.writeFile(path.join(rootDir, "blog.html"), buildBlogRedirectHtml(), "utf8");
+  await fs.writeFile(path.join(rootDir, "blog-detail.html"), buildLegacyDetailRedirectHtml(), "utf8");
+
+  console.log(`Generated ${posts.length} static blog post(s) and updated symptom related articles.`);
+}
+
+async function updateSymptomPages(site, posts) {
+  const symptomFiles = await fs.readdir(symptomsDir);
+  for (const fileName of symptomFiles) {
+    if (!fileName.endsWith(".html")) continue;
+    const config = symptomConfigs[fileName];
+    if (!config) continue;
+
+    const fullPath = path.join(symptomsDir, fileName);
+    let html = await fs.readFile(fullPath, "utf8");
+    html = upsertRelatedStyles(html);
+
+    const matchedPosts = selectRelatedPosts(config, posts).slice(0, 4);
+    const sectionHtml = matchedPosts.length ? buildRelatedArticlesSection(site, config, matchedPosts) : "";
+    html = replaceRelatedSection(html, sectionHtml);
+
+    await fs.writeFile(fullPath, html, "utf8");
+  }
+}
+
+function upsertRelatedStyles(html) {
+  if (html.includes("BLOG_RELATED_ARTICLES_STYLES_START")) {
+    return html.replace(/\/\* BLOG_RELATED_ARTICLES_STYLES_START \*\/[\s\S]*?\/\* BLOG_RELATED_ARTICLES_STYLES_END \*\//, relatedArticlesStyles);
+  }
+  return html.replace("</style>", `\n    ${relatedArticlesStyles}\n  </style>`);
+}
+
+function replaceRelatedSection(html, sectionHtml) {
+  const startMarker = "<!-- BLOG_RELATED_ARTICLES_START -->";
+  const endMarker = "<!-- BLOG_RELATED_ARTICLES_END -->";
+  const wrapped = sectionHtml ? `${startMarker}\n${sectionHtml}\n${endMarker}\n\n` : "";
+
+  if (html.includes(startMarker) && html.includes(endMarker)) {
+    return html.replace(new RegExp(`${escapeRegExp(startMarker)}[\\s\\S]*?${escapeRegExp(endMarker)}\\n*`, "m"), wrapped);
+  }
+
+  if (!sectionHtml) {
+    return html;
+  }
+
+  return html.replace(/<section class="cta">/, `${wrapped}<section class="cta">`);
+}
+
+function selectRelatedPosts(config, posts) {
+  return posts
+    .map((post) => ({ post, score: scorePostForSymptom(post, config) }))
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score || b.post.date.localeCompare(a.post.date))
+    .map((entry) => entry.post);
+}
+
+function scorePostForSymptom(post, config) {
+  let score = 0;
+  const exactPath = `/symptoms/${config.fileName || ""}`;
+  const haystacks = [
+    post.title,
+    post.description,
+    post.lead,
+    ...post.tags
+  ].join(" ");
+
+  for (const item of post.relatedSymptoms) {
+    if (item.href === `/symptoms/${config.page || ""}`) {
+      score += 120;
+    }
+    if (item.href.endsWith(`/${config.fileName}`) || item.href.endsWith(config.fileName)) {
+      score += 120;
+    }
+    if (normalize(item.label).includes(normalize(config.label))) {
+      score += 90;
+    }
+    for (const keyword of config.keywords) {
+      if (normalize(item.label).includes(normalize(keyword))) score += 40;
+      if (normalize(item.description || "").includes(normalize(keyword))) score += 18;
+    }
+  }
+
+  if (config.categoryHints.includes(post.category.slug)) {
+    score += 18;
+  }
+
+  for (const keyword of config.keywords) {
+    const normalizedKeyword = normalize(keyword);
+    if (!normalizedKeyword) continue;
+    if (post.tags.some((tag) => normalize(tag).includes(normalizedKeyword))) score += 16;
+    if (normalize(post.title).includes(normalizedKeyword)) score += 14;
+    if (normalize(post.description).includes(normalizedKeyword)) score += 8;
+    if (normalize(post.lead || "").includes(normalizedKeyword)) score += 6;
+    if (normalize(haystacks).includes(normalizedKeyword)) score += 2;
+  }
+
+  return score;
+}
+
+function buildRelatedArticlesSection(site, config, posts) {
+  const cards = posts.map((post) => `
+          <a class="related-article-card" href="../blog/posts/${post.slug}/">
+            <div class="related-article-card__meta">
+              <span class="related-article-card__pill">${escapeHtml(post.category.name)}</span>
+              <time class="related-article-card__time" datetime="${post.date}">${formatJapaneseDate(post.date)}</time>
+            </div>
+            <div class="related-article-card__title">${escapeHtml(post.title)}</div>
+            <p class="related-article-card__desc">${escapeHtml(trimText(post.description, 78))}</p>
+            <span class="related-article-card__link">記事を読む <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
+          </a>
+  `).join("");
+
+  return `
+    <section class="related-articles">
+      <div class="container max-w-4xl">
+        <p class="related-articles__eyebrow">RELATED BLOG</p>
+        <h2 class="related-articles__title">${escapeHtml(config.label)}に関連する記事</h2>
+        <p class="related-articles__lead">症状ページとあわせて、考え方やセルフケアの整理に役立つ記事をまとめています。気になる内容から無理なく読み進めてみてください。</p>
+        <div class="related-articles__grid">
+${cards}
+        </div>
+      </div>
+    </section>
+  `.trim();
+}
+
+function validateBlogData(data) {
+  if (!data?.site || !Array.isArray(data?.categories) || !Array.isArray(data?.posts)) {
+    throw new Error("blog-posts.json must include site, categories, and posts.");
+  }
+}
+
+function normalizePost(post, site, categoryMap) {
+  const category = categoryMap.get(post.category);
+  if (!category) {
+    throw new Error(`Unknown category: ${post.category}`);
+  }
+
+  return {
+    ...post,
+    category,
+    updatedDate: post.updatedDate || post.date,
+    eyecatch: post.eyecatch || site.defaultEyecatch,
+    tags: Array.isArray(post.tags) ? post.tags : [],
+    sections: Array.isArray(post.sections) ? post.sections : [],
+    faq: Array.isArray(post.faq) ? post.faq : [],
+    relatedSymptoms: Array.isArray(post.relatedSymptoms) ? post.relatedSymptoms : [],
+    cta: post.cta || site.cta,
+    url: `/blog/posts/${post.slug}/`
+  };
+}
+
+function buildIndexSeo(site) {
+  const canonical = `${trimTrailingSlash(site.url)}/blog/`;
+  return [
+    `<title>${escapeHtml(site.blogTitle)} | ${escapeHtml(site.name)}</title>`,
+    `<meta name="description" content="${escapeHtml(site.blogDescription)}">`,
+    `<link rel="canonical" href="${canonical}">`,
+    `<meta property="og:locale" content="ja_JP">`,
+    `<meta property="og:type" content="website">`,
+    `<meta property="og:title" content="${escapeHtml(site.blogTitle)} | ${escapeHtml(site.name)}">`,
+    `<meta property="og:description" content="${escapeHtml(site.blogDescription)}">`,
+    `<meta property="og:url" content="${canonical}">`,
+    `<meta property="og:image" content="${absoluteUrl(site.url, site.ogImage)}">`,
+    `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:title" content="${escapeHtml(site.blogTitle)} | ${escapeHtml(site.name)}">`,
+    `<meta name="twitter:description" content="${escapeHtml(site.blogDescription)}">`,
+    `<meta name="twitter:image" content="${absoluteUrl(site.url, site.ogImage)}">`
+  ].join("\n  ");
+}
+
+function buildPostSeo(site, post) {
+  const canonical = `${trimTrailingSlash(site.url)}${post.url}`;
+  const schemas = [
+    buildArticleSchema(site, post),
+    post.faq.length ? buildFaqSchema(post.faq) : ""
+  ].filter(Boolean).join("\n  ");
+
+  return [
+    `<title>${escapeHtml(post.title)} | ${escapeHtml(site.name)}</title>`,
+    `<meta name="description" content="${escapeHtml(post.description)}">`,
+    `<link rel="canonical" href="${canonical}">`,
+    `<meta property="og:locale" content="ja_JP">`,
+    `<meta property="og:type" content="article">`,
+    `<meta property="og:title" content="${escapeHtml(post.title)} | ${escapeHtml(site.name)}">`,
+    `<meta property="og:description" content="${escapeHtml(post.description)}">`,
+    `<meta property="og:url" content="${canonical}">`,
+    `<meta property="og:image" content="${absoluteUrl(site.url, post.eyecatch)}">`,
+    `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:title" content="${escapeHtml(post.title)} | ${escapeHtml(site.name)}">`,
+    `<meta name="twitter:description" content="${escapeHtml(post.description)}">`,
+    `<meta name="twitter:image" content="${absoluteUrl(site.url, post.eyecatch)}">`,
+    schemas
+  ].join("\n  ");
+}
+
+function buildIndexContent(site, posts, categoryMap) {
+  const categoryCards = [...categoryMap.values()].map((category) => `
+    <article class="category-card">
+      <p class="category-card__name">${escapeHtml(category.name)}</p>
+      <p class="category-card__description">${escapeHtml(category.description)}</p>
+    </article>
+  `).join("");
+
+  const postCards = posts.map((post) => `
+    <article class="post-card">
+      <a class="post-card__link" href="posts/${post.slug}/">
+        <div class="post-card__thumb">
+          <img src="..${post.eyecatch}" alt="${escapeHtml(post.title)}" loading="lazy" decoding="async" width="720" height="420">
+        </div>
+        <div class="post-card__body">
+          <div class="post-card__meta">
+            <span class="pill">${escapeHtml(post.category.name)}</span>
+            <time datetime="${post.date}">${formatJapaneseDate(post.date)}</time>
+            <span>${escapeHtml(post.readingTime)}</span>
+          </div>
+          <h2>${escapeHtml(post.title)}</h2>
+          <p>${escapeHtml(post.description)}</p>
+          <span class="text-link">記事を読む</span>
+        </div>
+      </a>
+    </article>
+  `).join("");
+
+  return `
+    <section class="hero-block">
+      <div class="shell hero-block__inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Blog</p>
+          <h1>${escapeHtml(site.blogTitle)}</h1>
+          <p class="hero-copy__lead">${escapeHtml(site.blogDescription)}</p>
+          <div class="hero-actions">
+            <a class="button button--primary" href="../index.html#contact">LINEで相談する</a>
+            <a class="button button--soft" href="../index.html#symptoms">症状ページを見る</a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <p class="hero-side__title">このブログで扱うこと</p>
+          <div class="category-grid">${categoryCards}</div>
+        </div>
+      </div>
+    </section>
+    <section class="section-block">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Articles</p>
+          <h2>記事一覧</h2>
+          <p>膝痛を軸にしながら、腰痛や坐骨神経痛、運動療法の考え方へ自然につながる構成にしています。</p>
+        </div>
+        <div class="post-grid">${postCards}</div>
+      </div>
+    </section>
+    <section class="cta-band">
+      <div class="shell cta-band__inner">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>記事を読んで気になったら、相談からでも大丈夫です</h2>
+          <p>${escapeHtml(site.cta.subtext)}</p>
+        </div>
+        <div class="cta-band__actions">
+          <a class="button button--primary" href="${escapeHtml(site.cta.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(site.cta.label)}</a>
+          <a class="button button--soft" href="../index.html#price">初回案内を見る</a>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function buildPostContent(site, post, relatedPosts) {
+  const sectionsHtml = post.sections.map((section) => renderSection(section)).join("");
+  const faqHtml = post.faq.length ? `
+    <section class="article-section faq-block">
+      <div class="article-section__heading">
+        <p class="eyebrow">FAQ</p>
+        <h2>よくあるご質問</h2>
+      </div>
+      <div class="faq-list">
+        ${post.faq.map((item) => `
+          <details class="faq-item">
+            <summary>${escapeHtml(item.question)}</summary>
+            <p>${escapeHtml(item.answer)}</p>
+          </details>
+        `).join("")}
+      </div>
+    </section>
+  ` : "";
+
+  const symptomsHtml = post.relatedSymptoms.length ? `
+    <section class="article-section">
+      <div class="article-section__heading">
+        <p class="eyebrow">Symptoms</p>
+        <h2>関連する症状ページ</h2>
+      </div>
+      <div class="symptom-grid">
+        ${post.relatedSymptoms.map((item) => `
+          <a class="symptom-card" href="../../..${item.href}">
+            <span class="symptom-card__label">${escapeHtml(item.label)}</span>
+            <span class="symptom-card__description">${escapeHtml(item.description || "")}</span>
+          </a>
+        `).join("")}
+      </div>
+    </section>
+  ` : "";
+
+  const relatedArticlesHtml = relatedPosts.length ? `
+    <section class="section-block article-related">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Related</p>
+          <h2>あわせて読みたい記事</h2>
+        </div>
+        <div class="related-posts">
+          ${relatedPosts.map((item) => `
+            <a class="related-post-card" href="../${item.slug}/">
+              <span class="pill">${escapeHtml(item.category.name)}</span>
+              <strong>${escapeHtml(item.title)}</strong>
+              <span>${escapeHtml(item.description)}</span>
+            </a>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  ` : "";
+
+  return `
+    <section class="article-hero-wrap">
+      <div class="shell">
+        <nav class="breadcrumb" aria-label="パンくず">
+          <a href="../../../index.html">トップ</a>
+          <span>/</span>
+          <a href="../../">ブログ</a>
+          <span>/</span>
+          <span>${escapeHtml(post.title)}</span>
+        </nav>
+        <article class="article-card">
+          <div class="article-card__hero">
+            <img src="../../..${post.eyecatch}" alt="${escapeHtml(post.title)}" loading="eager" decoding="async" width="1200" height="630">
+          </div>
+          <div class="article-card__body">
+            <div class="article-meta">
+              <span class="pill">${escapeHtml(post.category.name)}</span>
+              <time datetime="${post.date}">投稿日 ${formatJapaneseDate(post.date)}</time>
+              <time datetime="${post.updatedDate}">更新日 ${formatJapaneseDate(post.updatedDate)}</time>
+              <span>${escapeHtml(post.readingTime)}</span>
+            </div>
+            <h1>${escapeHtml(post.title)}</h1>
+            <p class="article-lead">${escapeHtml(post.lead || post.description)}</p>
+            <div class="tag-list">${post.tags.map((tag) => `<span class="tag">#${escapeHtml(tag)}</span>`).join("")}</div>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="article-main">
+      <div class="shell article-layout">
+        <div class="article-content card-surface">
+          ${sectionsHtml}
+          ${faqHtml}
+          ${symptomsHtml}
+        </div>
+        <aside class="article-side">
+          <div class="side-card">
+            <p class="side-card__eyebrow">相談先</p>
+            <h2>${escapeHtml(site.name)}</h2>
+            <p>${escapeHtml(site.subtitle)}で膝痛を中心に、腰痛や坐骨神経痛など慢性痛にも対応しています。</p>
+            <a class="button button--primary button--full" href="${escapeHtml(post.cta.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(post.cta.label)}</a>
+            <p class="side-card__note">${escapeHtml(post.cta.note || site.cta.subtext)}</p>
+          </div>
+          <div class="side-card">
+            <p class="side-card__eyebrow">一覧へ</p>
+            <a class="text-link text-link--block" href="../../">ブログ一覧に戻る</a>
+            <a class="text-link text-link--block" href="../../../index.html#symptoms">症状ページを見る</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <section class="cta-band">
+      <div class="shell cta-band__inner">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>${escapeHtml(post.cta.heading || "まずは相談からでも大丈夫です")}</h2>
+          <p>${escapeHtml(post.cta.text || site.cta.subtext)}</p>
+        </div>
+        <div class="cta-band__actions">
+          <a class="button button--primary" href="${escapeHtml(post.cta.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(post.cta.label)}</a>
+          <a class="button button--soft" href="../../../index.html#price">初回案内を見る</a>
+        </div>
+      </div>
+    </section>
+    ${relatedArticlesHtml}
+  `;
+}
+
+function renderSection(section) {
+  const heading = section.heading ? `<h2>${escapeHtml(section.heading)}</h2>` : "";
+  const body = renderBody(section);
+  const subsections = Array.isArray(section.subsections)
+    ? section.subsections.map((item) => `
+        <section class="article-subsection">
+          ${item.heading ? `<h3>${escapeHtml(item.heading)}</h3>` : ""}
+          ${renderBody(item)}
+        </section>
+      `).join("")
+    : "";
+
+  return `<section class="article-section">${heading}${body}${subsections}</section>`;
+}
+
+function renderBody(block) {
+  const items = Array.isArray(block.body) ? block.body : [];
+  if (block.listStyle === "check") {
+    return `<ul class="check-list">${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+  }
+  return items.map((item) => `<p>${escapeHtml(item)}</p>`).join("");
+}
+
+function buildArticleSchema(site, post) {
+  return `<script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.updatedDate,
+    image: [absoluteUrl(site.url, post.eyecatch)],
+    author: { "@type": "Organization", name: site.author },
+    publisher: {
+      "@type": "Organization",
+      name: site.publisherName,
+      logo: { "@type": "ImageObject", url: absoluteUrl(site.url, site.ogImage) }
+    },
+    mainEntityOfPage: `${trimTrailingSlash(site.url)}${post.url}`
+  })}</script>`;
+}
+
+function buildFaqSchema(faq) {
+  return `<script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer }
+    }))
+  })}</script>`;
+}
+
+function buildBlogRedirectHtml() {
+  return `<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ブログ一覧へ移動します | 整体院ひざこぞう</title>
+  <meta name="robots" content="noindex,follow">
+  <meta http-equiv="refresh" content="0; url=./blog/">
+  <link rel="canonical" href="https://hizakozou.jp/blog/">
+</head>
+<body>
+  <p>ブログ一覧へ移動しています。表示が切り替わらない場合は <a href="./blog/">こちら</a> をご利用ください。</p>
+</body>
+</html>`;
+}
+
+function buildLegacyDetailRedirectHtml() {
+  return `<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>記事ページへ移動します | 整体院ひざこぞう</title>
+  <meta name="robots" content="noindex,follow">
+  <script>
+    (async function () {
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get("slug") || params.get("id");
+      if (!slug) {
+        window.location.replace("./blog/");
+        return;
+      }
+      try {
+        const res = await fetch("./data/blog-posts.json", { cache: "no-store" });
+        const data = await res.json();
+        const match = Array.isArray(data.posts) ? data.posts.find((post) => post.slug === slug) : null;
+        window.location.replace(match ? "./blog/posts/" + match.slug + "/" : "./blog/");
+      } catch (error) {
+        window.location.replace("./blog/");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <p>記事ページへ移動しています。表示が切り替わらない場合は <a href="./blog/">ブログ一覧</a> から記事をお選びください。</p>
+</body>
+</html>`;
+}
+
+function renderTemplate(template, values) {
+  return Object.entries(values).reduce((output, [key, value]) => output.replaceAll(`{{${key}}}`, value), template);
+}
+
+function formatJapaneseDate(value) {
+  return new Date(value).toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+}
+
+function absoluteUrl(siteUrl, assetPath) {
+  if (/^https?:\/\//.test(assetPath)) return assetPath;
+  return `${trimTrailingSlash(siteUrl)}${assetPath.startsWith("/") ? assetPath : `/${assetPath}`}`;
+}
+
+function trimTrailingSlash(value) {
+  return value.replace(/\/+$/, "");
+}
+
+function trimText(value, maxLength) {
+  const text = String(value);
+  if (text.length <= maxLength) return text;
+  return `${text.slice(0, Math.max(0, maxLength - 1)).trim()}…`;
+}
+
+function normalize(value) {
+  return String(value || "").toLowerCase().replace(/\s+/g, "");
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+for (const [fileName, config] of Object.entries(symptomConfigs)) {
+  config.fileName = fileName;
+  config.page = fileName;
+}

@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate:blog": "node scripts/generate-blog.mjs --all"
+    "build:blog": "node scripts/build-blog.mjs",
+    "generate:blog": "node scripts/build-blog.mjs"
   }
 }

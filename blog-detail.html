@@ -3,28 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ブログ記事へ移動します | 整体院ひざこぞう</title>
+  <title>記事ページへ移動します | 整体院ひざこぞう</title>
   <meta name="robots" content="noindex,follow">
   <script>
     (async function () {
       const params = new URLSearchParams(window.location.search);
-      const id = params.get("id") || params.get("slug");
-      if (!id) {
-        window.location.replace("./blog.html");
+      const slug = params.get("slug") || params.get("id");
+      if (!slug) {
+        window.location.replace("./blog/");
         return;
       }
       try {
-        const res = await fetch("./blog/data/posts.json", { cache: "no-store" });
-        const posts = await res.json();
-        const match = posts.find((post) => post.slug === id);
-        window.location.replace(match ? "./" + match.url : "./blog.html");
+        const res = await fetch("./data/blog-posts.json", { cache: "no-store" });
+        const data = await res.json();
+        const match = Array.isArray(data.posts) ? data.posts.find((post) => post.slug === slug) : null;
+        window.location.replace(match ? "./blog/posts/" + match.slug + "/" : "./blog/");
       } catch (error) {
-        window.location.replace("./blog.html");
+        window.location.replace("./blog/");
       }
     })();
   </script>
 </head>
 <body>
-  <p>ブログ記事へ移動しています。自動で切り替わらない場合は <a href="./blog.html">ブログ一覧</a> をご覧ください。</p>
+  <p>記事ページへ移動しています。表示が切り替わらない場合は <a href="./blog/">ブログ一覧</a> から記事をお選びください。</p>
 </body>
 </html>

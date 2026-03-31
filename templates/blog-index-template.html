@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{SEO_HEAD}}
+  <link rel="stylesheet" href="{{CSS_PATH}}">
+</head>
+<body class="blog-page">
+  <header class="site-header">
+    <div class="shell header-row">
+      <a class="brand" href="{{HOME_PATH}}">
+        <span class="brand__eyebrow">{{SITE_SUBTITLE}}</span>
+        <span class="brand__title">{{SITE_NAME}}</span>
+      </a>
+      <nav class="header-nav" aria-label="サイトメニュー">
+        <a href="{{HOME_PATH}}#symptoms">症状ページ</a>
+        <a href="{{HOME_PATH}}#price">初回案内</a>
+        <a class="header-nav__cta" href="{{CONTACT_PATH}}">LINEで相談する</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    {{PAGE_CONTENT}}
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div>
+        <p class="footer-title">{{SITE_NAME}}</p>
+        <p class="footer-text">柏市で膝の痛みや慢性痛のご相談を承る整体院です。</p>
+      </div>
+      <div class="footer-links">
+        <a href="{{HOME_PATH}}">トップへ戻る</a>
+        <a href="{{BLOG_PATH}}">ブログ一覧</a>
+        <a href="{{CONTACT_PATH}}">LINEで相談する</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
