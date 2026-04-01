@@ -3,6 +3,7 @@ import path from "node:path";
 
 const rootDir = process.cwd();
 const dataPath = path.join(rootDir, "data", "blog-posts.json");
+const sitemapPath = path.join(rootDir, "sitemap.xml");
 const templatesDir = path.join(rootDir, "templates");
 const blogDir = path.join(rootDir, "blog");
 const postsDir = path.join(blogDir, "posts");
@@ -184,8 +185,9 @@ async function buildBlog() {
 
   await fs.writeFile(path.join(rootDir, "blog.html"), buildBlogRedirectHtml(), "utf8");
   await fs.writeFile(path.join(rootDir, "blog-detail.html"), buildLegacyDetailRedirectHtml(), "utf8");
+  await updateSitemap(blogData.site, posts);
 
-  console.log(`Generated ${posts.length} static blog post(s) and updated symptom related articles.`);
+  console.log(`Generated ${posts.length} static blog post(s), updated symptom related articles, and regenerated sitemap.xml.`);
 }
 
 async function updateSymptomPages(site, posts) {
@@ -205,6 +207,67 @@ async function updateSymptomPages(site, posts) {
 
     await fs.writeFile(fullPath, html, "utf8");
   }
+}
+
+async function updateSitemap(site, posts) {
+  const siteRoot = trimTrailingSlash(site.url);
+  const latestBlogDate = posts.reduce((latest, post) => {
+    const candidate = formatSitemapDate(post.updatedDate || post.date);
+    return !latest || candidate > latest ? candidate : latest;
+  }, null);
+
+  const symptomEntries = await Promise.all(
+    (await fs.readdir(symptomsDir))
+      .filter((fileName) => fileName.endsWith(".html"))
+      .sort((a, b) => a.localeCompare(b, "ja"))
+      .map(async (fileName) => ({
+        loc: `${siteRoot}/symptoms/${fileName}`,
+        lastmod: await getFileLastmod(path.join(symptomsDir, fileName)),
+        changefreq: "monthly",
+        priority: "0.8"
+      }))
+  );
+
+  const postEntries = posts.map((post) => ({
+    loc: `${siteRoot}${post.url}`,
+    lastmod: formatSitemapDate(post.updatedDate || post.date),
+    changefreq: "monthly",
+    priority: "0.7"
+  }));
+
+  const entries = [
+    {
+      loc: `${siteRoot}/`,
+      lastmod: await getFileLastmod(path.join(rootDir, "index.html")),
+      changefreq: "weekly",
+      priority: "1.0"
+    },
+    {
+      loc: `${siteRoot}/blog/`,
+      lastmod: latestBlogDate || await getFileLastmod(path.join(blogDir, "index.html")),
+      changefreq: "weekly",
+      priority: "0.9"
+    },
+    ...postEntries,
+    ...symptomEntries
+  ];
+
+  const xml = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...entries.map((entry) => [
+      "  <url>",
+      `    <loc>${escapeHtml(entry.loc)}</loc>`,
+      `    <lastmod>${entry.lastmod}</lastmod>`,
+      `    <changefreq>${entry.changefreq}</changefreq>`,
+      `    <priority>${entry.priority}</priority>`,
+      "  </url>"
+    ].join("\n")),
+    "</urlset>",
+    ""
+  ].join("\n");
+
+  await fs.writeFile(sitemapPath, xml, "utf8");
 }
 
 function upsertRelatedStyles(html) {
@@ -688,6 +751,24 @@ function formatJapaneseDate(value) {
     month: "long",
     day: "numeric"
   });
+}
+
+async function getFileLastmod(filePath) {
+  const stats = await fs.stat(filePath);
+  return formatSitemapDate(stats.mtime);
+}
+
+function formatSitemapDate(value) {
+  if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return value;
+  }
+
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    throw new Error(`Invalid sitemap date: ${value}`);
+  }
+
+  return date.toISOString().slice(0, 10);
 }
 
 function absoluteUrl(siteUrl, assetPath) {
