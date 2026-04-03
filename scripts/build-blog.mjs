@@ -567,7 +567,7 @@ function buildIndexContent(site, posts, categoryMap) {
                   </div>
                   <h2>${escapeHtml(post.title)}</h2>
                   <p>${escapeHtml(post.description)}</p>
-                  <span class="text-link">險倅ｺ九ｒ隱ｭ繧</span>
+                  <span class="text-link">記事を読む</span>
                 </div>
               </a>
             </article>
