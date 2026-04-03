@@ -53,9 +53,13 @@ img {
 }
 
 strong {
-  color: var(--primary-strong);
+  color: #a14f4f;
   font-weight: 700;
-  background: linear-gradient(transparent 60%, rgba(86, 117, 143, 0.12) 60%);
+}
+
+.article-emphasis {
+  color: #a14f4f;
+  font-weight: 700;
 }
 
 ul,

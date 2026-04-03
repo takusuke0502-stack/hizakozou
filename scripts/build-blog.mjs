@@ -764,16 +764,13 @@ function renderSection(section) {
 
 function renderBody(block) {
   const items = Array.isArray(block.body) ? block.body : [];
-  const boxType = ["point-box", "note-box", "caution-box"].includes(block.boxType) ? block.boxType : "";
   if (items.length === 0) {
     return "";
   }
   if (block.listStyle === "check") {
-    const content = `<ul class="check-list">${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
-    return boxType ? `<div class="${boxType}">${content}</div>` : content;
+    return `<ul class="check-list">${items.map((item) => `<li>${renderInlineText(item)}</li>`).join("")}</ul>`;
   }
-  const content = items.map((item) => `<p>${escapeHtml(item)}</p>`).join("");
-  return boxType ? `<div class="${boxType}">${content}</div>` : content;
+  return items.map((item) => `<p>${renderInlineText(item)}</p>`).join("");
 }
 
 function buildArticleSchema(site, post) {
@@ -917,6 +914,47 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
+}
+
+function renderInlineText(value) {
+  let text = escapeHtml(value);
+
+  const quotedPhrases = Array.from(text.matchAll(/「([^」]{2,24})」/g)).map((match) => match[1]);
+  for (const phrase of quotedPhrases) {
+    text = text.replaceAll(`「${phrase}」`, `「<strong class="article-emphasis">${phrase}</strong>」`);
+  }
+
+  const emphasisPhrases = [
+    "Joint by Joint Theory",
+    "Mobility",
+    "Stability",
+    "Movement",
+    "Deep Front Line",
+    "多裂筋",
+    "大腰筋",
+    "梨状筋",
+    "スウェイバック姿勢",
+    "反張膝",
+    "運動療法",
+    "徒手療法",
+    "日常動作の指導",
+    "3つの柱",
+    "3つのステップ",
+    "痛みの悪循環",
+    "防衛反応",
+    "被害者",
+    "可動性",
+    "安定性"
+  ];
+
+  for (const phrase of emphasisPhrases) {
+    const escapedPhrase = escapeHtml(phrase);
+    const safePattern = escapedPhrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    text = text.replace(new RegExp(`(?<![\\w>])${safePattern}(?![^<]*>|[\\w])`, "g"), `<strong class="article-emphasis">${escapedPhrase}</strong>`);
+  }
+
+  text = text.replace(/(STEP\s*[1-3])/g, '<strong class="article-emphasis">$1</strong>');
+  return text;
 }
 
 for (const [fileName, config] of Object.entries(symptomConfigs)) {
