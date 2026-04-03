@@ -115,9 +115,6 @@
     .hero-cta-grid { display: grid; gap: 0.75rem; }
     .hero-photo { height: 260px; }
     .price-cta-grid { display: grid; gap: 0.75rem; max-width: 42rem; margin: 0 auto; }
-    .symptom-accordion-panel { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-    .symptom-accordion-item.is-open .symptom-accordion-trigger { background-color: #f8fafc; }
-    .symptom-accordion-item.is-open .accordion-icon { transform: rotate(180deg); }
     .faq-list details { box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04); }
     .faq-list summary { gap: 0.75rem; }
     @media (min-width: 640px) {
@@ -800,233 +797,159 @@
           <p class="text-slate-600 font-bold">膝痛を中心に、歩行や姿勢の影響を受けやすい慢性痛までご相談いただけます。気になる症状をタップすると、詳しい説明ページをご覧いただけます。</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-          <div class="bg-white rounded-2xl border border-blue-100 p-5 text-left shadow-sm">
-            <p class="text-sm font-black text-blue-700 mb-2">膝痛を主軸に整理</p>
-            <p class="text-sm font-bold text-slate-600 leading-relaxed">変形性膝関節症、膝の水、膝の内側・外側の痛みなど、膝まわりの症状をまとめて確認できます。</p>
-          </div>
-          <div class="bg-white rounded-2xl border border-blue-100 p-5 text-left shadow-sm">
-            <p class="text-sm font-black text-blue-700 mb-2">関連しやすい慢性痛にも対応</p>
-            <p class="text-sm font-bold text-slate-600 leading-relaxed">腰痛や坐骨神経痛、股関節の痛みなど、膝の負担と関わりやすい症状への導線も整理しています。</p>
-          </div>
-          <div class="bg-white rounded-2xl border border-blue-100 p-5 text-left shadow-sm">
-            <p class="text-sm font-black text-blue-700 mb-2">ブログと合わせて理解しやすく</p>
-            <p class="text-sm font-bold text-slate-600 leading-relaxed">症状の説明ページだけでなく、日常生活で気をつけたいことはブログからも読める構成にしています。</p>
-          </div>
-        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-8 md:gap-y-10">
 
-        <div class="bg-white rounded-3xl border border-slate-200 p-5 md:p-6 shadow-sm mb-10 md:mb-12">
-          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-5">
+          <section class="space-y-4">
             <div>
-              <p class="text-sm font-black text-blue-700 mb-1">特にご相談の多い症状</p>
-              <p class="text-sm font-bold text-slate-600">膝痛をきっかけに、腰や股関節の不調まで一緒にご相談いただくことが多い症状です。</p>
+              <p class="text-xs font-black tracking-[0.18em] text-blue-600 mb-2">KNEE</p>
+              <h3 class="text-2xl font-black text-slate-800 mb-2">膝の痛み</h3>
+              <p class="text-sm font-bold text-slate-600 leading-relaxed">歩き始め、階段、膝の内側や外側の痛みなど、膝まわりの症状をまとめて探せます。</p>
             </div>
-            <a href="#price" class="text-sm font-black text-blue-700 hover:text-blue-600 transition">相談の流れを見る</a>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-            <a href="symptoms/knee-osteoarthritis.html" class="group bg-blue-50 rounded-2xl p-4 border border-blue-100 hover:border-blue-300 hover:bg-white transition-all duration-300">
-              <p class="text-xs font-black text-blue-600 mb-2 tracking-widest">KNEE</p>
-              <p class="font-black text-slate-800 text-base mb-1">変形性膝関節症</p>
-              <p class="text-xs text-slate-500 font-bold">階段・歩き始め・曲げ伸ばしの痛み</p>
-            </a>
-            <a href="symptoms/lower-back-pain.html" class="group bg-amber-50 rounded-2xl p-4 border border-amber-100 hover:border-amber-300 hover:bg-white transition-all duration-300">
-              <p class="text-xs font-black text-amber-600 mb-2 tracking-widest">LOW BACK</p>
-              <p class="font-black text-slate-800 text-base mb-1">腰痛</p>
-              <p class="text-xs text-slate-500 font-bold">膝をかばって腰までつらい方へ</p>
-            </a>
-            <a href="symptoms/sciatica.html" class="group bg-amber-50 rounded-2xl p-4 border border-amber-100 hover:border-amber-300 hover:bg-white transition-all duration-300">
-              <p class="text-xs font-black text-amber-600 mb-2 tracking-widest">SCIATICA</p>
-              <p class="font-black text-slate-800 text-base mb-1">坐骨神経痛</p>
-              <p class="text-xs text-slate-500 font-bold">お尻から足へのしびれ・だるさ</p>
-            </a>
-            <a href="symptoms/hip-osteoarthritis.html" class="group bg-slate-50 rounded-2xl p-4 border border-slate-200 hover:border-blue-300 hover:bg-white transition-all duration-300">
-              <p class="text-xs font-black text-slate-600 mb-2 tracking-widest">HIP</p>
-              <p class="font-black text-slate-800 text-base mb-1">股関節の痛み</p>
-              <p class="text-xs text-slate-500 font-bold">歩き方や膝の負担と関わりやすい症状</p>
-            </a>
-          </div>
-        </div>
+            <div class="border-y border-slate-200">
+              <a href="symptoms/knee-osteoarthritis.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors border-b border-slate-200">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-blue-700 transition-colors">変形性膝関節症</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">階段・歩き始め・曲げ伸ばしでつらい膝痛</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/knee-effusion.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors border-b border-slate-200">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-blue-700 transition-colors">膝の水（関節水腫）</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">腫れや違和感をくり返す膝の状態</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/pes-anserine-bursitis.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors border-b border-slate-200">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-blue-700 transition-colors">膝の内側の痛み</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">鵞足炎や歩き始めの痛みが気になる方へ</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/knee-lateral-pain.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-blue-700 transition-colors">膝の外側の痛み</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">外側の張りや歩行時の痛みがあるときに</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+            </div>
+          </section>
 
-        <div class="space-y-4">
-          <div class="symptom-accordion-item bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm" data-accordion-item>
-            <button type="button" class="symptom-accordion-trigger w-full flex items-center justify-between gap-3 p-5 md:p-6 text-left hover:bg-slate-50 transition-colors" data-accordion-trigger aria-expanded="false" aria-controls="symptom-panel-knee">
-              <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-slate-400 flex-shrink-0"></span>
-                <h3 class="text-base md:text-lg font-black text-slate-700">膝の痛み（専門）</h3>
-              </div>
-              <span class="accordion-icon transition-transform duration-300 bg-slate-100 p-1.5 rounded-full" aria-hidden="true"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-600"></i></span>
-            </button>
-            <div id="symptom-panel-knee" class="symptom-accordion-panel" data-accordion-panel aria-hidden="true">
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 p-5 md:p-6 border-t border-slate-100 bg-slate-50">
-                <a href="symptoms/knee-osteoarthritis.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-blue-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-blue-600 transition-colors">変形性膝関節症</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">膝の軟骨がすり減る痛み</p>
-                  </div>
-                </a>
-                <a href="symptoms/knee-effusion.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-blue-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-blue-600 transition-colors">膝の水（関節水腫）</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">繰り返す膝の腫れ・水</p>
-                  </div>
-                </a>
-                <a href="symptoms/knee-lateral-pain.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-blue-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-blue-600 transition-colors">膝の外側の痛み</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">腸脛靭帯炎・外側の痛み</p>
-                  </div>
-                </a>
-                <a href="symptoms/pes-anserine-bursitis.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-blue-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-blue-600 transition-colors">膝の内側の痛み</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">鵞足炎・歩き始めの痛み</p>
-                  </div>
-                </a>
-              </div>
+          <section class="space-y-4">
+            <div>
+              <p class="text-xs font-black tracking-[0.18em] text-amber-600 mb-2">BACK / NERVE</p>
+              <h3 class="text-2xl font-black text-slate-800 mb-2">腰・背中・神経</h3>
+              <p class="text-sm font-bold text-slate-600 leading-relaxed">膝をかばう動きや姿勢の乱れとつながりやすい、腰やしびれの症状を見渡せます。</p>
             </div>
-          </div>
+            <div class="border-y border-slate-200">
+              <a href="symptoms/lower-back-pain.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors border-b border-slate-200">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-amber-700 transition-colors">腰痛</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">慢性的な重だるさや立ち上がり時の腰の痛み</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/sciatica.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors border-b border-slate-200">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-amber-700 transition-colors">坐骨神経痛</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">お尻から足にかけてのしびれやだるさ</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/spinal-stenosis.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-amber-700 transition-colors">脊柱管狭窄症</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">歩くと脚がしびれる・休むと楽になる症状</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+            </div>
+          </section>
 
-          <div class="symptom-accordion-item bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm" data-accordion-item>
-            <button type="button" class="symptom-accordion-trigger w-full flex items-center justify-between gap-3 p-5 md:p-6 text-left hover:bg-slate-50 transition-colors" data-accordion-trigger aria-expanded="false" aria-controls="symptom-panel-back">
-              <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-slate-400 flex-shrink-0"></span>
-                <h3 class="text-base md:text-lg font-black text-slate-700">腰・背中・神経</h3>
-              </div>
-              <span class="accordion-icon transition-transform duration-300 bg-slate-100 p-1.5 rounded-full" aria-hidden="true"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-600"></i></span>
-            </button>
-            <div id="symptom-panel-back" class="symptom-accordion-panel" data-accordion-panel aria-hidden="true">
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 p-5 md:p-6 border-t border-slate-100 bg-slate-50">
-                <a href="symptoms/lower-back-pain.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-amber-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-amber-500 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-amber-600 transition-colors">腰痛</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">慢性的な腰の重だるさ・痛み</p>
-                  </div>
-                </a>
-                <a href="symptoms/sciatica.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-amber-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-amber-500 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-amber-600 transition-colors">坐骨神経痛</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">お尻から足へのしびれ</p>
-                  </div>
-                </a>
-                <a href="symptoms/spinal-stenosis.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-amber-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-amber-500 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-amber-600 transition-colors">脊柱管狭窄症</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">歩くと足がしびれる</p>
-                  </div>
-                </a>
-              </div>
+          <section class="space-y-4">
+            <div>
+              <p class="text-xs font-black tracking-[0.18em] text-emerald-600 mb-2">SHOULDER / NECK</p>
+              <h3 class="text-2xl font-black text-slate-800 mb-2">肩・首・腕の痛み</h3>
+              <p class="text-sm font-bold text-slate-600 leading-relaxed">肩が上がらない、首から腕のしびれがあるなど、上半身の慢性痛も整理しています。</p>
             </div>
-          </div>
+            <div class="border-y border-slate-200">
+              <a href="symptoms/frozen-shoulder.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors border-b border-slate-200">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-emerald-700 transition-colors">五十肩</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">肩が上がらない・夜間の痛みが気になる方へ</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/shoulder-stiffness.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors border-b border-slate-200">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-emerald-700 transition-colors">肩こり</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">首肩のこりやだるさが続いているときに</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/cervical-spondylosis.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors border-b border-slate-200">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-emerald-700 transition-colors">頚椎症</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">首の痛みや腕のしびれがある方へ</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/thoracic-outlet.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors border-b border-slate-200">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-emerald-700 transition-colors">胸郭出口症候群</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">腕や手のしびれ・だるさが気になるときに</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/elbow-tendinopathy.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-emerald-700 transition-colors">肘の痛み（腱症）</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">テニス肘・ゴルフ肘のような肘の不調</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+            </div>
+          </section>
 
-          <div class="symptom-accordion-item bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm" data-accordion-item>
-            <button type="button" class="symptom-accordion-trigger w-full flex items-center justify-between gap-3 p-5 md:p-6 text-left hover:bg-slate-50 transition-colors" data-accordion-trigger aria-expanded="false" aria-controls="symptom-panel-shoulder">
-              <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-slate-400 flex-shrink-0"></span>
-                <h3 class="text-base md:text-lg font-black text-slate-700">肩・首・腕の痛み</h3>
-              </div>
-              <span class="accordion-icon transition-transform duration-300 bg-slate-100 p-1.5 rounded-full" aria-hidden="true"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-600"></i></span>
-            </button>
-            <div id="symptom-panel-shoulder" class="symptom-accordion-panel" data-accordion-panel aria-hidden="true">
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 p-5 md:p-6 border-t border-slate-100 bg-slate-50">
-                <a href="symptoms/frozen-shoulder.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-emerald-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-emerald-600 transition-colors">五十肩</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">肩が上がらない・夜間の痛み</p>
-                  </div>
-                </a>
-                <a href="symptoms/shoulder-stiffness.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-emerald-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-emerald-600 transition-colors">肩こり</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">慢性的な肩・首のこり</p>
-                  </div>
-                </a>
-                <a href="symptoms/cervical-spondylosis.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-emerald-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-emerald-600 transition-colors">頚椎症</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">首の痛み・腕のしびれ</p>
-                  </div>
-                </a>
-                <a href="symptoms/thoracic-outlet.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-emerald-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-emerald-600 transition-colors">胸郭出口症候群</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">腕・手のしびれ・だるさ</p>
-                  </div>
-                </a>
-                <a href="symptoms/elbow-tendinopathy.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-emerald-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-emerald-600 transition-colors">肘の痛み（腱症）</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">テニス肘・ゴルフ肘</p>
-                  </div>
-                </a>
-              </div>
+          <section class="space-y-4">
+            <div>
+              <p class="text-xs font-black tracking-[0.18em] text-slate-500 mb-2">OTHER</p>
+              <h3 class="text-2xl font-black text-slate-800 mb-2">その他の慢性痛</h3>
+              <p class="text-sm font-bold text-slate-600 leading-relaxed">膝や腰と一緒に相談されやすい、足元や手、顎などの症状も一覧で見られます。</p>
             </div>
-          </div>
-
-          <div class="symptom-accordion-item bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm" data-accordion-item>
-            <button type="button" class="symptom-accordion-trigger w-full flex items-center justify-between gap-3 p-5 md:p-6 text-left hover:bg-slate-50 transition-colors" data-accordion-trigger aria-expanded="false" aria-controls="symptom-panel-other">
-              <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-slate-400 flex-shrink-0"></span>
-                <h3 class="text-base md:text-lg font-black text-slate-700">その他の慢性痛</h3>
-              </div>
-              <span class="accordion-icon transition-transform duration-300 bg-slate-100 p-1.5 rounded-full" aria-hidden="true"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-600"></i></span>
-            </button>
-            <div id="symptom-panel-other" class="symptom-accordion-panel" data-accordion-panel aria-hidden="true">
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 p-5 md:p-6 border-t border-slate-100 bg-slate-50">
-                <a href="symptoms/hip-osteoarthritis.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-slate-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-slate-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-slate-600 transition-colors">変形性股関節症</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">股関節の痛み・歩行困難</p>
-                  </div>
-                </a>
-                <a href="symptoms/plantar-fasciitis.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-slate-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-slate-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-slate-600 transition-colors">足底筋膜炎</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">かかと・足裏の痛み</p>
-                  </div>
-                </a>
-                <a href="symptoms/carpal-tunnel.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-slate-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-slate-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-slate-600 transition-colors">手根管症候群</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">手・指のしびれ・夜間痛</p>
-                  </div>
-                </a>
-                <a href="symptoms/tmj.html" class="group bg-white rounded-xl p-4 card-shadow border border-slate-200 hover:border-slate-400 hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                  <div class="w-2.5 h-2.5 rounded-full bg-slate-400 flex-shrink-0 transition-transform duration-300 group-hover:scale-150"></div>
-                  <div class="flex-1 text-left">
-                    <p class="font-black text-slate-800 text-sm md:text-base group-hover:text-slate-600 transition-colors">顎関節症</p>
-                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-0.5">口を開けると痛い</p>
-                  </div>
-                </a>
-              </div>
+            <div class="border-y border-slate-200">
+              <a href="symptoms/hip-osteoarthritis.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors border-b border-slate-200">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-slate-700 transition-colors">変形性股関節症</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">股関節の痛みや歩行時の違和感がある方へ</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/plantar-fasciitis.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors border-b border-slate-200">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-slate-700 transition-colors">足底筋膜炎</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">かかとや足裏の痛みが気になるときに</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/carpal-tunnel.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors border-b border-slate-200">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-slate-700 transition-colors">手根管症候群</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">手や指のしびれ・夜間の違和感がある方へ</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/tmj.html" class="group grid grid-cols-[1fr_auto] items-start gap-4 px-1 py-4 hover:bg-white/60 transition-colors">
+                <div>
+                  <p class="font-black text-slate-800 group-hover:text-slate-700 transition-colors">顎関節症</p>
+                  <p class="text-sm font-bold text-slate-500 mt-1">口を開けると痛い・顎が疲れやすいときに</p>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              </a>
             </div>
-          </div>
-        </div>
-
-        <div class="mt-10 bg-white rounded-3xl border border-slate-200 p-6 md:p-8 shadow-sm">
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div class="text-left">
-              <p class="text-sm font-black text-blue-700 mb-2">症状ページとあわせて読みたい内容</p>
-              <p class="text-sm font-bold text-slate-600 leading-relaxed">「膝の痛みが長引く理由」や「日常で気をつけたい動き」は、ブログ記事でも分かりやすくまとめています。</p>
-            </div>
-            <a href="blog/" class="inline-flex items-center justify-center gap-2 bg-blue-100 text-blue-700 font-black px-6 py-3 rounded-xl border border-blue-200 hover:bg-blue-200 transition whitespace-nowrap">
-              ブログを見る <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
-            </a>
-          </div>
+          </section>
         </div>
 
       </div>
@@ -1647,36 +1570,6 @@
       el.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') { e.preventDefault(); openLightbox(img.src, img.alt); } });
     });
 
-    // 症状セクションのアコーディオン
-    const accordionItems = document.querySelectorAll('[data-accordion-item]');
-    function syncAccordionHeights() {
-      accordionItems.forEach(item => {
-        const trigger = item.querySelector('[data-accordion-trigger]');
-        const panel = item.querySelector('[data-accordion-panel]');
-        if (!trigger || !panel) return;
-        if (item.classList.contains('is-open')) {
-          panel.style.maxHeight = panel.scrollHeight + 'px';
-          panel.setAttribute('aria-hidden', 'false');
-          trigger.setAttribute('aria-expanded', 'true');
-        } else {
-          panel.style.maxHeight = '0px';
-          panel.setAttribute('aria-hidden', 'true');
-          trigger.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-
-    accordionItems.forEach(item => {
-      const trigger = item.querySelector('[data-accordion-trigger]');
-      if (!trigger) return;
-      trigger.addEventListener('click', () => {
-        item.classList.toggle('is-open');
-        syncAccordionHeights();
-      });
-    });
-
-    syncAccordionHeights();
-
     // 固定CTAバーのアイコンを初期化
     lucide.createIcons({ nodes: document.querySelectorAll('.fixed [data-lucide]') });
 
@@ -1688,7 +1581,6 @@
     syncHeaderHeight();
     window.addEventListener('resize', () => {
       syncHeaderHeight();
-      syncAccordionHeights();
     });
   </script>
 </body>

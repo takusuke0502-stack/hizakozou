@@ -509,77 +509,55 @@ function buildPostSeo(site, post) {
 
 function buildIndexContent(site, posts, categoryMap) {
   const categories = [...categoryMap.values()];
-  const recentPosts = posts.slice(0, 6);
-  const categoryCards = categories.map((category) => `
-    <article class="category-card">
-      <p class="category-card__name">${escapeHtml(category.name)}</p>
-      <p class="category-card__description">${escapeHtml(category.description)}</p>
-    </article>
-  `).join("");
+  const recentPosts = posts.slice(0, 8);
 
-  const postCards = recentPosts.map((post) => `
-    <article class="post-card">
-      <a class="post-card__link" href="posts/${post.slug}/">
-        <div class="post-card__thumb">
-          <img src="..${post.eyecatch}" alt="${escapeHtml(post.title)}" loading="lazy" decoding="async" width="720" height="420">
+  const renderListItem = (post) => `
+    <article class="article-list-item">
+      <a class="article-list-item__link" href="posts/${post.slug}/">
+        <div class="article-list-item__thumb">
+          <img src="..${post.eyecatch}" alt="${escapeHtml(post.title)}" loading="lazy" decoding="async" width="320" height="220">
         </div>
-        <div class="post-card__body">
-          <div class="post-card__meta">
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
             <span class="pill">${escapeHtml(post.category.name)}</span>
             <time datetime="${post.date}">${formatJapaneseDate(post.date)}</time>
             <span>${escapeHtml(post.readingTime)}</span>
           </div>
-          <h2>${escapeHtml(post.title)}</h2>
-          <p>${escapeHtml(post.description)}</p>
-          <span class="text-link">記事を読む</span>
+          <h3 class="article-list-item__title">${escapeHtml(post.title)}</h3>
+          <p class="article-list-item__excerpt">${escapeHtml(trimText(post.description, 90))}</p>
         </div>
+        <span class="article-list-item__arrow">読む</span>
       </a>
     </article>
-  `).join("");
+  `;
+
+  const recentList = recentPosts.map(renderListItem).join("");
 
   const categoryChips = categories.map((category) => `
     <a class="category-chip" href="#category-${escapeHtml(category.slug)}">${escapeHtml(category.name)}</a>
   `).join("");
 
   const categorySections = categories.map((category) => `
-    <section class="category-section" id="category-${escapeHtml(category.slug)}">
-      <div class="category-section__header">
+    <section class="category-section category-section--list" id="category-${escapeHtml(category.slug)}">
+      <div class="category-section__header category-section__header--list">
         <div>
           <p class="eyebrow">Category</p>
           <h3>${escapeHtml(category.name)}</h3>
         </div>
         <p class="category-section__description">${escapeHtml(category.description)}</p>
       </div>
-      <div class="post-grid post-grid--compact">
+      <div class="article-list">
         ${posts
           .filter((post) => post.category.slug === category.slug)
-          .map((post) => `
-            <article class="post-card">
-              <a class="post-card__link" href="posts/${post.slug}/">
-                <div class="post-card__thumb">
-                  <img src="..${post.eyecatch}" alt="${escapeHtml(post.title)}" loading="lazy" decoding="async" width="720" height="420">
-                </div>
-                <div class="post-card__body">
-                  <div class="post-card__meta">
-                    <span class="pill">${escapeHtml(post.category.name)}</span>
-                    <time datetime="${post.date}">${formatJapaneseDate(post.date)}</time>
-                    <span>${escapeHtml(post.readingTime)}</span>
-                  </div>
-                  <h2>${escapeHtml(post.title)}</h2>
-                  <p>${escapeHtml(post.description)}</p>
-                  <span class="text-link">記事を読む</span>
-                </div>
-              </a>
-            </article>
-          `).join("")}
+          .map(renderListItem).join("")}
       </div>
     </section>
   `).join("");
 
   return `
-    <section class="hero-block">
+    <section class="hero-block hero-block--compact">
       <div class="shell hero-block__inner">
-        <div class="hero-copy">
+        <div class="hero-copy hero-copy--compact">
           <p class="eyebrow">Blog</p>
           <h1>${escapeHtml(site.blogTitle)}</h1>
           <p class="hero-copy__lead">${escapeHtml(site.blogDescription)}</p>
@@ -588,21 +566,26 @@ function buildIndexContent(site, posts, categoryMap) {
             <a class="button button--soft" href="../index.html#symptoms">症状ページを見る</a>
           </div>
         </div>
-        <div class="hero-side">
-          <p class="hero-side__title">このブログで扱うこと</p>
-          <div class="category-grid">${categoryCards}</div>
-        </div>
       </div>
     </section>
     <section class="section-block">
       <div class="shell">
         <div class="section-heading">
-          <p class="eyebrow">Articles</p>
-          <h2>記事一覧</h2>
-          <p>膝痛を軸にしながら、腰痛や坐骨神経痛、運動療法の考え方へ自然につながる構成にしています。</p>
+          <p class="eyebrow">Guide</p>
+          <h2>症状やテーマから探せる読みもの一覧</h2>
+          <p>膝痛を中心に、腰痛や坐骨神経痛、運動療法の考え方まで、必要な記事を一覧で探しやすい形にまとめています。</p>
         </div>
         <div class="category-chip-list">${categoryChips}</div>
-        <div class="post-grid">${postCards}</div>
+        <section class="category-section category-section--list category-section--recent">
+          <div class="category-section__header category-section__header--list">
+            <div>
+              <p class="eyebrow">Recent</p>
+              <h3>新着記事</h3>
+            </div>
+            <p class="category-section__description">まずは最近追加した記事から確認したい方のために、新しい順でまとめています。</p>
+          </div>
+          <div class="article-list">${recentList}</div>
+        </section>
         <div class="category-sections">${categorySections}</div>
       </div>
     </section>
