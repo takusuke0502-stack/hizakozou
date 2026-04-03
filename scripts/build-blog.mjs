@@ -389,12 +389,78 @@ function normalizePost(post, site, categoryMap) {
     updatedDate: post.updatedDate || post.date,
     eyecatch: post.eyecatch || site.defaultEyecatch,
     tags: Array.isArray(post.tags) ? post.tags : [],
-    sections: Array.isArray(post.sections) ? post.sections : [],
+    sections: enrichSections(Array.isArray(post.sections) ? post.sections : []),
     faq: Array.isArray(post.faq) ? post.faq : [],
     relatedSymptoms: Array.isArray(post.relatedSymptoms) ? post.relatedSymptoms : [],
     cta: post.cta || site.cta,
     url: `/blog/posts/${post.slug}/`
   };
+}
+
+function enrichSections(sections) {
+  return sections.map((section) => ({
+    ...section,
+    boxType: section.boxType || inferEnhancedBoxType(section.heading, section.listStyle),
+    subsections: Array.isArray(section.subsections)
+      ? section.subsections.map((item) => ({
+          ...item,
+          boxType: item.boxType || inferEnhancedSubsectionBoxType(item.heading)
+        }))
+      : section.subsections
+  }));
+}
+
+function inferBoxType(heading, listStyle) {
+  const value = String(heading || "");
+  if (listStyle === "check" || /3つの柱|3ステップ|改善ステップ|ポイント|できること/.test(value)) {
+    return "point-box";
+  }
+  if (/受診|目安|注意|我慢/.test(value)) {
+    return "caution-box";
+  }
+  if (/まとめ|おわりに|補足/.test(value)) {
+    return "note-box";
+  }
+  return "";
+}
+
+function inferSubsectionBoxType(heading) {
+  const value = String(heading || "");
+  if (/^STEP|^\d+\./.test(value)) {
+    return "point-box";
+  }
+  if (/注意|受診|我慢/.test(value)) {
+    return "caution-box";
+  }
+  return "";
+}
+
+function inferEnhancedBoxType(heading, listStyle) {
+  const value = String(heading || "");
+  if (listStyle === "check" || /3つの柱|3ステップ|改善ステップ|戻らない体/.test(value)) {
+    return "point-box";
+  }
+  if (/注意|受診|検討していただきたい目安|こんな時は我慢せず/.test(value)) {
+    return "caution-box";
+  }
+  if (/まとめ|補足|希望|おわりに/.test(value)) {
+    return "note-box";
+  }
+  return inferBoxType(heading, listStyle);
+}
+
+function inferEnhancedSubsectionBoxType(heading) {
+  const value = String(heading || "");
+  if (/^STEP|^\d+\./.test(value)) {
+    return "point-box";
+  }
+  if (/注意|受診|検討|目安/.test(value)) {
+    return "caution-box";
+  }
+  if (/まとめ|補足/.test(value)) {
+    return "note-box";
+  }
+  return inferSubsectionBoxType(heading);
 }
 
 function buildIndexSeo(site) {
@@ -442,14 +508,16 @@ function buildPostSeo(site, post) {
 }
 
 function buildIndexContent(site, posts, categoryMap) {
-  const categoryCards = [...categoryMap.values()].map((category) => `
+  const categories = [...categoryMap.values()];
+  const recentPosts = posts.slice(0, 6);
+  const categoryCards = categories.map((category) => `
     <article class="category-card">
       <p class="category-card__name">${escapeHtml(category.name)}</p>
       <p class="category-card__description">${escapeHtml(category.description)}</p>
     </article>
   `).join("");
 
-  const postCards = posts.map((post) => `
+  const postCards = recentPosts.map((post) => `
     <article class="post-card">
       <a class="post-card__link" href="posts/${post.slug}/">
         <div class="post-card__thumb">
@@ -467,6 +535,45 @@ function buildIndexContent(site, posts, categoryMap) {
         </div>
       </a>
     </article>
+  `).join("");
+
+  const categoryChips = categories.map((category) => `
+    <a class="category-chip" href="#category-${escapeHtml(category.slug)}">${escapeHtml(category.name)}</a>
+  `).join("");
+
+  const categorySections = categories.map((category) => `
+    <section class="category-section" id="category-${escapeHtml(category.slug)}">
+      <div class="category-section__header">
+        <div>
+          <p class="eyebrow">Category</p>
+          <h3>${escapeHtml(category.name)}</h3>
+        </div>
+        <p class="category-section__description">${escapeHtml(category.description)}</p>
+      </div>
+      <div class="post-grid post-grid--compact">
+        ${posts
+          .filter((post) => post.category.slug === category.slug)
+          .map((post) => `
+            <article class="post-card">
+              <a class="post-card__link" href="posts/${post.slug}/">
+                <div class="post-card__thumb">
+                  <img src="..${post.eyecatch}" alt="${escapeHtml(post.title)}" loading="lazy" decoding="async" width="720" height="420">
+                </div>
+                <div class="post-card__body">
+                  <div class="post-card__meta">
+                    <span class="pill">${escapeHtml(post.category.name)}</span>
+                    <time datetime="${post.date}">${formatJapaneseDate(post.date)}</time>
+                    <span>${escapeHtml(post.readingTime)}</span>
+                  </div>
+                  <h2>${escapeHtml(post.title)}</h2>
+                  <p>${escapeHtml(post.description)}</p>
+                  <span class="text-link">險倅ｺ九ｒ隱ｭ繧</span>
+                </div>
+              </a>
+            </article>
+          `).join("")}
+      </div>
+    </section>
   `).join("");
 
   return `
@@ -494,7 +601,9 @@ function buildIndexContent(site, posts, categoryMap) {
           <h2>記事一覧</h2>
           <p>膝痛を軸にしながら、腰痛や坐骨神経痛、運動療法の考え方へ自然につながる構成にしています。</p>
         </div>
+        <div class="category-chip-list">${categoryChips}</div>
         <div class="post-grid">${postCards}</div>
+        <div class="category-sections">${categorySections}</div>
       </div>
     </section>
     <section class="cta-band">
@@ -655,10 +764,16 @@ function renderSection(section) {
 
 function renderBody(block) {
   const items = Array.isArray(block.body) ? block.body : [];
-  if (block.listStyle === "check") {
-    return `<ul class="check-list">${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+  const boxType = ["point-box", "note-box", "caution-box"].includes(block.boxType) ? block.boxType : "";
+  if (items.length === 0) {
+    return "";
   }
-  return items.map((item) => `<p>${escapeHtml(item)}</p>`).join("");
+  if (block.listStyle === "check") {
+    const content = `<ul class="check-list">${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+    return boxType ? `<div class="${boxType}">${content}</div>` : content;
+  }
+  const content = items.map((item) => `<p>${escapeHtml(item)}</p>`).join("");
+  return boxType ? `<div class="${boxType}">${content}</div>` : content;
 }
 
 function buildArticleSchema(site, post) {
