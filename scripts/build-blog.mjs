@@ -516,7 +516,7 @@ function buildIndexContent(site, posts, categoryMap) {
 function buildPostContent(site, post, relatedPosts) {
   const sectionsHtml = post.sections.map((section) => renderSection(section)).join("");
   const faqHtml = post.faq.length ? `
-    <section class="article-section faq-block">
+    <section class="article-section faq-block faq-section">
       <div class="article-section__heading">
         <p class="eyebrow">FAQ</p>
         <h2>よくあるご質問</h2>
@@ -533,7 +533,7 @@ function buildPostContent(site, post, relatedPosts) {
   ` : "";
 
   const symptomsHtml = post.relatedSymptoms.length ? `
-    <section class="article-section">
+    <section class="article-section article-section--symptoms">
       <div class="article-section__heading">
         <p class="eyebrow">Symptoms</p>
         <h2>関連する症状ページ</h2>
@@ -583,7 +583,7 @@ function buildPostContent(site, post, relatedPosts) {
           <div class="article-card__hero">
             <img src="../../..${post.eyecatch}" alt="${escapeHtml(post.title)}" loading="eager" decoding="async" width="1200" height="630">
           </div>
-          <div class="article-card__body">
+          <div class="article-card__body article-card__body--post">
             <div class="article-meta">
               <span class="pill">${escapeHtml(post.category.name)}</span>
               <time datetime="${post.date}">投稿日 ${formatJapaneseDate(post.date)}</time>
@@ -599,7 +599,7 @@ function buildPostContent(site, post, relatedPosts) {
     </section>
     <section class="article-main">
       <div class="shell article-layout">
-        <div class="article-content card-surface">
+        <div class="article-content card-surface prose-surface">
           ${sectionsHtml}
           ${faqHtml}
           ${symptomsHtml}
@@ -640,6 +640,7 @@ function buildPostContent(site, post, relatedPosts) {
 function renderSection(section) {
   const heading = section.heading ? `<h2>${escapeHtml(section.heading)}</h2>` : "";
   const body = renderBody(section);
+  const classNames = ["article-section", section.className].filter(Boolean).join(" ");
   const subsections = Array.isArray(section.subsections)
     ? section.subsections.map((item) => `
         <section class="article-subsection">
@@ -649,7 +650,7 @@ function renderSection(section) {
       `).join("")
     : "";
 
-  return `<section class="article-section">${heading}${body}${subsections}</section>`;
+  return `<section class="${classNames}">${heading}${body}${subsections}</section>`;
 }
 
 function renderBody(block) {
