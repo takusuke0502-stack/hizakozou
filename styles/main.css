@@ -67,16 +67,48 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
       overscroll-behavior: contain;
     }
 
-    .photo-soft--director + div {
-      left: 50%;
-      right: auto;
-      bottom: -0.5rem;
-      transform: translateX(-50%);
+    .director-photo-wrap {
+      width: 12rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .director-photo-frame {
+      position: relative;
+      width: 12rem;
+      height: 12rem;
+    }
+
+    .director-badge {
+      margin-top: 0.75rem;
+      margin-inline: auto;
+      width: max-content;
+      max-width: 100%;
       white-space: nowrap;
+      background: #facc15;
+      color: #0f172a;
+      font-weight: 900;
+      font-size: 0.75rem;
+      line-height: 1.2;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .director-photo-wrap,
+      .director-photo-frame {
+        width: 15rem;
+        height: 15rem;
+      }
+
+      .director-badge {
+        font-size: 0.875rem;
+      }
     }
 
     @media (max-width: 640px) {
-      .photo-soft--director + div {
+      .director-badge {
         font-size: 0.75rem;
         padding-inline: 0.875rem;
       }

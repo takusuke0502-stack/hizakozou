@@ -116,21 +116,59 @@ async function submitViaCors(form) {
   return payload || { ok: true };
 }
 
-async function submitWithFallback(form) {
-  try {
-    return await submitViaCors(form);
-  } catch (corsError) {
-    try {
-      await fetch(GAS_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: new URLSearchParams(new FormData(form))
-      });
-      return { ok: true, fallback: true };
-    } catch (fallbackError) {
-      throw fallbackError;
-    }
+function getResponsiveImageMarkup(src) {
+  const cleanSrc = src.startsWith('/') ? src.slice(1) : src;
+  const match = cleanSrc.match(/^(.*?)(\.[a-zA-Z0-9]+)$/);
+  if (!match) {
+    return {
+      src: cleanSrc,
+      srcset: '',
+      sizes: '(max-width: 768px) 100vw, 33vw'
+    };
   }
+
+  const [, base, ext] = match;
+  const candidates = [
+    `${base}-480${ext} 480w`,
+    `${base}-768${ext} 768w`,
+    `${cleanSrc} 1200w`
+  ];
+
+  return {
+    src: `${base}-768${ext}`,
+    srcset: candidates.join(', '),
+    sizes: '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
+  };
+}
+
+function renderBlogCard(post) {
+  const date = new Date(post.date).toLocaleDateString('ja-JP').replace(/\//g, '.');
+  const image = getResponsiveImageMarkup(post.eyecatch || 'image/medical-interview.webp');
+  const url = `blog/posts/${post.slug}/`;
+  const categoryLabel = ({
+    'knee-pain': '膝痛',
+    'lower-back-pain': '腰痛',
+    'exercise-therapy': '運動療法'
+  })[post.category] || 'ブログ';
+
+  return `<a href="${url}" class="group block bg-white rounded-3xl overflow-hidden card-shadow hover:shadow-xl transition-all duration-300 border border-slate-100">
+    <div class="h-48 overflow-hidden bg-slate-100">
+      <img src="${image.src}" ${image.srcset ? `srcset="${image.srcset}" sizes="${image.sizes}"` : ''} alt="${post.title} | 整体院ひざこぞうブログ" class="w-full h-full object-contain group-hover:scale-105 transition duration-500" loading="lazy" decoding="async" width="600" height="400">
+    </div>
+    <div class="p-6">
+      <div class="mb-3 flex flex-wrap items-center gap-2 text-xs font-bold">
+        <span class="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-blue-700">${categoryLabel}</span>
+        <span class="text-slate-300">/</span>
+        <span class="text-slate-500">${post.readingTime || ''}</span>
+      </div>
+      <p class="text-xs font-bold text-blue-600 mb-2 flex items-center gap-1">
+        <i data-lucide="calendar" class="w-3 h-3" aria-hidden="true"></i>
+        <time datetime="${post.date}">${date}</time>
+      </p>
+      <h3 class="text-base font-black text-slate-800 leading-tight group-hover:text-blue-600 transition">${post.title}</h3>
+      <p class="mt-3 text-sm font-bold leading-relaxed text-slate-500">${post.description || ''}</p>
+    </div>
+  </a>`;
 }
 
 function setSubmitBusy(isBusy) {
@@ -206,44 +244,20 @@ async function hydrateBlogPreview() {
     const posts = Array.isArray(data.posts) ? data.posts.slice(0, 3) : [];
 
     if (!posts.length) {
-      container.innerHTML = '<p class="text-center text-slate-500 col-span-3 font-bold py-10">記事を準備中です。</p>';
+      if (!container.children.length) {
+        container.innerHTML = '<p class="text-center text-slate-500 col-span-3 font-bold py-10">記事を準備中です。</p>';
+      }
       return;
     }
 
-    container.innerHTML = posts.map((post) => {
-      const date = new Date(post.date).toLocaleDateString('ja-JP').replace(/\//g, '.');
-      const img = post.eyecatch || 'image/medical-interview.webp';
-      const url = `blog/posts/${post.slug}/`;
-      const categoryLabel = ({
-        'knee-pain': '膝痛',
-        'lower-back-pain': '腰痛',
-        'exercise-therapy': '運動療法'
-      })[post.category] || 'ブログ';
-
-      return `<a href="${url}" class="group block bg-white rounded-3xl overflow-hidden card-shadow hover:shadow-xl transition-all duration-300 border border-slate-100">
-        <div class="h-48 overflow-hidden bg-slate-100">
-          <img src="${img}" alt="${post.title} | 整体院ひざこぞうブログ" class="w-full h-full object-contain group-hover:scale-105 transition duration-500" loading="lazy" decoding="async" width="600" height="400">
-        </div>
-        <div class="p-6">
-          <div class="mb-3 flex flex-wrap items-center gap-2 text-xs font-bold">
-            <span class="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-blue-700">${categoryLabel}</span>
-            <span class="text-slate-300">/</span>
-            <span class="text-slate-500">${post.readingTime || ''}</span>
-          </div>
-          <p class="text-xs font-bold text-blue-600 mb-2 flex items-center gap-1">
-            <i data-lucide="calendar" class="w-3 h-3" aria-hidden="true"></i>
-            <time datetime="${post.date}">${date}</time>
-          </p>
-          <h3 class="text-base font-black text-slate-800 leading-tight group-hover:text-blue-600 transition">${post.title}</h3>
-          <p class="mt-3 text-sm font-bold leading-relaxed text-slate-500">${post.description || ''}</p>
-        </div>
-      </a>`;
-    }).join('');
+    container.innerHTML = posts.map(renderBlogCard).join('');
 
     refreshIcons(container);
   } catch (error) {
     console.error('Blog data fetch error:', error);
-    container.innerHTML = '<p class="text-center text-slate-500 col-span-3 font-bold py-10">記事を読み込めませんでした。</p>';
+    if (!container.children.length) {
+      container.innerHTML = '<p class="text-center text-slate-500 col-span-3 font-bold py-10">記事を読み込めませんでした。</p>';
+    }
   }
 }
 
@@ -318,7 +332,7 @@ contactForm?.addEventListener('submit', async (event) => {
   clearFormError();
 
   try {
-    await submitWithFallback(contactForm);
+    await submitViaCors(contactForm);
     contactForm.classList.add('hidden');
     successMsg?.classList.remove('hidden');
     successMsg?.scrollIntoView({ behavior: 'smooth', block: 'center' });
