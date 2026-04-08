@@ -66,3 +66,18 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
     #lightbox {
       overscroll-behavior: contain;
     }
+
+    .photo-soft--director + div {
+      left: 50%;
+      right: auto;
+      bottom: -0.5rem;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 640px) {
+      .photo-soft--director + div {
+        font-size: 0.75rem;
+        padding-inline: 0.875rem;
+      }
+    }
