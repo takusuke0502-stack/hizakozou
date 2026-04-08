@@ -349,7 +349,6 @@ function buildRelatedArticlesSection(site, config, posts) {
           <a class="related-article-card" href="../blog/posts/${post.slug}/">
             <div class="related-article-card__meta">
               <span class="related-article-card__pill">${escapeHtml(post.category.name)}</span>
-              <time class="related-article-card__time" datetime="${post.date}">${formatJapaneseDate(post.date)}</time>
             </div>
             <div class="related-article-card__title">${escapeHtml(post.title)}</div>
             <p class="related-article-card__desc">${escapeHtml(trimText(post.description, 78))}</p>
@@ -520,8 +519,6 @@ function buildIndexContent(site, posts, categoryMap) {
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
             <span class="pill">${escapeHtml(post.category.name)}</span>
-            <time datetime="${post.date}">${formatJapaneseDate(post.date)}</time>
-            <span>${escapeHtml(post.readingTime)}</span>
           </div>
           <h3 class="article-list-item__title">${escapeHtml(post.title)}</h3>
           <p class="article-list-item__excerpt">${escapeHtml(trimText(post.description, 90))}</p>
@@ -678,9 +675,6 @@ function buildPostContent(site, post, relatedPosts) {
           <div class="article-card__body article-card__body--post">
             <div class="article-meta">
               <span class="pill">${escapeHtml(post.category.name)}</span>
-              <time datetime="${post.date}">投稿日 ${formatJapaneseDate(post.date)}</time>
-              <time datetime="${post.updatedDate}">更新日 ${formatJapaneseDate(post.updatedDate)}</time>
-              <span>${escapeHtml(post.readingTime)}</span>
             </div>
             <h1>${escapeHtml(post.title)}</h1>
             <p class="article-lead">${escapeHtml(post.lead || post.description)}</p>
