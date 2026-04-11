@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /blog.html
+Disallow: /blog-detail.html
 
 Sitemap: https://hizakozou.jp/sitemap.xml

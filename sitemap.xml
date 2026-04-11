@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://hizakozou.jp/</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/kashiwa-seitai-hizakozou-main.webp</image:loc>
+      <image:title>整体院ひざこぞう｜柏市で膝痛を中心に慢性痛の相談ができる整体院</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -17,215 +22,359 @@
     <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/medical-interview.webp</image:loc>
+      <image:title>「手術しかない」と言われる前に——脊柱管狭窄症・ヘルニアの痛みとしびれに運動療法が効く理由</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/pes-anserine-bursitis-knee-inner-pain/</loc>
     <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-pain.webp</image:loc>
+      <image:title>膝痛で多い鵞足炎とは？原因・症状・整体での対処法</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/knee-medial-pain-saphenous-nerve/</loc>
     <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-pain.webp</image:loc>
+      <image:title>膝の内側の痛みと伏在神経の関係｜神経由来の痛みという視点から考える</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/treatment-frequency-homeostasis/</loc>
     <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/medical-interview.webp</image:loc>
+      <image:title>「痛い時だけ通院」ではなかなか改善しない理由と、根本改善までのロードマップ</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/morning-low-back-pain-causes-multifidus/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/lower-back-symptom.jpg</image:loc>
+      <image:title>朝起きると腰が痛いのはなぜ？40代からの原因分析と根本改善への3ステップ</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/low-back-pain-hip-stiffness-relation/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/hip-osteoarthritis-symptom.webp</image:loc>
+      <image:title>腰痛の原因は腰にない？股関節の硬さが引き起こす「代償動作」と根本改善の3ステップ</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/sciatica-piriformis-relation/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/sciatica-symptom.webp</image:loc>
+      <image:title>坐骨神経痛と梨状筋の意外な関係｜お尻のしびれを「動き」から整える方法</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/walking-start-knee-pain-cause/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-symptom-wide.webp</image:loc>
+      <image:title>歩き始めの膝の痛みはなぜ起こる？柏市の整体院が教える「動き」を整える新常識</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/swayback-posture-knee-pain/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-symptom-wide.webp</image:loc>
+      <image:title>膝の痛みの原因は「立ち方」かも？スウェイバック姿勢と膝痛の意外な関係</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/lower-leg-external-rotation-knee-pain/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-symptom-close.webp</image:loc>
+      <image:title>膝のねじれが痛みの正体？下腿外旋症候群を整えて「一歩目」を軽くする方法</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/hip-stiffness-knee-low-back-pain-relation/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/hip-osteoarthritis-symptom.webp</image:loc>
+      <image:title>股関節が硬いと膝や腰までつらくなる？体の連動から考える慢性痛の正体</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/strength-training-vs-exercise-therapy/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/treatment-scene.webp</image:loc>
+      <image:title>「筋トレ」と「運動療法」は何が違うのか？脳科学から見た本当の身体の使い方</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/knee-pain-not-healing-honest-answer/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-symptom-wide.webp</image:loc>
+      <image:title>「膝は治らない」と思っていませんか？柏市の柔道整復師が正直に答えます</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/seven-checkpoints-for-knee-pain-improvement/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-symptom-wide.webp</image:loc>
+      <image:title>なぜひざこぞうで改善する人が多いのか？施術で必ず確認する7つのポイント</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/lumbricals-knee-low-back-pain-relation/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-symptom-wide.webp</image:loc>
+      <image:title>意外と大事な足の指の筋肉「虫様筋」──膝痛・腰痛と深い関係があります</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/knee-pain-stairs-guide/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-symptom.jpg</image:loc>
+      <image:title>階段で膝が痛むときに考えたいこと</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/lower-back-pain-and-knee-link/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/lower-back-symptom.jpg</image:loc>
+      <image:title>膝をかばって腰までつらいときの見方</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/exercise-therapy-first-step/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/treatment-scene.webp</image:loc>
+      <image:title>運動療法が苦手な方へ伝えたい最初の一歩</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/blog/posts/msm-method-guide/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/treatment-scene.webp</image:loc>
+      <image:title>MSMメソッドとは？やさしく知っておきたい3つの視点</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/carpal-tunnel.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/hand-symptom.jpg</image:loc>
+      <image:title>手根管症候群による手のしびれ・痛みの症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/cervical-spondylosis.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/shoulder-symptom.jpg</image:loc>
+      <image:title>頚椎症・首の痛みによる肩・腕のしびれ症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/elbow-tendinopathy.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/hizi.jpg</image:loc>
+      <image:title>テニス肘・ゴルフ肘による肘の痛み症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/frozen-shoulder.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/frozen-shoulder-symptom.webp</image:loc>
+      <image:title>五十肩・凍結肩による肩の痛み・腕が上がらない症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/hip-osteoarthritis.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/hip-osteoarthritis-symptom.webp</image:loc>
+      <image:title>変形性股関節症による股関節の痛み・歩行困難の症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/knee-effusion.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-symptom-wide.webp</image:loc>
+      <image:title>膝に水が溜まる・関節水腫の症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/knee-lateral-pain.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-pain.webp</image:loc>
+      <image:title>膝の外側の痛み・腸脛靭帯炎の症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/knee-osteoarthritis.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-pain.webp</image:loc>
+      <image:title>変形性膝関節症・膝痛の症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/knee-posterior-pain.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-symptom-close.webp</image:loc>
+      <image:title>膝の裏側の痛み・ベーカー嚢腫の症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/lower-back-pain.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/lower-back-symptom.jpg</image:loc>
+      <image:title>腰痛・ぎっくり腰の症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/pes-anserine-bursitis.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/knee-pain.webp</image:loc>
+      <image:title>鵞足炎による膝の内側の痛みの症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/plantar-fasciitis.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/foot-symptom.jpg</image:loc>
+      <image:title>足底筋膜炎・かかとの痛みの症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/sciatica.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/sciatica-symptom.webp</image:loc>
+      <image:title>坐骨神経痛による腰・お尻・足のしびれ症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/shoulder-stiffness.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/shoulder-stiffness-symptom.webp</image:loc>
+      <image:title>肩こり・頭痛の症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/spinal-stenosis.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/spinal-stenosis-symptom.webp</image:loc>
+      <image:title>脊柱管狭窄症による足のしびれ・間欠性跛行の症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/thoracic-outlet.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/shoulder-symptom.jpg</image:loc>
+      <image:title>胸郭出口症候群による腕・手のしびれ症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/tmj.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hizakozou.jp/image/ago.jpg</image:loc>
+      <image:title>顎関節症によるあごの痛み・口が開かない症状｜整体院ひざこぞう</image:title>
+    </image:image>
   </url>
 </urlset>
