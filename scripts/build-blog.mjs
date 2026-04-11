@@ -765,6 +765,7 @@ function buildArticleSchema(site, post) {
       name: site.publisherName,
       logo: { "@type": "ImageObject", url: absoluteUrl(site.url, site.ogImage) }
     },
+    inLanguage: "ja",
     mainEntityOfPage: `${trimTrailingSlash(site.url)}${post.url}`
   })}</script>`;
 }
