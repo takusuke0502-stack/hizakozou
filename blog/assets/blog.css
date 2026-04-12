@@ -847,6 +847,164 @@ li + li {
   color: var(--muted);
 }
 
+/* ── Pricing CTA (記事下の料金案内ブロック) ── */
+.pricing-cta {
+  padding: 28px 0 72px;
+}
+
+.pricing-cta__card {
+  background: #1b2e42;
+  border-radius: 16px;
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.pricing-cta__badge {
+  display: inline-block;
+  background: #f59e0b;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin: 0 0 20px;
+}
+
+.pricing-cta__title {
+  color: #fff;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 0 0 8px;
+}
+
+.pricing-cta__duration {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.88rem;
+  margin: 0 0 28px;
+}
+
+.pricing-cta__price-box {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 24px 20px;
+  margin: 0 0 18px;
+}
+
+.pricing-cta__price-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.pricing-cta__before {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.pricing-cta__before-label {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.76rem;
+}
+
+.pricing-cta__before-price {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.05rem;
+  text-decoration: line-through;
+}
+
+.pricing-cta__arrow {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.3rem;
+}
+
+.pricing-cta__after {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.pricing-cta__after-label {
+  background: #f59e0b;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.pricing-cta__after-price {
+  color: #fbbf24;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.pricing-cta__after-price small {
+  font-size: 0.45em;
+  font-weight: 700;
+  margin-left: 2px;
+}
+
+.pricing-cta__note-box {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin: 0 0 20px;
+  text-align: left;
+}
+
+.pricing-cta__note-title {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.pricing-cta__note-text {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.pricing-cta__reassurance {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  margin: 0 0 8px;
+}
+
+.pricing-cta__sub {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.8rem;
+  margin: 0 0 28px;
+}
+
+.pricing-cta__actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.button--phone {
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.button--phone:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
 .site-footer {
   padding: 6px 0 40px;
 }
@@ -1099,6 +1257,27 @@ li + li {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
+  }
+
+  .pricing-cta__card {
+    padding: 32px 20px;
+  }
+
+  .pricing-cta__price-row {
+    gap: 12px;
+  }
+
+  .pricing-cta__after-price {
+    font-size: 2.2rem;
+  }
+
+  .pricing-cta__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .button--phone {
+    width: 100%;
   }
 }
 
