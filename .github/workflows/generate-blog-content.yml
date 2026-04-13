@@ -47,6 +47,6 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/seo content/meo blog blog.html blog-detail.html
+          git add content/source content/seo content/meo data/blog-posts.json blog blog.html blog-detail.html sitemap.xml symptoms
           git commit -m "Generate blog content"
           git push

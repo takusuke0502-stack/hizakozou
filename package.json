@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build:blog": "node scripts/build-blog.mjs",
-    "generate:blog": "node scripts/build-blog.mjs"
+    "generate:blog": "node scripts/generate-blog.mjs --all",
+    "generate:blog:source": "node scripts/generate-blog.mjs"
   }
 }
