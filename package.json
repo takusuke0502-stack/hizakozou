@@ -5,6 +5,12 @@
   "scripts": {
     "build:blog": "node scripts/build-blog.mjs",
     "generate:blog": "node scripts/generate-blog.mjs --all",
-    "generate:blog:source": "node scripts/generate-blog.mjs"
+    "generate:blog:source": "node scripts/generate-blog.mjs",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
   }
 }
