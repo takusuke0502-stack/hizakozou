@@ -5,6 +5,12 @@
   "scripts": {
     "build:blog": "node scripts/build-blog.mjs",
     "generate:blog": "node scripts/generate-blog.mjs --all",
-    "generate:blog:source": "node scripts/generate-blog.mjs"
+    "generate:blog:source": "node scripts/generate-blog.mjs",
+    "test": "PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers playwright test",
+    "test:ui": "PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers playwright test --ui",
+    "test:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0"
   }
 }
