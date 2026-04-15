@@ -67,3 +67,14 @@ replaceSlug: old-url-slug
 
 - GitHub Actions workflow: `.github/workflows/generate-blog-content.yml`
 - Default branch: `main`
+
+## Claude Code Integrations
+
+| Name | Workflow | Trigger | Purpose |
+|------|----------|---------|---------|
+| superpowers:claude | `.github/workflows/claude.yml` | `@claude` mention in issue/PR | General-purpose coding with full tool access |
+| Codereview | `.github/workflows/claude-code-review.yml` | PR opened/updated | Automatic Japanese code review |
+| frontenddesign | `.github/workflows/claude-frontend-design.yml` | `@claude` + design keywords | Frontend/CSS/HTML assistance |
+| conrext | `.claude/settings.json` | Session start | Context7 MCP for library docs; `npm install` hook |
+
+All workflows require the `ANTHROPIC_API_KEY` repository secret to be set.
