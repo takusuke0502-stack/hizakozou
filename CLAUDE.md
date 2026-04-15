@@ -44,3 +44,26 @@ replaceSlug: old-url-slug
 - After editing any source article, run the generator before finishing.
 - If a new symptom label is added, verify that `scripts/generate-blog.mjs` maps it to the correct symptom page.
 - Commit both source and generated files together so GitHub Pages stays in sync.
+
+## Claude Code Integrations
+
+### superpowers:claude
+Issue / PR コメントで `@claude` とメンションすると Claude が応答し、コード変更・ファイル操作などを実行します。
+ワークフロー: `.github/workflows/claude.yml`
+必要なシークレット: `ANTHROPIC_API_KEY`
+
+### Codereview
+PR を作成・更新するたびに Claude が自動でコードレビューを日本語で投稿します。
+ワークフロー: `.github/workflows/claude-code-review.yml`
+必要なシークレット: `ANTHROPIC_API_KEY`
+
+### frontenddesign
+Issue / PR コメントで `@claude` に加え「デザイン」「CSS」「HTML」などのキーワードが含まれると、
+フロントエンドデザイン専門家として応答します。
+ワークフロー: `.github/workflows/claude-frontend-design.yml`
+必要なシークレット: `ANTHROPIC_API_KEY`
+
+### conrext (Context7 MCP)
+`.claude/settings.json` で Context7 MCP サーバーが設定されています。
+Claude Code セッション中に最新ライブラリドキュメントをコンテキストとして参照できます。
+リモートセッション開始時は `.claude/hooks/session-start.sh` が自動で `npm install` を実行します。

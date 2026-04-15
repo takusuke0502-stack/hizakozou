@@ -1,0 +1,68 @@
+name: Claude Frontend Design
+
+on:
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened]
+
+jobs:
+  frontend-design:
+    if: |
+      (
+        (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude') && (
+          contains(github.event.comment.body, 'デザイン') ||
+          contains(github.event.comment.body, 'design') ||
+          contains(github.event.comment.body, 'UI') ||
+          contains(github.event.comment.body, 'CSS') ||
+          contains(github.event.comment.body, 'HTML') ||
+          contains(github.event.comment.body, 'レイアウト') ||
+          contains(github.event.comment.body, 'スタイル')
+        )) ||
+        (github.event_name == 'issues' && contains(github.event.issue.body, '@claude') && (
+          contains(github.event.issue.title, 'デザイン') ||
+          contains(github.event.issue.title, 'design') ||
+          contains(github.event.issue.title, 'UI') ||
+          contains(github.event.issue.title, 'CSS') ||
+          contains(github.event.issue.title, 'HTML') ||
+          contains(github.event.issue.title, 'フロントエンド') ||
+          contains(github.event.issue.title, 'frontend')
+        ))
+      )
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Claude Frontend Design Action
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_tools: "Bash,Read,Write,Edit,Glob,Grep"
+          system_prompt: |
+            あなたはhizakozou.jp（膝こぞう整骨院）のフロントエンドデザイン専門家です。
+            このサイトは静的HTMLサイトで、膝の痛みや整骨院に関する情報を提供しています。
+
+            デザインの変更を行う際は以下を守ってください：
+            - 既存のスタイルガイドとブランドカラーを維持する
+            - モバイルファーストのレスポンシブデザインを実装する
+            - アクセシビリティ（WCAG 2.1 AA）に準拠する
+            - ページ読み込み速度を最適化する
+            - templates/ ディレクトリのテンプレートファイルを活用する
+
+            変更後は必ずブログ生成スクリプトへの影響を確認してください。
