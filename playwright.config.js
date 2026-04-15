@@ -10,8 +10,7 @@ export default defineConfig({
   reporter: [['list'], ['html', { open: 'never' }]],
 
   use: {
-    // ローカル開発サーバー or 本番 URL
-    baseURL: process.env.BASE_URL || 'https://hizakozou.jp',
+    baseURL: process.env.BASE_URL || 'http://localhost:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -23,10 +22,10 @@ export default defineConfig({
     },
   ],
 
-  // ローカルで静的ファイルを確認したい場合は `npm run serve` でサーバーを起動して使用
-  // webServer: {
-  //   command: 'npx serve . -l 3000',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
+  webServer: {
+    command: 'npx serve . -l 3000 --no-clipboard',
+    url: 'http://localhost:3000',
+    reuseExistingServer: !process.env.CI,
+    timeout: 10000,
+  },
 });
