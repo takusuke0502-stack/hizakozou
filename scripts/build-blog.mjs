@@ -28,6 +28,12 @@ const symptomConfigs = {
     keywords: ["膝の外側", "膝痛", "歩行", "膝"],
     categoryHints: ["knee-pain", "exercise-therapy"]
   },
+  "knee-posterior-pain.html": {
+    symptomKey: "knee-posterior-pain",
+    label: "膝の裏側の痛み",
+    keywords: ["膝の裏側", "膝裏", "ベーカー嚢腫", "ハムストリング", "膝痛", "歩行", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"]
+  },
   "pes-anserine-bursitis.html": {
     symptomKey: "pes-anserine-bursitis",
     label: "膝の内側の痛み",
@@ -115,7 +121,7 @@ const relatedArticlesStyles = `
 .related-articles__title{text-align:center;font-size:1.5rem;font-weight:900;color:#1e3a8a;margin-bottom:.75rem}
 .related-articles__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
 .related-articles__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-.related-article-card{display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:1rem;padding:1.25rem;text-decoration:none;box-shadow:0 2px 10px rgba(37,99,235,.06);transition:transform .2s,border-color .2s,box-shadow .2s}
+.related-article-card{display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:8px;padding:1.25rem;text-decoration:none;box-shadow:0 2px 10px rgba(37,99,235,.06);transition:transform .2s,border-color .2s,box-shadow .2s}
 .related-article-card:hover{transform:translateY(-2px);border-color:#93c5fd;box-shadow:0 10px 20px rgba(37,99,235,.12)}
 .related-article-card__meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
 .related-article-card__pill{display:inline-flex;align-items:center;border-radius:9999px;background:#eff6ff;color:#2563eb;font-size:11px;font-weight:900;padding:.25rem .625rem}
@@ -162,7 +168,7 @@ async function buildBlog() {
     PAGE_CONTENT: buildIndexContent(blogData.site, posts, categoryMap)
   });
 
-  await fs.writeFile(path.join(blogDir, "index.html"), indexHtml, "utf8");
+  await fs.writeFile(path.join(blogDir, "index.html"), cleanGeneratedText(indexHtml), "utf8");
 
   for (const post of posts) {
     const postDir = path.join(postsDir, post.slug);
@@ -178,13 +184,13 @@ async function buildBlog() {
       SITE_SUBTITLE: blogData.site.subtitle,
       PAGE_CONTENT: buildPostContent(blogData.site, post, relatedPosts)
     });
-    await fs.writeFile(path.join(postDir, "index.html"), postHtml, "utf8");
+    await fs.writeFile(path.join(postDir, "index.html"), cleanGeneratedText(postHtml), "utf8");
   }
 
   await updateSymptomPages(blogData.site, posts);
 
-  await fs.writeFile(path.join(rootDir, "blog.html"), buildBlogRedirectHtml(), "utf8");
-  await fs.writeFile(path.join(rootDir, "blog-detail.html"), buildLegacyDetailRedirectHtml(), "utf8");
+  await fs.writeFile(path.join(rootDir, "blog.html"), cleanGeneratedText(buildBlogRedirectHtml()), "utf8");
+  await fs.writeFile(path.join(rootDir, "blog-detail.html"), cleanGeneratedText(buildLegacyDetailRedirectHtml()), "utf8");
   await updateSitemap(blogData.site, posts);
 
   console.log(`Generated ${posts.length} static blog post(s), updated symptom related articles, and regenerated sitemap.xml.`);
@@ -194,7 +200,8 @@ async function updateSymptomPages(site, posts) {
   const symptomFiles = await fs.readdir(symptomsDir);
   for (const fileName of symptomFiles) {
     if (!fileName.endsWith(".html")) continue;
-    const config = symptomConfigs[fileName];
+    const baseConfig = symptomConfigs[fileName];
+    const config = baseConfig ? { ...baseConfig, fileName } : null;
     if (!config) continue;
 
     const fullPath = path.join(symptomsDir, fileName);
@@ -205,7 +212,7 @@ async function updateSymptomPages(site, posts) {
     const sectionHtml = matchedPosts.length ? buildRelatedArticlesSection(site, config, matchedPosts) : "";
     html = replaceRelatedSection(html, sectionHtml);
 
-    await fs.writeFile(fullPath, html, "utf8");
+    await fs.writeFile(fullPath, cleanGeneratedText(html), "utf8");
   }
 }
 
@@ -267,7 +274,7 @@ async function updateSitemap(site, posts) {
     ""
   ].join("\n");
 
-  await fs.writeFile(sitemapPath, xml, "utf8");
+  await fs.writeFile(sitemapPath, cleanGeneratedText(xml), "utf8");
 }
 
 function upsertRelatedStyles(html) {
@@ -303,7 +310,6 @@ function selectRelatedPosts(config, posts) {
 
 function scorePostForSymptom(post, config) {
   let score = 0;
-  const exactPath = `/symptoms/${config.fileName || ""}`;
   const haystacks = [
     post.title,
     post.description,
@@ -312,17 +318,24 @@ function scorePostForSymptom(post, config) {
   ].join(" ");
 
   for (const item of post.relatedSymptoms) {
-    if (item.href === `/symptoms/${config.page || ""}`) {
+    const itemHref = normalizePath(item.href || "");
+    const expectedHref = normalizePath(`/symptoms/${config.fileName}`);
+    const itemLabel = normalize(item.label || "");
+    const configLabel = normalize(config.label);
+
+    if (itemHref === expectedHref) {
+      score += 180;
+    }
+    if (itemHref.endsWith(`/${config.fileName}`)) {
       score += 120;
     }
-    if (item.href.endsWith(`/${config.fileName}`) || item.href.endsWith(config.fileName)) {
+    if (itemLabel === configLabel) {
       score += 120;
-    }
-    if (normalize(item.label).includes(normalize(config.label))) {
-      score += 90;
+    } else if (itemLabel && (itemLabel.includes(configLabel) || configLabel.includes(itemLabel))) {
+      score += 80;
     }
     for (const keyword of config.keywords) {
-      if (normalize(item.label).includes(normalize(keyword))) score += 40;
+      if (itemLabel.includes(normalize(keyword))) score += 40;
       if (normalize(item.description || "").includes(normalize(keyword))) score += 18;
     }
   }
@@ -342,6 +355,10 @@ function scorePostForSymptom(post, config) {
   }
 
   return score;
+}
+
+function normalizePath(value) {
+  return String(value || "").replace(/^https?:\/\/[^/]+/i, "").replace(/\/index\.html$/i, "/");
 }
 
 function buildRelatedArticlesSection(site, config, posts) {
@@ -852,6 +869,10 @@ function buildLegacyDetailRedirectHtml() {
 
 function renderTemplate(template, values) {
   return Object.entries(values).reduce((output, [key, value]) => output.replaceAll(`{{${key}}}`, value), template);
+}
+
+function cleanGeneratedText(value) {
+  return String(value).replace(/[ \t]+$/gm, "").replace(/\n{3,}/g, "\n\n");
 }
 
 function formatJapaneseDate(value) {

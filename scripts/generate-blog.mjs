@@ -33,6 +33,16 @@ const DEFAULT_RELATED_SYMPTOMS = {
     href: "/symptoms/knee-lateral-pain.html",
     description: "歩行時や階段で外側が気になる方へ。"
   },
+  "腸脛靭帯炎": {
+    label: "膝の外側の痛み",
+    href: "/symptoms/knee-lateral-pain.html",
+    description: "ランニングや歩行で膝の外側が気になる方へ。"
+  },
+  "膝の裏側の痛み": {
+    label: "膝の裏側の痛み",
+    href: "/symptoms/knee-posterior-pain.html",
+    description: "膝裏の張りや曲げ伸ばしの違和感がある方へ。"
+  },
   "鵞足炎": {
     label: "膝の内側の痛み",
     href: "/symptoms/pes-anserine-bursitis.html",
@@ -307,9 +317,14 @@ function parseMarkdownBody(body) {
       continue;
     }
 
-    const target = mode === "faq"
-      ? currentFaqQuestion
-      : (currentSubsection || currentSection);
+    if (mode === "faq") {
+      if (currentFaqQuestion) {
+        currentFaqQuestion.answers.push(line);
+      }
+      continue;
+    }
+
+    const target = currentSubsection || currentSection;
 
     if (!target) {
       leadLines.push(line);
@@ -396,6 +411,7 @@ function buildSymptomLookup(posts) {
   for (const post of posts) {
     for (const symptom of post.relatedSymptoms || []) {
       if (!symptom?.label || !symptom?.href) continue;
+      if (lookup.has(symptom.label) || symptom.href === "/index.html#symptoms") continue;
       lookup.set(symptom.label, {
         label: symptom.label,
         href: symptom.href,
