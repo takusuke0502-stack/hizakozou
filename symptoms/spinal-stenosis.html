@@ -182,7 +182,19 @@
 .related-article-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
 .related-article-card__desc{font-size:13px;font-weight:700;color:#475569;line-height:1.8}
 .related-article-card__link{display:inline-flex;align-items:center;gap:.35rem;font-size:13px;font-weight:900;color:#2563eb}
+.symptom-mid-cta{padding:2.75rem 1rem;background:#fff;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.symptom-mid-cta__inner{display:grid;gap:1.25rem;align-items:center;background:#f8fbff;border:1px solid #bfdbfe;border-radius:8px;padding:1.5rem}
+.symptom-mid-cta__eyebrow{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
+.symptom-mid-cta__title{font-size:1.25rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .5rem}
+.symptom-mid-cta__text{font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0}
+.symptom-mid-cta__actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.symptom-mid-cta__btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border-radius:8px;padding:.85rem 1.15rem;font-size:14px;font-weight:900;text-decoration:none;transition:transform .2s,background .2s,border-color .2s}
+.symptom-mid-cta__btn--line{background:#06C755;color:#fff}
+.symptom-mid-cta__btn--tel{background:#fff;color:#1e3a8a;border:1px solid #bfdbfe}
+.symptom-mid-cta__btn:hover{transform:translateY(-1px)}
 @media(min-width:768px){.related-articles__title{font-size:1.75rem}}
+@media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
+@media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}}
 /* BLOG_RELATED_ARTICLES_STYLES_END */
   </style>
 <script type="application/ld+json">
@@ -392,7 +404,23 @@
       </div>
     </section>
 
-    <section class="approach">
+    <!-- SYMPTOM_MID_CTA_START -->
+<section class="symptom-mid-cta">
+      <div class="container max-w-4xl symptom-mid-cta__inner">
+        <div>
+          <p class="symptom-mid-cta__eyebrow">相談の目安</p>
+          <h2 class="symptom-mid-cta__title">原因を知るだけでなく、今の状態に合う進め方を確認しませんか？</h2>
+          <p class="symptom-mid-cta__text">痛み方や生活で困っている場面は人によって違います。読みながら「自分も近いかも」と感じた方は、来院前にLINEで状況を送っていただいて大丈夫です。</p>
+        </div>
+        <div class="symptom-mid-cta__actions">
+          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで相談する</a>
+          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--tel" href="tel:0471143274">電話で相談する</a>
+        </div>
+      </div>
+    </section>
+<!-- SYMPTOM_MID_CTA_END -->
+
+<section class="approach">
       <div class="container max-w-4xl">
         <h2 class="section-title">当院の脊柱管狭窄症へのアプローチ</h2>
         <p class="approach__intro">股関節や胸椎の動きを整え、体幹を安定させ、歩き方の負担を少しずつ減らしていく3ステップで改善を目指します</p>

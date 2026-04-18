@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const rootDir = process.cwd();
 const dataPath = path.join(rootDir, "data", "blog-posts.json");
@@ -129,11 +130,27 @@ const relatedArticlesStyles = `
 .related-article-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
 .related-article-card__desc{font-size:13px;font-weight:700;color:#475569;line-height:1.8}
 .related-article-card__link{display:inline-flex;align-items:center;gap:.35rem;font-size:13px;font-weight:900;color:#2563eb}
+.symptom-mid-cta{padding:2.75rem 1rem;background:#fff;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.symptom-mid-cta__inner{display:grid;gap:1.25rem;align-items:center;background:#f8fbff;border:1px solid #bfdbfe;border-radius:8px;padding:1.5rem}
+.symptom-mid-cta__eyebrow{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
+.symptom-mid-cta__title{font-size:1.25rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .5rem}
+.symptom-mid-cta__text{font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0}
+.symptom-mid-cta__actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.symptom-mid-cta__btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border-radius:8px;padding:.85rem 1.15rem;font-size:14px;font-weight:900;text-decoration:none;transition:transform .2s,background .2s,border-color .2s}
+.symptom-mid-cta__btn--line{background:#06C755;color:#fff}
+.symptom-mid-cta__btn--tel{background:#fff;color:#1e3a8a;border:1px solid #bfdbfe}
+.symptom-mid-cta__btn:hover{transform:translateY(-1px)}
 @media(min-width:768px){.related-articles__title{font-size:1.75rem}}
+@media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
+@media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}}
 /* BLOG_RELATED_ARTICLES_STYLES_END */
 `.trim();
 
-await buildBlog();
+const isCliRun = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
+if (isCliRun) {
+  await buildBlog();
+}
 
 async function buildBlog() {
   const [rawData, indexTemplate, postTemplate] = await Promise.all([
@@ -207,6 +224,7 @@ async function updateSymptomPages(site, posts) {
     const fullPath = path.join(symptomsDir, fileName);
     let html = await fs.readFile(fullPath, "utf8");
     html = upsertRelatedStyles(html);
+    html = upsertSymptomMidCta(html, site);
 
     const matchedPosts = selectRelatedPosts(config, posts).slice(0, 4);
     const sectionHtml = matchedPosts.length ? buildRelatedArticlesSection(site, config, matchedPosts) : "";
@@ -298,6 +316,45 @@ function replaceRelatedSection(html, sectionHtml) {
   }
 
   return html.replace(/<section class="cta">/, `${wrapped}<section class="cta">`);
+}
+
+function upsertSymptomMidCta(html, site) {
+  const startMarker = "<!-- SYMPTOM_MID_CTA_START -->";
+  const endMarker = "<!-- SYMPTOM_MID_CTA_END -->";
+  const ctaHtml = `${startMarker}
+${buildSymptomMidCta(site)}
+${endMarker}
+
+`;
+
+  if (html.includes(startMarker)) {
+    return html.replace(new RegExp(`${escapeRegExp(startMarker)}[\\s\\S]*?${escapeRegExp(endMarker)}\\s*`), ctaHtml);
+  }
+
+  const approachMarker = "<section class=\"approach\">";
+  if (html.includes(approachMarker)) {
+    return html.replace(approachMarker, `${ctaHtml}${approachMarker}`);
+  }
+
+  return html;
+}
+
+function buildSymptomMidCta(site) {
+  const lineUrl = site.lineUrl || site.cta?.href || "https://lin.ee/X01F2mP";
+  const telHref = `tel:${String(site.phone || "0471143274").replace(/-/g, "")}`;
+  return `<section class="symptom-mid-cta">
+      <div class="container max-w-4xl symptom-mid-cta__inner">
+        <div>
+          <p class="symptom-mid-cta__eyebrow">相談の目安</p>
+          <h2 class="symptom-mid-cta__title">原因を知るだけでなく、今の状態に合う進め方を確認しませんか？</h2>
+          <p class="symptom-mid-cta__text">痛み方や生活で困っている場面は人によって違います。読みながら「自分も近いかも」と感じた方は、来院前にLINEで状況を送っていただいて大丈夫です。</p>
+        </div>
+        <div class="symptom-mid-cta__actions">
+          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--line" href="${escapeHtml(lineUrl)}" target="_blank" rel="noopener noreferrer">LINEで相談する</a>
+          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--tel" href="${escapeHtml(telHref)}">電話で相談する</a>
+        </div>
+      </div>
+    </section>`;
 }
 
 function selectRelatedPosts(config, posts) {
@@ -523,9 +580,34 @@ function buildPostSeo(site, post) {
   ].join("\n  ");
 }
 
-function buildIndexContent(site, posts, categoryMap) {
+export function buildIndexContent(site, posts, categoryMap) {
   const categories = [...categoryMap.values()];
   const recentPosts = posts.slice(0, 8);
+  const recommendedSlugs = [
+    "knee-pain-not-healing-honest-answer",
+    "knee-effusion-water-in-knee",
+    "seven-checkpoints-for-knee-pain-improvement"
+  ];
+  const recommendedPosts = recommendedSlugs
+    .map((slug) => posts.find((post) => post.slug === slug))
+    .filter(Boolean);
+  const symptomGroups = [
+    {
+      href: "#category-knee-pain",
+      label: "膝の痛み",
+      description: "階段、歩き始め、正座、水が溜まる不安を整理します。"
+    },
+    {
+      href: "#category-lower-back-pain",
+      label: "腰・しびれ",
+      description: "膝をかばう動きや姿勢と関係しやすい不調を確認できます。"
+    },
+    {
+      href: "#category-exercise-therapy",
+      label: "セルフケア・施術方針",
+      description: "無理なく動かす考え方や、当院の見立てを知りたい方向けです。"
+    }
+  ];
 
   const renderListItem = (post) => `
     <article class="article-list-item">
@@ -546,9 +628,28 @@ function buildIndexContent(site, posts, categoryMap) {
   `;
 
   const recentList = recentPosts.map(renderListItem).join("");
+  const recommendedList = recommendedPosts.map(renderListItem).join("");
+  const recommendedSection = recommendedPosts.length ? `
+        <section class="category-section category-section--list category-section--recommended">
+          <div class="category-section__header category-section__header--list">
+            <div>
+              <p class="eyebrow">Start Here</p>
+              <h3>まず読む3本</h3>
+            </div>
+            <p class="category-section__description">来院前の不安を短時間で整理しやすい記事を選びました。膝の状態、施術の見立て、相談の目安を先に確認できます。</p>
+          </div>
+          <div class="article-list">${recommendedList}</div>
+        </section>
+  ` : "";
 
   const categoryChips = categories.map((category) => `
     <a class="category-chip" href="#category-${escapeHtml(category.slug)}">${escapeHtml(category.name)}</a>
+  `).join("");
+  const symptomGroupCards = symptomGroups.map((group) => `
+    <a class="intent-card" href="${escapeHtml(group.href)}">
+      <span class="intent-card__label">${escapeHtml(group.label)}</span>
+      <span class="intent-card__description">${escapeHtml(group.description)}</span>
+    </a>
   `).join("");
 
   const categorySections = categories.map((category) => `
@@ -590,6 +691,17 @@ function buildIndexContent(site, posts, categoryMap) {
           <p>膝痛を中心に、腰痛や坐骨神経痛、運動療法の考え方まで、必要な記事を一覧で探しやすい形にまとめています。</p>
         </div>
         <div class="category-chip-list">${categoryChips}</div>
+        ${recommendedSection}
+        <section class="category-section category-section--list category-section--intent">
+          <div class="category-section__header category-section__header--list">
+            <div>
+              <p class="eyebrow">Symptoms</p>
+              <h3>症状から探す</h3>
+            </div>
+            <p class="category-section__description">気になる場所や目的から選ぶと、必要な記事に早くたどり着けます。</p>
+          </div>
+          <div class="intent-grid">${symptomGroupCards}</div>
+        </section>
         <section class="category-section category-section--list category-section--recent">
           <div class="category-section__header category-section__header--list">
             <div>
@@ -775,7 +887,7 @@ function renderSection(section) {
   return `<section class="${classNames}">${heading}${body}${subsections}</section>`;
 }
 
-function renderBody(block) {
+export function renderBody(block) {
   const items = Array.isArray(block.body) ? block.body : [];
   if (items.length === 0) {
     return "";
@@ -783,7 +895,27 @@ function renderBody(block) {
   if (block.listStyle === "check") {
     return `<ul class="check-list">${items.map((item) => `<li>${renderInlineText(item)}</li>`).join("")}</ul>`;
   }
-  return items.map((item) => `<p>${renderInlineText(item)}</p>`).join("");
+
+  const chunks = [];
+  let bulletItems = [];
+  const flushBullets = () => {
+    if (!bulletItems.length) return;
+    chunks.push(`<ul class="check-list">${bulletItems.map((item) => `<li>${renderInlineText(item)}</li>`).join("")}</ul>`);
+    bulletItems = [];
+  };
+
+  for (const item of items) {
+    const bulletMatch = String(item).match(/^[-*]\s+(.+)$/);
+    if (bulletMatch) {
+      bulletItems.push(bulletMatch[1].trim());
+      continue;
+    }
+    flushBullets();
+    chunks.push(`<p>${renderInlineText(item)}</p>`);
+  }
+  flushBullets();
+
+  return chunks.join("");
 }
 
 function buildArticleSchema(site, post) {

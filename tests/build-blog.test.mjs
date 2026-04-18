@@ -1,0 +1,83 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+
+import { buildIndexContent, renderBody } from "../scripts/build-blog.mjs";
+
+const site = {
+  blogTitle: "膝痛や慢性痛の読みもの",
+  blogDescription: "来院前に確認しやすい記事をまとめています。",
+  cta: {
+    href: "https://lin.ee/X01F2mP",
+    label: "LINEで相談する",
+    subtext: "気になることは来院前に相談できます。"
+  }
+};
+
+const categories = new Map([
+  ["knee-pain", { slug: "knee-pain", name: "膝痛", description: "膝の痛みで相談の多いテーマです。" }],
+  ["exercise-therapy", { slug: "exercise-therapy", name: "運動療法", description: "無理のない動きづくりを扱います。" }]
+]);
+
+const posts = [
+  {
+    slug: "shoulder-stiffness-posture-breathing",
+    title: "肩こりが続く原因は姿勢だけ？",
+    description: "肩こりと呼吸を整理します。",
+    date: "2026-04-18",
+    eyecatch: "/image/medical-interview.webp",
+    category: categories.get("exercise-therapy")
+  },
+  {
+    slug: "knee-pain-not-healing-honest-answer",
+    title: "膝は治らないと思っていませんか？",
+    description: "膝の痛みをあきらめる前に確認したいこと。",
+    date: "2026-04-03",
+    eyecatch: "/image/knee-symptom.jpg",
+    category: categories.get("knee-pain")
+  },
+  {
+    slug: "knee-effusion-water-in-knee",
+    title: "膝に水が溜まる原因と対処法",
+    description: "膝の水と炎症を整理します。",
+    date: "2026-04-12",
+    eyecatch: "/image/knee-symptom-close.webp",
+    category: categories.get("knee-pain")
+  },
+  {
+    slug: "seven-checkpoints-for-knee-pain-improvement",
+    title: "施術で必ず確認する7つのポイント",
+    description: "膝だけでなく歩き方や股関節まで確認します。",
+    date: "2026-04-03",
+    eyecatch: "/image/medical-interview.webp",
+    category: categories.get("knee-pain")
+  }
+];
+
+test("blog index puts recommended conversion posts before recent posts", () => {
+  const html = buildIndexContent(site, posts, categories);
+
+  assert.match(html, /まず読む3本/);
+  assert.match(html, /category-section--recommended/);
+
+  const recommendedIndex = html.indexOf("まず読む3本");
+  const recentIndex = html.indexOf("新着記事");
+  assert.ok(recommendedIndex > -1, "recommended heading should exist");
+  assert.ok(recentIndex > -1, "recent heading should exist");
+  assert.ok(recommendedIndex < recentIndex, "recommended posts should appear before recent posts");
+});
+
+test("renderBody keeps mixed bullet groups scannable as lists", () => {
+  const html = renderBody({
+    body: [
+      "まず痛みの出方を確認します。",
+      "- 階段で痛む",
+      "- 歩き始めに痛む",
+      "強い腫れがある場合は無理をしません。"
+    ]
+  });
+
+  assert.equal(
+    html,
+    "<p>まず痛みの出方を確認します。</p><ul class=\"check-list\"><li>階段で痛む</li><li>歩き始めに痛む</li></ul><p>強い腫れがある場合は無理をしません。</p>"
+  );
+});

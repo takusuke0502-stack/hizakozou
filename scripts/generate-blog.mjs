@@ -372,8 +372,13 @@ function pushSectionLine(target, line) {
 }
 
 function finalizeSection(section) {
-  const body = section.rawItems.map((item) => item.value);
   const onlyBullets = section.rawItems.length > 0 && section.rawItems.every((item) => item.type === "bullet");
+  const body = section.rawItems.map((item) => {
+    if (!onlyBullets && item.type === "bullet") {
+      return `- ${item.value}`;
+    }
+    return item.value;
+  });
   const normalized = {
     heading: section.heading || undefined,
     body,
