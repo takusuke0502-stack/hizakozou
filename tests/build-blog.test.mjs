@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { buildIndexContent, normalizeSymptomPageDesign, renderBody } from "../scripts/build-blog.mjs";
+import { buildIndexContent, buildPostContent, normalizeSymptomPageDesign, renderBody } from "../scripts/build-blog.mjs";
 
 const site = {
   blogTitle: "膝痛や慢性痛の読みもの",
@@ -110,4 +110,38 @@ test("normalizeSymptomPageDesign replaces inline symptom navigation and footer c
   assert.match(output, /class="symptom-footer"/);
   assert.doesNotMatch(output, /onmouseover/);
   assert.doesNotMatch(output, /style="display:flex;"/);
+});
+
+test("buildPostContent adds article takeaways and a middle consultation CTA", () => {
+  const post = {
+    title: "膝の痛みで来院前に知りたいこと",
+    description: "膝の痛みを来院前に整理します。",
+    lead: "膝の痛みで不安な方へ。",
+    slug: "knee-guide",
+    eyecatch: "/image/knee-symptom.jpg",
+    tags: ["膝痛"],
+    category: categories.get("knee-pain"),
+    sections: [
+      { heading: "膝の痛みで考えられる原因", body: ["膝だけでなく歩き方も確認します。"] },
+      { heading: "自宅で気をつけたいこと", body: ["無理をしないことが大切です。"] },
+      { heading: "整体院ひざこぞうで確認すること", body: ["体全体を見ます。"] }
+    ],
+    faq: [],
+    relatedSymptoms: [
+      { label: "変形性膝関節症", href: "/symptoms/knee-osteoarthritis.html", description: "階段で膝が痛い方へ。" }
+    ],
+    cta: {
+      href: "https://lin.ee/X01F2mP",
+      label: "LINEで相談する",
+      note: "来院前に相談できます。"
+    }
+  };
+
+  const html = buildPostContent({ ...site, name: "整体院ひざこぞう", subtitle: "柏市の整体院", phone: "04-7114-3274" }, post, []);
+
+  assert.match(html, /article-takeaways/);
+  assert.match(html, /この記事でわかること/);
+  assert.match(html, /article-mid-cta/);
+  assert.match(html, /読んでいて自分も近いと感じたら/);
+  assert.match(html, /symptom-card--article/);
 });

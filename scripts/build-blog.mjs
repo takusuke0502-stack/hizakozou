@@ -848,8 +848,15 @@ export function buildIndexContent(site, posts, categoryMap) {
   `;
 }
 
-function buildPostContent(site, post, relatedPosts) {
-  const sectionsHtml = post.sections.map((section) => renderSection(section)).join("");
+export function buildPostContent(site, post, relatedPosts) {
+  const renderedSections = post.sections.map((section) => renderSection(section));
+  const midCtaIndex = Math.min(2, renderedSections.length);
+  const sectionsHtml = [
+    ...renderedSections.slice(0, midCtaIndex),
+    buildArticleMidCta(site, post),
+    ...renderedSections.slice(midCtaIndex)
+  ].join("");
+  const takeawaysHtml = buildArticleTakeaways(post);
   const faqHtml = post.faq.length ? `
     <section class="article-section faq-block faq-section">
       <div class="article-section__heading">
@@ -875,7 +882,7 @@ function buildPostContent(site, post, relatedPosts) {
       </div>
       <div class="symptom-grid">
         ${post.relatedSymptoms.map((item) => `
-          <a class="symptom-card" href="../../..${item.href}">
+          <a class="symptom-card symptom-card--article" href="../../..${item.href}">
             <span class="symptom-card__label">${escapeHtml(item.label)}</span>
             <span class="symptom-card__description">${escapeHtml(item.description || "")}</span>
           </a>
@@ -932,6 +939,7 @@ function buildPostContent(site, post, relatedPosts) {
     <section class="article-main">
       <div class="shell article-layout">
         <div class="article-content card-surface prose-surface">
+          ${takeawaysHtml}
           ${sectionsHtml}
           ${faqHtml}
           ${symptomsHtml}
@@ -986,6 +994,38 @@ function buildPostContent(site, post, relatedPosts) {
     </section>
     ${relatedArticlesHtml}
   `;
+}
+
+function buildArticleTakeaways(post) {
+  const headings = post.sections
+    .map((section) => section.heading)
+    .filter(Boolean)
+    .slice(0, 4);
+  if (!headings.length) return "";
+
+  const items = headings.map((heading) => `
+            <li>${escapeHtml(heading)}</li>`).join("");
+
+  return `<section class="article-takeaways" aria-labelledby="article-takeaways-title">
+            <p class="eyebrow">Guide</p>
+            <h2 id="article-takeaways-title">この記事でわかること</h2>
+            <ul>
+${items}
+            </ul>
+          </section>`;
+}
+
+function buildArticleMidCta(site, post) {
+  const ctaHref = post.cta?.href || site.cta?.href || site.lineUrl || "https://lin.ee/X01F2mP";
+  const ctaLabel = post.cta?.label || site.cta?.label || "LINEで相談する";
+  return `<section class="article-mid-cta">
+            <div>
+              <p class="article-mid-cta__eyebrow">相談の目安</p>
+              <h2>読んでいて自分も近いと感じたら、来院前に相談できます</h2>
+              <p>痛み方や困っている動作は人によって違います。記事の内容に近い不安があれば、LINEで今の状態を送っていただいて大丈夫です。</p>
+            </div>
+            <a class="article-mid-cta__button" href="${escapeHtml(ctaHref)}" target="_blank" rel="noopener noreferrer">${escapeHtml(ctaLabel)}</a>
+          </section>`;
 }
 
 function renderSection(section) {
