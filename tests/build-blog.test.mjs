@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { buildIndexContent, renderBody } from "../scripts/build-blog.mjs";
+import { buildIndexContent, normalizeSymptomPageDesign, renderBody } from "../scripts/build-blog.mjs";
 
 const site = {
   blogTitle: "膝痛や慢性痛の読みもの",
@@ -80,4 +80,34 @@ test("renderBody keeps mixed bullet groups scannable as lists", () => {
     html,
     "<p>まず痛みの出方を確認します。</p><ul class=\"check-list\"><li>階段で痛む</li><li>歩き始めに痛む</li></ul><p>強い腫れがある場合は無理をしません。</p>"
   );
+});
+
+test("normalizeSymptomPageDesign replaces inline symptom navigation and footer chrome", () => {
+  const html = `
+    <main>
+      <section style="padding:3rem 1rem;background:#f8fafc;border-top:1px solid #e2e8f0;">
+        <div class="container max-w-4xl">
+          <p style="text-align:center;font-size:13px;">RELATED SYMPTOMS</p>
+          <a href="knee-osteoarthritis.html" style="display:flex;" onmouseover="this.style.color='#2563eb'">変形性膝関節症</a>
+        </div>
+      </section>
+      <!-- BLOG_RELATED_ARTICLES_START -->
+      <section class="related-articles"></section>
+      <!-- BLOG_RELATED_ARTICLES_END -->
+      <section class="cta"></section>
+    </main>
+    <footer style="background:#0f172a;color:#cbd5e1;">
+      <a href="../symptoms/knee-osteoarthritis.html" style="font-size:13px;" onmouseover="this.style.color='#60a5fa'">変形性膝関節症</a>
+    </footer>
+  `;
+
+  const output = normalizeSymptomPageDesign(html, {
+    name: "整体院ひざこぞう",
+    subtitle: "柏市の整体院"
+  });
+
+  assert.match(output, /class="related-symptoms"/);
+  assert.match(output, /class="symptom-footer"/);
+  assert.doesNotMatch(output, /onmouseover/);
+  assert.doesNotMatch(output, /style="display:flex;"/);
 });

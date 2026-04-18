@@ -162,13 +162,22 @@
 .related-articles__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
 .related-articles__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
 .related-article-card{display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:8px;padding:1.25rem;text-decoration:none;box-shadow:0 2px 10px rgba(37,99,235,.06);transition:transform .2s,border-color .2s,box-shadow .2s}
-.related-article-card:hover{transform:translateY(-2px);border-color:#93c5fd;box-shadow:0 10px 20px rgba(37,99,235,.12)}
+.related-article-card:hover,.related-article-card:focus-visible{transform:translateY(-2px);border-color:#93c5fd;box-shadow:0 10px 20px rgba(37,99,235,.12);outline:none}
 .related-article-card__meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
 .related-article-card__pill{display:inline-flex;align-items:center;border-radius:9999px;background:#eff6ff;color:#2563eb;font-size:11px;font-weight:900;padding:.25rem .625rem}
 .related-article-card__time{font-size:11px;font-weight:700;color:#64748b}
 .related-article-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
 .related-article-card__desc{font-size:13px;font-weight:700;color:#475569;line-height:1.8}
 .related-article-card__link{display:inline-flex;align-items:center;gap:.35rem;font-size:13px;font-weight:900;color:#2563eb}
+.related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #e2e8f0}
+.related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.1em;margin:0 0 .7rem}
+.related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .75rem}
+.related-symptoms__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
+.related-symptoms__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem}
+.related-symptom-card{display:flex;flex-direction:column;gap:.55rem;min-height:126px;background:#f8fbff;border:1px solid #dbeafe;border-radius:8px;padding:1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
+.related-symptom-card:hover,.related-symptom-card:focus-visible{transform:translateY(-2px);background:#fff;border-color:#93c5fd;box-shadow:0 8px 18px rgba(37,99,235,.1);outline:none}
+.related-symptom-card__label{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
+.related-symptom-card__description{font-size:13px;font-weight:700;color:#475569;line-height:1.75}
 .symptom-mid-cta{padding:2.75rem 1rem;background:#fff;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
 .symptom-mid-cta__inner{display:grid;gap:1.25rem;align-items:center;background:#f8fbff;border:1px solid #bfdbfe;border-radius:8px;padding:1.5rem}
 .symptom-mid-cta__eyebrow{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
@@ -178,7 +187,16 @@
 .symptom-mid-cta__btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border-radius:8px;padding:.85rem 1.15rem;font-size:14px;font-weight:900;text-decoration:none;transition:transform .2s,background .2s,border-color .2s}
 .symptom-mid-cta__btn--line{background:#06C755;color:#fff}
 .symptom-mid-cta__btn--tel{background:#fff;color:#1e3a8a;border:1px solid #bfdbfe}
-.symptom-mid-cta__btn:hover{transform:translateY(-1px)}
+.symptom-mid-cta__btn:hover,.symptom-mid-cta__btn:focus-visible{transform:translateY(-1px);outline:2px solid #93c5fd;outline-offset:3px}
+.symptom-footer{background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;text-align:center}
+.symptom-footer__inner{max-width:860px;margin:0 auto}
+.symptom-footer__logo{display:inline-block;background:#fff;border-radius:8px;padding:.7rem 1.35rem;margin-bottom:.8rem}
+.symptom-footer__logo span{font-size:1.2rem;font-weight:900;color:#1e293b}
+.symptom-footer__tagline{font-size:14px;font-weight:700;line-height:1.8;margin:0 0 1.4rem}
+.symptom-footer__links{display:flex;flex-wrap:wrap;justify-content:center;gap:.65rem 1rem;list-style:none;margin:0 0 1.4rem;padding:0}
+.symptom-footer__links a{font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;transition:color .2s}
+.symptom-footer__links a:hover,.symptom-footer__links a:focus-visible{color:#60a5fa;outline:none;text-decoration:underline;text-underline-offset:4px}
+.symptom-footer__note{font-size:10px;color:#64748b;font-weight:700;line-height:2;margin:0}
 @media(min-width:768px){.related-articles__title{font-size:1.75rem}}
 @media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
 @media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}}
@@ -519,56 +537,44 @@
       </div>
     </section>
 
-    <section style="padding:3rem 1rem;background:#f8fafc;border-top:1px solid #e2e8f0;">
+    <!-- RELATED_SYMPTOMS_NAV_START -->
+<section class="related-symptoms">
       <div class="container max-w-4xl">
-        <p style="text-align:center;font-size:13px;font-weight:700;color:#2563eb;letter-spacing:.08em;margin-bottom:.75rem;">RELATED SYMPTOMS</p>
-        <h2 style="text-align:center;font-size:1.375rem;font-weight:900;color:#1e3a8a;margin-bottom:.75rem;">こんな症状も関係しているかもしれません</h2>
-        <p style="text-align:center;font-size:14px;font-weight:700;color:#475569;margin-bottom:2rem;line-height:1.8;">足元のアンバランスは、膝や腰など下半身のさまざまな問題とつながっています。<br>気になる症状があれば、あわせてご相談ください。</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
-          <a href="knee-osteoarthritis.html" style="display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:1rem;padding:1.25rem;text-decoration:none;transition:all .2s;box-shadow:0 2px 8px rgba(37,99,235,.06);" onmouseover="this.style.borderColor='#2563eb';this.style.boxShadow='0 4px 16px rgba(37,99,235,.15)'" onmouseout="this.style.borderColor='#dbeafe';this.style.boxShadow='0 2px 8px rgba(37,99,235,.06)'">
-            <div style="display:flex;align-items:center;gap:.625rem;">
-              <div style="width:2.5rem;height:2.5rem;background:#dbeafe;border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <i data-lucide="activity" style="width:1.125rem;height:1.125rem;color:#2563eb;" aria-hidden="true"></i>
-              </div>
-              <div>
-                <p style="font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.3;">変形性膝関節症</p>
-                <p style="font-size:11px;font-weight:700;color:#64748b;margin-top:.125rem;">膝の軟骨がすり減る痛み</p>
-              </div>
-            </div>
-            <p style="font-size:13px;font-weight:700;color:#475569;line-height:1.7;">かかとの痛みをかばう歩き方が続くと、膝への負担が増し、膝関節の痛みを引き起こすことがあります。</p>
-            <span style="font-size:13px;font-weight:900;color:#2563eb;display:flex;align-items:center;gap:.25rem;">詳しく見る <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
+        <p class="related-symptoms__eyebrow">RELATED SYMPTOMS</p>
+        <h2 class="related-symptoms__title">ほかの症状も確認できます</h2>
+        <p class="related-symptoms__lead">痛みをかばう姿勢が続くと、別の部位にも負担がかかりやすくなります。気になる症状があれば、あわせて確認してみてください。</p>
+        <div class="related-symptoms__grid">
+
+          <a class="related-symptom-card" href="knee-osteoarthritis.html">
+            <span class="related-symptom-card__label">変形性膝関節症</span>
+            <span class="related-symptom-card__description">階段や歩き始めの膝痛、膝のこわばりが気になる方へ。</span>
           </a>
-          <a href="hip-osteoarthritis.html" style="display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:1rem;padding:1.25rem;text-decoration:none;transition:all .2s;box-shadow:0 2px 8px rgba(37,99,235,.06);" onmouseover="this.style.borderColor='#2563eb';this.style.boxShadow='0 4px 16px rgba(37,99,235,.15)'" onmouseout="this.style.borderColor='#dbeafe';this.style.boxShadow='0 2px 8px rgba(37,99,235,.06)'">
-            <div style="display:flex;align-items:center;gap:.625rem;">
-              <div style="width:2.5rem;height:2.5rem;background:#dbeafe;border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <i data-lucide="disc" style="width:1.125rem;height:1.125rem;color:#2563eb;" aria-hidden="true"></i>
-              </div>
-              <div>
-                <p style="font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.3;">変形性股関節症</p>
-                <p style="font-size:11px;font-weight:700;color:#64748b;margin-top:.125rem;">股関節の痛み・歩行困難</p>
-              </div>
-            </div>
-            <p style="font-size:13px;font-weight:700;color:#475569;line-height:1.7;">股関節のサボり筋（機能低下）が足底への過負荷を生み出している場合があります。下肢全体の連動を整えることが重要です。</p>
-            <span style="font-size:13px;font-weight:900;color:#2563eb;display:flex;align-items:center;gap:.25rem;">詳しく見る <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
+          <a class="related-symptom-card" href="knee-effusion.html">
+            <span class="related-symptom-card__label">膝の水（関節水腫）</span>
+            <span class="related-symptom-card__description">膝の腫れや水が溜まる不安を整理したい方へ。</span>
           </a>
-          <a href="lower-back-pain.html" style="display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:1rem;padding:1.25rem;text-decoration:none;transition:all .2s;box-shadow:0 2px 8px rgba(37,99,235,.06);" onmouseover="this.style.borderColor='#2563eb';this.style.boxShadow='0 4px 16px rgba(37,99,235,.15)'" onmouseout="this.style.borderColor='#dbeafe';this.style.boxShadow='0 2px 8px rgba(37,99,235,.06)'">
-            <div style="display:flex;align-items:center;gap:.625rem;">
-              <div style="width:2.5rem;height:2.5rem;background:#dbeafe;border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <i data-lucide="zap" style="width:1.125rem;height:1.125rem;color:#2563eb;" aria-hidden="true"></i>
-              </div>
-              <div>
-                <p style="font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.3;">腰痛</p>
-                <p style="font-size:11px;font-weight:700;color:#64748b;margin-top:.125rem;">慢性的な腰の重だるさ・痛み</p>
-              </div>
-            </div>
-            <p style="font-size:13px;font-weight:700;color:#475569;line-height:1.7;">足元のバランスの崩れは骨盤や腰にも波及します。足底筋膜炎と腰痛を同時に抱えている方は全身の評価が必要です。</p>
-            <span style="font-size:13px;font-weight:900;color:#2563eb;display:flex;align-items:center;gap:.25rem;">詳しく見る <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
+          <a class="related-symptom-card" href="pes-anserine-bursitis.html">
+            <span class="related-symptom-card__label">膝の内側の痛み</span>
+            <span class="related-symptom-card__description">鵞足炎や内側の違和感が続く方へ。</span>
+          </a>
+          <a class="related-symptom-card" href="knee-lateral-pain.html">
+            <span class="related-symptom-card__label">膝の外側の痛み</span>
+            <span class="related-symptom-card__description">腸脛靭帯炎や外側半月板まわりが気になる方へ。</span>
+          </a>
+          <a class="related-symptom-card" href="knee-posterior-pain.html">
+            <span class="related-symptom-card__label">膝の裏側の痛み</span>
+            <span class="related-symptom-card__description">ベーカー嚢腫や膝裏の張りが気になる方へ。</span>
+          </a>
+          <a class="related-symptom-card" href="hip-osteoarthritis.html">
+            <span class="related-symptom-card__label">股関節の痛み</span>
+            <span class="related-symptom-card__description">歩き方や膝への負担と股関節の関係を知りたい方へ。</span>
           </a>
         </div>
       </div>
     </section>
+<!-- RELATED_SYMPTOMS_NAV_END -->
 
-    <!-- BLOG_RELATED_ARTICLES_START -->
+<!-- BLOG_RELATED_ARTICLES_START -->
 <section class="related-articles">
       <div class="container max-w-4xl">
         <p class="related-articles__eyebrow">RELATED BLOG</p>
@@ -647,37 +653,28 @@
     </div>
   </main>
 
-  <footer style="background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;">
-    <div class="container" style="max-width:800px;">
-      <div style="text-align:center;margin-bottom:2rem;">
-        <div style="background:#fff;border-radius:1rem;padding:.75rem 1.5rem;display:inline-block;margin-bottom:.75rem;">
-          <span style="font-size:1.25rem;font-weight:900;color:#1e293b;">整体院ひざこぞう</span>
-        </div>
-        <p style="font-size:14px;font-weight:700;color:#94a3b8;">千葉県柏市 / 膝痛・慢性痛専門</p>
+  <footer class="symptom-footer">
+    <div class="symptom-footer__inner">
+      <div class="symptom-footer__logo">
+        <span>整体院ひざこぞう</span>
       </div>
-      <div style="border-top:1px solid #1e293b;padding-top:1.5rem;margin-bottom:1.5rem;">
-        <p style="font-size:11px;font-weight:700;color:#64748b;letter-spacing:.1em;text-align:center;margin-bottom:1rem;">対応している症状</p>
-        <ul style="display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.5rem;list-style:none;padding:0;margin:0;">
-          <li><a href="../symptoms/knee-osteoarthritis.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">変形性膝関節症</a></li>
-          <li><a href="../symptoms/knee-effusion.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">膝の水（関節水腫）</a></li>
-          <li><a href="../symptoms/pes-anserine-bursitis.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">膝の内側の痛み（鵞足炎）</a></li>
-          <li><a href="../symptoms/knee-lateral-pain.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">膝の外側の痛み（腸脛靭帯炎・外側半月板）</a></li>
-          <li><a href="../symptoms/knee-posterior-pain.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">膝の裏側の痛み（ベーカー囊腫）</a></li>
-          <li><a href="../symptoms/hip-osteoarthritis.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">変形性股関節症</a></li>
-          <li><a href="../symptoms/lower-back-pain.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">腰痛</a></li>
-          <li><a href="../symptoms/sciatica.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">坐骨神経痛</a></li>
-          <li><a href="../symptoms/spinal-stenosis.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">脊柱管狭窄症</a></li>
-          <li><a href="../symptoms/cervical-spondylosis.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">頚椎症・首の痛み</a></li>
-          <li><a href="../symptoms/plantar-fasciitis.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">足底筋膜炎・かかとの痛み</a></li>
-          <li><a href="../symptoms/frozen-shoulder.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">五十肩</a></li>
-          <li><a href="../symptoms/shoulder-stiffness.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">肩こり</a></li>
-          <li><a href="../symptoms/thoracic-outlet.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">胸郭出口症候群</a></li>
-          <li><a href="../symptoms/tmj.html" style="font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color='#94a3b8'">顎関節症</a></li>
-        </ul>
-      </div>
-      <div style="border-top:1px solid #1e293b;padding-top:1.5rem;text-align:center;">
-        <p style="font-size:10px;color:#475569;font-weight:700;line-height:2;">※個人の感想であり、成果を保証するものではありません。<br>&copy; 2026 整体院ひざこぞう All Rights Reserved.</p>
-      </div>
+      <p class="symptom-footer__tagline">柏市の整体院。膝痛を中心に、歩行や姿勢の影響を受けやすい慢性痛までご相談いただけます。</p>
+      <ul class="symptom-footer__links">
+
+          <li><a href="../symptoms/knee-osteoarthritis.html">変形性膝関節症</a></li>
+          <li><a href="../symptoms/knee-effusion.html">膝の水（関節水腫）</a></li>
+          <li><a href="../symptoms/pes-anserine-bursitis.html">膝の内側の痛み</a></li>
+          <li><a href="../symptoms/knee-lateral-pain.html">膝の外側の痛み</a></li>
+          <li><a href="../symptoms/knee-posterior-pain.html">膝の裏側の痛み</a></li>
+          <li><a href="../symptoms/hip-osteoarthritis.html">股関節の痛み</a></li>
+          <li><a href="../symptoms/lower-back-pain.html">腰痛</a></li>
+          <li><a href="../symptoms/sciatica.html">坐骨神経痛</a></li>
+          <li><a href="../symptoms/spinal-stenosis.html">脊柱管狭窄症</a></li>
+          <li><a href="../symptoms/shoulder-stiffness.html">肩こり</a></li>
+          <li><a href="../symptoms/frozen-shoulder.html">五十肩</a></li>
+          <li><a href="../symptoms/tmj.html">顎関節症</a></li>
+      </ul>
+      <p class="symptom-footer__note">※個人の感想であり、成果を保証するものではありません。<br>&copy; 2026 整体院ひざこぞう All Rights Reserved.</p>
     </div>
   </footer>
 
