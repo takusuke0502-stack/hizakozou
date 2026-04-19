@@ -722,24 +722,6 @@ export function buildIndexContent(site, posts, categoryMap) {
   const recommendedPosts = recommendedSlugs
     .map((slug) => posts.find((post) => post.slug === slug))
     .filter(Boolean);
-  const symptomGroups = [
-    {
-      href: "#category-knee-pain",
-      label: "膝の痛み",
-      description: "階段、歩き始め、正座、水が溜まる不安を整理します。"
-    },
-    {
-      href: "#category-lower-back-pain",
-      label: "腰・しびれ",
-      description: "膝をかばう動きや姿勢と関係しやすい不調を確認できます。"
-    },
-    {
-      href: "#category-exercise-therapy",
-      label: "セルフケア・施術方針",
-      description: "無理なく動かす考え方や、当院の見立てを知りたい方向けです。"
-    }
-  ];
-
   const renderListItem = (post) => `
     <article class="article-list-item">
       <a class="article-list-item__link" href="posts/${post.slug}/">
@@ -776,13 +758,6 @@ export function buildIndexContent(site, posts, categoryMap) {
   const categoryChips = categories.map((category) => `
     <a class="category-chip" href="#category-${escapeHtml(category.slug)}">${escapeHtml(category.name)}</a>
   `).join("");
-  const symptomGroupCards = symptomGroups.map((group) => `
-    <a class="intent-card" href="${escapeHtml(group.href)}">
-      <span class="intent-card__label">${escapeHtml(group.label)}</span>
-      <span class="intent-card__description">${escapeHtml(group.description)}</span>
-    </a>
-  `).join("");
-
   const categorySections = categories.map((category) => `
     <section class="category-section category-section--list" id="category-${escapeHtml(category.slug)}">
       <div class="category-section__header category-section__header--list">
@@ -823,16 +798,6 @@ export function buildIndexContent(site, posts, categoryMap) {
         </div>
         <div class="category-chip-list">${categoryChips}</div>
         ${recommendedSection}
-        <section class="category-section category-section--list category-section--intent">
-          <div class="category-section__header category-section__header--list">
-            <div>
-              <p class="eyebrow">Symptoms</p>
-              <h3>症状から探す</h3>
-            </div>
-            <p class="category-section__description">気になる場所や目的から選ぶと、必要な記事に早くたどり着けます。</p>
-          </div>
-          <div class="intent-grid">${symptomGroupCards}</div>
-        </section>
         <section class="category-section category-section--list category-section--recent">
           <div class="category-section__header category-section__header--list">
             <div>
