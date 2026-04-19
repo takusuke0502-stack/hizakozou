@@ -7,7 +7,7 @@ category: 運動療法
 region: 柏市
 tags: MSMメソッド,運動療法,膝痛,腰痛,坐骨神経痛
 symptoms: 変形性膝関節症,腰痛,坐骨神経痛
-heroImage: /image/treatment-scene.webp
+heroImage: /image/hip-massage-scene.webp
 draft: false
 ---
 
