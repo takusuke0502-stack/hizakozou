@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
 
@@ -35,4 +35,13 @@ test("LP adds knee-pain type navigation before the broad symptom list", () => {
   assert.ok(typeNavIndex < symptomsIndex, "type navigation should guide users before the full symptom list");
   assert.match(html, /階段で痛い/);
   assert.match(html, /膝の裏が張る/);
+});
+
+test("LP links lumbar disc herniation to its own symptom page", () => {
+  assert.ok(
+    existsSync(new URL("../symptoms/lumbar-disc-herniation.html", import.meta.url)),
+    "lumbar disc herniation symptom page should exist"
+  );
+  assert.match(html, /href="symptoms\/lumbar-disc-herniation\.html"[^>]*>腰椎椎間板ヘルニア/);
+  assert.doesNotMatch(html, /href="symptoms\/spinal-stenosis\.html"[^>]*>腰椎椎間板ヘルニア/);
 });

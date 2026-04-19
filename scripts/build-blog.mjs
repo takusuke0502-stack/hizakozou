@@ -20,7 +20,7 @@ const symptomNavigationItems = [
   { href: "lower-back-pain.html", label: "腰痛", description: "膝をかばう姿勢や歩き方と腰痛の関係が気になる方へ。" },
   { href: "sciatica.html", label: "坐骨神経痛", description: "お尻から脚のしびれや痛みが続く方へ。" },
   { href: "spinal-stenosis.html", label: "脊柱管狭窄症", description: "歩くと脚がつらい、休むと楽になる症状がある方へ。" },
-  { href: "spinal-stenosis.html", label: "椎間板ヘルニア", description: "腰から脚への痛みやしびれが気になる方へ。" },
+  { href: "lumbar-disc-herniation.html", label: "腰椎椎間板ヘルニア", description: "腰からお尻、脚への痛みやしびれが気になる方へ。" },
   { href: "shoulder-stiffness.html", label: "肩こり", description: "首肩の重さや姿勢の崩れが気になる方へ。" },
   { href: "frozen-shoulder.html", label: "五十肩", description: "腕が上がらない、夜に肩が痛む方へ。" },
   { href: "tmj.html", label: "顎関節症", description: "あごの痛みや口の開けづらさ、首肩との関係が気になる方へ。" }
@@ -73,6 +73,12 @@ const symptomConfigs = {
     symptomKey: "spinal-stenosis",
     label: "脊柱管狭窄症",
     keywords: ["脊柱管狭窄症", "椎間板ヘルニア", "間欠性跛行", "腰", "脚のしびれ"],
+    categoryHints: ["numbness", "lower-back-pain", "exercise-therapy"]
+  },
+  "lumbar-disc-herniation.html": {
+    symptomKey: "lumbar-disc-herniation",
+    label: "腰椎椎間板ヘルニア",
+    keywords: ["腰椎椎間板ヘルニア", "椎間板ヘルニア", "腰", "脚のしびれ", "坐骨神経痛"],
     categoryHints: ["numbness", "lower-back-pain", "exercise-therapy"]
   },
   "hip-osteoarthritis.html": {

@@ -63,9 +63,14 @@ const DEFAULT_RELATED_SYMPTOMS = {
     href: "/symptoms/spinal-stenosis.html",
     description: "歩くとしびれや重だるさが出やすい方へ。"
   },
+  "腰椎椎間板ヘルニア": {
+    label: "腰椎椎間板ヘルニア",
+    href: "/symptoms/lumbar-disc-herniation.html",
+    description: "腰から脚にかけて痛みやしびれがある方へ。"
+  },
   "椎間板ヘルニア": {
-    label: "椎間板ヘルニア",
-    href: "/symptoms/spinal-stenosis.html",
+    label: "腰椎椎間板ヘルニア",
+    href: "/symptoms/lumbar-disc-herniation.html",
     description: "腰から脚にかけて痛みやしびれがある方へ。"
   },
   "変形性股関節症": {
