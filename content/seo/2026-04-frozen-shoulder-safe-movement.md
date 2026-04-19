@@ -2,7 +2,7 @@
 - slug: frozen-shoulder-safe-movement
 - date: 2026-04-18
 - updated: 2026-04-18
-- category: exercise-therapy
+- category: neck-shoulder-hand
 - region: 柏市
 - status: publish
 - description: 五十肩で腕が上がらない、夜に痛む方へ。炎症期の注意点、肩甲骨や胸郭の動き、整体で確認するポイントを柏市の整体院ひざこぞうが解説します。

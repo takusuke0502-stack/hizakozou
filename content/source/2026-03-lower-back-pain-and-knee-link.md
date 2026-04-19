@@ -3,7 +3,7 @@ title: 膝をかばって腰までつらいときの見方
 slug: lower-back-pain-and-knee-link
 date: 2026-03-31
 description: 膝の痛みをかばううちに腰まで気になってきた方へ向けて、体のつながりと無理のない整え方を整理した記事です。
-category: 腰の痛み
+category: 腰痛
 region: 柏市
 tags: 腰痛,膝痛,姿勢,歩行不安
 symptoms: 腰痛,坐骨神経痛,変形性股関節症

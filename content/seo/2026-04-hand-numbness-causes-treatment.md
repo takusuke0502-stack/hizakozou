@@ -2,7 +2,7 @@
 - slug: hand-numbness-causes-treatment
 - date: 2026-04-13
 - updated: 2026-04-13
-- category: exercise-therapy
+- category: numbness
 - region: 柏市
 - status: publish
 - description: 手のしびれが気になる方へ。頸椎のゆがみ、胸郭出口症候群、肘部管症候群・手根管症候群など、整体でアプローチできる可能性がある原因と対処法を柏の整体院ひざこぞうが解説します。

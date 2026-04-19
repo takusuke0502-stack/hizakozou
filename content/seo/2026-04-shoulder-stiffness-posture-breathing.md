@@ -2,7 +2,7 @@
 - slug: shoulder-stiffness-posture-breathing
 - date: 2026-04-18
 - updated: 2026-04-18
-- category: exercise-therapy
+- category: neck-shoulder-hand
 - region: 柏市
 - status: publish
 - description: 肩こりがなかなか楽にならない方へ。姿勢、呼吸、肩甲骨、首まわりの緊張の関係と、整体で確認するポイントを柏市の整体院ひざこぞうが解説します。

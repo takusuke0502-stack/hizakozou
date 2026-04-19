@@ -24,7 +24,7 @@ title: 記事タイトル
 slug: url-slug
 date: YYYY-MM-DD
 description: 120-140字程度の説明文
-category: 膝の痛み
+category: 膝痛
 region: 柏市
 tags: 膝痛,タグ2
 symptoms: 変形性膝関節症,腰痛
@@ -33,6 +33,8 @@ draft: false
 replaceSlug: old-url-slug
 ---
 ```
+
+カテゴリは `膝痛`、`腰痛`、`シビレ`、`股関節痛`、`首・肩・手`、`運動療法` のいずれかを指定します。
 
 GitHub Actions 実行:
 

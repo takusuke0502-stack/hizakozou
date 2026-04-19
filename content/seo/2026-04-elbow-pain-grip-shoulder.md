@@ -2,7 +2,7 @@
 - slug: elbow-pain-grip-shoulder
 - date: 2026-04-18
 - updated: 2026-04-18
-- category: exercise-therapy
+- category: neck-shoulder-hand
 - region: 柏市
 - status: publish
 - description: テニス肘・ゴルフ肘など肘の痛みが続く方へ。握り方、前腕の使いすぎ、肩甲骨や首の動きとの関係を柏市の整体院ひざこぞうが解説します。

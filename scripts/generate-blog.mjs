@@ -63,6 +63,11 @@ const DEFAULT_RELATED_SYMPTOMS = {
     href: "/symptoms/spinal-stenosis.html",
     description: "歩くとしびれや重だるさが出やすい方へ。"
   },
+  "椎間板ヘルニア": {
+    label: "椎間板ヘルニア",
+    href: "/symptoms/spinal-stenosis.html",
+    description: "腰から脚にかけて痛みやしびれがある方へ。"
+  },
   "変形性股関節症": {
     label: "変形性股関節症",
     href: "/symptoms/hip-osteoarthritis.html",
@@ -439,6 +444,13 @@ function buildCategoryLookup(categories) {
   lookup.set("膝痛", "knee-pain");
   lookup.set("腰の痛み", "lower-back-pain");
   lookup.set("腰痛", "lower-back-pain");
+  lookup.set("シビレ", "numbness");
+  lookup.set("しびれ", "numbness");
+  lookup.set("痺れ", "numbness");
+  lookup.set("股関節痛", "hip-pain");
+  lookup.set("股関節の痛み", "hip-pain");
+  lookup.set("首・肩・手", "neck-shoulder-hand");
+  lookup.set("首肩手", "neck-shoulder-hand");
   lookup.set("運動療法", "exercise-therapy");
 
   return lookup;

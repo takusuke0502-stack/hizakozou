@@ -2,7 +2,7 @@
 - slug: tmj-neck-posture-relation
 - date: 2026-04-18
 - updated: 2026-04-18
-- category: exercise-therapy
+- category: neck-shoulder-hand
 - region: 柏市
 - status: publish
 - description: 顎関節症やあごの痛み、口の開けにくさで悩む方へ。首こり、頭の位置、胸郭の硬さとの関係と整体で確認するポイントを柏市の整体院ひざこぞうが解説します。

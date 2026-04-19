@@ -2,7 +2,7 @@
 - slug: leg-numbness-causes-lower-back-knee
 - date: 2026-04-13
 - updated: 2026-04-13
-- category: lower-back-pain
+- category: numbness
 - region: 柏市
 - status: publish
 - description: 足のしびれが気になる方へ。坐骨神経痛、脊柱管狭窄症、膝まわりの筋肉バランスなど、整体でアプローチできる可能性がある原因を柏の整体院ひざこぞうが解説します。

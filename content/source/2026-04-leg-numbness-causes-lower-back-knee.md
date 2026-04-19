@@ -3,7 +3,7 @@ title: 足のしびれ、その原因は腰や膝にあるかもしれません
 slug: leg-numbness-causes-lower-back-knee
 date: 2026-04-13
 description: 足のしびれが気になる方へ。坐骨神経痛、脊柱管狭窄症、膝まわりの筋肉バランスなど、整体でアプローチできる可能性がある原因を柏の整体院ひざこぞうが解説します。
-category: 腰痛
+category: シビレ
 region: 柏市
 tags: 足のしびれ,坐骨神経痛,脊柱管狭窄症,膝痛
 symptoms: 坐骨神経痛,脊柱管狭窄症,変形性膝関節症,腰痛

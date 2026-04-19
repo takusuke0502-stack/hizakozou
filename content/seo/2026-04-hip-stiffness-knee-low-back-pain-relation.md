@@ -2,7 +2,7 @@
 - slug: hip-stiffness-knee-low-back-pain-relation
 - date: 2026-04-03
 - updated: 2026-04-03
-- category: lower-back-pain
+- category: hip-pain
 - region: 柏市
 - status: publish
 - description: 階段の上り下りや歩き始めの膝痛、慢性的な腰痛にお悩みの方へ。実はその不調、股関節の硬さが原因かもしれません。身体の各関節が役割を分担する仕組みや、大腰筋の重要性を詳しく解説。整体院ひざこぞうが、施術と運動療法であなたの動ける喜びをサポートします。

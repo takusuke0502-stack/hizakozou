@@ -3,7 +3,7 @@ title: 歩くと膝が気になるときに、最初に見直したいこと
 slug: knee-walking
 date: 2026-03-29
 description: 歩くと膝が気になるときに、無理を重ねる前に見直しやすいポイントを柏の整体院ひざこぞうの視点で整理します。
-category: 膝の痛み
+category: 膝痛
 region: 柏市
 tags: 膝痛,歩行,慢性痛
 symptoms: 変形性膝関節症,腰痛,坐骨神経痛

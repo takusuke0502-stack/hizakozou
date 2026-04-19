@@ -2,7 +2,7 @@
 - slug: spinal-stenosis-exercise-before-surgery
 - date: 2026-04-09
 - updated: 2026-04-09
-- category: exercise-therapy
+- category: numbness
 - region: 柏市
 - status: publish
 - description: 脊柱管狭窄症やヘルニアと診断されても、すぐに手術という選択肢を選ばなくていい理由があります。腰痛と足のしびれの原因の違い、ヘルニアの自然吸収、世界標準の運動療法まで、柏市の整体院が分かりやすく解説します。

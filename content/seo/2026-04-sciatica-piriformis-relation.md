@@ -2,7 +2,7 @@
 - slug: sciatica-piriformis-relation
 - date: 2026-04-03
 - updated: 2026-04-03
-- category: lower-back-pain
+- category: numbness
 - region: 柏市
 - status: publish
 - description: お尻から足にかけてのしびれや痛みに悩む40代以上の方へ。坐骨神経痛の原因として注目される梨状筋の役割を、身体の仕組みから丁寧に解説します。画像診断の結果だけに捉われず、姿勢や動きの癖を整えることで、再発しにくい体づくりを目指す考え方をまとめました。

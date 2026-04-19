@@ -3,7 +3,7 @@ title: 階段で膝が痛むときに考えたいこと
 slug: knee-pain-stairs-guide
 date: 2026-03-31
 description: 階段の上り下りで膝が気になるときに、痛い場所だけでなく動き方や周りの負担も含めて考えるための整理記事です。
-category: 膝の痛み
+category: 膝痛
 region: 柏市
 tags: 膝痛,階段,変形性膝関節症,歩き方
 symptoms: 変形性膝関節症,膝に水がたまる,腰痛

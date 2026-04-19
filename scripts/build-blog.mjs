@@ -20,6 +20,7 @@ const symptomNavigationItems = [
   { href: "lower-back-pain.html", label: "腰痛", description: "膝をかばう姿勢や歩き方と腰痛の関係が気になる方へ。" },
   { href: "sciatica.html", label: "坐骨神経痛", description: "お尻から脚のしびれや痛みが続く方へ。" },
   { href: "spinal-stenosis.html", label: "脊柱管狭窄症", description: "歩くと脚がつらい、休むと楽になる症状がある方へ。" },
+  { href: "spinal-stenosis.html", label: "椎間板ヘルニア", description: "腰から脚への痛みやしびれが気になる方へ。" },
   { href: "shoulder-stiffness.html", label: "肩こり", description: "首肩の重さや姿勢の崩れが気になる方へ。" },
   { href: "frozen-shoulder.html", label: "五十肩", description: "腕が上がらない、夜に肩が痛む方へ。" },
   { href: "tmj.html", label: "顎関節症", description: "あごの痛みや口の開けづらさ、首肩との関係が気になる方へ。" }
@@ -66,55 +67,55 @@ const symptomConfigs = {
     symptomKey: "sciatica",
     label: "坐骨神経痛",
     keywords: ["坐骨神経痛", "お尻", "脚のしびれ", "しびれ"],
-    categoryHints: ["lower-back-pain", "exercise-therapy"]
+    categoryHints: ["numbness", "lower-back-pain", "exercise-therapy"]
   },
   "spinal-stenosis.html": {
     symptomKey: "spinal-stenosis",
     label: "脊柱管狭窄症",
-    keywords: ["脊柱管狭窄症", "間欠性跛行", "腰", "脚のしびれ"],
-    categoryHints: ["lower-back-pain", "exercise-therapy"]
+    keywords: ["脊柱管狭窄症", "椎間板ヘルニア", "間欠性跛行", "腰", "脚のしびれ"],
+    categoryHints: ["numbness", "lower-back-pain", "exercise-therapy"]
   },
   "hip-osteoarthritis.html": {
     symptomKey: "hip-osteoarthritis",
     label: "変形性股関節症",
     keywords: ["変形性股関節症", "股関節", "歩きづらい", "膝をかばう"],
-    categoryHints: ["lower-back-pain", "exercise-therapy", "knee-pain"]
+    categoryHints: ["hip-pain", "lower-back-pain", "exercise-therapy", "knee-pain"]
   },
   "shoulder-stiffness.html": {
     symptomKey: "shoulder-stiffness",
     label: "肩こり",
     keywords: ["肩こり", "首こり", "姿勢", "慢性痛"],
-    categoryHints: ["exercise-therapy"]
+    categoryHints: ["neck-shoulder-hand", "exercise-therapy"]
   },
   "frozen-shoulder.html": {
     symptomKey: "frozen-shoulder",
     label: "五十肩",
     keywords: ["五十肩", "肩", "腕が上がらない", "慢性痛"],
-    categoryHints: ["exercise-therapy"]
+    categoryHints: ["neck-shoulder-hand", "exercise-therapy"]
   },
   "cervical-spondylosis.html": {
     symptomKey: "cervical-spondylosis",
     label: "頚椎症",
     keywords: ["頚椎症", "首の痛み", "しびれ", "慢性痛"],
-    categoryHints: ["exercise-therapy"]
+    categoryHints: ["neck-shoulder-hand", "numbness", "exercise-therapy"]
   },
   "thoracic-outlet.html": {
     symptomKey: "thoracic-outlet",
     label: "胸郭出口症候群",
     keywords: ["胸郭出口症候群", "腕のしびれ", "首肩", "慢性痛"],
-    categoryHints: ["exercise-therapy"]
+    categoryHints: ["neck-shoulder-hand", "numbness", "exercise-therapy"]
   },
   "carpal-tunnel.html": {
     symptomKey: "carpal-tunnel",
     label: "手根管症候群",
     keywords: ["手根管症候群", "手のしびれ", "慢性痛"],
-    categoryHints: ["exercise-therapy"]
+    categoryHints: ["neck-shoulder-hand", "numbness", "exercise-therapy"]
   },
   "elbow-tendinopathy.html": {
     symptomKey: "elbow-tendinopathy",
     label: "肘の痛み",
     keywords: ["肘の痛み", "肘", "慢性痛"],
-    categoryHints: ["exercise-therapy"]
+    categoryHints: ["neck-shoulder-hand", "exercise-therapy"]
   },
   "plantar-fasciitis.html": {
     symptomKey: "plantar-fasciitis",
@@ -126,7 +127,7 @@ const symptomConfigs = {
     symptomKey: "tmj",
     label: "顎関節症",
     keywords: ["顎関節症", "顎", "慢性痛"],
-    categoryHints: ["exercise-therapy"]
+    categoryHints: ["neck-shoulder-hand", "exercise-therapy"]
   }
 };
 

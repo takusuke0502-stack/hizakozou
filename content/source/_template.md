@@ -3,7 +3,7 @@ title: 膝の違和感が続くときに見直したい日常動作
 slug: sample-knee-daily-care
 date: 2026-03-29
 description: 膝の違和感が続くときに、日常で見直しやすいポイントを整体院ひざこぞうの視点で整理します。
-category: 膝の痛み
+category: 膝痛
 region: 柏市
 tags: 膝痛,慢性痛,セルフケア
 symptoms: 変形性膝関節症,腰痛,坐骨神経痛
