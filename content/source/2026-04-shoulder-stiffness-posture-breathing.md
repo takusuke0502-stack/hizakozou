@@ -7,7 +7,7 @@ category: 運動療法
 region: 柏市
 tags: 肩こり,首こり,姿勢,呼吸,肩甲骨
 symptoms: 肩こり,頚椎症,胸郭出口症候群
-heroImage: /image/shoulder-stiffness-symptom.webp
+heroImage: /image/イラスト/腰・神経/肩甲帯の筋肉.webp
 draft: false
 ---
 肩こりが続くと、「姿勢が悪いから仕方ない」と考えがちです。もちろん姿勢は関係しますが、肩こりは見た目の姿勢だけで決まるわけではありません。

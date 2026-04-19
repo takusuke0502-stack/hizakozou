@@ -7,7 +7,7 @@ category: 運動療法
 region: 柏市
 tags: 足底筋膜炎,かかとの痛み,足裏,足指,歩き方
 symptoms: 足底筋膜炎,変形性膝関節症,腰痛
-heroImage: /image/foot-symptom.jpg
+heroImage: /image/イラスト/足・手・その他/足底筋膜炎によるかかとの痛み.webp
 draft: false
 ---
 朝の一歩目でかかとが痛い、歩き始めに足裏が突っ張る。足底筋膜炎は足裏だけの問題に見えますが、足指、ふくらはぎ、膝、股関節の使い方も関係します。
