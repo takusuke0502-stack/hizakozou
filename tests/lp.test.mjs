@@ -45,3 +45,15 @@ test("LP links lumbar disc herniation to its own symptom page", () => {
   assert.match(html, /href="symptoms\/lumbar-disc-herniation\.html"[^>]*>腰椎椎間板ヘルニア/);
   assert.doesNotMatch(html, /href="symptoms\/spinal-stenosis\.html"[^>]*>腰椎椎間板ヘルニア/);
 });
+
+test("LP links scoliosis to its own symptom page with the x-ray image", () => {
+  assert.ok(
+    existsSync(new URL("../symptoms/scoliosis.html", import.meta.url)),
+    "scoliosis symptom page should exist"
+  );
+  assert.ok(
+    existsSync(new URL("../image/レントゲン/側弯症XP.webp", import.meta.url)),
+    "scoliosis x-ray image should be available as webp"
+  );
+  assert.match(html, /href="symptoms\/scoliosis\.html"[^>]*>側弯症/);
+});

@@ -73,6 +73,16 @@ const DEFAULT_RELATED_SYMPTOMS = {
     href: "/symptoms/lumbar-disc-herniation.html",
     description: "腰から脚にかけて痛みやしびれがある方へ。"
   },
+  "側弯症": {
+    label: "側弯症",
+    href: "/symptoms/scoliosis.html",
+    description: "背骨のカーブや姿勢の左右差が気になる方へ。"
+  },
+  "脊柱側弯症": {
+    label: "側弯症",
+    href: "/symptoms/scoliosis.html",
+    description: "背骨のカーブや姿勢の左右差が気になる方へ。"
+  },
   "変形性股関節症": {
     label: "変形性股関節症",
     href: "/symptoms/hip-osteoarthritis.html",

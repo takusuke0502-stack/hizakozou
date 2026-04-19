@@ -21,6 +21,7 @@ const symptomNavigationItems = [
   { href: "sciatica.html", label: "坐骨神経痛", description: "お尻から脚のしびれや痛みが続く方へ。" },
   { href: "spinal-stenosis.html", label: "脊柱管狭窄症", description: "歩くと脚がつらい、休むと楽になる症状がある方へ。" },
   { href: "lumbar-disc-herniation.html", label: "腰椎椎間板ヘルニア", description: "腰からお尻、脚への痛みやしびれが気になる方へ。" },
+  { href: "scoliosis.html", label: "側弯症", description: "背骨のカーブや姿勢の左右差、背中や腰の張りが気になる方へ。" },
   { href: "shoulder-stiffness.html", label: "肩こり", description: "首肩の重さや姿勢の崩れが気になる方へ。" },
   { href: "frozen-shoulder.html", label: "五十肩", description: "腕が上がらない、夜に肩が痛む方へ。" },
   { href: "tmj.html", label: "顎関節症", description: "あごの痛みや口の開けづらさ、首肩との関係が気になる方へ。" }
@@ -80,6 +81,12 @@ const symptomConfigs = {
     label: "腰椎椎間板ヘルニア",
     keywords: ["腰椎椎間板ヘルニア", "椎間板ヘルニア", "腰", "脚のしびれ", "坐骨神経痛"],
     categoryHints: ["numbness", "lower-back-pain", "exercise-therapy"]
+  },
+  "scoliosis.html": {
+    symptomKey: "scoliosis",
+    label: "側弯症",
+    keywords: ["側弯症", "脊柱側弯症", "背骨", "姿勢", "腰", "背中"],
+    categoryHints: ["lower-back-pain", "exercise-therapy", "neck-shoulder-hand"]
   },
   "hip-osteoarthritis.html": {
     symptomKey: "hip-osteoarthritis",
