@@ -199,7 +199,7 @@ if (isCliRun) {
   await buildBlog();
 }
 
-async function buildBlog() {
+export async function buildBlog() {
   const [rawData, indexTemplate, postTemplate] = await Promise.all([
     fs.readFile(dataPath, "utf8"),
     fs.readFile(path.join(templatesDir, "blog-index-template.html"), "utf8"),
@@ -1203,6 +1203,11 @@ function escapeHtml(value) {
 
 function renderInlineText(value) {
   let text = escapeHtml(value);
+
+  text = text.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^)\s]+|\/[^)\s]+|\.\.?\/[^)\s]+|#[^)\s]+)\)/g,
+    (_match, label, href) => `<a href="${href}">${label}</a>`
+  );
 
   const quotedPhrases = Array.from(text.matchAll(/「([^」]{2,24})」/g)).map((match) => match[1]);
   for (const phrase of quotedPhrases) {

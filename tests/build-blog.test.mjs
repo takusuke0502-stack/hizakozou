@@ -82,6 +82,19 @@ test("renderBody keeps mixed bullet groups scannable as lists", () => {
   );
 });
 
+test("renderBody converts safe markdown links into article links", () => {
+  const html = renderBody({
+    body: [
+      "詳しくは[変形性膝関節症の相談ページ](/symptoms/knee-osteoarthritis.html)も参考にしてください。"
+    ]
+  });
+
+  assert.equal(
+    html,
+    '<p>詳しくは<a href="/symptoms/knee-osteoarthritis.html">変形性膝関節症の相談ページ</a>も参考にしてください。</p>'
+  );
+});
+
 test("normalizeSymptomPageDesign replaces inline symptom navigation and footer chrome", () => {
   const html = `
     <main>

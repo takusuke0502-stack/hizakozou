@@ -180,7 +180,8 @@ async function main() {
     console.log(`Removed draft posts from data/blog-posts.json: ${deletedSlugs.join(", ")}`);
   }
 
-  await import("./build-blog.mjs");
+  const { buildBlog } = await import("./build-blog.mjs");
+  await buildBlog();
 }
 
 function parseArgs(argv) {
