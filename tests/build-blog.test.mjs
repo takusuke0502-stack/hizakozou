@@ -175,3 +175,9 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
   assert.match(html, /読んでいて自分も近いと感じたら/);
   assert.match(html, /symptom-card--article/);
 });
+
+test("blog CSS suppresses native TOC markers for custom numbers", () => {
+  const css = readFileSync(new URL("../blog/assets/blog.css", import.meta.url), "utf8");
+
+  assert.match(css, /\.article-toc li\s*{[^}]*display:\s*block;[^}]*list-style:\s*none;/s);
+});
