@@ -59,6 +59,8 @@ test("blog index puts recommended conversion posts before recent posts", () => {
 
   assert.match(html, /まず読む3本/);
   assert.match(html, /category-section--recommended/);
+  assert.match(html, /category-nav/);
+  assert.match(html, /blog-index-sequence/);
 
   const recommendedIndex = html.indexOf("まず読む3本");
   const recentIndex = html.indexOf("新着記事");
@@ -164,6 +166,10 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
   const html = buildPostContent({ ...site, name: "整体院ひざこぞう", subtitle: "柏市の整体院", phone: "04-7114-3274" }, post, []);
 
   assert.match(html, /article-takeaways/);
+  assert.match(html, /article-toc--inline/);
+  assert.match(html, /article-toc--side/);
+  assert.match(html, /href="#section-1"/);
+  assert.match(html, /id="section-1"/);
   assert.match(html, /この記事でわかること/);
   assert.match(html, /article-mid-cta/);
   assert.match(html, /読んでいて自分も近いと感じたら/);

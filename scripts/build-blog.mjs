@@ -796,9 +796,12 @@ export function buildIndexContent(site, posts, categoryMap) {
           <h2>症状やテーマから探せる読みもの一覧</h2>
           <p>膝痛を中心に、腰痛や坐骨神経痛、運動療法の考え方まで、必要な記事を一覧で探しやすい形にまとめています。</p>
         </div>
-        <div class="category-chip-list">${categoryChips}</div>
-        ${recommendedSection}
-        <section class="category-section category-section--list category-section--recent">
+        <nav class="category-chip-list category-nav" aria-label="ブログカテゴリ">
+          ${categoryChips}
+        </nav>
+        <div class="blog-index-sequence">
+          ${recommendedSection}
+          <section class="category-section category-section--list category-section--recent">
           <div class="category-section__header category-section__header--list">
             <div>
               <p class="eyebrow">Recent</p>
@@ -807,8 +810,9 @@ export function buildIndexContent(site, posts, categoryMap) {
             <p class="category-section__description">まずは最近追加した記事から確認したい方のために、新しい順でまとめています。</p>
           </div>
           <div class="article-list">${recentList}</div>
-        </section>
-        <div class="category-sections">${categorySections}</div>
+          </section>
+          <div class="category-sections">${categorySections}</div>
+        </div>
       </div>
     </section>
     <section class="cta-band">
@@ -828,13 +832,19 @@ export function buildIndexContent(site, posts, categoryMap) {
 }
 
 export function buildPostContent(site, post, relatedPosts) {
-  const renderedSections = post.sections.map((section) => renderSection(section));
+  const articleSections = post.sections.map((section, index) => ({
+    ...section,
+    id: `section-${index + 1}`
+  }));
+  const renderedSections = articleSections.map((section) => renderSection(section));
   const midCtaIndex = Math.min(2, renderedSections.length);
   const sectionsHtml = [
     ...renderedSections.slice(0, midCtaIndex),
     buildArticleMidCta(site, post),
     ...renderedSections.slice(midCtaIndex)
   ].join("");
+  const tocHtml = buildArticleToc(articleSections, "inline");
+  const sideTocHtml = buildArticleToc(articleSections, "side");
   const takeawaysHtml = buildArticleTakeaways(post);
   const faqHtml = post.faq.length ? `
     <section class="article-section faq-block faq-section">
@@ -918,12 +928,14 @@ export function buildPostContent(site, post, relatedPosts) {
     <section class="article-main">
       <div class="shell article-layout">
         <div class="article-content card-surface prose-surface">
+          ${tocHtml}
           ${takeawaysHtml}
           ${sectionsHtml}
           ${faqHtml}
           ${symptomsHtml}
         </div>
         <aside class="article-side">
+          ${sideTocHtml}
           <div class="side-card">
             <p class="side-card__eyebrow">相談先</p>
             <h2>${escapeHtml(site.name)}</h2>
@@ -975,6 +987,32 @@ export function buildPostContent(site, post, relatedPosts) {
   `;
 }
 
+function buildArticleToc(sections, variant = "inline") {
+  const items = sections
+    .filter((section) => section.heading && section.id)
+    .map((section, index) => `
+            <li>
+              <a href="#${escapeHtml(section.id)}">
+                <span class="article-toc__number">${String(index + 1).padStart(2, "0")}</span>
+                <span>${escapeHtml(section.heading)}</span>
+              </a>
+            </li>`)
+    .join("");
+
+  if (!items) return "";
+
+  const className = variant === "side" ? "article-toc article-toc--side" : "article-toc article-toc--inline";
+  const label = variant === "side" ? "記事の目次" : "この記事の目次";
+
+  return `<nav class="${className}" aria-label="${label}">
+            <p class="eyebrow">Contents</p>
+            <h2>${label}</h2>
+            <ol>
+${items}
+            </ol>
+          </nav>`;
+}
+
 function buildArticleTakeaways(post) {
   const headings = post.sections
     .map((section) => section.heading)
@@ -1008,7 +1046,9 @@ function buildArticleMidCta(site, post) {
 }
 
 function renderSection(section) {
-  const heading = section.heading ? `<h2>${escapeHtml(section.heading)}</h2>` : "";
+  const heading = section.heading
+    ? `<h2${section.id ? ` id="${escapeHtml(section.id)}"` : ""}>${escapeHtml(section.heading)}</h2>`
+    : "";
   const body = renderBody(section);
   const classNames = ["article-section", section.className].filter(Boolean).join(" ");
   const subsections = Array.isArray(section.subsections)
