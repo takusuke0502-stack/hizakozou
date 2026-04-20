@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 
 import { buildIndexContent, buildPostContent, normalizeSymptomPageDesign, renderBody } from "../scripts/build-blog.mjs";
 
@@ -93,6 +94,16 @@ test("renderBody converts safe markdown links into article links", () => {
     html,
     '<p>詳しくは<a href="/symptoms/knee-osteoarthritis.html">変形性膝関節症の相談ページ</a>も参考にしてください。</p>'
   );
+});
+
+test("blog article body links have visible link styling", () => {
+  const css = readFileSync(new URL("../blog/assets/blog.css", import.meta.url), "utf8");
+
+  assert.match(css, /\.article-section p a,/);
+  assert.match(css, /\.article-section li a/);
+  assert.match(css, /color: #2563eb;/);
+  assert.match(css, /text-decoration: underline;/);
+  assert.match(css, /text-underline-offset: 0\.2em;/);
 });
 
 test("normalizeSymptomPageDesign replaces inline symptom navigation and footer chrome", () => {
