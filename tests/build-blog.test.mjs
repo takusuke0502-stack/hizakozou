@@ -151,7 +151,6 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
     sections: [
       { heading: "膝の痛みで考えられる原因", body: ["膝だけでなく歩き方も確認します。"] },
       { heading: "自宅で気をつけたいこと", body: ["無理をしないことが大切です。"] },
-      { heading: "医療機関への受診をおすすめする場合", body: ["- 膝に強い熱感がある", "- 安静時にも痛みが強い"] },
       { heading: "整体院ひざこぞうで確認すること", body: ["体全体を見ます。"] }
     ],
     faq: [
@@ -182,7 +181,6 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
   assert.match(html, /読んでいて自分も近いと感じたら/);
   assert.match(html, /symptom-card--article/);
   assert.match(html, /article-meta__date/);
-  assert.match(html, /article-section caution-box/);
   assert.match(html, /faq-item__question/);
   assert.match(html, /faq-item__answer/);
   assert.match(html, /faq-section__intro/);
@@ -216,13 +214,4 @@ test("blog CSS styles FAQ as a static Q and A block", () => {
   assert.match(css, /\.faq-item__answer\s+\.faq-item__label\s*{[^}]*#8f79b9/s);
   assert.doesNotMatch(css, /\.faq-section__visual/);
   assert.doesNotMatch(css, /\.faq-item summary/);
-});
-
-test("blog CSS renders caution sections as red text emphasis instead of nested cards", () => {
-  const css = readFileSync(new URL("../blog/assets/blog.css", import.meta.url), "utf8");
-
-  assert.match(css, /\.caution-box\s*{[^}]*padding:\s*0;[^}]*background:\s*transparent;/s);
-  assert.match(css, /\.caution-box h2\s*{[^}]*background:\s*transparent;[^}]*color:\s*#c24141;/s);
-  assert.match(css, /\.caution-box \.check-list li\s*{[^}]*background:\s*transparent;[^}]*color:\s*#c24141;/s);
-  assert.match(css, /\.caution-box \.check-list li::before\s*{[^}]*content:\s*"・";/s);
 });

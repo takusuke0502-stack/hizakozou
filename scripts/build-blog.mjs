@@ -833,8 +833,7 @@ export function buildIndexContent(site, posts, categoryMap) {
 }
 
 export function buildPostContent(site, post, relatedPosts) {
-  const normalizedSections = enrichSections(Array.isArray(post.sections) ? post.sections : []);
-  const articleSections = normalizedSections.map((section, index) => ({
+  const articleSections = post.sections.map((section, index) => ({
     ...section,
     id: `section-${index + 1}`
   }));
@@ -1059,10 +1058,10 @@ function renderSection(section) {
     ? `<h2${section.id ? ` id="${escapeHtml(section.id)}"` : ""}>${escapeHtml(section.heading)}</h2>`
     : "";
   const body = renderBody(section);
-  const classNames = ["article-section", section.className, section.boxType].filter(Boolean).join(" ");
+  const classNames = ["article-section", section.className].filter(Boolean).join(" ");
   const subsections = Array.isArray(section.subsections)
     ? section.subsections.map((item) => `
-        <section class="${["article-subsection", item.className, item.boxType].filter(Boolean).join(" ")}">
+        <section class="article-subsection">
           ${item.heading ? `<h3>${escapeHtml(item.heading)}</h3>` : ""}
           ${renderBody(item)}
         </section>

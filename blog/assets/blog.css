@@ -1479,11 +1479,9 @@ li + li {
 }
 
 .caution-box {
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
+  background: var(--warm-soft);
+  border-color: rgba(224, 205, 185, 0.88);
+  border-left: 4px solid #c79b6d;
 }
 
 .point-box > :first-child,
@@ -1496,51 +1494,6 @@ li + li {
 .note-box > :last-child,
 .caution-box > :last-child {
   margin-bottom: 0;
-}
-
-.caution-box h2 {
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  color: #c24141;
-}
-
-.caution-box h3,
-.caution-box strong,
-.caution-box .article-emphasis {
-  color: #c24141;
-}
-
-.caution-box .check-list {
-  display: block;
-  margin: 0 0 1.2rem;
-  padding: 0;
-}
-
-.caution-box .check-list li {
-  padding: 0 0 0 1.35rem;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  color: #c24141;
-  font-weight: 700;
-  line-height: 1.9;
-}
-
-.caution-box .check-list li::before {
-  content: "・";
-  top: 0;
-  left: 0;
-  width: auto;
-  height: auto;
-  border: 0;
-  background: transparent;
-  color: #c24141;
-  font-size: 1rem;
-  transform: none;
 }
 
 .simple-table {
