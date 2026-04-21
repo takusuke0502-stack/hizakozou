@@ -1,8 +1,17 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import fs from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
 
-import { buildIndexContent, buildPostContent, normalizeSymptomPageDesign, renderBody } from "../scripts/build-blog.mjs";
+import {
+  buildIndexContent,
+  buildPostContent,
+  normalizeSymptomPageDesign,
+  renderBody,
+  replaceDirectoryAtomically
+} from "../scripts/build-blog.mjs";
 
 const site = {
   blogTitle: "膝痛や慢性痛の読みもの",
@@ -253,4 +262,41 @@ test("blog CSS styles FAQ as a static Q and A block", () => {
   assert.match(css, /\.faq-item__answer\s+\.faq-item__label\s*{[^}]*#8f79b9/s);
   assert.doesNotMatch(css, /\.faq-section__visual/);
   assert.doesNotMatch(css, /\.faq-item summary/);
+});
+
+test("replaceDirectoryAtomically keeps the current directory when new output generation fails", async () => {
+  const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "hizakozou-build-blog-"));
+  const targetDir = path.join(tempRoot, "posts");
+  const targetFile = path.join(targetDir, "existing", "index.html");
+
+  try {
+    await fs.mkdir(path.dirname(targetFile), { recursive: true });
+    await fs.writeFile(targetFile, "existing output", "utf8");
+
+    await assert.rejects(
+      replaceDirectoryAtomically(targetDir, async (stagingDir) => {
+        const nextFile = path.join(stagingDir, "new-post", "index.html");
+        await fs.mkdir(path.dirname(nextFile), { recursive: true });
+        await fs.writeFile(nextFile, "new output", "utf8");
+        throw new Error("simulated generation failure");
+      }),
+      /simulated generation failure/
+    );
+
+    assert.equal(await fs.readFile(targetFile, "utf8"), "existing output");
+    await assert.rejects(fs.access(path.join(targetDir, "new-post", "index.html")));
+  } finally {
+    await fs.rm(tempRoot, { recursive: true, force: true });
+  }
+});
+
+test("checked-in generated blog posts stay in sync with box-type rules", () => {
+  const kneeEffusionHtml = readFileSync(new URL("../blog/posts/knee-effusion-water-in-knee/index.html", import.meta.url), "utf8");
+  const hipWhileWalkingHtml = readFileSync(new URL("../blog/posts/hip-pain-while-walking/index.html", import.meta.url), "utf8");
+
+  assert.match(kneeEffusionHtml, /article-section point-box/);
+  assert.match(kneeEffusionHtml, /article-section caution-box/);
+  assert.match(kneeEffusionHtml, /article-section note-box/);
+  assert.match(hipWhileWalkingHtml, /article-section point-box/);
+  assert.match(hipWhileWalkingHtml, /article-section note-box/);
 });

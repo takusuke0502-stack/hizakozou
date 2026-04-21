@@ -214,13 +214,6 @@ export async function buildBlog() {
     .map((post) => normalizePost(post, blogData.site, categoryMap))
     .sort((a, b) => b.date.localeCompare(a.date));
 
-  await fs.mkdir(postsDir, { recursive: true });
-
-  await Promise.all((await fs.readdir(postsDir, { withFileTypes: true })).map(async (entry) => {
-    if (entry.name === ".gitkeep") return;
-    await fs.rm(path.join(postsDir, entry.name), { recursive: true, force: true });
-  }));
-
   const indexHtml = renderTemplate(indexTemplate, {
     SEO_HEAD: buildIndexSeo(blogData.site),
     CSS_PATH: "assets/blog.css",
@@ -232,24 +225,28 @@ export async function buildBlog() {
     PAGE_CONTENT: buildIndexContent(blogData.site, posts, categoryMap)
   });
 
-  await fs.writeFile(path.join(blogDir, "index.html"), cleanGeneratedText(indexHtml), "utf8");
+  await replaceDirectoryAtomically(postsDir, async (stagingDir) => {
+    await fs.writeFile(path.join(stagingDir, ".gitkeep"), "", "utf8");
 
-  for (const post of posts) {
-    const postDir = path.join(postsDir, post.slug);
-    await fs.mkdir(postDir, { recursive: true });
-    const relatedPosts = posts.filter((item) => item.slug !== post.slug && item.category.slug === post.category.slug).slice(0, 2);
-    const postHtml = renderTemplate(postTemplate, {
-      SEO_HEAD: buildPostSeo(blogData.site, post),
-      CSS_PATH: "../../assets/blog.css",
-      HOME_PATH: "../../../index.html",
-      BLOG_PATH: "../../",
-      CONTACT_PATH: "../../../index.html#contact",
-      SITE_NAME: blogData.site.name,
-      SITE_SUBTITLE: blogData.site.subtitle,
-      PAGE_CONTENT: buildPostContent(blogData.site, post, relatedPosts)
-    });
-    await fs.writeFile(path.join(postDir, "index.html"), cleanGeneratedText(postHtml), "utf8");
-  }
+    for (const post of posts) {
+      const postDir = path.join(stagingDir, post.slug);
+      await fs.mkdir(postDir, { recursive: true });
+      const relatedPosts = posts.filter((item) => item.slug !== post.slug && item.category.slug === post.category.slug).slice(0, 2);
+      const postHtml = renderTemplate(postTemplate, {
+        SEO_HEAD: buildPostSeo(blogData.site, post),
+        CSS_PATH: "../../assets/blog.css",
+        HOME_PATH: "../../../index.html",
+        BLOG_PATH: "../../",
+        CONTACT_PATH: "../../../index.html#contact",
+        SITE_NAME: blogData.site.name,
+        SITE_SUBTITLE: blogData.site.subtitle,
+        PAGE_CONTENT: buildPostContent(blogData.site, post, relatedPosts)
+      });
+      await fs.writeFile(path.join(postDir, "index.html"), cleanGeneratedText(postHtml), "utf8");
+    }
+  });
+
+  await fs.writeFile(path.join(blogDir, "index.html"), cleanGeneratedText(indexHtml), "utf8");
 
   await updateSymptomPages(blogData.site, posts);
 
@@ -258,6 +255,51 @@ export async function buildBlog() {
   await updateSitemap(blogData.site, posts);
 
   console.log(`Generated ${posts.length} static blog post(s), updated symptom related articles, and regenerated sitemap.xml.`);
+}
+
+export async function replaceDirectoryAtomically(targetDir, populateDirectory) {
+  const parentDir = path.dirname(targetDir);
+  const dirName = path.basename(targetDir);
+  const nonce = `${process.pid}-${Date.now()}-${Math.random().toString(16).slice(2, 10)}`;
+  const stagingDir = path.join(parentDir, `${dirName}.__staging__${nonce}`);
+  const backupDir = path.join(parentDir, `${dirName}.__backup__${nonce}`);
+  let backupCreated = false;
+
+  await fs.mkdir(parentDir, { recursive: true });
+
+  try {
+    await fs.mkdir(stagingDir, { recursive: true });
+    await populateDirectory(stagingDir);
+
+    try {
+      await fs.rename(targetDir, backupDir);
+      backupCreated = true;
+    } catch (error) {
+      if (error?.code !== "ENOENT") throw error;
+    }
+
+    try {
+      await fs.rename(stagingDir, targetDir);
+    } catch (error) {
+      if (backupCreated) {
+        try {
+          await fs.rename(backupDir, targetDir);
+          backupCreated = false;
+        } catch {
+          // Preserve the backup directory on disk if rollback fails.
+        }
+      }
+      throw error;
+    }
+
+    if (backupCreated) {
+      await fs.rm(backupDir, { recursive: true, force: true });
+      backupCreated = false;
+    }
+  } catch (error) {
+    await fs.rm(stagingDir, { recursive: true, force: true }).catch(() => {});
+    throw error;
+  }
 }
 
 async function updateSymptomPages(site, posts) {
