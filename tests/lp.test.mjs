@@ -15,7 +15,6 @@ test("LP hero keeps the first support band directly after the hero", () => {
   assert.match(html, /href="#knee-type-nav"/);
   assert.match(html, /href="https:\/\/lin\.ee\/X01F2mP"/);
 });
-
 test("LP places first-visit reassurance before pricing", () => {
   const firstVisitIndex = html.indexOf('id="first-visit-policy"');
   const priceIndex = html.indexOf('id="price"');
@@ -46,7 +45,7 @@ test("LP links lumbar disc herniation and scoliosis to their own symptom pages",
     "scoliosis symptom page should exist"
   );
   assert.match(html, /href="symptoms\/lumbar-disc-herniation\.html"/);
-  assert.doesNotMatch(html, /href="symptoms\/spinal-stenosis\.html"[^>]*>腰椎椎間板ヘルニア/);
+  assert.doesNotMatch(html, /href="symptoms\/spinal-stenosis\.html"[^>]*>閻ｰ讀取､朱俣譚ｿ繝倥Ν繝九い/);
   assert.match(html, /href="symptoms\/scoliosis\.html"/);
 });
 
@@ -78,21 +77,27 @@ test("LP adds the responsive three-step improvement section after the first-visi
     "mobile step 3 image should exist"
   );
 
-  assert.match(html, /id="three-step-care-title"/);
-  assert.match(html, /src="images\/hizakozou-3step-pc\.webp"[\s\S]*alt="ひざこぞうの改善は3ステップを説明する図解"/);
-  assert.match(html, /src="images\/hizakozou-3step-sp-1\.webp"[\s\S]*alt="ひざこぞうの改善ステップ1 整える"/);
-  assert.match(html, /src="images\/hizakozou-3step-sp-2\.webp"[\s\S]*alt="ひざこぞうの改善ステップ2 支える"/);
-  assert.match(html, /src="images\/hizakozou-3step-sp-3\.webp"[\s\S]*alt="ひざこぞうの改善ステップ3 動ける体へ"/);
-  assert.match(html, /<!-- 画像差し替え: PC用 3ステップ図解 -->/);
-  assert.match(html, /<!-- 画像差し替え: スマホ用 ステップ1 -->/);
+  assert.match(html, /aria-label="ひざこぞうの改善は3ステップ"/);
+  assert.match(html, /src="images\/hizakozou-3step-pc\.webp"[\s\S]*alt="縺ｲ縺悶％縺槭≧縺ｮ謾ｹ蝟・・3繧ｹ繝・ャ繝励ｒ隱ｬ譏弱☆繧句峙隗｣"/);
+  assert.match(html, /src="images\/hizakozou-3step-sp-1\.webp"[\s\S]*alt="縺ｲ縺悶％縺槭≧縺ｮ謾ｹ蝟・せ繝・ャ繝・ 謨ｴ縺医ｋ"/);
+  assert.match(html, /src="images\/hizakozou-3step-sp-2\.webp"[\s\S]*alt="縺ｲ縺悶％縺槭≧縺ｮ謾ｹ蝟・せ繝・ャ繝・ 謾ｯ縺医ｋ"/);
+  assert.match(html, /src="images\/hizakozou-3step-sp-3\.webp"[\s\S]*alt="縺ｲ縺悶％縺槭≧縺ｮ謾ｹ蝟・せ繝・ャ繝・ 蜍輔￠繧倶ｽ薙∈"/);
+  assert.match(html, /<!-- 逕ｻ蜒丞ｷｮ縺玲崛縺・ PC逕ｨ 3繧ｹ繝・ャ繝怜峙隗｣ -->/);
+  assert.match(html, /<!-- 逕ｻ蜒丞ｷｮ縺玲崛縺・ 繧ｹ繝槭・逕ｨ 繧ｹ繝・ャ繝・ -->/);
+  assert.match(html, /class="three-step-mobile-copy"/);
+  assert.match(html, /class="three-step-mobile-eyebrow"/);
+  assert.match(html, /class="three-step-mobile-title"/);
+  assert.match(html, /class="three-step-mobile-lead"/);
 });
 
 test("LP styles the three-step section for desktop and mobile image switching", () => {
   assert.match(css, /\.three-step-shell\s*{[^}]*max-width:\s*980px;/s);
   assert.match(css, /\.three-step-visual--desktop\s*{[^}]*display:\s*block;/s);
   assert.match(css, /\.three-step-visual--mobile\s*{[^}]*display:\s*none;/s);
+  assert.match(css, /\.three-step-mobile-copy\s*{[^}]*display:\s*none;/s);
   assert.match(css, /\.three-step-image-frame--desktop\s*{[^}]*aspect-ratio:\s*3 \/ 2;/s);
   assert.match(css, /\.three-step-image-frame--mobile\s*{[^}]*aspect-ratio:\s*2 \/ 3;/s);
   assert.match(css, /@media \(max-width:\s*768px\)\s*{[\s\S]*?\.three-step-visual--desktop\s*{[^}]*display:\s*none;/s);
   assert.match(css, /@media \(max-width:\s*768px\)\s*{[\s\S]*?\.three-step-visual--mobile\s*{[^}]*display:\s*block;/s);
+  assert.match(css, /@media \(max-width:\s*768px\)\s*{[\s\S]*?\.three-step-mobile-copy\s*{[^}]*display:\s*block;/s);
 });

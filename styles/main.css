@@ -78,8 +78,7 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
       cursor: pointer;
       touch-action: manipulation;
       -webkit-tap-highlight-color: rgba(37, 99, 235, 0.16);
-    }
-
+}
     #gallery,
     #blog-section,
     #access {
@@ -108,37 +107,42 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
       text-align: center;
     }
 
-    .three-step-eyebrow {
-      margin-bottom: 0.75rem;
-      color: #2f855a;
-      font-size: 0.8rem;
-      font-weight: 900;
-      letter-spacing: 0.18em;
-    }
-
-    .three-step-title {
-      margin-bottom: 1rem;
-      color: #0f172a;
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      line-height: 1.15;
-      font-weight: 900;
-    }
-
-    .three-step-lead {
-      max-width: 46rem;
-      margin: 0 auto 2rem;
-      color: #475569;
-      font-size: 1rem;
-      font-weight: 700;
-      line-height: 1.9;
-    }
-
     .three-step-visual--desktop {
       display: block;
     }
 
     .three-step-visual--mobile {
       display: none;
+    }
+
+    .three-step-mobile-copy {
+      display: none;
+      max-width: 40rem;
+      margin: 0 auto 1.5rem;
+      text-align: center;
+    }
+
+    .three-step-mobile-eyebrow {
+      color: #2f855a;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .three-step-mobile-title {
+      margin-top: 0.5rem;
+      color: #0f172a;
+      font-size: clamp(2rem, 7.5vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .three-step-mobile-lead {
+      margin-top: 0.9rem;
+      color: #334155;
+      font-size: 1rem;
+      line-height: 1.9;
     }
 
     .three-step-image-frame {
@@ -207,17 +211,30 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
         padding: 4rem 0;
       }
 
-      .three-step-lead {
-        margin-bottom: 1.5rem;
-        font-size: 0.95rem;
-      }
-
       .three-step-visual--desktop {
         display: none;
       }
 
       .three-step-visual--mobile {
         display: block;
+      }
+
+      .three-step-mobile-copy {
+        display: block;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .three-step-mobile-copy {
+        margin-bottom: 1.25rem;
+      }
+
+      .three-step-mobile-eyebrow {
+        font-size: 0.9rem;
+      }
+
+      .three-step-mobile-lead {
+        font-size: 0.95rem;
       }
     }
 
