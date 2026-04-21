@@ -1027,6 +1027,8 @@ li + li {
 
 .faq-section__intro {
   display: grid;
+  grid-template-columns: 1fr;
+  justify-items: start;
   gap: 8px;
   margin-bottom: 18px;
   padding: 2px 4px 0;
@@ -1034,6 +1036,11 @@ li + li {
 
 .faq-section__intro h2 {
   margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   color: var(--heading);
   font-size: clamp(1.42rem, 2.2vw, 1.8rem);
   line-height: 1.5;
