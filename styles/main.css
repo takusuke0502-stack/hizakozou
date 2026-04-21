@@ -96,6 +96,77 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
       margin-bottom: 1.25rem;
     }
 
+    .three-step-section {
+      padding: 5rem 0;
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .three-step-shell {
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .three-step-eyebrow {
+      margin-bottom: 0.75rem;
+      color: #2f855a;
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+    }
+
+    .three-step-title {
+      margin-bottom: 1rem;
+      color: #0f172a;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
+    .three-step-lead {
+      max-width: 46rem;
+      margin: 0 auto 2rem;
+      color: #475569;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.9;
+    }
+
+    .three-step-visual--desktop {
+      display: block;
+    }
+
+    .three-step-visual--mobile {
+      display: none;
+    }
+
+    .three-step-image-frame {
+      overflow: hidden;
+      border: 1px solid #d7e8d7;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fcf8 100%);
+      box-shadow: 0 22px 44px -34px rgba(47, 133, 90, 0.28);
+    }
+
+    .three-step-image-frame--desktop {
+      aspect-ratio: 3 / 2;
+    }
+
+    .three-step-image-frame--mobile {
+      aspect-ratio: 2 / 3;
+    }
+
+    .three-step-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .three-step-mobile-card + .three-step-mobile-card {
+      margin-top: 1rem;
+    }
+
     .director-photo-frame {
       position: relative;
       width: 12rem;
@@ -128,6 +199,25 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
 
       .director-badge {
         font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .three-step-section {
+        padding: 4rem 0;
+      }
+
+      .three-step-lead {
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+      }
+
+      .three-step-visual--desktop {
+        display: none;
+      }
+
+      .three-step-visual--mobile {
+        display: block;
       }
     }
 

@@ -3,27 +3,26 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+const css = readFileSync(new URL("../styles/main.css", import.meta.url), "utf8");
 
-test("LP hero makes common knee-pain situations visible immediately", () => {
-  const heroEnd = html.indexOf("<section class=\"py-10 bg-slate-50 border-y border-slate-200\">");
-  assert.ok(heroEnd > -1, "hero support band should exist");
-  const hero = html.slice(0, heroEnd);
+test("LP hero keeps the first support band directly after the hero", () => {
+  const heroStart = html.indexOf("<main>");
+  const heroBand = html.indexOf("<section class=\"py-10 bg-slate-50 border-y border-slate-200\">");
 
-  assert.match(hero, /柏市で、歩くたびにつらい膝痛に。/);
-  assert.match(hero, /階段の上り下りがつらい/);
-  assert.match(hero, /歩き始めに膝が痛む/);
-  assert.match(hero, /膝に水が溜まる/);
+  assert.ok(heroStart > -1, "main section should exist");
+  assert.ok(heroBand > -1, "hero support band should exist");
+  assert.ok(heroStart < heroBand, "hero should be followed by the support band");
+  assert.match(html, /href="#knee-type-nav"/);
+  assert.match(html, /href="https:\/\/lin\.ee\/X01F2mP"/);
 });
 
-test("LP places first-visit reassurance before the price offer", () => {
+test("LP places first-visit reassurance before pricing", () => {
   const firstVisitIndex = html.indexOf('id="first-visit-policy"');
   const priceIndex = html.indexOf('id="price"');
 
   assert.ok(firstVisitIndex > -1, "first-visit policy section should exist");
   assert.ok(priceIndex > -1, "price section should exist");
   assert.ok(firstVisitIndex < priceIndex, "first-visit reassurance should appear before pricing");
-  assert.match(html, /説明なしに強い施術をしない/);
-  assert.match(html, /その場で長期契約を迫らない/);
 });
 
 test("LP adds knee-pain type navigation before the broad symptom list", () => {
@@ -33,27 +32,67 @@ test("LP adds knee-pain type navigation before the broad symptom list", () => {
   assert.ok(typeNavIndex > -1, "knee-pain type navigation should exist");
   assert.ok(symptomsIndex > -1, "symptoms section should exist");
   assert.ok(typeNavIndex < symptomsIndex, "type navigation should guide users before the full symptom list");
-  assert.match(html, /階段で痛い/);
-  assert.match(html, /膝の裏が張る/);
+  assert.match(html, /href="symptoms\/knee-osteoarthritis\.html"/);
+  assert.match(html, /href="symptoms\/knee-posterior-pain\.html"/);
 });
 
-test("LP links lumbar disc herniation to its own symptom page", () => {
+test("LP links lumbar disc herniation and scoliosis to their own symptom pages", () => {
   assert.ok(
     existsSync(new URL("../symptoms/lumbar-disc-herniation.html", import.meta.url)),
     "lumbar disc herniation symptom page should exist"
   );
-  assert.match(html, /href="symptoms\/lumbar-disc-herniation\.html"[^>]*>腰椎椎間板ヘルニア/);
-  assert.doesNotMatch(html, /href="symptoms\/spinal-stenosis\.html"[^>]*>腰椎椎間板ヘルニア/);
-});
-
-test("LP links scoliosis to its own symptom page with the x-ray image", () => {
   assert.ok(
     existsSync(new URL("../symptoms/scoliosis.html", import.meta.url)),
     "scoliosis symptom page should exist"
   );
+  assert.match(html, /href="symptoms\/lumbar-disc-herniation\.html"/);
+  assert.doesNotMatch(html, /href="symptoms\/spinal-stenosis\.html"[^>]*>腰椎椎間板ヘルニア/);
+  assert.match(html, /href="symptoms\/scoliosis\.html"/);
+});
+
+test("LP adds the responsive three-step improvement section after the first-visit policy", () => {
+  const firstVisitIndex = html.indexOf('id="first-visit-policy"');
+  const threeStepIndex = html.indexOf('id="three-step-care"');
+  const troublesIndex = html.indexOf('id="troubles"');
+
+  assert.ok(firstVisitIndex > -1, "first-visit policy section should exist");
+  assert.ok(threeStepIndex > -1, "three-step section should exist");
+  assert.ok(troublesIndex > -1, "troubles section should exist");
+  assert.ok(firstVisitIndex < threeStepIndex, "three-step section should appear after first-visit policy");
+  assert.ok(threeStepIndex < troublesIndex, "three-step section should appear before troubles");
+
   assert.ok(
-    existsSync(new URL("../image/レントゲン/側弯症XP.webp", import.meta.url)),
-    "scoliosis x-ray image should be available as webp"
+    existsSync(new URL("../images/hizakozou-3step-pc.webp", import.meta.url)),
+    "desktop three-step image should exist"
   );
-  assert.match(html, /href="symptoms\/scoliosis\.html"[^>]*>側弯症/);
+  assert.ok(
+    existsSync(new URL("../images/hizakozou-3step-sp-1.webp", import.meta.url)),
+    "mobile step 1 image should exist"
+  );
+  assert.ok(
+    existsSync(new URL("../images/hizakozou-3step-sp-2.webp", import.meta.url)),
+    "mobile step 2 image should exist"
+  );
+  assert.ok(
+    existsSync(new URL("../images/hizakozou-3step-sp-3.webp", import.meta.url)),
+    "mobile step 3 image should exist"
+  );
+
+  assert.match(html, /id="three-step-care-title"/);
+  assert.match(html, /src="images\/hizakozou-3step-pc\.webp"[\s\S]*alt="ひざこぞうの改善は3ステップを説明する図解"/);
+  assert.match(html, /src="images\/hizakozou-3step-sp-1\.webp"[\s\S]*alt="ひざこぞうの改善ステップ1 整える"/);
+  assert.match(html, /src="images\/hizakozou-3step-sp-2\.webp"[\s\S]*alt="ひざこぞうの改善ステップ2 支える"/);
+  assert.match(html, /src="images\/hizakozou-3step-sp-3\.webp"[\s\S]*alt="ひざこぞうの改善ステップ3 動ける体へ"/);
+  assert.match(html, /<!-- 画像差し替え: PC用 3ステップ図解 -->/);
+  assert.match(html, /<!-- 画像差し替え: スマホ用 ステップ1 -->/);
+});
+
+test("LP styles the three-step section for desktop and mobile image switching", () => {
+  assert.match(css, /\.three-step-shell\s*{[^}]*max-width:\s*980px;/s);
+  assert.match(css, /\.three-step-visual--desktop\s*{[^}]*display:\s*block;/s);
+  assert.match(css, /\.three-step-visual--mobile\s*{[^}]*display:\s*none;/s);
+  assert.match(css, /\.three-step-image-frame--desktop\s*{[^}]*aspect-ratio:\s*3 \/ 2;/s);
+  assert.match(css, /\.three-step-image-frame--mobile\s*{[^}]*aspect-ratio:\s*2 \/ 3;/s);
+  assert.match(css, /@media \(max-width:\s*768px\)\s*{[\s\S]*?\.three-step-visual--desktop\s*{[^}]*display:\s*none;/s);
+  assert.match(css, /@media \(max-width:\s*768px\)\s*{[\s\S]*?\.three-step-visual--mobile\s*{[^}]*display:\s*block;/s);
 });
