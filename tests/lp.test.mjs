@@ -45,7 +45,7 @@ test("LP links lumbar disc herniation and scoliosis to their own symptom pages",
     "scoliosis symptom page should exist"
   );
   assert.match(html, /href="symptoms\/lumbar-disc-herniation\.html"/);
-  assert.doesNotMatch(html, /href="symptoms\/spinal-stenosis\.html"[^>]*>閻ｰ讀取､朱俣譚ｿ繝倥Ν繝九い/);
+  assert.doesNotMatch(html, /href="symptoms\/spinal-stenosis\.html"[^>]*>髢ｻ・ｰ隶蜿厄ｽ､譛ｱ菫｣隴夲ｽｿ郢晏･ﾎ晉ｹ昜ｹ昴＞/);
   assert.match(html, /href="symptoms\/scoliosis\.html"/);
 });
 
@@ -78,12 +78,12 @@ test("LP adds the responsive three-step improvement section after the first-visi
   );
 
   assert.match(html, /aria-label="ひざこぞうの改善は3ステップ"/);
-  assert.match(html, /src="images\/hizakozou-3step-pc\.webp"[\s\S]*alt="縺ｲ縺悶％縺槭≧縺ｮ謾ｹ蝟・・3繧ｹ繝・ャ繝励ｒ隱ｬ譏弱☆繧句峙隗｣"/);
-  assert.match(html, /src="images\/hizakozou-3step-sp-1\.webp"[\s\S]*alt="縺ｲ縺悶％縺槭≧縺ｮ謾ｹ蝟・せ繝・ャ繝・ 謨ｴ縺医ｋ"/);
-  assert.match(html, /src="images\/hizakozou-3step-sp-2\.webp"[\s\S]*alt="縺ｲ縺悶％縺槭≧縺ｮ謾ｹ蝟・せ繝・ャ繝・ 謾ｯ縺医ｋ"/);
-  assert.match(html, /src="images\/hizakozou-3step-sp-3\.webp"[\s\S]*alt="縺ｲ縺悶％縺槭≧縺ｮ謾ｹ蝟・せ繝・ャ繝・ 蜍輔￠繧倶ｽ薙∈"/);
-  assert.match(html, /<!-- 逕ｻ蜒丞ｷｮ縺玲崛縺・ PC逕ｨ 3繧ｹ繝・ャ繝怜峙隗｣ -->/);
-  assert.match(html, /<!-- 逕ｻ蜒丞ｷｮ縺玲崛縺・ 繧ｹ繝槭・逕ｨ 繧ｹ繝・ャ繝・ -->/);
+  assert.match(html, /src="images\/hizakozou-3step-pc\.webp"[\s\S]*alt="ひざこぞうの改善は3ステップを説明する図解"/);
+  assert.match(html, /src="images\/hizakozou-3step-sp-1\.webp"[\s\S]*alt="ひざこぞうの改善ステップ1 整える"/);
+  assert.match(html, /src="images\/hizakozou-3step-sp-2\.webp"[\s\S]*alt="ひざこぞうの改善ステップ2 支える"/);
+  assert.match(html, /src="images\/hizakozou-3step-sp-3\.webp"[\s\S]*alt="ひざこぞうの改善ステップ3 動ける体へ"/);
+  assert.match(html, /<!-- 画像差し替え: PC用 3ステップ図解 -->/);
+  assert.match(html, /<!-- 画像差し替え: スマホ用 ステップ1 -->/);
   assert.match(html, /class="three-step-mobile-copy"/);
   assert.match(html, /class="three-step-mobile-eyebrow"/);
   assert.match(html, /class="three-step-mobile-title"/);
