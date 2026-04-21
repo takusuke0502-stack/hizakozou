@@ -189,6 +189,45 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
   assert.doesNotMatch(html, /<summary>/);
 });
 
+test("buildPostContent applies shared box-type rules to sections and subsections", () => {
+  const post = {
+    title: "記事の分類ルール確認",
+    description: "box type 判定の回帰確認です。",
+    date: "2026-04-21",
+    lead: "見出しごとの装飾判定を確認します。",
+    slug: "box-type-check",
+    eyecatch: "/image/knee-symptom.jpg",
+    tags: ["膝痛"],
+    category: categories.get("knee-pain"),
+    sections: [
+      { heading: "戻らない体をつくる3ステップ", body: ["手順を整理します。"] },
+      { heading: "医療機関への受診を検討していただきたい目安", body: ["先に確認したい項目です。"] },
+      {
+        heading: "整体院ひざこぞうでの確認のポイント",
+        body: ["全身のつながりを見ます。"],
+        subsections: [
+          { heading: "注意して見ておきたいこと", body: ["無理をしないことが大切です。"] }
+        ]
+      },
+      { heading: "まとめ", body: ["最後に要点を整理します。"] }
+    ],
+    faq: [],
+    relatedSymptoms: [],
+    cta: {
+      href: "https://lin.ee/X01F2mP",
+      label: "LINEで相談する",
+      note: "来院前に相談できます。"
+    }
+  };
+
+  const html = buildPostContent({ ...site, name: "整体院ひざこぞう", subtitle: "柏市の整体院", phone: "04-7114-3274" }, post, []);
+
+  assert.match(html, /article-section point-box/);
+  assert.match(html, /article-section caution-box/);
+  assert.match(html, /article-subsection caution-box/);
+  assert.match(html, /article-section note-box/);
+});
+
 test("blog CSS suppresses native TOC markers for custom numbers", () => {
   const css = readFileSync(new URL("../blog/assets/blog.css", import.meta.url), "utf8");
 

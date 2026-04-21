@@ -604,67 +604,66 @@ function normalizePost(post, site, categoryMap) {
 function enrichSections(sections) {
   return sections.map((section) => ({
     ...section,
-    boxType: section.boxType || inferEnhancedBoxType(section.heading, section.listStyle),
+    boxType: section.boxType || inferBoxType(section.heading, section.listStyle, "section"),
     subsections: Array.isArray(section.subsections)
       ? section.subsections.map((item) => ({
           ...item,
-          boxType: item.boxType || inferEnhancedSubsectionBoxType(item.heading)
+          boxType: item.boxType || inferBoxType(item.heading, undefined, "subsection")
         }))
       : section.subsections
   }));
 }
 
-function inferBoxType(heading, listStyle) {
+const BOX_TYPE_RULES = {
+  section: {
+    base: {
+      point: /3つの柱|3ステップ|改善ステップ|ポイント|できること/,
+      caution: /受診|目安|注意|我慢/,
+      note: /まとめ|おわりに|補足/,
+      pointOnCheckList: true
+    },
+    enhanced: {
+      point: /3つの柱|3ステップ|改善ステップ|戻らない体/,
+      caution: /注意|受診|検討していただきたい目安|こんな時は我慢せず/,
+      note: /まとめ|補足|希望|おわりに/,
+      pointOnCheckList: true
+    }
+  },
+  subsection: {
+    base: {
+      point: /^STEP|^\d+\./,
+      caution: /注意|受診|我慢/
+    },
+    enhanced: {
+      point: /^STEP|^\d+\./,
+      caution: /注意|受診|検討|目安/,
+      note: /まとめ|補足/
+    }
+  }
+};
+
+function inferBoxType(heading, listStyle, level) {
   const value = String(heading || "");
-  if (listStyle === "check" || /3つの柱|3ステップ|改善ステップ|ポイント|できること/.test(value)) {
+  const rules = BOX_TYPE_RULES[level];
+  return inferBoxTypeFromRuleSet(value, listStyle, rules?.enhanced)
+    || inferBoxTypeFromRuleSet(value, listStyle, rules?.base);
+}
+
+function inferBoxTypeFromRuleSet(value, listStyle, ruleSet) {
+  if (!ruleSet) return "";
+  if (ruleSet.pointOnCheckList && listStyle === "check") {
     return "point-box";
   }
-  if (/受診|目安|注意|我慢/.test(value)) {
+  if (ruleSet.point?.test(value)) {
+    return "point-box";
+  }
+  if (ruleSet.caution?.test(value)) {
     return "caution-box";
   }
-  if (/まとめ|おわりに|補足/.test(value)) {
+  if (ruleSet.note?.test(value)) {
     return "note-box";
   }
   return "";
-}
-
-function inferSubsectionBoxType(heading) {
-  const value = String(heading || "");
-  if (/^STEP|^\d+\./.test(value)) {
-    return "point-box";
-  }
-  if (/注意|受診|我慢/.test(value)) {
-    return "caution-box";
-  }
-  return "";
-}
-
-function inferEnhancedBoxType(heading, listStyle) {
-  const value = String(heading || "");
-  if (listStyle === "check" || /3つの柱|3ステップ|改善ステップ|戻らない体/.test(value)) {
-    return "point-box";
-  }
-  if (/注意|受診|検討していただきたい目安|こんな時は我慢せず/.test(value)) {
-    return "caution-box";
-  }
-  if (/まとめ|補足|希望|おわりに/.test(value)) {
-    return "note-box";
-  }
-  return inferBoxType(heading, listStyle);
-}
-
-function inferEnhancedSubsectionBoxType(heading) {
-  const value = String(heading || "");
-  if (/^STEP|^\d+\./.test(value)) {
-    return "point-box";
-  }
-  if (/注意|受診|検討|目安/.test(value)) {
-    return "caution-box";
-  }
-  if (/まとめ|補足/.test(value)) {
-    return "note-box";
-  }
-  return inferSubsectionBoxType(heading);
 }
 
 function buildIndexSeo(site) {
@@ -833,7 +832,7 @@ export function buildIndexContent(site, posts, categoryMap) {
 }
 
 export function buildPostContent(site, post, relatedPosts) {
-  const articleSections = post.sections.map((section, index) => ({
+  const articleSections = enrichSections(Array.isArray(post.sections) ? post.sections : []).map((section, index) => ({
     ...section,
     id: `section-${index + 1}`
   }));
@@ -1058,10 +1057,10 @@ function renderSection(section) {
     ? `<h2${section.id ? ` id="${escapeHtml(section.id)}"` : ""}>${escapeHtml(section.heading)}</h2>`
     : "";
   const body = renderBody(section);
-  const classNames = ["article-section", section.className].filter(Boolean).join(" ");
+  const classNames = ["article-section", section.className, section.boxType].filter(Boolean).join(" ");
   const subsections = Array.isArray(section.subsections)
     ? section.subsections.map((item) => `
-        <section class="article-subsection">
+        <section class="${["article-subsection", item.className, item.boxType].filter(Boolean).join(" ")}">
           ${item.heading ? `<h3>${escapeHtml(item.heading)}</h3>` : ""}
           ${renderBody(item)}
         </section>
