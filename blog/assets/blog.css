@@ -1026,40 +1026,65 @@ li + li {
 }
 
 .faq-item {
-  border-radius: 8px;
-  background: #fbfcfd;
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
-.faq-item summary {
-  cursor: pointer;
+.faq-item__question,
+.faq-item__answer {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 16px 18px;
+  border: 1px solid rgba(199, 214, 220, 0.92);
+  border-radius: 8px;
+}
+
+.faq-item__question {
+  background: linear-gradient(135deg, rgba(237, 246, 244, 0.82), rgba(247, 251, 252, 0.96));
+  border-left: 4px solid rgba(94, 143, 144, 0.9);
+}
+
+.faq-item__answer {
+  background: #fff;
+}
+
+.faq-item__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  min-height: 32px;
+  border-radius: 999px;
+  color: var(--primary-strong);
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(199, 214, 220, 0.96);
+}
+
+.faq-item__answer .faq-item__label {
+  background: rgba(237, 246, 244, 0.92);
+}
+
+.faq-item__question p,
+.faq-item__answer p {
+  margin: 0;
+  line-height: 1.9;
+}
+
+.faq-item__question p {
   color: var(--heading);
   font-weight: 700;
-  list-style: none;
-  line-height: 1.8;
-  position: relative;
-  padding-right: 28px;
 }
 
-.faq-item summary::after {
-  content: "+";
-  position: absolute;
-  right: 0;
-  top: 0;
-  color: var(--accent);
-  font-size: 1.2rem;
-  line-height: 1.5;
-}
-
-.faq-item summary::-webkit-details-marker {
-  display: none;
-}
-
-.faq-item[open] summary::after {
-  content: "-";
-}
-
-.faq-item p {
-  margin: 12px 0 0;
+.faq-item__answer p {
   color: var(--muted);
 }
 
@@ -1508,11 +1533,16 @@ li + li {
   .point-box,
   .note-box,
   .caution-box,
-  .faq-item,
   .category-card,
   .symptom-card,
   .related-post-card {
     padding: 16px;
+  }
+
+  .faq-item__question,
+  .faq-item__answer {
+    padding: 14px 16px;
+    gap: 12px;
   }
 
   .category-chip-list {

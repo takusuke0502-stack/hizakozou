@@ -854,10 +854,16 @@ export function buildPostContent(site, post, relatedPosts) {
       </div>
       <div class="faq-list">
         ${post.faq.map((item) => `
-          <details class="faq-item">
-            <summary>${escapeHtml(item.question)}</summary>
-            <p>${escapeHtml(item.answer)}</p>
-          </details>
+          <div class="faq-item">
+            <div class="faq-item__question" aria-label="質問">
+              <span class="faq-item__label">Q</span>
+              <p>${escapeHtml(item.question)}</p>
+            </div>
+            <div class="faq-item__answer" aria-label="回答">
+              <span class="faq-item__label">A</span>
+              <p>${escapeHtml(item.answer)}</p>
+            </div>
+          </div>
         `).join("")}
       </div>
     </section>

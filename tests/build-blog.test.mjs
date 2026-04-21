@@ -152,7 +152,12 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
       { heading: "自宅で気をつけたいこと", body: ["無理をしないことが大切です。"] },
       { heading: "整体院ひざこぞうで確認すること", body: ["体全体を見ます。"] }
     ],
-    faq: [],
+    faq: [
+      {
+        question: "階段を使っても大丈夫ですか？",
+        answer: "痛みが強くならない範囲で様子を見ながら判断します。"
+      }
+    ],
     relatedSymptoms: [
       { label: "変形性膝関節症", href: "/symptoms/knee-osteoarthritis.html", description: "階段で膝が痛い方へ。" }
     ],
@@ -174,6 +179,10 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
   assert.match(html, /article-mid-cta/);
   assert.match(html, /読んでいて自分も近いと感じたら/);
   assert.match(html, /symptom-card--article/);
+  assert.match(html, /faq-item__question/);
+  assert.match(html, /faq-item__answer/);
+  assert.doesNotMatch(html, /<details class="faq-item">/);
+  assert.doesNotMatch(html, /<summary>/);
 });
 
 test("blog CSS suppresses native TOC markers for custom numbers", () => {
@@ -189,4 +198,12 @@ test("blog CSS places the desktop side rail on the left and resets on mobile", (
   assert.match(css, /\.article-content\s*{[^}]*grid-column:\s*2;[^}]*min-width:\s*0;/s);
   assert.match(css, /\.article-side\s*{[^}]*grid-column:\s*1;[^}]*grid-row:\s*1;/s);
   assert.match(css, /@media \(max-width:\s*1024px\)\s*{[\s\S]*?\.article-content,\s*\.article-side\s*{[^}]*grid-column:\s*auto;[^}]*grid-row:\s*auto;/s);
+});
+
+test("blog CSS styles FAQ as a static Q and A block", () => {
+  const css = readFileSync(new URL("../blog/assets/blog.css", import.meta.url), "utf8");
+
+  assert.match(css, /\.faq-item__question,\s*\.faq-item__answer\s*{[^}]*grid-template-columns:\s*32px minmax\(0,\s*1fr\);/s);
+  assert.match(css, /\.faq-item__label\s*{[^}]*border-radius:\s*999px;[^}]*font-weight:\s*800;/s);
+  assert.doesNotMatch(css, /\.faq-item summary/);
 });
