@@ -700,13 +700,19 @@ li + li {
 }
 
 .article-layout {
-  grid-template-columns: minmax(0, 760px) 300px;
+  grid-template-columns: 300px minmax(0, 760px);
   align-items: start;
   justify-content: center;
 }
 
 .article-content {
+  grid-column: 2;
   min-width: 0;
+}
+
+.article-side {
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .card-surface.article-content {
@@ -1379,6 +1385,12 @@ li + li {
 
   .article-layout {
     gap: 24px;
+  }
+
+  .article-content,
+  .article-side {
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .article-toc--inline {

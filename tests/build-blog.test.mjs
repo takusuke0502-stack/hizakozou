@@ -181,3 +181,12 @@ test("blog CSS suppresses native TOC markers for custom numbers", () => {
 
   assert.match(css, /\.article-toc li\s*{[^}]*display:\s*block;[^}]*list-style:\s*none;/s);
 });
+
+test("blog CSS places the desktop side rail on the left and resets on mobile", () => {
+  const css = readFileSync(new URL("../blog/assets/blog.css", import.meta.url), "utf8");
+
+  assert.match(css, /\.article-layout\s*{[^}]*grid-template-columns:\s*300px minmax\(0,\s*760px\);/s);
+  assert.match(css, /\.article-content\s*{[^}]*grid-column:\s*2;[^}]*min-width:\s*0;/s);
+  assert.match(css, /\.article-side\s*{[^}]*grid-column:\s*1;[^}]*grid-row:\s*1;/s);
+  assert.match(css, /@media \(max-width:\s*1024px\)\s*{[\s\S]*?\.article-content,\s*\.article-side\s*{[^}]*grid-column:\s*auto;[^}]*grid-row:\s*auto;/s);
+});
