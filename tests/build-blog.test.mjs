@@ -203,7 +203,9 @@ test("blog CSS places the desktop side rail on the left and resets on mobile", (
 test("blog CSS styles FAQ as a static Q and A block", () => {
   const css = readFileSync(new URL("../blog/assets/blog.css", import.meta.url), "utf8");
 
-  assert.match(css, /\.faq-item__question,\s*\.faq-item__answer\s*{[^}]*grid-template-columns:\s*32px minmax\(0,\s*1fr\);/s);
-  assert.match(css, /\.faq-item__label\s*{[^}]*border-radius:\s*999px;[^}]*font-weight:\s*800;/s);
+  assert.match(css, /\.faq-list\s*{[^}]*border-radius:\s*8px;[^}]*background:\s*#fff;/s);
+  assert.match(css, /\.faq-item\s*\+\s*\.faq-item\s*{[^}]*border-top:\s*1px dashed/s);
+  assert.match(css, /\.faq-item__question\s+\.faq-item__label\s*{[^}]*#f2c94c/s);
+  assert.match(css, /\.faq-item__answer\s+\.faq-item__label\s*{[^}]*#8f79b9/s);
   assert.doesNotMatch(css, /\.faq-item summary/);
 });

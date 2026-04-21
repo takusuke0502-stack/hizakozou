@@ -1019,19 +1019,32 @@ li + li {
 .faq-section,
 .faq-block {
   margin-top: 56px;
+  padding: 26px 22px 22px;
+  border: 1px solid rgba(216, 228, 232, 0.9);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(247, 245, 241, 0.88), rgba(255, 255, 255, 0.96));
 }
 
 .faq-list {
-  gap: 14px;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid rgba(216, 228, 232, 0.94);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(36, 55, 70, 0.04);
 }
 
 .faq-item {
   display: grid;
-  gap: 10px;
-  padding: 0;
+  gap: 12px;
+  padding: 22px 20px;
   border: 0;
   background: transparent;
   box-shadow: none;
+}
+
+.faq-item + .faq-item {
+  border-top: 1px dashed rgba(216, 228, 232, 0.92);
 }
 
 .faq-item__question,
@@ -1040,18 +1053,6 @@ li + li {
   grid-template-columns: 32px minmax(0, 1fr);
   gap: 14px;
   align-items: start;
-  padding: 16px 18px;
-  border: 1px solid rgba(199, 214, 220, 0.92);
-  border-radius: 8px;
-}
-
-.faq-item__question {
-  background: linear-gradient(135deg, rgba(237, 246, 244, 0.82), rgba(247, 251, 252, 0.96));
-  border-left: 4px solid rgba(94, 143, 144, 0.9);
-}
-
-.faq-item__answer {
-  background: #fff;
 }
 
 .faq-item__label {
@@ -1061,16 +1062,20 @@ li + li {
   width: 32px;
   min-height: 32px;
   border-radius: 999px;
-  color: var(--primary-strong);
+  color: #fff;
   font-size: 0.88rem;
   font-weight: 800;
   line-height: 1;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(199, 214, 220, 0.96);
+  border: 0;
+  box-shadow: 0 8px 16px rgba(36, 55, 70, 0.12);
+}
+
+.faq-item__question .faq-item__label {
+  background: linear-gradient(135deg, #f2c94c, #e7ab12);
 }
 
 .faq-item__answer .faq-item__label {
-  background: rgba(237, 246, 244, 0.92);
+  background: linear-gradient(135deg, #8f79b9, #69558f);
 }
 
 .faq-item__question p,
@@ -1541,8 +1546,16 @@ li + li {
 
   .faq-item__question,
   .faq-item__answer {
-    padding: 14px 16px;
     gap: 12px;
+  }
+
+  .faq-item {
+    padding: 18px 16px;
+  }
+
+  .faq-section,
+  .faq-block {
+    padding: 20px 16px 16px;
   }
 
   .category-chip-list {
