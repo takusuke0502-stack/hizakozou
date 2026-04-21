@@ -171,6 +171,57 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
       margin-top: 1rem;
     }
 
+    .initial-visit-guide {
+      padding: 5.5rem 0;
+      background: #fff;
+    }
+
+    .initial-visit-guide__inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .initial-visit-guide__copy {
+      max-width: 44rem;
+      margin: 0 auto 2rem;
+    }
+
+    .initial-visit-guide__eyebrow {
+      margin-bottom: 0.75rem;
+      color: #2563eb;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .initial-visit-guide__title {
+      margin-bottom: 1rem;
+    }
+
+    .initial-visit-guide__description {
+      color: #475569;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.9;
+    }
+
+    .initial-visit-guide__figure {
+      max-width: 64rem;
+      margin: 0 auto;
+    }
+
+    .initial-visit-guide__image {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 2;
+      border-radius: 18px;
+      border: 1px solid #e2e8f0;
+      background: #fff;
+    }
+
     .director-photo-frame {
       position: relative;
       width: 12rem;
@@ -211,6 +262,25 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
         padding: 4rem 0;
       }
 
+      .initial-visit-guide {
+        padding: 4.5rem 0;
+      }
+
+      .initial-visit-guide__copy {
+        max-width: 36rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .initial-visit-guide__eyebrow {
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+      }
+
+      .initial-visit-guide__description {
+        font-size: 0.95rem;
+        line-height: 1.8;
+      }
+
       .three-step-visual--desktop {
         display: none;
       }
@@ -225,6 +295,22 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
     }
 
     @media (max-width: 640px) {
+      .initial-visit-guide {
+        padding: 4rem 0;
+      }
+
+      .initial-visit-guide__copy {
+        margin-bottom: 1.25rem;
+      }
+
+      .initial-visit-guide__figure {
+        max-width: none;
+      }
+
+      .initial-visit-guide__image {
+        border-radius: 14px;
+      }
+
       .three-step-mobile-copy {
         margin-bottom: 1.25rem;
       }
