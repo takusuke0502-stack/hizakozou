@@ -731,6 +731,7 @@ export function buildIndexContent(site, posts, categoryMap) {
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
             <span class="pill">${escapeHtml(post.category.name)}</span>
+            <time class="article-list-item__date" datetime="${escapeHtml(post.updatedDate || post.date)}">${escapeHtml(formatJapaneseDate(post.updatedDate || post.date))}</time>
           </div>
           <h3 class="article-list-item__title">${escapeHtml(post.title)}</h3>
           <p class="article-list-item__excerpt">${escapeHtml(trimText(post.description, 90))}</p>
@@ -923,6 +924,7 @@ export function buildPostContent(site, post, relatedPosts) {
           <div class="article-card__body article-card__body--post">
             <div class="article-meta">
               <span class="pill">${escapeHtml(post.category.name)}</span>
+              <time class="article-meta__date" datetime="${escapeHtml(post.updatedDate || post.date)}">${escapeHtml(formatJapaneseDate(post.updatedDate || post.date))}</time>
             </div>
             <h1>${escapeHtml(post.title)}</h1>
             <p class="article-lead">${escapeHtml(post.lead || post.description)}</p>

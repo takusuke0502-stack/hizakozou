@@ -61,6 +61,7 @@ test("blog index puts recommended conversion posts before recent posts", () => {
   assert.match(html, /category-section--recommended/);
   assert.match(html, /category-nav/);
   assert.match(html, /blog-index-sequence/);
+  assert.match(html, /article-list-item__date/);
 
   const recommendedIndex = html.indexOf("まず読む3本");
   const recentIndex = html.indexOf("新着記事");
@@ -179,6 +180,7 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
   assert.match(html, /article-mid-cta/);
   assert.match(html, /読んでいて自分も近いと感じたら/);
   assert.match(html, /symptom-card--article/);
+  assert.match(html, /article-meta__date/);
   assert.match(html, /faq-item__question/);
   assert.match(html, /faq-item__answer/);
   assert.match(html, /faq-section__intro/);
