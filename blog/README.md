@@ -1,24 +1,25 @@
-# Static Blog Workflow
+# Blog Output Notes
 
-`data/blog-posts.json` に記事を追加して、`npm run build:blog` を実行すると以下が再生成されます。
+This directory contains generated blog output. Treat it as build output, not as the authoring source.
+
+## Generated Here
 
 - `blog/index.html`
 - `blog/posts/{slug}/index.html`
+
+Related generated files also live at the repo root or in sibling folders:
+
 - `blog.html`
 - `blog-detail.html`
-- `symptoms/*.html` の関連記事セクション
+- `data/blog-posts.json`
+- generated related-article blocks in `symptoms/*.html`
 
-## 記事追加の流れ
+## Authoring Flow
 
-1. `data/blog-posts.json` の `posts` に1件追加する
-2. `slug` は重複しない英数字ベースにする
-3. `title` `description` `date` `category` `sections` を入れる
-4. 関連づけたい症状ページがある場合は `relatedSymptoms` に症状ページURLを入れる
-5. 必要なら `faq` `cta` を追加する
-6. `npm run build:blog` を実行して生成物を更新する
+Use [AGENTS.md](/C:/Users/takus/Downloads/hizakozou-main/AGENTS.md) for the full workflow. The short version is:
 
-## セクションの書き方
+1. Edit `content/source/*.md`
+2. Run `npm run generate:blog` or `npm run generate:blog:source -- --source content/source/YYYY-MM-slug.md`
+3. Review the generated diff in this directory and related outputs
 
-- `body` に文章配列を入れると段落として表示
-- `listStyle: "check"` を付けるとチェックリスト表示
-- `subsections` を使うと `h3` 構造で整理可能
+Do not hand-edit files in `blog/` unless you are changing the generator or shared blog styling itself.

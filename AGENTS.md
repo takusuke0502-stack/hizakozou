@@ -50,7 +50,7 @@ replaceSlug: old-url-slug
 - Prefer editing `content/source/*.md` only for article content.
 - After changing source files, always run the generator before finishing.
 - If a new symptom label is introduced and the generated symptom link falls back to `/index.html#symptoms`, update `scripts/generate-blog.mjs` with a proper mapping.
-- Keep `AGENTS.md` and `CLAUDE.md` aligned when workflow rules change.
+- Keep `AGENTS.md` as the detailed source of truth. `CLAUDE.md` and `blog/README.md` should stay as short pointers back here.
 
 ## Publishing Notes
 
