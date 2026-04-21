@@ -182,7 +182,7 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
   assert.match(html, /faq-item__question/);
   assert.match(html, /faq-item__answer/);
   assert.match(html, /faq-section__intro/);
-  assert.match(html, /clinic-director-new\.webp/);
+  assert.doesNotMatch(html, /clinic-director-new\.webp/);
   assert.doesNotMatch(html, /<details class="faq-item">/);
   assert.doesNotMatch(html, /<summary>/);
 });
@@ -205,10 +205,11 @@ test("blog CSS places the desktop side rail on the left and resets on mobile", (
 test("blog CSS styles FAQ as a static Q and A block", () => {
   const css = readFileSync(new URL("../blog/assets/blog.css", import.meta.url), "utf8");
 
-  assert.match(css, /\.faq-section__intro\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s*220px;/s);
+  assert.match(css, /\.faq-section__intro\s*{[^}]*display:\s*grid;[^}]*gap:\s*8px;/s);
   assert.match(css, /\.faq-list\s*{[^}]*border-radius:\s*8px;[^}]*background:\s*#fff;/s);
   assert.match(css, /\.faq-item\s*\+\s*\.faq-item\s*{[^}]*border-top:\s*1px dashed/s);
   assert.match(css, /\.faq-item__question\s+\.faq-item__label\s*{[^}]*#f2c94c/s);
   assert.match(css, /\.faq-item__answer\s+\.faq-item__label\s*{[^}]*#8f79b9/s);
+  assert.doesNotMatch(css, /\.faq-section__visual/);
   assert.doesNotMatch(css, /\.faq-item summary/);
 });
