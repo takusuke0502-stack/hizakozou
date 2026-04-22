@@ -235,6 +235,10 @@ function setupSmoothScroll() {
 async function hydrateBlogPreview() {
   const container = document.getElementById('blog-preview-container');
   if (!container) return;
+  if (container.children.length) {
+    refreshIcons(container);
+    return;
+  }
 
   try {
     const response = await fetch('data/blog-posts.json');
