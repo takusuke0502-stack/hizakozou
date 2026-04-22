@@ -1,8 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+const repoRoot = fileURLToPath(new URL("..", import.meta.url));
 
 function getJsonLdBlocks(type) {
   const matches = [...html.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/g)];
@@ -22,9 +25,32 @@ function getSectionSlice(startMarker, endMarker) {
   return html.slice(start, end);
 }
 
+function getLocalImageReferences() {
+  const refs = new Set();
+
+  for (const match of html.matchAll(/\b(?:src|href)=["'](?!https?:\/\/|data:|\/)([^"'?#>]+\.(?:svg|png|jpe?g|webp))["']/gi)) {
+    refs.add(match[1]);
+  }
+
+  for (const match of html.matchAll(/\bsrcset=["']([^"']+)["']/gi)) {
+    const candidates = match[1]
+      .split(",")
+      .map((entry) => entry.trim().split(/\s+/)[0])
+      .filter((entry) => entry && !entry.startsWith("http") && !entry.startsWith("data:") && !entry.startsWith("/"));
+
+    for (const candidate of candidates) {
+      if (/\.(svg|png|jpe?g|webp)$/i.test(candidate)) {
+        refs.add(candidate);
+      }
+    }
+  }
+
+  return [...refs].sort();
+}
+
 test("LP follows the new section order for the knee-pain explanation flow", () => {
   const markers = [
-    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative">',
+    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed">',
     'id="troubles"',
     'id="first-visit-policy"',
     'id="seo-guide"',
@@ -50,6 +76,35 @@ test("LP follows the new section order for the knee-pain explanation flow", () =
       positions[index - 1] < positions[index],
       `${markers[index - 1]} should appear before ${markers[index]}`
     );
+  }
+});
+
+test("LP local image assets resolve to existing files", () => {
+  const localRefs = getLocalImageReferences();
+
+  assert.ok(localRefs.length > 0, "should find local image references in the LP");
+
+  for (const ref of localRefs) {
+    const absolutePath = path.join(repoRoot, ref.replace(/\//g, path.sep));
+
+    assert.equal(existsSync(absolutePath), true, `missing local image asset: ${ref}`);
+  }
+});
+
+test("LP blog preview uses the compact B-plan structure with repo thumbnails", () => {
+  const blogSection = getSectionSlice('id="blog-section"', 'id="access"');
+  const cardMatches = [...blogSection.matchAll(/class="blog-b-card group"/g)];
+  const thumbSrcMatches = [...blogSection.matchAll(/<img src="([^"]+)" alt="[^"]*" loading="lazy" decoding="async" width="\d+" height="\d+">/g)];
+
+  assert.equal(cardMatches.length, 3, "blog preview should render exactly three compact cards");
+  assert.match(blogSection, /class="blog-b-button"[\s\S]*記事一覧を見る/);
+  assert.match(blogSection, /class="blog-b-side"/);
+  assert.match(blogSection, /class="blog-b-date"/);
+  assert.match(blogSection, /class="blog-b-arrow"/);
+
+  for (const [, src] of thumbSrcMatches) {
+    assert.match(src, /^image\/[^"]+\.(?:svg|png|jpe?g|webp)$/i, "blog card thumbnails should use stable repo images");
+    assert.doesNotMatch(src, /^data:/i, "blog card thumbnails should not use inline data URIs");
   }
 });
 

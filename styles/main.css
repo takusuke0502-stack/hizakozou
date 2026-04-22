@@ -41,7 +41,8 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
     .hero-layout { display: grid; gap: 2rem; align-items: center; }
     .hero-title { font-size: 2.25rem; line-height: 1.15; }
     .hero-cta-grid { display: grid; gap: 0.75rem; }
-    .hero-photo { height: 260px; }
+    .hero-photo-frame { display: block; width: 100%; aspect-ratio: 1536 / 1024; }
+    .hero-photo { display: block; width: 100%; height: auto; }
     .price-cta-grid { display: grid; gap: 0.75rem; max-width: 42rem; margin: 0 auto; }
     .faq-list details { box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04); }
     .faq-list summary { gap: 0.75rem; }
@@ -50,8 +51,10 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
     }
     @media (min-width: 768px) {
       .hero-title { font-size: 3.25rem; }
-      .hero-photo { height: 360px; }
       .price-cta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 768px) {
+      .hero-photo-frame { aspect-ratio: 862 / 1825; }
     }
     @media (min-width: 1024px) {
       .hero-layout { grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr); gap: 3rem; }
