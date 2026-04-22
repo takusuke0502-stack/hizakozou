@@ -1,103 +1,130 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
-const css = readFileSync(new URL("../styles/main.css", import.meta.url), "utf8");
 
-test("LP hero keeps the first support band directly after the hero", () => {
-  const heroStart = html.indexOf("<main>");
-  const heroBand = html.indexOf("<section class=\"py-10 bg-slate-50 border-y border-slate-200\">");
+function getJsonLdBlocks(type) {
+  const matches = [...html.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/g)];
 
-  assert.ok(heroStart > -1, "main section should exist");
-  assert.ok(heroBand > -1, "hero support band should exist");
-  assert.ok(heroStart < heroBand, "hero should be followed by the support band");
-  assert.match(html, /href="#knee-type-nav"/);
-  assert.match(html, /href="https:\/\/lin\.ee\/X01F2mP"/);
+  return matches
+    .map((match) => JSON.parse(match[1]))
+    .filter((block) => block["@type"] === type);
+}
+
+function getSectionSlice(startMarker, endMarker) {
+  const start = html.indexOf(startMarker);
+  const end = endMarker ? html.indexOf(endMarker) : html.length;
+
+  assert.ok(start > -1, `missing start marker: ${startMarker}`);
+  assert.ok(end > start, `missing end marker after ${startMarker}`);
+
+  return html.slice(start, end);
+}
+
+test("LP follows the new section order for the knee-pain explanation flow", () => {
+  const markers = [
+    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative">',
+    'id="troubles"',
+    'id="first-visit-policy"',
+    'id="seo-guide"',
+    'id="approach"',
+    'id="flow"',
+    'id="profile"',
+    'id="voice"',
+    'id="knee-type-nav"',
+    'id="symptoms"',
+    'id="price"',
+    'id="faq"',
+    'id="blog-section"',
+    'id="access"'
+  ];
+
+  const positions = markers.map((marker) => html.indexOf(marker));
+  positions.forEach((position, index) => {
+    assert.ok(position > -1, `marker should exist: ${markers[index]}`);
+  });
+
+  for (let index = 1; index < positions.length; index += 1) {
+    assert.ok(
+      positions[index - 1] < positions[index],
+      `${markers[index - 1]} should appear before ${markers[index]}`
+    );
+  }
 });
-test("LP places first-visit reassurance before pricing", () => {
-  const firstVisitIndex = html.indexOf('id="first-visit-policy"');
-  const priceIndex = html.indexOf('id="price"');
 
-  assert.ok(firstVisitIndex > -1, "first-visit policy section should exist");
-  assert.ok(priceIndex > -1, "price section should exist");
-  assert.ok(firstVisitIndex < priceIndex, "first-visit reassurance should appear before pricing");
+test("LP keeps only one first-visit policy section and removes the duplicate article block", () => {
+  const firstVisitHeadingCount = html.match(/初回で行うこと \/ 行わないこと/g)?.length ?? 0;
+
+  assert.equal(firstVisitHeadingCount, 1, "first-visit reassurance should appear only once");
+  assert.equal(html.includes('class="initial-visit-guide"'), false, "duplicate first-visit image section should be removed");
+  assert.equal(html.includes("来院前に確認されやすいこと"), false, "mid-page article detour should be removed");
 });
 
-test("LP adds knee-pain type navigation before the broad symptom list", () => {
+test("LP keeps the knee-pain specialty axis and unifies the improvement story without a duplicate three-step section", () => {
+  assert.match(html, /柏市で、歩くたびにつらい膝痛に。/);
+  assert.match(html, /膝だけでなく、歩き方・股関節・腰まで確認します。/);
+  assert.match(html, /<h2 class="section-title">なぜ膝の痛みが長引くのか？<\/h2>/);
+  assert.equal(html.includes('id="three-step-care"'), false, "standalone three-step section should be removed");
+  assert.equal(
+    html.includes("当院が提供する「3つの柱」の正しい順序"),
+    false,
+    "duplicate three-pillar ordering block should be removed"
+  );
+  assert.match(html, /まず痛みを落ち着かせる/);
+  assert.match(html, /膝を守る筋肉の使い方を身につける/);
+  assert.match(html, /「動いても大丈夫」という感覚を取り戻す/);
+});
+
+test("LP keeps knee-type navigation ahead of the broader symptom directory", () => {
   const typeNavIndex = html.indexOf('id="knee-type-nav"');
   const symptomsIndex = html.indexOf('id="symptoms"');
 
   assert.ok(typeNavIndex > -1, "knee-pain type navigation should exist");
   assert.ok(symptomsIndex > -1, "symptoms section should exist");
-  assert.ok(typeNavIndex < symptomsIndex, "type navigation should guide users before the full symptom list");
-  assert.match(html, /href="symptoms\/knee-osteoarthritis\.html"/);
+  assert.ok(typeNavIndex < symptomsIndex, "type navigation should appear before the broader symptom list");
+  assert.match(html, /href="blog\/posts\/knee-pain-stairs-guide\/"/);
+  assert.match(html, /href="blog\/posts\/walking-start-knee-pain-cause\/"/);
+  assert.match(html, /href="symptoms\/knee-effusion\.html"/);
   assert.match(html, /href="symptoms\/knee-posterior-pain\.html"/);
 });
 
-test("LP links lumbar disc herniation and scoliosis to their own symptom pages", () => {
-  assert.ok(
-    existsSync(new URL("../symptoms/lumbar-disc-herniation.html", import.meta.url)),
-    "lumbar disc herniation symptom page should exist"
-  );
-  assert.ok(
-    existsSync(new URL("../symptoms/scoliosis.html", import.meta.url)),
-    "scoliosis symptom page should exist"
-  );
-  assert.match(html, /href="symptoms\/lumbar-disc-herniation\.html"/);
-  assert.doesNotMatch(html, /href="symptoms\/spinal-stenosis\.html"[^>]*>髢ｻ・ｰ隶蜿厄ｽ､譛ｱ菫｣隴夲ｽｿ郢晏･ﾎ晉ｹ昜ｹ昴＞/);
-  assert.match(html, /href="symptoms\/scoliosis\.html"/);
+test("LP splits CTA roles between mid-page consultation and final reservation", () => {
+  const priceSection = getSectionSlice('id="price"', 'id="faq"');
+  const accessSection = getSectionSlice('id="access"', "<footer");
+
+  assert.match(priceSection, /LINEで相談する/);
+  assert.doesNotMatch(priceSection, /LINEで予約する/);
+  assert.match(accessSection, /LINEで予約する/);
+  assert.match(accessSection, /電話で確認する/);
 });
 
-test("LP adds the responsive three-step improvement section after the first-visit policy", () => {
-  const firstVisitIndex = html.indexOf('id="first-visit-policy"');
-  const threeStepIndex = html.indexOf('id="three-step-care"');
-  const troublesIndex = html.indexOf('id="troubles"');
+test("LP FAQ keeps practical questions and schema stays aligned with the rendered section", () => {
+  const expectedQuestions = [
+    "健康保険は使えますか？",
+    "施術は痛いですか？ボキボキ鳴らしますか？",
+    "どのような服装で行けばいいですか？",
+    "何回くらい通えばよくなりますか？",
+    "整形外科に通いながらでも相談できますか？",
+    "駐車場はありますか？",
+    "予約のキャンセル・変更はできますか？"
+  ];
 
-  assert.ok(firstVisitIndex > -1, "first-visit policy section should exist");
-  assert.ok(threeStepIndex > -1, "three-step section should exist");
-  assert.ok(troublesIndex > -1, "troubles section should exist");
-  assert.ok(firstVisitIndex < threeStepIndex, "three-step section should appear after first-visit policy");
-  assert.ok(threeStepIndex < troublesIndex, "three-step section should appear before troubles");
-
-  assert.ok(
-    existsSync(new URL("../images/hizakozou-3step-pc.webp", import.meta.url)),
-    "desktop three-step image should exist"
-  );
-  assert.ok(
-    existsSync(new URL("../images/hizakozou-3step-sp-1.webp", import.meta.url)),
-    "mobile step 1 image should exist"
-  );
-  assert.ok(
-    existsSync(new URL("../images/hizakozou-3step-sp-2.webp", import.meta.url)),
-    "mobile step 2 image should exist"
-  );
-  assert.ok(
-    existsSync(new URL("../images/hizakozou-3step-sp-3.webp", import.meta.url)),
-    "mobile step 3 image should exist"
+  const renderedQuestions = [...html.matchAll(/<span class="text-blue-600 font-black text-xl" aria-hidden="true">Q\.<\/span>([^<]+)<\/div>/g)].map(
+    (match) => match[1].trim()
   );
 
-  assert.match(html, /aria-label="ひざこぞうの改善は3ステップ"/);
-  assert.match(html, /src="images\/hizakozou-3step-pc\.webp"[\s\S]*alt="ひざこぞうの改善は3ステップを説明する図解"/);
-  assert.match(html, /src="images\/hizakozou-3step-sp-1\.webp"[\s\S]*alt="ひざこぞうの改善ステップ1 整える"/);
-  assert.match(html, /src="images\/hizakozou-3step-sp-2\.webp"[\s\S]*alt="ひざこぞうの改善ステップ2 支える"/);
-  assert.match(html, /src="images\/hizakozou-3step-sp-3\.webp"[\s\S]*alt="ひざこぞうの改善ステップ3 動ける体へ"/);
-  assert.match(html, /<!-- 画像差し替え: PC用 3ステップ図解 -->/);
-  assert.match(html, /<!-- 画像差し替え: スマホ用 ステップ1 -->/);
-  assert.match(html, /class="three-step-mobile-copy"/);
-  assert.match(html, /class="three-step-mobile-eyebrow"/);
-  assert.match(html, /class="three-step-mobile-title"/);
-  assert.match(html, /class="three-step-mobile-lead"/);
-});
+  assert.deepEqual(renderedQuestions, expectedQuestions, "rendered FAQ should contain only the practical questions in order");
 
-test("LP styles the three-step section for desktop and mobile image switching", () => {
-  assert.match(css, /\.three-step-shell\s*{[^}]*max-width:\s*980px;/s);
-  assert.match(css, /\.three-step-visual--desktop\s*{[^}]*display:\s*block;/s);
-  assert.match(css, /\.three-step-visual--mobile\s*{[^}]*display:\s*none;/s);
-  assert.match(css, /\.three-step-mobile-copy\s*{[^}]*display:\s*none;/s);
-  assert.match(css, /\.three-step-image-frame--desktop\s*{[^}]*aspect-ratio:\s*3 \/ 2;/s);
-  assert.match(css, /\.three-step-image-frame--mobile\s*{[^}]*aspect-ratio:\s*2 \/ 3;/s);
-  assert.match(css, /@media \(max-width:\s*768px\)\s*{[\s\S]*?\.three-step-visual--desktop\s*{[^}]*display:\s*none;/s);
-  assert.match(css, /@media \(max-width:\s*768px\)\s*{[\s\S]*?\.three-step-visual--mobile\s*{[^}]*display:\s*block;/s);
-  assert.match(css, /@media \(max-width:\s*768px\)\s*{[\s\S]*?\.three-step-mobile-copy\s*{[^}]*display:\s*block;/s);
+  const faqSchema = getJsonLdBlocks("FAQPage")[0];
+
+  assert.ok(faqSchema, "FAQ schema should exist");
+  assert.deepEqual(
+    faqSchema.mainEntity.map((entry) => entry.name),
+    expectedQuestions,
+    "FAQ schema should stay aligned with the rendered FAQ questions"
+  );
+  assert.equal(html.includes("初めてで緊張しているのですが大丈夫ですか？"), false, "reassurance-only FAQ should be removed");
+  assert.equal(html.includes("膝以外の症状もみてもらえますか？"), false, "scope explanation should move out of FAQ");
+  assert.equal(html.includes("運動が苦手でも大丈夫ですか？"), false, "exercise reassurance should not repeat in FAQ");
 });
