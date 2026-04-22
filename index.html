@@ -295,38 +295,21 @@
 
 
   <style>
-    @media (max-width: 768px) {
-      #blog-preview-container a > div {
-        grid-template-columns: 88px minmax(0,1fr) auto;
-        gap: 0.875rem;
-      }
-      #blog-preview-container h3 {
-        font-size: 1.125rem;
-        line-height: 1.45;
-      }
-      #blog-preview-container p {
-        font-size: 0.95rem;
-        line-height: 1.7;
-      }
-    }
-  </style>
-
-  <style>
     /* B案: 横長リスト3件を強制 */
     #blog-section.blog-b-compact {
       padding-top: 64px;
-      padding-bottom: 72px;
+      padding-bottom: 60px;
     }
 
     #blog-section.blog-b-compact .blog-b-wrap {
-      max-width: 960px;
+      max-width: 1048px;
       margin: 0 auto;
     }
 
     #blog-section.blog-b-compact #blog-preview-container {
       display: flex !important;
       flex-direction: column !important;
-      gap: 14px !important;
+      gap: 16px !important;
     }
 
     #blog-section.blog-b-compact .blog-b-card {
@@ -334,18 +317,26 @@
       grid-template-columns: 96px minmax(0, 1fr) auto !important;
       align-items: center !important;
       gap: 14px !important;
-      padding: 14px 16px !important;
-      border-radius: 20px !important;
-      border: 1px solid rgb(226 232 240 / 1) !important;
+      min-height: 134px !important;
+      padding: 18px 16px !important;
+      border-radius: 22px !important;
+      border: 1px solid #dbe4f0 !important;
       background: #fff !important;
-      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06) !important;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07) !important;
       text-decoration: none !important;
       overflow: hidden !important;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
+    }
+
+    #blog-section.blog-b-compact .blog-b-card[data-featured="true"] {
+      border-color: #9bc0ff !important;
+      box-shadow: 0 12px 28px rgba(59, 130, 246, 0.11) !important;
     }
 
     #blog-section.blog-b-compact .blog-b-card:hover {
-      border-color: rgb(147 197 253 / 1) !important;
-      box-shadow: 0 10px 28px rgba(37, 99, 235, 0.10) !important;
+      border-color: #9bc0ff !important;
+      box-shadow: 0 12px 28px rgba(59, 130, 246, 0.12) !important;
+      transform: translateY(-1px) !important;
     }
 
     #blog-section.blog-b-compact .blog-b-thumb {
@@ -369,24 +360,25 @@
       display: flex !important;
       align-items: center !important;
       gap: 10px !important;
-      margin-bottom: 6px !important;
+      margin-bottom: 4px !important;
       font-size: 12px !important;
       line-height: 1.3 !important;
       font-weight: 700 !important;
-      color: #64748b !important;
+      color: #5b7fcb !important;
       flex-wrap: wrap !important;
     }
 
     #blog-section.blog-b-compact .blog-b-cat {
-      color: #2563eb !important;
+      color: #3b6eea !important;
       font-weight: 800 !important;
+      letter-spacing: 0.01em !important;
     }
 
     #blog-section.blog-b-compact .blog-b-title {
       margin: 0 0 6px !important;
-      color: #0f172a !important;
-      font-size: 21px !important;
-      line-height: 1.35 !important;
+      color: #0f2a56 !important;
+      font-size: 20px !important;
+      line-height: 1.3 !important;
       font-weight: 900 !important;
       display: -webkit-box !important;
       -webkit-line-clamp: 2 !important;
@@ -396,12 +388,12 @@
 
     #blog-section.blog-b-compact .blog-b-desc {
       margin: 0 !important;
-      color: #475569 !important;
-      font-size: 15px !important;
-      line-height: 1.6 !important;
+      color: #274164 !important;
+      font-size: 14px !important;
+      line-height: 1.55 !important;
       font-weight: 700 !important;
       display: -webkit-box !important;
-      -webkit-line-clamp: 2 !important;
+      -webkit-line-clamp: 1 !important;
       -webkit-box-orient: vertical !important;
       overflow: hidden !important;
     }
@@ -410,44 +402,56 @@
       display: flex !important;
       align-items: center !important;
       justify-content: flex-end !important;
-      gap: 12px !important;
-      min-width: 98px !important;
+      align-self: center !important;
+      gap: 10px !important;
+      min-width: 138px !important;
       white-space: nowrap !important;
-      padding-left: 10px !important;
+      padding-left: 12px !important;
     }
 
     #blog-section.blog-b-compact .blog-b-date {
-      font-size: 14px !important;
+      font-size: 16px !important;
       line-height: 1.3 !important;
       font-weight: 800 !important;
-      color: #64748b !important;
+      color: #5a78a5 !important;
+      letter-spacing: 0.08em !important;
     }
 
     #blog-section.blog-b-compact .blog-b-arrow {
-      font-size: 24px !important;
+      font-size: 26px !important;
       line-height: 1 !important;
-      color: #2563eb !important;
+      color: #3b6eea !important;
       font-weight: 700 !important;
     }
 
     #blog-section.blog-b-compact .blog-b-button-wrap {
-      text-align: center !important;
-      margin-top: 24px !important;
+      display: flex !important;
+      justify-content: center !important;
+      margin-top: 26px !important;
     }
 
     #blog-section.blog-b-compact .blog-b-button {
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
-      gap: 8px !important;
-      padding: 14px 28px !important;
-      border-radius: 18px !important;
-      border: 1px solid #bfdbfe !important;
-      background: #dbeafe !important;
-      color: #1d4ed8 !important;
+      gap: 10px !important;
+      min-width: 216px !important;
+      padding: 16px 28px !important;
+      border-radius: 20px !important;
+      border: 1px solid #b7cff8 !important;
+      background: linear-gradient(180deg, #dcebff 0%, #d3e6ff 100%) !important;
+      color: #2f63de !important;
       font-weight: 900 !important;
       text-decoration: none !important;
-      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.08) !important;
+      box-shadow: 0 10px 22px rgba(59, 130, 246, 0.12) !important;
+    }
+
+    #blog-section.blog-b-compact .blog-b-button-icon {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 22px !important;
+      height: 22px !important;
     }
 
     @media (max-width: 767px) {
@@ -463,7 +467,8 @@
       #blog-section.blog-b-compact .blog-b-card {
         grid-template-columns: 76px minmax(0, 1fr) !important;
         gap: 12px !important;
-        padding: 12px 13px !important;
+        min-height: auto !important;
+        padding: 13px 13px !important;
         border-radius: 18px !important;
       }
 
@@ -479,8 +484,8 @@
       }
 
       #blog-section.blog-b-compact .blog-b-title {
-        font-size: 17px !important;
-        margin-bottom: 5px !important;
+        font-size: 16px !important;
+        margin-bottom: 4px !important;
       }
 
       #blog-section.blog-b-compact .blog-b-desc {
@@ -493,9 +498,9 @@
         grid-column: 2 / 3 !important;
         justify-content: flex-start !important;
         min-width: 0 !important;
-        gap: 8px !important;
+        gap: 7px !important;
         padding-left: 0 !important;
-        margin-top: 6px !important;
+        margin-top: 7px !important;
       }
 
       #blog-section.blog-b-compact .blog-b-date {
@@ -508,6 +513,11 @@
 
       #blog-section.blog-b-compact .blog-b-button-wrap {
         margin-top: 20px !important;
+      }
+
+      #blog-section.blog-b-compact .blog-b-button {
+        min-width: 200px !important;
+        padding: 15px 24px !important;
       }
     }
   </style>
@@ -1448,7 +1458,7 @@
         </div>
 
         <div id="blog-preview-container" aria-live="polite" aria-label="ブログ記事一覧">
-          <a href="blog/posts/msm-method-guide/" class="blog-b-card group">
+          <a href="blog/posts/msm-method-guide/" class="blog-b-card group" data-featured="true">
             <span class="blog-b-thumb" aria-hidden="true">
               <img src="image/treatment-scene.webp" alt="MSM method article thumbnail" loading="lazy" decoding="async" width="1200" height="900">
             </span>
@@ -1458,10 +1468,10 @@
               </div>
               <h3 class="blog-b-title">MSMメソッドとは？</h3>
               <p class="blog-b-desc">サボリ筋とガンバリ筋という考え方から、当院の施術と運動療法の流れを紹介します。</p>
-              <div class="blog-b-side">
-                <span class="blog-b-date">2026.3.31</span>
-                <span aria-hidden="true" class="blog-b-arrow">›</span>
-              </div>
+            </div>
+            <div class="blog-b-side">
+              <span class="blog-b-date">2026.3.31</span>
+              <span aria-hidden="true" class="blog-b-arrow">›</span>
             </div>
           </a>
 
@@ -1475,10 +1485,10 @@
               </div>
               <h3 class="blog-b-title">筋トレと運動療法は何が違う？</h3>
               <p class="blog-b-desc">痛みがある方に必要なのは、強く鍛える前に体の使い方を思い出すことかもしれません。</p>
-              <div class="blog-b-side">
-                <span class="blog-b-date">2026.4.3</span>
-                <span aria-hidden="true" class="blog-b-arrow">›</span>
-              </div>
+            </div>
+            <div class="blog-b-side">
+              <span class="blog-b-date">2026.4.3</span>
+              <span aria-hidden="true" class="blog-b-arrow">›</span>
             </div>
           </a>
 
@@ -1492,17 +1502,19 @@
               </div>
               <h3 class="blog-b-title">歩き始めの膝の痛みはなぜ起こる？</h3>
               <p class="blog-b-desc">一歩目や立ち上がりで膝が痛む方へ、動きの準備不足という視点から整理します。</p>
-              <div class="blog-b-side">
-                <span class="blog-b-date">2026.4.3</span>
-                <span aria-hidden="true" class="blog-b-arrow">›</span>
-              </div>
+            </div>
+            <div class="blog-b-side">
+              <span class="blog-b-date">2026.4.3</span>
+              <span aria-hidden="true" class="blog-b-arrow">›</span>
             </div>
           </a>
         </div>
 
         <div class="blog-b-button-wrap">
           <a href="blog/" class="blog-b-button">
-            <i data-lucide="newspaper" class="w-5 h-5" aria-hidden="true"></i>
+            <span class="blog-b-button-icon">
+              <i data-lucide="newspaper" class="w-5 h-5" aria-hidden="true"></i>
+            </span>
             記事一覧を見る
             <span aria-hidden="true" class="text-xl leading-none">›</span>
           </a>
