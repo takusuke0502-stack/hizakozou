@@ -114,8 +114,185 @@
 
     <link rel="preload" href="styles/main.css" as="style">
   <link rel="stylesheet" href="styles/main.css">
-  <link rel="preload" as="image" href="image/kashiwa-seitai-hizakozou-main-1200.webp" imagesrcset="image/kashiwa-seitai-hizakozou-main-768.webp 768w, image/kashiwa-seitai-hizakozou-main-1200.webp 1200w, image/kashiwa-seitai-hizakozou-main.webp 2000w" imagesizes="(max-width: 768px) 100vw, 50vw">
+  <link rel="preload" as="image" href="images/hero-sp.webp" media="(max-width: 768px)">
+  <link rel="preload" as="image" href="images/hero-pc.webp" media="(min-width: 769px)">
   <script src="scripts/vendor/lucide.min.js" defer></script>
+
+  <style>
+    /* Hero order fix v3 */
+    .hero-fixed .hero-layout {
+      display: block !important;
+    }
+
+    .hero-fixed .hero-layout > * {
+      min-width: 0 !important;
+    }
+
+    .hero-fixed .hero-title {
+      max-width: 1100px !important;
+    }
+
+    .hero-fixed .hero-visual {
+      width: 100% !important;
+      margin-top: 0 !important;
+    }
+
+    .hero-fixed .hero-visual-card {
+      position: relative !important;
+      overflow: hidden !important;
+      height: auto !important;
+      min-height: 0 !important;
+      background: #ffffff !important;
+      isolation: auto !important;
+    }
+
+    .hero-fixed .hero-photo-frame {
+      position: static !important;
+      inset: auto !important;
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      overflow: hidden !important;
+    }
+
+    .hero-fixed .hero-photo {
+      position: static !important;
+      inset: auto !important;
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      transform: none !important;
+      transform-origin: center center !important;
+    }
+
+    .hero-fixed .hero-visual > p {
+      margin-top: 14px !important;
+    }
+
+    .hero-fixed .hero-cta-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 12px !important;
+      max-width: 760px !important;
+    }
+
+    .hero-fixed .hero-cta-grid.hero-cta-grid--top {
+      margin-top: 0 !important;
+    }
+
+    .hero-fixed .hero-price-cta {
+      display: none !important;
+    }
+
+    @media (max-width: 768px) {
+      .hero-fixed .hero-cta-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+
+    .hero-fixed .hero-safe-band {
+      border-radius: 28px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .hero-fixed .hero-safe-band__price {
+      padding: 24px 24px 22px;
+      border-bottom: 1px solid #e2e8f0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+      align-items: end;
+    }
+
+    .hero-fixed .hero-safe-band__label {
+      color: #dc2626;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+
+    .hero-fixed .hero-safe-band__course {
+      color: #334155;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .hero-fixed .hero-safe-band__price-row {
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-top: 8px;
+    }
+
+    .hero-fixed .hero-safe-band__regular {
+      color: #94a3b8;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: line-through;
+      line-height: 1;
+    }
+
+    .hero-fixed .hero-safe-band__special {
+      color: #dc2626;
+      font-size: clamp(44px, 6vw, 62px);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-fixed .hero-safe-band__special small {
+      font-size: 0.42em;
+      font-weight: 900;
+    }
+
+    .hero-fixed .hero-safe-band__note {
+      color: #64748b;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.7;
+      max-width: 28rem;
+    }
+
+    .hero-fixed .hero-safe-band__cards {
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-fixed .hero-safe-band__price {
+        padding: 24px 24px 20px;
+        grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero-fixed .hero-safe-band__price {
+        padding: 20px 18px 18px;
+      }
+
+      .hero-fixed .hero-safe-band__cards {
+        padding: 14px;
+      }
+
+      .hero-fixed .hero-safe-band__regular {
+        font-size: 16px;
+      }
+    }
+
+  </style>
+
 </head>
 <body class="bg-slate-50 relative pb-24 md:pb-0">
 
@@ -166,7 +343,7 @@
   </header>
 
   <main>
-    <section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative">
+    <section class="hero-fixed pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative">
       <div class="absolute top-0 right-0 w-1/2 h-full bg-blue-50 rounded-l-[100px] -z-10 hidden md:block" aria-hidden="true"></div>
       <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto hero-layout">
@@ -181,14 +358,25 @@
             <h1 class="max-w-3xl hero-title font-black text-slate-900 tracking-tight">
               柏市で、歩くたびにつらい膝痛に。<br><span class="text-blue-700">膝だけでなく、歩き方・股関節・腰まで確認します。</span>
             </h1>
-            <div class="hero-cta-grid md:hidden">
-              <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white text-center py-3 rounded-xl font-black text-base shadow-md transition-colors">
+
+            <div class="hero-visual space-y-4">
+              <div class="hero-visual-card overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-xl">
+                <picture class="hero-photo-frame">
+                  <source srcset="images/hero-sp.webp" media="(max-width: 768px)">
+                  <img src="images/hero-pc.webp" alt="柏市で膝の痛みに専門対応する整体院ひざこぞうの施術風景" class="photo-soft photo-soft--hero hero-photo" loading="eager" decoding="async" fetchpriority="high" width="1536" height="1024">
+                </picture>
+              </div>
+            </div>
+
+            <div class="hero-cta-grid hero-cta-grid--top">
+              <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white text-center py-4 rounded-xl font-black text-lg shadow-md transition-colors">
                 <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i> LINEで相談する
               </a>
-              <a href="tel:0471143274" class="flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 text-center py-3 rounded-xl font-black text-base shadow-sm border border-slate-200 transition-colors">
+              <a href="tel:0471143274" class="flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 text-center py-4 rounded-xl font-black text-lg shadow-sm border border-slate-200 transition-colors">
                 <i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i> 電話で相談する
               </a>
             </div>
+
             <div class="max-w-2xl space-y-3 text-base md:text-lg font-bold text-slate-700 leading-relaxed">
               <p>階段の上り下りがつらい、歩き始めに膝が痛む、長く歩くと不安になる。</p>
               <p>膝をかばううちに、腰や股関節まで気になってきた。そんな40代以降に多いお悩みを、膝を軸に全身の動きから丁寧に確認します。</p>
@@ -212,85 +400,50 @@
                 <span>膝をかばって腰や股関節も気になる</span>
               </a>
             </div>
-            <div class="bg-white border border-red-200 rounded-lg p-5 md:p-6 shadow-sm">
-              <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-                <div class="text-left">
-                  <p class="text-xs font-black text-red-600 tracking-widest mb-2">初回のご案内</p>
-                  <p class="text-sm font-bold text-slate-700">初回カウンセリング＋全身整体コース</p>
-                  <div class="flex items-end gap-3 mt-2">
-                    <span class="text-slate-400 line-through text-base md:text-lg">通常 10,000円</span>
-                    <span class="text-red-600 font-black text-4xl md:text-5xl leading-none">1,980<span class="text-xl md:text-2xl">円</span></span>
+            <section class="hero-safe-band mt-2 md:mt-3" aria-label="初回料金と安心情報">
+              <div class="hero-safe-band__price">
+                <div>
+                  <p class="hero-safe-band__label">初回のご案内</p>
+                  <p class="hero-safe-band__course">初回カウンセリング＋全身整体コース</p>
+                  <div class="hero-safe-band__price-row">
+                    <span class="hero-safe-band__regular">通常 10,000円</span>
+                    <span class="hero-safe-band__special">1,980<small>円</small></span>
                   </div>
                 </div>
-                <div class="text-left sm:text-right">
-                  <p class="text-xs font-bold text-slate-500 leading-relaxed">カウンセリング・状態確認込み。<br>まずは相談からでも大丈夫です。</p>
+                <p class="hero-safe-band__note">カウンセリング・状態確認込み。<br>まずは相談からでも大丈夫です。</p>
+              </div>
+
+              <div class="hero-safe-band__cards">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                  <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
+                    <i data-lucide="map-pin" class="w-5 h-5 text-blue-600 mx-auto mb-2" aria-hidden="true"></i>
+                    <p class="text-xs font-bold text-slate-500 mb-1">アクセス</p>
+                    <p class="text-sm font-black text-slate-800 leading-tight">柏駅西口<br>徒歩8分</p>
+                  </div>
+                  <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
+                    <i data-lucide="clock-3" class="w-5 h-5 text-blue-600 mx-auto mb-2" aria-hidden="true"></i>
+                    <p class="text-xs font-bold text-slate-500 mb-1">ご案内</p>
+                    <p class="text-sm font-black text-slate-800 leading-tight">完全予約制<br>待ち時間なし</p>
+                  </div>
+                  <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-blue-600 mx-auto mb-2" aria-hidden="true"></i>
+                    <p class="text-xs font-bold text-slate-500 mb-1">対応者</p>
+                    <p class="text-sm font-black text-slate-800 leading-tight">国家資格者が<br>一貫対応</p>
+                  </div>
+                  <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
+                    <i data-lucide="wallet" class="w-5 h-5 text-blue-600 mx-auto mb-2" aria-hidden="true"></i>
+                    <p class="text-xs font-bold text-slate-500 mb-1">初回料金</p>
+                    <p class="text-sm font-black text-slate-800 leading-tight">カウンセリング込み<br>1,980円</p>
+                  </div>
                 </div>
               </div>
-              <div class="hero-cta-grid mt-5">
-                <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white text-center py-4 rounded-xl font-black text-lg shadow-md transition-colors">
-                  <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i> LINEで相談する
-                </a>
-                <a href="tel:0471143274" class="flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 text-center py-4 rounded-xl font-black text-lg shadow-sm border border-slate-200 transition-colors">
-                  <i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i> 電話で相談する
-                </a>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-              <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
-                <i data-lucide="map-pin" class="w-5 h-5 text-blue-600 mx-auto mb-2" aria-hidden="true"></i>
-                <p class="text-xs font-bold text-slate-500 mb-1">アクセス</p>
-                <p class="text-sm font-black text-slate-800 leading-tight">柏駅西口<br>徒歩8分</p>
-              </div>
-              <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
-                <i data-lucide="clock-3" class="w-5 h-5 text-blue-600 mx-auto mb-2" aria-hidden="true"></i>
-                <p class="text-xs font-bold text-slate-500 mb-1">ご案内</p>
-                <p class="text-sm font-black text-slate-800 leading-tight">完全予約制<br>待ち時間なし</p>
-              </div>
-              <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
-                <i data-lucide="shield-check" class="w-5 h-5 text-blue-600 mx-auto mb-2" aria-hidden="true"></i>
-                <p class="text-xs font-bold text-slate-500 mb-1">対応者</p>
-                <p class="text-sm font-black text-slate-800 leading-tight">国家資格者が<br>一貫対応</p>
-              </div>
-              <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
-                <i data-lucide="wallet" class="w-5 h-5 text-blue-600 mx-auto mb-2" aria-hidden="true"></i>
-                <p class="text-xs font-bold text-slate-500 mb-1">初回料金</p>
-                <p class="text-sm font-black text-slate-800 leading-tight">カウンセリング込み<br>1,980円</p>
-              </div>
-            </div>
+            </section>
 
           </div>
-
-          <div class="space-y-4">
-            <div class="overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-xl">
-              <img src="image/kashiwa-seitai-hizakozou-main-1200.webp" srcset="image/kashiwa-seitai-hizakozou-main-768.webp 768w, image/kashiwa-seitai-hizakozou-main-1200.webp 1200w, image/kashiwa-seitai-hizakozou-main.webp 2000w" sizes="(max-width: 768px) 100vw, 50vw" alt="整体院ひざこぞうの院内で膝痛の相談に対応する施術風景" class="photo-soft photo-soft--hero hero-photo w-full object-cover" loading="eager" decoding="async" fetchpriority="high" width="2000" height="1600">
-            </div>
-            <p class="text-sm md:text-base font-bold text-slate-500 leading-relaxed">
-              膝をかばって腰や股関節も気になる方も、まずは膝の見立てを軸に確認します。
-            </p>
-          </div>
-        </div>
-      </div>
+        </div>      </div>
     </section>
 
-    <section class="py-10 bg-slate-50 border-y border-slate-200">
-      <div class="container mx-auto px-4 max-w-5xl">
-          <div class="grid md:grid-cols-3 gap-4 md:gap-6">
-            <div class="bg-white rounded-2xl border border-slate-200 p-5">
-              <p class="text-sm font-black text-blue-700 mb-2">膝痛専門の見立て</p>
-              <p class="text-base font-bold text-slate-600 leading-relaxed">階段、歩き始め、曲げ伸ばしなど、膝まわりの負担を丁寧に確認します。</p>
-            </div>
-            <div class="bg-white rounded-2xl border border-slate-200 p-5">
-              <p class="text-sm font-black text-blue-700 mb-2">負担の流れまで確認</p>
-              <p class="text-base font-bold text-slate-600 leading-relaxed">膝だけでなく、歩き方・股関節・腰まで見て、繰り返す理由を整理します。</p>
-            </div>
-            <div class="bg-white rounded-2xl border border-slate-200 p-5">
-              <p class="text-sm font-black text-blue-700 mb-2">初回は状態確認から</p>
-            <p class="text-base font-bold text-slate-600 leading-relaxed">いきなり施術だけを進めず、今のお困りごととお体の状態を確認したうえで方針をご案内します。</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    
 
     <section id="troubles" class="py-20 bg-slate-100">
       <div class="container mx-auto px-4 max-w-4xl">
