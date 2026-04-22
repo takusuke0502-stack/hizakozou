@@ -771,13 +771,15 @@ export function buildIndexContent(site, posts, categoryMap) {
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
-            <span class="pill">${escapeHtml(post.category.name)}</span>
-            <time class="article-list-item__date" datetime="${escapeHtml(post.updatedDate || post.date)}">${escapeHtml(formatJapaneseDate(post.updatedDate || post.date))}</time>
+            <span class="article-list-item__category">${escapeHtml(post.category.name)}</span>
           </div>
           <h3 class="article-list-item__title">${escapeHtml(post.title)}</h3>
           <p class="article-list-item__excerpt">${escapeHtml(trimText(post.description, 90))}</p>
         </div>
-        <span class="article-list-item__arrow">読む</span>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="${escapeHtml(post.updatedDate || post.date)}">${escapeHtml(formatDotDate(post.updatedDate || post.date))}</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
       </a>
     </article>
   `;
@@ -1230,6 +1232,15 @@ function renderTemplate(template, values) {
 
 function cleanGeneratedText(value) {
   return String(value).replace(/[ \t]+$/gm, "").replace(/\n{3,}/g, "\n\n");
+}
+
+function formatDotDate(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return value;
+  }
+
+  return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
 }
 
 function formatJapaneseDate(value) {
