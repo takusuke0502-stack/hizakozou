@@ -26,18 +26,23 @@ jobs:
         run: npm install
 
       - name: Run Claude Code Review
+        if: ${{ secrets.ANTHROPIC_API_KEY != '' || secrets.CLAUDE_CODE_OAUTH_TOKEN != '' }}
         uses: anthropics/claude-code-action@beta
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           direct_prompt: |
-            このプルリクエストのコードレビューを行ってください。
+            Review this pull request and leave concise review comments in Japanese.
 
-            以下の観点からフィードバックを日本語で提供してください：
-            1. コードの品質と可読性
-            2. バグや潜在的な問題
-            3. ベストプラクティスへの準拠
-            4. セキュリティ上の懸念事項
-            5. ブログ生成スクリプト（scripts/generate-blog.mjs）への影響
+            Prioritize findings that could affect:
+            1. Code correctness and readability
+            2. Bugs or unexpected behavior
+            3. Regressions against the repository workflow
+            4. Security or reliability concerns
+            5. Blog generation rules, especially around scripts/generate-blog.mjs
 
-            重大な問題がある場合は明確に指摘し、改善案も提示してください。
-            問題がない場合は簡潔にその旨を伝えてください。
+            If there are no major issues, keep the review short and avoid over-commenting.
+
+      - name: Skip Claude Code Review
+        if: ${{ secrets.ANTHROPIC_API_KEY == '' && secrets.CLAUDE_CODE_OAUTH_TOKEN == '' }}
+        run: echo "Skipping Claude Code Review because no Claude credential secret is configured."
