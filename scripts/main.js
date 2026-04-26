@@ -8,7 +8,7 @@ const formError = document.getElementById('form-error');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbz-Q7v0Ghc39ha-rjnVCyLn3ZPq101dHHANCAfjobDqmTvTicii8zQ6VCXhDCYBpFeS/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzxlY8wFSXpgtyP9TVFwFM2BCrzfihbkmEOjYd5PROmEubX3B4NLxOhYOvZxeg7zZbc1w/exec';
 
 let triggerEl = null;
 
@@ -109,7 +109,7 @@ async function submitViaCors(form) {
     throw new Error(payload?.message || `HTTP ${response.status}`);
   }
 
-  if (payload && payload.ok === false) {
+  if (payload && (payload.ok === false || payload.status === 'error')) {
     throw new Error(payload.message || '送信に失敗しました。');
   }
 
