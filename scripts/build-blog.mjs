@@ -32,13 +32,15 @@ const symptomConfigs = {
     symptomKey: "knee-osteoarthritis",
     label: "変形性膝関節症",
     keywords: ["変形性膝関節症", "膝痛", "階段", "歩き始め", "膝"],
-    categoryHints: ["knee-pain", "exercise-therapy"]
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: ["walking-start-knee-pain-cause", "knee-pain-daily-care"]
   },
   "knee-effusion.html": {
     symptomKey: "knee-effusion",
     label: "膝に水がたまる",
     keywords: ["膝に水がたまる", "膝の腫れ", "膝痛", "膝"],
-    categoryHints: ["knee-pain", "exercise-therapy"]
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: ["knee-pain-daily-care"]
   },
   "knee-lateral-pain.html": {
     symptomKey: "knee-lateral-pain",
@@ -56,7 +58,8 @@ const symptomConfigs = {
     symptomKey: "pes-anserine-bursitis",
     label: "膝の内側の痛み",
     keywords: ["膝の内側", "鵞足炎", "膝痛", "膝"],
-    categoryHints: ["knee-pain", "exercise-therapy"]
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: ["knee-medial-pain-saphenous-nerve", "knee-pain-daily-care"]
   },
   "lower-back-pain.html": {
     symptomKey: "lower-back-pain",
@@ -531,11 +534,19 @@ ${links}
 }
 
 function selectRelatedPosts(config, posts) {
-  return posts
+  const pinnedSlugs = Array.isArray(config.pinnedSlugs) ? config.pinnedSlugs : [];
+  const postsBySlug = new Map(posts.map((post) => [post.slug, post]));
+  const pinnedPosts = pinnedSlugs.map((slug) => postsBySlug.get(slug)).filter(Boolean);
+  const pinnedSet = new Set(pinnedPosts.map((post) => post.slug));
+
+  const scoredPosts = posts
+    .filter((post) => !pinnedSet.has(post.slug))
     .map((post) => ({ post, score: scorePostForSymptom(post, config) }))
     .filter((entry) => entry.score > 0)
     .sort((a, b) => b.score - a.score || b.post.date.localeCompare(a.post.date))
     .map((entry) => entry.post);
+
+  return [...pinnedPosts, ...scoredPosts];
 }
 
 function scorePostForSymptom(post, config) {
