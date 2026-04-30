@@ -147,6 +147,27 @@ const symptomConfigs = {
   }
 };
 
+const patientVoices = [
+  {
+    name: "北垣和子様",
+    title: "膝・腰・坐骨神経痛など、複数のお悩みで来院されたお声",
+    quote: "施術後は体が軽くなります",
+    summary: "膝の痛みだけでなく、腰や坐骨神経痛など複数のお悩みがある方のお声です。痛みの場所を一つに決めつけず、体全体のつながりを見ていく当院の方針が伝わる内容です。",
+    image: "../image/patient-voice-kitagaki.jpg",
+    alt: "北垣和子様の写真付き直筆アンケート。坐骨神経痛、膝の痛み、腰の痛みなどで来院されたお声",
+    symptomKeys: ["knee-osteoarthritis", "lower-back-pain", "sciatica"]
+  },
+  {
+    name: "沼尻ひろみ様",
+    title: "腰や足の状態まで見てもらえた方のお声",
+    quote: "体と向き合うことが大事だと思います",
+    summary: "そり腰や腰痛、足の筋肉の状態など、膝以外の負担にも触れられているお声です。今の痛みだけでなく、体の使い方や日常の負担を整理する大切さが伝わります。",
+    image: "../image/patient-voice-numajiri.jpg",
+    alt: "沼尻ひろみ様の写真付き直筆アンケート。ねんざによる全身的な痛みで来院されたお声",
+    symptomKeys: ["lower-back-pain", "shoulder-stiffness"]
+  }
+];
+
 const relatedArticlesStyles = `
 /* BLOG_RELATED_ARTICLES_STYLES_START */
 .related-articles{padding:3.25rem 1rem;background:#f8fbff;border-top:1px solid #dbeafe}
@@ -181,6 +202,19 @@ const relatedArticlesStyles = `
 .symptom-mid-cta__btn--line{background:#06C755;color:#fff}
 .symptom-mid-cta__btn--tel{background:#fff;color:#1e3a8a;border:1px solid #bfdbfe}
 .symptom-mid-cta__btn:hover,.symptom-mid-cta__btn:focus-visible{transform:translateY(-1px);outline:2px solid #93c5fd;outline-offset:3px}
+.symptom-voices{padding:3.25rem 1rem;background:#f8fafc;border-top:1px solid #e2e8f0}
+.symptom-voices__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.1em;margin:0 0 .7rem}
+.symptom-voices__title{text-align:center;font-size:1.45rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .75rem}
+.symptom-voices__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
+.symptom-voices__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.symptom-voice-card{display:grid;grid-template-columns:110px minmax(0,1fr);gap:1rem;background:#fff;border:1px solid #dbeafe;border-radius:8px;padding:1rem;box-shadow:0 8px 20px rgba(15,23,42,.06)}
+.symptom-voice-card__image-link{display:block;border-radius:7px;overflow:hidden;background:#f1f5f9;align-self:start}
+.symptom-voice-card__image{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+.symptom-voice-card__label{font-size:11px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .4rem}
+.symptom-voice-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .55rem}
+.symptom-voice-card__quote{font-size:14px;font-weight:900;color:#0f172a;line-height:1.75;margin:0 0 .55rem}
+.symptom-voice-card__summary{font-size:13px;font-weight:700;color:#475569;line-height:1.8;margin:0}
+.symptom-voices__note{font-size:11px;font-weight:700;color:#64748b;line-height:1.8;text-align:right;margin:1rem 0 0}
 .symptom-footer{background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;text-align:center}
 .symptom-footer__inner{max-width:860px;margin:0 auto}
 .symptom-footer__logo{display:inline-block;background:#fff;border-radius:8px;padding:.7rem 1.35rem;margin-bottom:.8rem}
@@ -192,15 +226,9 @@ const relatedArticlesStyles = `
 .symptom-footer__note{font-size:10px;color:#64748b;font-weight:700;line-height:2;margin:0}
 @media(min-width:768px){.related-articles__title{font-size:1.75rem}}
 @media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
-@media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}}
+@media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}.symptom-voice-card{grid-template-columns:96px minmax(0,1fr);gap:.8rem}.symptom-voice-card__summary{display:none}.symptom-voices__note{text-align:left}}
 /* BLOG_RELATED_ARTICLES_STYLES_END */
 `.trim();
-
-const isCliRun = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
-
-if (isCliRun) {
-  await buildBlog();
-}
 
 export async function buildBlog() {
   const [rawData, indexTemplate, postTemplate] = await Promise.all([
@@ -316,6 +344,7 @@ async function updateSymptomPages(site, posts) {
     const fullPath = path.join(symptomsDir, fileName);
     let html = await fs.readFile(fullPath, "utf8");
     html = upsertRelatedStyles(html);
+    html = upsertSymptomPatientVoices(html, config);
     html = upsertSymptomMidCta(html, site);
 
     const matchedPosts = selectRelatedPosts(config, posts).slice(0, 4);
@@ -393,6 +422,66 @@ function upsertRelatedStyles(html) {
     return html.replace(/\/\* BLOG_RELATED_ARTICLES_STYLES_START \*\/[\s\S]*?\/\* BLOG_RELATED_ARTICLES_STYLES_END \*\//, relatedArticlesStyles);
   }
   return html.replace("</style>", `\n    ${relatedArticlesStyles}\n  </style>`);
+}
+
+function upsertSymptomPatientVoices(html, config = {}) {
+  const startMarker = "<!-- SYMPTOM_PATIENT_VOICES_START -->";
+  const endMarker = "<!-- SYMPTOM_PATIENT_VOICES_END -->";
+  const sectionHtml = buildSymptomPatientVoicesSection(config);
+  const wrapped = sectionHtml ? `${startMarker}\n${sectionHtml}\n${endMarker}\n\n` : "";
+
+  if (html.includes(startMarker) && html.includes(endMarker)) {
+    return html.replace(new RegExp(`${escapeRegExp(startMarker)}[\\s\\S]*?${escapeRegExp(endMarker)}\\s*`), wrapped);
+  }
+
+  if (!sectionHtml) {
+    return html;
+  }
+
+  const faqMarker = "<section class=\"faq\">";
+  if (html.includes(faqMarker)) {
+    return html.replace(faqMarker, `${wrapped}${faqMarker}`);
+  }
+
+  if (html.includes("<!-- RELATED_SYMPTOMS_NAV_START -->")) {
+    return html.replace("<!-- RELATED_SYMPTOMS_NAV_START -->", `${wrapped}<!-- RELATED_SYMPTOMS_NAV_START -->`);
+  }
+
+  return html;
+}
+
+function buildSymptomPatientVoicesSection(config = {}) {
+  const voices = patientVoices.filter((voice) => voice.symptomKeys.includes(config.symptomKey));
+  if (!voices.length) return "";
+
+  const lead = config.label
+    ? `${escapeHtml(config.label)}と関わりやすいお悩みで来院された方のお声です。症状や経過には個人差があるため、初回は状態を確認しながら方針をご説明します。`
+    : "関連するお悩みで来院された方のお声です。症状や経過には個人差があるため、初回は状態を確認しながら方針をご説明します。";
+
+  const cards = voices.map((voice) => `
+          <article class="symptom-voice-card">
+            <a class="symptom-voice-card__image-link" href="${escapeHtml(voice.image)}" target="_blank" rel="noopener noreferrer">
+              <img class="symptom-voice-card__image" src="${escapeHtml(voice.image)}" alt="${escapeHtml(voice.alt)}" loading="lazy" decoding="async">
+            </a>
+            <div>
+              <p class="symptom-voice-card__label">${escapeHtml(voice.name)}</p>
+              <h3 class="symptom-voice-card__title">${escapeHtml(voice.title)}</h3>
+              <p class="symptom-voice-card__quote">「${escapeHtml(voice.quote)}」</p>
+              <p class="symptom-voice-card__summary">${escapeHtml(voice.summary)}</p>
+            </div>
+          </article>`).join("");
+
+  return `<section class="symptom-voices">
+      <div class="container max-w-4xl">
+        <p class="symptom-voices__eyebrow">PATIENT VOICE</p>
+        <h2 class="symptom-voices__title">この症状に関連するお声</h2>
+        <p class="symptom-voices__lead">${lead}</p>
+        <div class="symptom-voices__grid">
+${cards}
+        </div>
+        <p class="symptom-voices__note">※掲載しているお声は掲載許可をいただいた方のものです。個人の感想であり、成果を保証するものではありません。</p>
+      </div>
+    </section>`;
 }
 
 function replaceRelatedSection(html, sectionHtml) {
@@ -1361,4 +1450,10 @@ function renderInlineText(value) {
 for (const [fileName, config] of Object.entries(symptomConfigs)) {
   config.fileName = fileName;
   config.page = fileName;
+}
+
+const isCliRun = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
+if (isCliRun) {
+  await buildBlog();
 }

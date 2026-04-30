@@ -202,6 +202,19 @@
 .symptom-mid-cta__btn--line{background:#06C755;color:#fff}
 .symptom-mid-cta__btn--tel{background:#fff;color:#1e3a8a;border:1px solid #bfdbfe}
 .symptom-mid-cta__btn:hover,.symptom-mid-cta__btn:focus-visible{transform:translateY(-1px);outline:2px solid #93c5fd;outline-offset:3px}
+.symptom-voices{padding:3.25rem 1rem;background:#f8fafc;border-top:1px solid #e2e8f0}
+.symptom-voices__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.1em;margin:0 0 .7rem}
+.symptom-voices__title{text-align:center;font-size:1.45rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .75rem}
+.symptom-voices__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
+.symptom-voices__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.symptom-voice-card{display:grid;grid-template-columns:110px minmax(0,1fr);gap:1rem;background:#fff;border:1px solid #dbeafe;border-radius:8px;padding:1rem;box-shadow:0 8px 20px rgba(15,23,42,.06)}
+.symptom-voice-card__image-link{display:block;border-radius:7px;overflow:hidden;background:#f1f5f9;align-self:start}
+.symptom-voice-card__image{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+.symptom-voice-card__label{font-size:11px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .4rem}
+.symptom-voice-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .55rem}
+.symptom-voice-card__quote{font-size:14px;font-weight:900;color:#0f172a;line-height:1.75;margin:0 0 .55rem}
+.symptom-voice-card__summary{font-size:13px;font-weight:700;color:#475569;line-height:1.8;margin:0}
+.symptom-voices__note{font-size:11px;font-weight:700;color:#64748b;line-height:1.8;text-align:right;margin:1rem 0 0}
 .symptom-footer{background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;text-align:center}
 .symptom-footer__inner{max-width:860px;margin:0 auto}
 .symptom-footer__logo{display:inline-block;background:#fff;border-radius:8px;padding:.7rem 1.35rem;margin-bottom:.8rem}
@@ -213,7 +226,7 @@
 .symptom-footer__note{font-size:10px;color:#64748b;font-weight:700;line-height:2;margin:0}
 @media(min-width:768px){.related-articles__title{font-size:1.75rem}}
 @media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
-@media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}}
+@media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}.symptom-voice-card{grid-template-columns:96px minmax(0,1fr);gap:.8rem}.symptom-voice-card__summary{display:none}.symptom-voices__note{text-align:left}}
 /* BLOG_RELATED_ARTICLES_STYLES_END */
   </style>
 <script type="application/ld+json">
@@ -513,7 +526,32 @@
       </div>
     </section>
 
-    <section class="faq">
+    <!-- SYMPTOM_PATIENT_VOICES_START -->
+<section class="symptom-voices">
+      <div class="container max-w-4xl">
+        <p class="symptom-voices__eyebrow">PATIENT VOICE</p>
+        <h2 class="symptom-voices__title">この症状に関連するお声</h2>
+        <p class="symptom-voices__lead">変形性膝関節症と関わりやすいお悩みで来院された方のお声です。症状や経過には個人差があるため、初回は状態を確認しながら方針をご説明します。</p>
+        <div class="symptom-voices__grid">
+
+          <article class="symptom-voice-card">
+            <a class="symptom-voice-card__image-link" href="../image/patient-voice-kitagaki.jpg" target="_blank" rel="noopener noreferrer">
+              <img class="symptom-voice-card__image" src="../image/patient-voice-kitagaki.jpg" alt="北垣和子様の写真付き直筆アンケート。坐骨神経痛、膝の痛み、腰の痛みなどで来院されたお声" loading="lazy" decoding="async">
+            </a>
+            <div>
+              <p class="symptom-voice-card__label">北垣和子様</p>
+              <h3 class="symptom-voice-card__title">膝・腰・坐骨神経痛など、複数のお悩みで来院されたお声</h3>
+              <p class="symptom-voice-card__quote">「施術後は体が軽くなります」</p>
+              <p class="symptom-voice-card__summary">膝の痛みだけでなく、腰や坐骨神経痛など複数のお悩みがある方のお声です。痛みの場所を一つに決めつけず、体全体のつながりを見ていく当院の方針が伝わる内容です。</p>
+            </div>
+          </article>
+        </div>
+        <p class="symptom-voices__note">※掲載しているお声は掲載許可をいただいた方のものです。個人の感想であり、成果を保証するものではありません。</p>
+      </div>
+    </section>
+<!-- SYMPTOM_PATIENT_VOICES_END -->
+
+<section class="faq">
       <div class="container max-w-3xl">
         <h2 class="section-title">変形性膝関節症に関するよくあるご質問</h2>
         <div class="faq__list">
