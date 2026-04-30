@@ -206,14 +206,15 @@
 .symptom-voices__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.1em;margin:0 0 .7rem}
 .symptom-voices__title{text-align:center;font-size:1.45rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .75rem}
 .symptom-voices__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
-.symptom-voices__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
-.symptom-voice-card{display:grid;grid-template-columns:110px minmax(0,1fr);gap:1rem;background:#fff;border:1px solid #dbeafe;border-radius:8px;padding:1rem;box-shadow:0 8px 20px rgba(15,23,42,.06)}
-.symptom-voice-card__image-link{display:block;border-radius:7px;overflow:hidden;background:#f1f5f9;align-self:start}
-.symptom-voice-card__image{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center}
-.symptom-voice-card__label{font-size:11px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .4rem}
-.symptom-voice-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .55rem}
-.symptom-voice-card__quote{font-size:14px;font-weight:900;color:#0f172a;line-height:1.75;margin:0 0 .55rem}
-.symptom-voice-card__summary{font-size:13px;font-weight:700;color:#475569;line-height:1.8;margin:0}
+.symptom-voices__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),480px));justify-content:center;gap:1.5rem}
+.symptom-voice-card{background:#fff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;box-shadow:0 16px 36px rgba(15,23,42,.09)}
+.symptom-voice-card__image-link{display:block;background:#f1f5f9}
+.symptom-voice-card__image{display:block;width:100%;height:auto}
+.symptom-voice-card__body{padding:1.25rem}
+.symptom-voice-card__label{font-size:11px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
+.symptom-voice-card__title{font-size:1.05rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .65rem}
+.symptom-voice-card__quote{font-size:15px;font-weight:900;color:#0f172a;line-height:1.75;margin:0 0 .65rem}
+.symptom-voice-card__summary{font-size:14px;font-weight:700;color:#475569;line-height:1.8;margin:0}
 .symptom-voices__note{font-size:11px;font-weight:700;color:#64748b;line-height:1.8;text-align:right;margin:1rem 0 0}
 .symptom-footer{background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;text-align:center}
 .symptom-footer__inner{max-width:860px;margin:0 auto}
@@ -226,7 +227,7 @@
 .symptom-footer__note{font-size:10px;color:#64748b;font-weight:700;line-height:2;margin:0}
 @media(min-width:768px){.related-articles__title{font-size:1.75rem}}
 @media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
-@media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}.symptom-voice-card{grid-template-columns:96px minmax(0,1fr);gap:.8rem}.symptom-voice-card__summary{display:none}.symptom-voices__note{text-align:left}}
+@media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}.symptom-voices__grid{gap:1rem}.symptom-voice-card__body{padding:1rem}.symptom-voices__note{text-align:left}}
 /* BLOG_RELATED_ARTICLES_STYLES_END */
   </style>
 <script type="application/ld+json">
@@ -476,8 +477,8 @@
               </div>
               <div class="msm-step__body">
                 <span class="msm-step__tag msm-step__tag--2">安定性の再獲得</span>
-                <h3 class="msm-step__title">負担を分散させるため、股関節・足首の「サボり筋」を再起動</h3>
-                <p class="msm-step__text">膝への負担を減らすには、サボっている股関節や足首の筋肉（インナーマッスル）をしっかり働かせる必要があります。ベッドに寝たまま、座ったままできる安全な運動を取り入れ、関節を支える力を取り戻します。</p>
+                <h3 class="msm-step__title">負担を分散させるため、股関節・足首の働きを引き出す</h3>
+                <p class="msm-step__text">膝への負担を減らすには、働きにくくなっている股関節や足首の筋肉（インナーマッスル）を使いやすくすることが大切です。ベッドに寝たまま、座ったままできる安全な運動を取り入れ、関節を支える力を取り戻します。</p>
               </div>
             </div>
           </div>
