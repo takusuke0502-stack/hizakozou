@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "整体院ひざこぞう",
-    "subtitle": "柏市の整体院",
+    "subtitle": "柏市 / 国家資格者による整体",
     "url": "https://hizakozou.jp",
-    "blogTitle": "膝痛や慢性痛の読みもの",
-    "blogDescription": "膝の痛みを中心に、腰痛や坐骨神経痛、運動療法の考え方をやさしく整理した静的ブログです。来院前に知っておきたい考え方やセルフケアのヒントを、誠実な言葉でまとめています。",
+    "blogTitle": "膝の痛み・慢性痛の読みもの",
+    "blogDescription": "来院前に知っておきたい体の見方を、やさしく整理しました。",
     "defaultEyecatch": "/image/medical-interview.webp",
     "ogImage": "/ogp.jpg",
     "author": "整体院ひざこぞう",
