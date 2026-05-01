@@ -252,6 +252,8 @@ export async function buildBlog() {
     HOME_PATH: "../index.html",
     BLOG_PATH: "./",
     CONTACT_PATH: "../index.html#contact",
+    PHONE: blogData.site.phone,
+    PHONE_HREF: `tel:${blogData.site.phone.replace(/-/g, "")}`,
     SITE_NAME: blogData.site.name,
     SITE_SUBTITLE: blogData.site.subtitle,
     PAGE_CONTENT: buildIndexContent(blogData.site, posts, categoryMap)
@@ -270,6 +272,8 @@ export async function buildBlog() {
         HOME_PATH: "../../../index.html",
         BLOG_PATH: "../../",
         CONTACT_PATH: "../../../index.html#contact",
+        PHONE: blogData.site.phone,
+        PHONE_HREF: `tel:${blogData.site.phone.replace(/-/g, "")}`,
         SITE_NAME: blogData.site.name,
         SITE_SUBTITLE: blogData.site.subtitle,
         PAGE_CONTENT: buildPostContent(blogData.site, post, relatedPosts)
