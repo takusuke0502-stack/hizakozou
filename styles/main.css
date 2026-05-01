@@ -94,8 +94,39 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
     }
 
     .director-photo-wrap {
-      width: 12rem;
+      width: min(100%, 22rem);
       margin-bottom: 1.25rem;
+    }
+
+    .profile-story {
+      max-width: 44rem;
+      line-height: 2.05;
+    }
+
+    .profile-story > * + * {
+      margin-top: 1.4rem;
+    }
+
+    .profile-story-break {
+      height: 0.75rem;
+    }
+
+    .profile-story .profile-story-break + * {
+      margin-top: 1.65rem;
+    }
+
+    @media (min-width: 768px) {
+      .profile-story > * + * {
+        margin-top: 1.6rem;
+      }
+
+      .profile-story-break {
+        height: 1rem;
+      }
+
+      .profile-story .profile-story-break + * {
+        margin-top: 1.9rem;
+      }
     }
 
     .three-step-section {
@@ -227,8 +258,13 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
 
     .director-photo-frame {
       position: relative;
-      width: 12rem;
-      height: 12rem;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid #dbeafe;
+      background: #eff6ff;
+      box-shadow: 0 22px 44px rgba(15, 23, 42, 0.14);
     }
 
     .director-badge {
@@ -249,10 +285,8 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
     }
 
     @media (min-width: 768px) {
-      .director-photo-wrap,
-      .director-photo-frame {
-        width: 15rem;
-        height: 15rem;
+      .director-photo-wrap {
+        width: min(100%, 25rem);
       }
 
       .director-badge {
