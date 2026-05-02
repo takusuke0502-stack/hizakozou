@@ -18,6 +18,11 @@ const DEFAULT_RELATED_SYMPTOMS = {
     href: "/symptoms/knee-effusion.html",
     description: "腫れや重さがあるときの見方を知りたい方へ。"
   },
+  "膝の水": {
+    label: "膝に水がたまる",
+    href: "/symptoms/knee-effusion.html",
+    description: "腫れや重さがあるときの見方を知りたい方へ。"
+  },
   "膝に水が溜まる": {
     label: "膝に水がたまる",
     href: "/symptoms/knee-effusion.html",
@@ -488,6 +493,7 @@ function toBlogPost(parsed, site, existing = {}) {
     date: parsed.date,
     updatedDate: parsed.updatedDate || existing.updatedDate || parsed.date,
     category: parsed.category,
+    region: parsed.region,
     tags: parsed.tags,
     eyecatch: parsed.heroImage || existing.eyecatch || site.defaultEyecatch,
     readingTime: formatReadingTime(parsed),
@@ -495,8 +501,28 @@ function toBlogPost(parsed, site, existing = {}) {
     lead: parsed.lead || parsed.description,
     sections: parsed.sections,
     faq: parsed.faq,
-    cta: existing.cta || buildDefaultCta(parsed.category)
+    cta: sanitizeCta(existing.cta || buildDefaultCta(parsed.category))
   };
+}
+
+function sanitizeCta(cta = {}) {
+  return Object.fromEntries(
+    Object.entries(cta).map(([key, value]) => [
+      key,
+      typeof value === "string" ? sanitizeStrongWording(value) : value
+    ])
+  );
+}
+
+function sanitizeStrongWording(value) {
+  return value
+    .replaceAll("根本改善", "体づくり")
+    .replaceAll("唯一の方法", "大切な視点")
+    .replaceAll("確実に楽", "楽に動ける可能性")
+    .replaceAll("再貯留を防ぎます", "再びたまりにくい動き方を目指します")
+    .replaceAll("再発を防ぎます", "再発しにくい動き方を目指します")
+    .replaceAll("排液を促します", "循環しやすい状態を目指します")
+    .replaceAll("効く理由", "役立つ理由");
 }
 
 function buildDefaultCta(category) {

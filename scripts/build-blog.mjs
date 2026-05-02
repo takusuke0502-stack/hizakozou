@@ -27,6 +27,28 @@ const symptomNavigationItems = [
   { href: "tmj.html", label: "顎関節症", description: "あごの痛みや口の開けづらさ、首肩との関係が気になる方へ。" }
 ];
 
+const relatedKneeConcernTargetFiles = new Set([
+  "knee-osteoarthritis.html",
+  "knee-effusion.html",
+  "pes-anserine-bursitis.html",
+  "knee-lateral-pain.html",
+  "knee-posterior-pain.html",
+  "plantar-fasciitis.html",
+  "lower-back-pain.html",
+  "sciatica.html"
+]);
+
+const relatedKneeConcernItems = [
+  { href: "knee-osteoarthritis.html", label: "変形性膝関節症でお悩みの方へ", description: "歩き始めや階段で膝痛が続く方へ。" },
+  { href: "knee-effusion.html", label: "膝に水がたまる・腫れぼったい方へ", description: "膝の腫れや重さが気になる方へ。" },
+  { href: "pes-anserine-bursitis.html", label: "膝の内側が痛い・鵞足炎が気になる方へ", description: "内側やや下の痛みを整理したい方へ。" },
+  { href: "knee-lateral-pain.html", label: "膝の外側が痛い方へ", description: "歩くと外側が張る、違和感が出る方へ。" },
+  { href: "knee-posterior-pain.html", label: "膝の裏が痛い・腫れる方へ", description: "膝裏の張りや曲げ伸ばしの重さが気になる方へ。" },
+  { href: "../blog/posts/walking-start-knee-pain-cause/", label: "歩き始めに膝が痛い方へ", description: "立ち上がりや一歩目の痛みを整理した記事です。" },
+  { href: "../blog/posts/knee-pain-daily-care/", label: "しゃがむ・正座で膝が痛い方へ", description: "日常動作で膝に負担が集まる理由を整理します。" },
+  { href: "../blog/posts/hip-stiffness-knee-low-back-pain-relation/", label: "股関節や足首の硬さと膝痛の関係", description: "膝だけでなく周辺の動きも確認したい方へ。" }
+];
+
 const symptomConfigs = {
   "knee-osteoarthritis.html": {
     symptomKey: "knee-osteoarthritis",
@@ -251,7 +273,7 @@ export async function buildBlog() {
     CSS_PATH: "assets/blog.css",
     HOME_PATH: "../index.html",
     BLOG_PATH: "./",
-    CONTACT_PATH: "../index.html#contact",
+    CONTACT_PATH: "../index.html#access",
     PHONE: blogData.site.phone,
     PHONE_HREF: `tel:${blogData.site.phone.replace(/-/g, "")}`,
     SITE_NAME: blogData.site.name,
@@ -271,7 +293,7 @@ export async function buildBlog() {
         CSS_PATH: "../../assets/blog.css",
         HOME_PATH: "../../../index.html",
         BLOG_PATH: "../../",
-        CONTACT_PATH: "../../../index.html#contact",
+        CONTACT_PATH: "../../../index.html#access",
         PHONE: blogData.site.phone,
         PHONE_HREF: `tel:${blogData.site.phone.replace(/-/g, "")}`,
         SITE_NAME: blogData.site.name,
@@ -468,7 +490,7 @@ function buildSymptomPatientVoicesSection(config = {}) {
             <a class="symptom-voice-card__image-link" href="${escapeHtml(voice.image)}" target="_blank" rel="noopener noreferrer">
               <img class="symptom-voice-card__image" src="${escapeHtml(voice.image)}" alt="${escapeHtml(voice.alt)}" loading="lazy" decoding="async">
             </a>
-            <div>
+            <div class="symptom-voice-card__body">
               <p class="symptom-voice-card__label">${escapeHtml(voice.name)}</p>
               <h3 class="symptom-voice-card__title">${escapeHtml(voice.title)}</h3>
               <p class="symptom-voice-card__quote">「${escapeHtml(voice.quote)}」</p>
@@ -577,9 +599,15 @@ ${endMarker}
 
 function buildRelatedSymptomsNavigation(config = {}) {
   const currentFileName = config.fileName || config.page || "";
-  const cards = symptomNavigationItems
+  const isKneeConcernTarget = relatedKneeConcernTargetFiles.has(currentFileName);
+  const navigationItems = isKneeConcernTarget ? relatedKneeConcernItems : symptomNavigationItems;
+  const sectionTitle = isKneeConcernTarget ? "関連する膝の悩み" : "ほかの症状も確認できます";
+  const sectionLead = isKneeConcernTarget
+    ? "膝の痛みは、痛む場所や動作によって原因の見方が変わることがあります。気になる症状があれば、あわせてご覧ください。"
+    : "痛みをかばう姿勢が続くと、別の部位にも負担がかかりやすくなります。気になる症状があれば、あわせて確認してみてください。";
+  const cards = navigationItems
     .filter((item) => item.href !== currentFileName)
-    .slice(0, 6)
+    .slice(0, isKneeConcernTarget ? 8 : 6)
     .map((item) => `
           <a class="related-symptom-card" href="${escapeHtml(item.href)}">
             <span class="related-symptom-card__label">${escapeHtml(item.label)}</span>
@@ -590,8 +618,8 @@ function buildRelatedSymptomsNavigation(config = {}) {
   return `<section class="related-symptoms">
       <div class="container max-w-4xl">
         <p class="related-symptoms__eyebrow">RELATED SYMPTOMS</p>
-        <h2 class="related-symptoms__title">ほかの症状も確認できます</h2>
-        <p class="related-symptoms__lead">痛みをかばう姿勢が続くと、別の部位にも負担がかかりやすくなります。気になる症状があれば、あわせて確認してみてください。</p>
+        <h2 class="related-symptoms__title">${sectionTitle}</h2>
+        <p class="related-symptoms__lead">${sectionLead}</p>
         <div class="related-symptoms__grid">
 ${cards}
         </div>
@@ -932,7 +960,7 @@ export function buildIndexContent(site, posts, categoryMap) {
           <h1>${escapeHtml(site.blogTitle)}</h1>
           <p class="hero-copy__lead">${escapeHtml(site.blogDescription)}</p>
           <div class="hero-actions">
-            <a class="button button--primary" href="../index.html#contact">LINEで相談する</a>
+            <a class="button button--primary" href="../index.html#access">LINEで相談する</a>
             <a class="button button--soft" href="../index.html#symptoms">症状ページを見る</a>
           </div>
         </div>
@@ -1253,15 +1281,21 @@ export function renderBody(block) {
 function buildArticleSchema(site, post) {
   return `<script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: post.title,
     description: post.description,
     datePublished: post.date,
     dateModified: post.updatedDate,
     image: [absoluteUrl(site.url, post.eyecatch)],
+    about: [
+      post.region,
+      post.category?.name,
+      ...(Array.isArray(post.tags) ? post.tags : [])
+    ].filter(Boolean),
     author: { "@type": "Organization", name: site.author },
     publisher: {
       "@type": "Organization",
+      "@id": absoluteUrl(site.url, "#medicalbusiness"),
       name: site.publisherName,
       logo: { "@type": "ImageObject", url: absoluteUrl(site.url, site.ogImage) }
     },

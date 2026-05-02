@@ -118,26 +118,10 @@ async function submitViaCors(form) {
 
 function getResponsiveImageMarkup(src) {
   const cleanSrc = src.startsWith('/') ? src.slice(1) : src;
-  const match = cleanSrc.match(/^(.*?)(\.[a-zA-Z0-9]+)$/);
-  if (!match) {
-    return {
-      src: cleanSrc,
-      srcset: '',
-      sizes: '(max-width: 768px) 100vw, 33vw'
-    };
-  }
-
-  const [, base, ext] = match;
-  const candidates = [
-    `${base}-480${ext} 480w`,
-    `${base}-768${ext} 768w`,
-    `${cleanSrc} 1200w`
-  ];
-
   return {
-    src: `${base}-768${ext}`,
-    srcset: candidates.join(', '),
-    sizes: '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
+    src: cleanSrc,
+    srcset: '',
+    sizes: ''
   };
 }
 
@@ -168,6 +152,38 @@ function renderBlogCard(post) {
       <h3 class="text-base font-black text-slate-800 leading-tight group-hover:text-blue-600 transition">${post.title}</h3>
       <p class="mt-3 text-sm font-bold leading-relaxed text-slate-500">${post.description || ''}</p>
     </div>
+  </a>`;
+}
+
+function renderCompactBlogCard(post) {
+  const date = new Date(post.date).toLocaleDateString('ja-JP').replace(/\//g, '.');
+  const image = getResponsiveImageMarkup(post.eyecatch || 'image/medical-interview.webp');
+  const url = `blog/posts/${post.slug}/`;
+  const categoryLabel = ({
+    'knee-pain': '膝痛',
+    'lower-back-pain': '腰痛',
+    'hip-pain': '股関節痛',
+    'neck-shoulder-hand': '首・肩・手',
+    'numbness': 'しびれ',
+    'exercise-therapy': '運動療法'
+  })[post.category] || 'ブログ';
+
+  return `<a href="${url}" class="blog-b-card group">
+    <span class="blog-b-thumb" aria-hidden="true">
+      <img src="${image.src}" alt="${post.title}" loading="lazy" decoding="async" width="1200" height="900">
+    </span>
+    <span class="blog-b-text">
+      <span class="blog-b-meta">
+        <span class="blog-b-cat">${categoryLabel}</span>
+        <span>${post.readingTime || ''}</span>
+      </span>
+      <span class="blog-b-title">${post.title}</span>
+      <span class="blog-b-desc">${post.description || ''}</span>
+    </span>
+    <span class="blog-b-side">
+      <span class="blog-b-date">${date}</span>
+      <span aria-hidden="true" class="blog-b-arrow">›</span>
+    </span>
   </a>`;
 }
 
@@ -250,7 +266,7 @@ async function hydrateBlogPreview() {
       return;
     }
 
-    container.innerHTML = posts.map(renderBlogCard).join('');
+    container.innerHTML = posts.map(renderCompactBlogCard).join('');
 
     refreshIcons(container);
   } catch (error) {

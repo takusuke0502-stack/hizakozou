@@ -1,11 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
 const repoRoot = fileURLToPath(new URL("..", import.meta.url));
+const mainJs = readFileSync(new URL("../scripts/main.js", import.meta.url), "utf8");
+const buildBlogScript = readFileSync(new URL("../scripts/build-blog.mjs", import.meta.url), "utf8");
+const generateBlogScript = readFileSync(new URL("../scripts/generate-blog.mjs", import.meta.url), "utf8");
 
 function getJsonLdBlocks(type) {
   const matches = [...html.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/g)];
@@ -88,6 +91,74 @@ test("LP local image assets resolve to existing files", () => {
     const absolutePath = path.join(repoRoot, ref.replace(/\//g, path.sep));
 
     assert.equal(existsSync(absolutePath), true, `missing local image asset: ${ref}`);
+  }
+});
+
+test("LP has an overflow-safe mobile hero title", () => {
+  assert.match(html, /<h1 class="[^"]*\bhero-title\b[^"]*"/, "hero title should keep the hero-title hook");
+  assert.match(html, /\.hero-fixed \.hero-title\s*\{[\s\S]*overflow-wrap:\s*anywhere/i);
+  assert.match(html, /\.hero-fixed \.hero-title\s*\{[\s\S]*font-size:\s*clamp\(/i);
+});
+
+test("LP exposes a real contact anchor for generated blog CTAs", () => {
+  assert.match(html, /id="contact"/, "LP should expose a contact anchor");
+  assert.doesNotMatch(buildBlogScript, /#contact/, "blog templates should not point to a missing contact anchor by accident");
+});
+
+test("LP runtime blog preview keeps compact cards and avoids speculative image variants", () => {
+  assert.match(mainJs, /class="blog-b-card group/, "runtime blog cards should use the compact LP card class");
+  assert.doesNotMatch(mainJs, /-480\$\{ext\}/, "runtime blog images should not assume a 480px variant exists");
+  assert.doesNotMatch(mainJs, /-768\$\{ext\}/, "runtime blog images should not assume a 768px variant exists");
+});
+
+test("blog generation keeps region data and emits BlogPosting schema", () => {
+  assert.match(generateBlogScript, /region:\s*parsed\.region/, "generated blog post data should preserve region");
+  assert.match(buildBlogScript, /"@type":\s*"BlogPosting"/, "blog article schema should use BlogPosting");
+  assert.match(buildBlogScript, /"@id":\s*absoluteUrl\(site\.url,\s*"#medicalbusiness"\)/, "blog article schema should link back to the clinic entity");
+});
+
+test("symptom pages avoid strong medical guarantee wording", () => {
+  const symptomDir = path.join(repoRoot, "symptoms");
+  const strongPatterns = [
+    /根本改善/,
+    /唯一の方法/,
+    /確実に楽/,
+    /再貯留を防ぎます/,
+    /再発を防ぎます/,
+    /排液を促します/,
+    /効く理由/
+  ];
+
+  for (const fileName of readdirSync(symptomDir).filter((name) => name.endsWith(".html"))) {
+    const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
+    for (const pattern of strongPatterns) {
+      assert.doesNotMatch(symptomHtml, pattern, `${fileName} should avoid ${pattern}`);
+    }
+  }
+});
+
+test("blog sources and generated posts avoid strong medical guarantee wording", () => {
+  const checkedFiles = [
+    ...readdirSync(path.join(repoRoot, "content", "source"))
+      .filter((name) => name.endsWith(".md"))
+      .map((name) => path.join(repoRoot, "content", "source", name)),
+    path.join(repoRoot, "data", "blog-posts.json")
+  ];
+  const strongPatterns = [
+    /根本改善/,
+    /唯一の方法/,
+    /確実に楽/,
+    /再貯留を防ぎます/,
+    /再発を防ぎます/,
+    /排液を促します/,
+    /効く理由/
+  ];
+
+  for (const filePath of checkedFiles) {
+    const text = readFileSync(filePath, "utf8");
+    for (const pattern of strongPatterns) {
+      assert.doesNotMatch(text, pattern, `${path.relative(repoRoot, filePath)} should avoid ${pattern}`);
+    }
   }
 });
 
