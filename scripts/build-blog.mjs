@@ -864,6 +864,7 @@ function buildPostSeo(site, post) {
   const canonical = `${trimTrailingSlash(site.url)}${post.url}`;
   const schemas = [
     buildArticleSchema(site, post),
+    buildBreadcrumbSchema(site, post),
     post.faq.length ? buildFaqSchema(post.faq) : ""
   ].filter(Boolean).join("\n  ");
 
@@ -1300,6 +1301,35 @@ function buildArticleSchema(site, post) {
       logo: { "@type": "ImageObject", url: absoluteUrl(site.url, site.ogImage) }
     },
     mainEntityOfPage: `${trimTrailingSlash(site.url)}${post.url}`
+  })}</script>`;
+}
+
+function buildBreadcrumbSchema(site, post) {
+  const siteUrl = trimTrailingSlash(site.url);
+
+  return `<script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: site.name,
+        item: `${siteUrl}/`
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "ブログ",
+        item: `${siteUrl}/blog/`
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `${siteUrl}${post.url}`
+      }
+    ]
   })}</script>`;
 }
 

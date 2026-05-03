@@ -79,6 +79,12 @@ test("blog index puts recommended conversion posts before recent posts", () => {
   assert.ok(recommendedIndex < recentIndex, "recommended posts should appear before recent posts");
 });
 
+test("blog index meta description includes local knee-pain intent", () => {
+  const html = readFileSync(new URL("../blog/index.html", import.meta.url), "utf8");
+
+  assert.match(html, /<meta name="description" content="[^"]*柏市[^"]*膝痛[^"]*慢性痛[^"]*整体院ひざこぞう[^"]*">/);
+});
+
 test("renderBody keeps mixed bullet groups scannable as lists", () => {
   const html = renderBody({
     body: [
@@ -196,6 +202,19 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
   assert.doesNotMatch(html, /clinic-director-new\.webp/);
   assert.doesNotMatch(html, /<details class="faq-item">/);
   assert.doesNotMatch(html, /<summary>/);
+});
+
+test("generated blog articles emit breadcrumb structured data", () => {
+  const html = readFileSync(new URL("../blog/posts/walking-start-knee-pain-cause/index.html", import.meta.url), "utf8");
+  const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+  const breadcrumb = schemas.find((schema) => schema["@type"] === "BreadcrumbList");
+
+  assert.ok(breadcrumb, "blog articles should emit BreadcrumbList schema");
+  assert.deepEqual(
+    breadcrumb.itemListElement.map((item) => item.name),
+    ["整体院ひざこぞう", "ブログ", "柏市で歩き始めに膝が痛い方へ｜立ち上がりでつらい膝痛の見方"]
+  );
+  assert.equal(breadcrumb.itemListElement[2].item, "https://hizakozou.jp/blog/posts/walking-start-knee-pain-cause/");
 });
 
 test("buildPostContent applies shared box-type rules to sections and subsections", () => {

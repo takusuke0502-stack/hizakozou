@@ -134,7 +134,7 @@
     .hero-fixed .hero-title {
       max-width: 1100px !important;
       max-width: 100% !important;
-      font-size: clamp(2rem, 8.6vw, 4rem) !important;
+      font-size: clamp(1.72rem, 7.4vw, 3.6rem) !important;
       line-height: 1.12 !important;
       overflow-wrap: anywhere;
     }
@@ -943,10 +943,10 @@
             <p>疑問はどんな小さなことでも遠慮なく聞いてください。<br>あなたが「なぜ痛むのか」を自分の言葉で理解できるまで、一緒に整理していきます。</p>
             <div class="profile-story-break" aria-hidden="true"></div>
             <p class="text-lg md:text-xl font-black text-slate-900 leading-relaxed">あなたの痛みを、一緒に見させてください。</p>
-            <p>完璧に全員を治せるとは言いません。<br>ですが、誰よりも丁寧にあなたの体と向き合い、根本から改善するために全力を尽くすことは約束できます。</p>
+            <p>完璧に全員を治せるとは言いません。<br>ですが、誰よりも丁寧にあなたの体と向き合い、負担を減らす道筋を一緒に探すことは約束できます。</p>
             <p>痛みのせいで、好きなことを我慢していませんか。<br>行きたい場所を諦めていませんか。</p>
             <p>一度きりの人生、「体が楽になって良かった」と心から思える毎日を、一緒に取り戻しましょう。</p>
-            <p>まずはLINEで気軽に相談してください。あなたの一歩を、私は絶対に無駄にしません。</p>
+            <p>まずはLINEで気軽に相談してください。あなたの一歩を大切に受け止め、今の状態を一緒に整理します。</p>
           </div>
         </div>
 
@@ -1712,18 +1712,18 @@
                 <div id="form-error" class="hidden rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-bold text-red-700" role="alert" tabindex="-1"></div>
                 <div>
                   <label for="name" class="block font-bold text-sm mb-2 text-slate-700">お名前 <span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded ml-2">必須</span></label>
-                  <input type="text" id="name" name="name" required autocomplete="name" aria-invalid="false" class="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none transition text-sm" placeholder="例：柏 太郎" aria-required="true">
+                  <input type="text" id="name" name="name" required autocomplete="name" aria-invalid="false" class="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none transition text-base" placeholder="例：柏 太郎" aria-required="true">
                   <p class="text-red-500 text-xs font-bold mt-1 hidden" id="name-error" role="alert">お名前を入力してください</p>
                 </div>
                 <div>
                   <label for="phone" class="block font-bold text-sm mb-2 text-slate-700">電話番号 <span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded ml-2">必須</span></label>
-                  <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" aria-invalid="false" pattern="[0-9\-\(\)\+\s]{10,15}" class="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none transition text-sm" placeholder="例：04-7114-3274" aria-required="true" aria-describedby="phone-hint">
+                  <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" aria-invalid="false" pattern="[0-9\-\(\)\+\s]{10,15}" class="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none transition text-base" placeholder="例：04-7114-3274" aria-required="true" aria-describedby="phone-hint">
                   <p id="phone-hint" class="text-slate-400 text-xs font-bold mt-1">ハイフンあり・なしどちらでも可</p>
                   <p class="text-red-500 text-xs font-bold mt-1 hidden" id="phone-error" role="alert">正しい電話番号を入力してください</p>
                 </div>
                 <div>
                   <label for="message" class="block font-bold text-sm mb-2 text-slate-700">お問い合わせ内容</label>
-                  <textarea id="message" name="message" rows="8" autocomplete="off" class="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none transition resize-none text-sm leading-relaxed" placeholder="ご希望日時（第１・第２希望）
+                  <textarea id="message" name="message" rows="8" autocomplete="off" class="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none transition resize-none text-base leading-relaxed" placeholder="ご希望日時（第１・第２希望）
 お体の症状・気になること
 ご年齢
 
@@ -1851,11 +1851,11 @@
   <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-slate-200 shadow-[0_-5px_20px_rgba(0,0,0,0.1)] p-3 flex gap-3" style="-webkit-transform: translateZ(0); transform: translateZ(0); will-change: transform;">
     <a href="tel:0471143274"
        class="flex-1 flex items-center justify-center gap-2 bg-slate-800 text-white font-black py-4 rounded-xl text-base shadow transition active:scale-95">
-      <i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i> 電話で確認する
+      <i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i> <span class="mobile-fixed-cta__label">電話</span>
     </a>
     <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer"
        class="flex-1 flex items-center justify-center gap-2 bg-[#06C755] text-white font-black py-4 rounded-xl text-base shadow transition active:scale-95">
-      <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i> LINEで予約する
+      <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i> <span class="mobile-fixed-cta__label">LINE相談</span>
     </a>
   </div>
 

@@ -100,6 +100,14 @@ test("LP has an overflow-safe mobile hero title", () => {
   assert.match(html, /\.hero-fixed \.hero-title\s*\{[\s\S]*font-size:\s*clamp\(/i);
 });
 
+test("LP mobile hero title and fixed CTA stay compact on narrow screens", () => {
+  assert.match(html, /font-size:\s*clamp\(1\.72rem,\s*7\.4vw,\s*3\.6rem\)\s*!important;/);
+  assert.doesNotMatch(html, /font-size:\s*clamp\(2rem,\s*8\.6vw,\s*4rem\)/);
+  assert.match(html, /<span class="mobile-fixed-cta__label">LINE相談<\/span>/);
+  assert.match(html, /<span class="mobile-fixed-cta__label">電話<\/span>/);
+  assert.doesNotMatch(getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js"'), /LINEで予約する/);
+});
+
 test("LP exposes a real contact anchor for generated blog CTAs", () => {
   assert.match(html, /id="contact"/, "LP should expose a contact anchor");
   assert.doesNotMatch(buildBlogScript, /#contact/, "blog templates should not point to a missing contact anchor by accident");
@@ -109,6 +117,27 @@ test("LP runtime blog preview keeps compact cards and avoids speculative image v
   assert.match(mainJs, /class="blog-b-card group/, "runtime blog cards should use the compact LP card class");
   assert.doesNotMatch(mainJs, /-480\$\{ext\}/, "runtime blog images should not assume a 480px variant exists");
   assert.doesNotMatch(mainJs, /-768\$\{ext\}/, "runtime blog images should not assume a 768px variant exists");
+});
+
+test("LP runtime blog preview escapes post data before injecting HTML", () => {
+  assert.match(mainJs, /function escapeHtml\(/, "runtime blog rendering should define an HTML escaper");
+  assert.match(mainJs, /const title = escapeHtml\(post\.title \|\| ''\)/);
+  assert.match(mainJs, /const description = escapeHtml\(post\.description \|\| ''\)/);
+  assert.doesNotMatch(mainJs, /\$\{post\.title\}/, "raw titles should not be interpolated into card HTML");
+  assert.doesNotMatch(mainJs, /\$\{post\.description \|\| ''\}/, "raw descriptions should not be interpolated into card HTML");
+});
+
+test("LP avoids strong medical promise wording in visible conversion copy", () => {
+  const strongPhrases = [
+    "根本から改善する",
+    "絶対に無駄にしません",
+    "世界の医療が証明",
+    "手術は最後の手段"
+  ];
+
+  for (const phrase of strongPhrases) {
+    assert.equal(html.includes(phrase), false, `LP should avoid strong phrase: ${phrase}`);
+  }
 });
 
 test("blog generation keeps region data and emits BlogPosting schema", () => {
