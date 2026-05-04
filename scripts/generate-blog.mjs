@@ -18,6 +18,11 @@ const DEFAULT_RELATED_SYMPTOMS = {
     href: "/symptoms/knee-effusion.html",
     description: "腫れや重さがあるときの見方を知りたい方へ。"
   },
+  "膝の水": {
+    label: "膝に水がたまる",
+    href: "/symptoms/knee-effusion.html",
+    description: "腫れや重さがあるときの見方を知りたい方へ。"
+  },
   "膝に水が溜まる": {
     label: "膝に水がたまる",
     href: "/symptoms/knee-effusion.html",
@@ -32,6 +37,56 @@ const DEFAULT_RELATED_SYMPTOMS = {
     label: "膝の外側の痛み",
     href: "/symptoms/knee-lateral-pain.html",
     description: "歩行時や階段で外側が気になる方へ。"
+  },
+  "膝の前側の痛み": {
+    label: "膝の前側の痛み",
+    href: "/symptoms/knee-front-pain.html",
+    description: "階段や立ち上がりでお皿まわりが気になる方へ。"
+  },
+  "膝のお皿の痛み": {
+    label: "膝の前側の痛み",
+    href: "/symptoms/knee-front-pain.html",
+    description: "階段や立ち上がりでお皿まわりが気になる方へ。"
+  },
+  "半月板損傷": {
+    label: "半月板損傷・膝の引っかかり",
+    href: "/symptoms/meniscus-knee-pain.html",
+    description: "曲げ伸ばしや引っかかり感が気になる方へ。"
+  },
+  "膝の引っかかり": {
+    label: "半月板損傷・膝の引っかかり",
+    href: "/symptoms/meniscus-knee-pain.html",
+    description: "曲げ伸ばしや引っかかり感が気になる方へ。"
+  },
+  "O脚": {
+    label: "O脚・膝のゆがみ",
+    href: "/symptoms/bowlegs-knee-pain.html",
+    description: "膝の内側や脚のゆがみが気になる方へ。"
+  },
+  "膝のゆがみ": {
+    label: "O脚・膝のゆがみ",
+    href: "/symptoms/bowlegs-knee-pain.html",
+    description: "膝の内側や脚のゆがみが気になる方へ。"
+  },
+  "反張膝": {
+    label: "反張膝・膝が伸びすぎる",
+    href: "/symptoms/knee-hyperextension.html",
+    description: "立つと膝が後ろへ入りやすい方へ。"
+  },
+  "膝が伸びすぎる": {
+    label: "反張膝・膝が伸びすぎる",
+    href: "/symptoms/knee-hyperextension.html",
+    description: "立つと膝が後ろへ入りやすい方へ。"
+  },
+  "足首の硬さ": {
+    label: "足首の硬さと膝痛",
+    href: "/symptoms/ankle-stiffness-knee-pain.html",
+    description: "足首や足裏の使いにくさが膝に響く方へ。"
+  },
+  "足首由来の膝痛": {
+    label: "足首の硬さと膝痛",
+    href: "/symptoms/ankle-stiffness-knee-pain.html",
+    description: "足首や足裏の使いにくさが膝に響く方へ。"
   },
   "腸脛靭帯炎": {
     label: "膝の外側の痛み",
@@ -488,6 +543,7 @@ function toBlogPost(parsed, site, existing = {}) {
     date: parsed.date,
     updatedDate: parsed.updatedDate || existing.updatedDate || parsed.date,
     category: parsed.category,
+    region: parsed.region,
     tags: parsed.tags,
     eyecatch: parsed.heroImage || existing.eyecatch || site.defaultEyecatch,
     readingTime: formatReadingTime(parsed),
@@ -495,8 +551,28 @@ function toBlogPost(parsed, site, existing = {}) {
     lead: parsed.lead || parsed.description,
     sections: parsed.sections,
     faq: parsed.faq,
-    cta: existing.cta || buildDefaultCta(parsed.category)
+    cta: sanitizeCta(existing.cta || buildDefaultCta(parsed.category))
   };
+}
+
+function sanitizeCta(cta = {}) {
+  return Object.fromEntries(
+    Object.entries(cta).map(([key, value]) => [
+      key,
+      typeof value === "string" ? sanitizeStrongWording(value) : value
+    ])
+  );
+}
+
+function sanitizeStrongWording(value) {
+  return value
+    .replaceAll("根本改善", "体づくり")
+    .replaceAll("唯一の方法", "大切な視点")
+    .replaceAll("確実に楽", "楽に動ける可能性")
+    .replaceAll("再貯留を防ぎます", "再びたまりにくい動き方を目指します")
+    .replaceAll("再発を防ぎます", "再発しにくい動き方を目指します")
+    .replaceAll("排液を促します", "循環しやすい状態を目指します")
+    .replaceAll("効く理由", "役立つ理由");
 }
 
 function buildDefaultCta(category) {

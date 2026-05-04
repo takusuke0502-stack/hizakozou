@@ -16,6 +16,11 @@ const symptomNavigationItems = [
   { href: "pes-anserine-bursitis.html", label: "膝の内側の痛み", description: "鵞足炎や内側の違和感が続く方へ。" },
   { href: "knee-lateral-pain.html", label: "膝の外側の痛み", description: "腸脛靭帯炎や外側半月板まわりが気になる方へ。" },
   { href: "knee-posterior-pain.html", label: "膝の裏側の痛み", description: "ベーカー嚢腫や膝裏の張りが気になる方へ。" },
+  { href: "knee-front-pain.html", label: "膝の前側の痛み", description: "階段や立ち上がりでお皿まわりが気になる方へ。" },
+  { href: "meniscus-knee-pain.html", label: "半月板損傷・膝の引っかかり", description: "曲げ伸ばしや引っかかり感が気になる方へ。" },
+  { href: "bowlegs-knee-pain.html", label: "O脚・膝のゆがみ", description: "膝の内側や脚のゆがみが気になる方へ。" },
+  { href: "knee-hyperextension.html", label: "反張膝・膝が伸びすぎる", description: "立つと膝が後ろへ入りやすい方へ。" },
+  { href: "ankle-stiffness-knee-pain.html", label: "足首の硬さと膝痛", description: "足首や足裏の使いにくさが膝に響く方へ。" },
   { href: "hip-osteoarthritis.html", label: "股関節の痛み", description: "歩き方や膝への負担と股関節の関係を知りたい方へ。" },
   { href: "lower-back-pain.html", label: "腰痛", description: "膝をかばう姿勢や歩き方と腰痛の関係が気になる方へ。" },
   { href: "sciatica.html", label: "坐骨神経痛", description: "お尻から脚のしびれや痛みが続く方へ。" },
@@ -25,6 +30,38 @@ const symptomNavigationItems = [
   { href: "shoulder-stiffness.html", label: "肩こり", description: "首肩の重さや姿勢の崩れが気になる方へ。" },
   { href: "frozen-shoulder.html", label: "五十肩", description: "腕が上がらない、夜に肩が痛む方へ。" },
   { href: "tmj.html", label: "顎関節症", description: "あごの痛みや口の開けづらさ、首肩との関係が気になる方へ。" }
+];
+
+const relatedKneeConcernTargetFiles = new Set([
+  "knee-osteoarthritis.html",
+  "knee-effusion.html",
+  "pes-anserine-bursitis.html",
+  "knee-lateral-pain.html",
+  "knee-posterior-pain.html",
+  "knee-front-pain.html",
+  "meniscus-knee-pain.html",
+  "bowlegs-knee-pain.html",
+  "knee-hyperextension.html",
+  "ankle-stiffness-knee-pain.html",
+  "plantar-fasciitis.html",
+  "lower-back-pain.html",
+  "sciatica.html"
+]);
+
+const relatedKneeConcernItems = [
+  { href: "knee-osteoarthritis.html", label: "変形性膝関節症でお悩みの方へ", description: "歩き始めや階段で膝痛が続く方へ。" },
+  { href: "knee-effusion.html", label: "膝に水がたまる・腫れぼったい方へ", description: "膝の腫れや重さが気になる方へ。" },
+  { href: "pes-anserine-bursitis.html", label: "膝の内側が痛い・鵞足炎が気になる方へ", description: "内側やや下の痛みを整理したい方へ。" },
+  { href: "knee-lateral-pain.html", label: "膝の外側が痛い方へ", description: "歩くと外側が張る、違和感が出る方へ。" },
+  { href: "knee-posterior-pain.html", label: "膝の裏が痛い・腫れる方へ", description: "膝裏の張りや曲げ伸ばしの重さが気になる方へ。" },
+  { href: "knee-front-pain.html", label: "膝の前側・お皿まわりが痛い方へ", description: "階段や立ち上がりで前側が気になる方へ。" },
+  { href: "meniscus-knee-pain.html", label: "半月板損傷・膝の引っかかりが気になる方へ", description: "曲げ伸ばしの違和感や不安がある方へ。" },
+  { href: "bowlegs-knee-pain.html", label: "O脚・膝のゆがみが気になる方へ", description: "膝の内側に負担が集まりやすい方へ。" },
+  { href: "knee-hyperextension.html", label: "反張膝・膝が伸びすぎる方へ", description: "立つと膝が後ろへ入りやすい方へ。" },
+  { href: "ankle-stiffness-knee-pain.html", label: "足首の硬さと膝痛が気になる方へ", description: "足元から膝の負担を整理したい方へ。" },
+  { href: "../blog/posts/walking-start-knee-pain-cause/", label: "歩き始めに膝が痛い方へ", description: "立ち上がりや一歩目の痛みを整理した記事です。" },
+  { href: "../blog/posts/knee-pain-daily-care/", label: "しゃがむ・正座で膝が痛い方へ", description: "日常動作で膝に負担が集まる理由を整理します。" },
+  { href: "../blog/posts/hip-stiffness-knee-low-back-pain-relation/", label: "股関節や足首の硬さと膝痛の関係", description: "膝だけでなく周辺の動きも確認したい方へ。" }
 ];
 
 const symptomConfigs = {
@@ -60,6 +97,41 @@ const symptomConfigs = {
     keywords: ["膝の内側", "鵞足炎", "膝痛", "膝"],
     categoryHints: ["knee-pain", "exercise-therapy"],
     pinnedSlugs: ["knee-medial-pain-saphenous-nerve", "knee-pain-daily-care"]
+  },
+  "knee-front-pain.html": {
+    symptomKey: "knee-front-pain",
+    label: "膝の前側の痛み",
+    keywords: ["膝の前側", "膝のお皿", "膝蓋骨", "階段", "立ち上がり", "膝痛", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: ["knee-pain-stairs-guide", "knee-pain-daily-care"]
+  },
+  "meniscus-knee-pain.html": {
+    symptomKey: "meniscus-knee-pain",
+    label: "半月板損傷・膝の引っかかり",
+    keywords: ["半月板", "膝の引っかかり", "曲げ伸ばし", "膝痛", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: ["knee-medial-pain-difference", "kashiwa-knee-pain-clinic-or-seitai"]
+  },
+  "bowlegs-knee-pain.html": {
+    symptomKey: "bowlegs-knee-pain",
+    label: "O脚・膝のゆがみ",
+    keywords: ["O脚", "膝のゆがみ", "膝の内側", "変形性膝関節症", "膝痛", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: ["knee-osteoarthritis-before-surgery-walking", "swayback-posture-knee-pain"]
+  },
+  "knee-hyperextension.html": {
+    symptomKey: "knee-hyperextension",
+    label: "反張膝・膝が伸びすぎる",
+    keywords: ["反張膝", "膝が伸びすぎる", "スウェイバック", "姿勢", "膝痛", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: ["swayback-posture-knee-pain", "seven-checkpoints-for-knee-pain-improvement"]
+  },
+  "ankle-stiffness-knee-pain.html": {
+    symptomKey: "ankle-stiffness-knee-pain",
+    label: "足首の硬さと膝痛",
+    keywords: ["足首", "足首の硬さ", "足裏", "歩き方", "膝痛", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: ["lumbricals-knee-low-back-pain-relation", "plantar-fasciitis-arch-walking"]
   },
   "lower-back-pain.html": {
     symptomKey: "lower-back-pain",
@@ -251,7 +323,7 @@ export async function buildBlog() {
     CSS_PATH: "assets/blog.css",
     HOME_PATH: "../index.html",
     BLOG_PATH: "./",
-    CONTACT_PATH: "../index.html#contact",
+    CONTACT_PATH: "../index.html#access",
     PHONE: blogData.site.phone,
     PHONE_HREF: `tel:${blogData.site.phone.replace(/-/g, "")}`,
     SITE_NAME: blogData.site.name,
@@ -271,7 +343,7 @@ export async function buildBlog() {
         CSS_PATH: "../../assets/blog.css",
         HOME_PATH: "../../../index.html",
         BLOG_PATH: "../../",
-        CONTACT_PATH: "../../../index.html#contact",
+        CONTACT_PATH: "../../../index.html#access",
         PHONE: blogData.site.phone,
         PHONE_HREF: `tel:${blogData.site.phone.replace(/-/g, "")}`,
         SITE_NAME: blogData.site.name,
@@ -468,7 +540,7 @@ function buildSymptomPatientVoicesSection(config = {}) {
             <a class="symptom-voice-card__image-link" href="${escapeHtml(voice.image)}" target="_blank" rel="noopener noreferrer">
               <img class="symptom-voice-card__image" src="${escapeHtml(voice.image)}" alt="${escapeHtml(voice.alt)}" loading="lazy" decoding="async">
             </a>
-            <div>
+            <div class="symptom-voice-card__body">
               <p class="symptom-voice-card__label">${escapeHtml(voice.name)}</p>
               <h3 class="symptom-voice-card__title">${escapeHtml(voice.title)}</h3>
               <p class="symptom-voice-card__quote">「${escapeHtml(voice.quote)}」</p>
@@ -577,9 +649,15 @@ ${endMarker}
 
 function buildRelatedSymptomsNavigation(config = {}) {
   const currentFileName = config.fileName || config.page || "";
-  const cards = symptomNavigationItems
+  const isKneeConcernTarget = relatedKneeConcernTargetFiles.has(currentFileName);
+  const navigationItems = isKneeConcernTarget ? relatedKneeConcernItems : symptomNavigationItems;
+  const sectionTitle = isKneeConcernTarget ? "関連する膝の悩み" : "ほかの症状も確認できます";
+  const sectionLead = isKneeConcernTarget
+    ? "膝の痛みは、痛む場所や動作によって原因の見方が変わることがあります。気になる症状があれば、あわせてご覧ください。"
+    : "痛みをかばう姿勢が続くと、別の部位にも負担がかかりやすくなります。気になる症状があれば、あわせて確認してみてください。";
+  const cards = navigationItems
     .filter((item) => item.href !== currentFileName)
-    .slice(0, 6)
+    .slice(0, isKneeConcernTarget ? 8 : 6)
     .map((item) => `
           <a class="related-symptom-card" href="${escapeHtml(item.href)}">
             <span class="related-symptom-card__label">${escapeHtml(item.label)}</span>
@@ -590,8 +668,8 @@ function buildRelatedSymptomsNavigation(config = {}) {
   return `<section class="related-symptoms">
       <div class="container max-w-4xl">
         <p class="related-symptoms__eyebrow">RELATED SYMPTOMS</p>
-        <h2 class="related-symptoms__title">ほかの症状も確認できます</h2>
-        <p class="related-symptoms__lead">痛みをかばう姿勢が続くと、別の部位にも負担がかかりやすくなります。気になる症状があれば、あわせて確認してみてください。</p>
+        <h2 class="related-symptoms__title">${sectionTitle}</h2>
+        <p class="related-symptoms__lead">${sectionLead}</p>
         <div class="related-symptoms__grid">
 ${cards}
         </div>
@@ -836,6 +914,7 @@ function buildPostSeo(site, post) {
   const canonical = `${trimTrailingSlash(site.url)}${post.url}`;
   const schemas = [
     buildArticleSchema(site, post),
+    buildBreadcrumbSchema(site, post),
     post.faq.length ? buildFaqSchema(post.faq) : ""
   ].filter(Boolean).join("\n  ");
 
@@ -932,7 +1011,7 @@ export function buildIndexContent(site, posts, categoryMap) {
           <h1>${escapeHtml(site.blogTitle)}</h1>
           <p class="hero-copy__lead">${escapeHtml(site.blogDescription)}</p>
           <div class="hero-actions">
-            <a class="button button--primary" href="../index.html#contact">LINEで相談する</a>
+            <a class="button button--primary" href="../index.html#access">LINEで相談する</a>
             <a class="button button--soft" href="../index.html#symptoms">症状ページを見る</a>
           </div>
         </div>
@@ -1253,19 +1332,54 @@ export function renderBody(block) {
 function buildArticleSchema(site, post) {
   return `<script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: post.title,
     description: post.description,
     datePublished: post.date,
     dateModified: post.updatedDate,
     image: [absoluteUrl(site.url, post.eyecatch)],
+    about: [
+      post.region,
+      post.category?.name,
+      ...(Array.isArray(post.tags) ? post.tags : [])
+    ].filter(Boolean),
     author: { "@type": "Organization", name: site.author },
     publisher: {
       "@type": "Organization",
+      "@id": absoluteUrl(site.url, "#medicalbusiness"),
       name: site.publisherName,
       logo: { "@type": "ImageObject", url: absoluteUrl(site.url, site.ogImage) }
     },
     mainEntityOfPage: `${trimTrailingSlash(site.url)}${post.url}`
+  })}</script>`;
+}
+
+function buildBreadcrumbSchema(site, post) {
+  const siteUrl = trimTrailingSlash(site.url);
+
+  return `<script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: site.name,
+        item: `${siteUrl}/`
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "ブログ",
+        item: `${siteUrl}/blog/`
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `${siteUrl}${post.url}`
+      }
+    ]
   })}</script>`;
 }
 

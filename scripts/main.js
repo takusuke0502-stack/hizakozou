@@ -118,33 +118,29 @@ async function submitViaCors(form) {
 
 function getResponsiveImageMarkup(src) {
   const cleanSrc = src.startsWith('/') ? src.slice(1) : src;
-  const match = cleanSrc.match(/^(.*?)(\.[a-zA-Z0-9]+)$/);
-  if (!match) {
-    return {
-      src: cleanSrc,
-      srcset: '',
-      sizes: '(max-width: 768px) 100vw, 33vw'
-    };
-  }
-
-  const [, base, ext] = match;
-  const candidates = [
-    `${base}-480${ext} 480w`,
-    `${base}-768${ext} 768w`,
-    `${cleanSrc} 1200w`
-  ];
-
   return {
-    src: `${base}-768${ext}`,
-    srcset: candidates.join(', '),
-    sizes: '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
+    src: cleanSrc,
+    srcset: '',
+    sizes: ''
   };
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
 }
 
 function renderBlogCard(post) {
   const date = new Date(post.date).toLocaleDateString('ja-JP').replace(/\//g, '.');
   const image = getResponsiveImageMarkup(post.eyecatch || 'image/medical-interview.webp');
   const url = `blog/posts/${post.slug}/`;
+  const title = escapeHtml(post.title || '');
+  const description = escapeHtml(post.description || '');
+  const readingTime = escapeHtml(post.readingTime || '');
   const categoryLabel = ({
     'knee-pain': '膝痛',
     'lower-back-pain': '腰痛',
@@ -153,21 +149,56 @@ function renderBlogCard(post) {
 
   return `<a href="${url}" class="group block bg-white rounded-3xl overflow-hidden card-shadow hover:shadow-xl transition-all duration-300 border border-slate-100">
     <div class="h-48 overflow-hidden bg-slate-100">
-      <img src="${image.src}" ${image.srcset ? `srcset="${image.srcset}" sizes="${image.sizes}"` : ''} alt="${post.title} | 整体院ひざこぞうブログ" class="w-full h-full object-contain group-hover:scale-105 transition duration-500" loading="lazy" decoding="async" width="600" height="400">
+      <img src="${image.src}" ${image.srcset ? `srcset="${image.srcset}" sizes="${image.sizes}"` : ''} alt="${title} | 整体院ひざこぞうブログ" class="w-full h-full object-contain group-hover:scale-105 transition duration-500" loading="lazy" decoding="async" width="600" height="400">
     </div>
     <div class="p-6">
       <div class="mb-3 flex flex-wrap items-center gap-2 text-xs font-bold">
         <span class="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-blue-700">${categoryLabel}</span>
         <span class="text-slate-300">/</span>
-        <span class="text-slate-500">${post.readingTime || ''}</span>
+        <span class="text-slate-500">${readingTime}</span>
       </div>
       <p class="text-xs font-bold text-blue-600 mb-2 flex items-center gap-1">
         <i data-lucide="calendar" class="w-3 h-3" aria-hidden="true"></i>
         <time datetime="${post.date}">${date}</time>
       </p>
-      <h3 class="text-base font-black text-slate-800 leading-tight group-hover:text-blue-600 transition">${post.title}</h3>
-      <p class="mt-3 text-sm font-bold leading-relaxed text-slate-500">${post.description || ''}</p>
+      <h3 class="text-base font-black text-slate-800 leading-tight group-hover:text-blue-600 transition">${title}</h3>
+      <p class="mt-3 text-sm font-bold leading-relaxed text-slate-500">${description}</p>
     </div>
+  </a>`;
+}
+
+function renderCompactBlogCard(post) {
+  const date = new Date(post.date).toLocaleDateString('ja-JP').replace(/\//g, '.');
+  const image = getResponsiveImageMarkup(post.eyecatch || 'image/medical-interview.webp');
+  const url = `blog/posts/${post.slug}/`;
+  const title = escapeHtml(post.title || '');
+  const description = escapeHtml(post.description || '');
+  const readingTime = escapeHtml(post.readingTime || '');
+  const categoryLabel = ({
+    'knee-pain': '膝痛',
+    'lower-back-pain': '腰痛',
+    'hip-pain': '股関節痛',
+    'neck-shoulder-hand': '首・肩・手',
+    'numbness': 'しびれ',
+    'exercise-therapy': '運動療法'
+  })[post.category] || 'ブログ';
+
+  return `<a href="${url}" class="blog-b-card group">
+    <span class="blog-b-thumb" aria-hidden="true">
+      <img src="${image.src}" alt="${title}" loading="lazy" decoding="async" width="1200" height="900">
+    </span>
+    <span class="blog-b-text">
+      <span class="blog-b-meta">
+        <span class="blog-b-cat">${categoryLabel}</span>
+        <span>${readingTime}</span>
+      </span>
+      <span class="blog-b-title">${title}</span>
+      <span class="blog-b-desc">${description}</span>
+    </span>
+    <span class="blog-b-side">
+      <span class="blog-b-date">${date}</span>
+      <span aria-hidden="true" class="blog-b-arrow">›</span>
+    </span>
   </a>`;
 }
 
@@ -254,7 +285,7 @@ async function hydrateBlogPreview() {
       return;
     }
 
-    container.innerHTML = posts.map(renderBlogCard).join('');
+    container.innerHTML = posts.map(renderCompactBlogCard).join('');
 
     refreshIcons(container);
   } catch (error) {
