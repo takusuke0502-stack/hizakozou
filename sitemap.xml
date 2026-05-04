@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://hizakozou.jp/</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -271,6 +271,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://hizakozou.jp/symptoms/ankle-stiffness-knee-pain.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hizakozou.jp/symptoms/bowlegs-knee-pain.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hizakozou.jp/symptoms/carpal-tunnel.html</loc>
     <lastmod>2026-05-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -307,6 +319,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://hizakozou.jp/symptoms/knee-front-pain.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hizakozou.jp/symptoms/knee-hyperextension.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hizakozou.jp/symptoms/knee-lateral-pain.html</loc>
     <lastmod>2026-05-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -332,6 +356,12 @@
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/lumbar-disc-herniation.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hizakozou.jp/symptoms/meniscus-knee-pain.html</loc>
     <lastmod>2026-05-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

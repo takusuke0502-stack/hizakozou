@@ -16,6 +16,11 @@ const symptomNavigationItems = [
   { href: "pes-anserine-bursitis.html", label: "膝の内側の痛み", description: "鵞足炎や内側の違和感が続く方へ。" },
   { href: "knee-lateral-pain.html", label: "膝の外側の痛み", description: "腸脛靭帯炎や外側半月板まわりが気になる方へ。" },
   { href: "knee-posterior-pain.html", label: "膝の裏側の痛み", description: "ベーカー嚢腫や膝裏の張りが気になる方へ。" },
+  { href: "knee-front-pain.html", label: "膝の前側の痛み", description: "階段や立ち上がりでお皿まわりが気になる方へ。" },
+  { href: "meniscus-knee-pain.html", label: "半月板損傷・膝の引っかかり", description: "曲げ伸ばしや引っかかり感が気になる方へ。" },
+  { href: "bowlegs-knee-pain.html", label: "O脚・膝のゆがみ", description: "膝の内側や脚のゆがみが気になる方へ。" },
+  { href: "knee-hyperextension.html", label: "反張膝・膝が伸びすぎる", description: "立つと膝が後ろへ入りやすい方へ。" },
+  { href: "ankle-stiffness-knee-pain.html", label: "足首の硬さと膝痛", description: "足首や足裏の使いにくさが膝に響く方へ。" },
   { href: "hip-osteoarthritis.html", label: "股関節の痛み", description: "歩き方や膝への負担と股関節の関係を知りたい方へ。" },
   { href: "lower-back-pain.html", label: "腰痛", description: "膝をかばう姿勢や歩き方と腰痛の関係が気になる方へ。" },
   { href: "sciatica.html", label: "坐骨神経痛", description: "お尻から脚のしびれや痛みが続く方へ。" },
@@ -33,6 +38,11 @@ const relatedKneeConcernTargetFiles = new Set([
   "pes-anserine-bursitis.html",
   "knee-lateral-pain.html",
   "knee-posterior-pain.html",
+  "knee-front-pain.html",
+  "meniscus-knee-pain.html",
+  "bowlegs-knee-pain.html",
+  "knee-hyperextension.html",
+  "ankle-stiffness-knee-pain.html",
   "plantar-fasciitis.html",
   "lower-back-pain.html",
   "sciatica.html"
@@ -44,6 +54,11 @@ const relatedKneeConcernItems = [
   { href: "pes-anserine-bursitis.html", label: "膝の内側が痛い・鵞足炎が気になる方へ", description: "内側やや下の痛みを整理したい方へ。" },
   { href: "knee-lateral-pain.html", label: "膝の外側が痛い方へ", description: "歩くと外側が張る、違和感が出る方へ。" },
   { href: "knee-posterior-pain.html", label: "膝の裏が痛い・腫れる方へ", description: "膝裏の張りや曲げ伸ばしの重さが気になる方へ。" },
+  { href: "knee-front-pain.html", label: "膝の前側・お皿まわりが痛い方へ", description: "階段や立ち上がりで前側が気になる方へ。" },
+  { href: "meniscus-knee-pain.html", label: "半月板損傷・膝の引っかかりが気になる方へ", description: "曲げ伸ばしの違和感や不安がある方へ。" },
+  { href: "bowlegs-knee-pain.html", label: "O脚・膝のゆがみが気になる方へ", description: "膝の内側に負担が集まりやすい方へ。" },
+  { href: "knee-hyperextension.html", label: "反張膝・膝が伸びすぎる方へ", description: "立つと膝が後ろへ入りやすい方へ。" },
+  { href: "ankle-stiffness-knee-pain.html", label: "足首の硬さと膝痛が気になる方へ", description: "足元から膝の負担を整理したい方へ。" },
   { href: "../blog/posts/walking-start-knee-pain-cause/", label: "歩き始めに膝が痛い方へ", description: "立ち上がりや一歩目の痛みを整理した記事です。" },
   { href: "../blog/posts/knee-pain-daily-care/", label: "しゃがむ・正座で膝が痛い方へ", description: "日常動作で膝に負担が集まる理由を整理します。" },
   { href: "../blog/posts/hip-stiffness-knee-low-back-pain-relation/", label: "股関節や足首の硬さと膝痛の関係", description: "膝だけでなく周辺の動きも確認したい方へ。" }
@@ -82,6 +97,41 @@ const symptomConfigs = {
     keywords: ["膝の内側", "鵞足炎", "膝痛", "膝"],
     categoryHints: ["knee-pain", "exercise-therapy"],
     pinnedSlugs: ["knee-medial-pain-saphenous-nerve", "knee-pain-daily-care"]
+  },
+  "knee-front-pain.html": {
+    symptomKey: "knee-front-pain",
+    label: "膝の前側の痛み",
+    keywords: ["膝の前側", "膝のお皿", "膝蓋骨", "階段", "立ち上がり", "膝痛", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: ["knee-pain-stairs-guide", "knee-pain-daily-care"]
+  },
+  "meniscus-knee-pain.html": {
+    symptomKey: "meniscus-knee-pain",
+    label: "半月板損傷・膝の引っかかり",
+    keywords: ["半月板", "膝の引っかかり", "曲げ伸ばし", "膝痛", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: ["knee-medial-pain-difference", "kashiwa-knee-pain-clinic-or-seitai"]
+  },
+  "bowlegs-knee-pain.html": {
+    symptomKey: "bowlegs-knee-pain",
+    label: "O脚・膝のゆがみ",
+    keywords: ["O脚", "膝のゆがみ", "膝の内側", "変形性膝関節症", "膝痛", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: ["knee-osteoarthritis-before-surgery-walking", "swayback-posture-knee-pain"]
+  },
+  "knee-hyperextension.html": {
+    symptomKey: "knee-hyperextension",
+    label: "反張膝・膝が伸びすぎる",
+    keywords: ["反張膝", "膝が伸びすぎる", "スウェイバック", "姿勢", "膝痛", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: ["swayback-posture-knee-pain", "seven-checkpoints-for-knee-pain-improvement"]
+  },
+  "ankle-stiffness-knee-pain.html": {
+    symptomKey: "ankle-stiffness-knee-pain",
+    label: "足首の硬さと膝痛",
+    keywords: ["足首", "足首の硬さ", "足裏", "歩き方", "膝痛", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: ["lumbricals-knee-low-back-pain-relation", "plantar-fasciitis-arch-walking"]
   },
   "lower-back-pain.html": {
     symptomKey: "lower-back-pain",

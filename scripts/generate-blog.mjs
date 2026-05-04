@@ -38,6 +38,56 @@ const DEFAULT_RELATED_SYMPTOMS = {
     href: "/symptoms/knee-lateral-pain.html",
     description: "歩行時や階段で外側が気になる方へ。"
   },
+  "膝の前側の痛み": {
+    label: "膝の前側の痛み",
+    href: "/symptoms/knee-front-pain.html",
+    description: "階段や立ち上がりでお皿まわりが気になる方へ。"
+  },
+  "膝のお皿の痛み": {
+    label: "膝の前側の痛み",
+    href: "/symptoms/knee-front-pain.html",
+    description: "階段や立ち上がりでお皿まわりが気になる方へ。"
+  },
+  "半月板損傷": {
+    label: "半月板損傷・膝の引っかかり",
+    href: "/symptoms/meniscus-knee-pain.html",
+    description: "曲げ伸ばしや引っかかり感が気になる方へ。"
+  },
+  "膝の引っかかり": {
+    label: "半月板損傷・膝の引っかかり",
+    href: "/symptoms/meniscus-knee-pain.html",
+    description: "曲げ伸ばしや引っかかり感が気になる方へ。"
+  },
+  "O脚": {
+    label: "O脚・膝のゆがみ",
+    href: "/symptoms/bowlegs-knee-pain.html",
+    description: "膝の内側や脚のゆがみが気になる方へ。"
+  },
+  "膝のゆがみ": {
+    label: "O脚・膝のゆがみ",
+    href: "/symptoms/bowlegs-knee-pain.html",
+    description: "膝の内側や脚のゆがみが気になる方へ。"
+  },
+  "反張膝": {
+    label: "反張膝・膝が伸びすぎる",
+    href: "/symptoms/knee-hyperextension.html",
+    description: "立つと膝が後ろへ入りやすい方へ。"
+  },
+  "膝が伸びすぎる": {
+    label: "反張膝・膝が伸びすぎる",
+    href: "/symptoms/knee-hyperextension.html",
+    description: "立つと膝が後ろへ入りやすい方へ。"
+  },
+  "足首の硬さ": {
+    label: "足首の硬さと膝痛",
+    href: "/symptoms/ankle-stiffness-knee-pain.html",
+    description: "足首や足裏の使いにくさが膝に響く方へ。"
+  },
+  "足首由来の膝痛": {
+    label: "足首の硬さと膝痛",
+    href: "/symptoms/ankle-stiffness-knee-pain.html",
+    description: "足首や足裏の使いにくさが膝に響く方へ。"
+  },
   "腸脛靭帯炎": {
     label: "膝の外側の痛み",
     href: "/symptoms/knee-lateral-pain.html",

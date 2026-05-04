@@ -194,6 +194,16 @@
           "label": "膝に水がたまる",
           "href": "/symptoms/knee-effusion.html",
           "description": "腫れや重さがあるときの見方を知りたい方へ。"
+        },
+        {
+          "label": "O脚・膝のゆがみ",
+          "href": "/symptoms/bowlegs-knee-pain.html",
+          "description": "膝の内側や脚のゆがみが気になる方へ。"
+        },
+        {
+          "label": "半月板損傷・膝の引っかかり",
+          "href": "/symptoms/meniscus-knee-pain.html",
+          "description": "曲げ伸ばしや引っかかり感が気になる方へ。"
         }
       ],
       "lead": "膝の内側が痛いとき、「鵞足炎なのか」「変形性膝関節症なのか」「神経痛なのか」と不安になる方がいます。痛む場所が近いため、名前だけで判断するのは難しいものです。\n\nこの記事では、膝の内側の痛みでよく見られる3つの見方を整理します。自己判断で決めつけるためではなく、どんな相談先を選ぶか、何を確認すべきかを考える材料にしてください。",
@@ -1294,6 +1304,11 @@
           "label": "足底筋膜炎",
           "href": "/symptoms/plantar-fasciitis.html",
           "description": "足裏の痛みで歩きづらさがある方へ。"
+        },
+        {
+          "label": "足首の硬さと膝痛",
+          "href": "/symptoms/ankle-stiffness-knee-pain.html",
+          "description": "足首や足裏の使いにくさが膝に響く方へ。"
         },
         {
           "label": "変形性膝関節症",
@@ -3384,6 +3399,16 @@
           "label": "膝の内側の痛み",
           "href": "/symptoms/pes-anserine-bursitis.html",
           "description": "膝の内側から下にかけて痛みがある方へ。"
+        },
+        {
+          "label": "O脚・膝のゆがみ",
+          "href": "/symptoms/bowlegs-knee-pain.html",
+          "description": "膝の内側や脚のゆがみが気になる方へ。"
+        },
+        {
+          "label": "O脚・膝のゆがみ",
+          "href": "/symptoms/bowlegs-knee-pain.html",
+          "description": "膝の内側や脚のゆがみが気になる方へ。"
         }
       ],
       "lead": "膝の内側が痛む、押すと違和感がある、なんとなくジンジンする――そういった症状で整体院ひざこぞうにご相談いただく方の中に、関節や腱ではなく**神経が関与している**ケースが見られます。\n\n膝の内側の痛みといえば鵞足炎や変形性膝関節症が知られていますが、「**伏在神経（ふくざいしんけい）**」という神経の走行が関係していることがあります。この記事では、伏在神経とはどのような神経か、なぜ膝の内側の痛みと関係するのかを整理してお伝えします。",
@@ -3728,6 +3753,16 @@
           "label": "膝の外側の痛み",
           "href": "/symptoms/knee-lateral-pain.html",
           "description": "歩行時や階段で外側が気になる方へ。"
+        },
+        {
+          "label": "反張膝・膝が伸びすぎる",
+          "href": "/symptoms/knee-hyperextension.html",
+          "description": "立つと膝が後ろへ入りやすい方へ。"
+        },
+        {
+          "label": "O脚・膝のゆがみ",
+          "href": "/symptoms/bowlegs-knee-pain.html",
+          "description": "膝の内側や脚のゆがみが気になる方へ。"
         },
         {
           "label": "腰痛",
@@ -4410,6 +4445,11 @@
           "description": "膝の曲げ伸ばしや歩き始めで違和感がある方へ。"
         },
         {
+          "label": "足首の硬さと膝痛",
+          "href": "/symptoms/ankle-stiffness-knee-pain.html",
+          "description": "足首や足裏の使いにくさが膝に響く方へ。"
+        },
+        {
           "label": "腰痛",
           "href": "/symptoms/lower-back-pain.html",
           "description": "腰の重さや立ち上がりのつらさがある方へ。"
@@ -4545,6 +4585,16 @@
           "label": "膝の内側の痛み",
           "href": "/symptoms/pes-anserine-bursitis.html",
           "description": "膝の内側から下にかけて痛みがある方へ。"
+        },
+        {
+          "label": "O脚・膝のゆがみ",
+          "href": "/symptoms/bowlegs-knee-pain.html",
+          "description": "膝の内側や脚のゆがみが気になる方へ。"
+        },
+        {
+          "label": "O脚・膝のゆがみ",
+          "href": "/symptoms/bowlegs-knee-pain.html",
+          "description": "膝の内側や脚のゆがみが気になる方へ。"
         },
         {
           "label": "股関節の痛み",
@@ -5326,6 +5376,16 @@
           "label": "膝の裏側の痛み",
           "href": "/symptoms/knee-posterior-pain.html",
           "description": "膝裏の張りや曲げ伸ばしの違和感がある方へ。"
+        },
+        {
+          "label": "膝の前側の痛み",
+          "href": "/symptoms/knee-front-pain.html",
+          "description": "階段や立ち上がりでお皿まわりが気になる方へ。"
+        },
+        {
+          "label": "半月板損傷・膝の引っかかり",
+          "href": "/symptoms/meniscus-knee-pain.html",
+          "description": "曲げ伸ばしや引っかかり感が気になる方へ。"
         }
       ],
       "lead": "階段で膝が痛むと、「膝だけが悪いのかもしれない」と感じやすいかもしれません。特に下り階段でズキッとする、手すりがないと不安、歩き始めや立ち上がりも気になるという場合は、膝そのものだけでなく、股関節・足首・歩き方のクセまで含めて見ていくことが大切です。\n\n柏駅周辺での通勤や買い物で階段の膝痛が気になる方は、[柏駅周辺で膝痛に悩む方への記事](/blog/posts/kashiwa-station-knee-pain-guide/)も合わせて読むと、日常の場面ごとに整理しやすくなります。整形外科と整体の使い分けに迷う場合は、[膝痛で整形外科と整体のどちらへ行くべきかの記事](/blog/posts/kashiwa-knee-pain-clinic-or-seitai/)も参考にしてください。",
@@ -5609,6 +5669,16 @@
           "description": "膝の曲げ伸ばしや歩き始めで違和感がある方へ。"
         },
         {
+          "label": "足首の硬さと膝痛",
+          "href": "/symptoms/ankle-stiffness-knee-pain.html",
+          "description": "足首や足裏の使いにくさが膝に響く方へ。"
+        },
+        {
+          "label": "膝の前側の痛み",
+          "href": "/symptoms/knee-front-pain.html",
+          "description": "階段や立ち上がりでお皿まわりが気になる方へ。"
+        },
+        {
           "label": "腰痛",
           "href": "/symptoms/lower-back-pain.html",
           "description": "腰の重さや立ち上がりのつらさがある方へ。"
@@ -5720,6 +5790,21 @@
           "label": "変形性膝関節症",
           "href": "/symptoms/knee-osteoarthritis.html",
           "description": "膝の曲げ伸ばしや歩き始めで違和感がある方へ。"
+        },
+        {
+          "label": "膝の前側の痛み",
+          "href": "/symptoms/knee-front-pain.html",
+          "description": "階段や立ち上がりでお皿まわりが気になる方へ。"
+        },
+        {
+          "label": "半月板損傷・膝の引っかかり",
+          "href": "/symptoms/meniscus-knee-pain.html",
+          "description": "曲げ伸ばしや引っかかり感が気になる方へ。"
+        },
+        {
+          "label": "O脚・膝のゆがみ",
+          "href": "/symptoms/bowlegs-knee-pain.html",
+          "description": "膝の内側や脚のゆがみが気になる方へ。"
         },
         {
           "label": "腰痛",
