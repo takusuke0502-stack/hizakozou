@@ -221,12 +221,12 @@ const symptomConfigs = {
 
 const patientVoices = [
   {
-    name: "北垣和子様",
+    name: "K.K様",
     title: "膝・腰・坐骨神経痛など、複数のお悩みで来院されたお声",
     quote: "施術後は体が軽くなります",
     summary: "膝の痛みだけでなく、腰や坐骨神経痛など複数のお悩みがある方のお声です。痛みの場所を一つに決めつけず、体全体のつながりを見ていく当院の方針が伝わる内容です。",
     image: "../image/patient-voice-kitagaki.jpg",
-    alt: "北垣和子様の写真付き直筆アンケート。坐骨神経痛、膝の痛み、腰の痛みなどで来院されたお声",
+    alt: "K.K様の写真付き直筆アンケート。坐骨神経痛、膝の痛み、腰の痛みなどで来院されたお声",
     symptomKeys: ["knee-osteoarthritis", "lower-back-pain", "sciatica"]
   },
   {
