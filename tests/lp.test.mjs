@@ -217,8 +217,17 @@ test("LP keeps only one first-visit policy section and removes the duplicate art
 });
 
 test("LP keeps the knee-pain specialty axis and unifies the improvement story without a duplicate three-step section", () => {
+  const hero = getSectionSlice(
+    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed">',
+    'id="troubles"'
+  );
+
   assert.match(html, /柏市で、歩くたびにつらい膝痛に。/);
-  assert.match(html, /膝だけでなく、歩き方・股関節・腰まで確認します。/);
+  assert.match(hero, /歩き方や身体の使い方から整え、/);
+  assert.match(hero, /もっと楽に歩ける身体へ。/);
+  assert.match(hero, /変形性膝関節症・歩行時痛・階段のつらさに、/);
+  assert.match(hero, /施術と運動療法で向き合う膝痛専門整体院です。/);
+  assert.doesNotMatch(hero, /確認します。/);
   assert.match(html, /<h2 class="section-title">なぜ膝の痛みが長引くのか？<\/h2>/);
   assert.equal(html.includes('id="three-step-care"'), false, "standalone three-step section should be removed");
   assert.equal(
