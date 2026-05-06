@@ -221,13 +221,20 @@ test("LP keeps the knee-pain specialty axis and unifies the improvement story wi
     '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed">',
     'id="troubles"'
   );
+  const metaDescription = "柏市で膝痛・変形性膝関節症・歩き始めや階段の痛みにお悩みの方へ。整体院ひざこぞうでは、膝だけでなく歩き方・股関節・足首・身体の使い方まで確認し、膝に負担が集まりにくい身体づくりをサポートします。柏駅西口徒歩8分、完全予約制。";
 
+  assert.match(html, /<title>柏市で膝痛・膝の痛みの整体相談なら｜整体院ひざこぞう<\/title>/);
+  assert.match(html, new RegExp(`<meta name="description" content="${metaDescription}">`));
   assert.match(html, /柏市で、歩くたびにつらい膝痛に。/);
-  assert.match(hero, /歩き方や身体の使い方から整え、/);
+  assert.match(hero, /膝だけでなく歩き方や身体の使い方から整え、/);
   assert.match(hero, /もっと楽に歩ける身体へ。/);
   assert.match(hero, /変形性膝関節症・歩行時痛・階段のつらさに、/);
   assert.match(hero, /施術と運動療法で向き合う膝痛専門整体院です。/);
   assert.doesNotMatch(hero, /確認します。/);
+  assert.match(hero, /柏市で膝痛にお悩みの方は、/);
+  assert.match(hero, /今の状態を一緒に整理していきましょう。/);
+  assert.match(html, /膝の痛みは、痛む場所だけを見ても分からないことがあります/);
+  assert.match(html, /膝だけを揉んで終わるのではなく/);
   assert.match(html, /<h2 class="section-title">なぜ膝の痛みが長引くのか？<\/h2>/);
   assert.equal(html.includes('id="three-step-care"'), false, "standalone three-step section should be removed");
   assert.equal(
@@ -249,8 +256,27 @@ test("LP keeps knee-type navigation ahead of the broader symptom directory", () 
   assert.ok(typeNavIndex < symptomsIndex, "type navigation should appear before the broader symptom list");
   assert.match(html, /href="blog\/posts\/knee-pain-stairs-guide\/"/);
   assert.match(html, /href="blog\/posts\/walking-start-knee-pain-cause\/"/);
+  assert.match(html, /柏市で変形性膝関節症の整体相談/);
+  assert.match(html, /歩き始めに膝が痛い方へ/);
+  assert.match(html, /階段の上り下りで膝がつらい方へ/);
+  assert.match(html, /膝に水が溜まりやすい方へ/);
+  assert.match(html, /膝の内側が痛い方へ/);
   assert.match(html, /href="symptoms\/knee-effusion\.html"/);
   assert.match(html, /href="symptoms\/knee-posterior-pain\.html"/);
+  assert.match(html, /href="symptoms\/knee-hyperextension\.html"/);
+});
+
+test("LP presents broader symptoms as knee-related support, not the main specialty", () => {
+  const symptoms = getSectionSlice('id="symptoms"', 'id="price"');
+
+  assert.match(symptoms, /膝痛と関係しやすい身体の不調/);
+  assert.match(symptoms, /膝痛を中心に、股関節・足首・腰など膝への負担に関係しやすい不調を整理しています。/);
+  assert.match(symptoms, /膝痛と関係しやすい股関節・足首・腰/);
+  assert.match(symptoms, /肩・首・腕のご相談/);
+  assert.ok(
+    symptoms.indexOf("膝の痛み") < symptoms.indexOf("肩・首・腕のご相談"),
+    "knee symptoms should appear before less-related shoulder and neck concerns"
+  );
 });
 
 test("LP splits CTA roles between mid-page consultation and final reservation", () => {
@@ -271,7 +297,10 @@ test("LP FAQ keeps practical questions and schema stays aligned with the rendere
     "何回くらい通えばよくなりますか？",
     "整形外科に通いながらでも相談できますか？",
     "柏市で膝痛の整体を探しています。どんな症状を相談できますか？",
+    "膝に水が溜まっていても整体を受けられますか？",
     "変形性膝関節症と言われても整体で相談できますか？",
+    "歩き始めだけ膝が痛い場合も見てもらえますか？",
+    "階段の下りで膝が痛いのはなぜですか？",
     "駐車場はありますか？",
     "予約のキャンセル・変更はできますか？"
   ];
