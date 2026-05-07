@@ -1360,7 +1360,7 @@ export function buildPostContent(site, post, relatedPosts) {
               <time class="article-meta__date" datetime="${escapeHtml(post.updatedDate || post.date)}">${escapeHtml(formatJapaneseDate(post.updatedDate || post.date))}</time>
             </div>
             <h1>${escapeHtml(post.title)}</h1>
-            <p class="article-lead">${escapeHtml(post.lead || post.description)}</p>
+            <p class="article-lead">${renderInlineText(post.lead || post.description)}</p>
             <div class="tag-list">${post.tags.map((tag) => `<span class="tag">#${escapeHtml(tag)}</span>`).join("")}</div>
           </div>
         </article>

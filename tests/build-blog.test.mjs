@@ -14,6 +14,9 @@ import {
 } from "../scripts/build-blog.mjs";
 
 const site = {
+  name: "整体院ひざこぞう",
+  subtitle: "柏市の整体院",
+  phone: "04-7197-5870",
   blogTitle: "膝痛や慢性痛の読みもの",
   blogDescription: "来院前に確認しやすい記事をまとめています。",
   cta: {
@@ -112,6 +115,34 @@ test("renderBody converts safe markdown links into article links", () => {
     html,
     '<p>詳しくは<a href="/symptoms/knee-osteoarthritis.html">変形性膝関節症の相談ページ</a>も参考にしてください。</p>'
   );
+});
+
+test("buildPostContent converts markdown links in article lead", () => {
+  const html = buildPostContent(site, {
+    title: "階段で膝が痛い原因は？",
+    description: "階段の膝痛を整理します。",
+    lead: "詳しくは[柏駅周辺で膝痛に悩む方への記事](/blog/posts/kashiwa-station-knee-pain-guide/)も参考にしてください。",
+    slug: "knee-pain-stairs-guide",
+    eyecatch: "/image/knee-symptom.jpg",
+    date: "2026-03-31",
+    updatedDate: "2026-04-20",
+    category: categories.get("knee-pain"),
+    tags: ["膝痛"],
+    sections: [],
+    faq: [],
+    relatedSymptoms: [],
+    cta: {
+      href: "https://lin.ee/X01F2mP",
+      label: "LINEで相談する",
+      note: "来院前に相談できます。"
+    }
+  }, []);
+
+  assert.match(
+    html,
+    /<p class="article-lead">詳しくは<a href="\/blog\/posts\/kashiwa-station-knee-pain-guide\/">柏駅周辺で膝痛に悩む方への記事<\/a>も参考にしてください。<\/p>/
+  );
+  assert.doesNotMatch(html, /\[柏駅周辺で膝痛に悩む方への記事\]\(/);
 });
 
 test("blog article body links have visible link styling", () => {
