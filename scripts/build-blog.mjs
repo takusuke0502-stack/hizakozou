@@ -225,17 +225,17 @@ const patientVoices = [
     title: "腰痛と膝痛のお悩みで来院された60代男性のお声",
     quote: "2〜3週間ほどで楽に歩けるまで回復しました",
     summary: "腰痛と膝痛で来院された60代男性のお声です。腰痛は2〜3週間ほどで歩きやすくなり、膝の刺すような痛みも軽減したと記載されています。",
-    image: "../image/patient-voice-kk-anonymized.png",
+    image: "../image/patient-voice-kt.png",
     alt: "K.T様の写真付き直筆アンケート。腰痛と膝痛のお悩みで来院されたお声",
     symptomKeys: ["knee-osteoarthritis", "lower-back-pain"]
   },
   {
-    name: "Y.K様",
+    name: "Y.N様",
     title: "腰痛・肩こり・股関節まわりの不調で来院された60代女性のお声",
     quote: "少しずつ筋肉のコリがなくなって、身体の動きがよくなりました",
     summary: "腰痛・肩こり・腹部〜股関節まわりの痛みで来院された60代女性のお声です。筋肉のこわばりが和らぎ、体が動かしやすくなった変化が記載されています。",
-    image: "../image/patient-voice-numajiri.jpg",
-    alt: "Y.K様の直筆アンケート。腰痛、肩こり、腹部から股関節まわりの痛みで来院されたお声",
+    image: "../image/patient-voice-yn.png",
+    alt: "Y.N様の直筆アンケート。腰痛、肩こり、腹部から股関節まわりの痛みで来院されたお声",
     symptomKeys: ["lower-back-pain", "shoulder-stiffness", "hip-osteoarthritis"]
   }
 ];

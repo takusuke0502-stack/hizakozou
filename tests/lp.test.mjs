@@ -94,6 +94,29 @@ test("LP local image assets resolve to existing files", () => {
   }
 });
 
+test("LP and symptom patient voices use the current anonymized assets", () => {
+  const pages = [
+    ["index.html", html],
+    ["symptoms/knee-osteoarthritis.html", readFileSync(new URL("../symptoms/knee-osteoarthritis.html", import.meta.url), "utf8")],
+    ["symptoms/lower-back-pain.html", readFileSync(new URL("../symptoms/lower-back-pain.html", import.meta.url), "utf8")],
+    ["symptoms/hip-osteoarthritis.html", readFileSync(new URL("../symptoms/hip-osteoarthritis.html", import.meta.url), "utf8")],
+    ["symptoms/shoulder-stiffness.html", readFileSync(new URL("../symptoms/shoulder-stiffness.html", import.meta.url), "utf8")]
+  ];
+
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-kt.png")), true);
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-yn.png")), true);
+  assert.match(html, /image\/patient-voice-kt\.png/);
+  assert.match(html, /image\/patient-voice-yn\.png/);
+  assert.match(html, /K\.T/);
+  assert.match(html, /Y\.N/);
+
+  for (const [pageName, pageHtml] of pages) {
+    assert.doesNotMatch(pageHtml, /patient-voice-kk-anonymized\.png/, `${pageName} should not use the old K.K asset`);
+    assert.doesNotMatch(pageHtml, /patient-voice-numajiri\.jpg/, `${pageName} should not use the old Numajiri asset`);
+    assert.doesNotMatch(pageHtml, /Y\.K/, `${pageName} should not show the wrong initials`);
+  }
+});
+
 test("LP has an overflow-safe mobile hero title", () => {
   assert.match(html, /<h1 class="[^"]*\bhero-title\b[^"]*"/, "hero title should keep the hero-title hook");
   assert.match(html, /\.hero-fixed \.hero-title\s*\{[\s\S]*overflow-wrap:\s*anywhere/i);
