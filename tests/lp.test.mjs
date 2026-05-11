@@ -139,6 +139,27 @@ test("LP and symptom patient voices include all four approved assets", () => {
   }
 });
 
+test("patient voice summaries read like direct content summaries", () => {
+  const pages = [
+    ["index.html", html],
+    ["symptoms/knee-osteoarthritis.html", readFileSync(new URL("../symptoms/knee-osteoarthritis.html", import.meta.url), "utf8")],
+    ["symptoms/lower-back-pain.html", readFileSync(new URL("../symptoms/lower-back-pain.html", import.meta.url), "utf8")],
+    ["symptoms/hip-osteoarthritis.html", readFileSync(new URL("../symptoms/hip-osteoarthritis.html", import.meta.url), "utf8")],
+    ["symptoms/shoulder-stiffness.html", readFileSync(new URL("../symptoms/shoulder-stiffness.html", import.meta.url), "utf8")],
+    ["symptoms/sciatica.html", readFileSync(new URL("../symptoms/sciatica.html", import.meta.url), "utf8")]
+  ];
+  const voiceCopyPattern = /class="(?:text-sm md:text-base font-bold text-slate-600 leading-relaxed|symptom-voice-card__summary)"[^>]*>([^<]+)/g;
+  const thirdPartyPhrases = /(伝わります|記載されています|お声です|方針が伝わる|変化が記載)/;
+
+  for (const [pageName, pageHtml] of pages) {
+    const summaries = [...pageHtml.matchAll(voiceCopyPattern)].map((match) => match[1]);
+    assert.ok(summaries.length > 0, `${pageName} should have patient voice summaries`);
+    for (const summary of summaries) {
+      assert.doesNotMatch(summary, thirdPartyPhrases, `${pageName} has third-party summary wording: ${summary}`);
+    }
+  }
+});
+
 test("LP has an overflow-safe mobile hero title", () => {
   assert.match(html, /<h1 class="[^"]*\bhero-title\b[^"]*"/, "hero title should keep the hero-title hook");
   assert.match(html, /\.hero-fixed \.hero-title\s*\{[\s\S]*overflow-wrap:\s*anywhere/i);

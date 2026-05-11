@@ -224,7 +224,7 @@ const patientVoices = [
     name: "K.T様",
     title: "腰痛と膝痛のお悩みで来院された60代男性のお声",
     quote: "2〜3週間ほどで楽に歩けるまで回復しました",
-    summary: "腰痛と膝痛で来院された60代男性のお声です。腰痛は2〜3週間ほどで歩きやすくなり、膝の刺すような痛みも軽減したと記載されています。",
+    summary: "極度の腰痛から通い始め、2〜3週間ほどで楽に歩けるまで回復。長年の膝痛も相談し、刺されるような痛みが出ない状態まで改善したという内容です。",
     image: "../image/patient-voice-kt.png",
     alt: "K.T様の写真付き直筆アンケート。腰痛と膝痛のお悩みで来院されたお声",
     symptomKeys: ["knee-osteoarthritis", "lower-back-pain"]
@@ -233,7 +233,7 @@ const patientVoices = [
     name: "Y.N様",
     title: "腰痛・肩こり・股関節まわりの不調で来院された60代女性のお声",
     quote: "少しずつ筋肉のコリがなくなって、身体の動きがよくなりました",
-    summary: "腰痛・肩こり・腹部〜股関節まわりの痛みで来院された60代女性のお声です。筋肉のこわばりが和らぎ、体が動かしやすくなった変化が記載されています。",
+    summary: "腰痛・肩こり・腹部の痛みで来院。筋肉のこりが少しずつ和らいで体が動かしやすくなり、自宅でできるストレッチも役立っているという内容です。",
     image: "../image/patient-voice-yn.png",
     alt: "Y.N様の直筆アンケート。腰痛、肩こり、腹部から股関節まわりの痛みで来院されたお声",
     symptomKeys: ["lower-back-pain", "shoulder-stiffness", "hip-osteoarthritis"]
@@ -242,7 +242,7 @@ const patientVoices = [
     name: "K.K様",
     title: "膝・腰・坐骨神経痛など、複数のお悩みで来院されたお声",
     quote: "施術後は体が軽くなります",
-    summary: "膝の痛みだけでなく、腰や坐骨神経痛など複数のお悩みがある方のお声です。痛みの場所を一つに決めつけず、体全体のつながりを見ていく当院の方針が伝わる内容です。",
+    summary: "坐骨神経痛・膝の痛み・腰の痛みで来院。施術後は体が軽くなり、痛みがすっきり取れると感じていること、痛みのポイントを的確に見てもらえたことが書かれています。",
     image: "../image/patient-voice-kk-anonymized.png",
     alt: "K.K様の写真付き直筆アンケート。坐骨神経痛、膝の痛み、腰の痛みなどで来院されたお声",
     symptomKeys: ["knee-osteoarthritis", "lower-back-pain", "sciatica"]
@@ -251,7 +251,7 @@ const patientVoices = [
     name: "N.H様",
     title: "腰や足の状態まで見てもらえた方のお声",
     quote: "体と向き合うことが大事だと思います",
-    summary: "そり腰や腰痛、足の筋肉の状態など、膝以外の負担にも触れられているお声です。今の痛みだけでなく、体の使い方や日常の負担を整理する大切さが伝わります。",
+    summary: "そり腰が和らぎ、腰痛がなくなり、弱く細くなっていた足の筋肉もしっかりしてきたという内容です。首すじや肩の痛みも落ち着き、体と向き合う大切さに触れています。",
     image: "../image/patient-voice-numajiri.jpg",
     alt: "N.H様の写真付き直筆アンケート。ねんざによる全身的な痛みで来院されたお声",
     symptomKeys: ["lower-back-pain", "shoulder-stiffness"]
@@ -756,8 +756,8 @@ function buildSymptomPatientVoicesSection(config = {}) {
   if (!voices.length) return "";
 
   const lead = config.label
-    ? `${escapeHtml(config.label)}と関わりやすいお悩みで来院された方のお声です。症状や経過には個人差があるため、初回は状態を確認しながら方針をご説明します。`
-    : "関連するお悩みで来院された方のお声です。症状や経過には個人差があるため、初回は状態を確認しながら方針をご説明します。";
+    ? `${escapeHtml(config.label)}と関わりやすいお悩みで来院された方の内容を掲載しています。症状や経過には個人差があるため、初回は状態を確認しながら方針をご説明します。`
+    : "関連するお悩みで来院された方の内容を掲載しています。症状や経過には個人差があるため、初回は状態を確認しながら方針をご説明します。";
 
   const cards = voices.map((voice) => `
           <article class="symptom-voice-card">
