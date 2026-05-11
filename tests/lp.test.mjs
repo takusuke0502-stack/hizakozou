@@ -10,6 +10,10 @@ const mainJs = readFileSync(new URL("../scripts/main.js", import.meta.url), "utf
 const buildBlogScript = readFileSync(new URL("../scripts/build-blog.mjs", import.meta.url), "utf8");
 const generateBlogScript = readFileSync(new URL("../scripts/generate-blog.mjs", import.meta.url), "utf8");
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function getJsonLdBlocks(type) {
   const matches = [...html.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/g)];
 
@@ -116,6 +120,9 @@ test("LP and symptom patient voices include all four approved assets", () => {
   assert.match(html, /Y\.N/);
   assert.match(html, /K\.K/);
   assert.match(html, /N\.H/);
+  assert.ok(html.indexOf("K.K様") < html.indexOf("K.T様"), "LP should list K.K before K.T");
+  assert.ok(html.indexOf("K.T様") < html.indexOf("Y.N様"), "LP should list K.T before Y.N");
+  assert.ok(html.indexOf("Y.N様") < html.indexOf("N.H様"), "LP should list Y.N before N.H");
 
   const lowerBackHtml = pages.find(([pageName]) => pageName === "symptoms/lower-back-pain.html")[1];
   assert.match(lowerBackHtml, /patient-voice-kt\.png/);
@@ -148,7 +155,7 @@ test("patient voice summaries read like direct content summaries", () => {
     ["symptoms/shoulder-stiffness.html", readFileSync(new URL("../symptoms/shoulder-stiffness.html", import.meta.url), "utf8")],
     ["symptoms/sciatica.html", readFileSync(new URL("../symptoms/sciatica.html", import.meta.url), "utf8")]
   ];
-  const voiceCopyPattern = /class="(?:text-sm md:text-base font-bold text-slate-600 leading-relaxed|symptom-voice-card__summary)"[^>]*>([^<]+)/g;
+  const voiceCopyPattern = /class="(?:text-sm md:text-base font-bold text-slate-700 leading-relaxed|symptom-voice-card__value)"[^>]*>([^<]+)/g;
   const thirdPartyPhrases = /(伝わります|記載されています|お声です|方針が伝わる|変化が記載)/;
 
   for (const [pageName, pageHtml] of pages) {
@@ -157,6 +164,46 @@ test("patient voice summaries read like direct content summaries", () => {
     for (const summary of summaries) {
       assert.doesNotMatch(summary, thirdPartyPhrases, `${pageName} has third-party summary wording: ${summary}`);
     }
+  }
+});
+
+test("patient voice cards use the three-line concern change comment format", () => {
+  const pages = [
+    ["index.html", html],
+    ["symptoms/knee-osteoarthritis.html", readFileSync(new URL("../symptoms/knee-osteoarthritis.html", import.meta.url), "utf8")],
+    ["symptoms/lower-back-pain.html", readFileSync(new URL("../symptoms/lower-back-pain.html", import.meta.url), "utf8")],
+    ["symptoms/hip-osteoarthritis.html", readFileSync(new URL("../symptoms/hip-osteoarthritis.html", import.meta.url), "utf8")],
+    ["symptoms/shoulder-stiffness.html", readFileSync(new URL("../symptoms/shoulder-stiffness.html", import.meta.url), "utf8")],
+    ["symptoms/sciatica.html", readFileSync(new URL("../symptoms/sciatica.html", import.meta.url), "utf8")]
+  ];
+  const expectedCopy = [
+    "お悩み",
+    "変化",
+    "ひとこと",
+    "腰痛・肩こり・腹部の痛み",
+    "施術と自宅でできるストレッチに取り組むことで、身体の動きが軽くなってきました。",
+    "丁寧に説明しながら進めてくれるので、不安がやわらぎ、安心して通えました。",
+    "強い腰痛と長年の膝痛",
+    "施術とセルフトレーニングを続けることで、歩くつらさや刺すような膝の痛みが軽くなりました。",
+    "穏やかで相談しやすい先生なので、身体の悩みを気軽に話せました。",
+    "坐骨神経痛・膝の痛み・腰の痛み",
+    "施術後は身体が軽くなり、痛みのポイントを丁寧に見てもらえる安心感がありました。",
+    "誠実で信頼できる先生です。日々勉強されている姿勢にも安心できます。",
+    "ねんざ後の全身の痛みや不調",
+    "腰・足・首肩の状態を整えることで、日常のつらさが軽くなりました。",
+    "原因がわからない痛みや疲れを感じたら、自分の身体と向き合うことが大事だと思いました。"
+  ];
+
+  for (const copy of expectedCopy) {
+    assert.match(html, new RegExp(escapeRegExp(copy)), `LP should include ${copy}`);
+  }
+
+  for (const [pageName, pageHtml] of pages) {
+    if (!pageHtml.includes("patient-voice-")) continue;
+    assert.match(pageHtml, />お悩み</, `${pageName} should render concern label`);
+    assert.match(pageHtml, />変化</, `${pageName} should render change label`);
+    assert.match(pageHtml, />ひとこと</, `${pageName} should render comment label`);
+    assert.doesNotMatch(pageHtml, /「(?:2〜3週間ほどで楽に歩けるまで回復しました|施術後は体が軽くなります|体と向き合うことが大事だと思います|少しずつ筋肉のコリがなくなって、身体の動きがよくなりました)」/);
   }
 });
 

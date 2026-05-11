@@ -211,9 +211,10 @@
 .symptom-voice-card__image{display:block;width:100%;height:auto}
 .symptom-voice-card__body{padding:1.25rem}
 .symptom-voice-card__label{font-size:11px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
-.symptom-voice-card__title{font-size:1.05rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .65rem}
-.symptom-voice-card__quote{font-size:15px;font-weight:900;color:#0f172a;line-height:1.75;margin:0 0 .65rem}
-.symptom-voice-card__summary{font-size:14px;font-weight:700;color:#475569;line-height:1.8;margin:0}
+.symptom-voice-card__rows{display:grid;gap:.75rem;margin:.85rem 0 0}
+.symptom-voice-card__row{display:grid;gap:.3rem;border-top:1px solid #e2e8f0;padding-top:.75rem}
+.symptom-voice-card__key{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em}
+.symptom-voice-card__value{font-size:14px;font-weight:700;color:#334155;line-height:1.8}
 .symptom-voices__note{font-size:11px;font-weight:700;color:#64748b;line-height:1.8;text-align:right;margin:1rem 0 0}
 .symptom-footer{background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;text-align:center}
 .symptom-footer__inner{max-width:860px;margin:0 auto}
@@ -578,14 +579,47 @@
         <div class="symptom-voices__grid">
 
           <article class="symptom-voice-card">
+            <a class="symptom-voice-card__image-link" href="../image/patient-voice-kk-anonymized.png" target="_blank" rel="noopener noreferrer">
+              <img class="symptom-voice-card__image" src="../image/patient-voice-kk-anonymized.png" alt="K.K様の写真付き直筆アンケート。坐骨神経痛、膝の痛み、腰の痛みなどで来院されたお声" loading="lazy" decoding="async">
+            </a>
+            <div class="symptom-voice-card__body">
+              <p class="symptom-voice-card__label">K.K様</p>
+              <div class="symptom-voice-card__rows">
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">お悩み</span>
+                  <span class="symptom-voice-card__value">坐骨神経痛・膝の痛み・腰の痛み</span>
+                </div>
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">変化</span>
+                  <span class="symptom-voice-card__value">施術後は身体が軽くなり、痛みのポイントを丁寧に見てもらえる安心感がありました。</span>
+                </div>
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">ひとこと</span>
+                  <span class="symptom-voice-card__value">誠実で信頼できる先生です。日々勉強されている姿勢にも安心できます。</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="symptom-voice-card">
             <a class="symptom-voice-card__image-link" href="../image/patient-voice-kt.png" target="_blank" rel="noopener noreferrer">
               <img class="symptom-voice-card__image" src="../image/patient-voice-kt.png" alt="K.T様の写真付き直筆アンケート。腰痛と膝痛のお悩みで来院されたお声" loading="lazy" decoding="async">
             </a>
             <div class="symptom-voice-card__body">
               <p class="symptom-voice-card__label">K.T様</p>
-              <h3 class="symptom-voice-card__title">腰痛と膝痛のお悩みで来院された60代男性のお声</h3>
-              <p class="symptom-voice-card__quote">「2〜3週間ほどで楽に歩けるまで回復しました」</p>
-              <p class="symptom-voice-card__summary">極度の腰痛から通い始め、2〜3週間ほどで楽に歩けるまで回復。長年の膝痛も相談し、刺されるような痛みが出ない状態まで改善したという内容です。</p>
+              <div class="symptom-voice-card__rows">
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">お悩み</span>
+                  <span class="symptom-voice-card__value">強い腰痛と長年の膝痛</span>
+                </div>
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">変化</span>
+                  <span class="symptom-voice-card__value">施術とセルフトレーニングを続けることで、歩くつらさや刺すような膝の痛みが軽くなりました。</span>
+                </div>
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">ひとこと</span>
+                  <span class="symptom-voice-card__value">穏やかで相談しやすい先生なので、身体の悩みを気軽に話せました。</span>
+                </div>
+              </div>
             </div>
           </article>
           <article class="symptom-voice-card">
@@ -594,20 +628,20 @@
             </a>
             <div class="symptom-voice-card__body">
               <p class="symptom-voice-card__label">Y.N様</p>
-              <h3 class="symptom-voice-card__title">腰痛・肩こり・股関節まわりの不調で来院された60代女性のお声</h3>
-              <p class="symptom-voice-card__quote">「少しずつ筋肉のコリがなくなって、身体の動きがよくなりました」</p>
-              <p class="symptom-voice-card__summary">腰痛・肩こり・腹部の痛みで来院。筋肉のこりが少しずつ和らいで体が動かしやすくなり、自宅でできるストレッチも役立っているという内容です。</p>
-            </div>
-          </article>
-          <article class="symptom-voice-card">
-            <a class="symptom-voice-card__image-link" href="../image/patient-voice-kk-anonymized.png" target="_blank" rel="noopener noreferrer">
-              <img class="symptom-voice-card__image" src="../image/patient-voice-kk-anonymized.png" alt="K.K様の写真付き直筆アンケート。坐骨神経痛、膝の痛み、腰の痛みなどで来院されたお声" loading="lazy" decoding="async">
-            </a>
-            <div class="symptom-voice-card__body">
-              <p class="symptom-voice-card__label">K.K様</p>
-              <h3 class="symptom-voice-card__title">膝・腰・坐骨神経痛など、複数のお悩みで来院されたお声</h3>
-              <p class="symptom-voice-card__quote">「施術後は体が軽くなります」</p>
-              <p class="symptom-voice-card__summary">坐骨神経痛・膝の痛み・腰の痛みで来院。施術後は体が軽くなり、痛みがすっきり取れると感じていること、痛みのポイントを的確に見てもらえたことが書かれています。</p>
+              <div class="symptom-voice-card__rows">
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">お悩み</span>
+                  <span class="symptom-voice-card__value">腰痛・肩こり・腹部の痛み</span>
+                </div>
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">変化</span>
+                  <span class="symptom-voice-card__value">施術と自宅でできるストレッチに取り組むことで、身体の動きが軽くなってきました。</span>
+                </div>
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">ひとこと</span>
+                  <span class="symptom-voice-card__value">丁寧に説明しながら進めてくれるので、不安がやわらぎ、安心して通えました。</span>
+                </div>
+              </div>
             </div>
           </article>
           <article class="symptom-voice-card">
@@ -616,9 +650,20 @@
             </a>
             <div class="symptom-voice-card__body">
               <p class="symptom-voice-card__label">N.H様</p>
-              <h3 class="symptom-voice-card__title">腰や足の状態まで見てもらえた方のお声</h3>
-              <p class="symptom-voice-card__quote">「体と向き合うことが大事だと思います」</p>
-              <p class="symptom-voice-card__summary">そり腰が和らぎ、腰痛がなくなり、弱く細くなっていた足の筋肉もしっかりしてきたという内容です。首すじや肩の痛みも落ち着き、体と向き合う大切さに触れています。</p>
+              <div class="symptom-voice-card__rows">
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">お悩み</span>
+                  <span class="symptom-voice-card__value">ねんざ後の全身の痛みや不調</span>
+                </div>
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">変化</span>
+                  <span class="symptom-voice-card__value">腰・足・首肩の状態を整えることで、日常のつらさが軽くなりました。</span>
+                </div>
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">ひとこと</span>
+                  <span class="symptom-voice-card__value">原因がわからない痛みや疲れを感じたら、自分の身体と向き合うことが大事だと思いました。</span>
+                </div>
+              </div>
             </div>
           </article>
         </div>

@@ -221,37 +221,37 @@ const symptomConfigs = {
 
 const patientVoices = [
   {
+    name: "K.K様",
+    concern: "坐骨神経痛・膝の痛み・腰の痛み",
+    change: "施術後は身体が軽くなり、痛みのポイントを丁寧に見てもらえる安心感がありました。",
+    comment: "誠実で信頼できる先生です。日々勉強されている姿勢にも安心できます。",
+    image: "../image/patient-voice-kk-anonymized.png",
+    alt: "K.K様の写真付き直筆アンケート。坐骨神経痛、膝の痛み、腰の痛みなどで来院されたお声",
+    symptomKeys: ["knee-osteoarthritis", "lower-back-pain", "sciatica"]
+  },
+  {
     name: "K.T様",
-    title: "腰痛と膝痛のお悩みで来院された60代男性のお声",
-    quote: "2〜3週間ほどで楽に歩けるまで回復しました",
-    summary: "極度の腰痛から通い始め、2〜3週間ほどで楽に歩けるまで回復。長年の膝痛も相談し、刺されるような痛みが出ない状態まで改善したという内容です。",
+    concern: "強い腰痛と長年の膝痛",
+    change: "施術とセルフトレーニングを続けることで、歩くつらさや刺すような膝の痛みが軽くなりました。",
+    comment: "穏やかで相談しやすい先生なので、身体の悩みを気軽に話せました。",
     image: "../image/patient-voice-kt.png",
     alt: "K.T様の写真付き直筆アンケート。腰痛と膝痛のお悩みで来院されたお声",
     symptomKeys: ["knee-osteoarthritis", "lower-back-pain"]
   },
   {
     name: "Y.N様",
-    title: "腰痛・肩こり・股関節まわりの不調で来院された60代女性のお声",
-    quote: "少しずつ筋肉のコリがなくなって、身体の動きがよくなりました",
-    summary: "腰痛・肩こり・腹部の痛みで来院。筋肉のこりが少しずつ和らいで体が動かしやすくなり、自宅でできるストレッチも役立っているという内容です。",
+    concern: "腰痛・肩こり・腹部の痛み",
+    change: "施術と自宅でできるストレッチに取り組むことで、身体の動きが軽くなってきました。",
+    comment: "丁寧に説明しながら進めてくれるので、不安がやわらぎ、安心して通えました。",
     image: "../image/patient-voice-yn.png",
     alt: "Y.N様の直筆アンケート。腰痛、肩こり、腹部から股関節まわりの痛みで来院されたお声",
     symptomKeys: ["lower-back-pain", "shoulder-stiffness", "hip-osteoarthritis"]
   },
   {
-    name: "K.K様",
-    title: "膝・腰・坐骨神経痛など、複数のお悩みで来院されたお声",
-    quote: "施術後は体が軽くなります",
-    summary: "坐骨神経痛・膝の痛み・腰の痛みで来院。施術後は体が軽くなり、痛みがすっきり取れると感じていること、痛みのポイントを的確に見てもらえたことが書かれています。",
-    image: "../image/patient-voice-kk-anonymized.png",
-    alt: "K.K様の写真付き直筆アンケート。坐骨神経痛、膝の痛み、腰の痛みなどで来院されたお声",
-    symptomKeys: ["knee-osteoarthritis", "lower-back-pain", "sciatica"]
-  },
-  {
     name: "N.H様",
-    title: "腰や足の状態まで見てもらえた方のお声",
-    quote: "体と向き合うことが大事だと思います",
-    summary: "そり腰が和らぎ、腰痛がなくなり、弱く細くなっていた足の筋肉もしっかりしてきたという内容です。首すじや肩の痛みも落ち着き、体と向き合う大切さに触れています。",
+    concern: "ねんざ後の全身の痛みや不調",
+    change: "腰・足・首肩の状態を整えることで、日常のつらさが軽くなりました。",
+    comment: "原因がわからない痛みや疲れを感じたら、自分の身体と向き合うことが大事だと思いました。",
     image: "../image/patient-voice-numajiri.jpg",
     alt: "N.H様の写真付き直筆アンケート。ねんざによる全身的な痛みで来院されたお声",
     symptomKeys: ["lower-back-pain", "shoulder-stiffness"]
@@ -302,9 +302,10 @@ const relatedArticlesStyles = `
 .symptom-voice-card__image{display:block;width:100%;height:auto}
 .symptom-voice-card__body{padding:1.25rem}
 .symptom-voice-card__label{font-size:11px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
-.symptom-voice-card__title{font-size:1.05rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .65rem}
-.symptom-voice-card__quote{font-size:15px;font-weight:900;color:#0f172a;line-height:1.75;margin:0 0 .65rem}
-.symptom-voice-card__summary{font-size:14px;font-weight:700;color:#475569;line-height:1.8;margin:0}
+.symptom-voice-card__rows{display:grid;gap:.75rem;margin:.85rem 0 0}
+.symptom-voice-card__row{display:grid;gap:.3rem;border-top:1px solid #e2e8f0;padding-top:.75rem}
+.symptom-voice-card__key{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em}
+.symptom-voice-card__value{font-size:14px;font-weight:700;color:#334155;line-height:1.8}
 .symptom-voices__note{font-size:11px;font-weight:700;color:#64748b;line-height:1.8;text-align:right;margin:1rem 0 0}
 .symptom-footer{background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;text-align:center}
 .symptom-footer__inner{max-width:860px;margin:0 auto}
@@ -766,9 +767,20 @@ function buildSymptomPatientVoicesSection(config = {}) {
             </a>
             <div class="symptom-voice-card__body">
               <p class="symptom-voice-card__label">${escapeHtml(voice.name)}</p>
-              <h3 class="symptom-voice-card__title">${escapeHtml(voice.title)}</h3>
-              <p class="symptom-voice-card__quote">「${escapeHtml(voice.quote)}」</p>
-              <p class="symptom-voice-card__summary">${escapeHtml(voice.summary)}</p>
+              <div class="symptom-voice-card__rows">
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">お悩み</span>
+                  <span class="symptom-voice-card__value">${escapeHtml(voice.concern)}</span>
+                </div>
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">変化</span>
+                  <span class="symptom-voice-card__value">${escapeHtml(voice.change)}</span>
+                </div>
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">ひとこと</span>
+                  <span class="symptom-voice-card__value">${escapeHtml(voice.comment)}</span>
+                </div>
+              </div>
             </div>
           </article>`).join("");
 

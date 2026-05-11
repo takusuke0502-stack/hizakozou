@@ -209,9 +209,10 @@
 .symptom-voice-card__image{display:block;width:100%;height:auto}
 .symptom-voice-card__body{padding:1.25rem}
 .symptom-voice-card__label{font-size:11px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
-.symptom-voice-card__title{font-size:1.05rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .65rem}
-.symptom-voice-card__quote{font-size:15px;font-weight:900;color:#0f172a;line-height:1.75;margin:0 0 .65rem}
-.symptom-voice-card__summary{font-size:14px;font-weight:700;color:#475569;line-height:1.8;margin:0}
+.symptom-voice-card__rows{display:grid;gap:.75rem;margin:.85rem 0 0}
+.symptom-voice-card__row{display:grid;gap:.3rem;border-top:1px solid #e2e8f0;padding-top:.75rem}
+.symptom-voice-card__key{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em}
+.symptom-voice-card__value{font-size:14px;font-weight:700;color:#334155;line-height:1.8}
 .symptom-voices__note{font-size:11px;font-weight:700;color:#64748b;line-height:1.8;text-align:right;margin:1rem 0 0}
 .symptom-footer{background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;text-align:center}
 .symptom-footer__inner{max-width:860px;margin:0 auto}
@@ -537,9 +538,20 @@
             </a>
             <div class="symptom-voice-card__body">
               <p class="symptom-voice-card__label">Y.N様</p>
-              <h3 class="symptom-voice-card__title">腰痛・肩こり・股関節まわりの不調で来院された60代女性のお声</h3>
-              <p class="symptom-voice-card__quote">「少しずつ筋肉のコリがなくなって、身体の動きがよくなりました」</p>
-              <p class="symptom-voice-card__summary">腰痛・肩こり・腹部の痛みで来院。筋肉のこりが少しずつ和らいで体が動かしやすくなり、自宅でできるストレッチも役立っているという内容です。</p>
+              <div class="symptom-voice-card__rows">
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">お悩み</span>
+                  <span class="symptom-voice-card__value">腰痛・肩こり・腹部の痛み</span>
+                </div>
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">変化</span>
+                  <span class="symptom-voice-card__value">施術と自宅でできるストレッチに取り組むことで、身体の動きが軽くなってきました。</span>
+                </div>
+                <div class="symptom-voice-card__row">
+                  <span class="symptom-voice-card__key">ひとこと</span>
+                  <span class="symptom-voice-card__value">丁寧に説明しながら進めてくれるので、不安がやわらぎ、安心して通えました。</span>
+                </div>
+              </div>
             </div>
           </article>
         </div>
