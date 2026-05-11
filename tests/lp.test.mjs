@@ -94,25 +94,47 @@ test("LP local image assets resolve to existing files", () => {
   }
 });
 
-test("LP and symptom patient voices use the current anonymized assets", () => {
+test("LP and symptom patient voices include all four approved assets", () => {
   const pages = [
     ["index.html", html],
     ["symptoms/knee-osteoarthritis.html", readFileSync(new URL("../symptoms/knee-osteoarthritis.html", import.meta.url), "utf8")],
     ["symptoms/lower-back-pain.html", readFileSync(new URL("../symptoms/lower-back-pain.html", import.meta.url), "utf8")],
     ["symptoms/hip-osteoarthritis.html", readFileSync(new URL("../symptoms/hip-osteoarthritis.html", import.meta.url), "utf8")],
-    ["symptoms/shoulder-stiffness.html", readFileSync(new URL("../symptoms/shoulder-stiffness.html", import.meta.url), "utf8")]
+    ["symptoms/shoulder-stiffness.html", readFileSync(new URL("../symptoms/shoulder-stiffness.html", import.meta.url), "utf8")],
+    ["symptoms/sciatica.html", readFileSync(new URL("../symptoms/sciatica.html", import.meta.url), "utf8")]
   ];
 
   assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-kt.png")), true);
   assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-yn.png")), true);
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-kk-anonymized.png")), true);
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-numajiri.jpg")), true);
   assert.match(html, /image\/patient-voice-kt\.png/);
   assert.match(html, /image\/patient-voice-yn\.png/);
+  assert.match(html, /image\/patient-voice-kk-anonymized\.png/);
+  assert.match(html, /image\/patient-voice-numajiri\.jpg/);
   assert.match(html, /K\.T/);
   assert.match(html, /Y\.N/);
+  assert.match(html, /K\.K/);
+  assert.match(html, /N\.H/);
+
+  const lowerBackHtml = pages.find(([pageName]) => pageName === "symptoms/lower-back-pain.html")[1];
+  assert.match(lowerBackHtml, /patient-voice-kt\.png/);
+  assert.match(lowerBackHtml, /patient-voice-yn\.png/);
+  assert.match(lowerBackHtml, /patient-voice-kk-anonymized\.png/);
+  assert.match(lowerBackHtml, /patient-voice-numajiri\.jpg/);
+
+  const kneeHtml = pages.find(([pageName]) => pageName === "symptoms/knee-osteoarthritis.html")[1];
+  assert.match(kneeHtml, /patient-voice-kt\.png/);
+  assert.match(kneeHtml, /patient-voice-kk-anonymized\.png/);
+
+  const shoulderHtml = pages.find(([pageName]) => pageName === "symptoms/shoulder-stiffness.html")[1];
+  assert.match(shoulderHtml, /patient-voice-yn\.png/);
+  assert.match(shoulderHtml, /patient-voice-numajiri\.jpg/);
+
+  const sciaticaHtml = pages.find(([pageName]) => pageName === "symptoms/sciatica.html")[1];
+  assert.match(sciaticaHtml, /patient-voice-kk-anonymized\.png/);
 
   for (const [pageName, pageHtml] of pages) {
-    assert.doesNotMatch(pageHtml, /patient-voice-kk-anonymized\.png/, `${pageName} should not use the old K.K asset`);
-    assert.doesNotMatch(pageHtml, /patient-voice-numajiri\.jpg/, `${pageName} should not use the old Numajiri asset`);
     assert.doesNotMatch(pageHtml, /Y\.K/, `${pageName} should not show the wrong initials`);
   }
 });

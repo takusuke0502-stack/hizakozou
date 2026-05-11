@@ -237,6 +237,24 @@ const patientVoices = [
     image: "../image/patient-voice-yn.png",
     alt: "Y.N様の直筆アンケート。腰痛、肩こり、腹部から股関節まわりの痛みで来院されたお声",
     symptomKeys: ["lower-back-pain", "shoulder-stiffness", "hip-osteoarthritis"]
+  },
+  {
+    name: "K.K様",
+    title: "膝・腰・坐骨神経痛など、複数のお悩みで来院されたお声",
+    quote: "施術後は体が軽くなります",
+    summary: "膝の痛みだけでなく、腰や坐骨神経痛など複数のお悩みがある方のお声です。痛みの場所を一つに決めつけず、体全体のつながりを見ていく当院の方針が伝わる内容です。",
+    image: "../image/patient-voice-kk-anonymized.png",
+    alt: "K.K様の写真付き直筆アンケート。坐骨神経痛、膝の痛み、腰の痛みなどで来院されたお声",
+    symptomKeys: ["knee-osteoarthritis", "lower-back-pain", "sciatica"]
+  },
+  {
+    name: "N.H様",
+    title: "腰や足の状態まで見てもらえた方のお声",
+    quote: "体と向き合うことが大事だと思います",
+    summary: "そり腰や腰痛、足の筋肉の状態など、膝以外の負担にも触れられているお声です。今の痛みだけでなく、体の使い方や日常の負担を整理する大切さが伝わります。",
+    image: "../image/patient-voice-numajiri.jpg",
+    alt: "N.H様の写真付き直筆アンケート。ねんざによる全身的な痛みで来院されたお声",
+    symptomKeys: ["lower-back-pain", "shoulder-stiffness"]
   }
 ];
 
