@@ -334,13 +334,13 @@ test("LP keeps the knee-pain specialty axis and presents the updated three-step 
     '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
     'id="troubles"'
   );
-  const metaDescription = "柏市で膝痛・歩き始めや階段の痛みにお悩みの40〜70代女性へ。整体院ひざこぞうでは、緩める・鍛える・動作改善の3ステップで、膝に負担が集まりにくい身体づくりをサポートします。柏駅西口徒歩8分、完全予約制。";
+  const metaDescription = "柏市で膝痛・歩き始めや階段の痛みにお悩みの女性へ。整体院ひざこぞうでは、緩める・鍛える・動作改善の3ステップで、膝に負担が集まりにくい身体づくりをやさしくサポートします。柏駅西口徒歩8分、完全予約制。";
 
   assert.match(html, /<title>ひざこぞう式整体で痛みのない歩みへ｜柏市の膝痛整体院<\/title>/);
   assert.match(html, new RegExp(`<meta name="description" content="${metaDescription}">`));
-  assert.match(html, /ひざこぞう式整体で、痛みのない歩みへ/);
-  assert.match(hero, /40〜70代女性の膝の痛み・歩きにくさに、/);
-  assert.match(hero, /緩める・鍛える・動作改善の順番で寄り添います。/);
+  assert.match(html, /柏市で、歩くたびにつらい膝痛に。/);
+  assert.match(hero, /膝の痛みや歩きにくさを、/);
+  assert.match(hero, /緩める・鍛える・動作改善の3ステップでやさしく支えます。/);
   assert.match(hero, /階段、歩き始め、立ち上がりが不安な方へ。/);
   assert.match(hero, /原因を見極め、痛みの結果にも向き合う完全予約制の整体院です。/);
   assert.match(hero, /柏市で膝痛にお悩みの方は、/);
@@ -364,6 +364,9 @@ test("LP keeps the knee-pain specialty axis and presents the updated three-step 
   assert.match(html, /images\/step1_swirl\.png/);
   assert.match(html, /images\/step2_dumbbell\.png/);
   assert.match(html, /images\/step3_footprint\.png/);
+  assert.match(html, /<!-- 差し替え予定アイコン: images\/step1_swirl\.png/);
+  assert.match(html, /<!-- 差し替え予定アイコン: images\/step2_dumbbell\.png/);
+  assert.match(html, /<!-- 差し替え予定アイコン: images\/step3_footprint\.png/);
 });
 
 test("LP keeps knee-type navigation ahead of the broader symptom directory", () => {
