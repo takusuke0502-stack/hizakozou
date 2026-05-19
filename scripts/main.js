@@ -5,12 +5,16 @@ const contactForm = document.getElementById('contactForm');
 const submitBtn = document.getElementById('submitBtn');
 const successMsg = document.getElementById('successMessage');
 const formError = document.getElementById('form-error');
+const toast = document.getElementById('toast');
+const toastMessage = document.getElementById('toast-message');
+const toastIcon = document.getElementById('toast-icon');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbzxlY8wFSXpgtyP9TVFwFM2BCrzfihbkmEOjYd5PROmEubX3B4NLxOhYOvZxeg7zZbc1w/exec';
 
 let triggerEl = null;
+let toastTimer = null;
 
 function refreshIcons(scope) {
   if (!window.lucide?.createIcons) return;
@@ -60,6 +64,27 @@ function setFormError(message) {
   formError.textContent = message;
   formError.classList.remove('hidden');
   formError.focus();
+}
+
+function showToast(message, type = 'success') {
+  if (!toast || !toastMessage) return;
+
+  toastMessage.textContent = message;
+  toast.classList.toggle('is-success', type === 'success');
+  toast.classList.toggle('is-error', type === 'error');
+  toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
+
+  if (toastIcon) {
+    toastIcon.setAttribute('data-lucide', type === 'error' ? 'alert-circle' : 'check-circle-2');
+  }
+
+  toast.classList.remove('hidden');
+  refreshIcons(toast);
+
+  if (toastTimer) window.clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => {
+    toast.classList.add('hidden');
+  }, 5200);
 }
 
 function validateForm() {
@@ -359,6 +384,7 @@ contactForm?.addEventListener('submit', async (event) => {
 
   const firstInvalid = validateForm();
   if (firstInvalid) {
+    showToast('入力内容をご確認ください。', 'error');
     firstInvalid.focus();
     return;
   }
@@ -370,10 +396,13 @@ contactForm?.addEventListener('submit', async (event) => {
     await submitViaCors(contactForm);
     contactForm.classList.add('hidden');
     successMsg?.classList.remove('hidden');
+    showToast('送信が完了しました。24時間以内に折り返しご連絡いたします。');
     successMsg?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    successMsg?.focus({ preventScroll: true });
   } catch (error) {
     console.error('Contact form submit error:', error);
     setFormError('送信に失敗しました。時間をおいて再送するか、LINE予約・お電話をご利用ください。');
+    showToast('送信に失敗しました。LINE予約・お電話もご利用ください。', 'error');
   } finally {
     setSubmitBusy(false);
   }

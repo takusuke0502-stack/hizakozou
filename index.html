@@ -466,6 +466,36 @@
       min-height: 64px;
     }
 
+    .form-toast {
+      position: fixed;
+      top: calc(var(--header-h, 80px) + 16px);
+      right: 16px;
+      z-index: 120;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      width: min(92vw, 380px);
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.2);
+    }
+
+    .form-toast.hidden {
+      display: none;
+    }
+
+    .form-toast.is-success {
+      border: 1px solid #a7f3d0;
+      background: #ecfdf5;
+      color: #065f46;
+    }
+
+    .form-toast.is-error {
+      border: 1px solid #fecaca;
+      background: #fef2f2;
+      color: #991b1b;
+    }
+
     @media (max-width: 767px) {
       .hz-compare-scroll {
         overflow-x: auto;
@@ -784,6 +814,19 @@
               <p class="text-base md:text-xl font-bold leading-relaxed">
                 階段、歩き始め、立ち上がりが不安な方へ。<br class="hidden md:block">原因を見極め、痛みの結果にも向き合う完全予約制の整体院です。
               </p>
+            </div>
+
+            <div class="max-w-3xl rounded-2xl border border-yellow-200 bg-yellow-50 px-4 py-3 text-slate-800 shadow-sm">
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex items-center gap-2 font-black">
+                  <span class="text-yellow-500" aria-hidden="true">★</span>
+                  <span>Google口コミ</span>
+                </div>
+                <p class="text-base font-bold leading-relaxed">星評価・レビュー件数はGoogleマップで確認できます。</p>
+                <a href="https://g.page/r/CblTNpd2gz_7EBM" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1 rounded-lg bg-white px-3 py-2 text-sm font-black text-blue-700 shadow-sm transition hover:bg-blue-50">
+                  口コミを見る <i data-lucide="external-link" class="w-4 h-4" aria-hidden="true"></i>
+                </a>
+              </div>
             </div>
 
             <div class="hero-visual space-y-4">
@@ -1719,6 +1762,13 @@
             </p>
           </div>
 
+          <div class="bg-yellow-400/10 rounded-2xl p-5 mb-6 text-left border border-yellow-300/40">
+            <p class="text-sm font-black text-yellow-400 mb-3">初回1,980円にしている理由</p>
+            <p class="text-sm font-bold text-slate-100 leading-relaxed">
+              膝の痛みで外出や趣味をあきらめる前に、まずご自身の状態を知る機会を持ってほしいからです。院長が初回分の負担を一部引き受けてでも、相談しやすい入口を用意しています。無理な契約を前提にせず、納得してから次の通い方を一緒に考えます。
+            </p>
+          </div>
+
           <div class="max-w-xl mx-auto text-left">
             <p class="text-sm font-bold bg-white/10 p-4 rounded-xl border border-white/20 text-slate-100">初回はカウンセリングと状態確認を含めて、無理のない内容で進めます。</p>
           </div>
@@ -2093,12 +2143,15 @@
                 </button>
               </form>
 
-              <div id="successMessage" class="hidden text-center py-10" role="status" aria-live="polite">
+              <div id="successMessage" class="hidden text-center py-10" role="status" aria-live="polite" tabindex="-1">
                 <div class="bg-emerald-100 text-emerald-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
                   <i data-lucide="check" class="w-10 h-10" aria-hidden="true"></i>
                 </div>
                 <p class="text-xl font-black mb-2 text-slate-800">送信が完了しました</p>
                 <p class="text-slate-500 font-bold leading-relaxed text-sm">お問い合わせありがとうございます。<br>内容を確認し、24時間以内に折り返しご連絡いたします。</p>
+                <a href="#access" class="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-slate-800 px-5 py-3 text-sm font-black text-white transition hover:bg-slate-900">
+                  アクセスを確認する <i data-lucide="map-pin" class="w-4 h-4" aria-hidden="true"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -2214,6 +2267,11 @@
        class="mobile-fixed-cta w-full flex items-center justify-center gap-2 bg-[#06C755] text-white font-black px-5 py-4 rounded-xl text-base shadow transition active:scale-95">
       <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i> <span class="mobile-fixed-cta__label">LINEで空き状況を確認</span>
     </a>
+  </div>
+
+  <div id="toast" class="form-toast hidden is-success" role="status" aria-live="polite" aria-atomic="true">
+    <i id="toast-icon" data-lucide="check-circle-2" class="w-5 h-5 shrink-0" aria-hidden="true"></i>
+    <p id="toast-message" class="text-sm font-black leading-relaxed"></p>
   </div>
 
     <script src="scripts/main.js" defer></script>

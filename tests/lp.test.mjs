@@ -267,6 +267,27 @@ test("LP Step 2 uses Japanese labels, comparison table, and a single mobile LINE
   assert.match(fixedCta, /LINEで空き状況を確認/);
 });
 
+test("LP Step 3 adds conversion copy, review proof, price reason, and toast form handling", () => {
+  const hero = getSectionSlice('<main>', '<section id="seo-guide"');
+  const price = getSectionSlice('id="price"', 'id="faq"');
+  const contact = getSectionSlice('id="contact"', 'id="lightbox"');
+
+  assert.match(hero, /痛みを理由にあきらめない。/);
+  assert.doesNotMatch(hero, /また旅行に行けた。孫と公園を歩けた。/);
+  assert.match(hero, /Google口コミ/);
+  assert.match(hero, /星評価・レビュー件数はGoogleマップで確認できます。/);
+  assert.match(hero, /https:\/\/g\.page\/r\/CblTNpd2gz_7EBM/);
+  assert.match(price, /初回1,980円にしている理由/);
+  assert.match(price, /院長が初回分の負担を一部引き受けてでも/);
+  assert.match(html, /id="toast"/);
+  assert.match(contact, /id="successMessage"[^>]*tabindex="-1"/);
+  assert.match(contact, /アクセスを確認する/);
+  assert.match(mainJs, /function showToast\(/);
+  assert.match(mainJs, /showToast\('入力内容をご確認ください。', 'error'\)/);
+  assert.match(mainJs, /showToast\('送信が完了しました。24時間以内に折り返しご連絡いたします。'\)/);
+  assert.match(mainJs, /showToast\('送信に失敗しました。LINE予約・お電話もご利用ください。', 'error'\)/);
+});
+
 test("LP exposes a real contact anchor for generated blog CTAs", () => {
   assert.match(html, /id="contact"/, "LP should expose a contact anchor");
   assert.doesNotMatch(buildBlogScript, /#contact/, "blog templates should not point to a missing contact anchor by accident");
