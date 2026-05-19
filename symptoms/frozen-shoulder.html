@@ -210,9 +210,10 @@
 .symptom-voice-card__image{display:block;width:100%;height:auto}
 .symptom-voice-card__body{padding:1.25rem}
 .symptom-voice-card__label{font-size:11px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
-.symptom-voice-card__title{font-size:1.05rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .65rem}
-.symptom-voice-card__quote{font-size:15px;font-weight:900;color:#0f172a;line-height:1.75;margin:0 0 .65rem}
-.symptom-voice-card__summary{font-size:14px;font-weight:700;color:#475569;line-height:1.8;margin:0}
+.symptom-voice-card__rows{display:grid;gap:.75rem;margin:.85rem 0 0}
+.symptom-voice-card__row{display:grid;gap:.3rem;border-top:1px solid #e2e8f0;padding-top:.75rem}
+.symptom-voice-card__key{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em}
+.symptom-voice-card__value{font-size:14px;font-weight:700;color:#334155;line-height:1.8}
 .symptom-voices__note{font-size:11px;font-weight:700;color:#64748b;line-height:1.8;text-align:right;margin:1rem 0 0}
 .symptom-footer{background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;text-align:center}
 .symptom-footer__inner{max-width:860px;margin:0 auto}
@@ -392,13 +393,13 @@
     <section class="cause">
       <div class="container max-w-4xl">
         <h2 class="section-title">五十肩はなぜ起こるのか</h2>
-        <div class="prose"><p>五十肩の本当の原因は「<span class="highlight">上腕骨頭の前方へのズレ</span>」です。スマホやPCの使い過ぎで猫背になると、大胸筋・小胸筋などの前側の筋肉（ガンバリ筋）が過緊張し、骨頭を前方へ引き出してしまいます。</p><p>この状態で腕を動かすと、骨頭が肩峰の下の組織を挟み込む「肩峰下インピンジメント」が発生し、強い炎症と夜間痛を引き起こします。</p></div>
+        <div class="prose"><p>五十肩の本当の原因は「<span class="highlight">上腕骨頭の前方へのズレ</span>」です。スマホやPCの使い過ぎで猫背になると、大胸筋・小胸筋などの前側の筋肉（頑張りすぎている筋肉）が過緊張し、骨頭を前方へ引き出してしまいます。</p><p>この状態で腕を動かすと、骨頭が肩峰の下の組織を挟み込む「肩峰下インピンジメント」が発生し、強い炎症と夜間痛を引き起こします。</p></div>
         <div class="mechanism">
           <p class="mechanism__title">五十肩が悪化するメカニズム</p>
           <div class="mechanism__flow">
             <div class="mechanism__step">
               <div class="mechanism__step-num">1</div>
-              <p class="mechanism__step-text">大胸筋・小胸筋がガンバリ筋化（猫背・巻き肩）</p>
+              <p class="mechanism__step-text">大胸筋・小胸筋が頑張りすぎている筋肉化（猫背・巻き肩）</p>
             </div>
             <div class="mechanism__arrow"></div>
             <div class="mechanism__step">
@@ -408,7 +409,7 @@
             <div class="mechanism__arrow"></div>
             <div class="mechanism__step">
               <div class="mechanism__step-num">3</div>
-              <p class="mechanism__step-text">肩甲骨の動きがサボり筋化して低下</p>
+              <p class="mechanism__step-text">肩甲骨の動きが働きにくくなった筋肉化して低下</p>
             </div>
             <div class="mechanism__arrow"></div>
             <div class="mechanism__step">
@@ -667,6 +668,8 @@
       </div>
     </section>
 <!-- BLOG_RELATED_ARTICLES_END -->
+
+
 
 <section class="cta">
       <div class="container max-w-3xl">

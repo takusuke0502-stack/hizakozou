@@ -57,7 +57,7 @@ function getLocalImageReferences() {
 
 test("LP follows the new section order for the knee-pain explanation flow", () => {
   const markers = [
-    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed">',
+    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
     'id="troubles"',
     'id="first-visit-policy"',
     'id="seo-guide"',
@@ -329,23 +329,22 @@ test("LP keeps only one first-visit policy section and removes the duplicate art
   assert.equal(html.includes("来院前に確認されやすいこと"), false, "mid-page article detour should be removed");
 });
 
-test("LP keeps the knee-pain specialty axis and unifies the improvement story without a duplicate three-step section", () => {
+test("LP keeps the knee-pain specialty axis and presents the updated three-step method", () => {
   const hero = getSectionSlice(
-    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed">',
+    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
     'id="troubles"'
   );
-  const metaDescription = "柏市で膝痛・変形性膝関節症・歩き始めや階段の痛みにお悩みの方へ。整体院ひざこぞうでは、膝だけでなく歩き方・股関節・足首・身体の使い方まで確認し、膝に負担が集まりにくい身体づくりをサポートします。柏駅西口徒歩8分、完全予約制。";
+  const metaDescription = "柏市で膝痛・歩き始めや階段の痛みにお悩みの40〜70代女性へ。整体院ひざこぞうでは、緩める・鍛える・動作改善の3ステップで、膝に負担が集まりにくい身体づくりをサポートします。柏駅西口徒歩8分、完全予約制。";
 
-  assert.match(html, /<title>柏市で膝痛・膝の痛みの整体相談なら｜整体院ひざこぞう<\/title>/);
+  assert.match(html, /<title>ひざこぞう式整体で痛みのない歩みへ｜柏市の膝痛整体院<\/title>/);
   assert.match(html, new RegExp(`<meta name="description" content="${metaDescription}">`));
-  assert.match(html, /柏市で、歩くたびにつらい膝痛に。/);
-  assert.match(hero, /膝だけでなく歩き方や身体の使い方から整え、/);
-  assert.match(hero, /もっと楽に歩ける身体へ。/);
-  assert.match(hero, /変形性膝関節症・歩行時痛・階段のつらさに、/);
-  assert.match(hero, /施術と運動療法で向き合う膝痛専門整体院です。/);
-  assert.doesNotMatch(hero, /確認します。/);
+  assert.match(html, /ひざこぞう式整体で、痛みのない歩みへ/);
+  assert.match(hero, /40〜70代女性の膝の痛み・歩きにくさに、/);
+  assert.match(hero, /緩める・鍛える・動作改善の順番で寄り添います。/);
+  assert.match(hero, /階段、歩き始め、立ち上がりが不安な方へ。/);
+  assert.match(hero, /原因を見極め、痛みの結果にも向き合う完全予約制の整体院です。/);
   assert.match(hero, /柏市で膝痛にお悩みの方は、/);
-  assert.match(hero, /今の状態を一緒に整理していきましょう。/);
+  assert.match(hero, /今の状態とこれからの歩みを一緒に整理していきましょう。/);
   assert.match(html, /膝の痛みは、痛む場所だけを見ても分からないことがあります/);
   assert.match(html, /膝だけを揉んで終わるのではなく/);
   assert.match(html, /<h2 class="section-title">なぜ膝の痛みが長引くのか？<\/h2>/);
@@ -355,9 +354,16 @@ test("LP keeps the knee-pain specialty axis and unifies the improvement story wi
     false,
     "duplicate three-pillar ordering block should be removed"
   );
-  assert.match(html, /まず痛みを落ち着かせる/);
-  assert.match(html, /膝を守る筋肉の使い方を身につける/);
-  assert.match(html, /「動いても大丈夫」という感覚を取り戻す/);
+  assert.match(html, /原因から改善する3ステップ/);
+  assert.match(html, /<h3 class="hz-step-title">緩める<\/h3>/);
+  assert.match(html, /<h3 class="hz-step-title">鍛える<\/h3>/);
+  assert.match(html, /<h3 class="hz-step-title">動作改善<\/h3>/);
+  assert.match(html, /原因を見極める/);
+  assert.match(html, /結果にもアプローチ/);
+  assert.match(html, /納得できる説明/);
+  assert.match(html, /images\/step1_swirl\.png/);
+  assert.match(html, /images\/step2_dumbbell\.png/);
+  assert.match(html, /images\/step3_footprint\.png/);
 });
 
 test("LP keeps knee-type navigation ahead of the broader symptom directory", () => {

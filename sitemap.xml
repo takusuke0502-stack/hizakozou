@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://hizakozou.jp/</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -235,12 +235,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hizakozou.jp/blog/posts/msm-method-guide/</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://hizakozou.jp/blog/posts/lower-back-pain-and-knee-link/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
@@ -249,6 +243,12 @@
   <url>
     <loc>https://hizakozou.jp/blog/posts/knee-pain-stairs-guide/</loc>
     <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hizakozou.jp/blog/posts/hizakozou-method-guide/</loc>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -272,145 +272,145 @@
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/ankle-stiffness-knee-pain.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/bowlegs-knee-pain.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/carpal-tunnel.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/cervical-spondylosis.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/elbow-tendinopathy.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/frozen-shoulder.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/hip-osteoarthritis.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/knee-effusion.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/knee-front-pain.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/knee-hyperextension.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/knee-lateral-pain.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/knee-osteoarthritis.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/knee-posterior-pain.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/lower-back-pain.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/lumbar-disc-herniation.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/meniscus-knee-pain.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/pes-anserine-bursitis.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/plantar-fasciitis.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/sciatica.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/scoliosis.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/shoulder-stiffness.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/spinal-stenosis.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/thoracic-outlet.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hizakozou.jp/symptoms/tmj.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
