@@ -339,8 +339,8 @@ test("LP keeps the knee-pain specialty axis and presents the updated three-step 
   assert.match(html, /<title>ひざこぞう式整体で痛みのない歩みへ｜柏市の膝痛整体院<\/title>/);
   assert.match(html, new RegExp(`<meta name="description" content="${metaDescription}">`));
   assert.match(html, /柏市で、歩くたびにつらい膝痛に。/);
-  assert.match(hero, /膝の痛みや歩きにくさを、/);
-  assert.match(hero, /緩める・鍛える・動作改善の3ステップでやさしく支えます。/);
+  assert.match(hero, /痛みを理由にあきらめない。/);
+  assert.match(hero, /もう一度、歩く楽しさを。/);
   assert.match(hero, /階段、歩き始め、立ち上がりが不安な方へ。/);
   assert.match(hero, /原因を見極め、痛みの結果にも向き合う完全予約制の整体院です。/);
   assert.match(hero, /柏市で膝痛にお悩みの方は、/);
