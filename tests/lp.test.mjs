@@ -65,6 +65,7 @@ test("LP follows the new section order for the knee-pain explanation flow", () =
     'id="first-visit-policy"',
     'id="seo-guide"',
     'id="approach"',
+    'id="comparison"',
     'id="flow"',
     'id="profile"',
     'id="voice"',
@@ -180,7 +181,7 @@ test("patient voice summaries read like direct content summaries", () => {
     ["symptoms/shoulder-stiffness.html", readFileSync(new URL("../symptoms/shoulder-stiffness.html", import.meta.url), "utf8")],
     ["symptoms/sciatica.html", readFileSync(new URL("../symptoms/sciatica.html", import.meta.url), "utf8")]
   ];
-  const voiceCopyPattern = /class="(?:text-sm md:text-base font-bold text-slate-700 leading-relaxed|symptom-voice-card__value)"[^>]*>([^<]+)/g;
+  const voiceCopyPattern = /class="(?:text-sm md:text-base font-bold text-slate-700 leading-relaxed|text-base font-bold text-slate-700 leading-relaxed|symptom-voice-card__value)"[^>]*>([^<]+)/g;
   const thirdPartyPhrases = /(伝わります|記載されています|お声です|方針が伝わる|変化が記載)/;
 
   for (const [pageName, pageHtml] of pages) {
@@ -241,9 +242,29 @@ test("LP has an overflow-safe mobile hero title", () => {
 test("LP mobile hero title and fixed CTA stay compact on narrow screens", () => {
   assert.match(html, /font-size:\s*clamp\(1\.72rem,\s*7\.4vw,\s*3\.6rem\)\s*!important;/);
   assert.doesNotMatch(html, /font-size:\s*clamp\(2rem,\s*8\.6vw,\s*4rem\)/);
-  assert.match(html, /<span class="mobile-fixed-cta__label">LINE相談<\/span>/);
-  assert.match(html, /<span class="mobile-fixed-cta__label">電話<\/span>/);
+  assert.match(html, /<span class="mobile-fixed-cta__label">LINEで空き状況を確認<\/span>/);
+  assert.doesNotMatch(getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js"'), /tel:0471143274/);
   assert.doesNotMatch(getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js"'), /LINEで予約する/);
+});
+
+test("LP Step 2 uses Japanese labels, comparison table, and a single mobile LINE CTA", () => {
+  const approach = getSectionSlice('id="approach"', 'id="comparison"');
+  const comparison = getSectionSlice('id="comparison"', 'id="flow"');
+  const fixedCta = getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js"');
+
+  assert.doesNotMatch(html, /CLINICAL VIEW|HIZAKOZOU METHOD|FIRST VISIT/);
+  assert.doesNotMatch(approach, /STEP\s*0?\d/);
+  assert.match(html, /膝痛を見立てる視点/);
+  assert.match(html, /初回の進め方/);
+  assert.match(html, /ひざこぞう式の進め方/);
+  assert.equal(html.includes('id="method-features"'), false, "duplicated feature section should be integrated into the method section");
+  assert.match(comparison, /整形外科・一般的な整体・当院の違い/);
+  assert.match(comparison, /<table class="hz-compare-table">/);
+  assert.match(comparison, /整形外科/);
+  assert.match(comparison, /一般的な整体/);
+  assert.match(comparison, /整体院ひざこぞう/);
+  assert.equal((fixedCta.match(/<a /g) ?? []).length, 1, "mobile fixed CTA should be one button");
+  assert.match(fixedCta, /LINEで空き状況を確認/);
 });
 
 test("LP exposes a real contact anchor for generated blog CTAs", () => {
@@ -268,6 +289,7 @@ test("LP runtime blog preview escapes post data before injecting HTML", () => {
 test("LP avoids strong medical promise wording in visible conversion copy", () => {
   const strongPhrases = [
     "根本から改善する",
+    "原因から改善する",
     "絶対に無駄にしません",
     "世界の医療が証明",
     "手術は最後の手段"
@@ -379,13 +401,13 @@ test("LP keeps the knee-pain specialty axis and presents the updated three-step 
     false,
     "duplicate three-pillar ordering block should be removed"
   );
-  assert.match(html, /原因から改善する3ステップ/);
+  assert.match(html, /原因を整理する3ステップ/);
   assert.match(html, /<h3 class="hz-step-title">緩める<\/h3>/);
   assert.match(html, /<h3 class="hz-step-title">鍛える<\/h3>/);
   assert.match(html, /<h3 class="hz-step-title">動作改善<\/h3>/);
-  assert.match(html, /原因を見極める/);
-  assert.match(html, /結果にもアプローチ/);
-  assert.match(html, /納得できる説明/);
+  assert.match(html, /膝だけに絞らず確認/);
+  assert.match(html, /痛みと動きに向き合う/);
+  assert.match(html, /納得して進める説明/);
   assert.match(html, /image\/step1_swirl\.webp/);
   assert.match(html, /image\/step2_dumbbell\.webp/);
   assert.match(html, /image\/step3_footprint\.webp/);
