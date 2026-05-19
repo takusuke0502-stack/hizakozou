@@ -8,7 +8,7 @@ category: 膝痛
 region: 柏市
 tags: 膝痛,階段,階段 下り,変形性膝関節症,歩き方,柏市
 symptoms: 変形性膝関節症,膝に水がたまる,鵞足炎,腸脛靭帯炎,膝の裏側の痛み,膝の前側の痛み,半月板損傷
-heroImage: /image/knee-symptom.jpg
+heroImage: /image/knee-symptom.webp
 draft: false
 ---
 

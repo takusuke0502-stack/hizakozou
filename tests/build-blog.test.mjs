@@ -45,7 +45,7 @@ const posts = [
     title: "膝は治らないと思っていませんか？",
     description: "膝の痛みをあきらめる前に確認したいこと。",
     date: "2026-04-03",
-    eyecatch: "/image/knee-symptom.jpg",
+    eyecatch: "/image/knee-symptom.webp",
     category: categories.get("knee-pain")
   },
   {
@@ -123,7 +123,7 @@ test("buildPostContent converts markdown links in article lead", () => {
     description: "階段の膝痛を整理します。",
     lead: "詳しくは[柏駅周辺で膝痛に悩む方への記事](/blog/posts/kashiwa-station-knee-pain-guide/)も参考にしてください。",
     slug: "knee-pain-stairs-guide",
-    eyecatch: "/image/knee-symptom.jpg",
+    eyecatch: "/image/knee-symptom.webp",
     date: "2026-03-31",
     updatedDate: "2026-04-20",
     category: categories.get("knee-pain"),
@@ -191,7 +191,7 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
     description: "膝の痛みを来院前に整理します。",
     lead: "膝の痛みで不安な方へ。",
     slug: "knee-guide",
-    eyecatch: "/image/knee-symptom.jpg",
+    eyecatch: "/image/knee-symptom.webp",
     tags: ["膝痛"],
     category: categories.get("knee-pain"),
     sections: [
@@ -255,7 +255,7 @@ test("buildPostContent applies shared box-type rules to sections and subsections
     date: "2026-04-21",
     lead: "見出しごとの装飾判定を確認します。",
     slug: "box-type-check",
-    eyecatch: "/image/knee-symptom.jpg",
+    eyecatch: "/image/knee-symptom.webp",
     tags: ["膝痛"],
     category: categories.get("knee-pain"),
     sections: [

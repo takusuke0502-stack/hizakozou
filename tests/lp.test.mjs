@@ -57,7 +57,7 @@ function getLocalImageReferences() {
 
 test("LP follows the new section order for the knee-pain explanation flow", () => {
   const markers = [
-    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed">',
+    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
     'id="troubles"',
     'id="first-visit-policy"',
     'id="seo-guide"',
@@ -108,14 +108,14 @@ test("LP and symptom patient voices include all four approved assets", () => {
     ["symptoms/sciatica.html", readFileSync(new URL("../symptoms/sciatica.html", import.meta.url), "utf8")]
   ];
 
-  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-kt.png")), true);
-  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-yn.png")), true);
-  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-kk-anonymized.png")), true);
-  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-numajiri.jpg")), true);
-  assert.match(html, /image\/patient-voice-kt\.png/);
-  assert.match(html, /image\/patient-voice-yn\.png/);
-  assert.match(html, /image\/patient-voice-kk-anonymized\.png/);
-  assert.match(html, /image\/patient-voice-numajiri\.jpg/);
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-kt.webp")), true);
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-yn.webp")), true);
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-kk-anonymized.webp")), true);
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-numajiri.webp")), true);
+  assert.match(html, /image\/patient-voice-kt\.webp/);
+  assert.match(html, /image\/patient-voice-yn\.webp/);
+  assert.match(html, /image\/patient-voice-kk-anonymized\.webp/);
+  assert.match(html, /image\/patient-voice-numajiri\.webp/);
   assert.match(html, /K\.T/);
   assert.match(html, /Y\.N/);
   assert.match(html, /K\.K/);
@@ -125,21 +125,21 @@ test("LP and symptom patient voices include all four approved assets", () => {
   assert.ok(html.indexOf("Y.N様") < html.indexOf("N.H様"), "LP should list Y.N before N.H");
 
   const lowerBackHtml = pages.find(([pageName]) => pageName === "symptoms/lower-back-pain.html")[1];
-  assert.match(lowerBackHtml, /patient-voice-kt\.png/);
-  assert.match(lowerBackHtml, /patient-voice-yn\.png/);
-  assert.match(lowerBackHtml, /patient-voice-kk-anonymized\.png/);
-  assert.match(lowerBackHtml, /patient-voice-numajiri\.jpg/);
+  assert.match(lowerBackHtml, /patient-voice-kt\.webp/);
+  assert.match(lowerBackHtml, /patient-voice-yn\.webp/);
+  assert.match(lowerBackHtml, /patient-voice-kk-anonymized\.webp/);
+  assert.match(lowerBackHtml, /patient-voice-numajiri\.webp/);
 
   const kneeHtml = pages.find(([pageName]) => pageName === "symptoms/knee-osteoarthritis.html")[1];
-  assert.match(kneeHtml, /patient-voice-kt\.png/);
-  assert.match(kneeHtml, /patient-voice-kk-anonymized\.png/);
+  assert.match(kneeHtml, /patient-voice-kt\.webp/);
+  assert.match(kneeHtml, /patient-voice-kk-anonymized\.webp/);
 
   const shoulderHtml = pages.find(([pageName]) => pageName === "symptoms/shoulder-stiffness.html")[1];
-  assert.match(shoulderHtml, /patient-voice-yn\.png/);
-  assert.match(shoulderHtml, /patient-voice-numajiri\.jpg/);
+  assert.match(shoulderHtml, /patient-voice-yn\.webp/);
+  assert.match(shoulderHtml, /patient-voice-numajiri\.webp/);
 
   const sciaticaHtml = pages.find(([pageName]) => pageName === "symptoms/sciatica.html")[1];
-  assert.match(sciaticaHtml, /patient-voice-kk-anonymized\.png/);
+  assert.match(sciaticaHtml, /patient-voice-kk-anonymized\.webp/);
 
   for (const [pageName, pageHtml] of pages) {
     assert.doesNotMatch(pageHtml, /Y\.K/, `${pageName} should not show the wrong initials`);
@@ -216,8 +216,8 @@ test("LP has an overflow-safe mobile hero title", () => {
 test("LP mobile hero title and fixed CTA stay compact on narrow screens", () => {
   assert.match(html, /font-size:\s*clamp\(1\.72rem,\s*7\.4vw,\s*3\.6rem\)\s*!important;/);
   assert.doesNotMatch(html, /font-size:\s*clamp\(2rem,\s*8\.6vw,\s*4rem\)/);
-  assert.match(html, /<span class="mobile-fixed-cta__label">LINE相談<\/span>/);
-  assert.match(html, /<span class="mobile-fixed-cta__label">電話<\/span>/);
+  assert.match(html, /<span class="mobile-fixed-cta__label">LINEで空き状況を確認<\/span>/);
+  assert.doesNotMatch(getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js"'), /<span class="mobile-fixed-cta__label">電話<\/span>/);
   assert.doesNotMatch(getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js"'), /LINEで予約する/);
 });
 
@@ -329,23 +329,23 @@ test("LP keeps only one first-visit policy section and removes the duplicate art
   assert.equal(html.includes("来院前に確認されやすいこと"), false, "mid-page article detour should be removed");
 });
 
-test("LP keeps the knee-pain specialty axis and unifies the improvement story without a duplicate three-step section", () => {
+test("LP keeps the knee-pain specialty axis and presents the updated three-step method", () => {
   const hero = getSectionSlice(
-    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed">',
+    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
     'id="troubles"'
   );
-  const metaDescription = "柏市で膝痛・変形性膝関節症・歩き始めや階段の痛みにお悩みの方へ。整体院ひざこぞうでは、膝だけでなく歩き方・股関節・足首・身体の使い方まで確認し、膝に負担が集まりにくい身体づくりをサポートします。柏駅西口徒歩8分、完全予約制。";
+  const metaDescription = "柏市で変形性膝関節症、階段・歩き始めの膝痛にお悩みの方へ。整体院ひざこぞうでは、緩める・鍛える・動作改善の3ステップで、膝に負担が集まりにくい身体づくりをサポートします。柏駅西口徒歩8分、完全予約制。";
 
-  assert.match(html, /<title>柏市で膝痛・膝の痛みの整体相談なら｜整体院ひざこぞう<\/title>/);
+  assert.match(html, /<title>【柏市の膝痛整体】変形性膝関節症・階段の痛みに｜整体院ひざこぞう<\/title>/);
   assert.match(html, new RegExp(`<meta name="description" content="${metaDescription}">`));
-  assert.match(html, /柏市で、歩くたびにつらい膝痛に。/);
-  assert.match(hero, /膝だけでなく歩き方や身体の使い方から整え、/);
-  assert.match(hero, /もっと楽に歩ける身体へ。/);
-  assert.match(hero, /変形性膝関節症・歩行時痛・階段のつらさに、/);
-  assert.match(hero, /施術と運動療法で向き合う膝痛専門整体院です。/);
-  assert.doesNotMatch(hero, /確認します。/);
+  assert.match(html, /柏市の膝痛整体｜変形性膝関節症・階段の痛みに/);
+  assert.match(hero, /また旅行に行けた。/);
+  assert.match(hero, /孫と公園を歩けた。/);
+  assert.match(hero, /階段、歩き始め、立ち上がりが不安な方へ。/);
+  assert.match(hero, /もう一度出かけたくなる毎日を目指します。/);
   assert.match(hero, /柏市で膝痛にお悩みの方は、/);
-  assert.match(hero, /今の状態を一緒に整理していきましょう。/);
+  assert.match(hero, /「また出かけたい」という気持ちを大切に/);
+  assert.match(hero, /今の状態とこれからの歩みを一緒に整理していきましょう。/);
   assert.match(html, /膝の痛みは、痛む場所だけを見ても分からないことがあります/);
   assert.match(html, /膝だけを揉んで終わるのではなく/);
   assert.match(html, /<h2 class="section-title">なぜ膝の痛みが長引くのか？<\/h2>/);
@@ -355,9 +355,39 @@ test("LP keeps the knee-pain specialty axis and unifies the improvement story wi
     false,
     "duplicate three-pillar ordering block should be removed"
   );
-  assert.match(html, /まず痛みを落ち着かせる/);
-  assert.match(html, /膝を守る筋肉の使い方を身につける/);
-  assert.match(html, /「動いても大丈夫」という感覚を取り戻す/);
+  assert.match(html, /原因から改善する3ステップ/);
+  assert.match(html, /<h3 class="hz-step-title">緩める<\/h3>/);
+  assert.match(html, /<h3 class="hz-step-title">鍛える<\/h3>/);
+  assert.match(html, /<h3 class="hz-step-title">動作改善<\/h3>/);
+  assert.match(html, /整形外科・一般的な整体・当院の違い/);
+  assert.match(html, /痛む場所だけでなく、負担が集まる動作まで整理/);
+  assert.equal(html.includes('id="method-features"'), false, "duplicate feature section should be merged away");
+  assert.match(html, /image\/step1_swirl\.webp/);
+  assert.match(html, /image\/step2_dumbbell\.webp/);
+  assert.match(html, /image\/step3_footprint\.webp/);
+  assert.match(html, /<!-- 差し替え予定アイコン: image\/step1_swirl\.webp/);
+  assert.match(html, /<!-- 差し替え予定アイコン: image\/step2_dumbbell\.webp/);
+  assert.match(html, /<!-- 差し替え予定アイコン: image\/step3_footprint\.webp/);
+});
+
+test("LP Step3 adds future-benefit proof, pricing rationale, and form feedback", () => {
+  const hero = getSectionSlice(
+    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
+    'id="troubles"'
+  );
+  const priceSection = getSectionSlice('id="price"', 'id="faq"');
+
+  assert.match(hero, /Google口コミ ★4\.8 \/ レビュー26件/);
+  assert.match(html, /"aggregateRating":\s*\{[\s\S]*"ratingValue":\s*"4\.8"[\s\S]*"reviewCount":\s*"26"/);
+  assert.match(priceSection, /なぜ初回1,980円なのか/);
+  assert.match(priceSection, /院長が負担する覚悟/);
+  assert.match(priceSection, /強引な契約ではなく、納得して一歩を踏み出していただくための入口です。/);
+  assert.match(html, /id="toast"/);
+  assert.match(mainJs, /function showToast\(/);
+  assert.match(mainJs, /入力内容をご確認ください。/);
+  assert.match(mainJs, /送信しました。24時間以内にご連絡します。/);
+  assert.match(mainJs, /送信できませんでした。LINEまたは電話をご利用ください。/);
+  assert.match(html, /お急ぎの場合は、LINEまたはお電話でも空き状況をご確認いただけます。/);
 });
 
 test("LP keeps knee-type navigation ahead of the broader symptom directory", () => {

@@ -8,9 +8,11 @@ const formError = document.getElementById('form-error');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
+const toast = document.getElementById('toast');
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbzxlY8wFSXpgtyP9TVFwFM2BCrzfihbkmEOjYd5PROmEubX3B4NLxOhYOvZxeg7zZbc1w/exec';
 
 let triggerEl = null;
+let toastTimer = null;
 
 function refreshIcons(scope) {
   if (!window.lucide?.createIcons) return;
@@ -60,6 +62,18 @@ function setFormError(message) {
   formError.textContent = message;
   formError.classList.remove('hidden');
   formError.focus();
+}
+
+function showToast(message, type = 'success') {
+  if (!toast) return;
+  window.clearTimeout(toastTimer);
+  toast.textContent = message;
+  toast.classList.remove('hz-toast--success', 'hz-toast--error', 'is-visible');
+  toast.classList.add(type === 'error' ? 'hz-toast--error' : 'hz-toast--success');
+  requestAnimationFrame(() => toast.classList.add('is-visible'));
+  toastTimer = window.setTimeout(() => {
+    toast.classList.remove('is-visible');
+  }, 5200);
 }
 
 function validateForm() {
@@ -359,6 +373,7 @@ contactForm?.addEventListener('submit', async (event) => {
 
   const firstInvalid = validateForm();
   if (firstInvalid) {
+    showToast('入力内容をご確認ください。', 'error');
     firstInvalid.focus();
     return;
   }
@@ -370,10 +385,12 @@ contactForm?.addEventListener('submit', async (event) => {
     await submitViaCors(contactForm);
     contactForm.classList.add('hidden');
     successMsg?.classList.remove('hidden');
+    showToast('送信しました。24時間以内にご連絡します。');
     successMsg?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   } catch (error) {
     console.error('Contact form submit error:', error);
     setFormError('送信に失敗しました。時間をおいて再送するか、LINE予約・お電話をご利用ください。');
+    showToast('送信できませんでした。LINEまたは電話をご利用ください。', 'error');
   } finally {
     setSubmitBusy(false);
   }

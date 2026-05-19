@@ -15,7 +15,7 @@
   <meta property="og:title" content="柏市で腕のしびれ・胸郭出口症候群を整体相談｜整体院ひざこぞう">
   <meta property="og:description" content="柏駅西口徒歩8分。病院で異常なしでも続く腕・手のしびれ。斜角筋・小胸筋へのアプローチと姿勢改善で神経の通り道を広げます。デスクワーカーや学生に多い症状です。柏市・松戸市対応。">
   <meta property="og:site_name" content="整体院ひざこぞう">
-  <meta property="og:image" content="https://hizakozou.jp/ogp.jpg">
+  <meta property="og:image" content="https://hizakozou.jp/ogp.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
@@ -210,9 +210,10 @@
 .symptom-voice-card__image{display:block;width:100%;height:auto}
 .symptom-voice-card__body{padding:1.25rem}
 .symptom-voice-card__label{font-size:11px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
-.symptom-voice-card__title{font-size:1.05rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .65rem}
-.symptom-voice-card__quote{font-size:15px;font-weight:900;color:#0f172a;line-height:1.75;margin:0 0 .65rem}
-.symptom-voice-card__summary{font-size:14px;font-weight:700;color:#475569;line-height:1.8;margin:0}
+.symptom-voice-card__rows{display:grid;gap:.75rem;margin:.85rem 0 0}
+.symptom-voice-card__row{display:grid;gap:.3rem;border-top:1px solid #e2e8f0;padding-top:.75rem}
+.symptom-voice-card__key{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em}
+.symptom-voice-card__value{font-size:14px;font-weight:700;color:#334155;line-height:1.8}
 .symptom-voices__note{font-size:11px;font-weight:700;color:#64748b;line-height:1.8;text-align:right;margin:1rem 0 0}
 .symptom-footer{background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;text-align:center}
 .symptom-footer__inner{max-width:860px;margin:0 auto}
@@ -390,7 +391,7 @@
     <section class="cause">
       <div class="container max-w-4xl">
         <h2 class="section-title">胸郭出口症候群はなぜ起こるのか</h2>
-        <div class="prose"><p>首から腕へ向かう神経（腕神経叢）や血管が、鎖骨と肋骨の間や筋肉の間で圧迫されることで、腕・手の<span class="highlight">しびれ・痛み・冷え・だるさ</span>が生じます。</p><p>猫背で肩が内巻きになると小胸筋がガンバリ筋として過緊張し、神経・血管の通り道が狭まります。同時に前鋸筋・菱形筋がサボり筋化してなで肩になり、さらに通り道が圧迫されます。</p></div>
+        <div class="prose"><p>首から腕へ向かう神経（腕神経叢）や血管が、鎖骨と肋骨の間や筋肉の間で圧迫されることで、腕・手の<span class="highlight">しびれ・痛み・冷え・だるさ</span>が生じます。</p><p>猫背で肩が内巻きになると小胸筋が頑張りすぎている筋肉として過緊張し、神経・血管の通り道が狭まります。同時に前鋸筋・菱形筋が働きにくくなった筋肉化してなで肩になり、さらに通り道が圧迫されます。</p></div>
         <div class="mechanism">
           <p class="mechanism__title">神経・血管が圧迫されるメカニズム</p>
           <div class="mechanism__flow">
@@ -401,7 +402,7 @@
             <div class="mechanism__arrow"></div>
             <div class="mechanism__step">
               <div class="mechanism__step-num">2</div>
-              <p class="mechanism__step-text">小胸筋・斜角筋がガンバリ筋として過緊張</p>
+              <p class="mechanism__step-text">小胸筋・斜角筋が頑張りすぎている筋肉として過緊張</p>
             </div>
             <div class="mechanism__arrow"></div>
             <div class="mechanism__step">
@@ -448,7 +449,7 @@
 <section class="approach">
       <div class="container max-w-4xl">
         <h2 class="section-title">当院の胸郭出口症候群へのアプローチ</h2>
-        <p class="approach__intro">圧迫ポイントを特定し、ガンバリ筋を緩め、肩甲帯の安定性を取り戻す3段階で負担の軽減を目指します</p>
+        <p class="approach__intro">圧迫ポイントを特定し、頑張りすぎている筋肉を緩め、肩甲帯の安定性を取り戻す3段階で負担の軽減を目指します</p>
         <img src="../image/イラスト/肩・首/肩から腕にしびれが出る女性.webp" alt="肩から腕にしびれが出る女性" class="feature-photo feature-photo--full" style="width:100%; max-height:320px; object-fit:contain; background:#fff; padding:.5rem; border-radius:1rem; box-shadow:0 10px 25px -5px rgba(0,0,0,0.08); margin-bottom:2.5rem; border:1px solid #e2e8f0;" loading="lazy" decoding="async" width="800" height="600">
         <div class="msm-steps">
           <div class="msm-step">
@@ -459,8 +460,8 @@
               </div>
               <div class="msm-step__body">
                 <span class="msm-step__tag msm-step__tag--1">可動性の回復</span>
-                <h3 class="msm-step__title">圧迫ポイントを特定しガンバリ筋を緩める</h3>
-                <p class="msm-step__text">どの姿勢・動きでしびれが誘発されるかを丁寧にテストし、圧迫ポイントを特定。斜角筋・小胸筋などのガンバリ筋を手技で緩め、神経・血管の通り道を広げます。</p>
+                <h3 class="msm-step__title">圧迫ポイントを特定し頑張りすぎている筋肉を緩める</h3>
+                <p class="msm-step__text">どの姿勢・動きでしびれが誘発されるかを丁寧にテストし、圧迫ポイントを特定。斜角筋・小胸筋などの頑張りすぎている筋肉を手技で緩め、神経・血管の通り道を広げます。</p>
               </div>
             </div>
           </div>
@@ -472,8 +473,8 @@
               </div>
               <div class="msm-step__body">
                 <span class="msm-step__tag msm-step__tag--2">安定性の再獲得</span>
-                <h3 class="msm-step__title">肩甲帯のサボり筋を段階的に再起動</h3>
-                <p class="msm-step__text">肩甲骨を正しい位置に保つ前鋸筋・菱形筋などのサボり筋を段階的に再稼働させ、なで肩・猫背を姿勢から改善します。</p>
+                <h3 class="msm-step__title">肩甲帯の働きにくくなった筋肉を段階的に再起動</h3>
+                <p class="msm-step__text">肩甲骨を正しい位置に保つ前鋸筋・菱形筋などの働きにくくなった筋肉を段階的に再稼働させ、なで肩・猫背を姿勢から改善します。</p>
               </div>
             </div>
           </div>
@@ -660,6 +661,8 @@
       </div>
     </section>
 <!-- BLOG_RELATED_ARTICLES_END -->
+
+
 
 <section class="cta">
       <div class="container max-w-3xl">

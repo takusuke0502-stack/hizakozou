@@ -7,7 +7,7 @@ category: 膝痛
 region: 柏市
 tags: 膝痛,慢性痛,セルフケア,しゃがむと膝が痛い,正座
 symptoms: 変形性膝関節症,膝の前側の痛み,半月板損傷,O脚,腰痛,坐骨神経痛
-heroImage: /image/hiza.jpg
+heroImage: /image/hiza.webp
 draft: false
 ---
 柏市で「しゃがむと膝が痛い」「正座をすると膝がつらい」と感じていませんか。膝痛が続くと、「なるべく動かさない方がいいのかな」と不安になる方は少なくありません。

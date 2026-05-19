@@ -15,7 +15,7 @@
   <meta property="og:title" content="柏市で顎関節症・あごの痛みを整体相談｜整体院ひざこぞう">
   <meta property="og:description" content="柏駅西口徒歩8分。顎関節症の根本原因となる胸椎後弯→頭部前方変位→頚椎可動性低下→咀嚼筋過緊張のメカニズムを改善。マウスピースで良くならない方もご相談ください。">
   <meta property="og:site_name" content="整体院ひざこぞう">
-  <meta property="og:image" content="https://hizakozou.jp/ogp.jpg">
+  <meta property="og:image" content="https://hizakozou.jp/ogp.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
@@ -211,9 +211,10 @@
 .symptom-voice-card__image{display:block;width:100%;height:auto}
 .symptom-voice-card__body{padding:1.25rem}
 .symptom-voice-card__label{font-size:11px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
-.symptom-voice-card__title{font-size:1.05rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .65rem}
-.symptom-voice-card__quote{font-size:15px;font-weight:900;color:#0f172a;line-height:1.75;margin:0 0 .65rem}
-.symptom-voice-card__summary{font-size:14px;font-weight:700;color:#475569;line-height:1.8;margin:0}
+.symptom-voice-card__rows{display:grid;gap:.75rem;margin:.85rem 0 0}
+.symptom-voice-card__row{display:grid;gap:.3rem;border-top:1px solid #e2e8f0;padding-top:.75rem}
+.symptom-voice-card__key{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em}
+.symptom-voice-card__value{font-size:14px;font-weight:700;color:#334155;line-height:1.8}
 .symptom-voices__note{font-size:11px;font-weight:700;color:#64748b;line-height:1.8;text-align:right;margin:1rem 0 0}
 .symptom-footer{background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;text-align:center}
 .symptom-footer__inner{max-width:860px;margin:0 auto}
@@ -367,7 +368,7 @@
         <h2 class="section-title">ご相談から施術までのイメージ</h2>
         <div class="visual-guide__grid">
           <article class="visual-guide__card visual-guide__card--illust">
-            <img src="../image/ago.jpg" alt="あごの痛みや違和感が気になる方のイメージ" class="visual-guide__illust visual-guide__illust--full" loading="lazy" decoding="async">
+            <img src="../image/ago.webp" alt="あごの痛みや違和感が気になる方のイメージ" class="visual-guide__illust visual-guide__illust--full" loading="lazy" decoding="async">
             <h3 class="visual-guide__title">あごの違和感や食いしばりの悩みも整理します</h3>
             <p class="visual-guide__text">口の開けづらさ、あごの疲れ、食いしばりが気になる場面などを確認しながら進めます。</p>
           </article>
@@ -391,7 +392,7 @@
     <section class="cause">
       <div class="container max-w-4xl">
         <h2 class="section-title">顎関節症はなぜ起こるのか</h2>
-        <div class="prose"><p>顎関節症は「<span class="highlight">あごだけの問題ではない</span>」症状です。スマホやPCの使い過ぎで胸椎が後弯（猫背）になると頭部が前方へ変位し、首の最上部（頚椎C0-C1）の可動性が著しく低下します。</p><p>ここが動かなくなると咬筋・側頭筋などの咀嚼筋がガンバリ筋化して過緊張し、三叉神経や血管を圧迫して頭痛・耳鳴りを二次的に引き起こすこともあります。</p></div>
+        <div class="prose"><p>顎関節症は「<span class="highlight">あごだけの問題ではない</span>」症状です。スマホやPCの使い過ぎで胸椎が後弯（猫背）になると頭部が前方へ変位し、首の最上部（頚椎C0-C1）の可動性が著しく低下します。</p><p>ここが動かなくなると咬筋・側頭筋などの咀嚼筋が頑張りすぎている筋肉化して過緊張し、三叉神経や血管を圧迫して頭痛・耳鳴りを二次的に引き起こすこともあります。</p></div>
         <div class="mechanism">
           <p class="mechanism__title">顎関節症が起きる姿勢の連鎖</p>
           <div class="mechanism__flow">
@@ -412,7 +413,7 @@
             <div class="mechanism__arrow"></div>
             <div class="mechanism__result">
               <svg class="mechanism__result-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:#fff;"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-              <p class="mechanism__result-text">咀嚼筋がガンバリ筋化→あごの痛み・開口障害</p>
+              <p class="mechanism__result-text">咀嚼筋が頑張りすぎている筋肉化→あごの痛み・開口障害</p>
             </div>
           </div>
         </div>
@@ -473,8 +474,8 @@
               </div>
               <div class="msm-step__body">
                 <span class="msm-step__tag msm-step__tag--2">安定性の再獲得</span>
-                <h3 class="msm-step__title">頚部深層筋（サボり筋）を再起動</h3>
-                <p class="msm-step__text">頭部を正しい位置に保つためにサボってしまった頚部深層筋（頚長筋など）を再稼働させます。頭が安定すると咀嚼筋のガンバリ筋化が自然と緩和されます。</p>
+                <h3 class="msm-step__title">頚部深層筋（働きにくくなった筋肉）を再起動</h3>
+                <p class="msm-step__text">頭部を正しい位置に保つためにサボってしまった頚部深層筋（頚長筋など）を再稼働させます。頭が安定すると咀嚼筋の頑張りすぎている筋肉化が自然と緩和されます。</p>
               </div>
             </div>
           </div>
@@ -661,6 +662,8 @@
       </div>
     </section>
 <!-- BLOG_RELATED_ARTICLES_END -->
+
+
 
 <section class="cta">
       <div class="container max-w-3xl">
