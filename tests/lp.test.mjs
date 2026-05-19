@@ -339,8 +339,8 @@ test("LP keeps the knee-pain specialty axis and presents the updated three-step 
   assert.match(html, /<title>【柏市の膝痛整体】変形性膝関節症・階段の痛みに｜整体院ひざこぞう<\/title>/);
   assert.match(html, new RegExp(`<meta name="description" content="${metaDescription}">`));
   assert.match(html, /柏市の膝痛整体｜変形性膝関節症・階段の痛みに/);
-  assert.match(hero, /また旅行に行けた。/);
-  assert.match(hero, /孫と公園を歩けた。/);
+  assert.match(hero, /痛みを理由にあきらめない。/);
+  assert.match(hero, /もう一度、歩く楽しさを。/);
   assert.match(hero, /階段、歩き始め、立ち上がりが不安な方へ。/);
   assert.match(hero, /もう一度出かけたくなる毎日を目指します。/);
   assert.match(hero, /柏市で膝痛にお悩みの方は、/);
