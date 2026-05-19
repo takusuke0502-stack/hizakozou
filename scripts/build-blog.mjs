@@ -225,7 +225,7 @@ const patientVoices = [
     concern: "坐骨神経痛・膝の痛み・腰の痛み",
     change: "施術後は身体が軽くなり、痛みのポイントを丁寧に見てもらえる安心感がありました。",
     comment: "誠実で信頼できる先生です。日々勉強されている姿勢にも安心できます。",
-    image: "../image/patient-voice-kk-anonymized.png",
+    image: "../image/patient-voice-kk-anonymized.webp",
     alt: "K.K様の写真付き直筆アンケート。坐骨神経痛、膝の痛み、腰の痛みなどで来院されたお声",
     symptomKeys: ["knee-osteoarthritis", "lower-back-pain", "sciatica"]
   },
@@ -234,7 +234,7 @@ const patientVoices = [
     concern: "強い腰痛と長年の膝痛",
     change: "施術とセルフトレーニングを続けることで、歩くつらさや刺すような膝の痛みが軽くなりました。",
     comment: "穏やかで相談しやすい先生なので、身体の悩みを気軽に話せました。",
-    image: "../image/patient-voice-kt.png",
+    image: "../image/patient-voice-kt.webp",
     alt: "K.T様の写真付き直筆アンケート。腰痛と膝痛のお悩みで来院されたお声",
     symptomKeys: ["knee-osteoarthritis", "lower-back-pain"]
   },
@@ -243,7 +243,7 @@ const patientVoices = [
     concern: "腰痛・肩こり・腹部の痛み",
     change: "施術と自宅でできるストレッチに取り組むことで、身体の動きが軽くなってきました。",
     comment: "丁寧に説明しながら進めてくれるので、不安がやわらぎ、安心して通えました。",
-    image: "../image/patient-voice-yn.png",
+    image: "../image/patient-voice-yn.webp",
     alt: "Y.N様の直筆アンケート。腰痛、肩こり、腹部から股関節まわりの痛みで来院されたお声",
     symptomKeys: ["lower-back-pain", "shoulder-stiffness", "hip-osteoarthritis"]
   },
@@ -252,7 +252,7 @@ const patientVoices = [
     concern: "ねんざ後の全身の痛みや不調",
     change: "腰・足・首肩の状態を整えることで、日常のつらさが軽くなりました。",
     comment: "原因がわからない痛みや疲れを感じたら、自分の身体と向き合うことが大事だと思いました。",
-    image: "../image/patient-voice-numajiri.jpg",
+    image: "../image/patient-voice-numajiri.webp",
     alt: "N.H様の写真付き直筆アンケート。ねんざによる全身的な痛みで来院されたお声",
     symptomKeys: ["lower-back-pain", "shoulder-stiffness"]
   }

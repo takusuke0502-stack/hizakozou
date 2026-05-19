@@ -7,7 +7,7 @@ category: 腰痛
 region: 柏市
 tags: 朝の腰痛,腰痛,多裂筋,運動療法,柏市 整体
 symptoms: 腰痛,坐骨神経痛,変形性股関節症
-heroImage: /image/lower-back-symptom.jpg
+heroImage: /image/lower-back-symptom.webp
 draft: false
 ---
 

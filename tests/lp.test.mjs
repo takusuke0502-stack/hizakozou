@@ -19,7 +19,10 @@ function getJsonLdBlocks(type) {
 
   return matches
     .map((match) => JSON.parse(match[1]))
-    .filter((block) => block["@type"] === type);
+    .filter((block) => {
+      const blockType = block["@type"];
+      return Array.isArray(blockType) ? blockType.includes(type) : blockType === type;
+    });
 }
 
 function getSectionSlice(startMarker, endMarker) {
@@ -98,6 +101,28 @@ test("LP local image assets resolve to existing files", () => {
   }
 });
 
+test("LP image infrastructure uses unified WebP paths", () => {
+  const localRefs = getLocalImageReferences();
+
+  assert.doesNotMatch(html, /\/images\/|images\//, "LP should not reference the legacy images directory");
+
+  for (const ref of localRefs) {
+    if (ref.endsWith(".svg")) continue;
+    assert.match(ref, /^image\/.+\.webp$/i, `local raster images should be WebP under image/: ${ref}`);
+  }
+});
+
+test("LP exposes LocalBusiness, MedicalClinic, and FAQPage structured data", () => {
+  const localBusinessBlocks = getJsonLdBlocks("LocalBusiness");
+  const medicalClinicBlocks = getJsonLdBlocks("MedicalClinic");
+  const faqBlocks = getJsonLdBlocks("FAQPage");
+
+  assert.equal(localBusinessBlocks.length, 1, "LP should include one LocalBusiness schema block");
+  assert.equal(medicalClinicBlocks.length, 1, "LP should include one MedicalClinic schema block");
+  assert.equal(faqBlocks.length, 1, "LP should include one FAQPage schema block");
+  assert.equal(localBusinessBlocks[0].hasMap.includes("output=embed"), true, "map URL should be embeddable");
+});
+
 test("LP and symptom patient voices include all four approved assets", () => {
   const pages = [
     ["index.html", html],
@@ -108,14 +133,14 @@ test("LP and symptom patient voices include all four approved assets", () => {
     ["symptoms/sciatica.html", readFileSync(new URL("../symptoms/sciatica.html", import.meta.url), "utf8")]
   ];
 
-  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-kt.png")), true);
-  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-yn.png")), true);
-  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-kk-anonymized.png")), true);
-  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-numajiri.jpg")), true);
-  assert.match(html, /image\/patient-voice-kt\.png/);
-  assert.match(html, /image\/patient-voice-yn\.png/);
-  assert.match(html, /image\/patient-voice-kk-anonymized\.png/);
-  assert.match(html, /image\/patient-voice-numajiri\.jpg/);
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-kt.webp")), true);
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-yn.webp")), true);
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-kk-anonymized.webp")), true);
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-numajiri.webp")), true);
+  assert.match(html, /image\/patient-voice-kt\.webp/);
+  assert.match(html, /image\/patient-voice-yn\.webp/);
+  assert.match(html, /image\/patient-voice-kk-anonymized\.webp/);
+  assert.match(html, /image\/patient-voice-numajiri\.webp/);
   assert.match(html, /K\.T/);
   assert.match(html, /Y\.N/);
   assert.match(html, /K\.K/);
@@ -125,21 +150,21 @@ test("LP and symptom patient voices include all four approved assets", () => {
   assert.ok(html.indexOf("Y.N様") < html.indexOf("N.H様"), "LP should list Y.N before N.H");
 
   const lowerBackHtml = pages.find(([pageName]) => pageName === "symptoms/lower-back-pain.html")[1];
-  assert.match(lowerBackHtml, /patient-voice-kt\.png/);
-  assert.match(lowerBackHtml, /patient-voice-yn\.png/);
-  assert.match(lowerBackHtml, /patient-voice-kk-anonymized\.png/);
-  assert.match(lowerBackHtml, /patient-voice-numajiri\.jpg/);
+  assert.match(lowerBackHtml, /patient-voice-kt\.webp/);
+  assert.match(lowerBackHtml, /patient-voice-yn\.webp/);
+  assert.match(lowerBackHtml, /patient-voice-kk-anonymized\.webp/);
+  assert.match(lowerBackHtml, /patient-voice-numajiri\.webp/);
 
   const kneeHtml = pages.find(([pageName]) => pageName === "symptoms/knee-osteoarthritis.html")[1];
-  assert.match(kneeHtml, /patient-voice-kt\.png/);
-  assert.match(kneeHtml, /patient-voice-kk-anonymized\.png/);
+  assert.match(kneeHtml, /patient-voice-kt\.webp/);
+  assert.match(kneeHtml, /patient-voice-kk-anonymized\.webp/);
 
   const shoulderHtml = pages.find(([pageName]) => pageName === "symptoms/shoulder-stiffness.html")[1];
-  assert.match(shoulderHtml, /patient-voice-yn\.png/);
-  assert.match(shoulderHtml, /patient-voice-numajiri\.jpg/);
+  assert.match(shoulderHtml, /patient-voice-yn\.webp/);
+  assert.match(shoulderHtml, /patient-voice-numajiri\.webp/);
 
   const sciaticaHtml = pages.find(([pageName]) => pageName === "symptoms/sciatica.html")[1];
-  assert.match(sciaticaHtml, /patient-voice-kk-anonymized\.png/);
+  assert.match(sciaticaHtml, /patient-voice-kk-anonymized\.webp/);
 
   for (const [pageName, pageHtml] of pages) {
     assert.doesNotMatch(pageHtml, /Y\.K/, `${pageName} should not show the wrong initials`);
@@ -316,7 +341,7 @@ test("LP blog preview uses the compact B-plan structure with repo thumbnails", (
   assert.match(blogSection, /class="blog-b-arrow"/);
 
   for (const [, src] of thumbSrcMatches) {
-    assert.match(src, /^image\/[^"]+\.(?:svg|png|jpe?g|webp)$/i, "blog card thumbnails should use stable repo images");
+    assert.match(src, /^image\/[^"]+\.(?:svg|webp)$/i, "blog card thumbnails should use stable repo images");
     assert.doesNotMatch(src, /^data:/i, "blog card thumbnails should not use inline data URIs");
   }
 });
@@ -336,9 +361,9 @@ test("LP keeps the knee-pain specialty axis and presents the updated three-step 
   );
   const metaDescription = "柏市で膝痛・歩き始めや階段の痛みにお悩みの女性へ。整体院ひざこぞうでは、緩める・鍛える・動作改善の3ステップで、膝に負担が集まりにくい身体づくりをやさしくサポートします。柏駅西口徒歩8分、完全予約制。";
 
-  assert.match(html, /<title>ひざこぞう式整体で痛みのない歩みへ｜柏市の膝痛整体院<\/title>/);
+  assert.match(html, /<title>【柏市の膝痛整体】変形性膝関節症・階段の痛みに｜整体院ひざこぞう<\/title>/);
   assert.match(html, new RegExp(`<meta name="description" content="${metaDescription}">`));
-  assert.match(html, /柏市で、歩くたびにつらい膝痛に。/);
+  assert.match(html, /柏市の膝痛整体｜変形性膝関節症・階段の痛みに/);
   assert.match(hero, /痛みを理由にあきらめない。/);
   assert.match(hero, /もう一度、歩く楽しさを。/);
   assert.match(hero, /階段、歩き始め、立ち上がりが不安な方へ。/);
@@ -361,12 +386,12 @@ test("LP keeps the knee-pain specialty axis and presents the updated three-step 
   assert.match(html, /原因を見極める/);
   assert.match(html, /結果にもアプローチ/);
   assert.match(html, /納得できる説明/);
-  assert.match(html, /images\/step1_swirl\.png/);
-  assert.match(html, /images\/step2_dumbbell\.png/);
-  assert.match(html, /images\/step3_footprint\.png/);
-  assert.match(html, /<!-- 差し替え予定アイコン: images\/step1_swirl\.png/);
-  assert.match(html, /<!-- 差し替え予定アイコン: images\/step2_dumbbell\.png/);
-  assert.match(html, /<!-- 差し替え予定アイコン: images\/step3_footprint\.png/);
+  assert.match(html, /image\/step1_swirl\.webp/);
+  assert.match(html, /image\/step2_dumbbell\.webp/);
+  assert.match(html, /image\/step3_footprint\.webp/);
+  assert.match(html, /<!-- 差し替え予定アイコン: image\/step1_swirl\.webp/);
+  assert.match(html, /<!-- 差し替え予定アイコン: image\/step2_dumbbell\.webp/);
+  assert.match(html, /<!-- 差し替え予定アイコン: image\/step3_footprint\.webp/);
 });
 
 test("LP keeps knee-type navigation ahead of the broader symptom directory", () => {

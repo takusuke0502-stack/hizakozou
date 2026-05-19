@@ -7,7 +7,7 @@ category: 腰痛
 region: 柏市
 tags: 腰痛,膝痛,姿勢,歩行不安
 symptoms: 腰痛,坐骨神経痛,変形性股関節症
-heroImage: /image/lower-back-symptom.jpg
+heroImage: /image/lower-back-symptom.webp
 draft: false
 ---
 

@@ -7,7 +7,7 @@ category: シビレ
 region: 柏市
 tags: 足のしびれ,坐骨神経痛,脊柱管狭窄症,膝痛
 symptoms: 坐骨神経痛,脊柱管狭窄症,変形性膝関節症,腰痛
-heroImage: /image/lower-back-symptom.jpg
+heroImage: /image/lower-back-symptom.webp
 draft: false
 ---
 「なんとなく足がジンジンする」「歩いていると足がしびれてくる」「朝起きたら足がビリビリしていた」
