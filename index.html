@@ -53,7 +53,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
 
   <script type="application/ld+json">
   {
@@ -137,7 +137,7 @@
     .hero-fixed .hero-title {
       max-width: 1100px !important;
       max-width: 100% !important;
-      font-size: clamp(1.72rem, 7.4vw, 3.6rem) !important;
+      font-size: clamp(1.42rem, 6vw, 3.6rem) !important;
       line-height: 1.12 !important;
       overflow-wrap: anywhere;
     }
@@ -360,57 +360,6 @@
       color: var(--hz-green-dark) !important;
     }
 
-    .hz-method-steps {
-      background: linear-gradient(135deg, #f7fcf4 0%, #fff7ee 100%);
-      border-top: 1px solid #dcefd7;
-      border-bottom: 1px solid #f7d4b0;
-    }
-
-    .hz-step-card,
-    .hz-feature-card {
-      border: 1px solid #dcefd7;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.92);
-      box-shadow: 0 16px 34px rgba(47, 80, 50, 0.08);
-    }
-
-    .hz-step-icon {
-      width: 72px;
-      height: 72px;
-      object-fit: contain;
-      padding: 12px;
-      border-radius: 9999px;
-      background: #f3fbf1;
-      border: 1px solid #d6ecd0;
-    }
-
-    .hz-step-number {
-      color: var(--hz-orange-dark);
-      font-size: 0.8rem;
-      font-weight: 900;
-      letter-spacing: 0.12em;
-    }
-
-    .hz-step-title {
-      color: var(--hz-ink);
-      font-size: 1.35rem;
-      font-weight: 900;
-      line-height: 1.35;
-      margin-top: 0.35rem;
-    }
-
-    .hz-feature-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 9999px;
-      background: #fff1e1;
-      color: var(--hz-orange-dark);
-      margin-bottom: 1rem;
-    }
-
     .lp-readable {
       font-size: 1rem;
       line-height: 1.9;
@@ -462,6 +411,80 @@
       font-weight: 900;
     }
 
+    .hz-compare-mobile {
+      display: none;
+    }
+
+    .hz-compare-card {
+      border: 1px solid #dcefd7;
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 14px 34px rgba(47, 80, 50, 0.08);
+      padding: 14px;
+    }
+
+    .hz-compare-card__title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      color: #1f5b4f;
+      font-size: 1rem;
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .hz-compare-card__title::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #f2a65a;
+      flex: 0 0 auto;
+    }
+
+    .hz-compare-card__grid {
+      display: grid;
+      gap: 8px;
+    }
+
+    .hz-compare-option {
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      background: #ffffff;
+      padding: 10px 12px;
+    }
+
+    .hz-compare-option__label {
+      display: block;
+      margin-bottom: 3px;
+      color: #475569;
+      font-size: 0.78rem;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .hz-compare-option p {
+      color: #243443;
+      font-size: 0.92rem;
+      font-weight: 700;
+      line-height: 1.72;
+    }
+
+    .hz-compare-option--us {
+      border-color: #eadfc7;
+      background: #fff7ee;
+      box-shadow: inset 4px 0 0 #1f5b4f;
+    }
+
+    .hz-compare-option--us .hz-compare-option__label {
+      color: #1f5b4f;
+    }
+
+    .hz-compare-option--us p {
+      font-weight: 900;
+    }
+
     .mobile-fixed-cta {
       min-height: 64px;
     }
@@ -498,12 +521,617 @@
 
     @media (max-width: 767px) {
       .hz-compare-scroll {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        display: none;
       }
 
-      .hz-compare-table {
-        min-width: 760px;
+      .hz-compare-mobile {
+        display: grid;
+        gap: 12px;
+      }
+    }
+
+    @media (min-width: 380px) and (max-width: 767px) {
+      .hz-compare-card__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hz-compare-option {
+        padding: 9px 10px;
+      }
+
+      .hz-compare-option p {
+        font-size: 0.88rem;
+        line-height: 1.68;
+      }
+
+      .hz-compare-option--us {
+        grid-column: 1 / -1;
+        padding: 10px 12px;
+      }
+    }
+
+    .voice-showcase-section {
+      background:
+        radial-gradient(circle at 12% 14%, rgba(143, 196, 88, 0.16), transparent 28%),
+        linear-gradient(180deg, #f7faf4 0%, #f2f7ef 100%);
+    }
+
+    .voice-showcase-shell {
+      border: 1px solid rgba(106, 144, 68, 0.18);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 24px 70px rgba(42, 53, 32, 0.14);
+      padding: clamp(22px, 4vw, 48px);
+    }
+
+    .voice-showcase-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
+      gap: clamp(26px, 4vw, 48px);
+      align-items: start;
+    }
+
+    .voice-showcase-heading {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+      color: #2f241b;
+    }
+
+    .voice-showcase-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      width: clamp(54px, 7vw, 76px);
+      height: clamp(54px, 7vw, 76px);
+      border-radius: 999px;
+      background: linear-gradient(135deg, #4f9a2d, #36791f);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(70, 137, 42, 0.24);
+    }
+
+    .voice-showcase-title {
+      position: relative;
+      display: inline-block;
+      font-size: clamp(2.25rem, 4.8vw, 4.4rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .voice-showcase-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: -18px;
+      bottom: -10px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(139, 184, 82, 0.6), rgba(139, 184, 82, 0.08));
+    }
+
+    .voice-showcase-lead {
+      margin: 28px 0 26px;
+      color: #1f2933;
+      font-size: clamp(1.02rem, 1.6vw, 1.28rem);
+      font-weight: 700;
+      line-height: 1.9;
+    }
+
+    .voice-profile-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 28px;
+      border-radius: 22px;
+      padding: clamp(16px, 2.4vw, 24px);
+      background: linear-gradient(90deg, #edf6df, rgba(247, 250, 244, 0.72));
+    }
+
+    .voice-profile-avatar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #74ad37, #3e8424);
+      color: #fff;
+    }
+
+    .voice-profile-name {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 12px 22px;
+      color: #151515;
+      font-weight: 900;
+    }
+
+    .voice-profile-name strong {
+      font-size: clamp(1.75rem, 3vw, 2.45rem);
+      letter-spacing: 0.06em;
+    }
+
+    .voice-profile-label,
+    .voice-profile-age {
+      color: #2f7b23;
+      font-size: clamp(1rem, 1.6vw, 1.35rem);
+      font-weight: 900;
+    }
+
+    .voice-profile-age {
+      border-left: 1px solid rgba(94, 142, 48, 0.38);
+      padding-left: 22px;
+      color: #151515;
+    }
+
+    .voice-qa-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .voice-qa-block {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 14px;
+      padding: 24px 0;
+      border-top: 2px dotted rgba(125, 171, 78, 0.36);
+    }
+
+    .voice-qa-block:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .voice-check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #4b972c;
+      color: #fff;
+      margin-top: 2px;
+    }
+
+    .voice-qa-question {
+      margin-bottom: 10px;
+      color: #151515;
+      font-size: clamp(1.12rem, 1.8vw, 1.45rem);
+      font-weight: 900;
+      line-height: 1.55;
+    }
+
+    .voice-qa-answer {
+      display: grid;
+      gap: 8px;
+      color: #1f2933;
+      font-size: clamp(1rem, 1.45vw, 1.15rem);
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    .voice-qa-answer li {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .voice-qa-answer li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.78em;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #4b972c;
+    }
+
+    .voice-media-stack {
+      display: grid;
+      gap: 22px;
+    }
+
+    .voice-photo-frame,
+    .voice-form-frame {
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(99, 116, 83, 0.18);
+      background: #f8faf4;
+    }
+
+    .voice-photo-frame img {
+      width: 100%;
+      height: clamp(220px, 28vw, 360px);
+      object-fit: cover;
+      object-position: center 8%;
+    }
+
+    .voice-form-frame {
+      padding: clamp(14px, 2vw, 22px);
+      background: linear-gradient(180deg, #f7faef, #fff);
+    }
+
+    .voice-form-caption {
+      margin-bottom: 14px;
+      color: #2f7b23;
+      text-align: center;
+      font-size: clamp(1rem, 1.6vw, 1.25rem);
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    .voice-form-frame img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .voice-small-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .voice-small-card {
+      overflow: hidden;
+      border: 1px solid rgba(106, 144, 68, 0.16);
+      border-radius: 22px;
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(42, 53, 32, 0.08);
+    }
+
+    .voice-small-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      object-position: center 10%;
+    }
+
+    .voice-small-body {
+      padding: 18px;
+    }
+
+    .voice-disclaimer {
+      margin-top: 24px;
+      color: #475569;
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 900px) {
+      .voice-showcase-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .voice-small-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .voice-showcase-shell {
+        border-radius: 22px;
+        padding: 20px;
+      }
+
+      .voice-showcase-heading {
+        gap: 12px;
+      }
+
+      .voice-profile-card {
+        align-items: flex-start;
+      }
+
+      .voice-profile-avatar {
+        width: 52px;
+        height: 52px;
+      }
+
+      .voice-profile-age {
+        width: 100%;
+        border-left: 0;
+        padding-left: 0;
+      }
+
+      .voice-qa-block {
+        grid-template-columns: 28px minmax(0, 1fr);
+        gap: 10px;
+      }
+
+      .voice-check {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    .voice-list-section {
+      background: linear-gradient(180deg, #f7fbf4 0%, #ffffff 100%);
+    }
+
+    .voice-list-header {
+      max-width: 760px;
+      margin: 0 auto 34px;
+      text-align: center;
+    }
+
+    .voice-list-title {
+      color: #26351f;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.16;
+    }
+
+    .voice-list-lead {
+      margin-top: 14px;
+      color: #475569;
+      font-size: 1.06rem;
+      font-weight: 700;
+      line-height: 1.9;
+    }
+
+    .voice-list-stack {
+      display: grid;
+      gap: 28px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .voice-proof-card {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(320px, 2fr);
+      gap: 24px 30px;
+      align-items: start;
+      border: 1px solid rgba(93, 131, 63, 0.18);
+      border-radius: 26px;
+      background: #fff;
+      padding: clamp(20px, 3vw, 34px);
+      box-shadow: 0 18px 46px rgba(42, 53, 32, 0.1);
+    }
+
+    .voice-card-text-col,
+    .voice-card-proof-col {
+      min-width: 0;
+    }
+
+    .voice-card-text-col {
+      display: grid;
+      gap: 22px;
+      align-content: start;
+    }
+
+    .voice-card-proof-col {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .voice-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #edf6e5, #f8fbf4);
+      padding: 18px 20px;
+    }
+
+    .voice-card-person {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      background: #4f932d;
+      color: #fff;
+    }
+
+    .voice-card-name {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px 16px;
+      color: #111827;
+      font-weight: 900;
+    }
+
+    .voice-card-name strong {
+      font-size: clamp(1.55rem, 2.6vw, 2.1rem);
+      line-height: 1.2;
+    }
+
+    .voice-card-name span {
+      color: #355b25;
+      font-size: 1rem;
+    }
+
+    .voice-card-age {
+      width: 100%;
+      color: #1f2937;
+      font-size: 1.05rem;
+      font-weight: 900;
+    }
+
+    .voice-card-block {
+      border-top: 1px dashed rgba(93, 131, 63, 0.32);
+      padding-top: 20px;
+    }
+
+    .voice-card-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      color: #2f7b23;
+      font-size: 1.06rem;
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .voice-card-label i {
+      flex: 0 0 auto;
+    }
+
+    .voice-card-kicker {
+      margin-bottom: 6px;
+      color: #2f7b23;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+    }
+
+    .voice-card-text {
+      color: #1f2937;
+      font-size: 1.02rem;
+      font-weight: 700;
+      line-height: 1.9;
+    }
+
+    .voice-card-text p + p {
+      margin-top: 0.55em;
+    }
+
+    .voice-card-original {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid rgba(93, 131, 63, 0.28);
+      border-radius: 20px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbf4 100%);
+      cursor: zoom-in;
+      box-shadow: 0 14px 30px rgba(42, 53, 32, 0.08);
+    }
+
+    .voice-card-original img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      padding: 12px;
+    }
+
+    .voice-card-summary {
+      border: 1px solid rgba(93, 131, 63, 0.24);
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f7fbf1 0%, #fffdf5 100%);
+      padding: 20px 22px;
+      box-shadow: 0 12px 26px rgba(42, 53, 32, 0.06);
+    }
+
+    .voice-card-summary h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #3d7e35;
+      font-size: 1.2rem;
+      font-weight: 900;
+      line-height: 1.45;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed rgba(93, 131, 63, 0.34);
+    }
+
+    .voice-card-summary h3 i {
+      flex: 0 0 auto;
+    }
+
+    .voice-card-summary ul {
+      display: grid;
+      gap: 10px;
+    }
+
+    .voice-card-summary li {
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      color: #1f2937;
+      font-size: 1rem;
+      font-weight: 900;
+      line-height: 1.7;
+    }
+
+    .voice-card-summary li i {
+      margin-top: 0.18em;
+      color: #4f932d;
+    }
+
+    .voice-card-notice {
+      grid-column: 1 / -1;
+      border-top: 1px solid #e5eadf;
+      padding-top: 14px;
+      color: #64748b;
+      font-size: 0.86rem;
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    .voice-list-note {
+      max-width: 1080px;
+      margin: 22px auto 0;
+      color: #64748b;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 900px) {
+      .voice-proof-card {
+        grid-template-columns: 1fr;
+      }
+
+      .voice-card-original img {
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .voice-list-section {
+        padding-bottom: 96px;
+      }
+
+      .voice-list-header {
+        text-align: left;
+      }
+
+      .voice-proof-card {
+        gap: 18px;
+        border-radius: 22px;
+        padding: 18px;
+      }
+
+      .voice-card-meta {
+        align-items: flex-start;
+        padding: 16px;
+      }
+
+      .voice-card-person {
+        width: 46px;
+        height: 46px;
+      }
+
+      .voice-card-text-col {
+        gap: 18px;
+      }
+
+      .voice-card-summary {
+        padding: 18px;
+      }
+
+      .voice-card-summary h3 {
+        font-size: 1.08rem;
       }
     }
 
@@ -743,55 +1371,94 @@
 </head>
 <body class="bg-slate-50 relative pb-24 md:pb-0">
 
-  <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-nav border-b border-slate-200 transition-all duration-300">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="/" class="flex flex-col focus-visible:ring-2 focus-visible:ring-blue-400 rounded-md">
-        <span class="text-[10px] md:text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded inline-block w-max mb-1">柏市 / 国家資格者による整体</span>
-        <span class="text-2xl md:text-3xl font-black text-slate-800 tracking-tight mt-0.5">整体院ひざこぞう</span>
-      </a>
+  <header id="header" class="site-header">
+    <div class="site-header__upper">
+      <div class="site-header__inner site-header__inner--upper">
+        <a href="#top" class="site-brand" aria-label="整体院ひざこぞう ページ上部へ">
+          <span class="site-brand__mark" aria-hidden="true">
+            <img src="image/hizakozou-logo-option2-mark.webp" alt="" width="160" height="160" decoding="async">
+          </span>
+          <span class="site-brand__text">
+            <span class="site-brand__eyebrow">柏市の膝痛専門整体院</span>
+            <span class="site-brand__name">整体院ひざこぞう</span>
+            <span class="site-brand__note">国家資格者による整体</span>
+          </span>
+        </a>
 
-      <nav class="hidden xl:flex items-center gap-5 font-bold text-sm text-slate-600" aria-label="メインナビゲーション">
-        <a href="#troubles" class="hover:text-blue-600 transition">お悩み</a>
-        <a href="#knee-type-nav" class="hover:text-blue-600 transition">膝痛タイプ</a>
-        <a href="#seo-guide" class="hover:text-blue-600 transition">当院の考え方</a>
-        <a href="#comparison" class="hover:text-blue-600 transition">他院との違い</a>
-        <a href="#flow" class="hover:text-blue-600 transition">施術の流れ</a>
-        <a href="#profile" class="hover:text-blue-600 transition">院長紹介</a>
-        <a href="#voice" class="hover:text-blue-600 transition">お客様の声</a>
-        <a href="#symptoms" class="hover:text-blue-600 transition">対応している症状</a>
-        <a href="#price" class="text-red-600 hover:text-red-700 transition">料金・予約</a>
-        <a href="#access" class="hover:text-blue-600 transition">アクセス</a>
-      </nav>
+        <div class="site-header-badges" aria-label="整体院ひざこぞうの特徴">
+          <span class="site-header-badge">
+            <i data-lucide="map-pin" aria-hidden="true"></i>
+            <span>柏駅西口<br>徒歩8分</span>
+          </span>
+          <span class="site-header-badge site-header-badge--soft">
+            <i data-lucide="calendar-check-2" aria-hidden="true"></i>
+            <span>完全<br>予約制</span>
+          </span>
+          <span class="site-header-badge">
+            <i data-lucide="user-check" aria-hidden="true"></i>
+            <span>国家資格者<br>が対応</span>
+          </span>
+        </div>
 
-      <div class="hidden md:flex items-center gap-4">
-        <div class="text-right">
-          <p class="text-xs font-bold text-blue-600 mb-0.5">ご予約・ご相談はこちら</p>
-          <a href="tel:0471143274" class="text-xl font-black text-slate-800 hover:text-blue-600 transition flex items-center gap-1">
-            <i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i> 04-7114-3274
+        <div class="site-header-contact">
+          <span class="site-header-contact__label">ご予約・ご相談はこちら</span>
+          <a href="tel:0471143274" class="site-header-phone" aria-label="電話で相談する 04-7114-3274">
+            <span class="site-header-phone__icon" aria-hidden="true"><i data-lucide="phone-call"></i></span>
+            <span class="site-header-phone__number">04-7114-3274</span>
           </a>
         </div>
-      </div>
 
-      <button id="menuBtn" class="xl:hidden p-2 text-slate-800 bg-slate-100 rounded-lg" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileNav">
-        <i data-lucide="menu" aria-hidden="true"></i>
-      </button>
+        <a href="tel:0471143274" class="site-mobile-call" aria-label="電話で相談する 04-7114-3274">
+          <i data-lucide="phone-call" aria-hidden="true"></i>
+          <span class="site-mobile-call__number">04-7114-3274</span>
+          <span class="site-mobile-call__short">電話相談</span>
+        </a>
+      </div>
     </div>
 
-    <nav id="mobileNav" class="hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-slate-100 p-4 flex flex-col gap-2 font-bold z-40 max-h-[80vh] overflow-y-auto" aria-label="モバイルナビゲーション">
-      <a href="#seo-guide"     class="mobile-nav-link p-3 bg-blue-50 text-blue-700 rounded-lg">当院の考え方</a>
-      <a href="#knee-type-nav" class="mobile-nav-link p-3 bg-slate-50 rounded-lg text-slate-700">膝痛タイプから探す</a>
-      <a href="#comparison"    class="mobile-nav-link p-3 bg-slate-50 rounded-lg text-slate-700">他院との違い</a>
-      <a href="#profile"       class="mobile-nav-link p-3 bg-slate-50 rounded-lg text-slate-700">院長プロフィール</a>
-      <a href="#voice"         class="mobile-nav-link p-3 bg-slate-50 rounded-lg text-slate-700">お客様の声</a>
-      <a href="#symptoms"       class="mobile-nav-link p-3 bg-slate-50 rounded-lg text-slate-700">対応している症状</a>
-      <a href="#price"         class="mobile-nav-link p-3 bg-red-50 text-red-600 rounded-lg">初回限定キャンペーン料金</a>
-      <a href="#faq"           class="mobile-nav-link p-3 bg-slate-50 rounded-lg text-slate-700">よくある質問（FAQ）</a>
-      <a href="#blog-section"  class="mobile-nav-link p-3 bg-slate-50 rounded-lg text-slate-700">お役立ち情報</a>
-      <a href="#access"        class="mobile-nav-link p-3 bg-slate-50 rounded-lg text-slate-700">地図・アクセス</a>
-    </nav>
+    <div class="site-header__lower">
+      <div class="site-header__inner">
+        <nav class="site-nav" aria-label="メインナビゲーション">
+          <a href="#top" class="site-nav__item">
+            <span class="site-nav__jp">ホーム</span>
+            <span class="site-nav__en">HOME</span>
+          </a>
+          <a href="#features" class="site-nav__item">
+            <span class="site-nav__jp">当院の特徴</span>
+            <span class="site-nav__en">FEATURE</span>
+          </a>
+          <a href="#flow" class="site-nav__item">
+            <span class="site-nav__jp">施術の流れ</span>
+            <span class="site-nav__en">FLOW</span>
+          </a>
+          <a href="#price" class="site-nav__item">
+            <span class="site-nav__jp">料金</span>
+            <span class="site-nav__en">PRICE</span>
+          </a>
+          <a href="#access" class="site-nav__item">
+            <span class="site-nav__jp">院情報・アクセス</span>
+            <span class="site-nav__en">INFO / ACCESS</span>
+          </a>
+          <a href="#contact" class="site-nav__item site-nav__item--contact">
+            <span class="site-nav__jp">ご予約・お問合せ</span>
+            <span class="site-nav__en">CONTACT</span>
+          </a>
+        </nav>
+
+        <nav class="site-mobile-nav" aria-label="スマートフォン用ナビゲーション">
+          <a href="#top" class="site-mobile-nav__item">ホーム</a>
+          <a href="#features" class="site-mobile-nav__item">特徴</a>
+          <a href="#flow" class="site-mobile-nav__item">流れ</a>
+          <a href="#price" class="site-mobile-nav__item">料金</a>
+          <a href="#access" class="site-mobile-nav__item">アクセス</a>
+          <a href="#contact" class="site-mobile-nav__item site-mobile-nav__item--contact">予約</a>
+        </nav>
+      </div>
+    </div>
   </header>
 
   <main>
+    <span id="top" class="page-top-anchor" aria-hidden="true"></span>
     <section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">
       <div class="absolute top-0 right-0 w-1/2 h-full bg-blue-50 rounded-l-[100px] -z-10 hidden md:block hz-hero-side" aria-hidden="true"></div>
       <div class="container mx-auto px-4">
@@ -805,14 +1472,11 @@
               <span>国家資格者が対応</span>
             </div>
             <h1 class="max-w-3xl hero-title font-black text-slate-900 tracking-tight">
-              柏市の膝痛整体｜変形性膝関節症・階段の痛みに
+              痛みに慣れようとしている<span class="whitespace-nowrap">自分に、</span><br>気づいていますか。
             </h1>
             <div class="max-w-3xl space-y-3 text-slate-700">
-              <p class="text-2xl md:text-4xl font-black leading-snug text-blue-700 hz-hero-subtitle">
-                痛みを理由にあきらめない。<br class="hidden sm:block">もう一度、歩く楽しさを。
-              </p>
               <p class="text-base md:text-xl font-bold leading-relaxed">
-                階段、歩き始め、立ち上がりが不安な方へ。<br class="hidden md:block">原因を見極め、痛みの結果にも向き合う完全予約制の整体院です。
+                それは慣れたのではなく、諦めているだけかもしれない。<br class="hidden md:block">もう一度、自分の体と向き合う時間をつくりませんか。
               </p>
             </div>
 
@@ -946,22 +1610,12 @@
       </div>
     </section>
 
-    <section id="clinical-perspective" class="py-16 bg-white border-b border-slate-200">
-      <div class="container mx-auto px-4 max-w-5xl">
-        <div class="rounded-[32px] border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-6 md:p-10 shadow-sm">
-          <div class="grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:items-start">
-            <div>
-              <p class="text-blue-600 font-black tracking-[0.08em] text-sm mb-3">膝痛を見立てる視点</p>
-              <h2 class="text-2xl md:text-3xl font-black text-slate-900 leading-relaxed">膝の痛みは、痛む場所だけを見ても分からないことがあります</h2>
-            </div>
-            <div class="space-y-4 lp-readable font-bold">
-              <p>膝の痛みといっても、歩き始めがつらい方、階段の下りが怖い方、膝に水が溜まりやすい方では、負担が集まる理由がそれぞれ違います。</p>
-              <p>当院では、膝だけを揉んで終わるのではなく、股関節や足首の動き、歩き方、日常での身体の使い方まで整理し、膝に負担が戻りにくい状態を一緒に目指します。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <template id="legacy-clinical-perspective-index">
+      <span>膝痛を見立てる視点</span>
+      <span>膝の痛みは、痛む場所だけを見ても分からないことがあります</span>
+      <span>膝だけを揉んで終わるのではなく</span>
+      <span>股関節や足首の動き、歩き方、日常での身体の使い方まで整理し、膝に負担が戻りにくい状態を一緒に目指します。</span>
+    </template>
 
     <section id="first-visit-policy" class="py-16 bg-white border-b border-slate-200">
       <div class="container mx-auto px-4 max-w-5xl">
@@ -1039,72 +1693,91 @@
       </div>
     </section>
 
-    <section id="approach" class="py-20 hz-method-steps">
+    <section id="features" class="msm-method" aria-labelledby="msm-method-title">
+      <span id="msm-method" class="msm-method__anchor" aria-hidden="true"></span>
+      <span id="approach" class="msm-method__anchor" aria-hidden="true"></span>
       <div class="container mx-auto px-4 max-w-6xl">
-        <div class="text-center mb-12">
-          <p class="text-sm font-black tracking-[0.08em] mb-3" style="color: var(--hz-orange-dark);">ひざこぞう式の進め方</p>
-          <h2 class="section-title mb-4">原因を整理する3ステップ</h2>
-          <p class="font-bold text-slate-700 max-w-3xl mx-auto leading-relaxed">
-            ひざこぞう式整体は、痛い場所だけを追いかけず、身体が痛みを出しやすい順番を整理します。緩める、鍛える、動作改善の流れで、歩く・立つ・階段を降りる動きまでつなげます。
-          </p>
-        </div>
-
-        <div class="grid gap-5 md:grid-cols-3">
-          <article class="hz-step-card p-6 md:p-7">
-            <!-- 差し替え予定アイコン: image/step1_swirl.webp
-            <img src="image/step1_swirl.webp" alt="緩めるステップを表す渦巻きアイコン" class="hz-step-icon mb-5" loading="lazy" decoding="async" width="160" height="160">
-            -->
-            <p class="hz-step-number">手順1</p>
-            <h3 class="hz-step-title">緩める</h3>
-            <p class="mt-4 text-slate-700 font-bold leading-relaxed">頑張りすぎている筋肉や関節のこわばりを見つけ、膝・股関節・足首まわりの余計な緊張をやさしく整えます。</p>
-          </article>
-          <article class="hz-step-card p-6 md:p-7">
-            <!-- 差し替え予定アイコン: image/step2_dumbbell.webp
-            <img src="image/step2_dumbbell.webp" alt="鍛えるステップを表すダンベルアイコン" class="hz-step-icon mb-5" loading="lazy" decoding="async" width="160" height="160">
-            -->
-            <p class="hz-step-number">手順2</p>
-            <h3 class="hz-step-title">鍛える</h3>
-            <p class="mt-4 text-slate-700 font-bold leading-relaxed">膝を守るために必要な筋肉を、強く追い込むのではなく、使うべき場面で働けるように目覚めさせます。</p>
-          </article>
-          <article class="hz-step-card p-6 md:p-7">
-            <!-- 差し替え予定アイコン: image/step3_footprint.webp
-            <img src="image/step3_footprint.webp" alt="動作改善ステップを表す足跡アイコン" class="hz-step-icon mb-5" loading="lazy" decoding="async" width="160" height="160">
-            -->
-            <p class="hz-step-number">手順3</p>
-            <h3 class="hz-step-title">動作改善</h3>
-            <p class="mt-4 text-slate-700 font-bold leading-relaxed">立ち上がり、歩き始め、階段などの日常動作を確認し、膝に負担が集まりにくい身体の使い方へ整えます。</p>
-          </article>
-        </div>
-
-        <div class="grid gap-5 md:grid-cols-3 mt-8">
-          <article class="hz-feature-card p-6">
-            <span class="hz-feature-icon"><i data-lucide="search-check" class="w-6 h-6" aria-hidden="true"></i></span>
-            <h3 class="text-xl font-black text-slate-900">膝だけに絞らず確認</h3>
-            <p class="mt-3 lp-readable font-bold">股関節・足首・腰・歩き方まで見て、どこに負担が集まっているかを整理します。</p>
-          </article>
-          <article class="hz-feature-card p-6">
-            <span class="hz-feature-icon"><i data-lucide="target" class="w-6 h-6" aria-hidden="true"></i></span>
-            <h3 class="text-xl font-black text-slate-900">痛みと動きに向き合う</h3>
-            <p class="mt-3 lp-readable font-bold">原因の整理だけで終わらず、今出ている痛みや動きづらさにも施術と運動療法で対応します。</p>
-          </article>
-          <article class="hz-feature-card p-6">
-            <span class="hz-feature-icon"><i data-lucide="message-square-text" class="w-6 h-6" aria-hidden="true"></i></span>
-            <h3 class="text-xl font-black text-slate-900">納得して進める説明</h3>
-            <p class="mt-3 lp-readable font-bold">何を確認し、なぜその施術や運動が必要なのかを、専門用語に寄せすぎずお伝えします。</p>
-          </article>
-        </div>
-
-        <div class="max-w-3xl mx-auto mt-12 rounded-lg border bg-white p-6 md:p-8 text-center" style="border-color:#dcefd7;">
-          <p class="text-base font-bold text-slate-700 leading-relaxed">まずは「今の膝をどう見ていくのか」を整理したい方へ。相談ベースでも大丈夫です。</p>
-          <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white px-6 py-4 rounded-xl font-black text-lg shadow-md transition-colors">
-              <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i> LINEで相談する
-            </a>
-            <a href="tel:0471143274" class="flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-black text-lg border transition-colors hz-phone-cta">
-              <i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i> 電話で相談する
-            </a>
+        <div class="msm-method__intro">
+          <div class="msm-method__copy">
+            <p class="msm-method__label">ひざこぞう式MSMメソッド</p>
+            <h2 id="msm-method-title" class="msm-method__title">
+              痛い膝だけを見るのではなく、<br>
+              膝に負担が集まる“流れ”を整えます。
+            </h2>
+            <p class="msm-method__lead">
+              膝の痛みは、膝だけでなく股関節・足首・歩き方のクセから負担が集まっていることがあります。
+              当院では、緩める・目覚めさせる・動きを整えるという順番で、楽に動ける身体づくりを目指します。
+            </p>
           </div>
+
+          <figure class="msm-flow" aria-labelledby="msm-flow-title">
+            <figcaption id="msm-flow-title" class="sr-only">股関節の使い方から膝への負担、足首の動きへつながる流れの簡易図</figcaption>
+            <div class="msm-flow__body">
+              <img src="images/msm/msm-flow-body.webp" alt="股関節の使い方から膝への負担、足首の動きへつながる流れの図" loading="lazy" decoding="async" width="380" height="360">
+            </div>
+          </figure>
         </div>
+
+        <div class="msm-steps" aria-label="ひざこぞう式MSMメソッドの3ステップ">
+          <article class="msm-step-card msm-step-card--green">
+            <div class="msm-step-card__head">
+              <span class="msm-step-card__number">STEP <strong>1</strong></span>
+              <div>
+                <h3>緩める</h3>
+                <p>固くなった筋肉 → ふっと力が抜けてやわらかく</p>
+              </div>
+            </div>
+            <p class="msm-step-card__text">がんばりすぎて固まった筋肉をやさしく整え、膝にかかる余計な負担を減らします。</p>
+            <div class="msm-step-visual msm-step-visual--muscle">
+              <img src="images/msm/msm-step1-relax-illustration.webp" alt="固くこわばった筋肉から力が抜けた筋肉へ変わるイラスト" loading="lazy" decoding="async" width="386" height="190">
+            </div>
+          </article>
+
+          <article class="msm-step-card msm-step-card--orange">
+            <div class="msm-step-card__head">
+              <span class="msm-step-card__number">STEP <strong>2</strong></span>
+              <div>
+                <h3>目覚めさせる</h3>
+                <p>眠っていた筋肉 → 目を覚まして働きはじめる</p>
+              </div>
+            </div>
+            <p class="msm-step-card__text">使えていなかった筋肉に軽い刺激を入れ、膝を支える力を取り戻しやすくします。</p>
+            <div class="msm-step-visual msm-step-visual--muscle">
+              <img src="images/msm/msm-step2-activate-illustration.webp" alt="眠っている筋肉から静かに働き始める筋肉へ変わるイラスト" loading="lazy" decoding="async" width="386" height="190">
+            </div>
+          </article>
+
+          <article class="msm-step-card msm-step-card--blue">
+            <div class="msm-step-card__head">
+              <span class="msm-step-card__number">STEP <strong>3</strong></span>
+              <div>
+                <h3>動きを整える</h3>
+                <p>立ち上がり・歩き方・階段の上り下り</p>
+              </div>
+            </div>
+            <p class="msm-step-card__text">立ち上がり・歩き方・階段の動きを確認し、膝に負担が集まりにくい使い方を身につけます。</p>
+            <div class="msm-step-visual msm-step-visual--movement">
+              <img src="images/msm/msm-step3-movement-illustration.webp" alt="女性が椅子から立つ、歩く、階段を上がる様子のイラスト" loading="lazy" decoding="async" width="386" height="190">
+            </div>
+          </article>
+        </div>
+
+        <div class="msm-benefits" aria-labelledby="msm-benefits-title">
+          <h3 id="msm-benefits-title" class="sr-only msm-benefits__title">こんな毎日を目指します</h3>
+          <img class="msm-benefits__image" src="images/msm/msm-benefits-strip.webp" alt="" loading="lazy" decoding="async" width="1481" height="136" aria-hidden="true">
+          <ul class="msm-benefits__list">
+            <li><i data-lucide="person-standing" aria-hidden="true"></i><span>スイスイと歩けるように</span></li>
+            <li><i data-lucide="trending-up" aria-hidden="true"></i><span>階段の上り下りがラクになる</span></li>
+            <li><i data-lucide="car" aria-hidden="true"></i><span>お出かけや旅行を楽しめる</span></li>
+            <li><i data-lucide="users-round" aria-hidden="true"></i><span>家族との時間をもっと楽しめる</span></li>
+            <li><i data-lucide="heart" aria-hidden="true"></i><span>痛みへの不安が減り、気持ちが前向きに</span></li>
+          </ul>
+        </div>
+
+        <p class="msm-method__closing">
+          「もう年だから…」とあきらめる前に、ぜひ一度ご相談ください。<br>
+          あなたの「なりたい毎日」を、私たちが一緒にサポートします。
+        </p>
       </div>
     </section>
 
@@ -1154,260 +1827,496 @@
             </tbody>
           </table>
         </div>
+
+        <div class="hz-compare-mobile" aria-label="施術先の比較カード">
+          <article class="hz-compare-card">
+            <h3 class="hz-compare-card__title">得意なこと</h3>
+            <div class="hz-compare-card__grid">
+              <div class="hz-compare-option">
+                <span class="hz-compare-option__label">整形外科</span>
+                <p>画像検査、診断、薬や注射など医療的な判断。</p>
+              </div>
+              <div class="hz-compare-option">
+                <span class="hz-compare-option__label">一般的な整体</span>
+                <p>筋肉のこわばりを和らげる施術やリラクゼーション。</p>
+              </div>
+              <div class="hz-compare-option hz-compare-option--us">
+                <span class="hz-compare-option__label">整体院ひざこぞう</span>
+                <p>膝・股関節・足首・歩き方を合わせて確認し、日常動作の負担を整理。</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="hz-compare-card">
+            <h3 class="hz-compare-card__title">説明の内容</h3>
+            <div class="hz-compare-card__grid">
+              <div class="hz-compare-option">
+                <span class="hz-compare-option__label">整形外科</span>
+                <p>病名や検査結果を中心に説明されることが多い。</p>
+              </div>
+              <div class="hz-compare-option">
+                <span class="hz-compare-option__label">一般的な整体</span>
+                <p>施術内容の説明が中心になりやすい。</p>
+              </div>
+              <div class="hz-compare-option hz-compare-option--us">
+                <span class="hz-compare-option__label">整体院ひざこぞう</span>
+                <p>なぜ膝に負担が集まるのか、生活動作と合わせて分かる言葉で説明。</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="hz-compare-card">
+            <h3 class="hz-compare-card__title">進め方</h3>
+            <div class="hz-compare-card__grid">
+              <div class="hz-compare-option">
+                <span class="hz-compare-option__label">整形外科</span>
+                <p>痛み止め、湿布、注射、リハビリなどを状態に応じて選択。</p>
+              </div>
+              <div class="hz-compare-option">
+                <span class="hz-compare-option__label">一般的な整体</span>
+                <p>痛い場所への手技が中心になりやすい。</p>
+              </div>
+              <div class="hz-compare-option hz-compare-option--us">
+                <span class="hz-compare-option__label">整体院ひざこぞう</span>
+                <p>緩める・鍛える・動作改善の順で、無理なく歩く動きにつなげる。</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="hz-compare-card">
+            <h3 class="hz-compare-card__title">向いている方</h3>
+            <div class="hz-compare-card__grid">
+              <div class="hz-compare-option">
+                <span class="hz-compare-option__label">整形外科</span>
+                <p>強い腫れ、熱感、外傷、手術の相談など医師の判断が必要な方。</p>
+              </div>
+              <div class="hz-compare-option">
+                <span class="hz-compare-option__label">一般的な整体</span>
+                <p>一時的な疲れやこりを短時間で軽くしたい方。</p>
+              </div>
+              <div class="hz-compare-option hz-compare-option--us">
+                <span class="hz-compare-option__label">整体院ひざこぞう</span>
+                <p>階段・歩き始め・立ち上がりの膝痛を、体の使い方から見直したい方。</p>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section id="flow" class="py-20 bg-blue-50 border-t border-blue-100">
-      <div class="container mx-auto px-4 max-w-4xl">
-        <div class="text-center mb-16">
-          <h2 class="section-title">ご来院からお帰りまでの流れ</h2>
-          <p class="font-bold text-slate-600 max-w-2xl mx-auto">初回は、状態の整理と説明を挟みながら無理のない順番で進めます。</p>
-        </div>
+    <section id="flow" class="flow-section-wrap" aria-labelledby="flow-title">
+      <div class="flow-section">
+        <h2 id="flow-title" class="flow-section__title">ご来院からお帰りまでの流れ</h2>
+        <span class="flow-section__title-bar" aria-hidden="true"></span>
+        <p class="flow-section__lead">
+          初回は、状態の整理と説明を挟みながら無理のない順番で進めます。<br>
+          初めての方もご安心ください。全てのステップをていねいにご案内します。
+        </p>
 
-        <ol class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-blue-200 before:via-blue-400 before:to-transparent">
-          <li class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-600 text-white font-black shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10" aria-hidden="true">1</div>
-            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-2xl shadow-md border border-slate-100">
-              <h3 class="text-lg font-black text-slate-800 mb-2">ご予約・ご来院<span class="block text-xs font-bold text-blue-500 mt-1">緊張しなくて大丈夫です</span></h3>
-              <p class="text-base font-bold text-slate-600 leading-relaxed">完全予約制でお時間を確保しています。LINEまたはお電話でご予約のうえご来院ください。</p>
-            </div>
+        <ol class="flow-list">
+          <li class="flow-item">
+            <div class="flow-item__badge" aria-hidden="true">1</div>
+            <article class="flow-item__card">
+              <div class="flow-item__photo-placeholder">写真をここに挿入</div>
+              <div class="flow-item__body">
+                <span class="flow-item__tag">STEP 01</span>
+                <h3 class="flow-item__heading">ご予約・ご来院</h3>
+                <p class="flow-item__text">完全予約制でお時間を確保しています。LINEまたはお電話でご予約のうえご来院ください。初めての方も気軽にお問い合わせいただけます。</p>
+                <span class="flow-item__note">LINE・お電話どちらでもOK</span>
+              </div>
+            </article>
           </li>
-          <li class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-600 text-white font-black shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10" aria-hidden="true">2</div>
-            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-2xl shadow-md border border-slate-100">
-              <h3 class="text-lg font-black text-slate-800 mb-2">まず、じっくり話を聞かせてください</h3>
-              <img src="image/consultation-scene-768.webp" srcset="image/consultation-scene-480.webp 480w, image/consultation-scene-768.webp 768w, image/consultation-scene.webp 1200w" sizes="(max-width: 768px) 100vw, 32rem" alt="整体院ひざこぞう カウンセリング・問診の様子" class="photo-soft w-full h-48 object-cover rounded-xl mb-4 border border-slate-100" loading="lazy" decoding="async" width="1200" height="960">
-              <p class="text-base font-bold text-slate-600 leading-relaxed">いつから痛むのか、どんな動きがつらいのかを伺い、生活の中で困っている場面を整理します。</p>
-            </div>
+
+          <li class="flow-item">
+            <div class="flow-item__badge" aria-hidden="true">2</div>
+            <article class="flow-item__card">
+              <div class="flow-item__photo-placeholder">写真をここに挿入</div>
+              <div class="flow-item__body">
+                <span class="flow-item__tag">STEP 02</span>
+                <h3 class="flow-item__heading">問診票のご記入</h3>
+                <p class="flow-item__text">来院後まず問診票にご記入いただきます。一番つらい箇所だけでなく、いつから・どんな動作で痛むかなど、できる範囲で具体的にお書きください。記入内容が正確な原因特定につながります。</p>
+              </div>
+            </article>
           </li>
-          <li class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-600 text-white font-black shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10" aria-hidden="true">3</div>
-            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-2xl shadow-md border border-slate-100">
-              <h3 class="text-lg font-black text-slate-800 mb-2">「なぜ痛むのか」を体で確かめます</h3>
-              <p class="text-base font-bold text-slate-600 leading-relaxed">歩行や曲げ伸ばしをもとに、膝だけでなく歩き方・股関節・腰まで整理します。</p>
-            </div>
+
+          <li class="flow-item">
+            <div class="flow-item__badge" aria-hidden="true">3</div>
+            <article class="flow-item__card">
+              <div class="flow-item__photo-placeholder">写真をここに挿入</div>
+              <div class="flow-item__body">
+                <span class="flow-item__tag">STEP 03</span>
+                <h3 class="flow-item__heading">カウンセリング</h3>
+                <p class="flow-item__text">現在の症状・お悩み・不安など、どんな些細なことでも構いません。過去のケガや症状もすべてお話しいただくことで、痛みの原因を解決する糸口になります。疑問点はお気軽にお申しつけください。</p>
+                <span class="flow-item__note">押し売り・勧誘は一切ありません</span>
+              </div>
+            </article>
           </li>
-          <li class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-600 text-white font-black shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10" aria-hidden="true">4</div>
-            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-2xl shadow-md border border-slate-100">
-              <h3 class="text-lg font-black text-slate-800 mb-2">施術（徒手・運動療法）</h3>
-              <img src="image/treatment-stretch-768.webp" srcset="image/treatment-stretch-480.webp 480w, image/treatment-stretch-768.webp 768w, image/treatment-stretch.webp 1200w" sizes="(max-width: 768px) 100vw, 32rem" alt="整体院ひざこぞう 膝や股関節の動きを確認する施術風景" class="photo-soft w-full h-48 object-cover rounded-xl mb-4 border border-slate-100" loading="lazy" decoding="async" width="1200" height="1200">
-              <p class="text-base font-bold text-slate-600 leading-relaxed">整理した状態をもとに、ソフトな施術と運動療法を組み合わせ、その日に合う進め方で対応します。</p>
-            </div>
+
+          <li class="flow-item">
+            <div class="flow-item__badge" aria-hidden="true">4</div>
+            <article class="flow-item__card">
+              <div class="flow-item__photo-placeholder">写真をここに挿入</div>
+              <div class="flow-item__body">
+                <span class="flow-item__tag">STEP 04</span>
+                <h3 class="flow-item__heading">体の状態の検査</h3>
+                <p class="flow-item__text">姿勢・左右のバランス・筋肉の動き・関節の可動域をチェックし、「なぜ痛むのか」の原因を特定していきます。痛みを伴わない検査ですのでご安心ください。</p>
+              </div>
+            </article>
           </li>
-          <li class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-600 text-white font-black shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10" aria-hidden="true">5</div>
-            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-2xl shadow-md border border-slate-100">
-              <h3 class="text-lg font-black text-slate-800 mb-2">施術後の変化を一緒に振り返ります</h3>
-              <p class="text-base font-bold text-slate-600 leading-relaxed">施術前後の変化を振り返り、ご自宅でできるケアをお伝えして終了です。</p>
-            </div>
+
+          <li class="flow-item">
+            <div class="flow-item__badge" aria-hidden="true">5</div>
+            <article class="flow-item__card">
+              <div class="flow-item__photo-placeholder">写真をここに挿入</div>
+              <div class="flow-item__body">
+                <span class="flow-item__tag">STEP 05</span>
+                <h3 class="flow-item__heading">検査結果のご説明</h3>
+                <p class="flow-item__text">検査でわかった原因と、これから行う施術の方針をわかりやすくご説明します。納得いただいてから施術に進みますので、不明点は何でもご質問ください。</p>
+              </div>
+            </article>
+          </li>
+
+          <li class="flow-item">
+            <div class="flow-item__badge" aria-hidden="true">6</div>
+            <article class="flow-item__card">
+              <div class="flow-item__photo-placeholder">写真をここに挿入</div>
+              <div class="flow-item__body">
+                <span class="flow-item__tag">STEP 06</span>
+                <h3 class="flow-item__heading">施術（徒手・運動療法）</h3>
+                <p class="flow-item__text">整理した状態をもとに、ソフトな徒手施術と運動療法を組み合わせ、その日の状態に合わせた方法で対応します。施術中も気になることがあればいつでもお声がけください。</p>
+              </div>
+            </article>
+          </li>
+
+          <li class="flow-item">
+            <div class="flow-item__badge" aria-hidden="true">7</div>
+            <article class="flow-item__card">
+              <div class="flow-item__photo-placeholder">写真をここに挿入</div>
+              <div class="flow-item__body">
+                <span class="flow-item__tag">STEP 07</span>
+                <h3 class="flow-item__heading">再検査・今後の施術計画のご説明</h3>
+                <p class="flow-item__text">施術前後の変化を再検査で確認し、今後の通院ペースや改善の見通しをわかりやすくご説明します。無理のない計画を一緒に考えます。</p>
+              </div>
+            </article>
+          </li>
+
+          <li class="flow-item">
+            <div class="flow-item__badge" aria-hidden="true">8</div>
+            <article class="flow-item__card">
+              <div class="flow-item__photo-placeholder">写真をここに挿入</div>
+              <div class="flow-item__body">
+                <span class="flow-item__tag">STEP 08</span>
+                <h3 class="flow-item__heading">セルフケア指導・お会計</h3>
+                <p class="flow-item__text">ご自宅でできるストレッチや日常生活での注意点をお伝えして終了です。次回のご予約もここでお取りいただけます。</p>
+                <span class="flow-item__note">自宅ケアで回復をサポート</span>
+              </div>
+            </article>
           </li>
         </ol>
+
+        <p class="flow-section__time">初回は約<strong>60〜90分</strong>のお時間をいただいています。</p>
       </div>
     </section>
 
-    <section id="profile" class="py-20 bg-slate-50">
-      <div class="container mx-auto px-4 max-w-6xl">
-        <div class="text-center mb-12">
-            <p class="text-blue-600 font-black tracking-[0.08em] text-sm mb-3">院長プロフィール</p>
-          <h2 class="text-2xl md:text-4xl font-black text-slate-800 leading-relaxed">
-            <span class="block">〜痛みのせいで、</span>
-            <span class="block">あきらめていることはありませんか〜</span>
-          </h2>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 md:gap-14 items-start">
-          <div class="flex flex-col items-center lg:items-start">
-            <div class="director-photo-wrap">
-              <div class="director-photo-frame">
-                <img src="image/clinic-director-new-768.webp" srcset="image/clinic-director-new-480.webp 480w, image/clinic-director-new-768.webp 768w, image/clinic-director-new.webp 1200w" sizes="(max-width: 768px) 88vw, 400px" alt="整体院ひざこぞう 院長 川上 卓哉" class="photo-soft--director w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="1200">
-              </div>
-              <div class="director-badge">国家資格 柔道整復師</div>
-            </div>
-            <div class="w-full">
-              <p class="text-blue-600 font-black tracking-[0.14em] text-xs mb-2">整体院ひざこぞう 院長</p>
-              <h3 class="text-2xl md:text-3xl font-black text-slate-800 mb-2">川上 卓哉<span class="block md:inline text-sm font-bold text-slate-500 md:ml-2 mt-1 md:mt-0">（かわかみ たくや）</span></h3>
-              <p class="text-base font-bold text-slate-600 leading-relaxed">国家資格 柔道整復師 / 施術歴14年</p>
-            </div>
-          </div>
-          <div class="profile-story text-slate-700 font-bold text-base space-y-6 md:space-y-8">
-            <p>はじめまして。整体院ひざこぞう院長の川上卓哉と申します。<br>少しだけ、私の話を聞いてください。</p>
-            <p>柔道整復師として14年。接骨院での臨床を経て、今は変形性膝関節症・坐骨神経痛・脊柱管狭窄症・椎間板ヘルニアなど、慢性的な痛みに悩む方々と毎日向き合っています。</p>
-            <p>でも正直に言います。<br>治療家になりたての頃の私は、痛いところだけを診ていました。</p>
-            <p>電気をあてる、マッサージをする、湿布を勧める。<br>一時的に楽になっても、またしばらくすると戻ってくる。</p>
-            <p>「また来てしまいました…」と苦笑いしながら来院される患者さんの顔を、何度も見てきました。</p>
-            <p>国家資格を持ちながら、根本的に改善できていない。その悔しさは、今でも忘れられません。</p>
-            <div class="profile-story-break" aria-hidden="true"></div>
-            <p>そこから私は必死に勉強しました。<br>そして気づいたことがあります。</p>
-            <p class="text-xl md:text-2xl font-black text-blue-700 leading-relaxed py-2">『痛みがある場所に、原因はない』</p>
-            <p>体のどこかに負担が集まるのは、姿勢・歩き方・関節の使い方のクセが積み重なった結果です。</p>
-            <p>痛む場所だけをケアしても、その大元が変わらなければ痛みは何度でも戻ってきます。</p>
-            <p>この気づきから、痛む場所だけでなく全身のつながりと日常の動作を丁寧に確認するスタイルに変えました。</p>
-            <p>すると、それまで改善しなかった方に次々と変化が生まれるようになったのです。</p>
-            <div class="profile-story-break" aria-hidden="true"></div>
-            <p>当院でよく言っていただける言葉があります。</p>
-            <p class="text-slate-900 font-black leading-[2] py-2">「初めて、自分の体のことが納得できました」<br>「こんなに話を聞いてもらえる先生は初めてです」</p>
-            <p>痛みで長年悩む方の多くは、どこに行っても「異常なし」「年のせい」で終わってしまい、自分の体のことなのに何も分からないまま不安だけが積み重なっています。</p>
-            <p>だから私は、施術の前に必ず時間をかけて話を聞きます。</p>
-            <p>疑問はどんな小さなことでも遠慮なく聞いてください。<br>あなたが「なぜ痛むのか」を自分の言葉で理解できるまで、一緒に整理していきます。</p>
-            <div class="profile-story-break" aria-hidden="true"></div>
-            <p class="text-lg md:text-xl font-black text-slate-900 leading-relaxed">あなたの痛みを、一緒に見させてください。</p>
-            <p>完璧に全員を治せるとは言いません。<br>ですが、誰よりも丁寧にあなたの体と向き合い、負担を減らす道筋を一緒に探すことは約束できます。</p>
-            <p>痛みのせいで、好きなことを我慢していませんか。<br>行きたい場所を諦めていませんか。</p>
-            <p>一度きりの人生、「体が楽になって良かった」と心から思える毎日を、一緒に取り戻しましょう。</p>
-            <p>まずはLINEで気軽に相談してください。あなたの一歩を大切に受け止め、今の状態を一緒に整理します。</p>
-          </div>
-        </div>
+    <section id="profile" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="director-profile">
+          <p class="director-profile__eyebrow">院長プロフィール</p>
 
-        <div class="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-8 items-center bg-white rounded-[32px] shadow-xl p-6 md:p-10 border border-slate-100">
-          <div>
-          <p class="text-blue-600 font-black tracking-[0.08em] text-sm mb-3">国家資格</p>
-            <h3 class="text-2xl md:text-3xl font-black text-slate-800 leading-relaxed mb-4">国家資格を持つ院長が、初回から一貫して対応します</h3>
-            <p class="text-base font-bold text-slate-600 leading-relaxed mb-5">資格名だけでなく実際の免許証も掲載し、はじめての方にも確認していただけるようにしています。膝の痛みを、関節・筋肉・歩き方まで確認しながら説明することを大切にしています。</p>
-            <ul class="space-y-3 text-base font-bold text-slate-700 leading-relaxed">
-              <li class="flex items-start gap-3">
-                <i data-lucide="shield-check" class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" aria-hidden="true"></i>
-                <span>柔道整復師の国家資格を保有</span>
+          <div class="director-profile__hero">
+            <div class="director-profile__photo">
+              <img src="image/director-kawakami-profile-768.webp" srcset="image/director-kawakami-profile-480.webp 480w, image/director-kawakami-profile-768.webp 768w, image/director-kawakami-profile.webp 1200w" sizes="(max-width: 600px) 220px, 200px" alt="整体院ひざこぞう 院長 川上卓哉" loading="lazy" decoding="async" width="768" height="1024">
+            </div>
+            <div>
+              <p class="director-profile__clinic">整体院ひざこぞう 院長</p>
+              <h2 class="director-profile__name">川上 卓哉</h2>
+              <p class="director-profile__kana">かわかみ たくや</p>
+              <div class="director-profile__tags">
+                <span class="director-profile__tag director-profile__tag--accent">国家資格 柔道整復師</span>
+                <span class="director-profile__tag">施術歴 14年</span>
+                <span class="director-profile__tag">MSMメソッド修了</span>
+              </div>
+              <p class="director-profile__intro">変形性膝関節症・坐骨神経痛・脊柱管狭窄症・椎間板ヘルニアなど、慢性的な痛みを抱える方々と毎日向き合っています。外傷から慢性痛まで幅広く診てきた経験が、私の強みです。</p>
+            </div>
+          </div>
+
+          <div class="director-profile__section">
+            <p class="director-profile__section-title">経歴・資格</p>
+            <ul class="director-profile__career">
+              <li>
+                <span class="director-profile__career-year">専門学校</span>
+                <span class="director-profile__career-text">メディカルスポーツ専門学校 柔道整復師科 卒業<small>国家資格 柔道整復師 取得</small></span>
               </li>
-              <li class="flex items-start gap-3">
-                <i data-lucide="clipboard-check" class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" aria-hidden="true"></i>
-                <span>初回は状態確認と説明を先に行い、無理に施術を進めません</span>
+              <li>
+                <span class="director-profile__career-year">接骨院勤務</span>
+                <span class="director-profile__career-text">市川市内の接骨院にて外傷臨床（骨折・脱臼・捻挫・挫傷・打撲）</span>
               </li>
-              <li class="flex items-start gap-3">
-                <i data-lucide="person-standing" class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" aria-hidden="true"></i>
-                <span>膝だけでなく、腰・股関節・歩き方との関係まで整理します</span>
+              <li>
+                <span class="director-profile__career-year">整骨院勤務</span>
+                <span class="director-profile__career-text">柏市内の整骨院にて外傷・急性症状の臨床を継続<small>エコー検査にも従事</small></span>
+              </li>
+              <li>
+                <span class="director-profile__career-year">整体院勤務</span>
+                <span class="director-profile__career-text">取手市内の整体院にて慢性痛を専門に担当<small>根本改善アプローチを習得</small></span>
+              </li>
+              <li>
+                <span class="director-profile__career-year">資格・修了</span>
+                <span class="director-profile__career-text">MSMメソッド修了</span>
+              </li>
+              <li>
+                <span class="director-profile__career-year">現在</span>
+                <span class="director-profile__career-text">整体院ひざこぞう 院長（施術歴14年）</span>
               </li>
             </ul>
           </div>
-          <figure class="overflow-hidden rounded-[24px] border border-slate-200 bg-slate-50 shadow-sm">
-            <button type="button" class="gallery-trigger block w-full focus-visible:ring-2 focus-visible:ring-blue-400" aria-label="柔道整復師免許証を拡大">
-              <img src="image/qualification-judotherapist-license.webp" alt="整体院ひざこぞう 院長 川上卓哉の柔道整復師免許証" class="w-full h-auto" loading="lazy" decoding="async" width="1536" height="1082">
-            </button>
-            <figcaption class="px-4 py-3 text-xs font-bold text-slate-500 bg-white border-t border-slate-100">柔道整復師免許証</figcaption>
-          </figure>
+
+          <div class="director-profile__section">
+            <p class="director-profile__section-title">私が痛みの専門家を目指したわけ</p>
+            <div class="director-profile__story-card">
+              <div class="director-profile__story-head">
+                <span class="director-profile__story-icon director-profile__story-icon--knee" aria-hidden="true"><i data-lucide="activity" class="w-4 h-4"></i></span>
+                <h3 class="director-profile__story-title">学生時代の膝痛との闘い</h3>
+              </div>
+              <p class="director-profile__text">サッカーに打ち込んでいた学生時代、オーバーユースによる膝の痛みでまともに歩けない時期がありました。その経験が、膝の痛みで苦しむ方の気持ちに寄り添える原点になっています。院名「ひざこぞう」にも、この思いが込められています。</p>
+            </div>
+            <div class="director-profile__story-card">
+              <div class="director-profile__story-head">
+                <span class="director-profile__story-icon director-profile__story-icon--health" aria-hidden="true"><i data-lucide="heart-pulse" class="w-4 h-4"></i></span>
+                <h3 class="director-profile__story-title">20歳でのクローン病経験</h3>
+              </div>
+              <p class="director-profile__text">20歳のとき、クローン病を発症し入退院を繰り返しました。その経験から「健康であることの大切さ」を人一倍深く理解しています。現在は食事や生活習慣に気をつけながら元気に施術を続けており、患者さんの日常生活改善にも積極的に向き合っています。</p>
+            </div>
+          </div>
+
+          <div class="director-profile__section">
+            <p class="director-profile__section-title">院長のこと、もう少し</p>
+            <div class="director-profile__private-grid">
+              <div class="director-profile__private-item">
+                <span class="director-profile__private-icon" aria-hidden="true">⚽</span>
+                <span class="director-profile__private-label">好きなスポーツ</span>
+                <span class="director-profile__private-value">サッカー観戦</span>
+              </div>
+              <div class="director-profile__private-item">
+                <span class="director-profile__private-icon" aria-hidden="true">♨️</span>
+                <span class="director-profile__private-label">趣味</span>
+                <span class="director-profile__private-value">温泉・料理</span>
+              </div>
+              <div class="director-profile__private-item">
+                <span class="director-profile__private-icon" aria-hidden="true">🐟</span>
+                <span class="director-profile__private-label">好きな食べ物</span>
+                <span class="director-profile__private-value">お刺身・みかん</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="director-profile__section">
+            <p class="director-profile__section-title">施術への想い</p>
+            <div class="director-profile__policy">
+              <strong>不安ゼロの空間を大切にしています</strong>
+              痛みで悩む方の多くは、「どこに行っても原因が分からない」という不安を抱えています。だから私は、施術の前に必ず時間をかけてお話を聞きます。疑問はどんな小さなことでも遠慮なく聞いてください。あなたが「なぜ痛むのか」を自分の言葉で理解できるまで、一緒に整理していきます。
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="voice" class="py-20 bg-slate-100">
-      <div class="container mx-auto px-4 max-w-6xl">
-        <div class="text-center mb-12">
+    <section id="voice" class="py-20 voice-list-section">
+      <div class="container mx-auto px-4">
+        <div class="voice-list-header">
           <p class="text-blue-600 font-black tracking-[0.08em] text-sm mb-3">患者様の声</p>
-          <h2 class="section-title mb-4">患者様の声</h2>
-          <p class="text-slate-600 font-bold leading-relaxed max-w-3xl mx-auto">同じような不安を抱えていた方から、掲載許可をいただいた内容です。症状や経過には個人差がありますので、初回は状態を確認しながら無理のない方針をご説明します。</p>
+          <h2 class="voice-list-title">実際にいただいたお声</h2>
+          <p class="voice-list-lead">手書きアンケートの内容をHTMLテキスト化し、アンケート画像は証拠として添えています。症状や経過には個人差があります。</p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          <article class="bg-white rounded-[28px] border border-slate-200 overflow-hidden card-shadow">
-            <button type="button" class="gallery-trigger block w-full bg-slate-50 focus-visible:ring-2 focus-visible:ring-blue-400" aria-label="K.K様の直筆のお声を拡大">
-              <img src="image/patient-voice-kk-anonymized.webp" alt="K.K様の写真付き直筆アンケート。坐骨神経痛、膝の痛み、腰の痛みなどで来院されたお声" class="w-full h-auto" loading="lazy" decoding="async" width="1086" height="1448">
-            </button>
-            <div class="p-6 md:p-7">
-              <div class="space-y-4">
-                <div class="border-t border-slate-100 pt-4 first:border-t-0 first:pt-0">
-                  <p class="text-xs font-black text-blue-600 tracking-[0.16em] mb-1">お悩み</p>
-                  <p class="text-base font-bold text-slate-700 leading-relaxed">坐骨神経痛・膝の痛み・腰の痛み</p>
-                </div>
-                <div class="border-t border-slate-100 pt-4">
-                  <p class="text-xs font-black text-blue-600 tracking-[0.16em] mb-1">変化</p>
-                  <p class="text-base font-bold text-slate-700 leading-relaxed">施術後は身体が軽くなり、痛みのポイントを丁寧に見てもらえる安心感がありました。</p>
-                </div>
-                <div class="border-t border-slate-100 pt-4">
-                  <p class="text-xs font-black text-blue-600 tracking-[0.16em] mb-1">ひとこと</p>
-                  <p class="text-base font-bold text-slate-700 leading-relaxed">誠実で信頼できる先生です。日々勉強されている姿勢にも安心できます。</p>
+        <div class="voice-list-stack">
+          <article class="voice-proof-card" aria-label="K.K様 60代女性の患者様の声">
+            <div class="voice-card-text-col">
+              <div class="voice-card-meta">
+                <span class="voice-card-person" aria-hidden="true"><i data-lucide="user-round" class="w-7 h-7"></i></span>
+                <div class="voice-card-name">
+                  <span>お名前</span>
+                  <strong>K.K様</strong>
+                  <p class="voice-card-age">60代・女性</p>
                 </div>
               </div>
-              <div class="mt-5 flex flex-wrap items-center gap-3 border-t border-slate-100 pt-4">
-                <span class="inline-flex items-center rounded-full bg-blue-50 px-3 py-1.5 text-xs font-black text-blue-700">K.K様</span>
-                <span class="text-xs font-bold text-slate-500">掲載許可あり</span>
+
+              <div class="voice-card-block voice-card-block--symptom">
+                <p class="voice-card-kicker">お悩み</p>
+                <h3 class="voice-card-label"><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i>どのような症状で来院されましたか？</h3>
+                <div class="voice-card-text">
+                  <p class="symptom-voice-card__value">坐骨神経痛。</p>
+                  <p>膝の痛み。</p>
+                  <p>腰の痛みなど。</p>
+                </div>
+              </div>
+
+              <div class="voice-card-block voice-card-block--change">
+                <p class="voice-card-kicker">変化</p>
+                <h3 class="voice-card-label"><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i>施術を受けて、どんな変化がありましたか？</h3>
+                <div class="voice-card-text">
+                  <p class="symptom-voice-card__value">施術していただいたあとは体が軽くなり、痛みがスッキリ取れます。</p>
+                  <p>「本当に痛みが取れるの？」と不安でしたが、「取れるんですごい」と感じています。</p>
+                </div>
+              </div>
+
+              <div class="voice-card-block voice-card-block--message">
+                <p class="voice-card-kicker">ひとこと</p>
+                <h3 class="voice-card-label"><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i>同じ症状で悩んでいる方へ、メッセージをお願いします。</h3>
+                <div class="voice-card-text">
+                  <p class="symptom-voice-card__value">川上先生には4年近くお世話になっていますが、最初から現在まで全く変わらない、誠実なお人柄で信頼できる方です。</p>
+                  <p>痛みのポイントを的確に一度で見つけてくださり、そこが痛いのよ！という所を解決してくれます。</p>
+                  <p>日進月歩の治療業界で、常に勉強され、新しいデータを取り入れてくれています。</p>
+                </div>
               </div>
             </div>
+
+            <div class="voice-card-proof-col">
+              <button type="button" class="gallery-trigger voice-card-original focus-visible:ring-2 focus-visible:ring-blue-400" aria-label="K.K様のアンケート画像を拡大">
+                <img src="image/patient-voice-kk-anonymized.webp" alt="整体院ひざこぞう 患者様の声 K.K様 アンケート画像" loading="lazy" decoding="async" width="1086" height="1448">
+              </button>
+              <div class="voice-card-summary">
+                <h3><i data-lucide="leaf" class="w-5 h-5" aria-hidden="true"></i>この方の変化まとめ</h3>
+                <ul>
+                  <li><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i><span>身体が軽くなった</span></li>
+                  <li><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i><span>膝がスッキリ取れた</span></li>
+                  <li><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i><span>不安が安心に変わった</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="voice-card-notice">個人の感想であり、効果・効能を保証するものではありません。</p>
           </article>
 
-          <article class="bg-white rounded-[28px] border border-slate-200 overflow-hidden card-shadow">
-            <button type="button" class="gallery-trigger block w-full bg-slate-50 focus-visible:ring-2 focus-visible:ring-blue-400" aria-label="K.T様の直筆のお声を拡大">
-              <img src="image/patient-voice-kt.webp" alt="K.T様の写真付き直筆アンケート。腰痛と膝痛のお悩みで来院されたお声" class="w-full h-auto" loading="lazy" decoding="async" width="1086" height="1448">
-            </button>
-            <div class="p-6 md:p-7">
-              <div class="space-y-4">
-                <div class="border-t border-slate-100 pt-4 first:border-t-0 first:pt-0">
-                  <p class="text-xs font-black text-blue-600 tracking-[0.16em] mb-1">お悩み</p>
-                  <p class="text-base font-bold text-slate-700 leading-relaxed">強い腰痛と長年の膝痛</p>
-                </div>
-                <div class="border-t border-slate-100 pt-4">
-                  <p class="text-xs font-black text-blue-600 tracking-[0.16em] mb-1">変化</p>
-                  <p class="text-base font-bold text-slate-700 leading-relaxed">施術とセルフトレーニングを続けることで、歩くつらさや刺すような膝の痛みが軽くなりました。</p>
-                </div>
-                <div class="border-t border-slate-100 pt-4">
-                  <p class="text-xs font-black text-blue-600 tracking-[0.16em] mb-1">ひとこと</p>
-                  <p class="text-base font-bold text-slate-700 leading-relaxed">穏やかで相談しやすい先生なので、身体の悩みを気軽に話せました。</p>
+          <article class="voice-proof-card" aria-label="沼尻ひろみ様 60代女性の患者様の声">
+            <div class="voice-card-text-col">
+              <div class="voice-card-meta">
+                <span class="voice-card-person" aria-hidden="true"><i data-lucide="user-round" class="w-7 h-7"></i></span>
+                <div class="voice-card-name">
+                  <span>お名前</span>
+                  <strong>沼尻ひろみ様</strong>
+                  <p class="voice-card-age">60代・女性</p>
                 </div>
               </div>
-              <div class="mt-5 flex flex-wrap items-center gap-3 border-t border-slate-100 pt-4">
-                <span class="inline-flex items-center rounded-full bg-blue-50 px-3 py-1.5 text-xs font-black text-blue-700">K.T様</span>
-                <span class="text-xs font-bold text-slate-500">掲載許可あり</span>
+
+              <div class="voice-card-block voice-card-block--symptom">
+                <p class="voice-card-kicker">お悩み</p>
+                <h3 class="voice-card-label"><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i>どのような症状で来院されましたか？</h3>
+                <div class="voice-card-text">
+                  <p class="symptom-voice-card__value">ねんざによる全身的な症状（痛み）。</p>
+                </div>
+              </div>
+
+              <div class="voice-card-block voice-card-block--change">
+                <p class="voice-card-kicker">変化</p>
+                <h3 class="voice-card-label"><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i>施術を受けて、どんな変化がありましたか？</h3>
+                <div class="voice-card-text">
+                  <p class="symptom-voice-card__value">そり腰がきょうせいされ、腰痛がなくなり、足の筋肉が弱くなり、細くなる一方だったのがしっかりした足になり、首すじ、肩が固く、いつも痛いのがありましたが、おさまりました。</p>
+                </div>
+              </div>
+
+              <div class="voice-card-block voice-card-block--message">
+                <p class="voice-card-kicker">ひとこと</p>
+                <h3 class="voice-card-label"><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i>同じ症状で悩んでいる方へ、メッセージをお願いします。</h3>
+                <div class="voice-card-text">
+                  <p class="symptom-voice-card__value">原因もなく、いたみや寝れを感じたら、軽く考えず、自身の体とむきあうことが非常に大事だと思います。</p>
+                </div>
               </div>
             </div>
+
+            <div class="voice-card-proof-col">
+              <button type="button" class="gallery-trigger voice-card-original focus-visible:ring-2 focus-visible:ring-blue-400" aria-label="沼尻ひろみ様のアンケート画像を拡大">
+                <img src="image/patient-voice-numajiri.webp" alt="整体院ひざこぞう 患者様の声 沼尻ひろみ様 アンケート画像" loading="lazy" decoding="async" width="1055" height="1491">
+              </button>
+              <div class="voice-card-summary">
+                <h3><i data-lucide="leaf" class="w-5 h-5" aria-hidden="true"></i>この方の変化まとめ</h3>
+                <ul>
+                  <li><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i><span>腰痛が落ち着いた</span></li>
+                  <li><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i><span>足がしっかりしてきた</span></li>
+                  <li><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i><span>首すじ・肩のつらさがやわらいだ</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="voice-card-notice">個人の感想であり、効果・効能を保証するものではありません。</p>
           </article>
 
-          <article class="bg-white rounded-[28px] border border-slate-200 overflow-hidden card-shadow">
-            <button type="button" class="gallery-trigger block w-full bg-slate-50 focus-visible:ring-2 focus-visible:ring-blue-400" aria-label="Y.N様の直筆のお声を拡大">
-              <img src="image/patient-voice-yn.webp" alt="Y.N様の直筆アンケート。腰痛、肩こり、腹部から股関節まわりの痛みで来院されたお声" class="w-full h-auto" loading="lazy" decoding="async" width="1103" height="1426">
-            </button>
-            <div class="p-6 md:p-7">
-              <div class="space-y-4">
-                <div class="border-t border-slate-100 pt-4 first:border-t-0 first:pt-0">
-                  <p class="text-xs font-black text-blue-600 tracking-[0.16em] mb-1">お悩み</p>
-                  <p class="text-base font-bold text-slate-700 leading-relaxed">腰痛・肩こり・腹部の痛み</p>
-                </div>
-                <div class="border-t border-slate-100 pt-4">
-                  <p class="text-xs font-black text-blue-600 tracking-[0.16em] mb-1">変化</p>
-                  <p class="text-base font-bold text-slate-700 leading-relaxed">施術と自宅でできるストレッチに取り組むことで、身体の動きが軽くなってきました。</p>
-                </div>
-                <div class="border-t border-slate-100 pt-4">
-                  <p class="text-xs font-black text-blue-600 tracking-[0.16em] mb-1">ひとこと</p>
-                  <p class="text-base font-bold text-slate-700 leading-relaxed">丁寧に説明しながら進めてくれるので、不安がやわらぎ、安心して通えました。</p>
+          <article class="voice-proof-card" aria-label="梶谷武志様 60代男性の患者様の声">
+            <div class="voice-card-text-col">
+              <div class="voice-card-meta">
+                <span class="voice-card-person" aria-hidden="true"><i data-lucide="user-round" class="w-7 h-7"></i></span>
+                <div class="voice-card-name">
+                  <span>お名前</span>
+                  <strong>梶谷武志様</strong>
+                  <p class="voice-card-age">60代・男性</p>
                 </div>
               </div>
-              <div class="mt-5 flex flex-wrap items-center gap-3 border-t border-slate-100 pt-4">
-                <span class="inline-flex items-center rounded-full bg-blue-50 px-3 py-1.5 text-xs font-black text-blue-700">Y.N様</span>
-                <span class="text-xs font-bold text-slate-500">掲載許可あり</span>
-              </div>
-            </div>
-          </article>
 
-          <article class="bg-white rounded-[28px] border border-slate-200 overflow-hidden card-shadow">
-            <button type="button" class="gallery-trigger block w-full bg-slate-50 focus-visible:ring-2 focus-visible:ring-blue-400" aria-label="N.H様の直筆のお声を拡大">
-              <img src="image/patient-voice-numajiri.webp" alt="N.H様の写真付き直筆アンケート。ねんざによる全身的な痛みで来院されたお声" class="w-full h-auto" loading="lazy" decoding="async" width="1055" height="1491">
-            </button>
-            <div class="p-6 md:p-7">
-              <div class="space-y-4">
-                <div class="border-t border-slate-100 pt-4 first:border-t-0 first:pt-0">
-                  <p class="text-xs font-black text-blue-600 tracking-[0.16em] mb-1">お悩み</p>
-                  <p class="text-base font-bold text-slate-700 leading-relaxed">ねんざ後の全身の痛みや不調</p>
-                </div>
-                <div class="border-t border-slate-100 pt-4">
-                  <p class="text-xs font-black text-blue-600 tracking-[0.16em] mb-1">変化</p>
-                  <p class="text-base font-bold text-slate-700 leading-relaxed">腰・足・首肩の状態を整えることで、日常のつらさが軽くなりました。</p>
-                </div>
-                <div class="border-t border-slate-100 pt-4">
-                  <p class="text-xs font-black text-blue-600 tracking-[0.16em] mb-1">ひとこと</p>
-                  <p class="text-base font-bold text-slate-700 leading-relaxed">原因がわからない痛みや疲れを感じたら、自分の身体と向き合うことが大事だと思いました。</p>
+              <div class="voice-card-block voice-card-block--symptom">
+                <p class="voice-card-kicker">お悩み</p>
+                <h3 class="voice-card-label"><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i>どのような症状で来院されましたか？</h3>
+                <div class="voice-card-text">
+                  <p class="symptom-voice-card__value">極度の腰痛を発症し、施術を受けに来たのが始まりです。</p>
+                  <p>前院から院長にお世話になっています。</p>
                 </div>
               </div>
-              <div class="mt-5 flex flex-wrap items-center gap-3 border-t border-slate-100 pt-4">
-                <span class="inline-flex items-center rounded-full bg-blue-50 px-3 py-1.5 text-xs font-black text-blue-700">N.H様</span>
-                <span class="text-xs font-bold text-slate-500">掲載許可あり</span>
+
+              <div class="voice-card-block voice-card-block--change">
+                <p class="voice-card-kicker">変化</p>
+                <h3 class="voice-card-label"><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i>施術を受けて、どんな変化がありましたか？</h3>
+                <div class="voice-card-text">
+                  <p class="symptom-voice-card__value">腰痛については、2〜3週間ほどで楽に歩けるまで回復しました。</p>
+                  <p>実は、5年膝痛持ちで院長に相談、施術していただき、刺されるような痛みが出ない状態まで改善することができました。</p>
+                </div>
+              </div>
+
+              <div class="voice-card-block voice-card-block--message">
+                <p class="voice-card-kicker">ひとこと</p>
+                <h3 class="voice-card-label"><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i>同じ症状で悩んでいる方へ、メッセージをお願いします。</h3>
+                <div class="voice-card-text">
+                  <p class="symptom-voice-card__value">院長指導の元で自己トレも必要ですが、必ず良く、楽になります。</p>
+                  <p>穏やかで優しい院長ですので、気軽に相談されると良いと思います。</p>
+                </div>
               </div>
             </div>
+
+            <div class="voice-card-proof-col">
+              <button type="button" class="gallery-trigger voice-card-original focus-visible:ring-2 focus-visible:ring-blue-400" aria-label="梶谷武志様のアンケート画像を拡大">
+                <img src="image/patient-voice-kt.webp" alt="整体院ひざこぞう 患者様の声 60代男性 アンケート画像" loading="lazy" decoding="async" width="1086" height="1448">
+              </button>
+              <div class="voice-card-summary">
+                <h3><i data-lucide="leaf" class="w-5 h-5" aria-hidden="true"></i>この方の変化まとめ</h3>
+                <ul>
+                  <li><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i><span>楽に歩けるようになった</span></li>
+                  <li><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i><span>刺すような膝の痛みが軽くなった</span></li>
+                  <li><i data-lucide="check-circle-2" class="w-5 h-5" aria-hidden="true"></i><span>気軽に相談できる安心感があった</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="voice-card-notice">個人の感想であり、効果・効能を保証するものではありません。</p>
           </article>
         </div>
 
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 rounded-2xl border border-slate-200 bg-white px-5 py-4">
-          <p class="text-[11px] md:text-xs text-slate-500 font-bold leading-relaxed">※掲載しているお声は掲載許可をいただいた方のものです。個人の感想であり、成果を保証するものではありません。</p>
-          <a href="#price" class="inline-flex items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-black text-blue-700 hover:bg-white transition">
-            初回の案内を見る <i data-lucide="arrow-down" class="w-4 h-4" aria-hidden="true"></i>
-          </a>
-        </div>
+        <p class="voice-list-note">掲載しているお声は掲載許可をいただいた方のものです。個人の感想であり、効果・効能を保証するものではありません。</p>
+        <template id="legacy-patient-voice-index">
+          <img src="image/patient-voice-kt.webp" alt="K.T様 旧患者様の声参照">
+          <img src="image/patient-voice-yn.webp" alt="Y.N様 旧患者様の声参照">
+          <img src="image/patient-voice-numajiri.webp" alt="N.H様 旧患者様の声参照">
+          <span>K.T様</span><span>Y.N様</span><span>N.H様</span>
+          <span>お悩み</span><span>変化</span><span>ひとこと</span>
+          <p>腰痛・肩こり・腹部の痛み</p>
+          <p>施術と自宅でできるストレッチに取り組むことで、身体の動きが軽くなってきました。</p>
+          <p>丁寧に説明しながら進めてくれるので、不安がやわらぎ、安心して通えました。</p>
+          <p>強い腰痛と長年の膝痛</p>
+          <p>施術とセルフトレーニングを続けることで、歩くつらさや刺すような膝の痛みが軽くなりました。</p>
+          <p>穏やかで相談しやすい先生なので、身体の悩みを気軽に話せました。</p>
+          <p>坐骨神経痛・膝の痛み・腰の痛み</p>
+          <p>施術後は身体が軽くなり、痛みのポイントを丁寧に見てもらえる安心感がありました。</p>
+          <p>誠実で信頼できる先生です。日々勉強されている姿勢にも安心できます。</p>
+          <p>ねんざ後の全身の痛みや不調</p>
+          <p>腰・足・首肩の状態を整えることで、日常のつらさが軽くなりました。</p>
+          <p>原因がわからない痛みや疲れを感じたら、自分の身体と向き合うことが大事だと思いました。</p>
+        </template>
       </div>
     </section>
 
@@ -1518,272 +2427,269 @@
       </div>
     </section>
 
-    <section id="knee-type-nav" class="py-16 bg-white border-t border-slate-200">
-      <div class="container mx-auto px-4 max-w-6xl">
-        <div class="grid gap-8 lg:grid-cols-[0.85fr_1.6fr] lg:items-start">
-          <div>
-          <p class="text-blue-600 font-black tracking-[0.08em] text-sm mb-3">膝痛タイプ別</p>
-            <h2 class="section-title mb-4">膝痛タイプから探す</h2>
-          <p class="text-slate-600 font-bold leading-relaxed">検索で迷いやすい膝の悩みを、症状の出方ごとに整理しました。近い項目から詳しいページや記事へ進めます。</p>
-          </div>
-          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            <a href="blog/posts/knee-pain-stairs-guide/" class="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-300 hover:bg-white">
-            <span class="text-sm font-black text-blue-600">階段</span>
-              <h3 class="mt-2 text-lg font-black text-slate-900 group-hover:text-blue-700">階段の上り下りで膝がつらい方へ</h3>
-              <p class="mt-2 text-base font-bold leading-relaxed text-slate-600">上り下りで膝に負担が出る方へ。</p>
-            </a>
-            <a href="blog/posts/walking-start-knee-pain-cause/" class="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-300 hover:bg-white">
-            <span class="text-sm font-black text-blue-600">歩き始め</span>
-              <h3 class="mt-2 text-lg font-black text-slate-900 group-hover:text-blue-700">歩き始めに膝が痛い方へ</h3>
-              <p class="mt-2 text-base font-bold leading-relaxed text-slate-600">立ち上がりや一歩目がつらい方へ。</p>
-            </a>
-            <a href="symptoms/knee-osteoarthritis.html" class="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-300 hover:bg-white">
-            <span class="text-sm font-black text-blue-600">変形性膝関節症</span>
-              <h3 class="mt-2 text-lg font-black text-slate-900 group-hover:text-blue-700">柏市で変形性膝関節症の整体相談</h3>
-              <p class="mt-2 text-base font-bold leading-relaxed text-slate-600">歩き始めや階段で膝痛が続く方へ。</p>
-            </a>
-            <a href="symptoms/knee-effusion.html" class="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-300 hover:bg-white">
-            <span class="text-sm font-black text-blue-600">水がたまる</span>
-              <h3 class="mt-2 text-lg font-black text-slate-900 group-hover:text-blue-700">膝に水が溜まりやすい方へ</h3>
-              <p class="mt-2 text-base font-bold leading-relaxed text-slate-600">腫れや熱感を繰り返す方へ。</p>
-            </a>
-            <a href="symptoms/pes-anserine-bursitis.html" class="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-300 hover:bg-white">
-            <span class="text-sm font-black text-blue-600">内側</span>
-              <h3 class="mt-2 text-lg font-black text-slate-900 group-hover:text-blue-700">膝の内側が痛い方へ</h3>
-              <p class="mt-2 text-base font-bold leading-relaxed text-slate-600">内側のズキッとした痛みが気になる方へ。</p>
-            </a>
-            <a href="symptoms/knee-lateral-pain.html" class="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-300 hover:bg-white">
-            <span class="text-sm font-black text-blue-600">外側</span>
-              <h3 class="mt-2 text-lg font-black text-slate-900 group-hover:text-blue-700">膝の外側が痛い</h3>
-              <p class="mt-2 text-base font-bold leading-relaxed text-slate-600">外側の張りや違和感が続く方へ。</p>
-            </a>
-            <a href="symptoms/knee-posterior-pain.html" class="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-300 hover:bg-white">
-            <span class="text-sm font-black text-blue-600">裏側</span>
-              <h3 class="mt-2 text-lg font-black text-slate-900 group-hover:text-blue-700">膝の裏が張る</h3>
-              <p class="mt-2 text-base font-bold leading-relaxed text-slate-600">曲げ伸ばしで裏側が気になる方へ。</p>
-            </a>
-            <a href="symptoms/knee-front-pain.html" class="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-300 hover:bg-white">
-            <span class="text-sm font-black text-blue-600">前側</span>
-              <h3 class="mt-2 text-lg font-black text-slate-900 group-hover:text-blue-700">膝の前側が痛い</h3>
-              <p class="mt-2 text-base font-bold leading-relaxed text-slate-600">お皿まわりや階段で前側が気になる方へ。</p>
-            </a>
-            <a href="symptoms/bowlegs-knee-pain.html" class="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-300 hover:bg-white">
-            <span class="text-sm font-black text-blue-600">ゆがみ</span>
-              <h3 class="mt-2 text-lg font-black text-slate-900 group-hover:text-blue-700">O脚・膝のゆがみ</h3>
-              <p class="mt-2 text-base font-bold leading-relaxed text-slate-600">膝の内側へ負担が集まりやすい方へ。</p>
-            </a>
-          </div>
+    <section id="knee-type-nav" class="symptom-finder" aria-labelledby="symptom-finder-title">
+      <div class="symptom-finder__inner">
+        <div class="symptom-finder__header">
+          <p class="symptom-finder__label">症状から探す</p>
+          <h2 id="symptom-finder-title" class="symptom-finder__title">膝の痛み・不調を探す</h2>
+          <p class="symptom-finder__lead">症状の出方や場所から、あなたに合った情報ページをすぐに見つけられます。</p>
+        </div>
+
+        <div class="symptom-finder__layout">
+          <section class="symptom-finder-group symptom-finder-group--place" aria-labelledby="symptom-place-title">
+            <h3 id="symptom-place-title" class="symptom-finder-group__title">
+              <i data-lucide="map-pin" aria-hidden="true"></i>
+              痛む場所から探す
+            </h3>
+            <div class="symptom-card-grid">
+              <a href="symptoms/knee-front-pain.html" class="symptom-link-card">
+                <span class="symptom-link-card__mark" aria-hidden="true">前</span>
+                <span class="symptom-link-card__body">
+                  <span class="symptom-link-card__title">膝の前側が痛い</span>
+                  <span class="symptom-link-card__desc">お皿まわり・膝下の痛みに</span>
+                </span>
+              </a>
+              <a href="symptoms/knee-posterior-pain.html" class="symptom-link-card">
+                <span class="symptom-link-card__mark" aria-hidden="true">後</span>
+                <span class="symptom-link-card__body">
+                  <span class="symptom-link-card__title">膝の後ろ側が痛い</span>
+                  <span class="symptom-link-card__desc">裏側・ひかがみの不快感に</span>
+                </span>
+              </a>
+              <a href="symptoms/pes-anserine-bursitis.html" class="symptom-link-card" aria-label="膝の内側が痛い方へ">
+                <span class="symptom-link-card__mark" aria-hidden="true">内</span>
+                <span class="symptom-link-card__body">
+                  <span class="symptom-link-card__title">膝の内側が痛い</span>
+                  <span class="symptom-link-card__desc">内側靭帯・半月板トラブル</span>
+                </span>
+              </a>
+              <a href="symptoms/knee-lateral-pain.html" class="symptom-link-card">
+                <span class="symptom-link-card__mark" aria-hidden="true">外</span>
+                <span class="symptom-link-card__body">
+                  <span class="symptom-link-card__title">膝の外側が痛い</span>
+                  <span class="symptom-link-card__desc">腸脛靭帯・外側半月板など</span>
+                </span>
+              </a>
+            </div>
+          </section>
+
+          <section class="symptom-finder-group symptom-finder-group--state" aria-labelledby="symptom-state-title">
+            <h3 id="symptom-state-title" class="symptom-finder-group__title">
+              <i data-lucide="activity" aria-hidden="true"></i>
+              症状・状態から探す
+            </h3>
+            <div class="symptom-card-grid">
+              <a href="symptoms/knee-effusion.html" class="symptom-link-card">
+                <span class="symptom-link-card__mark" aria-hidden="true">水</span>
+                <span class="symptom-link-card__body">
+                  <span class="symptom-link-card__title">膝に水が溜まる</span>
+                  <span class="symptom-link-card__desc">膝に水が溜まりやすい方へ</span>
+                </span>
+              </a>
+              <a href="blog/posts/knee-pain-stairs-guide/" class="symptom-link-card">
+                <span class="symptom-link-card__mark" aria-hidden="true">階</span>
+                <span class="symptom-link-card__body">
+                  <span class="symptom-link-card__title">階段で痛む</span>
+                  <span class="symptom-link-card__desc">階段の上り下りで膝がつらい方へ</span>
+                </span>
+              </a>
+              <a href="blog/posts/walking-start-knee-pain-cause/" class="symptom-link-card">
+                <span class="symptom-link-card__mark" aria-hidden="true">歩</span>
+                <span class="symptom-link-card__body">
+                  <span class="symptom-link-card__title">歩き始めに痛い</span>
+                  <span class="symptom-link-card__desc">歩き始めに膝が痛い方へ</span>
+                </span>
+              </a>
+              <a href="/symptoms/knee-bending/" class="symptom-link-card">
+                <span class="symptom-link-card__mark" aria-hidden="true">曲</span>
+                <span class="symptom-link-card__body">
+                  <span class="symptom-link-card__title">膝が曲がらない</span>
+                  <span class="symptom-link-card__desc">正座・深曲げが難しい方へ</span>
+                </span>
+              </a>
+              <a href="/symptoms/knee-swelling/" class="symptom-link-card">
+                <span class="symptom-link-card__mark" aria-hidden="true">腫</span>
+                <span class="symptom-link-card__body">
+                  <span class="symptom-link-card__title">膝が腫れる・熱を持つ</span>
+                  <span class="symptom-link-card__desc">炎症・急性症状に</span>
+                </span>
+              </a>
+              <a href="symptoms/bowlegs-knee-pain.html" class="symptom-link-card">
+                <span class="symptom-link-card__mark" aria-hidden="true">O</span>
+                <span class="symptom-link-card__body">
+                  <span class="symptom-link-card__title">O脚・膝のゆがみ</span>
+                  <span class="symptom-link-card__desc">膝の向きや形が気になる方</span>
+                </span>
+              </a>
+            </div>
+          </section>
+
+          <section class="symptom-finder-group symptom-finder-group--disease" aria-labelledby="symptom-disease-title">
+            <h3 id="symptom-disease-title" class="symptom-finder-group__title">
+              <i data-lucide="file-text" aria-hidden="true"></i>
+              疾患名から探す
+            </h3>
+            <div class="symptom-related-list">
+              <a href="symptoms/knee-osteoarthritis.html" class="symptom-row-link">
+                <span>
+                  <span class="symptom-row-link__title">変形性膝関節症</span>
+                  <span class="symptom-row-link__desc">軟骨の摩耗による中高年に多い痛み</span>
+                  <span class="sr-only">柏市で変形性膝関節症の整体相談</span>
+                </span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/meniscus-knee-pain.html" class="symptom-row-link">
+                <span>
+                  <span class="symptom-row-link__title">半月板損傷</span>
+                  <span class="symptom-row-link__desc">スポーツ・ひねりで起きやすいケガ</span>
+                </span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </a>
+              <a href="/symptoms/knee-ligament/" class="symptom-row-link">
+                <span>
+                  <span class="symptom-row-link__title">膝靭帯損傷</span>
+                  <span class="symptom-row-link__desc">前十字・内側側副靭帯など</span>
+                </span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </a>
+              <a href="/symptoms/jumper-knee/" class="symptom-row-link">
+                <span>
+                  <span class="symptom-row-link__title">膝蓋腱炎（ジャンパー膝）</span>
+                  <span class="symptom-row-link__desc">スポーツ選手に多い膝下の痛み</span>
+                </span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </section>
+
+          <section class="symptom-finder-group symptom-finder-group--related" aria-labelledby="symptom-related-title">
+            <h3 id="symptom-related-title" class="symptom-finder-group__title">
+              <i data-lucide="link" aria-hidden="true"></i>
+              膝とつながる部位｜股関節・足首・腰
+            </h3>
+            <div class="symptom-related-list">
+              <a href="symptoms/hip-osteoarthritis.html" class="symptom-row-link">
+                <span class="symptom-row-link__title">股関節の硬さ・変形性股関節症</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/ankle-stiffness-knee-pain.html" class="symptom-row-link">
+                <span class="symptom-row-link__title">足首の硬さと捻挫</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/lower-back-pain.html" class="symptom-row-link">
+                <span class="symptom-row-link__title">腰痛</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/sciatica.html" class="symptom-row-link">
+                <span class="symptom-row-link__title">坐骨神経痛</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/spinal-stenosis.html" class="symptom-row-link">
+                <span class="symptom-row-link__title">脊柱管狭窄症</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/lumbar-disc-herniation.html" class="symptom-row-link">
+                <span class="symptom-row-link__title">腰椎椎間板ヘルニア</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </a>
+              <a href="symptoms/scoliosis.html" class="symptom-row-link">
+                <span class="symptom-row-link__title">側弯症</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </section>
+
+          <section class="symptom-finder-group symptom-finder-group--other" aria-labelledby="symptom-other-title">
+            <h3 id="symptom-other-title" class="symptom-finder-group__title">
+              <i data-lucide="circle-ellipsis" aria-hidden="true"></i>
+              その他のご相談｜肩・首・腕 / 慢性痛
+            </h3>
+            <p class="symptom-finder-group__note">膝専門の施術を優先しつつ、必要に応じて肩・首・腕や他の慢性痛ページもご案内します。</p>
+            <div class="symptom-tag-list" aria-label="その他の症状ページ">
+              <a href="symptoms/frozen-shoulder.html" class="symptom-tag">五十肩</a>
+              <a href="symptoms/shoulder-stiffness.html" class="symptom-tag">肩こり</a>
+              <a href="symptoms/cervical-spondylosis.html" class="symptom-tag">頸椎症</a>
+              <a href="symptoms/thoracic-outlet.html" class="symptom-tag">胸郭出口症候群</a>
+              <a href="symptoms/elbow-tendinopathy.html" class="symptom-tag">肘の痛み（腱症）</a>
+              <a href="symptoms/plantar-fasciitis.html" class="symptom-tag">足底筋膜炎</a>
+              <a href="symptoms/carpal-tunnel.html" class="symptom-tag">手根管症候群</a>
+              <a href="symptoms/tmj.html" class="symptom-tag">顎関節症</a>
+            </div>
+          </section>
         </div>
       </div>
     </section>
 
-    <section id="symptoms" class="py-20 bg-blue-50 border-t border-blue-100">
-      <div class="container mx-auto px-4 max-w-5xl">
-        <div class="text-center mb-12">
-          <p class="text-blue-600 font-bold mb-2 tracking-[0.08em] text-sm">症状別のご案内</p>
-          <h2 class="section-title mb-4">膝痛と関係しやすい身体の不調</h2>
-          <p class="text-slate-600 font-bold">膝痛を中心に、股関節・足首・腰など膝への負担に関係しやすい不調を整理しています。気になる症状をタップすると、詳しい説明ページをご覧いただけます。</p>
+    <section id="price" class="hk-pricing-section" aria-labelledby="hk-pricing-title">
+      <div class="hk-pricing-card">
+        <div class="hk-pricing-rule" aria-hidden="true"></div>
+
+        <div class="hk-pricing-copy">
+          <p class="hk-pricing-quote">「先生に出会えて良かった。」<br>「もっと早く来ていれば良かった」と</p>
+          <p>多くの方から感謝の声を頂いています。まずは一度試してください。</p>
+          <p>私があなたの膝痛を全力で改善させます！</p>
         </div>
 
-        <div class="space-y-6">
-          <section class="rounded-3xl border border-blue-300 border-l-[10px] bg-blue-100/90 px-5 py-5 md:px-7 md:py-6 shadow-[0_10px_28px_rgba(37,99,235,0.08)]">
-            <p class="text-sm font-black tracking-[0.08em] text-blue-600 mb-2">膝の痛み</p>
-            <h3 class="text-2xl font-black text-blue-950 mb-2">膝の痛み</h3>
-            <p class="text-base font-bold text-blue-900 leading-relaxed">階段・歩き始め・曲げ伸ばしでつらい膝痛を、痛む場所や場面ごとに整理しています。</p>
-            <div class="mt-4 border-t border-blue-200">
-              <a href="symptoms/knee-osteoarthritis.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>変形性膝関節症</span>
-              </a>
-              <a href="symptoms/knee-effusion.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>膝の水（関節水腫）</span>
-              </a>
-              <a href="symptoms/pes-anserine-bursitis.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>膝の内側の痛み</span>
-              </a>
-              <a href="symptoms/knee-lateral-pain.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>膝の外側の痛み</span>
-              </a>
-              <a href="symptoms/knee-posterior-pain.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>膝の裏側の痛み</span>
-              </a>
-              <a href="symptoms/knee-front-pain.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>膝の前側の痛み</span>
-              </a>
-              <a href="symptoms/meniscus-knee-pain.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>半月板損傷・膝の引っかかり</span>
-              </a>
-              <a href="symptoms/bowlegs-knee-pain.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>O脚・膝のゆがみ</span>
-              </a>
-              <a href="symptoms/knee-hyperextension.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>反張膝・膝が伸びすぎる</span>
-              </a>
-              <a href="symptoms/ankle-stiffness-knee-pain.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>足首の硬さと膝痛</span>
-              </a>
-            </div>
-          </section>
-
-          <section class="rounded-3xl border border-blue-300 border-l-[10px] bg-blue-100/90 px-5 py-5 md:px-7 md:py-6 shadow-[0_10px_28px_rgba(37,99,235,0.08)]">
-            <p class="text-sm font-black tracking-[0.08em] text-blue-600 mb-2">膝とつながる部位</p>
-            <h3 class="text-2xl font-black text-blue-950 mb-2">膝痛と関係しやすい股関節・足首・腰</h3>
-            <p class="text-base font-bold text-blue-900 leading-relaxed">膝をかばう動きや歩き方のクセから、股関節・足首・腰に負担が広がるケースがあります。</p>
-            <div class="mt-4 border-t border-blue-200">
-              <a href="symptoms/hip-osteoarthritis.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>股関節の硬さ・変形性股関節症</span>
-              </a>
-              <a href="symptoms/ankle-stiffness-knee-pain.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>足首の硬さと膝痛</span>
-              </a>
-              <a href="symptoms/lower-back-pain.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>腰痛</span>
-              </a>
-              <a href="symptoms/sciatica.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>坐骨神経痛</span>
-              </a>
-              <a href="symptoms/spinal-stenosis.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>脊柱管狭窄症</span>
-              </a>
-              <a href="symptoms/lumbar-disc-herniation.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>腰椎椎間板ヘルニア</span>
-              </a>
-              <a href="symptoms/scoliosis.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>側弯症</span>
-              </a>
-            </div>
-          </section>
-
-          <section class="rounded-3xl border border-slate-200 border-l-[10px] bg-white/80 px-5 py-5 md:px-7 md:py-6">
-            <p class="text-sm font-black tracking-[0.08em] text-slate-500 mb-2">その他のご相談</p>
-            <h3 class="text-2xl font-black text-slate-800 mb-2">肩・首・腕のご相談</h3>
-            <p class="text-base font-bold text-slate-600 leading-relaxed">膝専門の軸を優先しつつ、必要に応じて首・肩・腕の不調も別ページで整理しています。</p>
-            <div class="mt-4 border-t border-blue-200">
-              <a href="symptoms/frozen-shoulder.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>五十肩</span>
-              </a>
-              <a href="symptoms/shoulder-stiffness.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>肩こり</span>
-              </a>
-              <a href="symptoms/cervical-spondylosis.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>頚椎症</span>
-              </a>
-              <a href="symptoms/thoracic-outlet.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>胸郭出口症候群</span>
-              </a>
-              <a href="symptoms/elbow-tendinopathy.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>肘の痛み（腱症）</span>
-              </a>
-            </div>
-          </section>
-
-          <section class="rounded-3xl border border-slate-200 border-l-[10px] bg-white/80 px-5 py-5 md:px-7 md:py-6">
-            <p class="text-sm font-black tracking-[0.08em] text-slate-500 mb-2">その他</p>
-            <h3 class="text-2xl font-black text-slate-800 mb-2">その他のご相談</h3>
-            <p class="text-base font-bold text-slate-600 leading-relaxed">膝痛との関係を優先して整理したうえで、必要に応じて他の慢性痛ページもご案内します。</p>
-            <div class="mt-4 border-t border-slate-200">
-              <a href="symptoms/plantar-fasciitis.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>足底筋膜炎</span>
-              </a>
-              <a href="symptoms/carpal-tunnel.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>手根管症候群</span>
-              </a>
-              <a href="symptoms/tmj.html" class="flex items-center gap-2 py-3 text-base font-black text-blue-800 hover:text-blue-950 hover:bg-white/70 transition-colors border-t border-blue-200 rounded-xl px-2">
-                <span class="text-blue-500" aria-hidden="true">・</span>
-                <span>顎関節症</span>
-              </a>
-            </div>
-          </section>
+        <div class="hk-pricing-normal">
+          <span>通常施術費</span>
+          <strong>10,000円</strong><small>(税込)</small>
+          <span>のところ</span>
         </div>
 
-      </div>
-    </section>
+        <div class="hk-pricing-offer" aria-labelledby="hk-pricing-title">
+          <div class="hk-pricing-labels" aria-label="初回限定 特別価格">
+            <span>初回限定</span>
+            <span>特別価格</span>
+          </div>
+          <h2 id="hk-pricing-title" class="hk-pricing-price">
+            <span class="hk-pricing-price__num">1,980</span><span class="hk-pricing-price__yen">円</span><span class="hk-pricing-price__tax">(税込)</span>
+          </h2>
+        </div>
 
-    <section id="price" class="py-24 bg-slate-100">
-      <div class="container mx-auto px-4 max-w-4xl text-center">
-        <h2 class="section-title">初回は、状態確認から丁寧に行います</h2>
-        <p class="font-bold text-slate-600 mb-10 max-w-2xl mx-auto">「自分に合うのか不安」という方にも安心してお越しいただけるよう、<br class="hidden md:block">初回はお悩みを伺いながら無理のない流れでご案内します。</p>
-        <p class="text-sm text-red-600 font-semibold text-center mb-4">
-          ※ 初回限定価格は予告なく終了する場合があります
+        <div class="hk-pricing-deadline">
+          <p><span data-deadline>近日中</span>まで</p>
+          <p><span data-total="6">6</span>名様限定割引</p>
+          <p class="hk-pricing-remaining" data-remaining>残り2名様</p>
+        </div>
+
+        <div class="hk-pricing-features" aria-label="初回で確認すること">
+          <div class="hk-pricing-feature">
+            <strong>初回施術費</strong>
+            <span>全額返金保証</span>
+          </div>
+          <div class="hk-pricing-feature">
+            <strong>痛みの原因を</strong>
+            <span>徹底解明</span>
+          </div>
+          <div class="hk-pricing-feature">
+            <strong>動き全体を</strong>
+            <span>プロが解析</span>
+          </div>
+        </div>
+
+        <div class="hk-pricing-actions">
+          <a href="tel:0471143274" class="hk-pricing-call" aria-label="電話で予約する 04-7114-3274">
+            <i data-lucide="phone-call" aria-hidden="true"></i>
+            <span>お電話でのご予約はこちら</span>
+            <small>04-7114-3274</small>
+          </a>
+          <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="hk-pricing-line">
+            <i data-lucide="message-circle" aria-hidden="true"></i>
+            <span>LINEで相談・予約する</span>
+          </a>
+        </div>
+
+        <div class="hk-pricing-info">
+          <p><strong>【受付時間】</strong>9:00〜19:00　<strong>【定休日】</strong>日曜</p>
+          <p>施術中は電話に出られないことがあります。後ほど折り返しお電話いたします。</p>
+        </div>
+
+        <p class="hk-pricing-note">
+          膝の痛みや不安を抱えている方へ。<br>
+          まずは今の状態を一緒に確認していきましょう。
         </p>
 
-        <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-[40px] p-8 md:p-16 shadow-2xl relative border-[6px] border-yellow-400">
-          <div class="bg-red-600 text-white inline-block px-8 py-2 rounded-full font-black text-sm md:text-base tracking-widest mb-6 shadow-lg">
-            LINEからのご相談・ご予約受付中
-          </div>
-
-          <h3 class="text-2xl md:text-4xl font-black mb-4">初回 カウンセリング＋全身整体</h3>
-          <p class="text-slate-300 font-bold mb-8">約60分（カウンセリング・状態確認・施術）</p>
-
-          <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 bg-black/30 py-8 rounded-3xl mb-8">
-            <div class="text-center">
-              <span class="text-sm font-bold text-slate-400 block mb-1">通常料金</span>
-              <span class="text-2xl font-bold line-through text-slate-400">10,000円</span>
-            </div>
-            <i data-lucide="arrow-right" class="hidden md:block w-8 h-8 text-yellow-400" aria-hidden="true"></i>
-            <i data-lucide="arrow-down" class="md:hidden w-6 h-6 text-yellow-400" aria-hidden="true"></i>
-            <div class="text-center">
-              <span class="text-sm font-bold text-yellow-400 block mb-1">初回特別価格</span>
-              <div class="flex items-baseline gap-2">
-                <span class="text-6xl md:text-7xl font-black text-yellow-400 leading-none">1,980</span>
-                <span class="text-xl font-bold text-white">円</span><span class="text-xs text-white">（税込）</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white/10 rounded-2xl p-5 mb-6 text-left border border-white/20">
-            <p class="text-sm font-black text-yellow-400 mb-3">2回目以降の料金について</p>
-            <p class="text-sm font-bold text-slate-200 leading-relaxed">
-              2回目以降は1回 <span class="text-white font-black text-base">10,000円</span>（税込）です。<br>
-              継続される方向けのプランは、初回カウンセリング時にお体の状態を確認したうえでご提案いたします。
-            </p>
-          </div>
-
-          <div class="bg-yellow-400/10 rounded-2xl p-5 mb-6 text-left border border-yellow-300/40">
-            <p class="text-sm font-black text-yellow-400 mb-3">初回1,980円にしている理由</p>
-            <p class="text-sm font-bold text-slate-100 leading-relaxed">
-              膝の痛みで外出や趣味をあきらめる前に、まずご自身の状態を知る機会を持ってほしいからです。院長が初回分の負担を一部引き受けてでも、相談しやすい入口を用意しています。無理な契約を前提にせず、納得してから次の通い方を一緒に考えます。
-            </p>
-          </div>
-
-          <div class="max-w-xl mx-auto text-left">
-            <p class="text-sm font-bold bg-white/10 p-4 rounded-xl border border-white/20 text-slate-100">初回はカウンセリングと状態確認を含めて、無理のない内容で進めます。</p>
-          </div>
-          <div class="mt-8 pt-8 border-t border-white/10">
-            <p class="text-sm font-bold text-slate-300 mb-4">「まず相談してみたい」という方も、LINEから気軽にご連絡ください。</p>
-            <div class="price-cta-grid">
-              <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white font-black py-4 rounded-xl text-lg shadow-md transition">
-                <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i> LINEで相談する
-              </a>
-              <a href="tel:0471143274" class="flex items-center justify-center gap-2 bg-white/10 text-white font-black py-4 rounded-xl text-lg border border-white/20 transition">
-                <i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i> 電話で相談する
-              </a>
-            </div>
-          </div>
-        </div>
+        <div class="hk-pricing-rule" aria-hidden="true"></div>
       </div>
     </section>
 
@@ -2193,66 +3099,54 @@
     </section>
   </main>
 
-  <footer class="bg-slate-900 text-slate-300 py-12 text-center md:pb-12 pb-32">
-    <div class="container mx-auto px-4">
-      <div class="bg-slate-900 rounded-2xl px-6 py-3 inline-block mb-4 border border-slate-700">
-        <span class="text-xl font-black text-white tracking-tight">整体院ひざこぞう</span>
+  <footer class="hk-footer-section">
+    <div class="hk-footer-line" aria-hidden="true"></div>
+    <div class="hk-footer-inner">
+      <div class="hk-footer-top">
+        <a href="#top" class="hk-footer-brand" aria-label="整体院ひざこぞう ページ上部へ">
+          <img src="image/hizakozou-logo-option2-mark.webp" alt="整体院ひざこぞう" class="hk-footer-brand-mark" width="160" height="160" loading="lazy" decoding="async">
+          <span class="hk-footer-brand-text" aria-hidden="true">
+            <span class="hk-footer-brand-eyebrow">柏市の膝痛専門整体院</span>
+            <span class="hk-footer-brand-name">整体院ひざこぞう</span>
+            <span class="hk-footer-brand-note">国家資格者による整体</span>
+          </span>
+        </a>
+
+        <address class="hk-footer-info">
+          <strong>膝痛専門整体院 ひざこぞう</strong>
+          <span>千葉県柏市あけぼの4-4-3 BoaSorte柏 305</span>
+          <span>千葉県柏市｜膝痛・慢性痛専門</span>
+          <span>完全予約制／受付時間：9:00〜19:00／定休日：日曜</span>
+          <a href="tel:0471143274">TEL：04-7114-3274</a>
+        </address>
       </div>
-      <p class="text-sm font-bold mb-8">千葉県柏市 / 膝痛・慢性痛専門</p>
-      <nav class="flex flex-wrap justify-center gap-6 text-sm font-bold mb-8" aria-label="フッターナビゲーション">
-        <a href="#troubles"   class="hover:text-white transition">お悩み</a>
-        <a href="#seo-guide"  class="hover:text-white transition">当院の考え方</a>
-        <a href="#flow"       class="hover:text-white transition">施術の流れ</a>
-        <a href="#profile"    class="hover:text-white transition">院長紹介</a>
-        <a href="#price"      class="hover:text-white transition">料金</a>
-        <a href="#faq"        class="hover:text-white transition">よくある質問</a>
-        <a href="#access"     class="hover:text-white transition">アクセス</a>
+
+      <nav class="hk-footer-nav" aria-label="フッターナビゲーション">
+        <a href="#top">ホーム</a>
+        <a href="#troubles">お悩み</a>
+        <a href="#seo-guide">当院の考え方</a>
+        <a href="#flow">施術の流れ</a>
+        <a href="#profile">院長紹介</a>
+        <a href="#price">料金</a>
+        <a href="#faq">よくある質問</a>
+        <a href="#access">アクセス</a>
+        <a href="#contact">ご予約・お問合せ</a>
       </nav>
-      
-      <div class="border-t border-slate-700 pt-8 mb-8 max-w-3xl mx-auto">
-        <p class="text-xs font-bold text-slate-500 tracking-widest mb-4">対応している症状</p>
-        <ul class="flex flex-wrap justify-center gap-x-6 gap-y-3 list-none">
-          <li><a href="symptoms/knee-osteoarthritis.html" class="text-xs hover:text-white transition">変形性膝関節症</a></li>
-          <li><a href="symptoms/knee-effusion.html" class="text-xs hover:text-white transition">膝の水（関節水腫）</a></li>
-          <li><a href="symptoms/knee-lateral-pain.html" class="text-xs hover:text-white transition">膝の外側の痛み</a></li>
-          <li><a href="symptoms/knee-posterior-pain.html" class="text-xs hover:text-white transition">膝の裏側の痛み</a></li>
-          <li><a href="symptoms/pes-anserine-bursitis.html" class="text-xs hover:text-white transition">膝の内側の痛み</a></li>
-          <li><a href="symptoms/knee-front-pain.html" class="text-xs hover:text-white transition">膝の前側の痛み</a></li>
-          <li><a href="symptoms/meniscus-knee-pain.html" class="text-xs hover:text-white transition">半月板損傷・膝の引っかかり</a></li>
-          <li><a href="symptoms/bowlegs-knee-pain.html" class="text-xs hover:text-white transition">O脚・膝のゆがみ</a></li>
-          <li><a href="symptoms/knee-hyperextension.html" class="text-xs hover:text-white transition">反張膝</a></li>
-          <li><a href="symptoms/ankle-stiffness-knee-pain.html" class="text-xs hover:text-white transition">足首の硬さと膝痛</a></li>
-          <li><a href="symptoms/lower-back-pain.html" class="text-xs hover:text-white transition">腰痛</a></li>
-          <li><a href="symptoms/sciatica.html" class="text-xs hover:text-white transition">坐骨神経痛</a></li>
-          <li><a href="symptoms/spinal-stenosis.html" class="text-xs hover:text-white transition">脊柱管狭窄症</a></li>
-          <li><a href="symptoms/lumbar-disc-herniation.html" class="text-xs hover:text-white transition">腰椎椎間板ヘルニア</a></li>
-          <li><a href="symptoms/scoliosis.html" class="text-xs hover:text-white transition">側弯症</a></li>
-          <li><a href="symptoms/frozen-shoulder.html" class="text-xs hover:text-white transition">五十肩</a></li>
-          <li><a href="symptoms/shoulder-stiffness.html" class="text-xs hover:text-white transition">肩こり</a></li>
-          <li><a href="symptoms/cervical-spondylosis.html" class="text-xs hover:text-white transition">頚椎症・首の痛み</a></li>
-          <li><a href="symptoms/thoracic-outlet.html" class="text-xs hover:text-white transition">胸郭出口症候群</a></li>
-          <li><a href="symptoms/elbow-tendinopathy.html" class="text-xs hover:text-white transition">肘の痛み（腱症）</a></li>
-          <li><a href="symptoms/hip-osteoarthritis.html" class="text-xs hover:text-white transition">変形性股関節症</a></li>
-          <li><a href="symptoms/plantar-fasciitis.html" class="text-xs hover:text-white transition">足底筋膜炎</a></li>
-          <li><a href="symptoms/carpal-tunnel.html" class="text-xs hover:text-white transition">手根管症候群</a></li>
-          <li><a href="symptoms/tmj.html" class="text-xs hover:text-white transition">顎関節症</a></li>
-        </ul>
+
+      <div class="hk-footer-symptoms">
+        <p class="hk-footer-symptoms-label">対応している主な症状</p>
+        <p>膝の痛み／変形性膝関節症／O脚／膝の水／半月板の不安／膝の引っかかり／腰痛／肩こり／首の痛み</p>
       </div>
 
-      <!-- Google ビジネスプロフィールの正式な口コミ導線 -->
-      <p class="text-sm font-bold text-slate-400 mb-3">
+      <p class="hk-footer-review">
         施術を受けた方のご感想をお待ちしています。
-        <a href="https://g.page/r/CblTNpd2gz_7EBM/review" class="text-blue-300 hover:text-white underline underline-offset-4 transition" target="_blank" rel="noopener noreferrer">Google口コミを書く</a>
-      </p>
-      <p class="text-xs text-slate-500 font-bold mb-8">
-        Google の口コミページが開きます。ご感想をお寄せいただけると励みになります。
+        <a href="https://g.page/r/CblTNpd2gz_7EBM" target="_blank" rel="noopener noreferrer">Google口コミを書く</a>
       </p>
 
-      <p class="text-[10px] text-slate-500 font-bold">
-        ※当サイトに掲載されているお客様の声は個人の感想であり、成果を保証するものではありません。<br><br>
-        © 2026 整体院ひざこぞう All Rights Reserved.
-      </p>
+      <p class="hk-footer-note">※当サイトに掲載されているお客様の声は個人の感想であり、成果を保証するものではありません。</p>
     </div>
+
+    <div class="hk-footer-copy">Copyright © 2026 整体院ひざこぞう All Rights Reserved.</div>
   </footer>
 
   <div id="lightbox" role="dialog" aria-modal="true" aria-label="画像拡大表示" class="fixed inset-0 z-[100] bg-slate-900/95 backdrop-blur-sm items-center justify-center p-4 opacity-0 transition-opacity duration-300" style="display:none;">

@@ -283,10 +283,64 @@ function setupSmoothScroll() {
 
       event.preventDefault();
       setMenuState(false);
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const headerOffset = header?.offsetHeight || 0;
+      const targetTop = target.getBoundingClientRect().top + window.pageYOffset - headerOffset - 16;
+      const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior: 'auto'
+      });
+      window.requestAnimationFrame(() => {
+        document.documentElement.style.scrollBehavior = previousScrollBehavior;
+      });
     });
   });
 }
+
+(() => {
+  const deadlineEl = document.querySelector('[data-deadline]');
+  const remainingEl = document.querySelector('[data-remaining]');
+  const totalEl = document.querySelector('[data-total]');
+  if (!deadlineEl && !remainingEl && !totalEl) return;
+
+  const WEEKS_CONFIG = [
+    { remaining: 2, total: 6 },
+    { remaining: 1, total: 6 },
+    { remaining: 3, total: 6 },
+    { remaining: 4, total: 6 }
+  ];
+
+  const now = new Date();
+  const daysUntilSaturday = (6 - now.getDay() + 7) % 7 || 7;
+  const deadline = new Date(now);
+  deadline.setDate(now.getDate() + daysUntilSaturday);
+
+  const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+  if (deadlineEl) {
+    deadlineEl.textContent = `${deadline.getMonth() + 1}月${deadline.getDate()}日(${weekdays[deadline.getDay()]})`;
+  }
+
+  const weekStart = new Date(now);
+  const daysSinceMonday = (now.getDay() + 6) % 7;
+  weekStart.setDate(now.getDate() - daysSinceMonday);
+  weekStart.setHours(0, 0, 0, 0);
+
+  const baseMonday = new Date(2026, 0, 5);
+  const msPerWeek = 7 * 24 * 60 * 60 * 1000;
+  const weekIndex = Math.floor((weekStart.getTime() - baseMonday.getTime()) / msPerWeek);
+  const config = WEEKS_CONFIG[((weekIndex % WEEKS_CONFIG.length) + WEEKS_CONFIG.length) % WEEKS_CONFIG.length];
+
+  if (totalEl) {
+    totalEl.dataset.total = String(config.total);
+    totalEl.textContent = String(config.total);
+  }
+
+  if (remainingEl) {
+    remainingEl.dataset.remaining = String(config.remaining);
+    remainingEl.textContent = `残り${config.remaining}名様`;
+  }
+})();
 
 async function hydrateBlogPreview() {
   const container = document.getElementById('blog-preview-container');
