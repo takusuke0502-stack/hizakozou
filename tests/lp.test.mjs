@@ -381,6 +381,23 @@ test("symptom pages avoid strong medical guarantee wording", () => {
   }
 });
 
+test("symptom pages self-host lucide instead of loading it from a third-party CDN", () => {
+  const symptomDir = path.join(repoRoot, "symptoms");
+
+  assert.equal(existsSync(path.join(repoRoot, "scripts", "vendor", "lucide.min.js")), true);
+
+  for (const fileName of readdirSync(symptomDir).filter((name) => name.endsWith(".html"))) {
+    const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
+
+    assert.doesNotMatch(symptomHtml, /https:\/\/unpkg\.com\/lucide/i, `${fileName} should not load lucide from unpkg`);
+    assert.match(
+      symptomHtml,
+      /<script src="\.\.\/scripts\/vendor\/lucide\.min\.js"><\/script>/,
+      `${fileName} should use the self-hosted lucide bundle`
+    );
+  }
+});
+
 test("blog sources and generated posts avoid strong medical guarantee wording", () => {
   const checkedFiles = [
     ...readdirSync(path.join(repoRoot, "content", "source"))
