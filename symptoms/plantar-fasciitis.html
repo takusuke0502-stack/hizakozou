@@ -174,10 +174,13 @@
 .related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .75rem}
 .related-symptoms__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
 .related-symptoms__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem}
-.related-symptom-card{display:flex;flex-direction:column;gap:.55rem;min-height:126px;background:#f8fbff;border:1px solid #dbeafe;border-radius:8px;padding:1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
+.related-symptom-card{position:relative;display:flex;flex-direction:column;gap:.55rem;min-height:126px;background:#f8fbff;border:1px solid #dbeafe;border-radius:8px;padding:1rem 3.25rem 1rem 1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
 .related-symptom-card:hover,.related-symptom-card:focus-visible{transform:translateY(-2px);background:#fff;border-color:#93c5fd;box-shadow:0 8px 18px rgba(37,99,235,.1);outline:none}
 .related-symptom-card__label{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
 .related-symptom-card__description{font-size:13px;font-weight:700;color:#475569;line-height:1.75}
+.related-symptom-card__arrow{position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#f8fbff;border:1px solid #dbeafe;color:#2563eb;font-size:22px;font-weight:900;line-height:1;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
+.related-symptom-card:hover .related-symptom-card__arrow,.related-symptom-card:focus-visible .related-symptom-card__arrow{background:#2563eb;border-color:#2563eb;color:#fff;transform:translateY(-50%) translateX(2px)}
+@media(max-width:640px){.related-symptom-card{padding-right:3rem}.related-symptom-card__arrow{right:.85rem;width:30px;height:30px;font-size:20px}}
 .symptom-mid-cta{padding:2.75rem 1rem;background:#fff;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
 .symptom-mid-cta__inner{display:grid;gap:1.25rem;align-items:center;background:#f8fbff;border:1px solid #bfdbfe;border-radius:8px;padding:1.5rem}
 .symptom-mid-cta__eyebrow{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
@@ -563,34 +566,42 @@
           <a class="related-symptom-card" href="knee-osteoarthritis.html">
             <span class="related-symptom-card__label">変形性膝関節症でお悩みの方へ</span>
             <span class="related-symptom-card__description">歩き始めや階段で膝痛が続く方へ。</span>
+            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
           <a class="related-symptom-card" href="knee-effusion.html">
             <span class="related-symptom-card__label">膝に水がたまる・腫れぼったい方へ</span>
             <span class="related-symptom-card__description">膝の腫れや重さが気になる方へ。</span>
+            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
           <a class="related-symptom-card" href="pes-anserine-bursitis.html">
             <span class="related-symptom-card__label">膝の内側が痛い・鵞足炎が気になる方へ</span>
             <span class="related-symptom-card__description">内側やや下の痛みを整理したい方へ。</span>
+            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
           <a class="related-symptom-card" href="knee-lateral-pain.html">
             <span class="related-symptom-card__label">膝の外側が痛い方へ</span>
             <span class="related-symptom-card__description">歩くと外側が張る、違和感が出る方へ。</span>
+            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
           <a class="related-symptom-card" href="knee-posterior-pain.html">
             <span class="related-symptom-card__label">膝の裏が痛い・腫れる方へ</span>
             <span class="related-symptom-card__description">膝裏の張りや曲げ伸ばしの重さが気になる方へ。</span>
+            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
           <a class="related-symptom-card" href="knee-front-pain.html">
             <span class="related-symptom-card__label">膝の前側・お皿まわりが痛い方へ</span>
             <span class="related-symptom-card__description">階段や立ち上がりで前側が気になる方へ。</span>
+            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
           <a class="related-symptom-card" href="meniscus-knee-pain.html">
             <span class="related-symptom-card__label">半月板損傷・膝の引っかかりが気になる方へ</span>
             <span class="related-symptom-card__description">曲げ伸ばしの違和感や不安がある方へ。</span>
+            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
           <a class="related-symptom-card" href="bowlegs-knee-pain.html">
             <span class="related-symptom-card__label">O脚・膝のゆがみが気になる方へ</span>
             <span class="related-symptom-card__description">膝の内側に負担が集まりやすい方へ。</span>
+            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
         </div>
       </div>
