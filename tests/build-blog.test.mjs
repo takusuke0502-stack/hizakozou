@@ -350,3 +350,60 @@ test("checked-in generated blog posts stay in sync with box-type rules", () => {
   assert.match(hipWhileWalkingHtml, /article-section point-box/);
   assert.match(hipWhileWalkingHtml, /article-section note-box/);
 });
+
+test("generated blog pages use canonical root links instead of index.html", () => {
+  const blogIndexHtml = readFileSync(new URL("../blog/index.html", import.meta.url), "utf8");
+  const dailyCareHtml = readFileSync(new URL("../blog/posts/knee-pain-daily-care/index.html", import.meta.url), "utf8");
+
+  for (const [pageName, pageHtml] of [
+    ["blog/index.html", blogIndexHtml],
+    ["blog/posts/knee-pain-daily-care/index.html", dailyCareHtml]
+  ]) {
+    assert.doesNotMatch(pageHtml, /(?:\.\.\/)+index\.html/, `${pageName} should not link to index.html`);
+    assert.doesNotMatch(pageHtml, /\/index\.html/, `${pageName} should not link to /index.html`);
+  }
+
+  assert.match(blogIndexHtml, /href="\/#access"/);
+  assert.match(blogIndexHtml, /href="\/#symptoms"/);
+  assert.match(dailyCareHtml, /<a href="\/">トップ<\/a>/);
+  assert.match(dailyCareHtml, /href="\/#symptoms"/);
+});
+
+test("knee-pain-daily-care article is indexable and aligned with squatting and seiza intent", () => {
+  const html = readFileSync(new URL("../blog/posts/knee-pain-daily-care/index.html", import.meta.url), "utf8");
+
+  assert.match(html, /<meta name="robots" content="index,follow">/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/blog\/posts\/knee-pain-daily-care\/">/);
+  assert.match(html, /<title>[^<]*しゃがむ・正座で膝が痛い[^<]*<\/title>/);
+  assert.match(html, /<h1>[^<]*しゃがむ・正座で膝が痛い[^<]*<\/h1>/);
+
+  const expectedSections = [
+    "しゃがむと膝が痛いときに多いパターン",
+    "正座で膝が痛いときに確認したいこと",
+    "立ち上がりで膝に負担が集まりやすい理由",
+    "整体院ひざこぞうで確認しているポイント",
+    "医療機関を優先した方がよいサイン",
+    "柏市でしゃがむ・正座の膝痛に悩む方への相談導線"
+  ];
+
+  for (const section of expectedSections) {
+    assert.equal(html.includes(section), true, `article should include section: ${section}`);
+  }
+});
+
+test("sitemap lists only canonical indexable URLs", () => {
+  const sitemap = readFileSync(new URL("../sitemap.xml", import.meta.url), "utf8");
+  const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+
+  assert.ok(locs.includes("https://hizakozou.jp/"));
+  assert.ok(locs.includes("https://hizakozou.jp/blog/"));
+  assert.ok(locs.includes("https://hizakozou.jp/blog/posts/knee-pain-daily-care/"));
+  assert.equal(locs.some((loc) => loc.endsWith("/index.html") || loc.endsWith("/blog.html")), false);
+  assert.equal(new Set(locs).size, locs.length);
+});
+
+test("blog data site anchors use the canonical home URL", () => {
+  const data = JSON.parse(readFileSync(new URL("../data/blog-posts.json", import.meta.url), "utf8"));
+
+  assert.equal(data.site.contactAnchor, "/#contact");
+});

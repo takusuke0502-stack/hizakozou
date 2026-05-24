@@ -193,6 +193,7 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const blogData = await readJson(dataPath);
   validateBlogData(blogData);
+  normalizeSiteConfig(blogData.site);
 
   const sourceFiles = await collectSourceFiles(args);
   const symptomLookup = buildSymptomLookup(blogData.posts);
@@ -481,7 +482,7 @@ function buildRelatedSymptoms(value, symptomLookup) {
 function createFallbackSymptom(label) {
   return {
     label,
-    href: "/index.html#symptoms",
+    href: "/#symptoms",
     description: "関連する症状ページはご相談時にご案内しています。"
   };
 }
@@ -492,7 +493,7 @@ function buildSymptomLookup(posts) {
   for (const post of posts) {
     for (const symptom of post.relatedSymptoms || []) {
       if (!symptom?.label || !symptom?.href) continue;
-      if (lookup.has(symptom.label) || symptom.href === "/index.html#symptoms") continue;
+      if (lookup.has(symptom.label) || symptom.href === "/index.html#symptoms" || symptom.href === "/#symptoms") continue;
       lookup.set(symptom.label, {
         label: symptom.label,
         href: symptom.href,
@@ -736,6 +737,13 @@ async function writeJson(filePath, value) {
 function validateBlogData(data) {
   if (!data?.site || !Array.isArray(data?.categories) || !Array.isArray(data?.posts)) {
     throw new Error("data/blog-posts.json must include site, categories, and posts.");
+  }
+}
+
+function normalizeSiteConfig(site) {
+  if (!site || typeof site !== "object") return;
+  if (site.contactAnchor === "/index.html#contact") {
+    site.contactAnchor = "/#contact";
   }
 }
 

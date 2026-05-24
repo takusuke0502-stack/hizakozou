@@ -35,7 +35,7 @@ replaceSlug: pes-anserine-bursitis-knee-inner-pain
 
 膝の内側の痛みが続いている方は、[膝の内側の痛み・鵞足炎の相談ページ](/symptoms/pes-anserine-bursitis.html)も参考にしてください。
 
-歩き始めや階段の痛み、膝のこわばりもある場合は、[変形性膝関節症の相談ページ](/symptoms/knee-osteoarthritis.html)の確認ポイントも参考になります。しゃがむ・正座・立ち上がりで内側が痛む方は、[日常動作で起こる膝痛の記事](/blog/posts/knee-pain-daily-care/)もあわせて見ると、負担が集まりやすい動作を整理しやすくなります。
+歩き始めや階段の痛み、膝のこわばりもある場合は、[変形性膝関節症の相談ページ](/symptoms/knee-osteoarthritis.html)の確認ポイントも参考になります。しゃがむ・正座・立ち上がりで内側が痛む方は、[立ち上がりで膝が痛い方へ](/blog/posts/knee-pain-daily-care/)の記事もあわせて見ると、負担が集まりやすい動作を整理しやすくなります。
 
 ## なぜ鵞足炎は起きるのか
 

@@ -90,6 +90,12 @@ test("LP follows the new section order for the knee-pain explanation flow", () =
   }
 });
 
+test("LP canonicalizes direct index.html visits to the root URL", () => {
+  assert.match(html, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/">/);
+  assert.match(html, /window\.location\.pathname\.endsWith\("\/index\.html"\)/);
+  assert.match(html, /window\.location\.replace\(canonicalPath \+ window\.location\.search \+ window\.location\.hash\)/);
+});
+
 test("LP local image assets resolve to existing files", () => {
   const localRefs = getLocalImageReferences();
 
