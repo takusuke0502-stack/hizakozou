@@ -180,6 +180,7 @@ test("normalizeSymptomPageDesign replaces inline symptom navigation and footer c
   });
 
   assert.match(output, /class="related-symptoms"/);
+  assert.match(output, /<span class="related-symptom-card__arrow" aria-hidden="true">›<\/span>/);
   assert.match(output, /class="symptom-footer"/);
   assert.doesNotMatch(output, /onmouseover/);
   assert.doesNotMatch(output, /style="display:flex;"/);

@@ -398,6 +398,27 @@ test("symptom pages self-host lucide instead of loading it from a third-party CD
   }
 });
 
+test("symptom related cards show an absolute arrow affordance without extra CTA text", () => {
+  const symptomDir = path.join(repoRoot, "symptoms");
+  const arrowPattern = /<span class="related-symptom-card__arrow" aria-hidden="true">›<\/span>/g;
+
+  assert.match(buildBlogScript, /\.related-symptom-card\{[^}]*position:relative[^}]*padding:1rem 3\.25rem 1rem 1rem/);
+  assert.match(buildBlogScript, /\.related-symptom-card__arrow\{[^}]*position:absolute[^}]*right:1rem[^}]*top:50%/);
+  assert.match(buildBlogScript, /\.related-symptom-card:hover \.related-symptom-card__arrow,/);
+  assert.match(buildBlogScript, /@media\(max-width:640px\)\{\.related-symptom-card\{padding-right:3rem\}\.related-symptom-card__arrow\{right:\.85rem;width:30px;height:30px;font-size:20px\}\}/);
+
+  for (const fileName of readdirSync(symptomDir).filter((name) => name.endsWith(".html"))) {
+    const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
+    const relatedSection = symptomHtml.match(/<section class="related-symptoms">[\s\S]*?<\/section>/)?.[0] ?? "";
+    const cardCount = (relatedSection.match(/class="related-symptom-card"/g) ?? []).length;
+    const arrowCount = (relatedSection.match(arrowPattern) ?? []).length;
+
+    assert.ok(cardCount > 0, `${fileName} should render related symptom cards`);
+    assert.equal(arrowCount, cardCount, `${fileName} should add one arrow to each related symptom card`);
+    assert.doesNotMatch(relatedSection, />詳しく見る<|>症状ページを見る</, `${fileName} should not add CTA text`);
+  }
+});
+
 test("blog sources and generated posts avoid strong medical guarantee wording", () => {
   const checkedFiles = [
     ...readdirSync(path.join(repoRoot, "content", "source"))
