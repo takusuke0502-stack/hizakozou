@@ -649,7 +649,7 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 12px 40px 12px 12px;
+      padding: 12px 36px 12px 12px;
       border: 1px solid #dce9e2;
       border-radius: var(--border-radius-md, 14px);
       background: var(--symptom-bg);
@@ -712,16 +712,16 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
 
     .symptom-link-card__arrow,
     .symptom-row-link__arrow {
-      width: 26px;
-      height: 26px;
-      flex: 0 0 26px;
+      width: 22px;
+      height: 22px;
+      flex: 0 0 22px;
       display: grid;
       place-items: center;
       border: 1px solid #d7e4dc;
       border-radius: 50%;
       background: #f8fbf9;
       color: #2f7d5b;
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 900;
       line-height: 1;
       transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
@@ -729,7 +729,7 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
 
     .symptom-link-card__arrow {
       position: absolute;
-      right: 10px;
+      right: 9px;
       top: 50%;
       transform: translateY(-50%);
     }
@@ -790,7 +790,7 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
       background: var(--symptom-green);
       border-color: var(--symptom-green);
       color: #fff;
-      transform: translateY(-50%) translateX(2px);
+      transform: translateY(-50%) translateX(1px);
     }
 
     .symptom-row-link:hover .symptom-row-link__arrow,
@@ -798,7 +798,7 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
       background: var(--symptom-green);
       border-color: var(--symptom-green);
       color: #fff;
-      transform: translateX(2px);
+      transform: translateX(1px);
     }
 
     @media (min-width: 768px) {
@@ -859,7 +859,7 @@ body { font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.04em; line-he
 
       .symptom-link-card {
         min-height: 62px;
-        padding: 10px 38px 10px 10px;
+        padding: 10px 34px 10px 10px;
       }
 
       .symptom-link-card__mark {
