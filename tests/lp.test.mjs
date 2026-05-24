@@ -527,6 +527,23 @@ test("LP keeps knee-type navigation ahead of the price section", () => {
   assert.match(html, /href="symptoms\/knee-posterior-pain\.html"/);
 });
 
+test("LP symptom finder cards show compact arrow affordances", () => {
+  const finderSection = getSectionSlice('id="knee-type-nav"', 'id="price"');
+  const linkCardCount = (finderSection.match(/class="symptom-link-card"/g) ?? []).length;
+  const rowLinkCount = (finderSection.match(/class="symptom-row-link"/g) ?? []).length;
+
+  assert.equal(linkCardCount, 10, "symptom finder should keep the same compact card set");
+  assert.equal(rowLinkCount, 11, "symptom finder should keep the same row card set");
+  assert.equal((finderSection.match(/class="symptom-link-card__arrow"/g) ?? []).length, linkCardCount);
+  assert.equal((finderSection.match(/class="symptom-row-link__arrow"/g) ?? []).length, rowLinkCount);
+  assert.doesNotMatch(finderSection, /詳しく見る|症状ページを見る/);
+  assert.doesNotMatch(finderSection, /data-lucide="chevron-right"/);
+
+  assert.match(mainCss, /\.symptom-link-card\s*\{[^}]*position:\s*relative[^}]*padding:\s*12px 40px 12px 12px/s);
+  assert.match(mainCss, /\.symptom-link-card__arrow\s*\{[^}]*position:\s*absolute[^}]*right:\s*10px[^}]*top:\s*50%/s);
+  assert.match(mainCss, /\.symptom-link-card__arrow,\s*\.symptom-row-link__arrow\s*\{[^}]*width:\s*26px[^}]*height:\s*26px/s);
+});
+
 test("LP removes the duplicate broader symptom directory", () => {
   const betweenTypeNavAndPrice = getSectionSlice('id="knee-type-nav"', 'id="price"');
 
