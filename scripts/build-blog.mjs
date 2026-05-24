@@ -60,7 +60,7 @@ const relatedKneeConcernItems = [
   { href: "knee-hyperextension.html", label: "反張膝・膝が伸びすぎる方へ", description: "立つと膝が後ろへ入りやすい方へ。" },
   { href: "ankle-stiffness-knee-pain.html", label: "足首の硬さと膝痛が気になる方へ", description: "足元から膝の負担を整理したい方へ。" },
   { href: "../blog/posts/walking-start-knee-pain-cause/", label: "歩き始めに膝が痛い方へ", description: "立ち上がりや一歩目の痛みを整理した記事です。" },
-  { href: "../blog/posts/knee-pain-daily-care/", label: "しゃがむ・正座で膝が痛い方へ", description: "日常動作で膝に負担が集まる理由を整理します。" },
+  { href: "../blog/posts/knee-pain-daily-care/", label: "しゃがむと膝が痛い方はこちら", description: "正座や立ち上がりも含めて、日常動作で膝に負担が集まる理由を整理します。" },
   { href: "../blog/posts/hip-stiffness-knee-low-back-pain-relation/", label: "股関節や足首の硬さと膝痛の関係", description: "膝だけでなく周辺の動きも確認したい方へ。" }
 ];
 
@@ -340,9 +340,9 @@ export async function buildBlog() {
   const indexHtml = renderTemplate(indexTemplate, {
     SEO_HEAD: buildIndexSeo(blogData.site),
     CSS_PATH: "assets/blog.css",
-    HOME_PATH: "../index.html",
+    HOME_PATH: "/",
     BLOG_PATH: "./",
-    CONTACT_PATH: "../index.html#access",
+    CONTACT_PATH: "/#access",
     PHONE: blogData.site.phone,
     PHONE_HREF: `tel:${blogData.site.phone.replace(/-/g, "")}`,
     SITE_NAME: blogData.site.name,
@@ -360,9 +360,9 @@ export async function buildBlog() {
       const postHtml = renderTemplate(postTemplate, {
         SEO_HEAD: buildPostSeo(blogData.site, post),
         CSS_PATH: "../../assets/blog.css",
-        HOME_PATH: "../../../index.html",
+        HOME_PATH: "/",
         BLOG_PATH: "../../",
-        CONTACT_PATH: "../../../index.html#access",
+        CONTACT_PATH: "/#access",
         PHONE: blogData.site.phone,
         PHONE_HREF: `tel:${blogData.site.phone.replace(/-/g, "")}`,
         SITE_NAME: blogData.site.name,
@@ -1132,6 +1132,7 @@ function buildIndexSeo(site) {
   return [
     `<title>${escapeHtml(site.blogTitle)} | ${escapeHtml(site.name)}</title>`,
     `<meta name="description" content="${escapeHtml(site.blogDescription)}">`,
+    `<meta name="robots" content="index,follow">`,
     `<link rel="canonical" href="${canonical}">`,
     `<meta property="og:locale" content="ja_JP">`,
     `<meta property="og:type" content="website">`,
@@ -1157,6 +1158,7 @@ function buildPostSeo(site, post) {
   return [
     `<title>${escapeHtml(post.title)} | ${escapeHtml(site.name)}</title>`,
     `<meta name="description" content="${escapeHtml(post.description)}">`,
+    `<meta name="robots" content="index,follow">`,
     `<link rel="canonical" href="${canonical}">`,
     `<meta property="og:locale" content="ja_JP">`,
     `<meta property="og:type" content="article">`,
@@ -1247,8 +1249,8 @@ export function buildIndexContent(site, posts, categoryMap) {
           <h1>${escapeHtml(site.blogTitle)}</h1>
           <p class="hero-copy__lead">${escapeHtml(site.blogDescription)}</p>
           <div class="hero-actions">
-            <a class="button button--primary" href="../index.html#access">LINEで相談する</a>
-            <a class="button button--soft" href="../index.html#symptoms">症状ページを見る</a>
+            <a class="button button--primary" href="/#access">LINEで相談する</a>
+            <a class="button button--soft" href="/#symptoms">症状ページを見る</a>
           </div>
         </div>
       </div>
@@ -1288,7 +1290,7 @@ export function buildIndexContent(site, posts, categoryMap) {
         </div>
         <div class="cta-band__actions">
           <a class="button button--primary" href="${escapeHtml(site.cta.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(site.cta.label)}</a>
-          <a class="button button--soft" href="../index.html#price">初回案内を見る</a>
+          <a class="button button--soft" href="/#price">初回案内を見る</a>
         </div>
       </div>
     </section>
@@ -1374,7 +1376,7 @@ export function buildPostContent(site, post, relatedPosts) {
     <section class="article-hero-wrap">
       <div class="shell">
         <nav class="breadcrumb" aria-label="パンくず">
-          <a href="../../../index.html">トップ</a>
+          <a href="/">トップ</a>
           <span>/</span>
           <a href="../../">ブログ</a>
           <span>/</span>
@@ -1417,7 +1419,7 @@ export function buildPostContent(site, post, relatedPosts) {
           <div class="side-card">
             <p class="side-card__eyebrow">一覧へ</p>
             <a class="text-link text-link--block" href="../../">ブログ一覧に戻る</a>
-            <a class="text-link text-link--block" href="../../../index.html#symptoms">症状ページを見る</a>
+            <a class="text-link text-link--block" href="/#symptoms">症状ページを見る</a>
           </div>
         </aside>
       </div>
