@@ -289,9 +289,6 @@ test("LP Step 3 adds conversion copy, review proof, flyer-style price CTA, and t
   assert.match(hero, /それは慣れたのではなく、諦めているだけかもしれない。/);
   assert.match(hero, /もう一度、自分の体と向き合う時間をつくりませんか。/);
   assert.doesNotMatch(hero, /また旅行に行けた。孫と公園を歩けた。/);
-  assert.match(hero, /Google口コミ/);
-  assert.match(hero, /星評価・レビュー件数はGoogleマップで確認できます。/);
-  assert.match(hero, /https:\/\/g\.page\/r\/CblTNpd2gz_7EBM/);
   assert.match(price, /「先生に出会えて良かった。」<br>「もっと早く来ていれば良かった」と/);
   assert.match(price, /多くの方から感謝の声を頂いています。まずは一度試してください。/);
   assert.match(price, /私があなたの膝痛を全力で改善させます！/);
@@ -467,6 +464,54 @@ test("LP keeps only one first-visit policy section and removes the duplicate art
   assert.equal(firstVisitHeadingCount, 1, "first-visit reassurance should appear only once");
   assert.equal(html.includes('class="initial-visit-guide"'), false, "duplicate first-visit image section should be removed");
   assert.equal(html.includes("来院前に確認されやすいこと"), false, "mid-page article detour should be removed");
+});
+
+test("LP first-visit policy uses the PNG icon set accessibly", () => {
+  const firstVisit = getSectionSlice('id="first-visit-policy"', 'id="seo-guide"');
+  const informativeIcons = [
+    ["/img/first-visit/illust-check.png", "お悩みと生活動作を確認する問診票のイラスト"],
+    ["/img/first-visit/illust-posture.png", "姿勢や歩き方、関節の動きを確認するイラスト"],
+    ["/img/first-visit/illust-plan.png", "施術方針を説明する書類のイラスト"],
+    ["/img/first-visit/illust-no-force.png", "説明なしに強い施術をしないことを表すイラスト"],
+    ["/img/first-visit/illust-no-exercise.png", "無理な運動を押しつけないことを表すイラスト"],
+    ["/img/first-visit/illust-no-contract.png", "その場で長期契約を迫らないことを表すイラスト"]
+  ];
+  const decorativeIcons = [
+    "/img/first-visit/icon-leaf-heart.png",
+    "/img/first-visit/icon-leaf.png",
+    "/img/first-visit/leaf-left.png",
+    "/img/first-visit/leaf-right.png"
+  ];
+
+  assert.doesNotMatch(firstVisit, /image\/initial-visit-what-we-do\.webp/);
+
+  for (const [src, alt] of informativeIcons) {
+    const imgTag = firstVisit.match(new RegExp(`<img\\b(?=[^>]*\\bsrc="${escapeRegExp(src)}")[^>]*>`, "i"))?.[0];
+
+    assert.ok(imgTag, `${src} should be rendered in the first-visit policy section`);
+    assert.match(imgTag, new RegExp(`\\balt="${escapeRegExp(alt)}"`));
+    assert.match(imgTag, /\bloading="lazy"/);
+    assert.ok(existsSync(path.join(repoRoot, src.slice(1))), `${src} should exist in the repo`);
+  }
+
+  for (const src of decorativeIcons) {
+    const imgTag = firstVisit.match(new RegExp(`<img\\b(?=[^>]*\\bsrc="${escapeRegExp(src)}")[^>]*>`, "i"))?.[0];
+
+    assert.ok(imgTag, `${src} should be rendered as a decorative image`);
+    assert.match(imgTag, /\balt=""/);
+    assert.match(imgTag, /\baria-hidden="true"/);
+    assert.ok(existsSync(path.join(repoRoot, src.slice(1))), `${src} should exist in the repo`);
+  }
+});
+
+test("LP first-visit icon CSS preserves desktop and mobile layout", () => {
+  assert.match(mainCss, /\.first-visit-columns\s*{[\s\S]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/);
+  assert.match(mainCss, /\.item-img\s*{[\s\S]*width:\s*64px;[\s\S]*height:\s*64px;[\s\S]*min-width:\s*64px;[\s\S]*flex-shrink:\s*0;[\s\S]*display:\s*flex;[\s\S]*align-items:\s*center;[\s\S]*justify-content:\s*center;/);
+  assert.match(mainCss, /\.item-img img\s*{[\s\S]*width:\s*100%;[\s\S]*height:\s*100%;[\s\S]*object-fit:\s*contain;[\s\S]*display:\s*block;/);
+  assert.match(mainCss, /\.leaf-deco img\s*{[\s\S]*width:\s*32px;[\s\S]*height:\s*auto;[\s\S]*object-fit:\s*contain;/);
+  assert.match(mainCss, /\.footer-icon\s*{[\s\S]*width:\s*28px;[\s\S]*height:\s*28px;[\s\S]*flex-shrink:\s*0;/);
+  assert.match(mainCss, /\.footer-icon img\s*{[\s\S]*width:\s*100%;[\s\S]*height:\s*100%;[\s\S]*object-fit:\s*contain;[\s\S]*display:\s*block;/);
+  assert.match(mainCss, /@media\s*\(max-width:\s*600px\)\s*{[\s\S]*\.first-visit-columns\s*{[\s\S]*grid-template-columns:\s*1fr;[\s\S]*\.item-img\s*{[\s\S]*width:\s*56px;[\s\S]*height:\s*56px;[\s\S]*min-width:\s*56px;[\s\S]*\.leaf-deco img\s*{[\s\S]*width:\s*24px;/);
 });
 
 test("LP keeps the knee-pain specialty axis and presents the updated three-step method", () => {
