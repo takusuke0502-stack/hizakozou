@@ -504,14 +504,51 @@ test("LP first-visit policy uses the PNG icon set accessibly", () => {
   }
 });
 
+test("LP first-visit policy keeps six detailed item rows", () => {
+  const firstVisit = getSectionSlice('id="first-visit-policy"', 'id="seo-guide"');
+  const doCard = getSectionSlice('class="card card-do"', 'class="card card-dont"');
+  const dontCard = getSectionSlice('class="card card-dont"', 'id="seo-guide"');
+  const expectedRows = [
+    ["1", "お悩みと<br>生活動作の確認", "いつから、どこが、どんな時につらいのかを丁寧にお伺いします。", "/img/first-visit/illust-check.png"],
+    ["2", "姿勢・歩き方・<br>関節の動きの確認", "お体の状態を検査し、原因を見つけていきます。", "/img/first-visit/illust-posture.png"],
+    ["3", "施術方針の説明", "検査結果をもとに、わかりやすく今後の方針や見通しをご説明します。", "/img/first-visit/illust-plan.png"],
+    ["1", "説明なしに<br>強い施術をしない", "お体の状態を確認し、同意を得てから施術を行います。", "/img/first-visit/illust-no-force.png"],
+    ["2", "無理な運動を<br>押しつけない", "お一人おひとりの状態に合わせて、できることからご提案します。", "/img/first-visit/illust-no-exercise.png"],
+    ["3", "その場で長期契約を<br>迫らない", "必要な方に必要なご提案をします。ご納得いただいてからご検討ください。", "/img/first-visit/illust-no-contract.png"]
+  ];
+
+  assert.doesNotMatch(firstVisit, /first-visit-icons/);
+  assert.match(firstVisit, /class="columns"/);
+  assert.match(firstVisit, /<span class="card-title">初回で行うこと<\/span>/);
+  assert.match(firstVisit, /<span class="card-title">当院がしないこと<\/span>/);
+  assert.equal((firstVisit.match(/class="item"/g) ?? []).length, 6, "first-visit policy should render six item rows");
+  assert.equal((doCard.match(/class="item"/g) ?? []).length, 3, "left card should render three item rows");
+  assert.equal((dontCard.match(/class="item"/g) ?? []).length, 3, "right card should render three item rows");
+
+  for (const [number, title, description, src] of expectedRows) {
+    const pattern = new RegExp(
+      `<div class="item">\\s*<span class="item-num">${number}<\\/span>\\s*<div class="item-body">\\s*<p class="item-title">${escapeRegExp(title)}<\\/p>\\s*<p class="item-desc">${escapeRegExp(description)}<\\/p>\\s*<\\/div>\\s*<div class="item-img">\\s*<img\\b(?=[^>]*\\bsrc="${escapeRegExp(src)}")[^>]*\\bloading="lazy"[^>]*>\\s*<\\/div>\\s*<\\/div>`,
+      "i"
+    );
+
+    assert.match(firstVisit, pattern, `${src} should be paired with its own numbered item`);
+  }
+});
+
 test("LP first-visit icon CSS preserves desktop and mobile layout", () => {
-  assert.match(mainCss, /\.first-visit-columns\s*{[\s\S]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/);
-  assert.match(mainCss, /\.item-img\s*{[\s\S]*width:\s*64px;[\s\S]*height:\s*64px;[\s\S]*min-width:\s*64px;[\s\S]*flex-shrink:\s*0;[\s\S]*display:\s*flex;[\s\S]*align-items:\s*center;[\s\S]*justify-content:\s*center;/);
+  assert.match(mainCss, /\.columns\s*{[\s\S]*display:\s*grid;[\s\S]*grid-template-columns:\s*1fr 1fr;[\s\S]*gap:\s*16px;/);
+  assert.match(mainCss, /\.card\s*{[\s\S]*border-radius:\s*16px;[\s\S]*padding:\s*20px 20px 16px;/);
+  assert.match(mainCss, /\.item\s*{[\s\S]*display:\s*flex;[\s\S]*align-items:\s*flex-start;[\s\S]*gap:\s*12px;[\s\S]*padding:\s*12px 0;[\s\S]*border-bottom:\s*1px solid;/);
+  assert.match(mainCss, /\.item-num\s*{[\s\S]*width:\s*28px;[\s\S]*height:\s*28px;[\s\S]*border-radius:\s*50%;[\s\S]*font-size:\s*14px;[\s\S]*font-weight:\s*700;[\s\S]*display:\s*flex;[\s\S]*align-items:\s*center;[\s\S]*justify-content:\s*center;[\s\S]*flex-shrink:\s*0;[\s\S]*margin-top:\s*2px;/);
+  assert.match(mainCss, /\.item-body\s*{[\s\S]*flex:\s*1;[\s\S]*min-width:\s*0;/);
+  assert.match(mainCss, /\.item-title\s*{[\s\S]*font-size:\s*15px;[\s\S]*font-weight:\s*700;[\s\S]*line-height:\s*1\.5;[\s\S]*margin-bottom:\s*4px;/);
+  assert.match(mainCss, /\.item-desc\s*{[\s\S]*font-size:\s*12px;[\s\S]*line-height:\s*1\.7;/);
+  assert.match(mainCss, /\.item-img\s*{[\s\S]*width:\s*64px;[\s\S]*height:\s*64px;[\s\S]*flex-shrink:\s*0;[\s\S]*display:\s*flex;[\s\S]*align-items:\s*center;[\s\S]*justify-content:\s*center;/);
   assert.match(mainCss, /\.item-img img\s*{[\s\S]*width:\s*100%;[\s\S]*height:\s*100%;[\s\S]*object-fit:\s*contain;[\s\S]*display:\s*block;/);
   assert.match(mainCss, /\.leaf-deco img\s*{[\s\S]*width:\s*32px;[\s\S]*height:\s*auto;[\s\S]*object-fit:\s*contain;/);
   assert.match(mainCss, /\.footer-icon\s*{[\s\S]*width:\s*28px;[\s\S]*height:\s*28px;[\s\S]*flex-shrink:\s*0;/);
   assert.match(mainCss, /\.footer-icon img\s*{[\s\S]*width:\s*100%;[\s\S]*height:\s*100%;[\s\S]*object-fit:\s*contain;[\s\S]*display:\s*block;/);
-  assert.match(mainCss, /@media\s*\(max-width:\s*600px\)\s*{[\s\S]*\.first-visit-columns\s*{[\s\S]*grid-template-columns:\s*1fr;[\s\S]*\.item-img\s*{[\s\S]*width:\s*56px;[\s\S]*height:\s*56px;[\s\S]*min-width:\s*56px;[\s\S]*\.leaf-deco img\s*{[\s\S]*width:\s*24px;/);
+  assert.match(mainCss, /@media\s*\(max-width:\s*600px\)\s*{[\s\S]*\.columns\s*{[\s\S]*grid-template-columns:\s*1fr;[\s\S]*\.item-img\s*{[\s\S]*width:\s*56px;[\s\S]*height:\s*56px;[\s\S]*\.leaf-deco img\s*{[\s\S]*width:\s*24px;/);
 });
 
 test("LP keeps the knee-pain specialty axis and presents the updated three-step method", () => {
