@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -10,6 +10,34 @@ const mainJs = readFileSync(new URL("../scripts/main.js", import.meta.url), "utf
 const mainCss = readFileSync(new URL("../styles/main.css", import.meta.url), "utf8");
 const buildBlogScript = readFileSync(new URL("../scripts/build-blog.mjs", import.meta.url), "utf8");
 const generateBlogScript = readFileSync(new URL("../scripts/generate-blog.mjs", import.meta.url), "utf8");
+const trackingConfigPath = path.join(repoRoot, "scripts", "tracking-config.js");
+const trackingJsPath = path.join(repoRoot, "scripts", "tracking.js");
+const trackingConfig = existsSync(trackingConfigPath) ? readFileSync(trackingConfigPath, "utf8") : "";
+const trackingJs = existsSync(trackingJsPath) ? readFileSync(trackingJsPath, "utf8") : "";
+
+function walkFiles(dir, predicate, files = []) {
+  for (const entry of readdirSync(dir)) {
+    if (entry === ".git" || entry === "node_modules") continue;
+
+    const filePath = path.join(dir, entry);
+    const stats = statSync(filePath);
+
+    if (stats.isDirectory()) {
+      walkFiles(filePath, predicate, files);
+      continue;
+    }
+
+    if (predicate(filePath)) {
+      files.push(filePath);
+    }
+  }
+
+  return files;
+}
+
+function toRepoPath(filePath) {
+  return path.relative(repoRoot, filePath).replace(/\\/g, "/");
+}
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -94,6 +122,66 @@ test("LP canonicalizes direct index.html visits to the root URL", () => {
   assert.match(html, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/">/);
   assert.match(html, /window\.location\.pathname\.endsWith\("\/index\.html"\)/);
   assert.match(html, /window\.location\.replace\(canonicalPath \+ window\.location\.search \+ window\.location\.hash\)/);
+});
+
+test("sitewide Google tracking scripts load from the head on every HTML page", () => {
+  const htmlFiles = walkFiles(repoRoot, (filePath) => filePath.endsWith(".html"));
+  const missing = [];
+  const headPattern = /<head>[\s\S]*<script src="\/scripts\/tracking-config\.js" defer><\/script>\s*<script src="\/scripts\/tracking\.js" defer><\/script>[\s\S]*<\/head>/;
+
+  for (const filePath of htmlFiles) {
+    const pageHtml = readFileSync(filePath, "utf8");
+    if (!headPattern.test(pageHtml)) {
+      missing.push(toRepoPath(filePath));
+    }
+  }
+
+  assert.deepEqual(missing, [], "every HTML page should load the shared tracking scripts from head");
+});
+
+test("tracking config is ready for GA4 and Google Ads IDs without shipping fake IDs", () => {
+  assert.equal(existsSync(trackingConfigPath), true, "tracking-config.js should exist");
+  assert.match(trackingConfig, /window\.HK_TRACKING_CONFIG/);
+  assert.match(trackingConfig, /ga4MeasurementId:\s*""/);
+  assert.match(trackingConfig, /googleAdsConversionId:\s*""/);
+  assert.match(trackingConfig, /line:\s*""/);
+  assert.match(trackingConfig, /phone:\s*""/);
+  assert.match(trackingConfig, /form:\s*""/);
+  assert.match(trackingConfig, /reservation:\s*""/);
+  assert.match(trackingConfig, /thanks:\s*""/);
+  assert.doesNotMatch(trackingConfig, /G-[A-Z0-9]{5,}/);
+  assert.doesNotMatch(trackingConfig, /AW-\d{6,}/);
+});
+
+test("tracking runtime wires GA4 page views and Google Ads conversion events", () => {
+  assert.equal(existsSync(trackingJsPath), true, "tracking.js should exist");
+  assert.match(trackingJs, /googletagmanager\.com\/gtag\/js/);
+  assert.match(trackingJs, /gtag\("config", ga4MeasurementId/);
+  assert.match(trackingJs, /gtag\("config", googleAdsConversionId/);
+  assert.match(trackingJs, /line_consult_click/);
+  assert.match(trackingJs, /phone_click/);
+  assert.match(trackingJs, /form_submit/);
+  assert.match(trackingJs, /generate_lead/);
+  assert.match(trackingJs, /conversionLabels\.reservation/);
+  assert.match(trackingJs, /send_to/);
+  assert.match(trackingJs, /window\.hkTrackConversion/);
+});
+
+test("thanks page exists as a noindex conversion completion page", () => {
+  const thanksPath = path.join(repoRoot, "thanks.html");
+  const thanksHtml = existsSync(thanksPath) ? readFileSync(thanksPath, "utf8") : "";
+
+  assert.equal(existsSync(thanksPath), true, "thanks.html should exist");
+  assert.match(thanksHtml, /<meta name="robots" content="noindex,follow">/);
+  assert.match(thanksHtml, /<script src="\/scripts\/tracking-config\.js" defer><\/script>/);
+  assert.match(thanksHtml, /<script src="\/scripts\/tracking\.js" defer><\/script>/);
+  assert.match(thanksHtml, /お問い合わせありがとうございました/);
+  assert.match(thanksHtml, /24時間以内にご返信します/);
+});
+
+test("contact form tracks successful submissions before redirecting to thanks", () => {
+  assert.match(mainJs, /hkTrackConversion\("form_submit"/);
+  assert.match(mainJs, /window\.location\.assign\("\/thanks\.html"\)/);
 });
 
 test("LP local image assets resolve to existing files", () => {
