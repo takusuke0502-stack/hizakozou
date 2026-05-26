@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせありがとうございました | 整体院ひざこぞう</title>
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://hizakozou.jp/thanks.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="/scripts/tracking-config.js" defer></script>
+  <script src="/scripts/tracking.js" defer></script>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(180deg, #f7fbf4 0%, #ffffff 52%, #eff7ff 100%);
+      color: #263238;
+      font-family: "BIZ UDPGothic", sans-serif;
+    }
+
+    .thanks-page {
+      display: grid;
+      min-height: 100vh;
+      place-items: center;
+      padding: 32px 16px;
+    }
+
+    .thanks-card {
+      width: min(100%, 720px);
+      border: 1px solid rgba(108, 147, 82, 0.2);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 22px 60px rgba(45, 74, 52, 0.12);
+      padding: clamp(32px, 7vw, 56px);
+      text-align: center;
+    }
+
+    .thanks-mark {
+      display: grid;
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 22px;
+      place-items: center;
+      border-radius: 999px;
+      background: #eaf7e5;
+      color: #3d7e35;
+      font-size: 38px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .thanks-eyebrow {
+      margin: 0 0 10px;
+      color: #3d7e35;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .thanks-title {
+      margin: 0;
+      color: #1f2937;
+      font-family: "Noto Serif JP", serif;
+      font-size: clamp(1.85rem, 5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .thanks-lead {
+      margin: 18px auto 0;
+      max-width: 34rem;
+      color: #475569;
+      font-size: clamp(1rem, 2.5vw, 1.08rem);
+      font-weight: 700;
+      line-height: 1.9;
+    }
+
+    .thanks-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .thanks-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      border-radius: 12px;
+      padding: 0 22px;
+      font-size: 15px;
+      font-weight: 900;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .thanks-button--primary {
+      background: #1f2937;
+      color: #ffffff;
+      box-shadow: 0 12px 24px rgba(31, 41, 55, 0.18);
+    }
+
+    .thanks-button--secondary {
+      border: 1px solid #dbe6d3;
+      background: #ffffff;
+      color: #3d7e35;
+    }
+
+    .thanks-button:hover,
+    .thanks-button:focus-visible {
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .thanks-note {
+      margin: 28px 0 0;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 600px) {
+      .thanks-card {
+        border-radius: 22px;
+        padding: 30px 20px;
+      }
+
+      .thanks-actions {
+        flex-direction: column;
+      }
+
+      .thanks-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="thanks-page">
+    <section class="thanks-card" aria-labelledby="thanks-title">
+      <div class="thanks-mark" aria-hidden="true">✓</div>
+      <p class="thanks-eyebrow">送信完了</p>
+      <h1 id="thanks-title" class="thanks-title">お問い合わせありがとうございました</h1>
+      <p class="thanks-lead">内容を確認し、24時間以内にご返信します。お急ぎの場合は、お電話でもご相談いただけます。</p>
+      <div class="thanks-actions">
+        <a class="thanks-button thanks-button--primary" href="/">トップページへ戻る</a>
+        <a class="thanks-button thanks-button--secondary" href="tel:0471143274">電話で確認する</a>
+      </div>
+      <p class="thanks-note">整体院ひざこぞうより、順番にご連絡いたします。</p>
+    </section>
+  </main>
+</body>
+</html>

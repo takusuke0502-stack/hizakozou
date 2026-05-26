@@ -238,6 +238,30 @@ function setSubmitBusy(isBusy) {
   refreshIcons(submitBtn);
 }
 
+function redirectToThanksPage() {
+  window.location.assign("/thanks.html");
+}
+
+function trackFormSubmitAndRedirect() {
+  let redirected = false;
+  const redirect = () => {
+    if (redirected) return;
+    redirected = true;
+    redirectToThanksPage();
+  };
+
+  if (typeof window.hkTrackConversion === "function") {
+    window.hkTrackConversion("form_submit", {
+      eventCallback: redirect,
+      eventTimeout: 900
+    });
+    window.setTimeout(redirect, 1200);
+    return;
+  }
+
+  window.setTimeout(redirect, 350);
+}
+
 function openLightbox(src, alt) {
   if (!lightbox || !lightboxImg || !lightboxClose) return;
   triggerEl = document.activeElement;
@@ -453,6 +477,7 @@ contactForm?.addEventListener('submit', async (event) => {
     showToast('送信が完了しました。24時間以内に折り返しご連絡いたします。');
     successMsg?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     successMsg?.focus({ preventScroll: true });
+    trackFormSubmitAndRedirect();
   } catch (error) {
     console.error('Contact form submit error:', error);
     setFormError('送信に失敗しました。時間をおいて再送するか、LINE予約・お電話をご利用ください。');
