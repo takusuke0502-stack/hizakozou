@@ -239,6 +239,15 @@ const patientVoices = [
     symptomKeys: ["knee-osteoarthritis", "lower-back-pain"]
   },
   {
+    name: "Y.O様",
+    concern: "整形外科に通っても続く膝関節痛",
+    change: "自宅でのストレッチと週1回の施術を続ける中で、階段の昇り降りや歩行が楽になったと感じられました。",
+    comment: "痛み止めや注射に抵抗がある方も、まずは身体の状態を相談してみてください。",
+    image: "../image/patient-voice-yo-knee.png",
+    alt: "Y.Oさん 膝痛・膝関節痛で来院された患者様の声",
+    symptomKeys: ["knee-osteoarthritis"]
+  },
+  {
     name: "Y.N様",
     concern: "腰痛・肩こり・腹部の痛み",
     change: "施術と自宅でできるストレッチに取り組むことで、身体の動きが軽くなってきました。",
@@ -246,6 +255,15 @@ const patientVoices = [
     image: "../image/patient-voice-yn.webp",
     alt: "Y.N様の直筆アンケート。腰痛、肩こり、腹部から股関節まわりの痛みで来院されたお声",
     symptomKeys: ["lower-back-pain", "shoulder-stiffness", "hip-osteoarthritis"]
+  },
+  {
+    name: "Y.M様",
+    concern: "そけい部・前大腿部付近の痛み、膝痛、足裏の痛み",
+    change: "施術後は鋭い痛みがやわらぎ、身体が軽くなったと感じられました。",
+    comment: "筋肉の使い方のバランスが痛みに関わることもあり、一度相談してみることをすすめられています。",
+    image: "../image/patient-voice-ym-hip.png",
+    alt: "Y.Mさん そけい部・前大腿部付近の痛みで来院された患者様の声",
+    symptomKeys: ["hip-osteoarthritis"]
   },
   {
     name: "N.H様",
@@ -1647,6 +1665,9 @@ function buildBlogRedirectHtml() {
   <meta name="robots" content="noindex,follow">
   <meta http-equiv="refresh" content="0; url=./blog/">
   <link rel="canonical" href="https://hizakozou.jp/blog/">
+  <script src="/scripts/tracking-config.js" defer></script>
+  <script src="/scripts/tracking.js" defer></script>
+
 </head>
 <body>
   <p>ブログ一覧へ移動しています。表示が切り替わらない場合は <a href="./blog/">こちら</a> をご利用ください。</p>
@@ -1680,6 +1701,9 @@ function buildLegacyDetailRedirectHtml() {
       }
     })();
   </script>
+  <script src="/scripts/tracking-config.js" defer></script>
+  <script src="/scripts/tracking.js" defer></script>
+
 </head>
 <body>
   <p>記事ページへ移動しています。表示が切り替わらない場合は <a href="./blog/">ブログ一覧</a> から記事をお選びください。</p>

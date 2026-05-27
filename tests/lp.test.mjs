@@ -219,7 +219,7 @@ test("LP exposes LocalBusiness, MedicalClinic, and FAQPage structured data", () 
   assert.equal(localBusinessBlocks[0].hasMap.includes("output=embed"), true, "map URL should be embeddable");
 });
 
-test("LP and symptom patient voices include all four approved assets", () => {
+test("LP and symptom patient voices include approved assets and symptom-only additions", () => {
   const pages = [
     ["index.html", html],
     ["symptoms/knee-osteoarthritis.html", readFileSync(new URL("../symptoms/knee-osteoarthritis.html", import.meta.url), "utf8")],
@@ -233,14 +233,20 @@ test("LP and symptom patient voices include all four approved assets", () => {
   assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-yn.webp")), true);
   assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-kk-anonymized.webp")), true);
   assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-numajiri.webp")), true);
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-yo-knee.png")), true);
+  assert.equal(existsSync(path.join(repoRoot, "image", "patient-voice-ym-hip.png")), true);
   assert.match(html, /image\/patient-voice-kt\.webp/);
   assert.match(html, /image\/patient-voice-yn\.webp/);
   assert.match(html, /image\/patient-voice-kk-anonymized\.webp/);
   assert.match(html, /image\/patient-voice-numajiri\.webp/);
+  assert.doesNotMatch(html, /patient-voice-yo-knee\.png/);
+  assert.doesNotMatch(html, /patient-voice-ym-hip\.png/);
   assert.match(html, /K\.T/);
   assert.match(html, /Y\.N/);
   assert.match(html, /K\.K/);
   assert.match(html, /N\.H/);
+  assert.doesNotMatch(html, /Y\.O様/);
+  assert.doesNotMatch(html, /Y\.M様/);
   assert.ok(html.indexOf("K.K様") < html.indexOf("K.T様"), "LP should list K.K before K.T");
   assert.ok(html.indexOf("K.T様") < html.indexOf("Y.N様"), "LP should list K.T before Y.N");
   assert.ok(html.indexOf("Y.N様") < html.indexOf("N.H様"), "LP should list Y.N before N.H");
@@ -254,6 +260,15 @@ test("LP and symptom patient voices include all four approved assets", () => {
   const kneeHtml = pages.find(([pageName]) => pageName === "symptoms/knee-osteoarthritis.html")[1];
   assert.match(kneeHtml, /patient-voice-kt\.webp/);
   assert.match(kneeHtml, /patient-voice-kk-anonymized\.webp/);
+  assert.match(kneeHtml, /patient-voice-yo-knee\.png/);
+  assert.match(kneeHtml, /Y\.Oさん 膝痛・膝関節痛で来院された患者様の声/);
+  assert.doesNotMatch(kneeHtml, /patient-voice-ym-hip\.png/);
+
+  const hipHtml = pages.find(([pageName]) => pageName === "symptoms/hip-osteoarthritis.html")[1];
+  assert.match(hipHtml, /patient-voice-yn\.webp/);
+  assert.match(hipHtml, /patient-voice-ym-hip\.png/);
+  assert.match(hipHtml, /Y\.Mさん そけい部・前大腿部付近の痛みで来院された患者様の声/);
+  assert.doesNotMatch(hipHtml, /patient-voice-yo-knee\.png/);
 
   const shoulderHtml = pages.find(([pageName]) => pageName === "symptoms/shoulder-stiffness.html")[1];
   assert.match(shoulderHtml, /patient-voice-yn\.webp/);
