@@ -461,6 +461,63 @@ test("blog generation keeps region data and emits BlogPosting schema", () => {
   assert.match(buildBlogScript, /"@id":\s*absoluteUrl\(site\.url,\s*"#medicalbusiness"\)/, "blog article schema should link back to the clinic entity");
 });
 
+test("knee osteoarthritis page is a diagnosis-specific reservation LP", () => {
+  const kneeHtml = readFileSync(new URL("../symptoms/knee-osteoarthritis.html", import.meta.url), "utf8");
+  const expectedDescription = "柏市で変形性膝関節症と言われ、歩き始め・階段・立ち上がりの膝痛に悩む方へ。整体院ひざこぞうは膝だけでなく股関節・足首・歩き方を確認し、病院と併用しながら膝への負担を減らす体づくりをサポートします。柏駅西口徒歩8分。";
+  const expectedFaqs = [
+    "変形性膝関節症と言われましたが相談できますか？",
+    "病院に通いながらでも大丈夫ですか？",
+    "注射を受けていても相談できますか？",
+    "手術を勧められた場合でも相談できますか？",
+    "歩くと痛いのですが、運動しても大丈夫ですか？",
+    "どれくらい通う必要がありますか？"
+  ];
+  const requiredCopy = [
+    "柏市で変形性膝関節症と言われた方へ｜階段・歩き始めの膝痛相談",
+    "整体でできること・できないこと",
+    "病院と併用しながら相談できます",
+    "当院は医療機関ではありません",
+    "膝や歩き方のお悩みでご相談いただいた方の声",
+    "初回の流れ",
+    "初回限定",
+    "1,980",
+    "柏駅西口徒歩8分",
+    "今の膝の状態を送って相談する"
+  ];
+  const forbiddenPatterns = [
+    /治る/,
+    /完治/,
+    /必ず改善/,
+    /根本改善/,
+    /手術回避できます/,
+    /手術を避けられる/,
+    /変形を治す/,
+    /軟骨を戻す/
+  ];
+
+  assert.match(kneeHtml, /<title>柏市で変形性膝関節症の整体相談｜歩き始め・階段の膝痛｜整体院ひざこぞう<\/title>/);
+  assert.match(kneeHtml, new RegExp(`<meta name="description" content="${escapeRegExp(expectedDescription)}">`));
+  assert.equal((kneeHtml.match(/<h1\b/g) ?? []).length, 1, "knee osteoarthritis LP should have one h1");
+
+  for (const copy of requiredCopy) {
+    assert.match(kneeHtml, new RegExp(escapeRegExp(copy)), `knee osteoarthritis LP should include: ${copy}`);
+  }
+
+  for (const question of expectedFaqs) {
+    assert.match(kneeHtml, new RegExp(escapeRegExp(question)), `FAQ should include: ${question}`);
+  }
+
+  assert.match(kneeHtml, /href="https:\/\/lin\.ee\/X01F2mP"/);
+  assert.match(kneeHtml, /href="tel:0471143274"/);
+  assert.match(kneeHtml, /href="\/#price"/);
+  assert.match(kneeHtml, /href="\/#access"/);
+  assert.match(kneeHtml, /href="\/#contact"/);
+
+  for (const pattern of forbiddenPatterns) {
+    assert.doesNotMatch(kneeHtml, pattern, `knee osteoarthritis LP should avoid ${pattern}`);
+  }
+});
+
 test("symptom pages avoid strong medical guarantee wording", () => {
   const symptomDir = path.join(repoRoot, "symptoms");
   const strongPatterns = [
