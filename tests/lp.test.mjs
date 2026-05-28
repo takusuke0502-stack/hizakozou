@@ -64,6 +64,16 @@ function getSectionSlice(startMarker, endMarker) {
   return html.slice(start, end);
 }
 
+function getElementSlice(startMarker, closeMarker = "</nav>") {
+  const start = html.indexOf(startMarker);
+  const end = html.indexOf(closeMarker, start);
+
+  assert.ok(start > -1, `missing start marker: ${startMarker}`);
+  assert.ok(end > start, `missing close marker after ${startMarker}`);
+
+  return html.slice(start, end + closeMarker.length);
+}
+
 function getLocalImageReferences() {
   const refs = new Set();
 
@@ -122,6 +132,55 @@ test("LP canonicalizes direct index.html visits to the root URL", () => {
   assert.match(html, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/">/);
   assert.match(html, /window\.location\.pathname\.endsWith\("\/index\.html"\)/);
   assert.match(html, /window\.location\.replace\(canonicalPath \+ window\.location\.search \+ window\.location\.hash\)/);
+});
+
+test("desktop header groups access/contact and exposes a keyboard-friendly real symptom dropdown", () => {
+  const desktopNav = getSectionSlice('<nav class="site-nav"', '<nav class="site-mobile-nav"');
+  const mobileNav = getElementSlice('<nav class="site-mobile-nav"');
+  const symptomLinks = [
+    ["symptoms/knee-osteoarthritis.html", "変形性膝関節症"],
+    ["symptoms/pes-anserine-bursitis.html", "膝の内側の痛み"],
+    ["symptoms/knee-effusion.html", "膝に水がたまる"],
+    ["symptoms/meniscus-knee-pain.html", "半月板の違和感"],
+    ["symptoms/knee-front-pain.html", "膝の前側の痛み"],
+    ["symptoms/knee-posterior-pain.html", "膝の裏側の痛み"],
+    ["symptoms/knee-lateral-pain.html", "膝の外側の痛み"],
+    ["symptoms/hip-osteoarthritis.html", "股関節痛"]
+  ];
+
+  assert.match(desktopNav, /症状別/);
+  assert.match(desktopNav, /SYMPTOMS/);
+  assert.match(desktopNav, /aria-haspopup="true"/);
+  assert.match(desktopNav, /aria-controls="site-symptoms-menu"/);
+  assert.match(desktopNav, /aria-expanded="false"/);
+  assert.match(desktopNav, /aria-label="症状別ページ"/);
+  assert.match(desktopNav, /アクセス・予約/);
+  assert.match(desktopNav, /ACCESS \/ CONTACT/);
+  assert.match(desktopNav, /href="#access"/);
+
+  assert.doesNotMatch(desktopNav, /院情報・アクセス/);
+  assert.doesNotMatch(desktopNav, /INFO \/ ACCESS/);
+  assert.doesNotMatch(desktopNav, /ご予約・お問合せ/);
+
+  for (const [href, label] of symptomLinks) {
+    assert.match(desktopNav, new RegExp(`href="${escapeRegExp(href)}"`), `${label} should be linked`);
+    assert.match(desktopNav, new RegExp(escapeRegExp(label)), `${label} should be visible`);
+    assert.equal(existsSync(path.join(repoRoot, href)), true, `${href} should exist`);
+  }
+
+  assert.doesNotMatch(mobileNav, /site-nav__dropdown/);
+  assert.doesNotMatch(mobileNav, /SYMPTOMS/);
+  assert.match(mobileNav, /href="#access"/);
+  assert.match(mobileNav, /href="#contact"/);
+
+  assert.match(mainCss, /\.site-nav__item--has-dropdown:hover\s+\.site-nav__dropdown/);
+  assert.match(mainCss, /\.site-nav__item--has-dropdown:focus-within\s+\.site-nav__dropdown/);
+  assert.match(mainCss, /\.site-nav__item--has-dropdown\.is-open\s+\.site-nav__dropdown/);
+  assert.match(mainCss, /\.site-nav__dropdown-link:focus-visible/);
+
+  assert.match(mainJs, /setupHeaderSymptomDropdown/);
+  assert.match(mainJs, /aria-expanded/);
+  assert.match(mainJs, /is-open/);
 });
 
 test("sitewide Google tracking scripts load from the head on every HTML page", () => {

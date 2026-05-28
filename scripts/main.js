@@ -322,6 +322,54 @@ function setupSmoothScroll() {
   });
 }
 
+function setupHeaderSymptomDropdown() {
+  document.querySelectorAll('.site-nav__item--has-dropdown').forEach((item) => {
+    const trigger = item.querySelector('.site-nav__trigger');
+    const menu = item.querySelector('.site-nav__dropdown');
+    if (!(trigger instanceof HTMLElement) || !(menu instanceof HTMLElement)) return;
+
+    const setOpen = (open) => {
+      item.classList.toggle('is-open', open);
+      trigger.setAttribute('aria-expanded', String(open));
+    };
+
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      setOpen(!item.classList.contains('is-open'));
+    });
+
+    trigger.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        setOpen(true);
+        menu.querySelector('a')?.focus();
+      }
+    });
+
+    item.addEventListener('mouseenter', () => setOpen(true));
+    item.addEventListener('mouseleave', () => setOpen(false));
+
+    item.addEventListener('focusout', (event) => {
+      const nextTarget = event.relatedTarget;
+      if (!(nextTarget instanceof Node) || !item.contains(nextTarget)) {
+        setOpen(false);
+      }
+    });
+
+    item.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      setOpen(false);
+      trigger.focus();
+    });
+
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Node && !item.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+  });
+}
+
 (() => {
   const deadlineEl = document.querySelector('[data-deadline]');
   const remainingEl = document.querySelector('[data-remaining]');
@@ -402,6 +450,7 @@ async function hydrateBlogPreview() {
 refreshIcons();
 syncHeaderHeight();
 setMenuState(false);
+setupHeaderSymptomDropdown();
 setupSmoothScroll();
 setupGalleryTriggers();
 hydrateBlogPreview();
