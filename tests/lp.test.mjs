@@ -186,7 +186,7 @@ test("desktop header groups access/contact and exposes a keyboard-friendly real 
 test("sitewide Google tracking scripts load from the head on every HTML page", () => {
   const htmlFiles = walkFiles(repoRoot, (filePath) => filePath.endsWith(".html"));
   const missing = [];
-  const headPattern = /<head>[\s\S]*<script src="\/scripts\/tracking-config\.js" defer><\/script>\s*<script src="\/scripts\/tracking\.js" defer><\/script>[\s\S]*<\/head>/;
+  const headPattern = /<head>[\s\S]*<script src="\/scripts\/tracking-config\.js"(?: defer)?><\/script>\s*<script src="\/scripts\/tracking\.js"(?: defer)?><\/script>[\s\S]*<\/head>/;
 
   for (const filePath of htmlFiles) {
     const pageHtml = readFileSync(filePath, "utf8");
@@ -231,10 +231,21 @@ test("thanks page exists as a noindex conversion completion page", () => {
 
   assert.equal(existsSync(thanksPath), true, "thanks.html should exist");
   assert.match(thanksHtml, /<meta name="robots" content="noindex,follow">/);
-  assert.match(thanksHtml, /<script src="\/scripts\/tracking-config\.js" defer><\/script>/);
-  assert.match(thanksHtml, /<script src="\/scripts\/tracking\.js" defer><\/script>/);
+  assert.match(thanksHtml, /<script src="\/scripts\/tracking-config\.js"><\/script>/);
+  assert.match(thanksHtml, /<script src="\/scripts\/tracking\.js"><\/script>/);
+  assert.match(thanksHtml, /Event snippet for 予約 conversion page/);
+  assert.match(thanksHtml, /window\.gtag\("event", "conversion", \{ send_to: "AW-18109043080\/zShOCLee9LIcEIijiLtD" \}\);/);
   assert.match(thanksHtml, /お問い合わせありがとうございました/);
   assert.match(thanksHtml, /24時間以内にご返信します/);
+});
+
+test("reservation conversion event snippet is only on the thanks page", () => {
+  const htmlFiles = walkFiles(repoRoot, (filePath) => filePath.endsWith(".html"));
+  const pagesWithReservationSnippet = htmlFiles
+    .filter((filePath) => readFileSync(filePath, "utf8").includes("AW-18109043080/zShOCLee9LIcEIijiLtD"))
+    .map(toRepoPath);
+
+  assert.deepEqual(pagesWithReservationSnippet, ["thanks.html"]);
 });
 
 test("contact form tracks successful submissions before redirecting to thanks", () => {
