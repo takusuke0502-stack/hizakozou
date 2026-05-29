@@ -234,7 +234,10 @@ test("thanks page exists as a noindex conversion completion page", () => {
   assert.match(thanksHtml, /<script src="\/scripts\/tracking-config\.js"><\/script>/);
   assert.match(thanksHtml, /<script src="\/scripts\/tracking\.js"><\/script>/);
   assert.match(thanksHtml, /Event snippet for 予約 conversion page/);
-  assert.match(thanksHtml, /window\.gtag\("event", "conversion", \{ send_to: "AW-18109043080\/zShOCLee9LIcEIijiLtD" \}\);/);
+  assert.match(thanksHtml, /function gtag_report_conversion\(url\)/);
+  assert.match(thanksHtml, /gtag\('event', 'conversion', \{/);
+  assert.match(thanksHtml, /'send_to': 'AW-18109043080\/zShOCLee9LIcEIijiLtD'/);
+  assert.match(thanksHtml, /'event_callback': callback/);
   assert.match(thanksHtml, /お問い合わせありがとうございました/);
   assert.match(thanksHtml, /24時間以内にご返信します/);
 });
