@@ -198,18 +198,17 @@ test("sitewide Google tracking scripts load from the head on every HTML page", (
   assert.deepEqual(missing, [], "every HTML page should load the shared tracking scripts from head");
 });
 
-test("tracking config is ready for GA4 and Google Ads IDs without shipping fake IDs", () => {
+test("tracking config is ready for GA4 and the live Google Ads ID", () => {
   assert.equal(existsSync(trackingConfigPath), true, "tracking-config.js should exist");
   assert.match(trackingConfig, /window\.HK_TRACKING_CONFIG/);
   assert.match(trackingConfig, /ga4MeasurementId:\s*""/);
-  assert.match(trackingConfig, /googleAdsConversionId:\s*""/);
+  assert.match(trackingConfig, /googleAdsConversionId:\s*"AW-18109043080"/);
   assert.match(trackingConfig, /line:\s*""/);
   assert.match(trackingConfig, /phone:\s*""/);
   assert.match(trackingConfig, /form:\s*""/);
   assert.match(trackingConfig, /reservation:\s*""/);
   assert.match(trackingConfig, /thanks:\s*""/);
   assert.doesNotMatch(trackingConfig, /G-[A-Z0-9]{5,}/);
-  assert.doesNotMatch(trackingConfig, /AW-\d{6,}/);
 });
 
 test("tracking runtime wires GA4 page views and Google Ads conversion events", () => {
