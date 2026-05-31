@@ -1,4 +1,4 @@
-const header = document.getElementById('header');
+const stickyHeader = document.querySelector('.site-header__lower');
 const menuBtn = document.getElementById('menuBtn');
 const mobileNav = document.getElementById('mobileNav');
 const contactForm = document.getElementById('contactForm');
@@ -11,6 +11,7 @@ const toastIcon = document.getElementById('toast-icon');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
+const pageTopButton = document.querySelector('.page-top-button');
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbzxlY8wFSXpgtyP9TVFwFM2BCrzfihbkmEOjYd5PROmEubX3B4NLxOhYOvZxeg7zZbc1w/exec';
 
 let triggerEl = null;
@@ -26,7 +27,7 @@ function refreshIcons(scope) {
 }
 
 function syncHeaderHeight() {
-  const height = header?.offsetHeight || 80;
+  const height = stickyHeader?.offsetHeight || 58;
   document.documentElement.style.setProperty('--header-h', `${height}px`);
 }
 
@@ -307,7 +308,7 @@ function setupSmoothScroll() {
 
       event.preventDefault();
       setMenuState(false);
-      const headerOffset = header?.offsetHeight || 0;
+      const headerOffset = stickyHeader?.offsetHeight || 0;
       const targetTop = target.getBoundingClientRect().top + window.pageYOffset - headerOffset - 16;
       const previousScrollBehavior = document.documentElement.style.scrollBehavior;
       document.documentElement.style.scrollBehavior = 'auto';
@@ -319,6 +320,86 @@ function setupSmoothScroll() {
         document.documentElement.style.scrollBehavior = previousScrollBehavior;
       });
     });
+  });
+}
+
+function setupPageTopButton() {
+  if (!(pageTopButton instanceof HTMLElement)) return;
+
+  const syncVisibility = () => {
+    pageTopButton.classList.toggle('is-visible', window.scrollY > 300);
+  };
+
+  pageTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  syncVisibility();
+  window.addEventListener('scroll', syncVisibility, { passive: true });
+}
+
+function setupFlowSlider() {
+  document.querySelectorAll('[data-flow-slider]').forEach((slider) => {
+    const slides = [...slider.querySelectorAll('[data-flow-slide]')];
+    const dots = [...slider.querySelectorAll('[data-flow-dot]')];
+    const prevButton = slider.querySelector('[data-flow-prev]');
+    const nextButton = slider.querySelector('[data-flow-next]');
+    const currentEl = slider.querySelector('[data-flow-current]');
+    const totalEl = slider.querySelector('[data-flow-total]');
+
+    if (!slides.length) return;
+
+    const total = slides.length;
+    let currentIndex = slides.findIndex((slide) => slide.classList.contains('is-active'));
+    if (currentIndex < 0) currentIndex = 0;
+
+    if (totalEl) {
+      totalEl.textContent = String(total).padStart(2, '0');
+    }
+
+    const setSlide = (nextIndex) => {
+      currentIndex = (nextIndex + total) % total;
+
+      slides.forEach((slide, index) => {
+        const isActive = index === currentIndex;
+        slide.classList.toggle('is-active', isActive);
+        slide.hidden = !isActive;
+        slide.setAttribute('aria-hidden', String(!isActive));
+      });
+
+      dots.forEach((dot, index) => {
+        const isActive = index === currentIndex;
+        dot.classList.toggle('is-active', isActive);
+        dot.setAttribute('aria-selected', String(isActive));
+        dot.tabIndex = isActive ? 0 : -1;
+      });
+
+      if (currentEl) {
+        currentEl.textContent = String(currentIndex + 1).padStart(2, '0');
+      }
+    };
+
+    prevButton?.addEventListener('click', () => setSlide(currentIndex - 1));
+    nextButton?.addEventListener('click', () => setSlide(currentIndex + 1));
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => setSlide(index));
+    });
+
+    slider.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        setSlide(currentIndex - 1);
+      }
+
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        setSlide(currentIndex + 1);
+      }
+    });
+
+    slider.classList.add('is-enhanced');
+    setSlide(currentIndex);
   });
 }
 
@@ -452,6 +533,8 @@ syncHeaderHeight();
 setMenuState(false);
 setupHeaderSymptomDropdown();
 setupSmoothScroll();
+setupPageTopButton();
+setupFlowSlider();
 setupGalleryTriggers();
 hydrateBlogPreview();
 
@@ -460,7 +543,7 @@ window.addEventListener('scroll', () => {
   if (scrollTicking) return;
   scrollTicking = true;
   window.requestAnimationFrame(() => {
-    header?.classList.toggle('shadow-md', window.scrollY > 50);
+    stickyHeader?.classList.toggle('is-stuck', window.scrollY > 50);
     scrollTicking = false;
   });
 }, { passive: true });

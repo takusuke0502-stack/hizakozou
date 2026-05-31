@@ -74,6 +74,23 @@ function getElementSlice(startMarker, closeMarker = "</nav>") {
   return html.slice(start, end + closeMarker.length);
 }
 
+function getTopLevelSectionSlice(sectionId) {
+  const startMarker = `<section id="${sectionId}"`;
+  const start = html.indexOf(startMarker);
+  const nextSection = html.indexOf('\n    <section id="', start + startMarker.length);
+
+  assert.ok(start > -1, `missing section: ${sectionId}`);
+
+  return html.slice(start, nextSection > -1 ? nextSection : html.length);
+}
+
+function getCssRule(selector) {
+  const pattern = new RegExp(`${escapeRegExp(selector)}\\s*\\{([\\s\\S]*?)\\n\\s*\\}`, "m");
+  const match = mainCss.match(pattern);
+  assert.ok(match, `missing CSS rule: ${selector}`);
+  return match[1];
+}
+
 function getLocalImageReferences() {
   const refs = new Set();
 
@@ -101,11 +118,12 @@ test("LP follows the new section order for the knee-pain explanation flow", () =
   const markers = [
     '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
     'id="troubles"',
-    'id="first-visit-policy"',
     'id="seo-guide"',
+    'id="knee-msm-reasons"',
     'id="msm-method"',
-    'id="comparison"',
     'id="flow"',
+    'id="comparison"',
+    'id="first-visit-policy"',
     'id="profile"',
     'id="voice"',
     'id="knee-type-nav"',
@@ -126,6 +144,211 @@ test("LP follows the new section order for the knee-pain explanation flow", () =
       `${markers[index - 1]} should appear before ${markers[index]}`
     );
   }
+});
+
+test("LP adds a diagram-backed three-reason block before the MSM method", () => {
+  const reasons = getTopLevelSectionSlice("knee-msm-reasons");
+  const expectedDiagrams = [
+    ["images/msm/reason-muscle-balance.webp", "サボり筋と頑張りすぎな筋肉による膝への負担の図解"],
+    ["images/msm/msm-flow-body.webp", "股関節・膝・足首のつながりによる膝への負担の図解"],
+    ["images/msm/reason-movement-cycle.webp", "不良動作から膝の痛みが戻る悪循環の図解"]
+  ];
+
+  assert.match(reasons, /<section id="knee-msm-reasons" class="knee-msm-reasons" aria-labelledby="knee-msm-reasons-title">/);
+  assert.match(reasons, /あなたの膝が治らない、本当の理由/);
+  assert.match(reasons, /「膝を揉むだけ」では[\s\S]*一生治りません。/);
+  assert.match(reasons, /MSMメソッドが解き明かす「痛みの根本原因」/);
+  assert.match(reasons, /こんなお悩み、ありませんか/);
+  assert.match(reasons, /その繰り返しには、明確な理由があります。/);
+  assert.match(reasons, /痛みが戻り続ける「3つの理由」/);
+  assert.match(reasons, /「頑張りすぎな筋肉」を緩めても、[\s\S]*「サボり筋」を放置[\s\S]*しているから/);
+  assert.match(reasons, /膝は「被害者」。[\s\S]*真犯人は「足首」と「股関節」[\s\S]*に潜んでいるから/);
+  assert.match(reasons, /毎日の「体の使い方」[\s\S]*が、痛みを繰り返す習慣になっているから/);
+  assert.match(reasons, /痛みが繰り返されるサイクル/);
+  assert.match(reasons, /不良動作の習慣[\s\S]*膝への負担蓄積[\s\S]*痛みが出る[\s\S]*その場だけ治療[\s\S]*また痛む/);
+  assert.match(reasons, /運動療法/);
+  assert.match(reasons, /正しい動作を体に覚えさせる/);
+  assert.match(reasons, /認知行動療法的アプローチ/);
+  assert.match(reasons, /「悪い動き方」の誤学習をリセット/);
+  assert.match(reasons, /この2つを組み合わせるのが[\s\S]*MSMメソッド独自の視点/);
+  assert.match(reasons, /メインビジュアル画像/);
+  assert.equal((reasons.match(/class="knee-msm-reason__diagram"/g) || []).length, 3);
+  assert.equal((reasons.match(/class="knee-msm-reason__diagram-image"/g) || []).length, 3);
+  for (const [src, alt] of expectedDiagrams) {
+    assert.match(reasons, new RegExp(`<img[^>]+src="${escapeRegExp(src)}"[^>]+alt="${escapeRegExp(alt)}"[^>]+class="knee-msm-reason__diagram-image"`));
+  }
+  assert.equal((reasons.match(/実装時は実際の写真に差し替え/g) || []).length, 1);
+  assert.doesNotMatch(reasons, /サボり筋[\s\S]*イメージ画像/);
+  assert.doesNotMatch(reasons, /関節連鎖[\s\S]*イメージ画像/);
+  assert.doesNotMatch(reasons, /動作指導・[\s\S]*歩行分析の[\s\S]*イメージ画像/);
+});
+
+test("LP underlines only the requested three reason phrases with a soft highlight", () => {
+  const reasons = getTopLevelSectionSlice("knee-msm-reasons");
+
+  assert.equal((reasons.match(/class="knee-msm-highlight"/g) || []).length, 3);
+  assert.match(reasons, /<span class="knee-msm-highlight">「サボり筋」を放置<\/span>/);
+  assert.match(reasons, /<span class="knee-msm-highlight">真犯人は「足首」と「股関節」<\/span>/);
+  assert.match(reasons, /<span class="knee-msm-highlight">毎日の「体の使い方」<\/span>/);
+  assert.match(mainCss, /\.knee-msm-highlight\s*{[\s\S]*background:\s*linear-gradient\(transparent 62%, rgba\(248,\s*164,\s*93,\s*0\.34\) 62%\);[\s\S]*box-decoration-break:\s*clone;/);
+});
+
+test("LP uses the mock-style MSM three-step CTA without duplicating the old method block", () => {
+  const method = getTopLevelSectionSlice("features");
+
+  assert.match(method, /<section id="features" class="knee-msm-steps" aria-labelledby="knee-msm-steps-title">/);
+  assert.match(method, /id="msm-method"/);
+  assert.match(method, /MSMメソッド 3ステップ/);
+  assert.match(method, /痛みが戻らない体を、一緒に作ります。/);
+  assert.match(method, /STEP\s*<strong>01<\/strong>/);
+  assert.match(method, /STEP 01 — Mobility（緩める）/);
+  assert.match(method, /「真犯人」の可動域を解放する/);
+  assert.match(method, /STEP\s*<strong>02<\/strong>/);
+  assert.match(method, /STEP 02 — Stability（鍛える）/);
+  assert.match(method, /眠った「サボり筋」を目覚めさせる/);
+  assert.match(method, /STEP\s*<strong>03<\/strong>/);
+  assert.match(method, /STEP 03 — Movement（使える）/);
+  assert.match(method, /再発しない「体の使い方」を身につける/);
+  assert.match(method, /Mobilityアプローチの施術イメージ/);
+  assert.match(method, /Stabilityトレーニングのイメージ/);
+  assert.match(method, /Movement動作指導のイメージ/);
+  assert.match(method, /繰り返しに、終止符を/);
+  assert.match(method, /無料相談・ご予約はこちら/);
+  assert.match(method, /href="https:\/\/lin\.ee\/X01F2mP"/);
+  assert.equal((method.match(/実装時は実際の写真に差し替え/g) || []).length, 1);
+  assert.doesNotMatch(method, /<picture/);
+  assert.doesNotMatch(html, /id="method-features"/);
+});
+
+test("LP MSM step cards use existing illustrations in unified contain frames", () => {
+  const method = getTopLevelSectionSlice("features");
+  const expectedImages = [
+    ["images/msm/msm-step1-relax-illustration.webp", "Mobilityアプローチの施術イメージ"],
+    ["images/msm/msm-step2-activate-illustration.webp", "Stabilityトレーニングのイメージ"],
+    ["images/msm/msm-step3-movement-illustration.webp", "Movement動作指導のイメージ"]
+  ];
+
+  assert.equal((method.match(/class="knee-msm-step__image"/g) || []).length, 3);
+  for (const [src, alt] of expectedImages) {
+    assert.match(method, new RegExp(`<img[^>]+src="${escapeRegExp(src)}"[^>]+alt="${escapeRegExp(alt)}"[^>]+class="knee-msm-step__image"`));
+  }
+  assert.doesNotMatch(method, /Mobilityアプローチの施術イメージ<\/span>/);
+  assert.match(method, /<div class="knee-msm-steps-container">\s*<div class="knee-msm-step-list knee-msm-step-grid"/);
+  assert.match(mainCss, /\.knee-msm-steps-container\s*{[\s\S]*max-width:\s*1120px;[\s\S]*margin:\s*34px auto 0;[\s\S]*padding:\s*0 24px;/);
+  assert.match(mainCss, /\.knee-msm-step-list\s*{[\s\S]*grid-template-columns:\s*repeat\(3,\s*minmax\(300px,\s*1fr\)\);[\s\S]*gap:\s*24px;[\s\S]*margin-top:\s*0;/);
+  assert.match(mainCss, /\.knee-msm-step\s*{[\s\S]*display:\s*flex;[\s\S]*flex-direction:\s*column;[\s\S]*min-width:\s*0;/);
+  assert.match(mainCss, /\.knee-msm-step h3\s*{[\s\S]*writing-mode:\s*horizontal-tb;[\s\S]*word-break:\s*normal;[\s\S]*overflow-wrap:\s*break-word;/);
+  assert.match(mainCss, /\.knee-msm-step__visual\s*{[\s\S]*height:\s*126px;[\s\S]*border-radius:\s*14px;[\s\S]*margin-top:\s*auto;[\s\S]*background:\s*#fff;/);
+  assert.match(mainCss, /\.knee-msm-step__image\s*{[\s\S]*width:\s*100%;[\s\S]*height:\s*100%;[\s\S]*object-fit:\s*contain;/);
+  assert.match(mainCss, /@media\s*\(max-width:\s*1023px\)\s*{[\s\S]*\.knee-msm-steps-container\s*{[\s\S]*max-width:\s*680px;[\s\S]*\.knee-msm-step-list\s*{[\s\S]*grid-template-columns:\s*1fr;/);
+});
+
+test("LP reason and MSM mock CSS keeps diagrams wide and responsive", () => {
+  assert.match(mainCss, /\.knee-msm-reasons__inner\s*{[\s\S]*max-width:\s*960px;[\s\S]*margin:\s*0 auto;/);
+  assert.match(mainCss, /\.knee-msm-hero,[\s\S]*\.knee-msm-empathy,[\s\S]*\.knee-msm-intro\s*{[\s\S]*max-width:\s*680px;[\s\S]*margin-left:\s*auto;[\s\S]*margin-right:\s*auto;/);
+  assert.match(mainCss, /\.knee-msm-hero__visual\s*{[\s\S]*height:\s*220px;[\s\S]*border:\s*2px dashed #d9a36f;/);
+  assert.match(mainCss, /\.knee-msm-reason\s*{[\s\S]*display:\s*block;[\s\S]*border-left:\s*6px solid #e96a42;/);
+  assert.doesNotMatch(mainCss, /\.knee-msm-reason\s*{[\s\S]*grid-template-columns:\s*minmax\(0,\s*1fr\) 140px;/);
+  assert.match(mainCss, /\.knee-msm-reason__diagram\s*{[\s\S]*margin-top:\s*24px;[\s\S]*width:\s*100%;[\s\S]*border-radius:\s*24px;[\s\S]*background:\s*#fffaf3;[\s\S]*overflow:\s*hidden;/);
+  assert.match(mainCss, /\.knee-msm-reason__diagram-image\s*{[\s\S]*display:\s*block;[\s\S]*width:\s*100%;[\s\S]*height:\s*auto;[\s\S]*object-fit:\s*contain;/);
+  assert.match(mainCss, /\.knee-msm-cycle\s*{[\s\S]*background:\s*#fff3e8;[\s\S]*border:\s*1px solid #e96a42;/);
+  assert.match(mainCss, /\.knee-msm-approaches\s*{[\s\S]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/);
+  assert.match(mainCss, /\.knee-msm-steps__inner\s*{[\s\S]*max-width:\s*680px;[\s\S]*margin:\s*0 auto;/);
+  assert.match(mainCss, /\.knee-msm-step__visual\s*{[\s\S]*height:\s*126px;[\s\S]*background:\s*#fff;/);
+  assert.match(mainCss, /\.knee-msm-cta__visual\s*{[\s\S]*height:\s*160px;[\s\S]*border:\s*2px dashed #d9a36f;/);
+  assert.match(mainCss, /@media\s*\(max-width:\s*640px\)\s*{[\s\S]*\.knee-msm-reason__diagram\s*{[\s\S]*margin-top:\s*20px;[\s\S]*padding:\s*8px;[\s\S]*\.knee-msm-approaches\s*{[\s\S]*grid-template-columns:\s*1fr;/);
+});
+
+test("LP replaces the treatment flow with an accessible 6-step photo slider after the MSM method", () => {
+  const flow = getTopLevelSectionSlice("flow");
+  const steps = [
+    [
+      "記入・待合",
+      "いつから痛いのか、どんな動きでつらいのか、病院で言われたことなどを整理します。",
+      "image/flow-medical-interview-form-768.webp",
+      "初回時に問診票を記入する様子"
+    ],
+    [
+      "問診",
+      "歩き始め、階段、立ち上がり、買い物など、日常のどの場面で膝が不安なのかを伺います。",
+      "image/consultation-scene-768.webp",
+      "膝の状態を丁寧に確認する問診の様子"
+    ],
+    [
+      "検査・動作確認",
+      "膝だけでなく、股関節・足首・姿勢・歩き方も確認し、どこに負担が集まりやすいかを見ていきます。",
+      "image/flow-movement-assessment-768.webp",
+      "股関節や膝の動きを確認している様子"
+    ],
+    [
+      "施術",
+      "やさしく身体を整えながら、立つ・歩く・階段などの動きにつながるように運動療法も行います。",
+      "image/flow-treatment-session-768.webp",
+      "膝や股関節まわりへの施術の様子"
+    ],
+    [
+      "セルフケア・運動指導",
+      "ご自宅で気をつけることや簡単なセルフケア、膝に負担をかけにくい運動をお伝えします。",
+      "image/treatment-stretch-768.webp",
+      "自宅でできる運動指導の様子"
+    ],
+    [
+      "お会計・次回説明",
+      "施術後の状態を確認し、お会計と次回の目安・ご自宅での注意点をご案内します。",
+      "image/medical-interview-768.webp",
+      "施術後の説明と次回案内の様子"
+    ]
+  ];
+
+  assert.match(flow, /<section id="flow" class="flow-slider" aria-labelledby="flow-title" data-flow-slider>/);
+  assert.match(flow, /<h2 id="flow-title"[^>]*>当院での施術の流れ<\/h2>/);
+  assert.match(flow, /写真は左右にスライドできます/);
+  assert.doesNotMatch(flow, /flow-section-wrap|flow-list|flow-item__/);
+  assert.doesNotMatch(flow, /院内・受付写真|受付・ご来院/);
+  assert.doesNotMatch(flow, /実装時は実際の写真に差し替え/);
+
+  assert.equal([...flow.matchAll(/\bdata-flow-slide\b/g)].length, 6);
+  assert.equal([...flow.matchAll(/\bdata-flow-dot\b/g)].length, 6);
+  assert.equal((flow.match(/class="flow-slider__image"/g) || []).length, 6);
+  assert.match(flow, /data-flow-prev[^>]*aria-label="前のステップを見る"/);
+  assert.match(flow, /data-flow-next[^>]*aria-label="次のステップを見る"/);
+  assert.match(flow, /data-flow-current[^>]*>01<\/span>\s*\/\s*<span[^>]*data-flow-total[^>]*>06<\/span>/);
+  assert.match(flow, /role="tablist"[^>]*aria-label="施術の流れのステップ"/);
+
+  steps.forEach(([title, body, src, alt], index) => {
+    assert.match(flow, new RegExp(`data-flow-index="${index}"`), `${title} should have a slide index`);
+    assert.match(flow, new RegExp(escapeRegExp(title)), `${title} should be visible`);
+    assert.match(flow, new RegExp(escapeRegExp(body)), `${title} should include its body copy`);
+    assert.match(flow, new RegExp(`<img[^>]+src="${escapeRegExp(src)}"[^>]+alt="${escapeRegExp(alt)}"[^>]+class="flow-slider__image"`), `${title} should include its photo`);
+    assert.match(flow, new RegExp(`aria-label="${index + 1}番目のステップを表示"`), `${title} should have a dot label`);
+  });
+});
+
+test("LP flow slider CSS keeps the mock layout responsive without hiding no-js content", () => {
+  assert.match(mainCss, /\.flow-slider\s*{[\s\S]*background:\s*#fff;[\s\S]*overflow:\s*hidden;/);
+  assert.match(mainCss, /\.flow-slider\s*{[\s\S]*overflow-anchor:\s*none;/);
+  assert.match(mainCss, /\.flow-slider__inner\s*{[\s\S]*max-width:\s*760px;[\s\S]*margin:\s*0 auto;/);
+  assert.match(mainCss, /\.flow-slider__heading-band\s*{[\s\S]*border-left:\s*7px solid #e96a42;[\s\S]*background:\s*#fdebdc;/);
+  assert.match(mainCss, /\.flow-slider__media\s*{[\s\S]*aspect-ratio:\s*4\s*\/\s*3;[\s\S]*overflow:\s*hidden;/);
+  assert.match(mainCss, /\.flow-slider__image\s*{[\s\S]*width:\s*100%;[\s\S]*height:\s*100%;[\s\S]*object-fit:\s*cover;[\s\S]*object-position:\s*center;/);
+  assert.match(mainCss, /\.flow-slider__arrow\s*{[\s\S]*width:\s*56px;[\s\S]*height:\s*56px;[\s\S]*background:\s*#f2653f;/);
+  assert.match(mainCss, /\.flow-slider\.is-enhanced\s+\.flow-slide:not\(\.is-active\)\s*{[\s\S]*display:\s*none;/);
+  assert.match(mainCss, /\.flow-slider__dot\.is-active\s*{[\s\S]*background:\s*#f2653f;/);
+  assert.match(mainCss, /@media\s*\(max-width:\s*640px\)\s*{[\s\S]*\.flow-slider__arrow\s*{[\s\S]*width:\s*44px;[\s\S]*height:\s*44px;/);
+});
+
+test("LP flow slider JavaScript uses scoped controls, dots, and counters without autoplay", () => {
+  assert.match(mainJs, /function setupFlowSlider\(\)/);
+  assert.match(mainJs, /document\.querySelectorAll\('\[data-flow-slider\]'\)/);
+  assert.match(mainJs, /slider\.classList\.add\('is-enhanced'\)/);
+  assert.match(mainJs, /querySelectorAll\('\[data-flow-slide\]'\)/);
+  assert.match(mainJs, /querySelector\('\[data-flow-current\]'\)/);
+  assert.match(mainJs, /querySelectorAll\('\[data-flow-dot\]'\)/);
+  assert.match(mainJs, /aria-hidden/);
+  assert.match(mainJs, /aria-selected/);
+  assert.match(mainJs, /\.hidden\s*=/);
+  assert.match(mainJs, /setupFlowSlider\(\);/);
+  assert.doesNotMatch(mainJs, /setInterval|setTimeout\([^)]*setupFlowSlider/);
 });
 
 test("LP canonicalizes direct index.html visits to the root URL", () => {
@@ -181,6 +404,54 @@ test("desktop header groups access/contact and exposes a keyboard-friendly real 
   assert.match(mainJs, /setupHeaderSymptomDropdown/);
   assert.match(mainJs, /aria-expanded/);
   assert.match(mainJs, /is-open/);
+});
+
+test("LP keeps only the navigation bar sticky and leaves the header information static", () => {
+  const siteHeaderRule = getCssRule(".site-header");
+  const headerUpperRule = getCssRule(".site-header__upper");
+  const headerLowerRule = getCssRule(".site-header__lower");
+  const dropdownRule = getCssRule(".site-nav__dropdown");
+
+  assert.match(siteHeaderRule, /position:\s*static;/);
+  assert.doesNotMatch(siteHeaderRule, /position:\s*fixed;/);
+  assert.match(headerUpperRule, /position:\s*static;/);
+  assert.match(headerLowerRule, /position:\s*sticky;/);
+  assert.match(headerLowerRule, /top:\s*0;/);
+  assert.match(headerLowerRule, /z-index:\s*1000;/);
+  assert.match(dropdownRule, /z-index:\s*1010;/);
+  assert.match(mainCss, /section\[id\],[\s\S]*main \[id\]\s*{[\s\S]*scroll-margin-top:\s*calc\(var\(--header-h\) \+ 16px\);/);
+  assert.match(mainJs, /const stickyHeader = document\.querySelector\('\.site-header__lower'\);/);
+  assert.match(mainJs, /stickyHeader\?\.offsetHeight \|\| 58/);
+  assert.doesNotMatch(mainCss, /\.hz-hero\s*{[\s\S]*padding-top:\s*calc\(var\(--header-h\)/);
+});
+
+test("LP places the sticky navigation outside the static header container", () => {
+  const headerOpen = html.indexOf('<header id="header" class="site-header">');
+  const headerClose = html.indexOf("</header>", headerOpen);
+  const stickyNav = html.indexOf('<div class="site-header__lower">');
+
+  assert.ok(headerOpen > -1, "header should exist");
+  assert.ok(headerClose > headerOpen, "header should close before the sticky nav");
+  assert.ok(stickyNav > headerClose, "sticky nav should be outside the static header container");
+});
+
+test("LP exposes an accessible scroll-to-top button without conflicting with fixed CTAs", () => {
+  assert.match(html, /<button type="button" class="page-top-button" aria-label="ページ上部へ戻る"/);
+  assert.match(html, /<span aria-hidden="true">↑<\/span>/);
+  assert.match(html, /TOP/);
+  assert.match(mainCss, /\.page-top-button\s*{[\s\S]*position:\s*fixed;[\s\S]*right:\s*24px;[\s\S]*bottom:\s*24px;[\s\S]*z-index:\s*60;/);
+  assert.match(mainCss, /\.page-top-button\.is-visible\s*{[\s\S]*opacity:\s*1;[\s\S]*pointer-events:\s*auto;/);
+  assert.match(mainCss, /\.page-top-button:hover,[\s\S]*\.page-top-button:focus-visible\s*{/);
+  assert.match(mainCss, /@media\s*\(max-width:\s*767px\)\s*{[\s\S]*\.page-top-button\s*{[\s\S]*bottom:\s*94px;[\s\S]*right:\s*16px;/);
+  assert.match(mainJs, /setupPageTopButton/);
+  assert.match(mainJs, /window\.scrollY > 300/);
+  assert.match(mainJs, /window\.scrollTo\(\{\s*top:\s*0,\s*behavior:\s*'smooth'\s*\}\)/);
+});
+
+test("LP mobile pricing layout prevents the first-visit label from overlapping the price", () => {
+  assert.match(mainCss, /@media\s*\(max-width:\s*480px\)\s*{[\s\S]*\.hk-pricing-offer\s*{[\s\S]*grid-template-columns:\s*1fr;[\s\S]*gap:\s*10px;/);
+  assert.match(mainCss, /@media\s*\(max-width:\s*480px\)\s*{[\s\S]*\.hk-pricing-labels\s*{[\s\S]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/);
+  assert.match(mainCss, /@media\s*\(max-width:\s*480px\)\s*{[\s\S]*\.hk-pricing-price__num\s*{[\s\S]*font-size:\s*clamp\(3\.6rem,\s*19vw,\s*4\.8rem\);/);
 });
 
 test("sitewide Google tracking scripts load from the head on every HTML page", () => {
@@ -430,14 +701,14 @@ test("LP mobile hero title and fixed CTA stay compact on narrow screens", () => 
 });
 
 test("LP Step 2 uses Japanese labels, comparison table, and a single mobile LINE CTA", () => {
-  const approach = getSectionSlice('id="msm-method"', 'id="comparison"');
-  const comparison = getSectionSlice('id="comparison"', 'id="flow"');
+  const approach = getSectionSlice('id="msm-method"', 'id="flow"');
+  const comparison = getSectionSlice('id="comparison"', 'id="profile"');
   const fixedCta = getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js"');
 
   assert.doesNotMatch(html, /CLINICAL VIEW|HIZAKOZOU METHOD|FIRST VISIT/);
-  assert.match(approach, /STEP\s*<strong>1<\/strong>/);
-  assert.match(approach, /STEP\s*<strong>2<\/strong>/);
-  assert.match(approach, /STEP\s*<strong>3<\/strong>/);
+  assert.match(approach, /STEP\s*<strong>0?1<\/strong>/);
+  assert.match(approach, /STEP\s*<strong>0?2<\/strong>/);
+  assert.match(approach, /STEP\s*<strong>0?3<\/strong>/);
   assert.match(html, /膝痛を見立てる視点/);
   assert.match(html, /初回の進め方/);
   assert.match(html, /ひざこぞう式MSMメソッド/);
@@ -698,8 +969,22 @@ test("LP keeps only one first-visit policy section and removes the duplicate art
   assert.equal(html.includes("来院前に確認されやすいこと"), false, "mid-page article detour should be removed");
 });
 
+test("LP places the first-visit policy directly after the comparison section", () => {
+  const comparisonIndex = html.indexOf('id="comparison"');
+  const firstVisitIndex = html.indexOf('id="first-visit-policy"');
+  const profileIndex = html.indexOf('id="profile"');
+  const comparisonToFirstVisit = html.slice(comparisonIndex, firstVisitIndex);
+
+  assert.ok(comparisonIndex > -1, "comparison section should exist");
+  assert.ok(firstVisitIndex > -1, "first-visit policy section should exist");
+  assert.ok(profileIndex > -1, "profile section should exist");
+  assert.ok(comparisonIndex < firstVisitIndex, "first-visit policy should appear after comparison");
+  assert.ok(firstVisitIndex < profileIndex, "first-visit policy should appear before profile");
+  assert.doesNotMatch(comparisonToFirstVisit, /<section id="(?!comparison")/, "no other section should sit between comparison and first-visit policy");
+});
+
 test("LP first-visit policy uses the PNG icon set accessibly", () => {
-  const firstVisit = getSectionSlice('id="first-visit-policy"', 'id="seo-guide"');
+  const firstVisit = getTopLevelSectionSlice("first-visit-policy");
   const informativeIcons = [
     ["/img/first-visit/illust-check.png", "お悩みと生活動作を確認する問診票のイラスト"],
     ["/img/first-visit/illust-posture.png", "姿勢や歩き方、関節の動きを確認するイラスト"],
@@ -737,9 +1022,9 @@ test("LP first-visit policy uses the PNG icon set accessibly", () => {
 });
 
 test("LP first-visit policy keeps six detailed item rows", () => {
-  const firstVisit = getSectionSlice('id="first-visit-policy"', 'id="seo-guide"');
-  const doCard = getSectionSlice('class="card card-do"', 'class="card card-dont"');
-  const dontCard = getSectionSlice('class="card card-dont"', 'id="seo-guide"');
+  const firstVisit = getTopLevelSectionSlice("first-visit-policy");
+  const doCard = firstVisit.slice(firstVisit.indexOf('class="card card-do"'), firstVisit.indexOf('class="card card-dont"'));
+  const dontCard = firstVisit.slice(firstVisit.indexOf('class="card card-dont"'));
   const expectedRows = [
     ["1", "お悩みと<br>生活動作の確認", "いつから、どこが、どんな時につらいのかを丁寧にお伺いします。", "/img/first-visit/illust-check.png"],
     ["2", "姿勢・歩き方・<br>関節の動きの確認", "お体の状態を検査し、原因を見つけていきます。", "/img/first-visit/illust-posture.png"],
@@ -797,30 +1082,47 @@ test("LP keeps the knee-pain specialty axis and presents the updated three-step 
   assert.match(hero, /気づいていますか。/);
   assert.match(hero, /それは慣れたのではなく、諦めているだけかもしれない。/);
   assert.match(hero, /もう一度、自分の体と向き合う時間をつくりませんか。/);
-  assert.match(hero, /柏市で膝痛にお悩みの方は、/);
-  assert.match(hero, /今の状態とこれからの歩みを一緒に整理していきましょう。/);
   assert.match(html, /膝の痛みは、痛む場所だけを見ても分からないことがあります/);
   assert.match(html, /膝だけを揉んで終わるのではなく/);
-  assert.match(html, /痛い膝だけを見るのではなく/);
+  assert.match(html, /痛みが戻り続ける「3つの理由」/);
   assert.equal(html.includes('id="three-step-care"'), false, "standalone three-step section should be removed");
   assert.equal(
     html.includes("当院が提供する「3つの柱」の正しい順序"),
     false,
     "duplicate three-pillar ordering block should be removed"
   );
-  assert.match(html, /膝に負担が集まる“流れ”を整えます/);
-  assert.match(html, /<h3>緩める<\/h3>/);
-  assert.match(html, /<h3>目覚めさせる<\/h3>/);
-  assert.match(html, /<h3>動きを整える<\/h3>/);
-  assert.match(html, /股関節の使い方/);
-  assert.match(html, /膝への負担/);
-  assert.match(html, /足首の動き/);
-  assert.match(html, /こんな毎日を目指します/);
-  assert.match(html, /「もう年だから…」とあきらめる前に/);
+  assert.match(html, /痛みが戻らない体を、一緒に作ります。/);
+  assert.match(html, /「真犯人」の可動域を解放する/);
+  assert.match(html, /眠った「サボり筋」を目覚めさせる/);
+  assert.match(html, /再発しない「体の使い方」を身につける/);
+  assert.match(html, /繰り返しに、終止符を/);
+  assert.match(html, /無料相談・ご予約はこちら/);
   assert.doesNotMatch(html, /原因を整理する3ステップ/);
   assert.doesNotMatch(html, /image\/step1_swirl\.webp/);
   assert.doesNotMatch(html, /image\/step2_dumbbell\.webp/);
   assert.doesNotMatch(html, /image\/step3_footprint\.webp/);
+});
+
+test("LP removes the requested hero copy and top gallery explanation cards", () => {
+  const hero = getSectionSlice(
+    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
+    'id="troubles"'
+  );
+  const gallery = getTopLevelSectionSlice("gallery");
+
+  assert.doesNotMatch(hero, /階段の上り下り、歩き始め、立ち上がり、長く歩いた後の膝の痛み。/);
+  assert.doesNotMatch(hero, /膝だけを揉むのではなく、硬さを緩め、必要な筋力を育て/);
+  assert.doesNotMatch(hero, /柏市で膝痛にお悩みの方は、今の状態とこれからの歩みを一緒に整理していきましょう。/);
+  assert.doesNotMatch(hero, /階段の上り下りがつらい/);
+  assert.doesNotMatch(hero, /歩き始めに膝が痛む/);
+  assert.doesNotMatch(hero, /膝に水が溜まる/);
+  assert.doesNotMatch(hero, /膝をかばって腰や股関節も気になる/);
+  assert.match(gallery, /院内の雰囲気/);
+  assert.match(gallery, /aria-label="院内ギャラリー"/);
+  assert.match(gallery, /image\/clinic-exterior-wide-768\.webp/);
+  assert.doesNotMatch(gallery, /相談しやすさと落ち着いた雰囲気が伝わるよう/);
+  assert.doesNotMatch(gallery, /まずはお話を丁寧にうかがいます/);
+  assert.doesNotMatch(gallery, /状態を見ながら分かりやすくご説明します/);
 });
 
 test("LP keeps knee-type navigation ahead of the price section", () => {
