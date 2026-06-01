@@ -9,7 +9,7 @@
   <link rel="canonical" href="https://hizakozou.jp/">
   <meta name="robots" content="max-image-preview:large">
   <script>
-    if (window.location.pathname.endsWith("/index.html")) {
+    if (/^https?:$/.test(window.location.protocol) && window.location.pathname.endsWith("/index.html")) {
       const canonicalPath = window.location.pathname.replace(/index\.html$/, "");
       window.location.replace(canonicalPath + window.location.search + window.location.hash);
     }
@@ -59,7 +59,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
 
   <script type="application/ld+json">
   {
@@ -1598,6 +1598,70 @@
       </div>
     </section>
 
+    <section class="voice-trust" aria-labelledby="voice-trust-title">
+      <div class="voice-trust__inner">
+        <div class="voice-trust__header">
+          <p class="voice-trust__label">VOICE &amp; RESULT</p>
+          <h2 id="voice-trust-title" class="voice-trust__title">
+            大丈夫です！ご安心ください
+          </h2>
+          <p class="voice-trust__lead">
+            当院には、膝・腰・股関節の痛みや、歩くことへの不安でお悩みの方がご相談に来られています。<br>
+            同じようなお悩みで来院された方のお声をご紹介します。
+          </p>
+        </div>
+
+        <div class="voice-trust__assurance" aria-label="来院前の不安をやわらげるご案内">
+          <p class="sr-only">大丈夫です！ご安心ください。ご相談に来られた方のお声があります。</p>
+          <figure class="voice-trust__banner">
+            <img src="image/voice-result-banner.webp" alt="当院の施術で改善した喜びのお声を紹介するビジュアル" loading="eager" decoding="async" width="1536" height="1024">
+          </figure>
+        </div>
+
+        <div class="voice-trust__cards">
+          <article class="voice-trust-card">
+            <img src="image/voice-kajitani.webp" alt="梶谷様と院長の写真" class="voice-trust-card__image" loading="lazy" decoding="async" width="1536" height="1152">
+            <div class="voice-trust-card__body">
+              <p class="voice-trust-card__meta">梶谷様 / 腰・膝の痛み</p>
+              <p class="voice-trust-card__text">強い腰痛と長年の膝痛で来院。施術とセルフトレーニングを続けながら、歩くつらさと向き合われたお声です。</p>
+              <a href="voices.html#voice-1" class="voice-trust-card__link">詳しく見る</a>
+            </div>
+          </article>
+
+          <article class="voice-trust-card">
+            <img src="image/voice-kk.webp" alt="K.K様と院長の写真" class="voice-trust-card__image" loading="lazy" decoding="async" width="1536" height="1152">
+            <div class="voice-trust-card__body">
+              <p class="voice-trust-card__meta">K.K様 / 坐骨神経痛・膝の痛み</p>
+              <p class="voice-trust-card__text">坐骨神経痛や膝・腰の痛みでご相談。身体が軽く感じられたことや、丁寧に見てもらえる安心感をお話しくださいました。</p>
+              <a href="voices.html#voice-2" class="voice-trust-card__link">詳しく見る</a>
+            </div>
+          </article>
+
+          <article class="voice-trust-card">
+            <img src="image/voice-numajiri.webp" alt="沼尻様と院長の写真" class="voice-trust-card__image" loading="lazy" decoding="async" width="1536" height="1152">
+            <div class="voice-trust-card__body">
+              <p class="voice-trust-card__meta">沼尻様 / 全身の痛みや不調</p>
+              <p class="voice-trust-card__text">ねんざ後の全身的な痛みや、腰・足・首肩のつらさでご相談。ご自身の身体と向き合う大切さを感じたお声です。</p>
+              <a href="voices.html#voice-3" class="voice-trust-card__link">詳しく見る</a>
+            </div>
+          </article>
+
+          <article class="voice-trust-card">
+            <img src="image/voice-yo.webp" alt="Y.O様と院長の写真" class="voice-trust-card__image" loading="lazy" decoding="async" width="1536" height="1152">
+            <div class="voice-trust-card__body">
+              <p class="voice-trust-card__meta">Y.O様 / 膝関節痛</p>
+              <p class="voice-trust-card__text">整形外科に通っても続く膝関節痛でご相談。階段や歩行への不安について、身体の状態を相談する大切さをお話しくださいました。</p>
+              <a href="voices.html#voice-4" class="voice-trust-card__link">詳しく見る</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="voice-trust__more">
+          <a href="voices.html" class="voice-trust__button">お客様の声をもっと見る</a>
+        </div>
+      </div>
+    </section>
+
     <template id="legacy-clinical-perspective-index">
       <span>膝痛を見立てる視点</span>
       <span>膝の痛みは、痛む場所だけを見ても分からないことがあります</span>
@@ -1605,71 +1669,9 @@
       <span>股関節や足首の動き、歩き方、日常での身体の使い方まで整理し、膝に負担が戻りにくい状態を一緒に目指します。</span>
     </template>
 
-    <section id="seo-guide" class="py-24 bg-slate-50">
-      <div class="container mx-auto px-4 max-w-4xl">
-        <div class="text-center mb-12">
-          <h2 class="section-title">なぜ膝の痛みが長引くのか？</h2>
-          <p class="font-bold text-slate-600 max-w-2xl mx-auto">
-            膝だけを気にしていると、負担のかかり方が見えにくいことがあります。<br>長引きやすい理由を、来院前に短く整理しました。
-          </p>
-        </div>
-
-        <div class="space-y-4">
-          <details class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-            <summary class="flex justify-between items-center font-black cursor-pointer p-6 text-slate-800 hover:bg-slate-50 transition-colors">
-              <div class="flex items-center gap-4 text-lg md:text-xl">
-                <div class="bg-red-100 p-2 rounded-full"><i data-lucide="alert-triangle" class="text-red-500 w-5 h-5 flex-shrink-0" aria-hidden="true"></i></div>
-                湿布・注射を続けているのに、なぜ繰り返すのか
-              </div>
-              <span class="chevron-icon transition-transform duration-300 bg-slate-100 p-2 rounded-full" aria-hidden="true">
-                <i data-lucide="chevron-down" class="w-5 h-5 text-slate-600"></i>
-              </span>
-            </summary>
-            <div class="p-6 md:p-8 border-t border-slate-100 bg-slate-50 text-slate-700 font-bold leading-loose space-y-4">
-              <p>湿布や痛み止めは、その場のつらさを和らげる助けになります。ただ、膝に負担を集めている体の使い方がそのままだと、痛みを繰り返しやすくなります。</p>
-            </div>
-          </details>
-
-          <details class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-            <summary class="flex justify-between items-center font-black cursor-pointer p-6 text-slate-800 hover:bg-slate-50 transition-colors">
-              <div class="flex items-center gap-4 text-lg md:text-xl">
-                <div class="bg-blue-100 p-2 rounded-full"><i data-lucide="activity" class="text-blue-600 w-5 h-5 flex-shrink-0" aria-hidden="true"></i></div>
-                膝をかばう動きが、別の負担を増やすことがある
-              </div>
-              <span class="chevron-icon transition-transform duration-300 bg-slate-100 p-2 rounded-full" aria-hidden="true">
-                <i data-lucide="chevron-down" class="w-5 h-5 text-slate-600"></i>
-              </span>
-            </summary>
-            <div class="p-6 md:p-8 border-t border-slate-100 bg-slate-50 text-slate-700 font-bold leading-loose space-y-4">
-              <p>痛みを避ける歩き方が続くと、股関節や腰へ負担が偏ることがあります。だからこそ、膝だけでなく歩き方・股関節・腰まで確認する必要があります。</p>
-            </div>
-          </details>
-
-          <details class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-            <summary class="flex justify-between items-center font-black cursor-pointer p-6 text-slate-800 hover:bg-slate-50 transition-colors">
-              <div class="flex items-center gap-4 text-lg md:text-xl">
-                <div class="bg-purple-100 p-2 rounded-full"><i data-lucide="brain" class="text-purple-600 w-5 h-5 flex-shrink-0" aria-hidden="true"></i></div>
-                「動くとまた痛いかも」という不安も積み重なる
-              </div>
-              <span class="chevron-icon transition-transform duration-300 bg-slate-100 p-2 rounded-full" aria-hidden="true">
-                <i data-lucide="chevron-down" class="w-5 h-5 text-slate-600"></i>
-              </span>
-            </summary>
-            <div class="p-6 md:p-8 border-t border-slate-100 bg-slate-50 text-slate-700 font-bold leading-loose space-y-4">
-              <p>痛みが長く続くと、必要以上に動きを避けやすくなります。体を守ろうとする反応が強くなり、余計に動きづらさが続くこともあります。</p>
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
     <section id="knee-msm-reasons" class="knee-msm-reasons" aria-labelledby="knee-msm-reasons-title">
       <div class="knee-msm-reasons__inner">
         <div class="knee-msm-hero">
-          <div class="knee-msm-hero__visual" role="img" aria-label="膝・施術・患者さんのイメージ写真プレースホルダー">
-            <span>メインビジュアル画像</span>
-            <small>実装時は実際の写真に差し替え</small>
-          </div>
           <p class="knee-msm-hero__eyebrow">あなたの膝が治らない、本当の理由</p>
           <h2 id="knee-msm-reasons-title" class="knee-msm-hero__title">
             「膝を揉むだけ」では<br>
@@ -1872,48 +1874,48 @@
               <div class="flow-slider__media">
                 <img src="image/flow-medical-interview-form-768.webp" alt="初回時に問診票を記入する様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="432">
               </div>
-              <h3 class="flow-slide__title">記入・待合</h3>
-              <p class="flow-slide__text">いつから痛いのか、どんな動きでつらいのか、病院で言われたことなどを整理します。</p>
+          <h3 class="flow-slide__title">問診票記入</h3>
+          <p class="flow-slide__text">いつから痛いのか、どんな動きでつらいのか、病院で言われたことなどを問診票にご記入いただきます。</p>
             </article>
 
             <article id="flow-slide-2" class="flow-slide" data-flow-slide data-flow-index="1">
               <div class="flow-slider__media">
-                <img src="image/consultation-scene-768.webp" alt="膝の状態を丁寧に確認する問診の様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="614">
-              </div>
-              <h3 class="flow-slide__title">問診</h3>
-              <p class="flow-slide__text">歩き始め、階段、立ち上がり、買い物など、日常のどの場面で膝が不安なのかを伺います。</p>
+          <img src="image/consultation-scene-768.webp" alt="膝の状態を丁寧に確認するカウンセリングの様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="614">
+        </div>
+          <h3 class="flow-slide__title">カウンセリング</h3>
+          <p class="flow-slide__text">問診票をもとに、歩き始め、階段、立ち上がり、買い物など、日常のどの場面で膝が不安なのかを伺います。</p>
             </article>
 
             <article id="flow-slide-3" class="flow-slide" data-flow-slide data-flow-index="2">
               <div class="flow-slider__media">
                 <img src="image/flow-movement-assessment-768.webp" alt="股関節や膝の動きを確認している様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="576">
               </div>
-              <h3 class="flow-slide__title">検査・動作確認</h3>
-              <p class="flow-slide__text">膝だけでなく、股関節・足首・姿勢・歩き方も確認し、どこに負担が集まりやすいかを見ていきます。</p>
+          <h3 class="flow-slide__title">身体の状態チェック</h3>
+          <p class="flow-slide__text">膝だけでなく、股関節・足首・姿勢・歩き方も確認し、どこに負担が集まりやすいかを見ていきます。</p>
             </article>
 
             <article id="flow-slide-4" class="flow-slide" data-flow-slide data-flow-index="3">
               <div class="flow-slider__media">
-                <img src="image/flow-treatment-session-768.webp" alt="膝や股関節まわりへの施術の様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="432">
-              </div>
-              <h3 class="flow-slide__title">施術</h3>
-              <p class="flow-slide__text">やさしく身体を整えながら、立つ・歩く・階段などの動きにつながるように運動療法も行います。</p>
+          <img src="image/consultation-scene-768.webp" alt="施術方針をわかりやすく説明している様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="614">
+        </div>
+          <h3 class="flow-slide__title">状態説明、施術方針の説明</h3>
+          <p class="flow-slide__text">なぜ痛みが出やすいのか、これから何を目指すのかを、専門用語を使いすぎず分かりやすくお伝えします。</p>
             </article>
 
             <article id="flow-slide-5" class="flow-slide" data-flow-slide data-flow-index="4">
               <div class="flow-slider__media">
-                <img src="image/treatment-stretch-768.webp" alt="自宅でできる運動指導の様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="768">
-              </div>
-              <h3 class="flow-slide__title">セルフケア・運動指導</h3>
-              <p class="flow-slide__text">ご自宅で気をつけることや簡単なセルフケア、膝に負担をかけにくい運動をお伝えします。</p>
+          <img src="image/flow-treatment-session-768.webp" alt="膝や股関節まわりへの施術の様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="432">
+        </div>
+          <h3 class="flow-slide__title">施術開始</h3>
+          <p class="flow-slide__text">やさしく身体を整えながら、立つ・歩く・階段などの動きにつながるように運動療法も行います。</p>
             </article>
 
             <article id="flow-slide-6" class="flow-slide" data-flow-slide data-flow-index="5">
               <div class="flow-slider__media">
-                <img src="image/medical-interview-768.webp" alt="施術後の説明と次回案内の様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="576">
-              </div>
-              <h3 class="flow-slide__title">お会計・次回説明</h3>
-              <p class="flow-slide__text">施術後の状態を確認し、お会計と次回の目安・ご自宅での注意点をご案内します。</p>
+          <img src="image/treatment-stretch-768.webp" alt="自宅でできるセルフケアを説明する様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="768">
+        </div>
+          <h3 class="flow-slide__title">セルフケアと施術後の説明</h3>
+          <p class="flow-slide__text">ご自宅で気をつけることや簡単なセルフケア、施術後の状態と今後の目安をご案内します。</p>
             </article>
           </div>
 
@@ -2258,7 +2260,7 @@
       </div>
     </section>
 
-    <section id="voice" class="py-20 voice-list-section">
+    <section id="voice" class="py-20 voice-list-section" hidden aria-hidden="true">
       <div class="container mx-auto px-4">
         <div class="voice-list-header">
           <p class="text-blue-600 font-black tracking-[0.08em] text-sm mb-3">患者様の声</p>
