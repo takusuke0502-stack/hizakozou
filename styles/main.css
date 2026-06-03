@@ -2100,15 +2100,38 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       .director-profile__hero {
         grid-template-columns: 1fr;
         gap: 20px;
+        padding-bottom: 24px;
+        margin-bottom: 26px;
       }
 
       .director-profile__photo {
         max-width: 220px;
       }
 
+      .director-profile__section + .director-profile__section {
+        margin-top: 1.45rem;
+      }
+
       .director-profile__career li {
-        grid-template-columns: 1fr;
-        gap: 0.2rem;
+        grid-template-columns: 5.25rem minmax(0, 1fr);
+        gap: 0.6rem;
+        padding: 0.55rem 0;
+        font-size: 0.92rem;
+        line-height: 1.62;
+      }
+
+      .director-profile__career-year {
+        font-size: 0.76rem;
+      }
+
+      .director-profile__career-text small {
+        font-size: 0.78rem;
+        margin-top: 0.08rem;
+      }
+
+      .director-profile__story-card,
+      .director-profile__policy {
+        padding: 16px;
       }
     }
 
@@ -4884,6 +4907,15 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       }
     }
 
+    #faq {
+      padding-bottom: clamp(4.75rem, 8vw, 7rem) !important;
+      margin-bottom: clamp(1.25rem, 3vw, 2.5rem) !important;
+    }
+
+    #access {
+      padding-top: clamp(4.75rem, 8vw, 7rem) !important;
+    }
+
     #faq dt {
       display: flex;
       gap: 0.55rem;
@@ -4914,6 +4946,14 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
     }
 
     @media (max-width: 640px) {
+      #faq {
+        padding-bottom: 4rem !important;
+      }
+
+      #access {
+        padding-top: 4rem !important;
+      }
+
       #faq dt {
         font-size: 0.98rem;
       }

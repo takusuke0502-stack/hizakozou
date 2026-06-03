@@ -363,6 +363,7 @@ export async function buildBlog() {
     CSS_PATH: "assets/blog.css",
     HOME_PATH: "/",
     BLOG_PATH: "./",
+    ACCESS_PATH: "/access.html",
     CONTACT_PATH: "/#access",
     PHONE: blogData.site.phone,
     PHONE_HREF: `tel:${blogData.site.phone.replace(/-/g, "")}`,
@@ -383,6 +384,7 @@ export async function buildBlog() {
         CSS_PATH: "../../assets/blog.css",
         HOME_PATH: "/",
         BLOG_PATH: "../../",
+        ACCESS_PATH: "/access.html",
         CONTACT_PATH: "/#access",
         PHONE: blogData.site.phone,
         PHONE_HREF: `tel:${blogData.site.phone.replace(/-/g, "")}`,
@@ -780,6 +782,9 @@ function buildSymptomPatientVoicesSection(config = {}) {
   const lead = config.label
     ? `${escapeHtml(config.label)}と関わりやすいお悩みで来院された方の内容を掲載しています。症状や経過には個人差があるため、初回は状態を確認しながら方針をご説明します。`
     : "関連するお悩みで来院された方の内容を掲載しています。症状や経過には個人差があるため、初回は状態を確認しながら方針をご説明します。";
+  const title = config.symptomKey === "knee-osteoarthritis"
+    ? "膝や歩き方のお悩みでご相談いただいた方の声"
+    : "この症状に関連するお声";
 
   const cards = voices.map((voice) => `
           <article class="symptom-voice-card">
@@ -808,7 +813,7 @@ function buildSymptomPatientVoicesSection(config = {}) {
   return `<section class="symptom-voices">
       <div class="container max-w-4xl">
         <p class="symptom-voices__eyebrow">PATIENT VOICE</p>
-        <h2 class="symptom-voices__title">この症状に関連するお声</h2>
+        <h2 class="symptom-voices__title">${escapeHtml(title)}</h2>
         <p class="symptom-voices__lead">${lead}</p>
         <div class="symptom-voices__grid">
 ${cards}
@@ -1149,22 +1154,32 @@ function inferBoxTypeFromRuleSet(value, listStyle, ruleSet) {
   return "";
 }
 
+function getBlogIndexTitle(site = {}) {
+  return "膝痛専門 お役立ち情報";
+}
+
+function getBlogIndexDescription(site = {}) {
+  return "柏市で膝痛・慢性痛に悩む方へ、整体院ひざこぞうが来院前に知っておきたい体の見方、症状別の考え方、運動療法のポイントを整理します。";
+}
+
 function buildIndexSeo(site) {
   const canonical = `${trimTrailingSlash(site.url)}/blog/`;
+  const title = getBlogIndexTitle(site);
+  const description = getBlogIndexDescription(site);
   return [
-    `<title>${escapeHtml(site.blogTitle)} | ${escapeHtml(site.name)}</title>`,
-    `<meta name="description" content="${escapeHtml(site.blogDescription)}">`,
+    `<title>${escapeHtml(title)} | ${escapeHtml(site.name)}</title>`,
+    `<meta name="description" content="${escapeHtml(description)}">`,
     `<meta name="robots" content="index,follow">`,
     `<link rel="canonical" href="${canonical}">`,
     `<meta property="og:locale" content="ja_JP">`,
     `<meta property="og:type" content="website">`,
-    `<meta property="og:title" content="${escapeHtml(site.blogTitle)} | ${escapeHtml(site.name)}">`,
-    `<meta property="og:description" content="${escapeHtml(site.blogDescription)}">`,
+    `<meta property="og:title" content="${escapeHtml(title)} | ${escapeHtml(site.name)}">`,
+    `<meta property="og:description" content="${escapeHtml(description)}">`,
     `<meta property="og:url" content="${canonical}">`,
     `<meta property="og:image" content="${absoluteUrl(site.url, site.ogImage)}">`,
     `<meta name="twitter:card" content="summary_large_image">`,
-    `<meta name="twitter:title" content="${escapeHtml(site.blogTitle)} | ${escapeHtml(site.name)}">`,
-    `<meta name="twitter:description" content="${escapeHtml(site.blogDescription)}">`,
+    `<meta name="twitter:title" content="${escapeHtml(title)} | ${escapeHtml(site.name)}">`,
+    `<meta name="twitter:description" content="${escapeHtml(description)}">`,
     `<meta name="twitter:image" content="${absoluteUrl(site.url, site.ogImage)}">`
   ].join("\n  ");
 }
@@ -1199,16 +1214,8 @@ function buildPostSeo(site, post) {
 export function buildIndexContent(site, posts, categoryMap) {
   const categories = [...categoryMap.values()];
   const recentPosts = posts.slice(0, 8);
-  const recommendedSlugs = [
-    "knee-pain-not-healing-honest-answer",
-    "knee-effusion-water-in-knee",
-    "seven-checkpoints-for-knee-pain-improvement"
-  ];
-  const recommendedPosts = recommendedSlugs
-    .map((slug) => posts.find((post) => post.slug === slug))
-    .filter(Boolean);
   const renderListItem = (post) => `
-    <article class="article-list-item">
+    <article class="article-list-item article-list-item--card">
       <a class="article-list-item__link" href="posts/${post.slug}/">
         <div class="article-list-item__thumb">
           <img src="..${post.eyecatch}" alt="${escapeHtml(post.title)}" loading="lazy" decoding="async" width="320" height="220">
@@ -1229,22 +1236,8 @@ export function buildIndexContent(site, posts, categoryMap) {
   `;
 
   const recentList = recentPosts.map(renderListItem).join("");
-  const recommendedList = recommendedPosts.map(renderListItem).join("");
-  const recommendedSection = recommendedPosts.length ? `
-        <section class="category-section category-section--list category-section--recommended">
-          <div class="category-section__header category-section__header--list">
-            <div>
-              <p class="eyebrow">Start Here</p>
-              <h3>まず読む3本</h3>
-            </div>
-            <p class="category-section__description">来院前の不安を短時間で整理しやすい記事を選びました。膝の状態、施術の見立て、相談の目安を先に確認できます。</p>
-          </div>
-          <div class="article-list">${recommendedList}</div>
-        </section>
-  ` : "";
-
-  const categoryChips = categories.map((category) => `
-    <a class="category-chip" href="#category-${escapeHtml(category.slug)}">${escapeHtml(category.name)}</a>
+  const categoryLinks = categories.map((category) => `
+    <a class="column-filter__link" href="#category-${escapeHtml(category.slug)}">${escapeHtml(category.name)}</a>
   `).join("");
   const categorySections = categories.map((category) => `
     <section class="category-section category-section--list" id="category-${escapeHtml(category.slug)}">
@@ -1255,7 +1248,7 @@ export function buildIndexContent(site, posts, categoryMap) {
         </div>
         <p class="category-section__description">${escapeHtml(category.description)}</p>
       </div>
-      <div class="article-list">
+      <div class="article-list blog-card-grid">
         ${posts
           .filter((post) => post.category.slug === category.slug)
           .map(renderListItem).join("")}
@@ -1264,31 +1257,29 @@ export function buildIndexContent(site, posts, categoryMap) {
   `).join("");
 
   return `
-    <section class="hero-block hero-block--compact">
-      <div class="shell hero-block__inner">
-        <div class="hero-copy hero-copy--compact">
-          <p class="eyebrow">Blog</p>
-          <h1>${escapeHtml(site.blogTitle)}</h1>
-          <p class="hero-copy__lead">${escapeHtml(site.blogDescription)}</p>
-          <div class="hero-actions">
-            <a class="button button--primary" href="/#access">LINEで相談する</a>
-            <a class="button button--soft" href="/#symptoms">症状ページを見る</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section-block">
+    <section class="section-block blog-column-index">
       <div class="shell">
-        <div class="section-heading">
-          <p class="eyebrow">Guide</p>
-          <h2>症状やテーマから探せる読みもの一覧</h2>
-          <p>膝痛を中心に、腰痛や坐骨神経痛、運動療法の考え方まで、必要な記事を一覧で探しやすい形にまとめています。</p>
+        <div class="column-search-panel" aria-label="コラム検索">
+          <form class="column-search" role="search" action="./" method="get">
+            <label class="sr-only" for="column-search-keyword">キーワードを入力</label>
+            <input id="column-search-keyword" class="column-search__input" type="search" name="q" placeholder="キーワードを入力">
+            <button class="column-search__button" type="submit" aria-label="検索する">⌕</button>
+          </form>
+          <details class="column-filter">
+            <summary>ストレッチ<span aria-hidden="true">＋</span></summary>
+            <div class="column-filter__body">
+              <a class="column-filter__link" href="#category-exercise-therapy">運動療法</a>
+              <a class="column-filter__link" href="#category-knee-pain">膝のセルフケア</a>
+            </div>
+          </details>
+          <details class="column-filter">
+            <summary>症状や部位から探す<span aria-hidden="true">＋</span></summary>
+            <div class="column-filter__body">
+              ${categoryLinks}
+            </div>
+          </details>
         </div>
-        <nav class="category-chip-list category-nav" aria-label="ブログカテゴリ">
-          ${categoryChips}
-        </nav>
         <div class="blog-index-sequence">
-          ${recommendedSection}
           <section class="category-section category-section--list category-section--recent">
           <div class="category-section__header category-section__header--list">
             <div>
@@ -1297,7 +1288,7 @@ export function buildIndexContent(site, posts, categoryMap) {
             </div>
             <p class="category-section__description">まずは最近追加した記事から確認したい方のために、新しい順でまとめています。</p>
           </div>
-          <div class="article-list">${recentList}</div>
+          <div class="article-list blog-card-grid">${recentList}</div>
           </section>
           <div class="category-sections">${categorySections}</div>
         </div>

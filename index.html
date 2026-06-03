@@ -205,97 +205,461 @@
 
 
     .hero-fixed .hero-safe-band {
-      border-radius: 28px;
+      position: relative;
       overflow: hidden;
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+      border-radius: 28px;
+      border: 1px solid #efe7d7;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(255, 245, 213, 0.95), transparent 28%),
+        linear-gradient(180deg, #fffdf8 0%, #ffffff 55%, #fffaf1 100%);
+      box-shadow: 0 24px 58px rgba(67, 44, 18, 0.12);
+      padding: clamp(24px, 4vw, 44px);
+      color: #3a2418;
     }
 
-    .hero-fixed .hero-safe-band__price {
-      padding: 24px 24px 22px;
-      border-bottom: 1px solid #e2e8f0;
+    .hero-fixed .hero-safe-band__flyer {
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 12px;
-      align-items: end;
+      grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+      gap: clamp(28px, 4vw, 46px);
+      align-items: center;
     }
 
-    .hero-fixed .hero-safe-band__label {
-      color: #d9812e;
-      font-size: 12px;
+    .hero-fixed .hero-safe-band__left,
+    .hero-fixed .hero-safe-band__right {
+      min-width: 0;
+    }
+
+    .hero-fixed .hero-safe-band__ribbon,
+    .hero-fixed .hero-safe-band__included-ribbon {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 46px;
+      color: #fff;
       font-weight: 900;
-      letter-spacing: 0.12em;
-      margin-bottom: 8px;
+      line-height: 1.2;
+      letter-spacing: 0.06em;
+      text-align: center;
+      filter: drop-shadow(0 8px 12px rgba(80, 48, 16, 0.14));
     }
 
-    .hero-fixed .hero-safe-band__course {
-      color: #334155;
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 1.6;
+    .hero-fixed .hero-safe-band__ribbon {
+      margin-left: 5.5rem;
+      background: linear-gradient(180deg, #ff8c22, #f26100);
+      font-size: clamp(1.05rem, 2.2vw, 1.55rem);
     }
 
-    .hero-fixed .hero-safe-band__price-row {
+    .hero-fixed .hero-safe-band__ribbon::before,
+    .hero-fixed .hero-safe-band__ribbon::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 34px;
+      height: 100%;
+      background: inherit;
+    }
+
+    .hero-fixed .hero-safe-band__ribbon::before {
+      left: -24px;
+      clip-path: polygon(0 0, 100% 0, 72% 50%, 100% 100%, 0 100%, 28% 50%);
+    }
+
+    .hero-fixed .hero-safe-band__ribbon::after {
+      right: -24px;
+      clip-path: polygon(0 0, 100% 0, 72% 50%, 100% 100%, 0 100%, 28% 50%);
+      transform: scaleX(-1);
+    }
+
+    .hero-fixed .hero-safe-band__spark {
+      color: #ffe252;
+      font-size: 0.86em;
+      margin-inline: 0.45em;
+    }
+
+    .hero-fixed .hero-safe-band__title {
+      margin-top: 28px;
+      color: #372016;
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .hero-fixed .hero-safe-band__dash {
+      margin: 22px 0 28px;
+      border-top: 2px dashed rgba(255, 111, 0, 0.7);
+    }
+
+    .hero-fixed .hero-safe-band__price-area {
+      position: relative;
       display: flex;
       align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 8px 14px;
-      margin-top: 8px;
+      justify-content: center;
+      gap: clamp(10px, 1.8vw, 22px);
+      padding-top: 42px;
+      margin-bottom: 28px;
     }
 
-    .hero-fixed .hero-safe-band__regular {
-      color: #94a3b8;
-      font-size: 18px;
-      font-weight: 700;
-      text-decoration: line-through;
+    .hero-fixed .hero-safe-band__normal {
+      display: grid;
+      gap: 8px;
+      justify-items: center;
+      color: #8d8d8d;
+      font-weight: 900;
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+
+    .hero-fixed .hero-safe-band__normal-label {
+      font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+    }
+
+    .hero-fixed .hero-safe-band__normal-price {
+      position: relative;
+      display: inline-block;
+      font-size: clamp(1.2rem, 2.5vw, 1.85rem);
+    }
+
+    .hero-fixed .hero-safe-band__normal-price::after {
+      content: "";
+      position: absolute;
+      left: -0.15em;
+      right: -0.15em;
+      top: 52%;
+      height: 3px;
+      background: #ef6c00;
+      transform: rotate(-1deg);
+    }
+
+    .hero-fixed .hero-safe-band__first {
+      position: absolute;
+      top: 0;
+      left: clamp(128px, 31%, 180px);
+      border: 2px solid #ff6d1f;
+      border-radius: 999px;
+      padding: 8px 16px;
+      color: #ff6d1f;
+      background: #fff;
+      font-size: clamp(0.95rem, 2.2vw, 1.4rem);
+      font-weight: 900;
       line-height: 1;
+      white-space: nowrap;
     }
 
     .hero-fixed .hero-safe-band__special {
-      color: #d9812e;
-      font-size: clamp(44px, 6vw, 62px);
+      color: #ff6500;
+      font-size: clamp(4.2rem, 8.4vw, 7rem);
       font-weight: 900;
-      line-height: 0.92;
+      line-height: 0.8;
       letter-spacing: 0.01em;
+      text-shadow: 0 4px 0 rgba(255, 229, 205, 0.9);
+      white-space: nowrap;
     }
 
     .hero-fixed .hero-safe-band__special small {
-      font-size: 0.42em;
+      margin-left: 0.05em;
+      font-size: 0.34em;
       font-weight: 900;
     }
 
-    .hero-fixed .hero-safe-band__note {
-      color: #64748b;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.7;
-      max-width: 28rem;
+    .hero-fixed .hero-safe-band__note-card {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 22px;
+      align-items: center;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #fff9ed, #fffdf8);
+      box-shadow: inset 0 0 0 1px rgba(235, 214, 184, 0.58);
+      padding: 20px 26px;
     }
 
-    .hero-fixed .hero-safe-band__cards {
-      padding: 16px;
+    .hero-fixed .hero-safe-band__heart {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 76px;
+      height: 76px;
+      border: 3px solid #6faf39;
+      border-radius: 999px;
+      color: #75b241;
+      font-size: 2rem;
+      line-height: 1;
     }
 
-    @media (min-width: 768px) {
-      .hero-fixed .hero-safe-band__price {
-        padding: 24px 24px 20px;
-        grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr);
-        gap: 16px;
+    .hero-fixed .hero-safe-band__note-main {
+      color: #3a2418;
+      font-size: clamp(1.2rem, 2.6vw, 1.75rem);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .hero-fixed .hero-safe-band__note-sub {
+      display: inline-block;
+      margin-top: 0.35rem;
+      border-bottom: 3px dotted #f7c33f;
+      color: #ff6500;
+      font-size: clamp(1.35rem, 3vw, 2.05rem);
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .hero-fixed .hero-safe-band__included {
+      position: relative;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 18% 6%, rgba(237, 230, 204, 0.72), transparent 34%),
+        linear-gradient(180deg, rgba(255, 253, 244, 0.92), rgba(247, 243, 226, 0.92));
+      padding: 72px clamp(22px, 3vw, 34px) 24px;
+      box-shadow: inset 0 0 0 1px rgba(232, 222, 197, 0.62);
+    }
+
+    .hero-fixed .hero-safe-band__included-ribbon {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: min(74%, 360px);
+      min-height: 52px;
+      background: linear-gradient(180deg, #6cae3f, #3c842a);
+      font-size: clamp(1.05rem, 2.2vw, 1.65rem);
+      transform: translate(-50%, -8%);
+    }
+
+    .hero-fixed .hero-safe-band__included-ribbon::before,
+    .hero-fixed .hero-safe-band__included-ribbon::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 28px;
+      height: 100%;
+      background: inherit;
+    }
+
+    .hero-fixed .hero-safe-band__included-ribbon::before {
+      left: -22px;
+      clip-path: polygon(0 0, 100% 0, 70% 50%, 100% 100%, 0 100%, 30% 50%);
+    }
+
+    .hero-fixed .hero-safe-band__included-ribbon::after {
+      right: -22px;
+      clip-path: polygon(0 0, 100% 0, 70% 50%, 100% 100%, 0 100%, 30% 50%);
+      transform: scaleX(-1);
+    }
+
+    .hero-fixed .hero-safe-band__included-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .hero-fixed .hero-safe-band__included-list li {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 18px;
+      align-items: center;
+      border-bottom: 1px dashed #cbdcae;
+      padding: 16px 0;
+      color: #3a2418;
+      font-size: clamp(1.06rem, 2.2vw, 1.45rem);
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .hero-fixed .hero-safe-band__included-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .hero-fixed .hero-safe-band__check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #a6d058, #6faa31);
+      color: #fff;
+      font-size: 1.35rem;
+      font-weight: 900;
+      box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    .hero-fixed .hero-safe-band__divider {
+      position: relative;
+      height: 1px;
+      margin: 36px 0 28px;
+      background: #ded9cf;
+    }
+
+    .hero-fixed .hero-safe-band__divider::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 26px;
+      height: 26px;
+      border-right: 2px solid #ded9cf;
+      border-bottom: 2px solid #ded9cf;
+      background: #fffdf8;
+      transform: translate(-50%, -8px) rotate(45deg);
+    }
+
+    .hero-fixed .hero-safe-band__line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(16px, 3vw, 34px);
+      width: min(100%, 1040px);
+      min-height: clamp(74px, 9vw, 112px);
+      margin: 0 auto;
+      border-radius: 22px;
+      background: linear-gradient(180deg, #ff9f20, #ff5c00);
+      color: #fff;
+      font-size: clamp(1.7rem, 5vw, 3.55rem);
+      font-weight: 900;
+      line-height: 1.15;
+      text-align: center;
+      box-shadow: 0 12px 0 #e85500, 0 24px 36px rgba(201, 84, 0, 0.22);
+      text-shadow: 0 2px 0 rgba(184, 73, 0, 0.42);
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .hero-fixed .hero-safe-band__line:hover,
+    .hero-fixed .hero-safe-band__line:focus-visible {
+      transform: translateY(2px);
+      filter: brightness(1.02);
+    }
+
+    .hero-fixed .hero-safe-band__line-bubble {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(56px, 8vw, 86px);
+      height: clamp(56px, 8vw, 86px);
+      border-radius: 999px;
+      background: #fff;
+      color: #38a334;
+      font-size: clamp(1.05rem, 2.4vw, 1.55rem);
+      font-weight: 900;
+      text-shadow: none;
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .hero-fixed .hero-safe-band__line-bubble::after {
+      content: "";
+      position: absolute;
+      right: 7px;
+      bottom: -9px;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      clip-path: polygon(0 0, 100% 0, 25% 100%);
+      transform: rotate(-18deg);
+    }
+
+    .hero-fixed .hero-safe-band__line-arrow {
+      margin-left: 0.2em;
+      font-size: 1.15em;
+      line-height: 1;
+    }
+
+    .hero-fixed .hero-safe-band__assurance {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      margin-top: 28px;
+      color: #3a2418;
+      font-size: clamp(1.05rem, 2.3vw, 1.55rem);
+      font-weight: 900;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .hero-fixed .hero-safe-band__assurance-mark {
+      color: #7eb449;
+      font-size: 1.1em;
+    }
+
+    @media (max-width: 960px) {
+      .hero-fixed .hero-safe-band__flyer {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-fixed .hero-safe-band__ribbon {
+        margin-left: 0;
       }
     }
 
     @media (max-width: 767px) {
-      .hero-fixed .hero-safe-band__price {
-        padding: 20px 18px 18px;
+      .hero-fixed .hero-safe-band {
+        border-radius: 22px;
+        padding: 22px 16px;
       }
 
-      .hero-fixed .hero-safe-band__cards {
-        padding: 14px;
+      .hero-fixed .hero-safe-band__ribbon,
+      .hero-fixed .hero-safe-band__included-ribbon {
+        width: auto;
+        padding-inline: 28px;
       }
 
-      .hero-fixed .hero-safe-band__regular {
-        font-size: 16px;
+      .hero-fixed .hero-safe-band__title {
+        margin-top: 22px;
+        text-align: center;
+      }
+
+      .hero-fixed .hero-safe-band__price-area {
+        gap: 8px;
+        justify-content: center;
+        padding-top: 34px;
+      }
+
+      .hero-fixed .hero-safe-band__normal {
+        gap: 4px;
+      }
+
+      .hero-fixed .hero-safe-band__first {
+        left: clamp(96px, 34%, 132px);
+        padding: 7px 13px;
+        font-size: 1.05rem;
+      }
+
+      .hero-fixed .hero-safe-band__special {
+        font-size: clamp(3.5rem, 17vw, 4.6rem);
+      }
+
+      .hero-fixed .hero-safe-band__note-card {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        gap: 12px;
+        padding: 18px;
+      }
+
+      .hero-fixed .hero-safe-band__included {
+        padding: 62px 18px 18px;
+      }
+
+      .hero-fixed .hero-safe-band__included-list li {
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 12px;
+        padding: 13px 0;
+      }
+
+      .hero-fixed .hero-safe-band__check {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+      }
+
+      .hero-fixed .hero-safe-band__line {
+        gap: 12px;
+        border-radius: 18px;
+        padding: 0 12px;
+      }
+
+      .hero-fixed .hero-safe-band__assurance {
+        flex-wrap: wrap;
       }
     }
 
@@ -1158,7 +1522,6 @@
     .flow-slider,
     .hk-pricing-section,
     .symptom-finder,
-    #blog-section.blog-b-compact,
     #access {
       background: var(--lp-unified-bg) !important;
     }
@@ -1170,232 +1533,6 @@
       background-image: none !important;
     }
 
-    #blog-section.blog-b-compact {
-      padding-top: 56px;
-      padding-bottom: 58px;
-      background: var(--lp-unified-bg) !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-wrap {
-      max-width: 1016px;
-      margin: 0 auto;
-    }
-
-    #blog-section.blog-b-compact #blog-preview-container {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 16px !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-card {
-      display: grid !important;
-      grid-template-columns: 96px minmax(0, 1fr) auto !important;
-      align-items: center !important;
-      gap: 14px !important;
-      min-height: 132px !important;
-      padding: 17px 18px !important;
-      border-radius: 21px !important;
-      border: 1px solid #dcefd7 !important;
-      background: #fff !important;
-      box-shadow: 0 18px 42px rgba(79, 138, 79, 0.08) !important;
-      text-decoration: none !important;
-      overflow: hidden !important;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-card[data-featured="true"] {
-      border-color: #A3D39C !important;
-      box-shadow: 0 20px 44px rgba(79, 138, 79, 0.12) !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-card:hover {
-      border-color: #F2A65A !important;
-      box-shadow: 0 20px 44px rgba(217, 129, 46, 0.14) !important;
-      transform: translateY(-1px) !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-thumb {
-      width: 96px !important;
-      min-width: 96px !important;
-      height: 96px !important;
-      border-radius: 13px !important;
-      overflow: hidden !important;
-      background: #e2e8f0 !important;
-      display: block !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-thumb img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      display: block !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-meta {
-      display: flex !important;
-      align-items: center !important;
-      gap: 10px !important;
-      margin-bottom: 4px !important;
-      font-size: 12px !important;
-      line-height: 1.3 !important;
-      font-weight: 700 !important;
-      color: #4f8a4f !important;
-      flex-wrap: wrap !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-cat {
-      color: #d9812e !important;
-      font-weight: 800 !important;
-      letter-spacing: 0.01em !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-title {
-      margin: 0 0 6px !important;
-      color: #243443 !important;
-      font-size: 20px !important;
-      line-height: 1.3 !important;
-      font-weight: 900 !important;
-      display: -webkit-box !important;
-      -webkit-line-clamp: 2 !important;
-      -webkit-box-orient: vertical !important;
-      overflow: hidden !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-desc {
-      margin: 0 !important;
-      color: #405247 !important;
-      font-size: 14px !important;
-      line-height: 1.55 !important;
-      font-weight: 700 !important;
-      display: -webkit-box !important;
-      -webkit-line-clamp: 1 !important;
-      -webkit-box-orient: vertical !important;
-      overflow: hidden !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-side {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: flex-end !important;
-      align-self: center !important;
-      gap: 10px !important;
-      min-width: 146px !important;
-      white-space: nowrap !important;
-      padding-left: 12px !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-date {
-      font-size: 19px !important;
-      line-height: 1.3 !important;
-      font-weight: 800 !important;
-      color: #6d8d62 !important;
-      letter-spacing: 0.08em !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-arrow {
-      font-size: 26px !important;
-      line-height: 1 !important;
-      color: #d9812e !important;
-      font-weight: 700 !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-button-wrap {
-      display: flex !important;
-      justify-content: center !important;
-      margin-top: 26px !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-button {
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 10px !important;
-      min-width: 224px !important;
-      min-height: 64px !important;
-      padding: 17px 30px !important;
-      border-radius: 19px !important;
-      border: 1px solid #b7cff8 !important;
-      background: linear-gradient(180deg, #dcebff 0%, #d3e6ff 100%) !important;
-      color: #2f63de !important;
-      font-weight: 900 !important;
-      text-decoration: none !important;
-      box-shadow: 0 10px 22px rgba(59, 130, 246, 0.12) !important;
-    }
-
-    #blog-section.blog-b-compact .blog-b-button-icon {
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      width: 22px !important;
-      height: 22px !important;
-    }
-
-    @media (max-width: 767px) {
-      #blog-section.blog-b-compact {
-        padding-top: 52px;
-        padding-bottom: 56px;
-      }
-
-      #blog-section.blog-b-compact .blog-b-wrap {
-        max-width: 100%;
-      }
-
-      #blog-section.blog-b-compact .blog-b-card {
-        grid-template-columns: 76px minmax(0, 1fr) !important;
-        gap: 12px !important;
-        min-height: auto !important;
-        padding: 13px 13px !important;
-        border-radius: 18px !important;
-      }
-
-      #blog-section.blog-b-compact .blog-b-thumb {
-        width: 76px !important;
-        min-width: 76px !important;
-        height: 76px !important;
-        border-radius: 12px !important;
-      }
-
-      #blog-section.blog-b-compact .blog-b-text {
-        min-width: 0 !important;
-      }
-
-      #blog-section.blog-b-compact .blog-b-title {
-        font-size: 16px !important;
-        margin-bottom: 4px !important;
-      }
-
-      #blog-section.blog-b-compact .blog-b-desc {
-        font-size: 13px !important;
-        line-height: 1.55 !important;
-        -webkit-line-clamp: 2 !important;
-      }
-
-      #blog-section.blog-b-compact .blog-b-side {
-        grid-column: 2 / 3 !important;
-        justify-content: flex-start !important;
-        min-width: 0 !important;
-        gap: 7px !important;
-        padding-left: 0 !important;
-        margin-top: 7px !important;
-      }
-
-      #blog-section.blog-b-compact .blog-b-date {
-        font-size: 12px !important;
-      }
-
-      #blog-section.blog-b-compact .blog-b-arrow {
-        font-size: 20px !important;
-      }
-
-      #blog-section.blog-b-compact .blog-b-button-wrap {
-        margin-top: 20px !important;
-      }
-
-      #blog-section.blog-b-compact .blog-b-button {
-        min-width: 200px !important;
-        padding: 15px 24px !important;
-      }
-    }
   </style>
   <script src="/scripts/tracking-config.js" defer></script>
   <script src="/scripts/tracking.js" defer></script>
@@ -1562,42 +1699,61 @@
             </div>
 
             <section class="hero-safe-band mt-2 md:mt-3" aria-label="初回料金と安心情報">
-              <div class="hero-safe-band__price">
-                <div>
-                  <p class="hero-safe-band__label">初回のご案内</p>
-                  <p class="hero-safe-band__course">初回カウンセリング＋全身整体コース</p>
-                  <div class="hero-safe-band__price-row">
-                    <span class="hero-safe-band__regular">通常 10,000円</span>
+              <div class="hero-safe-band__flyer">
+                <div class="hero-safe-band__left">
+                  <p class="hero-safe-band__ribbon">
+                    <span class="hero-safe-band__spark" aria-hidden="true">ミ</span>
+                    初回限定のご案内
+                    <span class="hero-safe-band__spark" aria-hidden="true">ミ</span>
+                  </p>
+                  <h2 class="hero-safe-band__title">初回カウンセリング＋全身整体コース</h2>
+                  <div class="hero-safe-band__dash" aria-hidden="true"></div>
+
+                  <div class="hero-safe-band__price-area" aria-label="初回限定価格">
+                    <div class="hero-safe-band__normal">
+                      <span class="hero-safe-band__normal-label">通常</span>
+                      <span class="hero-safe-band__normal-price">10,000円</span>
+                    </div>
+                    <span class="hero-safe-band__first">初回</span>
                     <span class="hero-safe-band__special">1,980<small>円</small></span>
                   </div>
+
+                  <div class="hero-safe-band__note-card">
+                    <span class="hero-safe-band__heart" aria-hidden="true">♥</span>
+                    <p>
+                      <span class="hero-safe-band__note-main">カウンセリング・状態確認込み</span>
+                      <span class="hero-safe-band__note-sub">まずは相談だけでも大丈夫です。</span>
+                    </p>
+                  </div>
                 </div>
-                <p class="hero-safe-band__note">カウンセリング・状態確認込み。<br>まずは相談からでも大丈夫です。</p>
+
+                <div class="hero-safe-band__right">
+                  <div class="hero-safe-band__included">
+                    <p class="hero-safe-band__included-ribbon">含まれる内容</p>
+                    <ul class="hero-safe-band__included-list">
+                      <li><span class="hero-safe-band__check" aria-hidden="true">✓</span><span>カウンセリング</span></li>
+                      <li><span class="hero-safe-band__check" aria-hidden="true">✓</span><span>姿勢・歩き方の確認</span></li>
+                      <li><span class="hero-safe-band__check" aria-hidden="true">✓</span><span>膝に負担がかかる原因の説明</span></li>
+                      <li><span class="hero-safe-band__check" aria-hidden="true">✓</span><span>全身整体</span></li>
+                      <li><span class="hero-safe-band__check" aria-hidden="true">✓</span><span>セルフケアのご提案</span></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
 
-              <div class="hero-safe-band__cards">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-                  <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
-                    <i data-lucide="map-pin" class="w-5 h-5 text-blue-600 mx-auto mb-2" aria-hidden="true"></i>
-                    <p class="text-xs font-bold text-slate-500 mb-1">アクセス</p>
-                    <p class="text-sm font-black text-slate-800 leading-tight">柏駅西口<br>徒歩8分</p>
-                  </div>
-                  <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
-                    <i data-lucide="clock-3" class="w-5 h-5 text-blue-600 mx-auto mb-2" aria-hidden="true"></i>
-                    <p class="text-xs font-bold text-slate-500 mb-1">ご案内</p>
-                    <p class="text-sm font-black text-slate-800 leading-tight">完全予約制<br>待ち時間なし</p>
-                  </div>
-                  <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
-                    <i data-lucide="shield-check" class="w-5 h-5 text-blue-600 mx-auto mb-2" aria-hidden="true"></i>
-                    <p class="text-xs font-bold text-slate-500 mb-1">対応者</p>
-                    <p class="text-sm font-black text-slate-800 leading-tight">国家資格者が<br>一貫対応</p>
-                  </div>
-                  <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
-                    <i data-lucide="wallet" class="w-5 h-5 text-blue-600 mx-auto mb-2" aria-hidden="true"></i>
-                    <p class="text-xs font-bold text-slate-500 mb-1">初回料金</p>
-                    <p class="text-sm font-black text-slate-800 leading-tight">カウンセリング込み<br>1,980円</p>
-                  </div>
-                </div>
-              </div>
+              <div class="hero-safe-band__divider" aria-hidden="true"></div>
+
+              <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="hero-safe-band__line">
+                <span class="hero-safe-band__line-bubble" aria-hidden="true">LINE</span>
+                <span>LINEで初回予約する</span>
+                <span class="hero-safe-band__line-arrow" aria-hidden="true">›</span>
+              </a>
+
+              <p class="hero-safe-band__assurance">
+                <span class="hero-safe-band__assurance-mark" aria-hidden="true">ミ</span>
+                <span>無理な勧誘はありません。ご相談だけでも大丈夫です。</span>
+                <span class="hero-safe-band__assurance-mark" aria-hidden="true">ミ</span>
+              </p>
             </section>
 
           </div>
@@ -2265,24 +2421,6 @@
           </div>
 
           <div class="director-profile__section">
-            <p class="director-profile__section-title">私が痛みの専門家を目指したわけ</p>
-            <div class="director-profile__story-card">
-              <div class="director-profile__story-head">
-                <span class="director-profile__story-icon director-profile__story-icon--knee" aria-hidden="true"><i data-lucide="activity" class="w-4 h-4"></i></span>
-                <h3 class="director-profile__story-title">学生時代の膝痛との闘い</h3>
-              </div>
-              <p class="director-profile__text">サッカーに打ち込んでいた学生時代、オーバーユースによる膝の痛みでまともに歩けない時期がありました。その経験が、膝の痛みで苦しむ方の気持ちに寄り添える原点になっています。院名「ひざこぞう」にも、この思いが込められています。</p>
-            </div>
-            <div class="director-profile__story-card">
-              <div class="director-profile__story-head">
-                <span class="director-profile__story-icon director-profile__story-icon--health" aria-hidden="true"><i data-lucide="heart-pulse" class="w-4 h-4"></i></span>
-                <h3 class="director-profile__story-title">20歳でのクローン病経験</h3>
-              </div>
-              <p class="director-profile__text">20歳のとき、クローン病を発症し入退院を繰り返しました。その経験から「健康であることの大切さ」を人一倍深く理解しています。現在は食事や生活習慣に気をつけながら元気に施術を続けており、患者さんの日常生活改善にも積極的に向き合っています。</p>
-            </div>
-          </div>
-
-          <div class="director-profile__section">
             <p class="director-profile__section-title">院長のこと、もう少し</p>
             <div class="director-profile__private-grid">
               <div class="director-profile__private-item">
@@ -2304,7 +2442,21 @@
           </div>
 
           <div class="director-profile__section">
-            <p class="director-profile__section-title">施術への想い</p>
+            <p class="director-profile__section-title">私が痛みの専門家を目指したわけと施術への想い</p>
+            <div class="director-profile__story-card">
+              <div class="director-profile__story-head">
+                <span class="director-profile__story-icon director-profile__story-icon--knee" aria-hidden="true"><i data-lucide="activity" class="w-4 h-4"></i></span>
+                <h3 class="director-profile__story-title">学生時代の膝痛との闘い</h3>
+              </div>
+              <p class="director-profile__text">サッカーに打ち込んでいた学生時代、オーバーユースによる膝の痛みでまともに歩けない時期がありました。その経験が、膝の痛みで苦しむ方の気持ちに寄り添える原点になっています。院名「ひざこぞう」にも、この思いが込められています。</p>
+            </div>
+            <div class="director-profile__story-card">
+              <div class="director-profile__story-head">
+                <span class="director-profile__story-icon director-profile__story-icon--health" aria-hidden="true"><i data-lucide="heart-pulse" class="w-4 h-4"></i></span>
+                <h3 class="director-profile__story-title">20歳でのクローン病経験</h3>
+              </div>
+              <p class="director-profile__text">20歳のとき、クローン病を発症し入退院を繰り返しました。その経験から「健康であることの大切さ」を人一倍深く理解しています。現在は食事や生活習慣に気をつけながら元気に施術を続けており、患者さんの日常生活改善にも積極的に向き合っています。</p>
+            </div>
             <div class="director-profile__policy">
               <strong>不安ゼロの空間を大切にしています</strong>
               痛みで悩む方の多くは、「どこに行っても原因が分からない」という不安を抱えています。だから私は、施術の前に必ず時間をかけてお話を聞きます。疑問はどんな小さなことでも遠慮なく聞いてください。あなたが「なぜ痛むのか」を自分の言葉で理解できるまで、一緒に整理していきます。
@@ -2806,79 +2958,6 @@
         </div>
       </div>
     </section>
-
-    <section id="blog-section" class="blog-b-compact py-16 bg-slate-50 border-t border-slate-200">
-      <div class="container mx-auto px-4 blog-b-wrap">
-        <div class="text-center mb-8 md:mb-10">
-          <h2 class="section-title mb-3">お役立ち情報・ブログ</h2>
-          <p class="text-slate-600 font-bold">膝の痛み改善に役立つ情報をお届けします</p>
-        </div>
-
-        <div id="blog-preview-container" aria-live="polite" aria-label="ブログ記事一覧">
-          <a href="blog/posts/hizakozou-method-guide/" class="blog-b-card group" data-featured="true">
-            <span class="blog-b-thumb" aria-hidden="true">
-              <img src="image/treatment-scene.webp" alt="ひざこぞう式整体の記事サムネイル" loading="lazy" decoding="async" width="1200" height="900">
-            </span>
-            <div class="blog-b-text min-w-0">
-              <div class="blog-b-meta">
-                <span class="blog-b-cat">ひざこぞう式整体</span>
-              </div>
-              <h3 class="blog-b-title">ひざこぞう式整体とは？</h3>
-              <p class="blog-b-desc">緩める・鍛える・動作改善という3ステップから、当院の施術と運動療法の流れを紹介します。</p>
-            </div>
-            <div class="blog-b-side">
-              <span class="blog-b-date">2026.3.31</span>
-              <span aria-hidden="true" class="blog-b-arrow">›</span>
-            </div>
-          </a>
-
-          <a href="blog/posts/strength-training-vs-exercise-therapy/" class="blog-b-card group">
-            <span class="blog-b-thumb" aria-hidden="true">
-              <img src="image/treatment-stretch.webp" alt="Exercise therapy article thumbnail" loading="lazy" decoding="async" width="1200" height="900">
-            </span>
-            <div class="blog-b-text min-w-0">
-              <div class="blog-b-meta">
-                <span class="blog-b-cat">運動療法</span>
-              </div>
-              <h3 class="blog-b-title">筋トレと運動療法は何が違う？</h3>
-              <p class="blog-b-desc">痛みがある方に必要なのは、強く鍛える前に体の使い方を思い出すことかもしれません。</p>
-            </div>
-            <div class="blog-b-side">
-              <span class="blog-b-date">2026.4.3</span>
-              <span aria-hidden="true" class="blog-b-arrow">›</span>
-            </div>
-          </a>
-
-          <a href="blog/posts/walking-start-knee-pain-cause/" class="blog-b-card group">
-            <span class="blog-b-thumb" aria-hidden="true">
-              <img src="image/knee-symptom-wide.webp" alt="Walking start knee pain article thumbnail" loading="lazy" decoding="async" width="1200" height="900">
-            </span>
-            <div class="blog-b-text min-w-0">
-              <div class="blog-b-meta">
-                <span class="blog-b-cat">歩き始め</span>
-              </div>
-              <h3 class="blog-b-title">歩き始めの膝の痛みはなぜ起こる？</h3>
-              <p class="blog-b-desc">一歩目や立ち上がりで膝が痛む方へ、動きの準備不足という視点から整理します。</p>
-            </div>
-            <div class="blog-b-side">
-              <span class="blog-b-date">2026.4.3</span>
-              <span aria-hidden="true" class="blog-b-arrow">›</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="blog-b-button-wrap">
-          <a href="blog/" class="blog-b-button">
-            <span class="blog-b-button-icon">
-              <i data-lucide="newspaper" class="w-5 h-5" aria-hidden="true"></i>
-            </span>
-            記事一覧を見る
-            <span aria-hidden="true" class="text-xl leading-none">›</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
 
     <section id="price" class="hk-pricing-section" aria-labelledby="hk-pricing-title">
       <div class="hk-pricing-card">

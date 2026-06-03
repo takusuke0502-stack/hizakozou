@@ -66,20 +66,47 @@ const posts = [
   }
 ];
 
-test("blog index puts recommended conversion posts before recent posts", () => {
+test("blog index starts with compact search filters and article lists", () => {
   const html = buildIndexContent(site, posts, categories);
 
-  assert.match(html, /まず読む3本/);
-  assert.match(html, /category-section--recommended/);
-  assert.match(html, /category-nav/);
+  assert.match(html, /column-search-panel/);
+  assert.match(html, /placeholder="キーワードを入力"/);
+  assert.match(html, /column-filter/);
+  assert.match(html, /ストレッチ/);
+  assert.match(html, /症状や部位から探す/);
+  assert.match(html, /blog-card-grid/);
+  assert.match(html, /article-list-item--card/);
   assert.match(html, /blog-index-sequence/);
   assert.match(html, /article-list-item__date/);
+  assert.doesNotMatch(html, /hero-block/);
+  assert.doesNotMatch(html, /hero-actions/);
+  assert.doesNotMatch(html, /膝痛専門 お役立ち情報一覧/);
+  assert.doesNotMatch(html, /まず読む3本/);
+  assert.doesNotMatch(html, /category-section--recommended/);
 
-  const recommendedIndex = html.indexOf("まず読む3本");
   const recentIndex = html.indexOf("新着記事");
-  assert.ok(recommendedIndex > -1, "recommended heading should exist");
+  const searchIndex = html.indexOf("column-search-panel");
+  const categoryIndex = html.indexOf("category-sections");
+  assert.ok(searchIndex > -1, "search panel should exist");
   assert.ok(recentIndex > -1, "recent heading should exist");
-  assert.ok(recommendedIndex < recentIndex, "recommended posts should appear before recent posts");
+  assert.ok(searchIndex < recentIndex, "search panel should appear before article lists");
+  assert.ok(recentIndex < categoryIndex, "recent posts should appear before category sections");
+});
+
+test("blog index uses the same taskbar links as the LP", () => {
+  const html = readFileSync(new URL("../blog/index.html", import.meta.url), "utf8");
+
+  assert.match(html, /<header id="header" class="site-header">/);
+  assert.match(html, /<nav class="site-nav" aria-label="メインナビゲーション">/);
+  assert.match(html, /<button id="menuBtn" class="site-menu-toggle"/);
+  assert.match(html, /<nav class="site-mobile-nav hidden" id="mobileNav"/);
+  assert.match(html, /href="\/#top"[\s\S]*ホーム/);
+  assert.match(html, /href="\.\/"[\s\S]*コラム/);
+  assert.match(html, /href="\/access\.html"[\s\S]*アクセス・予約/);
+  assert.doesNotMatch(html, /膝の痛み・慢性痛の読みもの/);
+  assert.doesNotMatch(html, /膝痛専門 お役立ち情報一覧/);
+  assert.doesNotMatch(html, /まず読む3本/);
+  assert.match(html, /column-search-panel/);
 });
 
 test("blog index meta description includes local knee-pain intent", () => {
@@ -365,9 +392,9 @@ test("generated blog pages use canonical root links instead of index.html", () =
   }
 
   assert.match(blogIndexHtml, /href="\/#access"/);
-  assert.match(blogIndexHtml, /href="\/#symptoms"/);
+  assert.match(blogIndexHtml, /href="\/#knee-type-nav"/);
   assert.match(dailyCareHtml, /<a href="\/">トップ<\/a>/);
-  assert.match(dailyCareHtml, /href="\/#symptoms"/);
+  assert.match(dailyCareHtml, /href="\/#knee-type-nav"/);
 });
 
 test("knee-pain-daily-care article is indexable and aligned with squatting and seiza intent", () => {

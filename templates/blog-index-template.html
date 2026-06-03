@@ -4,24 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {{SEO_HEAD}}
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="{{CSS_PATH}}">
   <script src="/scripts/tracking-config.js" defer></script>
   <script src="/scripts/tracking.js" defer></script>
 
 </head>
 <body class="blog-page">
-  <header class="site-header">
-    <div class="shell header-row">
-      <a class="brand" href="{{HOME_PATH}}">
-        <span class="brand__eyebrow">{{SITE_SUBTITLE}}</span>
-        <span class="brand__title">{{SITE_NAME}}</span>
-      </a>
-      <nav class="header-nav" aria-label="サイトメニュー">
-        <a href="{{HOME_PATH}}#symptoms">症状ページ</a>
-        <a href="{{HOME_PATH}}#price">初回案内</a>
-        <a class="header-nav__phone" href="{{PHONE_HREF}}">{{PHONE}}</a>
-        <a class="header-nav__cta" href="{{CONTACT_PATH}}">LINEで相談する</a>
-      </nav>
+  <header id="header" class="site-header">
+    <div class="site-header__lower">
+      <div class="site-header__inner">
+        <nav class="site-nav" aria-label="メインナビゲーション">
+          <a href="{{HOME_PATH}}#top" class="site-nav__item"><span class="site-nav__jp">ホーム</span><span class="site-nav__en">HOME</span></a>
+          <a href="{{HOME_PATH}}#features" class="site-nav__item"><span class="site-nav__jp">当院の特徴</span><span class="site-nav__en">FEATURE</span></a>
+          <a href="{{HOME_PATH}}#knee-type-nav" class="site-nav__item"><span class="site-nav__jp">症状別</span><span class="site-nav__en">SYMPTOMS</span></a>
+          <a href="{{HOME_PATH}}#flow" class="site-nav__item"><span class="site-nav__jp">施術の流れ</span><span class="site-nav__en">FLOW</span></a>
+          <a href="{{HOME_PATH}}#price" class="site-nav__item"><span class="site-nav__jp">料金</span><span class="site-nav__en">PRICE</span></a>
+          <a href="{{BLOG_PATH}}" class="site-nav__item"><span class="site-nav__jp">コラム</span><span class="site-nav__en">COLUMN</span></a>
+          <a href="{{ACCESS_PATH}}" class="site-nav__item site-nav__item--contact"><span class="site-nav__jp">アクセス・予約</span><span class="site-nav__en">ACCESS / CONTACT</span></a>
+        </nav>
+        <button id="menuBtn" class="site-menu-toggle" type="button" aria-controls="mobileNav" aria-expanded="false" aria-label="メニューを開く">
+          <span class="site-menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="site-menu-toggle__text">メニュー</span>
+        </button>
+        <nav class="site-mobile-nav hidden" id="mobileNav" aria-label="スマートフォン用ナビゲーション">
+          <a href="{{HOME_PATH}}#top" class="site-mobile-nav__item">ホーム</a>
+          <a href="{{HOME_PATH}}#features" class="site-mobile-nav__item">当院の特徴</a>
+          <a href="{{HOME_PATH}}#knee-type-nav" class="site-mobile-nav__item">症状別</a>
+          <a href="{{HOME_PATH}}#flow" class="site-mobile-nav__item">施術の流れ</a>
+          <a href="{{HOME_PATH}}#price" class="site-mobile-nav__item">料金</a>
+          <a href="{{BLOG_PATH}}" class="site-mobile-nav__item">コラム</a>
+          <a href="{{ACCESS_PATH}}" class="site-mobile-nav__item">アクセス</a>
+          <a href="{{CONTACT_PATH}}" class="site-mobile-nav__item site-mobile-nav__item--contact">予約</a>
+        </nav>
+      </div>
     </div>
   </header>
   <main>
@@ -40,5 +56,22 @@
       </div>
     </div>
   </footer>
+  <script>
+    (() => {
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      const setMenuState = (open) => {
+        mobileNav?.classList.toggle('hidden', !open);
+        menuBtn?.setAttribute('aria-expanded', String(open));
+        menuBtn?.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+      };
+      setMenuState(false);
+      menuBtn?.addEventListener('click', () => setMenuState(mobileNav?.classList.contains('hidden')));
+      mobileNav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuState(false)));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setMenuState(false);
+      });
+    })();
+  </script>
 </body>
 </html>

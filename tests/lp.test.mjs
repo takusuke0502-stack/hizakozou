@@ -132,7 +132,6 @@ test("LP follows the new section order for the knee-pain explanation flow", () =
     'id="profile"',
     'id="voice"',
     'id="knee-type-nav"',
-    'id="blog-section"',
     'id="price"',
     'id="faq"',
     'id="access"'
@@ -798,12 +797,64 @@ test("LP has an overflow-safe mobile hero title", () => {
   assert.match(html, /\.hero-fixed \.hero-title\s*\{[\s\S]*font-size:\s*clamp\(/i);
 });
 
+test("LP hero uses optimized real WebP assets for the replaced hero visual", () => {
+  const hero = getSectionSlice(
+    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
+    '<section id="troubles"'
+  );
+
+  assert.match(html, /<link rel="preload" as="image" href="image\/hero-sp\.webp"/);
+  assert.match(html, /<link rel="preload" as="image" href="image\/hero-pc\.webp"/);
+  assert.match(hero, /<source srcset="image\/hero-sp\.webp" media="\(max-width: 768px\)">/);
+  assert.match(hero, /<img src="image\/hero-pc\.webp"/);
+
+  for (const asset of ["image/hero-pc.webp", "image/hero-sp.webp"]) {
+    const assetPath = path.join(repoRoot, asset);
+    const bytes = readFileSync(assetPath);
+    const riff = bytes.subarray(0, 4).toString("ascii");
+    const webp = bytes.subarray(8, 12).toString("ascii");
+
+    assert.equal(riff, "RIFF", `${asset} should be encoded as WebP, not only renamed`);
+    assert.equal(webp, "WEBP", `${asset} should use the WebP container`);
+    assert.ok(statSync(assetPath).size < 420_000, `${asset} should stay lightweight after replacement`);
+  }
+});
+
 test("LP mobile hero title and fixed CTA stay compact on narrow screens", () => {
   assert.match(html, /font-size:\s*clamp\(1\.42rem,\s*6vw,\s*3\.6rem\)\s*!important;/);
   assert.doesNotMatch(html, /font-size:\s*clamp\(2rem,\s*8\.6vw,\s*4rem\)/);
   assert.match(html, /<span class="mobile-fixed-cta__label">LINEで空き状況を確認<\/span>/);
   assert.doesNotMatch(getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js"'), /tel:0471143274/);
   assert.doesNotMatch(getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js"'), /LINEで予約する/);
+});
+
+test("LP hero first-visit guide matches the flyer-style first-visit CTA", () => {
+  const hero = getSectionSlice(
+    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
+    '<section id="troubles"'
+  );
+
+  assert.match(hero, /class="hero-safe-band__ribbon"/);
+  assert.match(hero, /初回限定のご案内/);
+  assert.match(hero, /初回カウンセリング＋全身整体コース/);
+  assert.match(hero, /<span class="hero-safe-band__first">初回<\/span>/);
+  assert.match(hero, /hero-safe-band__normal-label">通常<\/span>[\s\S]*hero-safe-band__normal-price">10,000円<\/span>/);
+  assert.match(hero, /1,980<small>円<\/small>/);
+  assert.match(hero, /カウンセリング・状態確認込み/);
+  assert.match(hero, /まずは相談だけでも大丈夫です。/);
+  assert.match(hero, /class="hero-safe-band__included-ribbon"/);
+  for (const item of ["カウンセリング", "姿勢・歩き方の確認", "膝に負担がかかる原因の説明", "全身整体", "セルフケアのご提案"]) {
+    assert.match(hero, new RegExp(escapeRegExp(item)));
+  }
+  assert.match(hero, /class="hero-safe-band__line"/);
+  assert.match(hero, /LINEで初回予約する/);
+  assert.match(hero, /無理な勧誘はありません。ご相談だけでも大丈夫です。/);
+  assert.doesNotMatch(hero, /class="hero-safe-band__hours"/);
+  assert.doesNotMatch(hero, /class="hero-safe-band__info"/);
+
+  assert.match(html, /\.hero-fixed \.hero-safe-band__flyer\s*\{[\s\S]*grid-template-columns:\s*minmax\(0,\s*1\.18fr\)\s*minmax\(320px,\s*0\.82fr\);/);
+  assert.match(html, /\.hero-fixed \.hero-safe-band__ribbon::before,[\s\S]*\.hero-fixed \.hero-safe-band__ribbon::after\s*\{/);
+  assert.match(html, /\.hero-fixed \.hero-safe-band__line\s*\{[\s\S]*background:\s*linear-gradient\(180deg,\s*#ff9f20,\s*#ff5c00\);/);
 });
 
 test("LP Step 2 uses Japanese labels, comparison table, and a single mobile LINE CTA", () => {
@@ -1059,21 +1110,11 @@ test("blog sources and generated posts avoid strong medical guarantee wording", 
   }
 });
 
-test("LP blog preview uses the compact B-plan structure with repo thumbnails", () => {
-  const blogSection = getSectionSlice('id="blog-section"', 'id="access"');
-  const cardMatches = [...blogSection.matchAll(/class="blog-b-card group"/g)];
-  const thumbSrcMatches = [...blogSection.matchAll(/<img src="([^"]+)" alt="[^"]*" loading="lazy" decoding="async" width="\d+" height="\d+">/g)];
-
-  assert.equal(cardMatches.length, 3, "blog preview should render exactly three compact cards");
-  assert.match(blogSection, /class="blog-b-button"[\s\S]*記事一覧を見る/);
-  assert.match(blogSection, /class="blog-b-side"/);
-  assert.match(blogSection, /class="blog-b-date"/);
-  assert.match(blogSection, /class="blog-b-arrow"/);
-
-  for (const [, src] of thumbSrcMatches) {
-    assert.match(src, /^image\/[^"]+\.(?:svg|webp)$/i, "blog card thumbnails should use stable repo images");
-    assert.doesNotMatch(src, /^data:/i, "blog card thumbnails should not use inline data URIs");
-  }
+test("LP removes the mid-page helpful information blog preview", () => {
+  assert.doesNotMatch(html, /id="blog-section"/);
+  assert.doesNotMatch(html, /お役立ち情報・ブログ/);
+  assert.doesNotMatch(html, /id="blog-preview-container"/);
+  assert.doesNotMatch(html, /class="blog-b-card group"/);
 });
 
 test("LP keeps only one first-visit policy section and removes the duplicate article block", () => {
@@ -1321,6 +1362,18 @@ test("LP splits CTA roles between mid-page consultation and final reservation", 
   assert.doesNotMatch(accessSection, /access-step1-480\.webp/);
 });
 
+test("LP gives FAQ and access enough breathing room before the final contact flow", () => {
+  const faqIndex = html.indexOf('id="faq"');
+  const accessIndex = html.indexOf('id="access"');
+
+  assert.ok(faqIndex > -1, "FAQ section should exist");
+  assert.ok(accessIndex > faqIndex, "access should still follow FAQ");
+  assert.match(mainCss, /#faq\s*\{[\s\S]*padding-bottom:\s*clamp\(4\.75rem,\s*8vw,\s*7rem\)\s*!important;/);
+  assert.match(mainCss, /#faq\s*\{[\s\S]*margin-bottom:\s*clamp\(1\.25rem,\s*3vw,\s*2\.5rem\)\s*!important;/);
+  assert.match(mainCss, /#access\s*\{[\s\S]*padding-top:\s*clamp\(4\.75rem,\s*8vw,\s*7rem\)\s*!important;/);
+  assert.match(mainCss, /@media \(max-width:\s*640px\)\s*\{[\s\S]*#faq\s*\{[\s\S]*padding-bottom:\s*4rem\s*!important;[\s\S]*#access\s*\{[\s\S]*padding-top:\s*4rem\s*!important;/);
+});
+
 test("LP renders Google review slider from provided real review data", () => {
   const voiceIndex = html.indexOf('class="voice-trust"');
   const googleIndex = html.indexOf('class="google-reviews"');
@@ -1396,6 +1449,24 @@ test("LP FAQ keeps four lightweight reservation questions and links to the detai
   assert.doesNotMatch(faqSection, /変形性膝関節症と言われても受けられますか？|何回くらい通えばいいですか？|どんな服装で行けばいいですか？|健康保険は使えますか？|駐車場はありますか？|予約のキャンセル・変更はできますか？/);
 });
 
+test("LP director profile is compact on mobile and groups personal notes after the career", () => {
+  const profile = getTopLevelSectionSlice("profile");
+  const careerIndex = profile.indexOf("経歴・資格");
+  const privateIndex = profile.indexOf("院長のこと、もう少し");
+  const combinedStoryIndex = profile.indexOf("私が痛みの専門家を目指したわけと施術への想い");
+
+  assert.ok(careerIndex > -1, "career section should exist");
+  assert.ok(privateIndex > careerIndex, "personal notes should be directly after the career block");
+  assert.ok(combinedStoryIndex > privateIndex, "story and treatment policy should follow personal notes as one section");
+  assert.equal((profile.match(/director-profile__section-title">施術への想い/g) ?? []).length, 0, "treatment policy should not be a separate section title");
+  assert.match(profile, /学生時代の膝痛との闘い/);
+  assert.match(profile, /20歳でのクローン病経験/);
+  assert.match(profile, /不安ゼロの空間を大切にしています/);
+
+  assert.match(mainCss, /@media \(max-width:\s*600px\)\s*\{[\s\S]*\.director-profile__career li\s*\{[\s\S]*grid-template-columns:\s*5\.25rem minmax\(0,\s*1fr\);[\s\S]*gap:\s*0\.6rem;[\s\S]*padding:\s*0\.55rem 0;/);
+  assert.match(mainCss, /@media \(max-width:\s*600px\)\s*\{[\s\S]*\.director-profile__section \+ \.director-profile__section\s*\{[\s\S]*margin-top:\s*1\.45rem;/);
+});
+
 test("FAQ and access detail pages exist with SEO, detail links, and LINE reservation CTAs", () => {
   const faqHtml = readPageIfExists("faq.html");
   const accessHtml = readPageIfExists("access.html");
@@ -1418,6 +1489,14 @@ test("FAQ and access detail pages exist with SEO, detail links, and LINE reserva
   assert.match(accessHtml, /<title>アクセス・道順｜柏駅西口徒歩約8分 整体院ひざこぞう<\/title>/);
   assert.match(accessHtml, /<meta name="description" content="柏駅西口から整体院ひざこぞうまでのアクセス・道順をご案内します。建物入口、エレベーター、駐車場、近隣コインパーキングについてもご確認いただけます。">/);
   assert.match(accessHtml, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/access\.html">/);
+  assert.match(accessHtml, /<header id="header" class="site-header">/);
+  assert.match(accessHtml, /<nav class="site-nav" aria-label="メインナビゲーション">/);
+  assert.match(accessHtml, /<button id="menuBtn" class="site-menu-toggle"/);
+  assert.match(accessHtml, /<nav class="site-mobile-nav hidden" id="mobileNav"/);
+  assert.doesNotMatch(accessHtml, /class="detail-header"/);
+  assert.match(accessHtml, /href="index\.html#top"[\s\S]*ホーム/);
+  assert.match(accessHtml, /href="blog\/"[\s\S]*コラム/);
+  assert.match(accessHtml, /href="index\.html#access"[\s\S]*アクセス・予約/);
   for (const requiredCopy of ["店舗情報", "04-7114-3274", "9:00〜19:00", "日曜", "柏駅西口からの道順", "Googleマップ", "大きな地図で見る", "建物外観", "建物入口", "エレベーター", "305号室", "駐車場", "自転車", "迷った場合"]) {
     assert.match(accessHtml, new RegExp(escapeRegExp(requiredCopy)));
   }

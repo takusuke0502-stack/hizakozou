@@ -98,18 +98,70 @@
   </style>
 </head>
 <body>
-  <header class="detail-header">
-    <nav class="detail-nav" aria-label="ページナビゲーション">
-      <a class="detail-brand" href="index.html">
-        <img src="image/hizakozou-logo-option2-mark.webp" alt="整体院ひざこぞう">
-        <span>整体院ひざこぞう</span>
-      </a>
-      <div class="detail-links">
-        <a href="index.html#access">LPのアクセス</a>
-        <a href="faq.html">よくある質問</a>
-        <a href="index.html#contact">予約</a>
+  <header id="header" class="site-header">
+    <div class="site-header__lower">
+      <div class="site-header__inner">
+        <nav class="site-nav" aria-label="メインナビゲーション">
+          <a href="index.html#top" class="site-nav__item">
+            <span class="site-nav__jp">ホーム</span>
+            <span class="site-nav__en">HOME</span>
+          </a>
+          <a href="index.html#features" class="site-nav__item">
+            <span class="site-nav__jp">当院の特徴</span>
+            <span class="site-nav__en">FEATURE</span>
+          </a>
+          <div class="site-nav__item site-nav__item--has-dropdown">
+            <button type="button" class="site-nav__trigger" aria-haspopup="true" aria-controls="access-symptoms-menu" aria-expanded="false">
+              <span class="site-nav__label-main">
+                <span class="site-nav__jp">症状別</span>
+                <span class="site-nav__chevron" aria-hidden="true">▼</span>
+              </span>
+              <span class="site-nav__en">SYMPTOMS</span>
+            </button>
+            <div id="access-symptoms-menu" class="site-nav__dropdown" aria-label="症状別ページ">
+              <a href="symptoms/knee-osteoarthritis.html" class="site-nav__dropdown-link">変形性膝関節症</a>
+              <a href="symptoms/pes-anserine-bursitis.html" class="site-nav__dropdown-link">膝の内側の痛み</a>
+              <a href="symptoms/knee-effusion.html" class="site-nav__dropdown-link">膝に水がたまる</a>
+              <a href="symptoms/meniscus-knee-pain.html" class="site-nav__dropdown-link">半月板の違和感</a>
+              <a href="symptoms/knee-front-pain.html" class="site-nav__dropdown-link">膝の前側の痛み</a>
+              <a href="symptoms/knee-posterior-pain.html" class="site-nav__dropdown-link">膝の裏側の痛み</a>
+              <a href="symptoms/knee-lateral-pain.html" class="site-nav__dropdown-link">膝の外側の痛み</a>
+              <a href="symptoms/hip-osteoarthritis.html" class="site-nav__dropdown-link">股関節痛</a>
+            </div>
+          </div>
+          <a href="index.html#flow" class="site-nav__item">
+            <span class="site-nav__jp">施術の流れ</span>
+            <span class="site-nav__en">FLOW</span>
+          </a>
+          <a href="index.html#price" class="site-nav__item">
+            <span class="site-nav__jp">料金</span>
+            <span class="site-nav__en">PRICE</span>
+          </a>
+          <a href="blog/" class="site-nav__item">
+            <span class="site-nav__jp">コラム</span>
+            <span class="site-nav__en">COLUMN</span>
+          </a>
+          <a href="index.html#access" class="site-nav__item site-nav__item--contact">
+            <span class="site-nav__jp">アクセス・予約</span>
+            <span class="site-nav__en">ACCESS / CONTACT</span>
+          </a>
+        </nav>
+        <button id="menuBtn" class="site-menu-toggle" type="button" aria-controls="mobileNav" aria-expanded="false" aria-label="メニューを開く">
+          <span class="site-menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="site-menu-toggle__text">メニュー</span>
+        </button>
+        <nav class="site-mobile-nav hidden" id="mobileNav" aria-label="スマートフォン用ナビゲーション">
+          <a href="index.html#top" class="site-mobile-nav__item">ホーム</a>
+          <a href="index.html#features" class="site-mobile-nav__item">当院の特徴</a>
+          <a href="index.html#knee-type-nav" class="site-mobile-nav__item">症状別</a>
+          <a href="index.html#flow" class="site-mobile-nav__item">施術の流れ</a>
+          <a href="index.html#price" class="site-mobile-nav__item">料金</a>
+          <a href="blog/" class="site-mobile-nav__item">コラム</a>
+          <a href="access.html" class="site-mobile-nav__item">アクセス</a>
+          <a href="index.html#contact" class="site-mobile-nav__item site-mobile-nav__item--contact">予約</a>
+        </nav>
       </div>
-    </nav>
+    </div>
   </header>
 
   <main>
@@ -237,6 +289,20 @@
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       window.lucide?.createIcons();
+
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      const setMenuState = (open) => {
+        mobileNav?.classList.toggle('hidden', !open);
+        menuBtn?.setAttribute('aria-expanded', String(open));
+        menuBtn?.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+      };
+      setMenuState(false);
+      menuBtn?.addEventListener('click', () => setMenuState(mobileNav?.classList.contains('hidden')));
+      mobileNav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuState(false)));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setMenuState(false);
+      });
 
       const routeTrack = document.querySelector('[data-access-route-track]');
       const scrollRoute = (direction) => {
