@@ -16,6 +16,11 @@ const trackingJsPath = path.join(repoRoot, "scripts", "tracking.js");
 const trackingConfig = existsSync(trackingConfigPath) ? readFileSync(trackingConfigPath, "utf8") : "";
 const trackingJs = existsSync(trackingJsPath) ? readFileSync(trackingJsPath, "utf8") : "";
 
+function readPageIfExists(fileName) {
+  const pagePath = path.join(repoRoot, fileName);
+  return existsSync(pagePath) ? readFileSync(pagePath, "utf8") : "";
+}
+
 function walkFiles(dir, predicate, files = []) {
   for (const entry of readdirSync(dir)) {
     if (entry === ".git" || entry === "node_modules") continue;
@@ -127,9 +132,9 @@ test("LP follows the new section order for the knee-pain explanation flow", () =
     'id="profile"',
     'id="voice"',
     'id="knee-type-nav"',
+    'id="blog-section"',
     'id="price"',
     'id="faq"',
-    'id="blog-section"',
     'id="access"'
   ];
 
@@ -224,7 +229,9 @@ test("LP uses the mock-style MSM three-step CTA without duplicating the old meth
   assert.match(method, /繰り返しに、終止符を/);
   assert.match(method, /無料相談・ご予約はこちら/);
   assert.match(method, /href="https:\/\/lin\.ee\/X01F2mP"/);
-  assert.equal((method.match(/実装時は実際の写真に差し替え/g) || []).length, 1);
+  assert.equal((method.match(/実装時は実際の写真に差し替え/g) || []).length, 0);
+  assert.doesNotMatch(method, /CTAビジュアル画像/);
+  assert.doesNotMatch(method, /knee-msm-cta__visual/);
   assert.doesNotMatch(method, /<picture/);
   assert.doesNotMatch(html, /id="method-features"/);
 });
@@ -264,14 +271,14 @@ test("LP reason and MSM mock CSS keeps diagrams wide and responsive", () => {
   assert.match(mainCss, /\.knee-msm-approaches\s*{[\s\S]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/);
   assert.match(mainCss, /\.knee-msm-steps__inner\s*{[\s\S]*max-width:\s*680px;[\s\S]*margin:\s*0 auto;/);
   assert.match(mainCss, /\.knee-msm-step__visual\s*{[\s\S]*height:\s*126px;[\s\S]*background:\s*#fff;/);
-  assert.match(mainCss, /\.knee-msm-cta__visual\s*{[\s\S]*height:\s*160px;[\s\S]*border:\s*2px dashed #d9a36f;[\s\S]*background:\s*rgba\(255,\s*255,\s*255,\s*0\.72\);/);
+  assert.doesNotMatch(mainCss, /knee-msm-cta__visual/);
   assert.match(mainCss, /@media\s*\(max-width:\s*640px\)\s*{[\s\S]*\.knee-msm-reason__diagram\s*{[\s\S]*margin-top:\s*20px;[\s\S]*padding:\s*8px;[\s\S]*\.knee-msm-approaches\s*{[\s\S]*grid-template-columns:\s*1fr;/);
 });
 
 test("LP MSM CTA uses soft LP colors instead of a dark brown block", () => {
   const method = getTopLevelSectionSlice("features");
 
-  assert.match(method, /CTAビジュアル画像/);
+  assert.doesNotMatch(method, /CTAビジュアル画像/);
   assert.match(mainCss, /\.knee-msm-cta\s*{[\s\S]*background:\s*linear-gradient\(135deg,\s*#fffaf4 0%,\s*#fff3e8 55%,\s*#eef7ef 100%\);[\s\S]*color:\s*#30261f;[\s\S]*border:\s*1px solid #ead7c3;/);
   assert.match(mainCss, /\.knee-msm-cta__label\s*{[\s\S]*color:\s*#e96a42;/);
   assert.match(mainCss, /\.knee-msm-cta h3\s*{[\s\S]*color:\s*#3b2518;/);
@@ -396,8 +403,8 @@ test("LP canonicalizes direct index.html visits to the root URL", () => {
 });
 
 test("desktop header groups access/contact and exposes a keyboard-friendly real symptom dropdown", () => {
-  const desktopNav = getSectionSlice('<nav class="site-nav"', '<nav class="site-mobile-nav"');
-  const mobileNav = getElementSlice('<nav class="site-mobile-nav"');
+  const desktopNav = getSectionSlice('<nav class="site-nav"', '<nav class="site-mobile-nav hidden"');
+  const mobileNav = getElementSlice('<nav class="site-mobile-nav hidden"');
   const symptomLinks = [
     ["symptoms/knee-osteoarthritis.html", "変形性膝関節症"],
     ["symptoms/pes-anserine-bursitis.html", "膝の内側の痛み"],
@@ -418,6 +425,9 @@ test("desktop header groups access/contact and exposes a keyboard-friendly real 
   assert.match(desktopNav, /アクセス・予約/);
   assert.match(desktopNav, /ACCESS \/ CONTACT/);
   assert.match(desktopNav, /href="#access"/);
+  assert.match(desktopNav, /href="blog\/"/);
+  assert.match(desktopNav, /コラム/);
+  assert.match(desktopNav, /COLUMN/);
 
   assert.doesNotMatch(desktopNav, /院情報・アクセス/);
   assert.doesNotMatch(desktopNav, /INFO \/ ACCESS/);
@@ -433,11 +443,19 @@ test("desktop header groups access/contact and exposes a keyboard-friendly real 
   assert.doesNotMatch(mobileNav, /SYMPTOMS/);
   assert.match(mobileNav, /href="#access"/);
   assert.match(mobileNav, /href="#contact"/);
+  assert.match(mobileNav, /href="blog\/"/);
+  assert.match(mobileNav, /コラム/);
+  assert.match(html, /id="menuBtn"/);
+  assert.match(html, /aria-controls="mobileNav"/);
+  assert.match(html, /<nav class="site-mobile-nav hidden" id="mobileNav"/);
 
   assert.match(mainCss, /\.site-nav__item--has-dropdown:hover\s+\.site-nav__dropdown/);
   assert.match(mainCss, /\.site-nav__item--has-dropdown:focus-within\s+\.site-nav__dropdown/);
   assert.match(mainCss, /\.site-nav__item--has-dropdown\.is-open\s+\.site-nav__dropdown/);
   assert.match(mainCss, /\.site-nav__dropdown-link:focus-visible/);
+  assert.match(mainCss, /\.site-menu-toggle/);
+  assert.match(mainCss, /\.site-mobile-nav\.hidden\s*\{[\s\S]*display:\s*none/);
+  assert.match(mainCss, /\.site-mobile-nav\s*\{[\s\S]*position:\s*fixed/);
 
   assert.match(mainJs, /setupHeaderSymptomDropdown/);
   assert.match(mainJs, /aria-expanded/);
@@ -839,12 +857,21 @@ test("LP Step 3 adds conversion copy, review proof, flyer-style price CTA, and t
   assert.match(price, /data-total="6"/);
   assert.match(price, /data-remaining/);
   assert.match(price, /お電話でのご予約はこちら/);
-  assert.match(price, /LINEで相談・予約する/);
+  assert.match(price, /LINEで1分かんたん仮予約/);
+  assert.match(price, /会員登録不要/);
+  assert.match(price, /予約完了ではありません/);
   assert.match(mainJs, /WEEKS_CONFIG/);
   assert.match(mainJs, /残り\$\{config\.remaining\}名様/);
   const forbiddenAutoUpdateLabel = ["毎週月曜日", "に自動更新"].join("");
   assert.ok(!`${html}\n${mainJs}\n${mainCss}`.includes(forbiddenAutoUpdateLabel));
   assert.match(html, /id="toast"/);
+  assert.match(contact, /<form id="contactForm"/);
+  assert.match(contact, /name="name"/);
+  assert.match(contact, /name="phone"/);
+  assert.match(contact, /name="message"/);
+  assert.match(contact, /name="preferredDate"/);
+  assert.match(contact, /LINEで相談する/);
+  assert.match(contact, /class="contact-line-pop"/);
   assert.match(contact, /id="successMessage"[^>]*tabindex="-1"/);
   assert.match(contact, /アクセスを確認する/);
   assert.match(mainJs, /function showToast\(/);
@@ -1069,6 +1096,7 @@ test("LP places the first-visit policy directly after the comparison section", (
   assert.ok(comparisonIndex < firstVisitIndex, "first-visit policy should appear after comparison");
   assert.ok(firstVisitIndex < profileIndex, "first-visit policy should appear before profile");
   assert.doesNotMatch(comparisonToFirstVisit, /<section id="(?!comparison")/, "no other section should sit between comparison and first-visit policy");
+  assert.match(html, /#comparison,\s*#first-visit-policy,\s*#profile\s*{[\s\S]*background:\s*#fff !important;[\s\S]*background-image:\s*none !important;/);
 });
 
 test("LP first-visit policy uses the PNG icon set accessibly", () => {
@@ -1261,33 +1289,101 @@ test("LP splits CTA roles between mid-page consultation and final reservation", 
   const accessSection = getSectionSlice('id="access"', "<footer");
 
   assert.match(priceSection, /お電話でのご予約はこちら/);
-  assert.match(priceSection, /LINEで相談・予約する/);
+  assert.match(priceSection, /LINEで1分かんたん仮予約/);
+  assert.match(priceSection, /会員登録不要/);
+  assert.match(priceSection, /現金/);
+  assert.match(priceSection, /各種クレジットカード/);
+  assert.match(priceSection, /PayPay/);
   assert.doesNotMatch(priceSection, /LINEで予約する/);
-  assert.match(accessSection, /LINEで予約する/);
-  assert.match(accessSection, /電話で確認する/);
+  assert.match(accessSection, /柏駅西口から徒歩約8分/);
+  assert.match(accessSection, /院名/);
+  assert.match(accessSection, /整体院ひざこぞう/);
+  assert.match(accessSection, /千葉県柏市あけぼの4-4-3 BoaSorte柏305/);
+  assert.match(accessSection, /マンション内の完全予約制整体院/);
+  assert.match(accessSection, /04-7114-3274/);
+  assert.match(accessSection, /9:00〜19:00/);
+  assert.match(accessSection, /受付時間/);
+  assert.match(accessSection, /月/);
+  assert.match(accessSection, /土/);
+  assert.match(accessSection, /日曜/);
+  assert.match(accessSection, /詳しいアクセスを見る/);
+  assert.match(accessSection, /href="access\.html"/);
+  assert.match(accessSection, /<form id="contactForm"/);
+  assert.match(accessSection, /メールフォームを送信する/);
+  assert.match(accessSection, /LINEで相談する/);
+  assert.match(accessSection, /予約完了ではありません/);
+  assert.equal((accessSection.match(/<article\b/g) ?? []).length, 0, "LP access should not split simple access into multiple cards");
+  assert.equal((accessSection.match(/data-access-summary-card/g) ?? []).length, 1, "LP access should use one simple access block");
+  assert.match(mainCss, /\.lp-access-summary\s*\{[\s\S]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s*minmax\(320px,\s*0\.92fr\);/);
+  assert.match(mainCss, /\.lp-access-info__row::before\s*\{[\s\S]*content:\s*"\/";/);
+  assert.match(mainCss, /\.lp-access-hours\s*\{[\s\S]*background:\s*#f5f5f6;/);
+  assert.doesNotMatch(accessSection, /<iframe/);
+  assert.doesNotMatch(accessSection, /access-step1-480\.webp/);
 });
 
-test("LP FAQ keeps practical questions and schema stays aligned with the rendered section", () => {
-  const expectedQuestions = [
-    "健康保険は使えますか？",
-    "施術は痛いですか？ボキボキ鳴らしますか？",
-    "どのような服装で行けばいいですか？",
-    "何回くらい通えばよくなりますか？",
-    "整形外科に通いながらでも相談できますか？",
-    "柏市で膝痛の整体を探しています。どんな症状を相談できますか？",
-    "膝に水が溜まっていても整体を受けられますか？",
-    "変形性膝関節症と言われても整体で相談できますか？",
-    "歩き始めだけ膝が痛い場合も見てもらえますか？",
-    "階段の下りで膝が痛いのはなぜですか？",
-    "駐車場はありますか？",
-    "予約のキャンセル・変更はできますか？"
-  ];
+test("LP renders Google review slider from provided real review data", () => {
+  const voiceIndex = html.indexOf('class="voice-trust"');
+  const googleIndex = html.indexOf('class="google-reviews"');
+  const reasonsIndex = html.indexOf('id="knee-msm-reasons"');
+  const reviewSection = getSectionSlice('class="google-reviews"', 'id="knee-msm-reasons"');
+  const expectedNames = ["梶谷武志様", "K様", "平川智江美様", "Kyoko T", "F.M.様", "Rit K様", "K.K.様", "NAO FUCHI様"];
 
-  const renderedQuestions = [...html.matchAll(/<span class="text-blue-600 font-black text-xl" aria-hidden="true">Q\.<\/span>([^<]+)<\/div>/g)].map(
+  assert.ok(voiceIndex > -1, "patient voice section should exist");
+  assert.ok(googleIndex > voiceIndex, "Google review strip should be directly after patient voices");
+  assert.ok(googleIndex < reasonsIndex, "Google review strip should stay before the next content section");
+  assert.doesNotMatch(reviewSection, /GOOGLE REVIEW/);
+  assert.doesNotMatch(reviewSection, /Google口コミでもご評価いただいています/);
+  assert.doesNotMatch(reviewSection, /実際にご来院いただいた方からのお声の一部をご紹介します。/);
+  assert.match(reviewSection, /data-google-review-list/);
+  assert.match(reviewSection, /data-google-review-track/);
+  assert.match(reviewSection, /data-google-review-prev/);
+  assert.match(reviewSection, /data-google-review-next/);
+  assert.match(reviewSection, /href="https:\/\/g\.page\/r\/CblTNpd2gz_7EBM"/);
+  assert.doesNotMatch(reviewSection, /<article class="google-review-card"/, "cards should be generated by JavaScript");
+  assert.doesNotMatch(reviewSection, /投稿日|2026|2025|2024|2023/);
+  assert.doesNotMatch(reviewSection, /必ず改善|治る|完治/);
+  assert.equal((mainJs.match(/name:\s*"/g) ?? []).filter(Boolean).length >= expectedNames.length, true);
+  for (const name of expectedNames) {
+    assert.match(mainJs, new RegExp(escapeRegExp(`name: "${name}"`)), `googleReviews should include ${name}`);
+  }
+  assert.match(mainJs, /name:\s*"NAO FUCHI様",\s*rating:\s*4/);
+  assert.match(mainJs, /const googleReviews = \[/);
+  assert.match(mainJs, /renderGoogleReviewCard/);
+  assert.match(mainJs, /renderGoogleStars/);
+  assert.match(mainJs, /続きを読む/);
+  assert.match(mainJs, /閉じる/);
+  assert.match(mainJs, /data-google-review-toggle/);
+  assert.match(mainJs, /aria-expanded="false"/);
+  assert.match(mainJs, /classList\.toggle\('is-expanded'\)/);
+  assert.doesNotMatch(mainJs, /google-review-card__link/);
+  assert.match(mainJs, /Google口コミ/);
+  assert.match(mainCss, /\.google-reviews__track\s*\{[\s\S]*overflow-x:\s*auto;/);
+  assert.match(mainCss, /\.google-reviews__track\s*\{[\s\S]*scroll-snap-type:\s*inline mandatory;/);
+  assert.match(mainCss, /\.google-review-card__text\s*\{[\s\S]*-webkit-line-clamp:\s*5;/);
+  assert.match(mainCss, /\.google-review-card\.is-expanded\s+\.google-review-card__text\s*\{[\s\S]*-webkit-line-clamp:\s*unset;/);
+  assert.match(mainCss, /\.google-review-card__toggle\s*\{/);
+  assert.match(mainJs, /setupGoogleReviewScroller\(\)/);
+});
+
+test("LP FAQ keeps four lightweight reservation questions and links to the detail page", () => {
+  const expectedQuestions = [
+    "初回はどのくらい時間がかかりますか？",
+    "痛い施術ですか？",
+    "病院に通いながらでも大丈夫ですか？",
+    "予約はLINEでできますか？"
+  ];
+  const faqSection = getTopLevelSectionSlice("faq");
+
+  const renderedQuestions = [...faqSection.matchAll(/<dt>\s*<span>Q\.<\/span>\s*([^<]+)\s*<\/dt>/g)].map(
     (match) => match[1].trim()
   );
 
-  assert.deepEqual(renderedQuestions, expectedQuestions, "rendered FAQ should contain only the practical questions in order");
+  assert.deepEqual(renderedQuestions, expectedQuestions, "LP FAQ should contain only the four requested questions in order");
+  assert.match(faqSection, /初回は約90分を目安に/);
+  assert.match(faqSection, /その他のよくある質問を見る/);
+  assert.match(faqSection, /href="faq\.html"/);
+  assert.equal((faqSection.match(/<details\b/g) ?? []).length, 0, "LP FAQ should not use heavy one-question cards");
+  assert.equal((faqSection.match(/<dt>/g) ?? []).length, 4, "LP FAQ should render exactly four lightweight list questions");
 
   const faqSchema = getJsonLdBlocks("FAQPage")[0];
 
@@ -1297,7 +1393,71 @@ test("LP FAQ keeps practical questions and schema stays aligned with the rendere
     expectedQuestions,
     "FAQ schema should stay aligned with the rendered FAQ questions"
   );
-  assert.equal(html.includes("初めてで緊張しているのですが大丈夫ですか？"), false, "reassurance-only FAQ should be removed");
-  assert.equal(html.includes("膝以外の症状もみてもらえますか？"), false, "scope explanation should move out of FAQ");
-  assert.equal(html.includes("運動が苦手でも大丈夫ですか？"), false, "exercise reassurance should not repeat in FAQ");
+  assert.doesNotMatch(faqSection, /変形性膝関節症と言われても受けられますか？|何回くらい通えばいいですか？|どんな服装で行けばいいですか？|健康保険は使えますか？|駐車場はありますか？|予約のキャンセル・変更はできますか？/);
+});
+
+test("FAQ and access detail pages exist with SEO, detail links, and LINE reservation CTAs", () => {
+  const faqHtml = readPageIfExists("faq.html");
+  const accessHtml = readPageIfExists("access.html");
+
+  assert.equal(existsSync(path.join(repoRoot, "faq.html")), true, "faq.html should exist");
+  assert.equal(existsSync(path.join(repoRoot, "access.html")), true, "access.html should exist");
+
+  assert.match(faqHtml, /<title>よくある質問｜柏市の膝痛専門整体院ひざこぞう<\/title>/);
+  assert.match(faqHtml, /<meta name="description" content="整体院ひざこぞうによくいただくご質問をまとめました。初回の流れ、服装、施術内容、通院回数、料金、予約方法、アクセスについてご確認いただけます。">/);
+  assert.match(faqHtml, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/faq\.html">/);
+  assert.match(faqHtml, /"@type": "FAQPage"/);
+  for (const category of ["初めての方へ", "施術について", "膝痛・症状について", "通院回数・料金について", "予約・キャンセルについて", "アクセス・設備について"]) {
+    assert.match(faqHtml, new RegExp(escapeRegExp(category)));
+  }
+  for (const movedQuestion of ["健康保険は使えますか？", "駐車場はありますか？", "予約のキャンセル・変更はできますか？", "階段の下りで膝が痛いのはなぜですか？"]) {
+    assert.match(faqHtml, new RegExp(escapeRegExp(movedQuestion)));
+  }
+  assert.match(faqHtml, /href="https:\/\/lin\.ee\/X01F2mP"/);
+
+  assert.match(accessHtml, /<title>アクセス・道順｜柏駅西口徒歩約8分 整体院ひざこぞう<\/title>/);
+  assert.match(accessHtml, /<meta name="description" content="柏駅西口から整体院ひざこぞうまでのアクセス・道順をご案内します。建物入口、エレベーター、駐車場、近隣コインパーキングについてもご確認いただけます。">/);
+  assert.match(accessHtml, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/access\.html">/);
+  for (const requiredCopy of ["店舗情報", "04-7114-3274", "9:00〜19:00", "日曜", "柏駅西口からの道順", "Googleマップ", "大きな地図で見る", "建物外観", "建物入口", "エレベーター", "305号室", "駐車場", "自転車", "迷った場合"]) {
+    assert.match(accessHtml, new RegExp(escapeRegExp(requiredCopy)));
+  }
+  for (const alt of ["柏駅西口の写真", "駅から院までの道順写真", "柏駅西口から当院までの簡易マップ", "BoaSorte柏の建物玄関", "BoaSorte柏の建物外観", "305号室前の通路写真"]) {
+    assert.match(accessHtml, new RegExp(`alt="${escapeRegExp(alt)}"`));
+  }
+  for (const imagePath of ["image/access-step2.webp", "image/access-step3.webp", "image/access-step4.webp", "image/access-step5.webp", "image/access-simple-map.webp", "image/access-entrance.webp", "image/access-exterior2.webp", "image/access-exterior3.webp"]) {
+    assert.match(accessHtml, new RegExp(escapeRegExp(imagePath)));
+  }
+  assert.match(accessHtml, /class="access-route-scroller"/);
+  assert.match(accessHtml, /class="access-card__body route-track"/);
+  assert.match(accessHtml, /data-access-route-track/);
+  assert.match(accessHtml, /data-access-route-prev[^>]*aria-label="前の道順写真を見る"/);
+  assert.match(accessHtml, /data-access-route-next[^>]*aria-label="次の道順写真を見る"/);
+  assert.match(accessHtml, /\.access-route-controls\s*\{[\s\S]*display:\s*flex/);
+  assert.match(accessHtml, /\.access-route-arrow\s*\{[\s\S]*border-radius:\s*999px/);
+  assert.match(accessHtml, /\.route-track\s*\{[\s\S]*overflow-x:\s*auto/);
+  assert.match(accessHtml, /\.route-track\s*\{[\s\S]*scroll-snap-type:\s*x mandatory/);
+  assert.match(accessHtml, /\.route-card\s*\{[\s\S]*flex:\s*0 0 min\(82vw,\s*440px\)/);
+  assert.match(accessHtml, /\.route-card img[\s\S]*object-fit:\s*contain/);
+  assert.match(accessHtml, /querySelector\('\[data-access-route-track\]'\)/);
+  assert.match(accessHtml, /scrollBy\(\{\s*left:\s*direction \* scrollAmount,\s*behavior:\s*'smooth'\s*\}\)/);
+  assert.match(accessHtml, /こちらがBoaSorte柏の建物玄関です/);
+  assert.match(accessHtml, /href="https:\/\/lin\.ee\/X01F2mP"/);
+  assert.match(accessHtml, /LINEで1分かんたん仮予約/);
+  assert.match(accessHtml, /会員登録不要/);
+  assert.match(accessHtml, /電話で確認する/);
+  assert.match(accessHtml, /href="tel:0471143274"/);
+  assert.match(accessHtml, /<iframe[\s\S]*整体院ひざこぞうへのアクセスマップ/);
+});
+
+test("Navigation exposes FAQ and access detail pages without replacing reservation anchors", () => {
+  const footerNav = getElementSlice('<nav class="hk-footer-nav"', "</nav>");
+  const mobileNav = getElementSlice('<nav class="site-mobile-nav hidden"');
+
+  assert.match(footerNav, /href="faq\.html">よくある質問/);
+  assert.match(footerNav, /href="access\.html">アクセス/);
+  assert.match(footerNav, /href="blog\/">コラム/);
+  assert.match(mobileNav, /href="faq\.html"/);
+  assert.match(mobileNav, /href="access\.html"/);
+  assert.match(mobileNav, /href="blog\/"/);
+  assert.match(html, /href="#contact"/);
 });

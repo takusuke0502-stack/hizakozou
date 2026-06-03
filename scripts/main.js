@@ -13,6 +13,48 @@ const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
 const pageTopButton = document.querySelector('.page-top-button');
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbzxlY8wFSXpgtyP9TVFwFM2BCrzfihbkmEOjYd5PROmEubX3B4NLxOhYOvZxeg7zZbc1w/exec';
+const googleReviews = [
+  {
+    name: "梶谷武志様",
+    rating: 5,
+    text: "私も前院からお世話になってます。極度の腰痛になってしまい、川上院長の施術を受けるようになりました。丁寧なヒアリングと施術の進め方について詳しく説明を受けて安心して通院できました。腰痛については、２〜３週間でかなり改善し、普通に歩けるようになりました。私は、元自衛官なのですが訓練で痛めた万年膝痛でも苦しんでいましたが、院長の的確な施術とストレッチ指導で極度の痛みは出ないようになり、歩くのも辛くなくなりました。穏やかで優しい院長ですので、相談、質問は施術の際に遠慮なく聞かれた方が良いと思います。院長のおかげで自衛隊も無事に定年退職し、今は身体の総合的なメンテナンスのため通院しています。川上院長、これからもよろしくお願いします。"
+  },
+  {
+    name: "K様",
+    rating: 5,
+    text: "前院からお世話になっています。腕が上がらなくなり日常生活に支障があったため、通院し始めました。どのような問題があり、どのようなアプローチをしていくのか、細かく丁寧に説明していただけるので、安心して施術してもらうことができます。びっくりするくらい、腕もスムーズに上がるようになりました。日常生活でのトレーニングも教えていただいたことで、全体的な筋力も向上し、テニスでのパフォーマンスもよくなりました。穏やかで、とてもお話ししやすく、親身に相談に乗ってくれる先生です。"
+  },
+  {
+    name: "平川智江美様",
+    rating: 5,
+    text: "職業柄今まで、沢山の整体にかかりましたが、その時は良いのですが、直ぐに元の体に戻ってしまいます。こちらの整体は、痛い所の元から直してくれて、暫く良い状態が続きます。こちらの先生との出会いに、感謝してます。"
+  },
+  {
+    name: "Kyoko T",
+    rating: 5,
+    text: "イスから立ち上がる時や歩行時に右膝から太ももあたりに強い痛みがあり、治療を受けました。痛みのメカニズムを説明していただき、歪みを直したり、筋肉をほぐす治療を数回行った結果、辛い痛みが嘘のようにおさまり、今では立ち上がるのも歩行もスムーズで快適です。当日の施術だけではなく、原因改善のためのストレッチも教えて下さるので、家でのセルフケアも行えて助かってます。独立されて、マンションの1室の隠れ家的な整体院になった今でも、身体のメンテナンスの為に、定期的にお世話になっています。"
+  },
+  {
+    name: "F.M.様",
+    rating: 5,
+    text: "３０代の頃から、時折、真っ直ぐに立てなくなるほどの腰痛に悩まされてきましたが、自分は長身だから仕方がないと諦めていました。しかし、２年前に川上先生に初めて診ていただき、側弯症からくる身体のねじれが痛みの原因であることを初めて知りました。以来、先生に、身体のねじれが起きないように、筋肉の弱い箇所の鍛え方や呼吸法等を教わりながら、先生による施術と自宅でのトレーニングでひどい腰痛に悩むことはなくなりました。腰痛以外にも、ジョギング後の膝の痛みや脚のしびれ等、不安に思うことを相談していますが、毎回的確なアドバイスをいただけるのでとても安心できます。痛いからと身体を甘やかすのではなく、正しく身体を動かし鍛えることで痛みを防いで良い姿勢でいられることを教えていただいて、とても前向きな気持ちで自分の身体に向き合えることができています。これからも継続して診ていただきたいと思います。"
+  },
+  {
+    name: "Rit K様",
+    rating: 5,
+    text: "こちらの川上先生のおかげで長年苦しんでいた腰椎分離症、坐骨神経痛、すべり症などが混ざり合った症状をほぼすっかり改善することができました。本当にであえてよかったと感謝しています。長年整形外科に通いましたがだんだん悪くなり、しまいには加齢ですねと、諦めに近い診断を受けたりしていました。先生は涼しい顔でよくなりますと優しく言ってくださり、約3ヶ月間指導の通りの筋トレを続け、先生の施術を受けているうちにあるべきところに筋肉がなかったことがわかり、段々に筋肉がつくことで悪い症状が消えていきました。今も筋トレは続けています。それを続けていれば今後もひどくなることなくやっていけそうだといまは安心して暮らせています。その後、頚椎ヘルニアの症状についてもみていただき、改善しています。行動の幅も広がりました。先生の的確な見立てと施術、そして根気の良い指導とわたし自身も筋トレを続けられたことでよくなり、とても感謝しています。自信を持っておすすめできます。ありがとうございました。(50代女性)"
+  },
+  {
+    name: "K.K.様",
+    rating: 5,
+    text: "坐骨神経痛、膝の痛み、腰の痛みなどで、夜も眠れないほど痛み、寝返りが出来ず、歩けなくなり、座れず立って食事するほど、大変な経験をしました。どこへ行っても治して貰えませんでした。そんな時に川上院長にお会い出来たのは私にとって奇跡でした。川上院長は痛みのポイントを的確に一発で抑えて施術してくれました。友人から『本当に痛みが取れるの？』と聞かれますが、自信を持って『取れるんです』と答えています。その後の運動療法も必ず教えてくださり励みとなります。今では好きなガーデニングが出来るまでになり、感謝の思いで一杯です。"
+  },
+  {
+    name: "NAO FUCHI様",
+    rating: 4,
+    text: "初めてで少し緊張していましたが、何をするのかその都度説明してくださったので安心できました。体の状態を確認しながら進めてくれて、自分でもここに負担がかかっていたんだと分かりやすかったです。悩みをじっくり相談したい方に合うと思います。施術とあわせて運動の指導もあり、今後のケアのイメージが持てました。"
+  }
+];
 
 let triggerEl = null;
 let toastTimer = null;
@@ -35,6 +77,12 @@ function setMenuState(open) {
   mobileNav?.classList.toggle('hidden', !open);
   menuBtn?.setAttribute('aria-expanded', String(open));
   menuBtn?.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+}
+
+function setupMobileMenuLinks() {
+  mobileNav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMenuState(false));
+  });
 }
 
 function clearFieldError(id) {
@@ -160,6 +208,47 @@ function escapeHtml(value) {
     .replaceAll("'", '&#39;');
 }
 
+function getGoogleReviewInitial(name) {
+  const plainName = String(name).replace(/様$/, '').trim();
+  const alphaChars = plainName.match(/[A-Za-z]/g);
+  if (alphaChars?.length) return alphaChars.slice(0, 2).join('').toUpperCase();
+  return plainName.slice(0, 1) || 'G';
+}
+
+function renderGoogleStars(rating) {
+  const safeRating = Math.max(0, Math.min(5, Number(rating) || 0));
+  return Array.from({ length: 5 }, (_, index) => {
+    const isFilled = index < safeRating;
+    const className = isFilled
+      ? 'google-review-card__star google-review-card__star--filled'
+      : 'google-review-card__star';
+    return `<span class="${className}" aria-hidden="true">${isFilled ? '★' : '☆'}</span>`;
+  }).join('');
+}
+
+function renderGoogleReviewCard(review, index) {
+  const name = escapeHtml(review.name);
+  const rating = Math.max(0, Math.min(5, Number(review.rating) || 0));
+  const text = escapeHtml(review.text);
+  const initial = escapeHtml(getGoogleReviewInitial(review.name));
+  const textId = `google-review-text-${index + 1}`;
+
+  return `<article class="google-review-card">
+    <div class="google-review-card__head">
+      <span class="google-review-card__avatar" aria-hidden="true">${initial}</span>
+      <div>
+        <h3 class="google-review-card__name">${name}</h3>
+        <span class="google-review-card__label">Google口コミ</span>
+      </div>
+    </div>
+    <div class="google-review-card__rating" aria-label="${rating} / 5 の星評価">
+      ${renderGoogleStars(rating)}
+    </div>
+    <p id="${textId}" class="google-review-card__text" data-google-review-text>${text}</p>
+    <button class="google-review-card__toggle" type="button" data-google-review-toggle aria-expanded="false" aria-controls="${textId}">続きを読む</button>
+  </article>`;
+}
+
 function renderBlogCard(post) {
   const date = new Date(post.date).toLocaleDateString('ja-JP').replace(/\//g, '.');
   const image = getResponsiveImageMarkup(post.eyecatch || 'image/medical-interview.webp');
@@ -235,7 +324,7 @@ function setSubmitBusy(isBusy) {
   submitBtn.setAttribute('aria-busy', String(isBusy));
   submitBtn.innerHTML = isBusy
     ? '<i data-lucide="loader-2" class="w-5 h-5 animate-spin" aria-hidden="true"></i> 送信中…'
-    : '<i data-lucide="send" class="w-5 h-5" aria-hidden="true"></i> 送信する';
+    : '<i data-lucide="send" class="w-5 h-5" aria-hidden="true"></i> メールフォームを送信する';
   refreshIcons(submitBtn);
 }
 
@@ -528,14 +617,59 @@ async function hydrateBlogPreview() {
   }
 }
 
+function setupGoogleReviewScroller() {
+  const track = document.querySelector('[data-google-review-track]');
+  if (!track) return;
+
+  track.innerHTML = googleReviews.map(renderGoogleReviewCard).join('');
+
+  const scrollByCard = (direction) => {
+    const firstCard = track.querySelector('.google-review-card');
+    const styles = window.getComputedStyle(track);
+    const gap = Number.parseFloat(styles.columnGap || styles.gap) || 18;
+    const distance = firstCard ? firstCard.getBoundingClientRect().width + gap : track.clientWidth * 0.9;
+    track.scrollBy({ left: distance * direction, behavior: 'smooth' });
+  };
+
+  document.querySelector('[data-google-review-prev]')?.addEventListener('click', () => scrollByCard(-1));
+  document.querySelector('[data-google-review-next]')?.addEventListener('click', () => scrollByCard(1));
+
+  track.addEventListener('click', (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    const button = target?.closest('[data-google-review-toggle]');
+    if (!(button instanceof HTMLButtonElement) || !track.contains(button)) return;
+
+    const card = button.closest('.google-review-card');
+    if (!card) return;
+
+    const isExpanded = card.classList.toggle('is-expanded');
+    button.setAttribute('aria-expanded', String(isExpanded));
+    button.textContent = isExpanded ? '閉じる' : '続きを読む';
+  });
+
+  track.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      scrollByCard(-1);
+    }
+
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      scrollByCard(1);
+    }
+  });
+}
+
 refreshIcons();
 syncHeaderHeight();
 setMenuState(false);
 setupHeaderSymptomDropdown();
 setupSmoothScroll();
+setupMobileMenuLinks();
 setupPageTopButton();
 setupFlowSlider();
 setupGalleryTriggers();
+setupGoogleReviewScroller();
 hydrateBlogPreview();
 
 let scrollTicking = false;
