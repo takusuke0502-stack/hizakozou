@@ -469,7 +469,6 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
     }
 
     .site-menu-toggle,
-    .site-mobile-call,
     .site-mobile-nav {
       display: none;
     }
@@ -579,35 +578,6 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       .site-brand__note::after {
         width: 14px;
         flex-basis: 14px;
-      }
-
-      .site-mobile-call {
-        min-height: 42px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        flex: 0 0 auto;
-        padding: 9px 12px;
-        border-radius: 999px;
-        background: var(--header-green-dark);
-        color: #fff;
-        font-size: 0.86rem;
-        font-weight: 900;
-        line-height: 1;
-        text-decoration: none;
-        box-shadow: 0 8px 18px rgba(36, 83, 70, 0.18);
-      }
-
-      .site-mobile-call svg {
-        width: 17px;
-        height: 17px;
-        flex: 0 0 17px;
-        stroke-width: 2.5;
-      }
-
-      .site-mobile-call__short {
-        display: none;
       }
 
       .site-menu-toggle {
@@ -737,13 +707,6 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
         display: none;
       }
 
-      .site-mobile-call__number {
-        display: none;
-      }
-
-      .site-mobile-call__short {
-        display: inline;
-      }
     }
 
     .symptom-finder {
@@ -4278,17 +4241,70 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
         border-radius: 14px;
       }
 
+      .voice-trust__cards {
+        gap: 42px;
+      }
+
       .voice-trust-card {
-        grid-template-columns: 1fr;
+        grid-template-columns: clamp(112px, 34vw, 138px) minmax(0, 1fr);
+        align-items: center;
+        overflow: visible;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
       }
 
       .voice-trust-card__image {
-        height: auto;
-        aspect-ratio: 4 / 3;
+        position: relative;
+        z-index: 1;
+        grid-column: 1;
+        grid-row: 1;
+        height: clamp(112px, 34vw, 138px);
+        min-height: 0;
+        aspect-ratio: 1 / 1;
+        border: 4px solid #fff;
+        border-radius: 14px;
+        box-shadow: 0 10px 24px rgba(48, 38, 31, 0.12);
       }
 
       .voice-trust-card__body {
-        padding: 16px;
+        display: contents;
+        padding: 0;
+      }
+
+      .voice-trust-card__meta {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: center;
+        min-width: 0;
+        min-height: 74px;
+        margin-left: -16px;
+        padding: 15px 15px 15px 30px;
+        display: flex;
+        align-items: center;
+        border-radius: 0;
+        background: rgba(255, 255, 255, 0.96);
+        color: #334155;
+        font-size: 1rem;
+        line-height: 1.55;
+        box-shadow: 0 8px 20px rgba(48, 38, 31, 0.08);
+      }
+
+      .voice-trust-card__text {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        margin-top: 18px;
+        color: #3f3f46;
+        font-size: 1.02rem;
+        font-weight: 900;
+        line-height: 1.9;
+      }
+
+      .voice-trust-card__link {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        margin-top: 4px;
       }
 
       .voice-trust-card__link,

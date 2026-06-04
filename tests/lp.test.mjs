@@ -449,6 +449,8 @@ test("desktop header groups access/contact and exposes a keyboard-friendly real 
   assert.match(html, /id="menuBtn"/);
   assert.match(html, /aria-controls="mobileNav"/);
   assert.match(html, /<nav class="site-mobile-nav hidden" id="mobileNav"/);
+  assert.doesNotMatch(html, /class="site-mobile-call"/);
+  assert.doesNotMatch(html, /site-mobile-call__number/);
 
   assert.match(mainCss, /\.site-nav__item--has-dropdown:hover\s+\.site-nav__dropdown/);
   assert.match(mainCss, /\.site-nav__item--has-dropdown:focus-within\s+\.site-nav__dropdown/);
@@ -722,6 +724,9 @@ test("LP voice teaser links to a dedicated voices page with anchored cards", () 
   assert.match(html, /voices\.html#voice-3/);
   assert.match(html, /voices\.html#voice-4/);
   assert.match(html, /voices\.html" class="voice-trust__button"/);
+  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust-card\s*\{[\s\S]*grid-template-columns:\s*clamp\(112px,\s*34vw,\s*138px\)\s+minmax\(0,\s*1fr\)/);
+  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust-card__body\s*\{[\s\S]*display:\s*contents/);
+  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust-card__text\s*\{[\s\S]*grid-column:\s*1\s*\/\s*-1/);
 
   assert.match(voicesHtml, /<title>お客様の声｜整体院ひざこぞう<\/title>/);
   assert.equal((voicesHtml.match(/class="voices-page-card"/g) || []).length, 6);
