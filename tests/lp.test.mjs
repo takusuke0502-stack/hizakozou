@@ -15,6 +15,8 @@ const trackingConfigPath = path.join(repoRoot, "scripts", "tracking-config.js");
 const trackingJsPath = path.join(repoRoot, "scripts", "tracking.js");
 const trackingConfig = existsSync(trackingConfigPath) ? readFileSync(trackingConfigPath, "utf8") : "";
 const trackingJs = existsSync(trackingJsPath) ? readFileSync(trackingJsPath, "utf8") : "";
+const broadenedMetaDescription =
+  "柏市で長引く痛みやシビレにお悩みなら、整体院ひざこぞうへ。歩き始めの膝の痛み、どこに行っても良くならなかった頑固な腰痛、坐骨神経痛など足腰のシビレ、自律神経の乱れまで、原因となる筋肉へ的確にアプローチして解消します。柏駅西口徒歩8分、完全予約制で一人ひとりに丁寧に対応。";
 
 function readPageIfExists(fileName) {
   const pagePath = path.join(repoRoot, fileName);
@@ -615,6 +617,22 @@ test("LP exposes LocalBusiness, MedicalClinic, and FAQPage structured data", () 
   assert.equal(medicalClinicBlocks.length, 1, "LP should include one MedicalClinic schema block");
   assert.equal(faqBlocks.length, 1, "LP should include one FAQPage schema block");
   assert.equal(localBusinessBlocks[0].hasMap.includes("output=embed"), true, "map URL should be embeddable");
+});
+
+test("LP metadata broadens SEO target from female knee pain to chronic pain", () => {
+  const hero = getSectionSlice(
+    '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
+    'id="troubles"'
+  );
+  const localBusinessBlocks = getJsonLdBlocks("LocalBusiness");
+
+  assert.match(html, new RegExp(`<meta name="description" content="${escapeRegExp(broadenedMetaDescription)}">`));
+  assert.match(html, new RegExp(`<meta property="og:description" content="${escapeRegExp(broadenedMetaDescription)}">`));
+  assert.match(html, new RegExp(`<meta name="twitter:description" content="${escapeRegExp(broadenedMetaDescription)}">`));
+  assert.equal(localBusinessBlocks[0].description, broadenedMetaDescription);
+  assert.doesNotMatch(getSectionSlice("<head>", "</head>"), /お悩みの女性へ/);
+  assert.match(hero, /それは慣れたのではなく、諦めているだけかもしれない。/);
+  assert.match(hero, /もう一度、自分の体と向き合う時間をつくりませんか。/);
 });
 
 test("LP and symptom patient voices include approved assets and symptom-only additions", () => {
@@ -1230,7 +1248,7 @@ test("LP keeps the knee-pain specialty axis and presents the updated three-step 
     '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
     'id="troubles"'
   );
-  const metaDescription = "柏市で膝痛・歩き始めや階段の痛みにお悩みの女性へ。整体院ひざこぞうでは、緩める・鍛える・動作改善の3ステップで、膝に負担が集まりにくい身体づくりをやさしくサポートします。柏駅西口徒歩8分、完全予約制。";
+  const metaDescription = broadenedMetaDescription;
 
   assert.match(html, /<title>【柏市の膝痛整体】変形性膝関節症・階段の痛みに｜整体院ひざこぞう<\/title>/);
   assert.match(html, new RegExp(`<meta name="description" content="${metaDescription}">`));
