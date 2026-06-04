@@ -4212,25 +4212,28 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
 
     @media (max-width: 640px) {
       .voice-trust {
-        padding: 58px 14px;
+        padding: 44px 14px 50px;
       }
 
       .voice-trust__header {
-        margin-bottom: 26px;
-        text-align: left;
+        margin-bottom: 22px;
+        text-align: center;
+      }
+
+      .voice-trust__label {
+        margin-bottom: 8px;
       }
 
       .voice-trust__title {
-        font-size: 1.72rem;
+        font-size: 1.9rem;
       }
 
       .voice-trust__lead {
-        font-size: 0.95rem;
+        display: none;
       }
 
       .voice-trust__assurance {
-        margin-bottom: 24px;
-        padding: 6px;
+        display: none;
       }
 
       .voice-trust__photo-grid {
@@ -4242,17 +4245,21 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       }
 
       .voice-trust__cards {
-        gap: 42px;
+        gap: 28px;
       }
 
       .voice-trust-card {
-        grid-template-columns: clamp(112px, 34vw, 138px) minmax(0, 1fr);
+        grid-template-columns: clamp(96px, 28vw, 116px) minmax(0, 1fr);
         align-items: center;
+        gap: 12px 0;
         overflow: visible;
-        border: 0;
-        border-radius: 0;
-        background: transparent;
-        box-shadow: none;
+        height: auto;
+        min-height: auto;
+        padding: 16px;
+        border: 1px solid rgba(232, 216, 195, 0.8);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 10px 24px rgba(48, 38, 31, 0.06);
       }
 
       .voice-trust-card__image {
@@ -4260,12 +4267,12 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
         z-index: 1;
         grid-column: 1;
         grid-row: 1;
-        height: clamp(112px, 34vw, 138px);
+        height: clamp(96px, 28vw, 116px);
         min-height: 0;
         aspect-ratio: 1 / 1;
         border: 4px solid #fff;
         border-radius: 14px;
-        box-shadow: 0 10px 24px rgba(48, 38, 31, 0.12);
+        box-shadow: 0 8px 18px rgba(48, 38, 31, 0.12);
       }
 
       .voice-trust-card__body {
@@ -4278,36 +4285,44 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
         grid-row: 1;
         align-self: center;
         min-width: 0;
-        min-height: 74px;
-        margin-left: -16px;
-        padding: 15px 15px 15px 30px;
+        min-height: 58px;
+        margin-left: -12px;
+        padding: 11px 12px 11px 24px;
         display: flex;
         align-items: center;
-        border-radius: 0;
-        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(238, 231, 222, 0.9);
+        border-radius: 4px;
+        background: #fff;
         color: #334155;
-        font-size: 1rem;
+        font-size: 0.96rem;
         line-height: 1.55;
-        box-shadow: 0 8px 20px rgba(48, 38, 31, 0.08);
+        box-shadow: 0 6px 16px rgba(48, 38, 31, 0.06);
       }
 
       .voice-trust-card__text {
         grid-column: 1 / -1;
         grid-row: 2;
-        margin-top: 18px;
+        margin-top: 2px;
         color: #3f3f46;
-        font-size: 1.02rem;
-        font-weight: 900;
-        line-height: 1.9;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.78;
       }
 
       .voice-trust-card__link {
         grid-column: 1 / -1;
         grid-row: 3;
-        margin-top: 4px;
+        width: auto;
+        min-height: auto;
+        justify-self: start;
+        margin-top: 0;
+        padding: 0;
+        background: transparent;
+        color: #d95d35;
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
       }
 
-      .voice-trust-card__link,
       .voice-trust__button {
         width: 100%;
       }

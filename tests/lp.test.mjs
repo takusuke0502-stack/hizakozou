@@ -662,7 +662,8 @@ test("LP and symptom patient voices include approved assets and symptom-only add
   assert.match(html, /image\/patient-voice-yn\.webp/);
   assert.match(html, /image\/patient-voice-kk-anonymized\.webp/);
   assert.match(html, /image\/patient-voice-numajiri\.webp/);
-  assert.match(html, /VOICE &amp; RESULT/);
+  assert.match(html, /<p class="voice-trust__label">VOICE<\/p>/);
+  assert.match(html, /患者様の声/);
   assert.match(html, /image\/voice-kajitani\.webp/);
   assert.match(html, /image\/voice-kk\.webp/);
   assert.match(html, /image\/voice-numajiri\.webp/);
@@ -714,8 +715,9 @@ test("LP and symptom patient voices include approved assets and symptom-only add
 
 test("LP voice teaser links to a dedicated voices page with anchored cards", () => {
   assert.match(html, /<section class="voice-trust"/);
-  assert.match(html, /VOICE &amp; RESULT/);
-  assert.match(html, /大丈夫です！ご安心ください/);
+  assert.match(html, /<p class="voice-trust__label">VOICE<\/p>/);
+  assert.match(html, /<h2 id="voice-trust-title" class="voice-trust__title">\s*患者様の声\s*<\/h2>/);
+  assert.doesNotMatch(html, /VOICE &amp; RESULT/);
   assert.match(html, /class="voice-trust__assurance"/);
   assert.match(html, /ご相談に来られた方のお声があります/);
   assert.equal((html.match(/class="voice-trust-card"/g) || []).length, 4);
@@ -724,9 +726,16 @@ test("LP voice teaser links to a dedicated voices page with anchored cards", () 
   assert.match(html, /voices\.html#voice-3/);
   assert.match(html, /voices\.html#voice-4/);
   assert.match(html, /voices\.html" class="voice-trust__button"/);
-  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust-card\s*\{[\s\S]*grid-template-columns:\s*clamp\(112px,\s*34vw,\s*138px\)\s+minmax\(0,\s*1fr\)/);
+  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust\s*\{[\s\S]*padding:\s*44px 14px 50px/);
+  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust__assurance\s*\{[\s\S]*display:\s*none/);
+  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust__cards\s*\{[\s\S]*gap:\s*28px/);
+  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust-card\s*\{[\s\S]*grid-template-columns:\s*clamp\(96px,\s*28vw,\s*116px\)\s+minmax\(0,\s*1fr\)/);
+  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust-card\s*\{[\s\S]*padding:\s*16px/);
+  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust-card__image\s*\{[\s\S]*height:\s*clamp\(96px,\s*28vw,\s*116px\)/);
   assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust-card__body\s*\{[\s\S]*display:\s*contents/);
   assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust-card__text\s*\{[\s\S]*grid-column:\s*1\s*\/\s*-1/);
+  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust-card__link\s*\{[\s\S]*background:\s*transparent/);
+  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust-card__link\s*\{[\s\S]*width:\s*auto/);
 
   assert.match(voicesHtml, /<title>お客様の声｜整体院ひざこぞう<\/title>/);
   assert.equal((voicesHtml.match(/class="voices-page-card"/g) || []).length, 6);
