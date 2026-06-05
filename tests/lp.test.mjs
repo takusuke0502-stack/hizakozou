@@ -129,7 +129,6 @@ test("LP follows the new section order for the knee-pain explanation flow", () =
     'id="knee-msm-reasons"',
     'id="msm-method"',
     'id="flow"',
-    'id="comparison"',
     'id="first-visit-policy"',
     'id="profile"',
     'id="voice"',
@@ -158,6 +157,29 @@ test("LP removes the long-knee-pain accordion guide block", () => {
   assert.doesNotMatch(html, /湿布・注射を続けているのに、なぜ繰り返すのか/);
   assert.doesNotMatch(html, /膝をかばう動きが、別の負担を増やすことがある/);
   assert.doesNotMatch(html, /「動くとまた痛いかも」という不安も積み重なる/);
+});
+
+test("LP troubles section speaks to foot, low-back, hip pain and numbness without changing CTAs", () => {
+  const troubles = getTopLevelSectionSlice("troubles");
+
+  for (const concern of [
+    "朝起きると腰が重く、すぐに動き出せない",
+    "長く座っていると腰やお尻がつらくなる",
+    "歩いていると足にしびれが出て、休みたくなる",
+    "階段の上り下りが不安になってきた",
+    "股関節や足の付け根がつまって歩きづらい",
+    "病院では「年齢のせい」「様子を見ましょう」と言われた",
+    "薬や湿布だけでは、"
+  ]) {
+    assert.match(troubles, new RegExp(escapeRegExp(concern)));
+  }
+
+  assert.match(troubles, /この先が不安/);
+  assert.match(troubles, /alt="足腰の痛みやしびれに悩む方"/);
+  assert.doesNotMatch(troubles, /歩き始めや立ち上がりで、膝にズキッとした痛みが出る/);
+  assert.doesNotMatch(troubles, /膝をかばって歩いているうちに/);
+  assert.doesNotMatch(troubles, /正座やしゃがむ動作がしづらく/);
+  assert.doesNotMatch(troubles, /LINEで|電話で|無料相談|予約/);
 });
 
 test("LP adds a diagram-backed three-reason block before the MSM method", () => {
@@ -422,6 +444,8 @@ test("desktop header groups access/contact and exposes a keyboard-friendly real 
     ["symptoms/hip-osteoarthritis.html", "股関節痛"]
   ];
 
+  assert.match(html, /<span class="site-brand__eyebrow">柏市の足腰専門整体院<\/span>/);
+  assert.doesNotMatch(html, /<span class="site-brand__eyebrow">柏市の膝痛専門整体院<\/span>/);
   assert.match(desktopNav, /症状別/);
   assert.match(desktopNav, /SYMPTOMS/);
   assert.match(desktopNav, /aria-haspopup="true"/);
@@ -447,7 +471,8 @@ test("desktop header groups access/contact and exposes a keyboard-friendly real 
 
   assert.doesNotMatch(mobileNav, /site-nav__dropdown/);
   assert.doesNotMatch(mobileNav, /SYMPTOMS/);
-  assert.match(mobileNav, /href="#access"/);
+  assert.match(mobileNav, /href="access\.html" class="site-mobile-nav__item">アクセス/);
+  assert.doesNotMatch(mobileNav, /アクセス詳細/);
   assert.match(mobileNav, /href="#contact"/);
   assert.match(mobileNav, /href="blog\/"/);
   assert.match(mobileNav, /コラム/);
@@ -878,6 +903,10 @@ test("LP hero first-visit guide matches the flyer-style first-visit CTA", () => 
     '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
     '<section id="troubles"'
   );
+  const topHeroCta = getSectionSlice(
+    'class="hero-cta-grid hero-cta-grid--top"',
+    '<section class="hero-safe-band'
+  );
 
   assert.match(hero, /class="hero-safe-band__ribbon"/);
   assert.match(hero, /初回限定のご案内/);
@@ -892,6 +921,8 @@ test("LP hero first-visit guide matches the flyer-style first-visit CTA", () => 
     assert.match(hero, new RegExp(escapeRegExp(item)));
   }
   assert.match(hero, /class="hero-safe-band__line"/);
+  assert.match(topHeroCta, /LINEで相談・予約する/);
+  assert.doesNotMatch(topHeroCta, /LINEで膝痛を相談する/);
   assert.match(hero, /LINEで初回予約する/);
   assert.match(hero, /無理な勧誘はありません。ご相談だけでも大丈夫です。/);
   assert.doesNotMatch(hero, /class="hero-safe-band__hours"/);
@@ -902,9 +933,8 @@ test("LP hero first-visit guide matches the flyer-style first-visit CTA", () => 
   assert.match(html, /\.hero-fixed \.hero-safe-band__line\s*\{[\s\S]*background:\s*linear-gradient\(180deg,\s*#ff9f20,\s*#ff5c00\);/);
 });
 
-test("LP Step 2 uses Japanese labels, comparison table, and a single mobile LINE CTA", () => {
+test("LP Step 2 uses Japanese labels, removes the comparison section, and keeps a single mobile LINE CTA", () => {
   const approach = getSectionSlice('id="msm-method"', 'id="flow"');
-  const comparison = getSectionSlice('id="comparison"', 'id="profile"');
   const fixedCta = getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js"');
 
   assert.doesNotMatch(html, /CLINICAL VIEW|HIZAKOZOU METHOD|FIRST VISIT/);
@@ -915,14 +945,10 @@ test("LP Step 2 uses Japanese labels, comparison table, and a single mobile LINE
   assert.match(html, /初回の進め方/);
   assert.match(html, /ひざこぞう式MSMメソッド/);
   assert.equal(html.includes('id="method-features"'), false, "duplicated feature section should be integrated into the method section");
-  assert.match(comparison, /整形外科・一般的な整体・当院の違い/);
-  assert.match(comparison, /<table class="hz-compare-table">/);
-  assert.match(comparison, /class="hz-compare-mobile"/);
-  assert.match(comparison, /class="hz-compare-card"/);
+  assert.doesNotMatch(html, /id="comparison"/);
+  assert.doesNotMatch(html, /選び方の目安/);
+  assert.doesNotMatch(html, /整形外科・一般的な整体・当院の違い/);
   assert.match(html, /@media \(min-width: 380px\) and \(max-width: 767px\)/);
-  assert.match(comparison, /整形外科/);
-  assert.match(comparison, /一般的な整体/);
-  assert.match(comparison, /整体院ひざこぞう/);
   assert.equal((fixedCta.match(/<a /g) ?? []).length, 1, "mobile fixed CTA should be one button");
   assert.match(fixedCta, /LINEで空き状況を確認/);
 });
@@ -1170,19 +1196,19 @@ test("LP keeps only one first-visit policy section and removes the duplicate art
   assert.equal(html.includes("来院前に確認されやすいこと"), false, "mid-page article detour should be removed");
 });
 
-test("LP places the first-visit policy directly after the comparison section", () => {
-  const comparisonIndex = html.indexOf('id="comparison"');
+test("LP places the first-visit policy directly after the flow section after removing comparison", () => {
+  const flowIndex = html.indexOf('id="flow"');
   const firstVisitIndex = html.indexOf('id="first-visit-policy"');
   const profileIndex = html.indexOf('id="profile"');
-  const comparisonToFirstVisit = html.slice(comparisonIndex, firstVisitIndex);
+  const flowToFirstVisit = html.slice(flowIndex, firstVisitIndex);
 
-  assert.ok(comparisonIndex > -1, "comparison section should exist");
+  assert.ok(flowIndex > -1, "flow section should exist");
   assert.ok(firstVisitIndex > -1, "first-visit policy section should exist");
   assert.ok(profileIndex > -1, "profile section should exist");
-  assert.ok(comparisonIndex < firstVisitIndex, "first-visit policy should appear after comparison");
+  assert.ok(flowIndex < firstVisitIndex, "first-visit policy should appear after flow");
   assert.ok(firstVisitIndex < profileIndex, "first-visit policy should appear before profile");
-  assert.doesNotMatch(comparisonToFirstVisit, /<section id="(?!comparison")/, "no other section should sit between comparison and first-visit policy");
-  assert.match(html, /#comparison,\s*#first-visit-policy,\s*#profile\s*{[\s\S]*background:\s*#fff !important;[\s\S]*background-image:\s*none !important;/);
+  assert.doesNotMatch(flowToFirstVisit, /id="comparison"|選び方の目安|整形外科・一般的な整体・当院の違い/);
+  assert.match(html, /#first-visit-policy,\s*#profile\s*{[\s\S]*background:\s*#fff !important;[\s\S]*background-image:\s*none !important;/);
 });
 
 test("LP first-visit policy uses the PNG icon set accessibly", () => {
