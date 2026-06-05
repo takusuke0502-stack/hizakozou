@@ -201,6 +201,17 @@
       .hero-fixed .hero-cta-grid {
         grid-template-columns: 1fr !important;
       }
+
+      .hero-fixed .hero-photo-frame {
+        aspect-ratio: 1536 / 1024 !important;
+        height: auto !important;
+      }
+
+      .hero-fixed .hero-photo {
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: top center !important;
+      }
     }
 
 
@@ -1679,7 +1690,7 @@
               <div class="hero-visual-card overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-xl">
                 <picture class="hero-photo-frame">
                   <source srcset="image/hero-sp.webp" media="(max-width: 768px)">
-                  <img src="image/hero-pc.webp" alt="柏市で膝の痛みに専門対応する整体院ひざこぞうの施術風景" class="photo-soft photo-soft--hero hero-photo" loading="eager" decoding="async" fetchpriority="high" width="1536" height="1024">
+                  <img src="image/hero-pc.webp" alt="柏市で足腰の痛みやしびれに専門対応する整体院ひざこぞうの案内ビジュアル" class="photo-soft photo-soft--hero hero-photo" loading="eager" decoding="async" fetchpriority="high" width="1536" height="1024">
                 </picture>
               </div>
             </div>
@@ -1881,24 +1892,23 @@
     <section id="knee-msm-reasons" class="knee-msm-reasons" aria-labelledby="knee-msm-reasons-title">
       <div class="knee-msm-reasons__inner">
         <div class="knee-msm-hero">
-          <p class="knee-msm-hero__eyebrow">あなたの膝が治らない、本当の理由</p>
+          <p class="knee-msm-hero__eyebrow">根本改善の真実</p>
           <h2 id="knee-msm-reasons-title" class="knee-msm-hero__title">
-            「膝を揉むだけ」では<br>
-            一生治りません。<br>
-            あなたの膝痛がぶり返す、<br>
-            衝撃の真実。
+            あなたの<span class="knee-msm-highlight">足腰の痛み・しびれ</span>が治らない、本当の理由<br>
+            「痛む場所を揉むだけ」では一生治りません。
           </h2>
           <p class="knee-msm-hero__text">
-            ヒアルロン酸注射、マッサージ……何度やっても痛みが戻る。
-            原因は膝ではなく、「膝を支える仕組みの崩れ」にあります。
+            ヒアルロン酸注射、電気、マッサージ……何度やっても痛みが戻る。
+            原因は「痛む場所」だけではなく、体を支える土台と仕組みの崩れにあります。
           </p>
-          <p class="knee-msm-hero__badge">MSMメソッドが解き明かす「痛みの根本原因」</p>
+          <p class="knee-msm-hero__badge">MSMメソッドが解き明かす「痛み・しびれの根本原因」</p>
         </div>
 
         <div class="knee-msm-empathy" aria-label="こんなお悩み、ありませんか">
-          <p class="knee-msm-empathy__label">こんなお悩み、ありませんか</p>
-          <p>マッサージの直後はラクになるのに、翌日にはまた痛くなる…</p>
-          <p>注射を打っても、結局また同じ繰り返し…</p>
+          <p class="knee-msm-empathy__label">こんなお悩み、ありませんか？</p>
+          <p>マッサージの直後はラクになるのに、翌日や翌朝にはまた痛くなる…</p>
+          <p>朝、布団から起き上がる瞬間に、腰や足がピキッと痛む・しびれる…</p>
+          <p>注射を打ったり薬を飲んでも、結局また同じ繰り返し…</p>
           <p class="knee-msm-empathy__note">→ その繰り返しには、明確な理由があります。</p>
         </div>
 
@@ -1906,20 +1916,21 @@
           <p class="knee-msm-intro__label">なぜ治らないのか</p>
           <h3>痛みが戻り続ける「3つの理由」</h3>
           <p>
-            多くの治療では「痛い場所を緩める」ことしかしていません。しかし痛みが出ている場所は「被害者」に過ぎません。
-            真犯人は、まったく別の場所に潜んでいます。
+            多くの治療では「痛い場所を緩める」ことだけに目が向きます。しかし腰や膝、足のしびれが出ている場所は「被害者」に過ぎないことがあります。
+            真犯人は、足首・骨盤・深層の筋肉、そして脳と神経の防御反応に潜んでいます。
           </p>
         </div>
 
         <article class="knee-msm-reason knee-msm-reason--01">
           <div class="knee-msm-reason__body">
             <p class="knee-msm-reason__number">理由 01</p>
-            <h3>「頑張りすぎな筋肉」を緩めても、<span class="knee-msm-highlight">「サボり筋」を放置</span>しているから</h3>
-            <p>硬くなった筋肉をほぐすだけでは応急処置に過ぎません。痛みが出ている筋肉は、他をかばって「頑張りすぎている」だけ。</p>
-            <p>本当に必要なのは、長年サボって眠ってしまった「不労筋」を目覚めさせることです。筋力が足りないまま揉みほぐしても、歩けば即座に膝はグラつき、痛みは戻ります。</p>
-            <p>MSMメソッドは「緩める」と「鍛える」を同時に解消し、痛みが戻りにくい体を目指します。</p>
+            <h3>「頑張りすぎな筋肉（<span class="knee-msm-highlight">過労筋</span>）」を緩めても、「<span class="knee-msm-highlight">サボり筋</span>」を放置しているから</h3>
+            <p>硬くなった筋肉をほぐすだけでは応急処置に過ぎません。痛みが出ている筋肉は、他をかばって悲鳴を上げている<strong>過労筋</strong>であることが少なくありません。</p>
+            <p>本当に必要なのは、長年サボって眠ってしまった<strong>サボり筋（不労筋）</strong>を目覚めさせることです。体幹や関節を支える筋肉が眠ったまま揉みほぐしても、動けば即座に骨盤や関節がグラつき、痛みは戻ります。</p>
+            <p>MSMメソッドは「緩める」と「働かせる」を同時に見直し、痛みが戻りにくい体を目指します。</p>
             <figure class="knee-msm-reason__diagram">
-              <img src="images/msm/reason-muscle-balance.webp" alt="サボり筋と頑張りすぎな筋肉による膝への負担の図解" class="knee-msm-reason__diagram-image" loading="lazy" decoding="async" width="1400" height="747">
+              <img src="images/msm/reason-muscle-balance.webp" alt="サボり筋と過労筋の対比図" class="knee-msm-reason__diagram-image" loading="lazy" decoding="async" width="1400" height="747">
+              <figcaption class="knee-msm-reason__caption">サボり筋をピンポイントで動かし、過労筋に集中した負担を減らします。</figcaption>
             </figure>
           </div>
         </article>
@@ -1927,22 +1938,22 @@
         <article class="knee-msm-reason knee-msm-reason--02">
           <div class="knee-msm-reason__body">
             <p class="knee-msm-reason__number">理由 02</p>
-            <h3>膝は「被害者」。<span class="knee-msm-highlight">真犯人は「足首」と「股関節」</span>に潜んでいるから</h3>
-            <p>膝は上下の関節（足首・股関節）の不具合を、まるまる押し付けられています。</p>
-            <p><strong>足首のロック（距骨のゆがみ）：</strong>地面の衝撃を吸収できず、歩くたびに膝がねじれる動きを強いられます。</p>
-            <p><strong>股関節のサボり（大腰筋の影響）：</strong>骨盤がゆがみ、膝が外側にねじれた状態になります。</p>
-            <div class="knee-msm-chain" aria-label="関節連鎖の表示">
-              <span>足首（距骨）</span>
+            <h3>腰や膝は「被害者」。真犯人は「<span class="knee-msm-highlight">足首のゆがみ</span>」と「<span class="knee-msm-highlight">深層のサボり筋</span>」にあるから</h3>
+            <p>人間の体は1本の柱です。土台が崩れれば、その上にある膝・骨盤・腰へねじれの連鎖が波及します。</p>
+            <p><strong>足首のロック（距骨のゆがみ）：</strong>土台が傾くことで衝撃を吸収できず、歩くたびに膝や腰へダイレクトに負担がかかります。</p>
+            <p><strong>お腹・お尻のサボり（大腰筋などの低下）：</strong>体幹を支える筋肉がサボることで骨盤がゆがみ、神経が圧迫されて重い痛みやしびれを引き起こします。</p>
+            <div class="knee-msm-chain" aria-label="足首から膝と腰へのねじれの連鎖">
+              <span>足首（距骨のゆがみ）</span>
               <span aria-hidden="true">→</span>
-              <span>ねじれ波及</span>
+              <span>膝・骨盤のねじれ</span>
               <span aria-hidden="true">→</span>
-              <span>膝が痛む</span>
-              <span aria-hidden="true">←</span>
-              <span>股関節（大腰筋）</span>
+              <span>腰痛・坐骨神経痛</span>
+              <span aria-hidden="true">→</span>
+              <span>足のしびれ</span>
             </div>
-            <p class="knee-msm-reason__note">「膝だけ」を見ていては、このねじれの連鎖は止められません。</p>
+            <p class="knee-msm-reason__note">「痛む場所だけ」を見ていては、このドミノのような悪循環は止められません。</p>
             <figure class="knee-msm-reason__diagram">
-              <img src="images/msm/msm-flow-body.webp" alt="股関節・膝・足首のつながりによる膝への負担の図解" class="knee-msm-reason__diagram-image" loading="lazy" decoding="async" width="380" height="340">
+              <img src="images/msm/msm-flow-body.webp" alt="足首から膝と腰へねじれが波及する図解" class="knee-msm-reason__diagram-image" loading="lazy" decoding="async" width="380" height="340">
             </figure>
           </div>
         </article>
@@ -1950,38 +1961,45 @@
         <article class="knee-msm-reason knee-msm-reason--03">
           <div class="knee-msm-reason__body">
             <p class="knee-msm-reason__number">理由 03</p>
-            <h3><span class="knee-msm-highlight">毎日の「体の使い方」</span>が、痛みを繰り返す習慣になっているから</h3>
-            <p>筋肉や関節を整えても、日常の動作パターンそのものが変わらなければ、また同じ場所に負担がかかり続けます。長年かけて染みついた「膝に悪い動き方」は、本人も気づかないうちに繰り返されています。</p>
+            <h3>毎日の「間違った体の使い方」が、<span class="knee-msm-highlight">神経の過敏化</span>を起こしているから</h3>
+            <p>筋肉や関節を一時的に整えても、日常の動作パターンが変わらなければ、また同じ場所に負担がかかり続けます。</p>
+            <p>さらに慢性的な痛みが長引くと、脳と神経の伝達シグナルが誤作動を起こし、痛みの記憶によって<strong>神経が過敏化</strong>してしまいます。</p>
             <div class="knee-msm-cycle">
               <p class="knee-msm-cycle__label">痛みが繰り返されるサイクル</p>
               <ol class="knee-msm-cycle__nodes">
-                <li>不良動作の習慣</li>
-                <li>膝への負担蓄積</li>
-                <li>痛みが出る</li>
-                <li>その場だけ治療</li>
-                <li class="knee-msm-cycle__last">また痛む</li>
+                <li>不良動作の定着</li>
+                <li>特定箇所への負担集中</li>
+                <li>その場しのぎの治療</li>
+                <li>痛みの記憶</li>
+                <li class="knee-msm-cycle__last">神経の過敏化</li>
               </ol>
-              <p class="knee-msm-cycle__note">→ このサイクルを断たない限り、痛みは戻り続けます</p>
+              <p class="knee-msm-cycle__note">→ この悪循環を脳・神経レベルで断ち切る必要があります</p>
             </div>
-            <p>MSMメソッドでは、体の構造を整えるだけでなく、「なぜその動きをしてしまうのか」という脳・神経レベルの誤作動にもアプローチします。</p>
-            <div class="knee-msm-approaches">
-              <div class="knee-msm-approach knee-msm-approach--exercise">
-                <p class="knee-msm-approach__label">運動療法</p>
-                <h4>正しい動作を体に覚えさせる</h4>
-                <p>膝に負担をかけない歩き方・立ち方を、繰り返しの実践で体に定着させます。</p>
-              </div>
-              <div class="knee-msm-approach knee-msm-approach--cognitive">
-                <p class="knee-msm-approach__label">認知行動療法的アプローチ</p>
-                <h4>「悪い動き方」の誤学習をリセット</h4>
-                <p>無意識に繰り返している不良動作を自覚し、脳からの動作指令を正しく書き換えます。</p>
-              </div>
-            </div>
-            <p class="knee-msm-perspective">この2つを組み合わせるのが<br>MSMメソッド独自の視点</p>
             <figure class="knee-msm-reason__diagram">
-              <img src="images/msm/reason-movement-cycle.webp" alt="不良動作から膝の痛みが戻る悪循環の図解" class="knee-msm-reason__diagram-image" loading="lazy" decoding="async" width="1400" height="768">
+              <img src="images/msm/reason-movement-cycle.webp" alt="不良動作と痛みの記憶が続く悪循環の図解" class="knee-msm-reason__diagram-image" loading="lazy" decoding="async" width="1400" height="768">
             </figure>
           </div>
         </article>
+
+        <div class="knee-msm-approach-box">
+          <div class="knee-msm-approach-box__header">
+            <h3>この2つを組み合わせるのがMSMメソッド独自の視点</h3>
+            <p>STRUCTURE & NEUROLOGICAL APPROACH</p>
+          </div>
+
+          <div class="knee-msm-approaches">
+            <div class="knee-msm-approach knee-msm-approach--exercise">
+              <p class="knee-msm-approach__label">運動療法（スタビリティワーク）</p>
+              <h4>サボり筋を狙って刺激</h4>
+              <p>眠っている筋肉をピンポイントで働かせ、関節や骨盤を正しい位置で支えられるようにします。</p>
+            </div>
+            <div class="knee-msm-approach knee-msm-approach--cognitive">
+              <p class="knee-msm-approach__label">認知行動療法的アプローチ</p>
+              <h4>「悪い動き方」の記憶をリセット</h4>
+              <p>無意識に繰り返しているかばい動きを自覚し、脳からの動作指令を正しく書き換えることで、神経の過敏化を抑えていきます。</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 

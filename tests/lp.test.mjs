@@ -163,28 +163,30 @@ test("LP removes the long-knee-pain accordion guide block", () => {
 test("LP adds a diagram-backed three-reason block before the MSM method", () => {
   const reasons = getTopLevelSectionSlice("knee-msm-reasons");
   const expectedDiagrams = [
-    ["images/msm/reason-muscle-balance.webp", "サボり筋と頑張りすぎな筋肉による膝への負担の図解"],
-    ["images/msm/msm-flow-body.webp", "股関節・膝・足首のつながりによる膝への負担の図解"],
-    ["images/msm/reason-movement-cycle.webp", "不良動作から膝の痛みが戻る悪循環の図解"]
+    ["images/msm/reason-muscle-balance.webp", "サボり筋と過労筋の対比図"],
+    ["images/msm/msm-flow-body.webp", "足首から膝と腰へねじれが波及する図解"],
+    ["images/msm/reason-movement-cycle.webp", "不良動作と痛みの記憶が続く悪循環の図解"]
   ];
 
   assert.match(reasons, /<section id="knee-msm-reasons" class="knee-msm-reasons" aria-labelledby="knee-msm-reasons-title">/);
-  assert.match(reasons, /あなたの膝が治らない、本当の理由/);
-  assert.match(reasons, /「膝を揉むだけ」では[\s\S]*一生治りません。/);
-  assert.match(reasons, /MSMメソッドが解き明かす「痛みの根本原因」/);
+  assert.match(reasons, /根本改善の真実/);
+  assert.match(reasons, /あなたの[\s\S]*足腰の痛み・しびれ[\s\S]*が治らない、本当の理由/);
+  assert.match(reasons, /「痛む場所を揉むだけ」では一生治りません。/);
+  assert.match(reasons, /MSMメソッドが解き明かす「痛み・しびれの根本原因」/);
   assert.match(reasons, /こんなお悩み、ありませんか/);
+  assert.match(reasons, /朝、布団から起き上がる瞬間に、腰や足がピキッと痛む・しびれる/);
   assert.match(reasons, /その繰り返しには、明確な理由があります。/);
   assert.match(reasons, /痛みが戻り続ける「3つの理由」/);
-  assert.match(reasons, /「頑張りすぎな筋肉」を緩めても、[\s\S]*「サボり筋」を放置[\s\S]*しているから/);
-  assert.match(reasons, /膝は「被害者」。[\s\S]*真犯人は「足首」と「股関節」[\s\S]*に潜んでいるから/);
-  assert.match(reasons, /毎日の「体の使い方」[\s\S]*が、痛みを繰り返す習慣になっているから/);
+  assert.match(reasons, /「頑張りすぎな筋肉（[\s\S]*過労筋[\s\S]*）」を緩めても、[\s\S]*サボり筋[\s\S]*を放置しているから/);
+  assert.match(reasons, /腰や膝は「被害者」。真犯人は「[\s\S]*足首のゆがみ[\s\S]*」と「[\s\S]*深層のサボり筋[\s\S]*」にあるから/);
+  assert.match(reasons, /毎日の「間違った体の使い方」が、[\s\S]*神経の過敏化[\s\S]*を起こしているから/);
   assert.match(reasons, /痛みが繰り返されるサイクル/);
-  assert.match(reasons, /不良動作の習慣[\s\S]*膝への負担蓄積[\s\S]*痛みが出る[\s\S]*その場だけ治療[\s\S]*また痛む/);
-  assert.match(reasons, /運動療法/);
-  assert.match(reasons, /正しい動作を体に覚えさせる/);
+  assert.match(reasons, /不良動作の定着[\s\S]*特定箇所への負担集中[\s\S]*その場しのぎの治療[\s\S]*痛みの記憶[\s\S]*神経の過敏化/);
+  assert.match(reasons, /運動療法（スタビリティワーク）/);
+  assert.match(reasons, /サボり筋を狙って刺激/);
   assert.match(reasons, /認知行動療法的アプローチ/);
-  assert.match(reasons, /「悪い動き方」の誤学習をリセット/);
-  assert.match(reasons, /この2つを組み合わせるのが[\s\S]*MSMメソッド独自の視点/);
+  assert.match(reasons, /「悪い動き方」の記憶をリセット/);
+  assert.match(reasons, /この2つを組み合わせるのがMSMメソッド独自の視点/);
   assert.doesNotMatch(reasons, /メインビジュアル画像/);
   assert.doesNotMatch(reasons, /class="knee-msm-hero__visual"/);
   assert.equal((reasons.match(/class="knee-msm-reason__diagram"/g) || []).length, 3);
@@ -198,13 +200,16 @@ test("LP adds a diagram-backed three-reason block before the MSM method", () => 
   assert.doesNotMatch(reasons, /動作指導・[\s\S]*歩行分析の[\s\S]*イメージ画像/);
 });
 
-test("LP underlines only the requested three reason phrases with a soft highlight", () => {
+test("LP highlights the new foot-low-back and nerve keywords with a soft underline", () => {
   const reasons = getTopLevelSectionSlice("knee-msm-reasons");
 
-  assert.equal((reasons.match(/class="knee-msm-highlight"/g) || []).length, 3);
-  assert.match(reasons, /<span class="knee-msm-highlight">「サボり筋」を放置<\/span>/);
-  assert.match(reasons, /<span class="knee-msm-highlight">真犯人は「足首」と「股関節」<\/span>/);
-  assert.match(reasons, /<span class="knee-msm-highlight">毎日の「体の使い方」<\/span>/);
+  assert.equal((reasons.match(/class="knee-msm-highlight"/g) || []).length, 6);
+  assert.match(reasons, /<span class="knee-msm-highlight">足腰の痛み・しびれ<\/span>/);
+  assert.match(reasons, /<span class="knee-msm-highlight">過労筋<\/span>/);
+  assert.match(reasons, /<span class="knee-msm-highlight">サボり筋<\/span>/);
+  assert.match(reasons, /<span class="knee-msm-highlight">足首のゆがみ<\/span>/);
+  assert.match(reasons, /<span class="knee-msm-highlight">深層のサボり筋<\/span>/);
+  assert.match(reasons, /<span class="knee-msm-highlight">神経の過敏化<\/span>/);
   assert.match(mainCss, /\.knee-msm-highlight\s*{[\s\S]*background:\s*linear-gradient\(transparent 62%, rgba\(248,\s*164,\s*93,\s*0\.34\) 62%\);[\s\S]*box-decoration-break:\s*clone;/);
 });
 
@@ -850,6 +855,14 @@ test("LP hero uses optimized real WebP assets for the replaced hero visual", () 
     assert.equal(webp, "WEBP", `${asset} should use the WebP container`);
     assert.ok(statSync(assetPath).size < 420_000, `${asset} should stay lightweight after replacement`);
   }
+});
+
+test("LP mobile hero visual does not reserve a tall blank portrait frame", () => {
+  assert.doesNotMatch(mainCss, /\.hero-photo-frame\s*\{\s*aspect-ratio:\s*862\s*\/\s*1825\s*;/);
+  assert.match(mainCss, /@media \(max-width:\s*768px\)[\s\S]*\.hero-photo-frame\s*\{[\s\S]*aspect-ratio:\s*1536\s*\/\s*1024\s*;/);
+  assert.match(html, /@media \(max-width:\s*768px\)[\s\S]*\.hero-fixed \.hero-photo-frame\s*\{[\s\S]*aspect-ratio:\s*1536\s*\/\s*1024\s*!important;/);
+  assert.match(html, /@media \(max-width:\s*768px\)[\s\S]*\.hero-fixed \.hero-photo\s*\{[\s\S]*height:\s*100%\s*!important;/);
+  assert.match(html, /@media \(max-width:\s*768px\)[\s\S]*\.hero-fixed \.hero-photo\s*\{[\s\S]*object-fit:\s*cover\s*!important;/);
 });
 
 test("LP mobile hero title and fixed CTA stay compact on narrow screens", () => {

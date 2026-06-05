@@ -1610,7 +1610,7 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       .price-cta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 768px) {
-      .hero-photo-frame { aspect-ratio: 862 / 1825; }
+      .hero-photo-frame { aspect-ratio: 1536 / 1024; }
     }
     @media (min-width: 1024px) {
       .hero-layout { grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr); gap: 3rem; }
@@ -2823,6 +2823,15 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       margin: 0 auto;
     }
 
+    .knee-msm-reason__caption {
+      margin: 12px 4px 0;
+      color: #54483e;
+      font-size: 0.86rem;
+      font-weight: 900;
+      line-height: 1.7;
+      text-align: center;
+    }
+
     .knee-msm-reason__note {
       color: #1f5a43 !important;
       font-weight: 900 !important;
@@ -2898,45 +2907,82 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       font-weight: 900 !important;
     }
 
+    .knee-msm-approach-box {
+      margin: 30px 0 0;
+      padding: clamp(24px, 4vw, 36px);
+      border-radius: 24px;
+      background: #1a2530;
+      color: #fff;
+      box-shadow: 0 16px 34px rgba(26, 37, 48, 0.18);
+    }
+
+    .knee-msm-approach-box__header {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .knee-msm-approach-box__header h3 {
+      margin: 0;
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 0;
+    }
+
+    .knee-msm-approach-box__header p {
+      margin: 6px 0 0;
+      color: #a8dadc;
+      font-size: 0.82rem;
+      font-weight: 900;
+      line-height: 1.5;
+      letter-spacing: 0.08em;
+    }
+
     .knee-msm-approaches {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin: 1rem 0;
+      gap: 14px;
+      margin: 0;
     }
 
     .knee-msm-approach {
-      padding: 1rem;
-      border: 1px solid rgba(63, 47, 36, 0.1);
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.06);
     }
 
     .knee-msm-approach--exercise {
-      background: #fff3e8;
+      box-shadow: inset 0 4px 0 #f8a45d;
     }
 
     .knee-msm-approach--cognitive {
-      background: #eef6ff;
+      box-shadow: inset 0 4px 0 #a8dadc;
     }
 
     .knee-msm-approach__label {
-      margin: 0 0 0.4rem !important;
-      color: #1f5a43 !important;
-      font-size: 0.78rem !important;
+      margin: 0 0 0.45rem !important;
+      color: #a8dadc !important;
+      font-size: 0.82rem !important;
       font-weight: 900 !important;
       line-height: 1.45 !important;
     }
 
     .knee-msm-approach h4 {
-      margin: 0 0 0.45rem;
-      color: #3b2518;
-      font-size: 1rem;
+      margin: 0 0 0.55rem;
+      color: #f8f5ef;
+      font-size: 1.05rem;
       font-weight: 900;
       line-height: 1.55;
     }
 
     .knee-msm-approach p:last-child {
-      font-size: 0.9rem;
-      line-height: 1.75;
+      color: #e5e7eb;
+      font-size: 0.94rem;
+      font-weight: 800;
+      line-height: 1.85;
     }
 
     .knee-msm-perspective {
@@ -3267,6 +3313,16 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
 
       .knee-msm-approaches {
         grid-template-columns: 1fr;
+      }
+
+      .knee-msm-approach-box {
+        margin-top: 22px;
+        border-radius: 18px;
+        padding: 22px 18px;
+      }
+
+      .knee-msm-approach-box__header h3 {
+        font-size: 1.15rem;
       }
 
       .knee-msm-steps {
