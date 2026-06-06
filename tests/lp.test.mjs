@@ -434,9 +434,14 @@ test("LP canonicalizes direct index.html visits to the root URL", () => {
   assert.match(html, /window\.location\.replace\(canonicalPath \+ window\.location\.search \+ window\.location\.hash\)/);
 });
 
-test("desktop header groups access/contact and exposes a keyboard-friendly real symptom dropdown", () => {
+test("desktop header groups access/contact and exposes keyboard-friendly real dropdowns", () => {
   const desktopNav = getSectionSlice('<nav class="site-nav"', '<nav class="site-mobile-nav hidden"');
   const mobileNav = getElementSlice('<nav class="site-mobile-nav hidden"');
+  const aboutLinks = [
+    ["staff.html", "代表紹介"],
+    ["#knee-msm-reasons", "当院の特徴"],
+    ["#msm-method", "MSMメソッドとは？"]
+  ];
   const symptomLinks = [
     ["symptoms/lower-back-pain.html", "腰痛"],
     ["symptoms/sciatica.html", "坐骨神経痛"],
@@ -457,6 +462,11 @@ test("desktop header groups access/contact and exposes a keyboard-friendly real 
 
   assert.match(html, /<span class="site-brand__eyebrow">柏市の足腰専門整体院<\/span>/);
   assert.doesNotMatch(html, /<span class="site-brand__eyebrow">柏市の膝痛専門整体院<\/span>/);
+  assert.match(desktopNav, /当院について/);
+  assert.match(desktopNav, /ABOUT/);
+  assert.match(desktopNav, /aria-controls="site-about-menu"/);
+  assert.match(desktopNav, /aria-label="当院について"/);
+  assert.doesNotMatch(desktopNav, /<a href="#features" class="site-nav__item">/);
   assert.match(desktopNav, /症状別/);
   assert.match(desktopNav, /SYMPTOMS/);
   assert.match(desktopNav, /aria-haspopup="true"/);
@@ -473,6 +483,15 @@ test("desktop header groups access/contact and exposes a keyboard-friendly real 
   assert.doesNotMatch(desktopNav, /院情報・アクセス/);
   assert.doesNotMatch(desktopNav, /INFO \/ ACCESS/);
   assert.doesNotMatch(desktopNav, /ご予約・お問合せ/);
+
+  for (const [href, label] of aboutLinks) {
+    assert.match(desktopNav, new RegExp(`href="${escapeRegExp(href)}"`), `${label} should be linked in the about dropdown`);
+    assert.match(desktopNav, new RegExp(escapeRegExp(label)), `${label} should be visible in the about dropdown`);
+    assert.match(mobileNav, new RegExp(`href="${escapeRegExp(href)}"`), `${label} should be linked in mobile about nav`);
+    assert.match(mobileNav, new RegExp(escapeRegExp(label)), `${label} should be visible in mobile about nav`);
+  }
+  assert.match(mobileNav, /site-mobile-nav__heading">当院について/);
+  assert.doesNotMatch(mobileNav, /href="#features" class="site-mobile-nav__item">特徴/);
 
   for (const [href, label] of symptomLinks) {
     assert.match(desktopNav, new RegExp(`href="${escapeRegExp(href)}"`), `${label} should be linked`);
@@ -1180,11 +1199,15 @@ test("all symptom pages use the transplanted top-page header and mobile hamburge
   const symptomPages = readdirSync(symptomDir).filter((name) => name.endsWith(".html"));
   const desktopLinks = [
     ["../index.html#top", "ホーム"],
-    ["../index.html#features", "当院の特徴"],
     ["../index.html#flow", "施術の流れ"],
     ["../index.html#price", "料金"],
     ["../blog/", "コラム"],
     ["../index.html#access", "アクセス・予約"]
+  ];
+  const aboutLinks = [
+    ["../staff.html", "代表紹介"],
+    ["../index.html#knee-msm-reasons", "当院の特徴"],
+    ["../index.html#msm-method", "MSMメソッドとは？"]
   ];
   const symptomLinks = [
     ["lower-back-pain.html", "腰痛"],
@@ -1211,11 +1234,20 @@ test("all symptom pages use the transplanted top-page header and mobile hamburge
     assert.match(headerBlock, /<nav class="site-mobile-nav hidden" id="mobileNav"/, `${fileName} should include mobile nav`);
     assert.match(symptomHtml, /<link rel="stylesheet" href="site-header\.css">/, `${fileName} should include copied top-page header styles`);
     assert.match(symptomHtml, /<script src="site-header\.js"><\/script>/, `${fileName} should include header behavior`);
+    assert.match(headerBlock, /aria-controls="site-about-menu"/, `${fileName} should expose the about dropdown`);
+    assert.match(headerBlock, /<span class="site-nav__jp">当院について<\/span>/, `${fileName} should rename feature nav to about`);
+    assert.match(headerBlock, /<span class="site-nav__en">ABOUT<\/span>/, `${fileName} should use the about nav label`);
     assert.match(headerBlock, /aria-controls="site-symptoms-menu"/, `${fileName} should expose the symptom dropdown`);
     assert.match(headerBlock, /aria-expanded="false"/, `${fileName} should start menu controls collapsed`);
     assert.doesNotMatch(headerBlock, /symptom-taskbar|symptom-nav/, `${fileName} should not use the old custom symptom taskbar`);
+    assert.doesNotMatch(headerBlock, /<a href="\.\.\/index\.html#features" class="site-nav__item">/, `${fileName} should not keep feature as a standalone desktop nav item`);
+    assert.doesNotMatch(headerBlock, /href="\.\.\/index\.html#features" class="site-mobile-nav__item">特徴/, `${fileName} should not keep feature as a standalone mobile nav item`);
 
     for (const [href, label] of desktopLinks) {
+      assert.match(headerBlock, new RegExp(`href="${escapeRegExp(href)}"`), `${fileName} should link ${label}`);
+      assert.match(headerBlock, new RegExp(escapeRegExp(label)), `${fileName} should show ${label}`);
+    }
+    for (const [href, label] of aboutLinks) {
       assert.match(headerBlock, new RegExp(`href="${escapeRegExp(href)}"`), `${fileName} should link ${label}`);
       assert.match(headerBlock, new RegExp(escapeRegExp(label)), `${fileName} should show ${label}`);
     }
@@ -1815,6 +1847,52 @@ test("FAQ and access detail pages exist with SEO, detail links, and LINE reserva
     assert.match(symptomsIndexHtml, new RegExp(escapeRegExp(label)));
     assert.equal(existsSync(path.join(repoRoot, "symptoms", href)), true, `${href} should exist`);
   }
+});
+
+test("staff profile page uses transplanted chrome and editable staff sections", () => {
+  const staffHtml = readPageIfExists("staff.html");
+
+  assert.equal(existsSync(path.join(repoRoot, "staff.html")), true, "staff.html should exist");
+  assert.match(staffHtml, /<title>代表紹介｜整体院ひざこぞう<\/title>/);
+  assert.match(staffHtml, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/staff\.html">/);
+  assert.match(staffHtml, /<header id="header" class="site-header">/);
+  assert.match(staffHtml, /<nav class="site-nav" aria-label="メインナビゲーション">/);
+  assert.match(staffHtml, /id="menuBtn" class="site-menu-toggle"/);
+  assert.match(staffHtml, /<nav class="site-mobile-nav hidden" id="mobileNav"/);
+  assert.match(staffHtml, /<footer class="hk-footer-section">/);
+  assert.match(staffHtml, /<button type="button" class="page-top-button" aria-label="ページ上部へ戻る">/);
+  assert.match(staffHtml, /<script src="scripts\/main\.js" defer><\/script>/);
+  assert.match(staffHtml, /<script src="\/scripts\/tracking-config\.js" defer><\/script>/);
+  assert.match(staffHtml, /<script src="\/scripts\/tracking\.js" defer><\/script>/);
+
+  for (const [href, label] of [
+    ["staff.html", "代表紹介"],
+    ["index.html#knee-msm-reasons", "当院の特徴"],
+    ["index.html#msm-method", "MSMメソッドとは？"],
+    ["index.html#flow", "施術の流れ"],
+    ["index.html#price", "料金"],
+    ["index.html#access", "アクセス・予約"]
+  ]) {
+    assert.match(staffHtml, new RegExp(`href="${escapeRegExp(href)}"`), `staff page should link ${label}`);
+    assert.match(staffHtml, new RegExp(escapeRegExp(label)), `staff page should show ${label}`);
+  }
+
+  for (const heading of ["代表紹介", "ごあいさつ", "プロフィール"]) {
+    assert.match(staffHtml, new RegExp(escapeRegExp(heading)), `staff page should include ${heading}`);
+  }
+  assert.doesNotMatch(staffHtml, /メディア実績や取り組みなど/);
+  assert.doesNotMatch(staffHtml, /staff-note-grid|staff-note-card/);
+
+  for (const label of ["業歴", "取得資格", "施術メニュー", "趣味・特技", "得意なアドバイス内容", "健康のために行っていること"]) {
+    assert.match(staffHtml, new RegExp(`<dt>${escapeRegExp(label)}<\\/dt>`), `staff page should include profile row ${label}`);
+  }
+
+  assert.match(staffHtml, /<!-- 編集: ごあいさつ本文。段落を増減しても大丈夫です。 -->/);
+  assert.match(staffHtml, /<!-- 編集: プロフィール項目。dtが項目名、ddが内容です。 -->/);
+  assert.match(staffHtml, /src="image\/staff-greeting-treatment\.jpeg"/);
+  assert.match(staffHtml, /src="image\/director-kawakami-profile-768\.webp"/);
+  assert.equal(existsSync(path.join(repoRoot, "image", "staff-greeting-treatment.jpeg")), true);
+  assert.equal(existsSync(path.join(repoRoot, "image", "director-kawakami-profile-768.webp")), true);
 });
 
 test("Navigation exposes FAQ and access detail pages without replacing reservation anchors", () => {

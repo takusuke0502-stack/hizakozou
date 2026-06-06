@@ -351,10 +351,20 @@
             <span class="site-nav__jp">ホーム</span>
             <span class="site-nav__en">HOME</span>
           </a>
-          <a href="../index.html#features" class="site-nav__item">
-            <span class="site-nav__jp">当院の特徴</span>
-            <span class="site-nav__en">FEATURE</span>
-          </a>
+          <div class="site-nav__item site-nav__item--has-dropdown">
+            <button type="button" class="site-nav__trigger" aria-haspopup="true" aria-controls="site-about-menu" aria-expanded="false">
+              <span class="site-nav__label-main">
+                <span class="site-nav__jp">当院について</span>
+                <span class="site-nav__chevron" aria-hidden="true">▼</span>
+              </span>
+              <span class="site-nav__en">ABOUT</span>
+            </button>
+            <div id="site-about-menu" class="site-nav__dropdown" aria-label="当院について">
+              <a href="../staff.html" class="site-nav__dropdown-link">代表紹介</a>
+              <a href="../index.html#knee-msm-reasons" class="site-nav__dropdown-link">当院の特徴</a>
+              <a href="../index.html#msm-method" class="site-nav__dropdown-link">MSMメソッドとは？</a>
+            </div>
+          </div>
           <div class="site-nav__item site-nav__item--has-dropdown">
             <button type="button" class="site-nav__trigger" aria-haspopup="true" aria-controls="site-symptoms-menu" aria-expanded="false">
               <span class="site-nav__label-main">
@@ -393,7 +403,14 @@
 
         <nav class="site-mobile-nav hidden" id="mobileNav" aria-label="スマートフォン用ナビゲーション">
           <a href="../index.html#top" class="site-mobile-nav__item">ホーム</a>
-          <a href="../index.html#features" class="site-mobile-nav__item">特徴</a>
+          <div class="site-mobile-nav__group" aria-label="当院について">
+            <p class="site-mobile-nav__heading">当院について</p>
+            <div class="site-mobile-nav__links">
+              <a href="../staff.html" class="site-mobile-nav__subitem">代表紹介</a>
+              <a href="../index.html#knee-msm-reasons" class="site-mobile-nav__subitem">当院の特徴</a>
+              <a href="../index.html#msm-method" class="site-mobile-nav__subitem">MSMメソッドとは？</a>
+            </div>
+          </div>
           <div class="site-mobile-nav__group" aria-label="症状別ページ">
             <p class="site-mobile-nav__heading">症状別</p>
             <div class="site-mobile-nav__links">
