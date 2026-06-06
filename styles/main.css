@@ -667,6 +667,43 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
         text-decoration: none;
       }
 
+      .site-mobile-nav__group {
+        display: grid;
+        gap: 8px;
+        padding: 10px;
+        border: 1px solid #e4ded1;
+        border-radius: 14px;
+        background: #f7fbf6;
+      }
+
+      .site-mobile-nav__heading {
+        color: var(--header-green-dark);
+        font-size: 0.82rem;
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .site-mobile-nav__links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .site-mobile-nav__subitem {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: 7px 10px;
+        border: 1px solid rgba(36, 66, 58, 0.13);
+        border-radius: 999px;
+        background: #fffefb;
+        color: #24423a;
+        font-size: 0.8rem;
+        font-weight: 900;
+        line-height: 1.15;
+        text-decoration: none;
+      }
+
       .site-mobile-nav__item--contact {
         border-color: var(--header-green-dark);
         background: var(--header-green-dark);
@@ -3402,13 +3439,23 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       letter-spacing: 0;
     }
 
-    .flow-slider__hint {
-      margin: 28px 0 24px;
-      color: #444;
-      font-size: 1rem;
-      font-weight: 700;
-      line-height: 1.7;
+    .flow-swipe-hint {
       text-align: center;
+      font-size: 0.9rem;
+      margin-top: 12px;
+      color: #1f5f4a;
+    }
+
+    .flow-swipe-arrow {
+      display: inline-block;
+      margin-left: 8px;
+      animation: swipeArrow 1.2s ease-in-out infinite;
+    }
+
+    @keyframes swipeArrow {
+      0% { transform: translateX(0); opacity: 0.5; }
+      50% { transform: translateX(8px); opacity: 1; }
+      100% { transform: translateX(0); opacity: 0.5; }
     }
 
     .flow-slider__stage {
@@ -3631,11 +3678,6 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
 
       .flow-slider__title {
         font-size: 1.75rem;
-      }
-
-      .flow-slider__hint {
-        margin: 22px 0 18px;
-        font-size: 0.94rem;
       }
 
       .flow-slider__arrow {

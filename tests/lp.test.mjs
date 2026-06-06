@@ -132,7 +132,6 @@ test("LP follows the new section order for the knee-pain explanation flow", () =
     'id="first-visit-policy"',
     'id="profile"',
     'id="voice"',
-    'id="knee-type-nav"',
     'id="price"',
     'id="faq"',
     'id="access"'
@@ -375,6 +374,7 @@ test("LP replaces the treatment flow with an accessible 6-step photo slider afte
   assert.match(flow, /<section id="flow" class="flow-slider" aria-labelledby="flow-title" data-flow-slider>/);
   assert.match(flow, /<h2 id="flow-title"[^>]*>当院での施術の流れ<\/h2>/);
   assert.match(flow, /写真は左右にスライドできます/);
+  assert.match(flow, /<p class="flow-swipe-hint">写真は左右にスライドできます<span class="flow-swipe-arrow" aria-hidden="true">&gt;<\/span><\/p>/);
   assert.doesNotMatch(flow, /flow-section-wrap|flow-list|flow-item__/);
   assert.doesNotMatch(flow, /院内・受付写真|受付・ご来院/);
   assert.doesNotMatch(flow, /実装時は実際の写真に差し替え/);
@@ -404,6 +404,10 @@ test("LP flow slider CSS keeps the mock layout responsive without hiding no-js c
   assert.match(mainCss, /\.flow-slider__media\s*{[\s\S]*aspect-ratio:\s*4\s*\/\s*3;[\s\S]*overflow:\s*hidden;/);
   assert.match(mainCss, /\.flow-slider__image\s*{[\s\S]*width:\s*100%;[\s\S]*height:\s*100%;[\s\S]*object-fit:\s*cover;[\s\S]*object-position:\s*center;/);
   assert.match(mainCss, /\.flow-slider__arrow\s*{[\s\S]*width:\s*56px;[\s\S]*height:\s*56px;[\s\S]*background:\s*#f2653f;/);
+  assert.match(mainCss, /\.flow-swipe-hint\s*\{[\s\S]*text-align:\s*center;[\s\S]*font-size:\s*0\.9rem;[\s\S]*margin-top:\s*12px;[\s\S]*color:\s*#1f5f4a;/);
+  assert.match(mainCss, /\.flow-swipe-arrow\s*\{[\s\S]*display:\s*inline-block;[\s\S]*margin-left:\s*8px;[\s\S]*animation:\s*swipeArrow 1\.2s ease-in-out infinite;/);
+  assert.match(mainCss, /@keyframes swipeArrow\s*\{[\s\S]*0%\s*\{\s*transform:\s*translateX\(0\);\s*opacity:\s*0\.5;\s*\}[\s\S]*50%\s*\{\s*transform:\s*translateX\(8px\);\s*opacity:\s*1;\s*\}[\s\S]*100%\s*\{\s*transform:\s*translateX\(0\);\s*opacity:\s*0\.5;\s*\}/);
+  assert.doesNotMatch(mainCss, /flow-slider__hint/);
   assert.match(mainCss, /\.flow-slider\.is-enhanced\s+\.flow-slide:not\(\.is-active\)\s*{[\s\S]*display:\s*none;/);
   assert.match(mainCss, /\.flow-slider__dot\.is-active\s*{[\s\S]*background:\s*#f2653f;/);
   assert.match(mainCss, /@media\s*\(max-width:\s*640px\)\s*{[\s\S]*\.flow-slider__arrow\s*{[\s\S]*width:\s*44px;[\s\S]*height:\s*44px;/);
@@ -434,14 +438,21 @@ test("desktop header groups access/contact and exposes a keyboard-friendly real 
   const desktopNav = getSectionSlice('<nav class="site-nav"', '<nav class="site-mobile-nav hidden"');
   const mobileNav = getElementSlice('<nav class="site-mobile-nav hidden"');
   const symptomLinks = [
-    ["symptoms/knee-osteoarthritis.html", "変形性膝関節症"],
-    ["symptoms/pes-anserine-bursitis.html", "膝の内側の痛み"],
-    ["symptoms/knee-effusion.html", "膝に水がたまる"],
-    ["symptoms/meniscus-knee-pain.html", "半月板の違和感"],
-    ["symptoms/knee-front-pain.html", "膝の前側の痛み"],
-    ["symptoms/knee-posterior-pain.html", "膝の裏側の痛み"],
-    ["symptoms/knee-lateral-pain.html", "膝の外側の痛み"],
-    ["symptoms/hip-osteoarthritis.html", "股関節痛"]
+    ["symptoms/lower-back-pain.html", "腰痛"],
+    ["symptoms/sciatica.html", "坐骨神経痛"],
+    ["symptoms/spinal-stenosis.html", "脊柱管狭窄症"],
+    ["symptoms/lumbar-disc-herniation.html", "椎間板ヘルニア"],
+    ["symptoms/hip-osteoarthritis.html", "股関節痛"],
+    ["symptoms/knee-osteoarthritis.html", "膝痛"],
+    ["symptoms/index.html", "その他の慢性症状"]
+  ];
+  const removedKneeHeaderLinks = [
+    "symptoms/pes-anserine-bursitis.html",
+    "symptoms/knee-effusion.html",
+    "symptoms/meniscus-knee-pain.html",
+    "symptoms/knee-front-pain.html",
+    "symptoms/knee-posterior-pain.html",
+    "symptoms/knee-lateral-pain.html"
   ];
 
   assert.match(html, /<span class="site-brand__eyebrow">柏市の足腰専門整体院<\/span>/);
@@ -466,11 +477,38 @@ test("desktop header groups access/contact and exposes a keyboard-friendly real 
   for (const [href, label] of symptomLinks) {
     assert.match(desktopNav, new RegExp(`href="${escapeRegExp(href)}"`), `${label} should be linked`);
     assert.match(desktopNav, new RegExp(escapeRegExp(label)), `${label} should be visible`);
+    assert.match(mobileNav, new RegExp(`href="${escapeRegExp(href)}"`), `${label} should be linked in mobile nav`);
+    assert.match(mobileNav, new RegExp(escapeRegExp(label)), `${label} should be visible in mobile nav`);
     assert.equal(existsSync(path.join(repoRoot, href)), true, `${href} should exist`);
   }
 
+  assert.ok(
+    symptomLinks.every(([href], index) => {
+      const next = symptomLinks[index + 1]?.[0];
+      return !next || desktopNav.indexOf(href) < desktopNav.indexOf(next);
+    }),
+    "desktop symptom dropdown should follow the requested order"
+  );
+  assert.ok(
+    symptomLinks.every(([href], index) => {
+      const next = symptomLinks[index + 1]?.[0];
+      return !next || mobileNav.indexOf(href) < mobileNav.indexOf(next);
+    }),
+    "mobile symptom links should follow the requested order"
+  );
+  for (const href of removedKneeHeaderLinks) {
+    assert.doesNotMatch(desktopNav, new RegExp(`href="${escapeRegExp(href)}"`), `${href} should be removed from desktop header`);
+    assert.doesNotMatch(mobileNav, new RegExp(`href="${escapeRegExp(href)}"`), `${href} should be removed from mobile header`);
+  }
+  assert.doesNotMatch(desktopNav, /脊柱菅/);
+  assert.doesNotMatch(mobileNav, /脊柱菅/);
+  assert.doesNotMatch(desktopNav, /変形性膝関節症|膝の内側の痛み|膝に水がたまる|半月板の違和感|膝の前側の痛み|膝の裏側の痛み|膝の外側の痛み/);
+  assert.doesNotMatch(mobileNav, /変形性膝関節症|膝の内側の痛み|膝に水がたまる|半月板の違和感|膝の前側の痛み|膝の裏側の痛み|膝の外側の痛み/);
+
   assert.doesNotMatch(mobileNav, /site-nav__dropdown/);
-  assert.doesNotMatch(mobileNav, /SYMPTOMS/);
+  assert.match(mobileNav, /site-mobile-nav__group/);
+  assert.match(mobileNav, /site-mobile-nav__heading">症状別/);
+  assert.match(mobileNav, /site-mobile-nav__subitem/);
   assert.match(mobileNav, /href="access\.html" class="site-mobile-nav__item">アクセス/);
   assert.doesNotMatch(mobileNav, /アクセス詳細/);
   assert.match(mobileNav, /href="#contact"/);
@@ -489,6 +527,8 @@ test("desktop header groups access/contact and exposes a keyboard-friendly real 
   assert.match(mainCss, /\.site-menu-toggle/);
   assert.match(mainCss, /\.site-mobile-nav\.hidden\s*\{[\s\S]*display:\s*none/);
   assert.match(mainCss, /\.site-mobile-nav\s*\{[\s\S]*position:\s*fixed/);
+  assert.match(mainCss, /\.site-mobile-nav__group\s*\{/);
+  assert.match(mainCss, /\.site-mobile-nav__subitem\s*\{/);
 
   assert.match(mainJs, /setupHeaderSymptomDropdown/);
   assert.match(mainJs, /aria-expanded/);
@@ -1135,6 +1175,187 @@ test("symptom pages self-host lucide instead of loading it from a third-party CD
   }
 });
 
+test("all symptom pages use the transplanted top-page header and mobile hamburger menu", () => {
+  const symptomDir = path.join(repoRoot, "symptoms");
+  const symptomPages = readdirSync(symptomDir).filter((name) => name.endsWith(".html"));
+  const desktopLinks = [
+    ["../index.html#top", "ホーム"],
+    ["../index.html#features", "当院の特徴"],
+    ["../index.html#flow", "施術の流れ"],
+    ["../index.html#price", "料金"],
+    ["../blog/", "コラム"],
+    ["../index.html#access", "アクセス・予約"]
+  ];
+  const symptomLinks = [
+    ["lower-back-pain.html", "腰痛"],
+    ["sciatica.html", "坐骨神経痛"],
+    ["spinal-stenosis.html", "脊柱管狭窄症"],
+    ["lumbar-disc-herniation.html", "椎間板ヘルニア"],
+    ["hip-osteoarthritis.html", "股関節痛"],
+    ["knee-osteoarthritis.html", "膝痛"],
+    ["index.html", "その他の足腰の症状"]
+  ];
+
+  for (const fileName of symptomPages) {
+    const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
+    const bodyOpen = symptomHtml.indexOf("<body>");
+    const mainOpen = symptomHtml.indexOf("  <main", bodyOpen);
+    const headerBlock = symptomHtml.slice(bodyOpen, mainOpen);
+
+    assert.match(headerBlock, /<header id="header" class="site-header">/, `${fileName} should include the top-page header`);
+    assert.match(headerBlock, /class="site-brand"/, `${fileName} should include the top-page brand structure`);
+    assert.match(headerBlock, /src="\.\.\/image\/hizakozou-logo-option2-mark\.webp"/, `${fileName} should use the relative logo path`);
+    assert.match(headerBlock, /class="site-header-badges"/, `${fileName} should include the top-page header badges`);
+    assert.match(headerBlock, /<nav class="site-nav" aria-label="メインナビゲーション">/, `${fileName} should include desktop nav`);
+    assert.match(headerBlock, /id="menuBtn" class="site-menu-toggle"/, `${fileName} should include the top-page hamburger button`);
+    assert.match(headerBlock, /<nav class="site-mobile-nav hidden" id="mobileNav"/, `${fileName} should include mobile nav`);
+    assert.match(symptomHtml, /<link rel="stylesheet" href="site-header\.css">/, `${fileName} should include copied top-page header styles`);
+    assert.match(symptomHtml, /<script src="site-header\.js"><\/script>/, `${fileName} should include header behavior`);
+    assert.match(headerBlock, /aria-controls="site-symptoms-menu"/, `${fileName} should expose the symptom dropdown`);
+    assert.match(headerBlock, /aria-expanded="false"/, `${fileName} should start menu controls collapsed`);
+    assert.doesNotMatch(headerBlock, /symptom-taskbar|symptom-nav/, `${fileName} should not use the old custom symptom taskbar`);
+
+    for (const [href, label] of desktopLinks) {
+      assert.match(headerBlock, new RegExp(`href="${escapeRegExp(href)}"`), `${fileName} should link ${label}`);
+      assert.match(headerBlock, new RegExp(escapeRegExp(label)), `${fileName} should show ${label}`);
+    }
+    for (const [href, label] of symptomLinks) {
+      assert.match(headerBlock, new RegExp(`href="\\./${escapeRegExp(href)}"`), `${fileName} should link ${label}`);
+      assert.match(headerBlock, new RegExp(escapeRegExp(label)), `${fileName} should show ${label}`);
+    }
+
+    const orderedLabels = symptomLinks.map(([, label]) => label);
+    const positions = orderedLabels.map((label) => headerBlock.indexOf(label));
+    assert.ok(positions.every((position) => position >= 0), `${fileName} should include every symptom dropdown label`);
+    assert.deepStrictEqual([...positions].sort((a, b) => a - b), positions, `${fileName} should keep the requested symptom order`);
+  }
+
+  const headerCss = readFileSync(path.join(symptomDir, "site-header.css"), "utf8");
+  const headerJs = readFileSync(path.join(symptomDir, "site-header.js"), "utf8");
+  assert.match(headerCss, /Copied from \.\.\/styles\/main\.css top-page header styles/);
+  assert.match(headerCss, /\.site-header\s*\{/);
+  assert.match(headerCss, /\.site-nav__dropdown\s*\{[^}]*top:\s*100%/s);
+  assert.doesNotMatch(headerCss, /symptom-taskbar/);
+  assert.match(headerCss, /\.site-mobile-nav\.hidden\s*\{/);
+  assert.match(headerCss, /\.site-header \+ \.site-header__lower \+ main \.breadcrumb/);
+  assert.match(headerJs, /Copied from \.\.\/scripts\/main\.js header and page-top behavior/);
+  assert.match(headerJs, /menuBtn\.addEventListener\('click'/);
+  assert.match(headerJs, /mobileNav\.classList\.toggle\('hidden'/);
+});
+
+test("all symptom pages use the transplanted top-page footer and scroll-to-top button", () => {
+  const symptomDir = path.join(repoRoot, "symptoms");
+  const symptomPages = readdirSync(symptomDir).filter((name) => name.endsWith(".html"));
+  const footerLinks = [
+    ["../index.html#top", "ホーム"],
+    ["../index.html#troubles", "お悩み"],
+    ["../index.html#seo-guide", "当院の考え方"],
+    ["../index.html#flow", "施術の流れ"],
+    ["../index.html#profile", "院長紹介"],
+    ["../index.html#price", "料金"],
+    ["../blog/", "コラム"],
+    ["../faq.html", "よくある質問"],
+    ["../access.html", "アクセス"],
+    ["../index.html#contact", "ご予約・お問合せ"]
+  ];
+
+  for (const fileName of symptomPages) {
+    const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
+    const footerStart = symptomHtml.indexOf('<footer class="hk-footer-section">');
+    const footerEnd = symptomHtml.indexOf("</footer>", footerStart);
+    const footerBlock = footerStart >= 0 && footerEnd >= 0
+      ? symptomHtml.slice(footerStart, footerEnd + "</footer>".length)
+      : "";
+
+    assert.ok(footerBlock, `${fileName} should include the top-page footer`);
+    assert.match(symptomHtml, /<link rel="stylesheet" href="site-footer\.css">/, `${fileName} should include copied top-page footer styles`);
+    assert.match(symptomHtml, /<span id="top" class="page-top-anchor" aria-hidden="true"><\/span>/, `${fileName} should expose a page top anchor`);
+    assert.match(symptomHtml, /<button type="button" class="page-top-button" aria-label="ページ上部へ戻る">/, `${fileName} should include the top-page scroll button`);
+    assert.match(symptomHtml, /<span aria-hidden="true">↑<\/span>\s*TOP/, `${fileName} should show the same TOP button label`);
+    assert.doesNotMatch(footerBlock, /symptom-footer/, `${fileName} should not render the old symptom footer`);
+    assert.match(footerBlock, /src="\.\.\/image\/hizakozou-logo-option2-mark\.webp"/, `${fileName} should use the relative footer logo path`);
+    assert.match(footerBlock, /href="\.\.\/index\.html#top" class="hk-footer-brand"/, `${fileName} should link the footer brand to the top page`);
+
+    for (const [href, label] of footerLinks) {
+      assert.match(footerBlock, new RegExp(`href="${escapeRegExp(href)}"`), `${fileName} should link ${label}`);
+      assert.match(footerBlock, new RegExp(escapeRegExp(label)), `${fileName} should show ${label}`);
+    }
+  }
+
+  const footerCss = readFileSync(path.join(symptomDir, "site-footer.css"), "utf8");
+  const headerCss = readFileSync(path.join(symptomDir, "site-header.css"), "utf8");
+  const headerJs = readFileSync(path.join(symptomDir, "site-header.js"), "utf8");
+  assert.match(footerCss, /Copied from \.\.\/styles\/main\.css top-page footer styles/);
+  assert.match(footerCss, /\.hk-footer-section\s*\{/);
+  assert.match(footerCss, /\.hk-footer-nav a\s*\{/);
+  assert.match(footerCss, /@media \(max-width: 767px\)\s*\{[\s\S]*\.hk-footer-inner/);
+  assert.match(headerCss, /\.page-top-button\s*\{[\s\S]*position:\s*fixed;[\s\S]*right:\s*24px;[\s\S]*bottom:\s*24px;/);
+  assert.match(headerCss, /\.page-top-button\.is-visible\s*\{[\s\S]*opacity:\s*1;[\s\S]*pointer-events:\s*auto;/);
+  assert.match(headerJs, /setupPageTopButton/);
+  assert.match(headerJs, /window\.scrollY > 300/);
+  assert.match(headerJs, /window\.scrollTo\(\{ top: 0, behavior: 'smooth' \}\)/);
+});
+
+test("symptom pages replace the visual guide cards with the top-page flow slider", () => {
+  const symptomDir = path.join(repoRoot, "symptoms");
+  const symptomPages = readdirSync(symptomDir).filter((name) => name.endsWith(".html"));
+  const pagesWithFlow = [];
+  const expectedImages = [
+    "../image/flow-medical-interview-form-768.webp",
+    "../image/consultation-scene-768.webp",
+    "../image/flow-movement-assessment-768.webp",
+    "../image/consultation-scene-768.webp",
+    "../image/flow-treatment-session-768.webp",
+    "../image/treatment-stretch-768.webp"
+  ];
+
+  for (const fileName of symptomPages) {
+    const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
+    assert.doesNotMatch(symptomHtml, /ご相談から施術までの(?:<br>)?イメージ/, `${fileName} should remove the old visual guide heading`);
+    assert.doesNotMatch(symptomHtml, /<section class="visual-guide">/, `${fileName} should remove the old visual guide section`);
+    assert.match(symptomHtml, /<link rel="stylesheet" href="site-flow\.css">/, `${fileName} should include copied top-page flow styles`);
+
+    const flowStart = symptomHtml.indexOf('<section id="flow" class="flow-slider"');
+    if (flowStart < 0) continue;
+    pagesWithFlow.push(fileName);
+
+    const flowEnd = symptomHtml.indexOf("</section>", flowStart);
+    const flowBlock = symptomHtml.slice(flowStart, flowEnd + "</section>".length);
+    assert.match(flowBlock, /aria-labelledby="flow-title" data-flow-slider>/, `${fileName} should use the top-page flow slider structure`);
+    assert.match(flowBlock, /<h2 id="flow-title" class="flow-slider__title">当院での施術の流れ<\/h2>/, `${fileName} should use the top-page flow title`);
+    assert.match(flowBlock, /写真は左右にスライドできます/, `${fileName} should include the mobile slide hint`);
+    assert.match(flowBlock, /<p class="flow-swipe-hint">写真は左右にスライドできます<span class="flow-swipe-arrow" aria-hidden="true">&gt;<\/span><\/p>/, `${fileName} should include the unified swipe hint arrow`);
+    assert.equal([...flowBlock.matchAll(/\bdata-flow-slide\b/g)].length, 6, `${fileName} should include six flow slides`);
+    assert.equal([...flowBlock.matchAll(/\bdata-flow-dot\b/g)].length, 6, `${fileName} should include six flow dots`);
+    assert.match(flowBlock, /data-flow-prev[^>]*aria-label="前のステップを見る"/, `${fileName} should include the previous button`);
+    assert.match(flowBlock, /data-flow-next[^>]*aria-label="次のステップを見る"/, `${fileName} should include the next button`);
+
+    for (const src of expectedImages) {
+      assert.match(flowBlock, new RegExp(`src="${escapeRegExp(src)}"`), `${fileName} should use relative image path ${src}`);
+    }
+  }
+
+  assert.equal(pagesWithFlow.length, 24, "all symptom detail pages should receive the flow slider");
+
+  const flowCss = readFileSync(path.join(symptomDir, "site-flow.css"), "utf8");
+  const headerJs = readFileSync(path.join(symptomDir, "site-header.js"), "utf8");
+  assert.match(flowCss, /Copied from \.\.\/styles\/main\.css top-page flow slider styles/);
+  assert.match(flowCss, /\.flow-slider\s*\{[\s\S]*padding:\s*72px 16px 84px;[\s\S]*overflow:\s*hidden;/);
+  assert.match(flowCss, /\.flow-slider__media\s*\{[\s\S]*aspect-ratio:\s*4\s*\/\s*3;[\s\S]*overflow:\s*hidden;/);
+  assert.match(flowCss, /\.flow-slider\.is-enhanced \.flow-slide:not\(\.is-active\)\s*\{[\s\S]*display:\s*none;/);
+  assert.match(flowCss, /@media \(max-width: 640px\)\s*\{[\s\S]*\.flow-slider__arrow\s*\{[\s\S]*width:\s*44px;[\s\S]*height:\s*44px;/);
+  assert.match(flowCss, /\.flow-swipe-hint\s*\{[\s\S]*text-align:\s*center;[\s\S]*font-size:\s*0\.9rem;[\s\S]*margin-top:\s*12px;[\s\S]*color:\s*#1f5f4a;/);
+  assert.match(flowCss, /\.flow-swipe-arrow\s*\{[\s\S]*display:\s*inline-block;[\s\S]*margin-left:\s*8px;[\s\S]*animation:\s*swipeArrow 1\.2s ease-in-out infinite;/);
+  assert.match(flowCss, /@keyframes swipeArrow\s*\{[\s\S]*0%\s*\{\s*transform:\s*translateX\(0\);\s*opacity:\s*0\.5;\s*\}[\s\S]*50%\s*\{\s*transform:\s*translateX\(8px\);\s*opacity:\s*1;\s*\}[\s\S]*100%\s*\{\s*transform:\s*translateX\(0\);\s*opacity:\s*0\.5;\s*\}/);
+  assert.doesNotMatch(flowCss, /flow-slider__hint/);
+  assert.match(headerJs, /const setupFlowSlider = \(\) =>/);
+  assert.match(headerJs, /document\.querySelectorAll\('\[data-flow-slider\]'\)/);
+  assert.match(headerJs, /slider\.classList\.add\('is-enhanced'\)/);
+  assert.match(headerJs, /event\.key === 'ArrowLeft'/);
+  assert.match(headerJs, /event\.key === 'ArrowRight'/);
+  assert.match(headerJs, /setupFlowSlider\(\);/);
+});
+
 test("symptom related cards show an absolute arrow affordance without extra CTA text", () => {
   const symptomDir = path.join(repoRoot, "symptoms");
   const arrowPattern = /<span class="related-symptom-card__arrow" aria-hidden="true">›<\/span>/g;
@@ -1353,47 +1574,23 @@ test("LP removes the requested hero copy and top gallery explanation cards", () 
   assert.doesNotMatch(gallery, /状態を見ながら分かりやすくご説明します/);
 });
 
-test("LP keeps knee-type navigation ahead of the price section", () => {
-  const typeNavIndex = html.indexOf('id="knee-type-nav"');
+test("LP keeps price section after the gallery when the symptom finder is removed", () => {
+  const galleryIndex = html.indexOf('id="gallery"');
   const priceIndex = html.indexOf('id="price"');
 
-  assert.ok(typeNavIndex > -1, "knee-pain type navigation should exist");
+  assert.ok(galleryIndex > -1, "gallery section should exist");
   assert.ok(priceIndex > -1, "price section should exist");
-  assert.ok(typeNavIndex < priceIndex, "type navigation should appear before the price section");
-  assert.match(html, /href="blog\/posts\/knee-pain-stairs-guide\/"/);
-  assert.match(html, /href="blog\/posts\/walking-start-knee-pain-cause\/"/);
-  assert.match(html, /柏市で変形性膝関節症の整体相談/);
-  assert.match(html, /歩き始めに膝が痛い方へ/);
-  assert.match(html, /階段の上り下りで膝がつらい方へ/);
-  assert.match(html, /膝に水が溜まりやすい方へ/);
-  assert.match(html, /膝の内側が痛い方へ/);
-  assert.match(html, /href="symptoms\/knee-effusion\.html"/);
-  assert.match(html, /href="symptoms\/knee-posterior-pain\.html"/);
+  assert.ok(galleryIndex < priceIndex, "price section should appear after the gallery");
+  assert.doesNotMatch(html, /href="blog\/posts\/knee-pain-stairs-guide\/"/);
+  assert.doesNotMatch(html, /href="blog\/posts\/walking-start-knee-pain-cause\/"/);
 });
 
-test("LP symptom finder cards show compact arrow affordances", () => {
-  const finderSection = getSectionSlice('id="knee-type-nav"', 'id="price"');
-  const linkCardCount = (finderSection.match(/class="symptom-link-card"/g) ?? []).length;
-  const rowLinkCount = (finderSection.match(/class="symptom-row-link"/g) ?? []).length;
-
-  assert.equal(linkCardCount, 10, "symptom finder should keep the same compact card set");
-  assert.equal(rowLinkCount, 11, "symptom finder should keep the same row card set");
-  assert.equal((finderSection.match(/class="symptom-link-card__arrow"/g) ?? []).length, linkCardCount);
-  assert.equal((finderSection.match(/class="symptom-row-link__arrow"/g) ?? []).length, rowLinkCount);
-  assert.doesNotMatch(finderSection, /詳しく見る|症状ページを見る/);
-  assert.doesNotMatch(finderSection, /data-lucide="chevron-right"/);
-
-  assert.match(mainCss, /\.symptom-link-card\s*\{[^}]*position:\s*relative[^}]*padding:\s*12px 36px 12px 12px/s);
-  assert.match(mainCss, /\.symptom-link-card__arrow\s*\{[^}]*position:\s*absolute[^}]*right:\s*9px[^}]*top:\s*50%/s);
-  assert.match(mainCss, /\.symptom-link-card__arrow,\s*\.symptom-row-link__arrow\s*\{[^}]*width:\s*22px[^}]*height:\s*22px/s);
-});
-
-test("LP removes the duplicate broader symptom directory", () => {
-  const betweenTypeNavAndPrice = getSectionSlice('id="knee-type-nav"', 'id="price"');
-
+test("LP removes the knee symptom finder section", () => {
+  assert.doesNotMatch(html, /id="knee-type-nav"/);
+  assert.doesNotMatch(html, /症状から探す/);
+  assert.doesNotMatch(html, /膝の痛み・不調を探す/);
+  assert.doesNotMatch(html, /症状の出方や場所から、あなたに合った情報ページをすぐに見つけられます。/);
   assert.doesNotMatch(html, /id="symptoms"/);
-  assert.doesNotMatch(betweenTypeNavAndPrice, /膝痛と関係しやすい身体の不調/);
-  assert.doesNotMatch(betweenTypeNavAndPrice, /膝痛を中心に、股関節・足首・腰など膝への負担に関係しやすい不調を整理しています。/);
 });
 
 test("LP splits CTA roles between mid-page consultation and final reservation", () => {
@@ -1541,9 +1738,11 @@ test("LP director profile is compact on mobile and groups personal notes after t
 test("FAQ and access detail pages exist with SEO, detail links, and LINE reservation CTAs", () => {
   const faqHtml = readPageIfExists("faq.html");
   const accessHtml = readPageIfExists("access.html");
+  const symptomsIndexHtml = readPageIfExists("symptoms/index.html");
 
   assert.equal(existsSync(path.join(repoRoot, "faq.html")), true, "faq.html should exist");
   assert.equal(existsSync(path.join(repoRoot, "access.html")), true, "access.html should exist");
+  assert.equal(existsSync(path.join(repoRoot, "symptoms/index.html")), true, "symptoms/index.html should exist");
 
   assert.match(faqHtml, /<title>よくある質問｜柏市の膝痛専門整体院ひざこぞう<\/title>/);
   assert.match(faqHtml, /<meta name="description" content="整体院ひざこぞうによくいただくご質問をまとめました。初回の流れ、服装、施術内容、通院回数、料金、予約方法、アクセスについてご確認いただけます。">/);
@@ -1597,6 +1796,25 @@ test("FAQ and access detail pages exist with SEO, detail links, and LINE reserva
   assert.match(accessHtml, /電話で確認する/);
   assert.match(accessHtml, /href="tel:0471143274"/);
   assert.match(accessHtml, /<iframe[\s\S]*整体院ひざこぞうへのアクセスマップ/);
+
+  assert.match(symptomsIndexHtml, /<title>その他の慢性症状｜整体院ひざこぞう<\/title>/);
+  assert.match(symptomsIndexHtml, /<h1 id="page-title">その他の慢性症状<\/h1>/);
+  assert.match(symptomsIndexHtml, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/symptoms\/">/);
+  for (const [href, label] of [
+    ["scoliosis.html", "側弯症"],
+    ["frozen-shoulder.html", "五十肩"],
+    ["shoulder-stiffness.html", "肩こり"],
+    ["cervical-spondylosis.html", "頸椎症"],
+    ["thoracic-outlet.html", "胸郭出口症候群"],
+    ["elbow-tendinopathy.html", "肘の痛み（腱症）"],
+    ["plantar-fasciitis.html", "足底筋膜炎"],
+    ["carpal-tunnel.html", "手根管症候群"],
+    ["tmj.html", "顎関節症"]
+  ]) {
+    assert.match(symptomsIndexHtml, new RegExp(`href="${escapeRegExp(href)}"`));
+    assert.match(symptomsIndexHtml, new RegExp(escapeRegExp(label)));
+    assert.equal(existsSync(path.join(repoRoot, "symptoms", href)), true, `${href} should exist`);
+  }
 });
 
 test("Navigation exposes FAQ and access detail pages without replacing reservation anchors", () => {

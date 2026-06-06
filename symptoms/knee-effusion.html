@@ -294,25 +294,134 @@
   <script src="/scripts/tracking-config.js" defer></script>
   <script src="/scripts/tracking.js" defer></script>
 
+  <link rel="stylesheet" href="site-header.css">
+  <link rel="stylesheet" href="site-footer.css">
+  <link rel="stylesheet" href="site-flow.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a href="../">
-        <span class="site-header__logo-sub">柏市 / 国家資格者による整体</span>
-        <span class="site-header__logo-main">整体院ひざこぞう</span>
-      </a>
-      <div class="site-header__tel">
-        <span class="site-header__tel-label">ご予約・ご相談はこちら</span>
-        <a href="tel:0471143274" class="site-header__tel-num">
-          <i data-lucide="phone" style="width:1.25rem;height:1.25rem;" aria-hidden="true"></i>
-          04-7114-3274
+  <header id="header" class="site-header">
+    <div class="site-header__upper">
+      <div class="site-header__inner site-header__inner--upper">
+        <a href="../index.html#top" class="site-brand" aria-label="整体院ひざこぞう トップページへ">
+          <span class="site-brand__mark" aria-hidden="true">
+            <img src="../image/hizakozou-logo-option2-mark.webp" alt="" width="160" height="160" decoding="async">
+          </span>
+          <span class="site-brand__text">
+            <span class="site-brand__eyebrow">柏市の足腰専門整体院</span>
+            <span class="site-brand__name">整体院ひざこぞう</span>
+            <span class="site-brand__note">国家資格者による整体</span>
+          </span>
         </a>
+
+        <div class="site-header-badges" aria-label="整体院ひざこぞうの特徴">
+          <span class="site-header-badge">
+            <i data-lucide="map-pin" aria-hidden="true"></i>
+            <span>柏駅西口<br>徒歩8分</span>
+          </span>
+          <span class="site-header-badge site-header-badge--soft">
+            <i data-lucide="calendar-check-2" aria-hidden="true"></i>
+            <span>完全<br>予約制</span>
+          </span>
+          <span class="site-header-badge">
+            <i data-lucide="user-check" aria-hidden="true"></i>
+            <span>国家資格者<br>が対応</span>
+          </span>
+        </div>
+
+        <div class="site-header-contact">
+          <span class="site-header-contact__label">ご予約・ご相談はこちら</span>
+          <a href="tel:0471143274" class="site-header-phone" aria-label="電話で相談する 04-7114-3274">
+            <span class="site-header-phone__icon" aria-hidden="true"><i data-lucide="phone-call"></i></span>
+            <span class="site-header-phone__number">04-7114-3274</span>
+          </a>
+        </div>
+
+        <button id="menuBtn" class="site-menu-toggle" type="button" aria-controls="mobileNav" aria-expanded="false" aria-label="メニューを開く">
+          <span class="site-menu-toggle__bars" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span class="site-menu-toggle__text">メニュー</span>
+        </button>
       </div>
     </div>
   </header>
 
+    <div class="site-header__lower">
+      <div class="site-header__inner">
+        <nav class="site-nav" aria-label="メインナビゲーション">
+          <a href="../index.html#top" class="site-nav__item">
+            <span class="site-nav__jp">ホーム</span>
+            <span class="site-nav__en">HOME</span>
+          </a>
+          <a href="../index.html#features" class="site-nav__item">
+            <span class="site-nav__jp">当院の特徴</span>
+            <span class="site-nav__en">FEATURE</span>
+          </a>
+          <div class="site-nav__item site-nav__item--has-dropdown">
+            <button type="button" class="site-nav__trigger" aria-haspopup="true" aria-controls="site-symptoms-menu" aria-expanded="false">
+              <span class="site-nav__label-main">
+                <span class="site-nav__jp">症状別</span>
+                <span class="site-nav__chevron" aria-hidden="true">▼</span>
+              </span>
+              <span class="site-nav__en">SYMPTOMS</span>
+            </button>
+            <div id="site-symptoms-menu" class="site-nav__dropdown" aria-label="症状別ページ">
+              <a href="./lower-back-pain.html" class="site-nav__dropdown-link">腰痛</a>
+              <a href="./sciatica.html" class="site-nav__dropdown-link">坐骨神経痛</a>
+              <a href="./spinal-stenosis.html" class="site-nav__dropdown-link">脊柱管狭窄症</a>
+              <a href="./lumbar-disc-herniation.html" class="site-nav__dropdown-link">椎間板ヘルニア</a>
+              <a href="./hip-osteoarthritis.html" class="site-nav__dropdown-link">股関節痛</a>
+              <a href="./knee-osteoarthritis.html" class="site-nav__dropdown-link">膝痛</a>
+              <a href="./index.html" class="site-nav__dropdown-link">その他の足腰の症状</a>
+            </div>
+          </div>
+          <a href="../index.html#flow" class="site-nav__item">
+            <span class="site-nav__jp">施術の流れ</span>
+            <span class="site-nav__en">FLOW</span>
+          </a>
+          <a href="../index.html#price" class="site-nav__item">
+            <span class="site-nav__jp">料金</span>
+            <span class="site-nav__en">PRICE</span>
+          </a>
+          <a href="../blog/" class="site-nav__item">
+            <span class="site-nav__jp">コラム</span>
+            <span class="site-nav__en">COLUMN</span>
+          </a>
+          <a href="../index.html#access" class="site-nav__item site-nav__item--contact">
+            <span class="site-nav__jp">アクセス・予約</span>
+            <span class="site-nav__en">ACCESS / CONTACT</span>
+          </a>
+        </nav>
+
+        <nav class="site-mobile-nav hidden" id="mobileNav" aria-label="スマートフォン用ナビゲーション">
+          <a href="../index.html#top" class="site-mobile-nav__item">ホーム</a>
+          <a href="../index.html#features" class="site-mobile-nav__item">特徴</a>
+          <div class="site-mobile-nav__group" aria-label="症状別ページ">
+            <p class="site-mobile-nav__heading">症状別</p>
+            <div class="site-mobile-nav__links">
+              <a href="./lower-back-pain.html" class="site-mobile-nav__subitem">腰痛</a>
+              <a href="./sciatica.html" class="site-mobile-nav__subitem">坐骨神経痛</a>
+              <a href="./spinal-stenosis.html" class="site-mobile-nav__subitem">脊柱管狭窄症</a>
+              <a href="./lumbar-disc-herniation.html" class="site-mobile-nav__subitem">椎間板ヘルニア</a>
+              <a href="./hip-osteoarthritis.html" class="site-mobile-nav__subitem">股関節痛</a>
+              <a href="./knee-osteoarthritis.html" class="site-mobile-nav__subitem">膝痛</a>
+              <a href="./index.html" class="site-mobile-nav__subitem">その他の足腰の症状</a>
+            </div>
+          </div>
+          <a href="../index.html#flow" class="site-mobile-nav__item">流れ</a>
+          <a href="../index.html#price" class="site-mobile-nav__item">料金</a>
+          <a href="../blog/" class="site-mobile-nav__item">コラム</a>
+          <a href="../faq.html" class="site-mobile-nav__item">FAQ</a>
+          <a href="../access.html" class="site-mobile-nav__item">アクセス</a>
+          <a href="../index.html#contact" class="site-mobile-nav__item site-mobile-nav__item--contact">予約</a>
+        </nav>
+      </div>
+    </div>
+
   <main>
+    <span id="top" class="page-top-anchor" aria-hidden="true"></span>
     <div class="breadcrumb">
       <div class="container max-w-4xl">
         <nav aria-label="パンくずリスト" class="breadcrumb__nav">
@@ -374,32 +483,86 @@
         <p class="concerns__footer"><strong>「抜いても繰り返す」背景には、負担のかかり方が関わっていることがあります。</strong></p>
       </div>
     </section>
+    <section id="flow" class="flow-slider" aria-labelledby="flow-title" data-flow-slider>
+      <div class="flow-slider__inner">
+        <div class="flow-slider__heading-band">
+          <p class="flow-slider__eyebrow">FLOW</p>
+          <h2 id="flow-title" class="flow-slider__title">当院での施術の流れ</h2>
+        </div>
 
-    <section class="visual-guide">
-      <div class="container">
-        <h2 class="section-title">ご相談から施術までのイメージ</h2>
-        <div class="visual-guide__grid">
-          <article class="visual-guide__card">
-            <img src="../image/knee-symptom-close.webp" alt="膝の腫れや違和感が気になり膝を押さえるイメージ" class="visual-guide__image visual-guide__image--full feature-photo" loading="lazy" decoding="async" width="1600" height="1600">
-            <div class="visual-guide__body">
-              <h3 class="visual-guide__title">膝の腫れや違和感が出る場面を整理します</h3>
-              <p class="visual-guide__text">腫れや熱っぽさ、動かしづらさなど、気になっている変化を確認しながら無理のない進め方を考えます。</p>
-            </div>
-          </article>
-          <article class="visual-guide__card">
-            <img src="../image/consultation-scene-768.webp" srcset="../image/consultation-scene-480.webp 480w, ../image/consultation-scene-768.webp 768w, ../image/consultation-scene.webp 1200w" sizes="(max-width: 768px) 100vw, 18rem" alt="整体院ひざこぞう カウンセリング・問診の様子" class="visual-guide__image feature-photo" loading="lazy" decoding="async" width="1200" height="960">
-            <div class="visual-guide__body">
-              <h3 class="visual-guide__title">最初に状態や経過を確認します</h3>
-              <p class="visual-guide__text">腫れの出方や日常で困る場面を確認し、必要に応じて医療機関での確認が必要かも含めて考えます。</p>
-            </div>
-          </article>
-          <article class="visual-guide__card">
-            <img src="../image/waiting-space-480.webp" srcset="../image/waiting-space-480.webp 480w, ../image/waiting-space-768.webp 768w, ../image/waiting-space.webp 1200w" sizes="(max-width: 768px) 100vw, 18rem" alt="整体院ひざこぞう 待合スペースから見た院内の様子" class="visual-guide__image feature-photo" loading="lazy" decoding="async" width="480" height="480">
-            <div class="visual-guide__body">
-              <h3 class="visual-guide__title">落ち着いて相談しやすい環境です</h3>
-              <p class="visual-guide__text">膝の変化に不安を感じるときも、今の状態を整理しやすいよう落ち着いてご相談いただける環境を整えています。</p>
-            </div>
-          </article>
+        <p class="flow-swipe-hint">写真は左右にスライドできます<span class="flow-swipe-arrow" aria-hidden="true">&gt;</span></p>
+
+        <div class="flow-slider__stage">
+          <button type="button" class="flow-slider__arrow flow-slider__arrow--prev" data-flow-prev aria-label="前のステップを見る">
+            <span aria-hidden="true">‹</span>
+          </button>
+
+          <p class="flow-slider__counter" aria-live="polite" aria-atomic="true">
+            <span data-flow-current>01</span> / <span data-flow-total>06</span>
+          </p>
+
+          <div class="flow-slider__slides" aria-live="polite">
+            <article id="flow-slide-1" class="flow-slide is-active" data-flow-slide data-flow-index="0">
+              <div class="flow-slider__media">
+                <img src="../image/flow-medical-interview-form-768.webp" alt="初回時に問診票を記入する様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="432">
+              </div>
+          <h3 class="flow-slide__title">問診票記入</h3>
+          <p class="flow-slide__text">いつから痛いのか、どんな動きでつらいのか、病院で言われたことなどを問診票にご記入いただきます。</p>
+            </article>
+
+            <article id="flow-slide-2" class="flow-slide" data-flow-slide data-flow-index="1">
+              <div class="flow-slider__media">
+          <img src="../image/consultation-scene-768.webp" alt="膝の状態を丁寧に確認するカウンセリングの様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="614">
+        </div>
+          <h3 class="flow-slide__title">カウンセリング</h3>
+          <p class="flow-slide__text">問診票をもとに、歩き始め、階段、立ち上がり、買い物など、日常のどの場面で膝が不安なのかを伺います。</p>
+            </article>
+
+            <article id="flow-slide-3" class="flow-slide" data-flow-slide data-flow-index="2">
+              <div class="flow-slider__media">
+                <img src="../image/flow-movement-assessment-768.webp" alt="股関節や膝の動きを確認している様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="576">
+              </div>
+          <h3 class="flow-slide__title">身体の状態チェック</h3>
+          <p class="flow-slide__text">膝だけでなく、股関節・足首・姿勢・歩き方も確認し、どこに負担が集まりやすいかを見ていきます。</p>
+            </article>
+
+            <article id="flow-slide-4" class="flow-slide" data-flow-slide data-flow-index="3">
+              <div class="flow-slider__media">
+          <img src="../image/consultation-scene-768.webp" alt="施術方針をわかりやすく説明している様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="614">
+        </div>
+          <h3 class="flow-slide__title">状態説明、施術方針の説明</h3>
+          <p class="flow-slide__text">なぜ痛みが出やすいのか、これから何を目指すのかを、専門用語を使いすぎず分かりやすくお伝えします。</p>
+            </article>
+
+            <article id="flow-slide-5" class="flow-slide" data-flow-slide data-flow-index="4">
+              <div class="flow-slider__media">
+          <img src="../image/flow-treatment-session-768.webp" alt="膝や股関節まわりへの施術の様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="432">
+        </div>
+          <h3 class="flow-slide__title">施術開始</h3>
+          <p class="flow-slide__text">やさしく身体を整えながら、立つ・歩く・階段などの動きにつながるように運動療法も行います。</p>
+            </article>
+
+            <article id="flow-slide-6" class="flow-slide" data-flow-slide data-flow-index="5">
+              <div class="flow-slider__media">
+          <img src="../image/treatment-stretch-768.webp" alt="自宅でできるセルフケアを説明する様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="768">
+        </div>
+          <h3 class="flow-slide__title">セルフケアと施術後の説明</h3>
+          <p class="flow-slide__text">ご自宅で気をつけることや簡単なセルフケア、施術後の状態と今後の目安をご案内します。</p>
+            </article>
+          </div>
+
+          <button type="button" class="flow-slider__arrow flow-slider__arrow--next" data-flow-next aria-label="次のステップを見る">
+            <span aria-hidden="true">›</span>
+          </button>
+        </div>
+
+        <div class="flow-slider__dots" role="tablist" aria-label="施術の流れのステップ">
+          <button type="button" class="flow-slider__dot is-active" data-flow-dot data-flow-index="0" role="tab" aria-controls="flow-slide-1" aria-selected="true" aria-label="1番目のステップを表示"></button>
+          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="1" role="tab" aria-controls="flow-slide-2" aria-selected="false" aria-label="2番目のステップを表示"></button>
+          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="2" role="tab" aria-controls="flow-slide-3" aria-selected="false" aria-label="3番目のステップを表示"></button>
+          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="3" role="tab" aria-controls="flow-slide-4" aria-selected="false" aria-label="4番目のステップを表示"></button>
+          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="4" role="tab" aria-controls="flow-slide-5" aria-selected="false" aria-label="5番目のステップを表示"></button>
+          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="5" role="tab" aria-controls="flow-slide-6" aria-selected="false" aria-label="6番目のステップを表示"></button>
         </div>
       </div>
     </section>
@@ -722,38 +885,61 @@
       </a>
     </div>
   </main>
+  <footer class="hk-footer-section">
+    <div class="hk-footer-line" aria-hidden="true"></div>
+    <div class="hk-footer-inner">
+      <div class="hk-footer-top">
+        <a href="../index.html#top" class="hk-footer-brand" aria-label="整体院ひざこぞう トップページへ">
+          <img src="../image/hizakozou-logo-option2-mark.webp" alt="整体院ひざこぞう" class="hk-footer-brand-mark" width="160" height="160" loading="lazy" decoding="async">
+          <span class="hk-footer-brand-text" aria-hidden="true">
+            <span class="hk-footer-brand-eyebrow">柏市の足腰専門整体院</span>
+            <span class="hk-footer-brand-name">整体院ひざこぞう</span>
+            <span class="hk-footer-brand-note">国家資格者による整体</span>
+          </span>
+        </a>
 
-  <footer class="symptom-footer">
-    <div class="symptom-footer__inner">
-      <div class="symptom-footer__logo">
-        <span>整体院ひざこぞう</span>
+        <address class="hk-footer-info">
+          <strong>膝痛専門整体院 ひざこぞう</strong>
+          <span>千葉県柏市あけぼの4-4-3 BoaSorte柏 305</span>
+          <span>千葉県柏市｜膝痛・慢性痛専門</span>
+          <span>完全予約制／受付時間：9:00〜19:00／定休日：日曜</span>
+          <a href="tel:0471143274">TEL：04-7114-3274</a>
+        </address>
       </div>
-      <p class="symptom-footer__tagline">柏市 / 国家資格者による整体。膝痛を中心に、歩行や姿勢の影響を受けやすい慢性痛までご相談いただけます。</p>
-      <ul class="symptom-footer__links">
 
-          <li><a href="../symptoms/knee-osteoarthritis.html">変形性膝関節症</a></li>
-          <li><a href="../symptoms/knee-effusion.html">膝の水（関節水腫）</a></li>
-          <li><a href="../symptoms/pes-anserine-bursitis.html">膝の内側の痛み</a></li>
-          <li><a href="../symptoms/knee-lateral-pain.html">膝の外側の痛み</a></li>
-          <li><a href="../symptoms/knee-posterior-pain.html">膝の裏側の痛み</a></li>
-          <li><a href="../symptoms/knee-front-pain.html">膝の前側の痛み</a></li>
-          <li><a href="../symptoms/meniscus-knee-pain.html">半月板損傷・膝の引っかかり</a></li>
-          <li><a href="../symptoms/bowlegs-knee-pain.html">O脚・膝のゆがみ</a></li>
-          <li><a href="../symptoms/knee-hyperextension.html">反張膝・膝が伸びすぎる</a></li>
-          <li><a href="../symptoms/ankle-stiffness-knee-pain.html">足首の硬さと膝痛</a></li>
-          <li><a href="../symptoms/hip-osteoarthritis.html">股関節の痛み</a></li>
-          <li><a href="../symptoms/lower-back-pain.html">腰痛</a></li>
-          <li><a href="../symptoms/sciatica.html">坐骨神経痛</a></li>
-          <li><a href="../symptoms/spinal-stenosis.html">脊柱管狭窄症</a></li>
-          <li><a href="../symptoms/lumbar-disc-herniation.html">腰椎椎間板ヘルニア</a></li>
-          <li><a href="../symptoms/scoliosis.html">側弯症</a></li>
-          <li><a href="../symptoms/shoulder-stiffness.html">肩こり</a></li>
-          <li><a href="../symptoms/frozen-shoulder.html">五十肩</a></li>
-          <li><a href="../symptoms/tmj.html">顎関節症</a></li>
-      </ul>
-      <p class="symptom-footer__note">※個人の感想であり、成果を保証するものではありません。<br>&copy; 2026 整体院ひざこぞう All Rights Reserved.</p>
+      <nav class="hk-footer-nav" aria-label="フッターナビゲーション">
+        <a href="../index.html#top">ホーム</a>
+        <a href="../index.html#troubles">お悩み</a>
+        <a href="../index.html#seo-guide">当院の考え方</a>
+        <a href="../index.html#flow">施術の流れ</a>
+        <a href="../index.html#profile">院長紹介</a>
+        <a href="../index.html#price">料金</a>
+        <a href="../blog/">コラム</a>
+        <a href="../faq.html">よくある質問</a>
+        <a href="../access.html">アクセス</a>
+        <a href="../index.html#contact">ご予約・お問合せ</a>
+      </nav>
+
+      <div class="hk-footer-symptoms">
+        <p class="hk-footer-symptoms-label">対応している主な症状</p>
+        <p>膝の痛み／変形性膝関節症／O脚／膝の水／半月板の不安／膝の引っかかり／腰痛／肩こり／首の痛み</p>
+      </div>
+
+      <p class="hk-footer-review">
+        施術を受けた方のご感想をお待ちしています。
+        <a href="https://g.page/r/CblTNpd2gz_7EBM" target="_blank" rel="noopener noreferrer">Google口コミを書く</a>
+      </p>
+
+      <p class="hk-footer-note">※当サイトに掲載されているお客様の声は個人の感想であり、成果を保証するものではありません。</p>
     </div>
+
+    <div class="hk-footer-copy">Copyright © 2026 整体院ひざこぞう All Rights Reserved.</div>
   </footer>
+
+  <button type="button" class="page-top-button" aria-label="ページ上部へ戻る">
+    <span aria-hidden="true">↑</span>
+    TOP
+  </button>
 
   <div class="mobile-cta">
     <a href="tel:0471143274" class="mobile-cta__btn mobile-cta__btn--tel">
@@ -773,5 +959,6 @@
   <script>
     lucide.createIcons();
   </script>
+  <script src="site-header.js"></script>
 </body>
 </html>
