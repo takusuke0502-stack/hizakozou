@@ -186,23 +186,24 @@ test("LP adds a diagram-backed three-reason block before the MSM method", () => 
   const expectedDiagrams = [
     ["images/msm/reason-muscle-balance.webp", "サボり筋と過労筋の対比図"],
     ["images/msm/msm-flow-body.webp", "足首から膝と腰へねじれが波及する図解"],
-    ["images/msm/reason-movement-cycle.webp", "不良動作と痛みの記憶が続く悪循環の図解"]
+    ["images/msm/reason-brain-nerve-loop.webp", "悪い動きから神経の過敏化まで続く悪循環の図解"]
   ];
 
   assert.match(reasons, /<section id="knee-msm-reasons" class="knee-msm-reasons" aria-labelledby="knee-msm-reasons-title">/);
   assert.match(reasons, /根本改善の真実/);
-  assert.match(reasons, /あなたの[\s\S]*足腰の痛み・しびれ[\s\S]*が治らない、本当の理由/);
-  assert.match(reasons, /「痛む場所を揉むだけ」では一生治りません。/);
+  assert.match(reasons, /あなたの[\s\S]*足腰の痛み・しびれ[\s\S]*が戻ってしまう、本当の理由/);
+  assert.match(reasons, /痛みは一生戻り続けます。/);
   assert.match(reasons, /MSMメソッドが解き明かす「痛み・しびれの根本原因」/);
   assert.match(reasons, /こんなお悩み、ありませんか/);
-  assert.match(reasons, /朝、布団から起き上がる瞬間に、腰や足がピキッと痛む・しびれる/);
-  assert.match(reasons, /その繰り返しには、明確な理由があります。/);
-  assert.match(reasons, /痛みが戻り続ける「3つの理由」/);
-  assert.match(reasons, /「頑張りすぎな筋肉（[\s\S]*過労筋[\s\S]*）」を緩めても、[\s\S]*サボり筋[\s\S]*を放置しているから/);
-  assert.match(reasons, /腰や膝は「被害者」。真犯人は「[\s\S]*足首のゆがみ[\s\S]*」と「[\s\S]*深層のサボり筋[\s\S]*」にあるから/);
-  assert.match(reasons, /毎日の「間違った体の使い方」が、[\s\S]*神経の過敏化[\s\S]*を起こしているから/);
-  assert.match(reasons, /痛みが繰り返されるサイクル/);
-  assert.match(reasons, /不良動作の定着[\s\S]*特定箇所への負担集中[\s\S]*その場しのぎの治療[\s\S]*痛みの記憶[\s\S]*神経の過敏化/);
+  assert.match(reasons, /揉んでもらうとその場は楽になるけれど、翌朝にはまた痛い/);
+  assert.match(reasons, /何度もぶり返すのは、痛みが出ている場所が「被害者」に過ぎないからです。/);
+  assert.match(reasons, /痛みがぶり返す「3つの原因」/);
+  assert.match(reasons, /サボり筋[\s\S]*を放置して、[\s\S]*頑張りすぎな筋肉[\s\S]*だけを揉んでいるから/);
+  assert.match(reasons, /腰や膝はただの被害者。真犯人は「[\s\S]*足首のゆがみ[\s\S]*」にあるから/);
+  assert.match(reasons, /毎日の「間違った動き」を、脳と神経が記憶してしまっているから/);
+  assert.match(reasons, /断ち切るべきループ/);
+  assert.match(reasons, /悪い動き[\s\S]*特定箇所への負担[\s\S]*その場しのぎの治療[\s\S]*脳が痛みを記憶[\s\S]*神経の過敏化/);
+  assert.match(reasons, /この悪循環を脳・神経レベルからリセットします/);
   assert.match(reasons, /運動療法（スタビリティワーク）/);
   assert.match(reasons, /サボり筋を狙って刺激/);
   assert.match(reasons, /認知行動療法的アプローチ/);
@@ -226,11 +227,11 @@ test("LP highlights the new foot-low-back and nerve keywords with a soft underli
 
   assert.equal((reasons.match(/class="knee-msm-highlight"/g) || []).length, 6);
   assert.match(reasons, /<span class="knee-msm-highlight">足腰の痛み・しびれ<\/span>/);
-  assert.match(reasons, /<span class="knee-msm-highlight">過労筋<\/span>/);
+  assert.match(reasons, /<span class="knee-msm-highlight">土台の崩れ<\/span>/);
+  assert.match(reasons, /<span class="knee-msm-highlight">脳の記憶<\/span>/);
   assert.match(reasons, /<span class="knee-msm-highlight">サボり筋<\/span>/);
+  assert.match(reasons, /<span class="knee-msm-highlight">頑張りすぎな筋肉<\/span>/);
   assert.match(reasons, /<span class="knee-msm-highlight">足首のゆがみ<\/span>/);
-  assert.match(reasons, /<span class="knee-msm-highlight">深層のサボり筋<\/span>/);
-  assert.match(reasons, /<span class="knee-msm-highlight">神経の過敏化<\/span>/);
   assert.match(mainCss, /\.knee-msm-highlight\s*{[\s\S]*background:\s*linear-gradient\(transparent 62%, rgba\(248,\s*164,\s*93,\s*0\.34\) 62%\);[\s\S]*box-decoration-break:\s*clone;/);
 });
 
@@ -1565,7 +1566,7 @@ test("LP keeps the knee-pain specialty axis and presents the updated three-step 
   assert.match(hero, /もう一度、自分の体と向き合う時間をつくりませんか。/);
   assert.match(html, /膝の痛みは、痛む場所だけを見ても分からないことがあります/);
   assert.match(html, /膝だけを揉んで終わるのではなく/);
-  assert.match(html, /痛みが戻り続ける「3つの理由」/);
+  assert.match(html, /痛みがぶり返す「3つの原因」/);
   assert.equal(html.includes('id="three-step-care"'), false, "standalone three-step section should be removed");
   assert.equal(
     html.includes("当院が提供する「3つの柱」の正しい順序"),
