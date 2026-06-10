@@ -143,16 +143,6 @@ const DEFAULT_RELATED_SYMPTOMS = {
     href: "/symptoms/hip-osteoarthritis.html",
     description: "股関節の動きづらさも気になる方へ。"
   },
-  "肩こり": {
-    label: "肩こり",
-    href: "/symptoms/shoulder-stiffness.html",
-    description: "首肩の張りや姿勢の崩れが気になる方へ。"
-  },
-  "五十肩": {
-    label: "五十肩",
-    href: "/symptoms/frozen-shoulder.html",
-    description: "腕が上がりにくく肩の痛みが続く方へ。"
-  },
   "頚椎症": {
     label: "頚椎症",
     href: "/symptoms/cervical-spondylosis.html",
@@ -177,15 +167,15 @@ const DEFAULT_RELATED_SYMPTOMS = {
     label: "足底筋膜炎",
     href: "/symptoms/plantar-fasciitis.html",
     description: "足裏の痛みで歩きづらさがある方へ。"
-  },
-  "顎関節症": {
-    label: "顎関節症",
-    href: "/symptoms/tmj.html",
-    description: "顎の痛みや口の開けづらさがある方へ。"
   }
 };
 
 const FAQ_HEADINGS = new Set(["faq", "よくある質問", "よくあるご質問"]);
+const OFF_AXIS_SYMPTOM_HREFS = new Set([
+  "/symptoms/shoulder-stiffness.html",
+  "/symptoms/frozen-shoulder.html",
+  "/symptoms/tmj.html"
+]);
 
 await main();
 
@@ -476,7 +466,13 @@ function finalizeSection(section) {
 function buildRelatedSymptoms(value, symptomLookup) {
   return splitCsv(value)
     .map((label) => symptomLookup.get(label) || DEFAULT_RELATED_SYMPTOMS[label] || createFallbackSymptom(label))
+    .filter(isAllowedRelatedSymptom)
     .filter(Boolean);
+}
+
+function isAllowedRelatedSymptom(item) {
+  if (!item) return false;
+  return !OFF_AXIS_SYMPTOM_HREFS.has(String(item.href || ""));
 }
 
 function createFallbackSymptom(label) {
@@ -518,12 +514,12 @@ function buildCategoryLookup(categories) {
   lookup.set("腰痛", "lower-back-pain");
   lookup.set("シビレ", "numbness");
   lookup.set("しびれ", "numbness");
-  lookup.set("痺れ", "numbness");
-  lookup.set("股関節痛", "hip-pain");
-  lookup.set("股関節の痛み", "hip-pain");
-  lookup.set("首・肩・手", "neck-shoulder-hand");
-  lookup.set("首肩手", "neck-shoulder-hand");
-  lookup.set("運動療法", "exercise-therapy");
+    lookup.set("痺れ", "numbness");
+    lookup.set("股関節痛", "hip-pain");
+    lookup.set("股関節の痛み", "hip-pain");
+    lookup.set("首・肩・手", "neck-shoulder-hand");
+    lookup.set("首肩手", "neck-shoulder-hand");
+    lookup.set("運動療法", "exercise-therapy");
 
   return lookup;
 }

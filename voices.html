@@ -13,20 +13,149 @@
   <script src="/scripts/tracking-config.js" defer></script>
   <script src="/scripts/tracking.js" defer></script>
   <link rel="stylesheet" href="styles/main.css">
+  <script src="scripts/vendor/lucide.min.js" defer></script>
 </head>
-<body class="voices-page">
-  <header class="voices-page-header">
-    <a href="./" class="voices-page-brand" aria-label="整体院ひざこぞう トップページへ">
-      <img src="image/hizakozou-logo-option2-mark.webp" alt="" width="64" height="64" decoding="async">
-      <span>
-        <small>柏市の膝痛専門整体院</small>
-        <strong>整体院ひざこぞう</strong>
-      </span>
-    </a>
-    <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="voices-page-header__cta">LINEで相談</a>
+<body class="voices-page relative pb-24 md:pb-0">
+  <header id="header" class="site-header">
+    <div class="site-header__upper">
+      <div class="site-header__inner site-header__inner--upper">
+        <a href="index.html#top" class="site-brand" aria-label="整体院ひざこぞう トップページへ">
+          <span class="site-brand__mark" aria-hidden="true">
+            <img src="image/hizakozou-logo-option2-mark.webp" alt="" width="160" height="160" decoding="async">
+          </span>
+          <span class="site-brand__text">
+            <span class="site-brand__eyebrow">柏市の足腰専門整体院</span>
+            <span class="site-brand__name">整体院ひざこぞう</span>
+            <span class="site-brand__note">国家資格者による整体</span>
+          </span>
+        </a>
+
+        <div class="site-header-badges" aria-label="整体院ひざこぞうの特徴">
+          <span class="site-header-badge">
+            <i data-lucide="map-pin" aria-hidden="true"></i>
+            <span>柏駅西口<br>徒歩8分</span>
+          </span>
+          <span class="site-header-badge site-header-badge--soft">
+            <i data-lucide="calendar-check-2" aria-hidden="true"></i>
+            <span>完全<br>予約制</span>
+          </span>
+          <span class="site-header-badge">
+            <i data-lucide="user-check" aria-hidden="true"></i>
+            <span>国家資格者<br>が対応</span>
+          </span>
+        </div>
+
+        <div class="site-header-contact">
+          <span class="site-header-contact__label">ご予約・ご相談はこちら</span>
+          <a href="tel:0471143274" class="site-header-phone" aria-label="電話で相談する 04-7114-3274">
+            <span class="site-header-phone__icon" aria-hidden="true"><i data-lucide="phone-call"></i></span>
+            <span class="site-header-phone__number">04-7114-3274</span>
+          </a>
+        </div>
+
+        <button id="menuBtn" class="site-menu-toggle" type="button" aria-controls="mobileNav" aria-expanded="false" aria-label="メニューを開く">
+          <span class="site-menu-toggle__bars" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span class="site-menu-toggle__text">メニュー</span>
+        </button>
+      </div>
+    </div>
   </header>
 
+  <div class="site-header__lower">
+    <div class="site-header__inner">
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a href="index.html#top" class="site-nav__item">
+          <span class="site-nav__jp">ホーム</span>
+          <span class="site-nav__en">HOME</span>
+        </a>
+        <div class="site-nav__item site-nav__item--has-dropdown">
+          <button type="button" class="site-nav__trigger" aria-haspopup="true" aria-controls="site-about-menu" aria-expanded="false">
+            <span class="site-nav__label-main">
+              <span class="site-nav__jp">当院について</span>
+              <span class="site-nav__chevron" aria-hidden="true">▼</span>
+            </span>
+            <span class="site-nav__en">ABOUT</span>
+          </button>
+          <div id="site-about-menu" class="site-nav__dropdown" aria-label="当院について">
+            <a href="staff.html" class="site-nav__dropdown-link">代表紹介</a>
+            <a href="index.html#knee-msm-reasons" class="site-nav__dropdown-link">当院の特徴</a>
+            <a href="index.html#msm-method" class="site-nav__dropdown-link">MSMメソッドとは？</a>
+          </div>
+        </div>
+        <div class="site-nav__item site-nav__item--has-dropdown">
+          <button type="button" class="site-nav__trigger" aria-haspopup="true" aria-controls="site-symptoms-menu" aria-expanded="false">
+            <span class="site-nav__label-main">
+              <span class="site-nav__jp">症状別</span>
+              <span class="site-nav__chevron" aria-hidden="true">▼</span>
+            </span>
+            <span class="site-nav__en">SYMPTOMS</span>
+          </button>
+          <div id="site-symptoms-menu" class="site-nav__dropdown" aria-label="症状別ページ">
+            <a href="symptoms/lower-back-pain.html" class="site-nav__dropdown-link">腰痛</a>
+            <a href="symptoms/sciatica.html" class="site-nav__dropdown-link">坐骨神経痛</a>
+            <a href="symptoms/spinal-stenosis.html" class="site-nav__dropdown-link">脊柱管狭窄症</a>
+            <a href="symptoms/lumbar-disc-herniation.html" class="site-nav__dropdown-link">椎間板ヘルニア</a>
+            <a href="symptoms/hip-osteoarthritis.html" class="site-nav__dropdown-link">股関節痛</a>
+            <a href="symptoms/knee-osteoarthritis.html" class="site-nav__dropdown-link">膝痛</a>
+            <a href="symptoms/index.html" class="site-nav__dropdown-link">その他の慢性症状</a>
+          </div>
+        </div>
+        <a href="index.html#flow" class="site-nav__item">
+          <span class="site-nav__jp">施術の流れ</span>
+          <span class="site-nav__en">FLOW</span>
+        </a>
+        <a href="index.html#price" class="site-nav__item">
+          <span class="site-nav__jp">料金</span>
+          <span class="site-nav__en">PRICE</span>
+        </a>
+        <a href="blog/" class="site-nav__item">
+          <span class="site-nav__jp">コラム</span>
+          <span class="site-nav__en">COLUMN</span>
+        </a>
+        <a href="index.html#access" class="site-nav__item site-nav__item--contact">
+          <span class="site-nav__jp">アクセス・予約</span>
+          <span class="site-nav__en">ACCESS / CONTACT</span>
+        </a>
+      </nav>
+
+      <nav class="site-mobile-nav hidden" id="mobileNav" aria-label="スマートフォン用ナビゲーション">
+        <a href="index.html#top" class="site-mobile-nav__item">ホーム</a>
+        <div class="site-mobile-nav__group" aria-label="当院について">
+          <p class="site-mobile-nav__heading">当院について</p>
+          <div class="site-mobile-nav__links">
+            <a href="staff.html" class="site-mobile-nav__subitem">代表紹介</a>
+            <a href="index.html#knee-msm-reasons" class="site-mobile-nav__subitem">当院の特徴</a>
+            <a href="index.html#msm-method" class="site-mobile-nav__subitem">MSMメソッドとは？</a>
+          </div>
+        </div>
+        <div class="site-mobile-nav__group" aria-label="症状別ページ">
+          <p class="site-mobile-nav__heading">症状別</p>
+          <div class="site-mobile-nav__links">
+            <a href="symptoms/lower-back-pain.html" class="site-mobile-nav__subitem">腰痛</a>
+            <a href="symptoms/sciatica.html" class="site-mobile-nav__subitem">坐骨神経痛</a>
+            <a href="symptoms/spinal-stenosis.html" class="site-mobile-nav__subitem">脊柱管狭窄症</a>
+            <a href="symptoms/lumbar-disc-herniation.html" class="site-mobile-nav__subitem">椎間板ヘルニア</a>
+            <a href="symptoms/hip-osteoarthritis.html" class="site-mobile-nav__subitem">股関節痛</a>
+            <a href="symptoms/knee-osteoarthritis.html" class="site-mobile-nav__subitem">膝痛</a>
+            <a href="symptoms/index.html" class="site-mobile-nav__subitem">その他の慢性症状</a>
+          </div>
+        </div>
+        <a href="index.html#flow" class="site-mobile-nav__item">流れ</a>
+        <a href="index.html#price" class="site-mobile-nav__item">料金</a>
+        <a href="blog/" class="site-mobile-nav__item">コラム</a>
+        <a href="faq.html" class="site-mobile-nav__item">FAQ</a>
+        <a href="access.html" class="site-mobile-nav__item">アクセス</a>
+        <a href="index.html#contact" class="site-mobile-nav__item site-mobile-nav__item--contact">予約</a>
+      </nav>
+    </div>
+  </div>
+
   <main>
+    <span id="top" class="page-top-anchor" aria-hidden="true"></span>
     <section class="voices-page-hero">
       <div class="voices-page-hero__inner">
         <p class="voices-page-hero__label">VOICE</p>
@@ -151,10 +280,70 @@
     </section>
   </main>
 
-  <footer class="voices-page-footer">
-    <a href="./">整体院ひざこぞう トップページへ戻る</a>
-    <p>Copyright © 2026 整体院ひざこぞう All Rights Reserved.</p>
+  <footer class="hk-footer-section">
+    <div class="hk-footer-line" aria-hidden="true"></div>
+    <div class="hk-footer-inner">
+      <div class="hk-footer-top">
+        <a href="index.html#top" class="hk-footer-brand" aria-label="整体院ひざこぞう トップページへ">
+          <img src="image/hizakozou-logo-option2-mark.webp" alt="整体院ひざこぞう" class="hk-footer-brand-mark" width="160" height="160" loading="lazy" decoding="async">
+          <span class="hk-footer-brand-text" aria-hidden="true">
+            <span class="hk-footer-brand-eyebrow">柏市の足腰専門整体院</span>
+            <span class="hk-footer-brand-name">整体院ひざこぞう</span>
+            <span class="hk-footer-brand-note">国家資格者による整体</span>
+          </span>
+        </a>
+
+        <address class="hk-footer-info">
+          <strong>柏市の足腰専門整体院 整体院ひざこぞう</strong>
+          <span>千葉県柏市あけぼの4-4-3 BoaSorte柏 305</span>
+          <span>千葉県柏市｜腰痛・坐骨神経痛・股関節痛・膝痛など足腰の慢性痛相談</span>
+          <span>完全予約制／受付時間：9:00〜19:00／定休日：日曜</span>
+          <a href="tel:0471143274">TEL：04-7114-3274</a>
+        </address>
+      </div>
+
+      <nav class="hk-footer-nav" aria-label="フッターナビゲーション">
+        <a href="index.html#top">ホーム</a>
+        <a href="index.html#troubles">お悩み</a>
+        <a href="index.html#seo-guide">当院の考え方</a>
+        <a href="index.html#flow">施術の流れ</a>
+        <a href="staff.html">院長紹介</a>
+        <a href="index.html#price">料金</a>
+        <a href="blog/">コラム</a>
+        <a href="faq.html">よくある質問</a>
+        <a href="access.html">アクセス</a>
+        <a href="index.html#contact">ご予約・お問合せ</a>
+      </nav>
+
+      <div class="hk-footer-symptoms">
+        <p class="hk-footer-symptoms-label">対応している主な症状</p>
+        <p>腰痛／ぎっくり腰／坐骨神経痛／脊柱管狭窄症／椎間板ヘルニア／股関節痛／変形性股関節症／膝の痛み／変形性膝関節症／足首・足裏の不調</p>
+      </div>
+
+      <p class="hk-footer-review">
+        施術を受けた方のご感想をお待ちしています。
+        <a href="https://g.page/r/CblTNpd2gz_7EBM" target="_blank" rel="noopener noreferrer">Google口コミを書く</a>
+      </p>
+
+      <p class="hk-footer-note">※当サイトに掲載されているお客様の声は個人の感想であり、成果を保証するものではありません。</p>
+    </div>
+
+    <div class="hk-footer-copy">Copyright © 2026 整体院ひざこぞう All Rights Reserved.</div>
   </footer>
+
+  <button type="button" class="page-top-button" aria-label="ページ上部へ戻る">
+    <span aria-hidden="true">↑</span>
+    TOP
+  </button>
+
+  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-slate-200 shadow-[0_-5px_20px_rgba(0,0,0,0.1)] p-3" style="-webkit-transform: translateZ(0); transform: translateZ(0); will-change: transform;">
+    <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer"
+       class="mobile-fixed-cta w-full flex items-center justify-center gap-2 bg-[#06C755] text-white font-black px-5 py-4 rounded-xl text-base shadow transition active:scale-95">
+      <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i> <span class="mobile-fixed-cta__label">LINEで空き状況を確認</span>
+    </a>
+  </div>
+
+  <script src="scripts/main.js" defer></script>
   <script>
     (() => {
       const scrollToHashTarget = () => {

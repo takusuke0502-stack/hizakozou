@@ -15,10 +15,10 @@ import {
 
 const site = {
   name: "整体院ひざこぞう",
-  subtitle: "柏市の整体院",
+  subtitle: "柏市の足腰専門整体院",
   phone: "04-7197-5870",
-  blogTitle: "膝痛や慢性痛の読みもの",
-  blogDescription: "来院前に確認しやすい記事をまとめています。",
+  blogTitle: "足腰・慢性痛の読みもの",
+  blogDescription: "腰痛、坐骨神経痛、股関節痛、膝の痛みなど、足腰の不調でお悩みの方へ。来院前に知っておきたい身体の見方やセルフケアの考え方を、整体院ひざこぞうがわかりやすく整理します。",
   cta: {
     href: "https://lin.ee/X01F2mP",
     label: "LINEで相談する",
@@ -96,6 +96,9 @@ test("blog index starts with compact search filters and article lists", () => {
 test("blog index uses the same taskbar links as the LP", () => {
   const html = readFileSync(new URL("../blog/index.html", import.meta.url), "utf8");
 
+  assert.match(html, /<title>足腰・慢性痛の読みもの｜整体院ひざこぞう<\/title>/);
+  assert.match(html, /<meta property="og:title" content="足腰・慢性痛の読みもの｜整体院ひざこぞう">/);
+  assert.match(html, /<meta name="twitter:title" content="足腰・慢性痛の読みもの｜整体院ひざこぞう">/);
   assert.match(html, /<header id="header" class="site-header">/);
   assert.match(html, /<nav class="site-nav" aria-label="メインナビゲーション">/);
   assert.match(html, /<button id="menuBtn" class="site-menu-toggle"/);
@@ -105,14 +108,43 @@ test("blog index uses the same taskbar links as the LP", () => {
   assert.match(html, /href="\/access\.html"[\s\S]*アクセス・予約/);
   assert.doesNotMatch(html, /膝の痛み・慢性痛の読みもの/);
   assert.doesNotMatch(html, /膝痛専門 お役立ち情報一覧/);
+  assert.doesNotMatch(html, /膝痛専門 お役立ち情報/);
   assert.doesNotMatch(html, /まず読む3本/);
   assert.match(html, /column-search-panel/);
 });
 
-test("blog index meta description includes local knee-pain intent", () => {
+test("blog index meta description reflects foot-waist pain and numbness intent", () => {
   const html = readFileSync(new URL("../blog/index.html", import.meta.url), "utf8");
 
-  assert.match(html, /<meta name="description" content="[^"]*柏市[^"]*膝痛[^"]*慢性痛[^"]*整体院ひざこぞう[^"]*">/);
+  assert.match(html, /<meta name="description" content="腰痛、坐骨神経痛、股関節痛、膝の痛みなど、足腰の不調でお悩みの方へ。来院前に知っておきたい身体の見方やセルフケアの考え方を、整体院ひざこぞうがわかりやすく整理します。">/);
+  assert.match(html, /<p class="footer-title">柏市の足腰専門整体院 整体院ひざこぞう<\/p>/);
+  assert.match(html, /<p class="footer-text">千葉県柏市｜腰痛・坐骨神経痛・股関節痛・膝痛など足腰の慢性痛相談<\/p>/);
+  assert.doesNotMatch(html, /首・肩・手|肩こり、五十肩、首の痛み/);
+  assert.doesNotMatch(html, /柏市で膝の痛みや慢性痛のご相談を承る整体院です。/);
+});
+
+test("sciatica root-cause column is published and linked from the blog index", () => {
+  const source = readFileSync(new URL("../content/source/2026-06-sciatica-root-cause.md", import.meta.url), "utf8");
+  const indexHtml = readFileSync(new URL("../blog/index.html", import.meta.url), "utf8");
+  const postHtml = readFileSync(new URL("../blog/posts/sciatica-root-cause/index.html", import.meta.url), "utf8");
+  const blogData = JSON.parse(readFileSync(new URL("../data/blog-posts.json", import.meta.url), "utf8"));
+  const sitemap = readFileSync(new URL("../sitemap.xml", import.meta.url), "utf8");
+
+  assert.match(source, /^slug: sciatica-root-cause$/m);
+  assert.doesNotMatch(source, /\*\*/);
+  assert.doesNotMatch(source, /必ず改善|完全に解放|100%戻る|一生根本改善することはない/);
+
+  assert.match(indexHtml, /href="posts\/sciatica-root-cause\/"/);
+  assert.match(postHtml, /<h1>【健康コラム】お尻から太ももの裏がビリビリ…湿布を貼っても変わらない坐骨神経痛の根本原因と足腰専門整体が明かす真実<\/h1>/);
+  assert.match(postHtml, /お尻から太ももの裏のビリビリした痛みやしびれでお悩みの方へ。柏市あけぼのの整体院ひざこぞうが/);
+  assert.match(postHtml, /典型的な症状チェックリスト/);
+  assert.match(postHtml, /店舗情報・アクセス/);
+  assert.match(postHtml, /LINEで相談する/);
+  assert.doesNotMatch(postHtml, /\*\*/);
+  assert.doesNotMatch(postHtml, /必ず改善|完全に解放|100%戻る|一生根本改善することはない/);
+
+  assert.ok(blogData.posts.some((post) => post.slug === "sciatica-root-cause"));
+  assert.match(sitemap, /https:\/\/hizakozou\.jp\/blog\/posts\/sciatica-root-cause\//);
 });
 
 test("renderBody keeps mixed bullet groups scannable as lists", () => {
@@ -208,7 +240,11 @@ test("normalizeSymptomPageDesign replaces inline symptom navigation and footer c
 
   assert.match(output, /class="related-symptoms"/);
   assert.match(output, /<span class="related-symptom-card__arrow" aria-hidden="true">›<\/span>/);
-  assert.match(output, /class="symptom-footer"/);
+  assert.match(output, /class="hk-footer-section"/);
+  assert.match(output, /柏市の足腰専門整体院 整体院ひざこぞう/);
+  assert.match(output, /千葉県柏市｜腰痛・坐骨神経痛・股関節痛・膝痛など足腰の慢性痛相談/);
+  assert.doesNotMatch(output, /class="symptom-footer"/);
+  assert.doesNotMatch(output, /膝痛専門整体院 ひざこぞう/);
   assert.doesNotMatch(output, /onmouseover/);
   assert.doesNotMatch(output, /style="display:flex;"/);
 });
@@ -426,6 +462,11 @@ test("sitemap lists only canonical indexable URLs", () => {
   assert.ok(locs.includes("https://hizakozou.jp/"));
   assert.ok(locs.includes("https://hizakozou.jp/blog/"));
   assert.ok(locs.includes("https://hizakozou.jp/blog/posts/knee-pain-daily-care/"));
+  assert.ok(locs.includes("https://hizakozou.jp/symptoms/lower-back-pain.html"));
+  assert.ok(locs.includes("https://hizakozou.jp/symptoms/sciatica.html"));
+  assert.equal(locs.includes("https://hizakozou.jp/symptoms/shoulder-stiffness.html"), false);
+  assert.equal(locs.includes("https://hizakozou.jp/symptoms/frozen-shoulder.html"), false);
+  assert.equal(locs.includes("https://hizakozou.jp/symptoms/tmj.html"), false);
   assert.equal(locs.some((loc) => loc.endsWith("/index.html") || loc.endsWith("/blog.html")), false);
   assert.equal(new Set(locs).size, locs.length);
 });

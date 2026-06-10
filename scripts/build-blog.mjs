@@ -9,6 +9,17 @@ const templatesDir = path.join(rootDir, "templates");
 const blogDir = path.join(rootDir, "blog");
 const postsDir = path.join(blogDir, "posts");
 const symptomsDir = path.join(rootDir, "symptoms");
+const FOOT_WAIST_FOOTER_SYMPTOMS =
+  "腰痛／ぎっくり腰／坐骨神経痛／脊柱管狭窄症／椎間板ヘルニア／股関節痛／変形性股関節症／膝の痛み／変形性膝関節症／足首・足裏の不調";
+const FOOTER_CLINIC_LABEL = "柏市の足腰専門整体院 整体院ひざこぞう";
+const FOOTER_CLINIC_DESCRIPTION = "千葉県柏市｜腰痛・坐骨神経痛・股関節痛・膝痛など足腰の慢性痛相談";
+const NOINDEX_SYMPTOM_FILES = new Set([
+  "shoulder-stiffness.html",
+  "frozen-shoulder.html",
+  "tmj.html"
+]);
+const BLOG_INDEX_HIDDEN_CATEGORIES = new Set(["neck-shoulder-hand"]);
+const NOINDEX_POST_CATEGORIES = new Set(["neck-shoulder-hand"]);
 
 const symptomNavigationItems = [
   { href: "knee-osteoarthritis.html", label: "変形性膝関節症", description: "階段や歩き始めの膝痛、膝のこわばりが気になる方へ。" },
@@ -26,10 +37,7 @@ const symptomNavigationItems = [
   { href: "sciatica.html", label: "坐骨神経痛", description: "お尻から脚のしびれや痛みが続く方へ。" },
   { href: "spinal-stenosis.html", label: "脊柱管狭窄症", description: "歩くと脚がつらい、休むと楽になる症状がある方へ。" },
   { href: "lumbar-disc-herniation.html", label: "腰椎椎間板ヘルニア", description: "腰からお尻、脚への痛みやしびれが気になる方へ。" },
-  { href: "scoliosis.html", label: "側弯症", description: "背骨のカーブや姿勢の左右差、背中や腰の張りが気になる方へ。" },
-  { href: "shoulder-stiffness.html", label: "肩こり", description: "首肩の重さや姿勢の崩れが気になる方へ。" },
-  { href: "frozen-shoulder.html", label: "五十肩", description: "腕が上がらない、夜に肩が痛む方へ。" },
-  { href: "tmj.html", label: "顎関節症", description: "あごの痛みや口の開けづらさ、首肩との関係が気になる方へ。" }
+  { href: "plantar-fasciitis.html", label: "足底筋膜炎・足裏の痛み", description: "歩き始めの足裏やかかとの痛みが気になる方へ。" }
 ];
 
 const relatedKneeConcernTargetFiles = new Set([
@@ -466,6 +474,9 @@ async function updateSymptomPages(site, posts) {
     html = upsertDetailedSymptomContent(html, config);
     html = upsertSymptomPatientVoices(html, config);
     html = upsertSymptomMidCta(html, site);
+    if (NOINDEX_SYMPTOM_FILES.has(fileName)) {
+      html = ensureNoindexFollow(html);
+    }
 
     const matchedPosts = selectRelatedPosts(config, posts).slice(0, 4);
     const sectionHtml = matchedPosts.length ? buildRelatedArticlesSection(site, config, matchedPosts) : "";
@@ -690,22 +701,24 @@ async function updateSitemap(site, posts) {
 
   const symptomEntries = await Promise.all(
     (await fs.readdir(symptomsDir))
-      .filter((fileName) => fileName.endsWith(".html"))
+      .filter((fileName) => fileName.endsWith(".html") && !NOINDEX_SYMPTOM_FILES.has(fileName))
       .sort((a, b) => a.localeCompare(b, "ja"))
       .map(async (fileName) => ({
-        loc: `${siteRoot}/symptoms/${fileName}`,
+        loc: fileName === "index.html" ? `${siteRoot}/symptoms/` : `${siteRoot}/symptoms/${fileName}`,
         lastmod: await getFileLastmod(path.join(symptomsDir, fileName)),
         changefreq: "monthly",
         priority: "0.8"
       }))
   );
 
-  const postEntries = posts.map((post) => ({
-    loc: `${siteRoot}${post.url}`,
-    lastmod: formatSitemapDate(post.updatedDate || post.date),
-    changefreq: "monthly",
-    priority: "0.7"
-  }));
+  const postEntries = posts
+    .filter((post) => !NOINDEX_POST_CATEGORIES.has(post.category?.slug))
+    .map((post) => ({
+      loc: `${siteRoot}${post.url}`,
+      lastmod: formatSitemapDate(post.updatedDate || post.date),
+      changefreq: "monthly",
+      priority: "0.7"
+    }));
 
   const entries = [
     {
@@ -740,6 +753,13 @@ async function updateSitemap(site, posts) {
   ].join("\n");
 
   await fs.writeFile(sitemapPath, cleanGeneratedText(xml), "utf8");
+}
+
+function ensureNoindexFollow(html) {
+  if (/<meta\s+name="robots"[^>]*>/i.test(html)) {
+    return html.replace(/<meta\s+name="robots"[^>]*>/i, '<meta name="robots" content="noindex,follow">');
+  }
+  return html.replace(/(<meta name="viewport"[^>]*>\s*)/i, '$1\n  <meta name="robots" content="noindex,follow">');
 }
 
 function upsertRelatedStyles(html) {
@@ -949,22 +969,55 @@ function replaceSymptomFooter(html, site = {}) {
 }
 
 function buildSymptomFooter(site = {}) {
-  const siteName = site.name || "整体院ひざこぞう";
-  const siteSubtitle = site.subtitle || "柏市の整体院";
-  const links = symptomNavigationItems.map((item) => `
-          <li><a href="../symptoms/${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>`).join("");
+  return `<footer class="hk-footer-section">
+    <div class="hk-footer-line" aria-hidden="true"></div>
+    <div class="hk-footer-inner">
+      <div class="hk-footer-top">
+        <a href="../index.html#top" class="hk-footer-brand" aria-label="整体院ひざこぞう トップページへ">
+          <img src="../image/hizakozou-logo-option2-mark.webp" alt="整体院ひざこぞう" class="hk-footer-brand-mark" width="160" height="160" loading="lazy" decoding="async">
+          <span class="hk-footer-brand-text" aria-hidden="true">
+            <span class="hk-footer-brand-eyebrow">柏市の足腰専門整体院</span>
+            <span class="hk-footer-brand-name">整体院ひざこぞう</span>
+            <span class="hk-footer-brand-note">国家資格者による整体</span>
+          </span>
+        </a>
 
-  return `<footer class="symptom-footer">
-    <div class="symptom-footer__inner">
-      <div class="symptom-footer__logo">
-        <span>${escapeHtml(siteName)}</span>
+        <address class="hk-footer-info">
+          <strong>${FOOTER_CLINIC_LABEL}</strong>
+          <span>千葉県柏市あけぼの4-4-3 BoaSorte柏 305</span>
+          <span>${FOOTER_CLINIC_DESCRIPTION}</span>
+          <span>完全予約制／受付時間：9:00〜19:00／定休日：日曜</span>
+          <a href="tel:0471143274">TEL：04-7114-3274</a>
+        </address>
       </div>
-      <p class="symptom-footer__tagline">${escapeHtml(siteSubtitle)}。膝痛を中心に、歩行や姿勢の影響を受けやすい慢性痛までご相談いただけます。</p>
-      <ul class="symptom-footer__links">
-${links}
-      </ul>
-      <p class="symptom-footer__note">※個人の感想であり、成果を保証するものではありません。<br>&copy; 2026 整体院ひざこぞう All Rights Reserved.</p>
+
+      <nav class="hk-footer-nav" aria-label="フッターナビゲーション">
+        <a href="../index.html#top">ホーム</a>
+        <a href="../index.html#troubles">お悩み</a>
+        <a href="../index.html#seo-guide">当院の考え方</a>
+        <a href="../index.html#flow">施術の流れ</a>
+        <a href="../index.html#profile">院長紹介</a>
+        <a href="../index.html#price">料金</a>
+        <a href="../blog/">コラム</a>
+        <a href="../faq.html">よくある質問</a>
+        <a href="../access.html">アクセス</a>
+        <a href="../index.html#contact">ご予約・お問合せ</a>
+      </nav>
+
+      <div class="hk-footer-symptoms">
+        <p class="hk-footer-symptoms-label">対応している主な症状</p>
+        <p>${FOOT_WAIST_FOOTER_SYMPTOMS}</p>
+      </div>
+
+      <p class="hk-footer-review">
+        施術を受けた方のご感想をお待ちしています。
+        <a href="https://g.page/r/CblTNpd2gz_7EBM" target="_blank" rel="noopener noreferrer">Google口コミを書く</a>
+      </p>
+
+      <p class="hk-footer-note">※当サイトに掲載されているお客様の声は個人の感想であり、成果を保証するものではありません。</p>
     </div>
+
+    <div class="hk-footer-copy">Copyright © 2026 整体院ひざこぞう All Rights Reserved.</div>
   </footer>`;
 }
 
@@ -1083,10 +1136,15 @@ function normalizePost(post, site, categoryMap) {
     tags: Array.isArray(post.tags) ? post.tags : [],
     sections: enrichSections(Array.isArray(post.sections) ? post.sections : []),
     faq: Array.isArray(post.faq) ? post.faq : [],
-    relatedSymptoms: Array.isArray(post.relatedSymptoms) ? post.relatedSymptoms : [],
+    relatedSymptoms: Array.isArray(post.relatedSymptoms) ? post.relatedSymptoms.filter(isIndexableRelatedSymptom) : [],
     cta: post.cta || site.cta,
     url: `/blog/posts/${post.slug}/`
   };
+}
+
+function isIndexableRelatedSymptom(item) {
+  const fileName = path.basename(normalizePath(item?.href || ""));
+  return !NOINDEX_SYMPTOM_FILES.has(fileName);
 }
 
 function enrichSections(sections) {
@@ -1155,11 +1213,11 @@ function inferBoxTypeFromRuleSet(value, listStyle, ruleSet) {
 }
 
 function getBlogIndexTitle(site = {}) {
-  return "膝痛専門 お役立ち情報";
+  return "足腰・慢性痛の読みもの";
 }
 
 function getBlogIndexDescription(site = {}) {
-  return "柏市で膝痛・慢性痛に悩む方へ、整体院ひざこぞうが来院前に知っておきたい体の見方、症状別の考え方、運動療法のポイントを整理します。";
+  return "腰痛、坐骨神経痛、股関節痛、膝の痛みなど、足腰の不調でお悩みの方へ。来院前に知っておきたい身体の見方やセルフケアの考え方を、整体院ひざこぞうがわかりやすく整理します。";
 }
 
 function buildIndexSeo(site) {
@@ -1167,18 +1225,18 @@ function buildIndexSeo(site) {
   const title = getBlogIndexTitle(site);
   const description = getBlogIndexDescription(site);
   return [
-    `<title>${escapeHtml(title)} | ${escapeHtml(site.name)}</title>`,
+    `<title>${escapeHtml(title)}｜${escapeHtml(site.name)}</title>`,
     `<meta name="description" content="${escapeHtml(description)}">`,
     `<meta name="robots" content="index,follow">`,
     `<link rel="canonical" href="${canonical}">`,
     `<meta property="og:locale" content="ja_JP">`,
     `<meta property="og:type" content="website">`,
-    `<meta property="og:title" content="${escapeHtml(title)} | ${escapeHtml(site.name)}">`,
+    `<meta property="og:title" content="${escapeHtml(title)}｜${escapeHtml(site.name)}">`,
     `<meta property="og:description" content="${escapeHtml(description)}">`,
     `<meta property="og:url" content="${canonical}">`,
     `<meta property="og:image" content="${absoluteUrl(site.url, site.ogImage)}">`,
     `<meta name="twitter:card" content="summary_large_image">`,
-    `<meta name="twitter:title" content="${escapeHtml(title)} | ${escapeHtml(site.name)}">`,
+    `<meta name="twitter:title" content="${escapeHtml(title)}｜${escapeHtml(site.name)}">`,
     `<meta name="twitter:description" content="${escapeHtml(description)}">`,
     `<meta name="twitter:image" content="${absoluteUrl(site.url, site.ogImage)}">`
   ].join("\n  ");
@@ -1186,6 +1244,7 @@ function buildIndexSeo(site) {
 
 function buildPostSeo(site, post) {
   const canonical = `${trimTrailingSlash(site.url)}${post.url}`;
+  const robots = NOINDEX_POST_CATEGORIES.has(post.category?.slug) ? "noindex,follow" : "index,follow";
   const schemas = [
     buildArticleSchema(site, post),
     buildBreadcrumbSchema(site, post),
@@ -1195,7 +1254,7 @@ function buildPostSeo(site, post) {
   return [
     `<title>${escapeHtml(post.title)} | ${escapeHtml(site.name)}</title>`,
     `<meta name="description" content="${escapeHtml(post.description)}">`,
-    `<meta name="robots" content="index,follow">`,
+    `<meta name="robots" content="${robots}">`,
     `<link rel="canonical" href="${canonical}">`,
     `<meta property="og:locale" content="ja_JP">`,
     `<meta property="og:type" content="article">`,
@@ -1212,7 +1271,7 @@ function buildPostSeo(site, post) {
 }
 
 export function buildIndexContent(site, posts, categoryMap) {
-  const categories = [...categoryMap.values()];
+  const categories = [...categoryMap.values()].filter((category) => !BLOG_INDEX_HIDDEN_CATEGORIES.has(category.slug));
   const recentPosts = posts.slice(0, 8);
   const renderListItem = (post) => `
     <article class="article-list-item article-list-item--card">
@@ -1259,6 +1318,11 @@ export function buildIndexContent(site, posts, categoryMap) {
   return `
     <section class="section-block blog-column-index">
       <div class="shell">
+        <div class="blog-index-heading">
+          <p class="eyebrow">Column</p>
+          <h1>足腰・慢性痛の読みもの</h1>
+          <p>腰痛、坐骨神経痛、股関節痛、膝の痛みなど、足腰の不調でお悩みの方へ。来院前に知っておきたい身体の見方やセルフケアの考え方を、整体院ひざこぞうがわかりやすく整理します。</p>
+        </div>
         <div class="column-search-panel" aria-label="コラム検索">
           <form class="column-search" role="search" action="./" method="get">
             <label class="sr-only" for="column-search-keyword">キーワードを入力</label>
@@ -1425,7 +1489,7 @@ export function buildPostContent(site, post, relatedPosts) {
           <div class="side-card">
             <p class="side-card__eyebrow">相談先</p>
             <h2>${escapeHtml(site.name)}</h2>
-            <p>${escapeHtml(site.subtitle)}で膝痛を中心に、腰痛や坐骨神経痛など慢性痛にも対応しています。</p>
+            <p>${escapeHtml(site.subtitle)}として、腰痛・坐骨神経痛・股関節痛・膝痛など足腰の慢性痛相談に対応しています。</p>
             <a class="button button--primary button--full" href="${escapeHtml(post.cta.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(post.cta.label)}</a>
             <p class="side-card__note">${escapeHtml(post.cta.note || site.cta.subtext)}</p>
           </div>

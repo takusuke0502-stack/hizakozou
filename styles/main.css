@@ -1402,6 +1402,15 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       box-shadow: 0 10px 18px rgba(6, 182, 78, 0.2);
     }
 
+    .hk-pricing-line-note {
+      margin: -2px 0 12px;
+      color: #174f3f;
+      font-size: 0.9rem;
+      font-weight: 800;
+      line-height: 1.65;
+      text-align: center;
+    }
+
     .hk-pricing-call:hover,
     .hk-pricing-call:focus-visible,
     .hk-pricing-line:hover,
@@ -4434,61 +4443,6 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       letter-spacing: 0;
     }
 
-    .voices-page-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px max(16px, calc((100vw - 1120px) / 2));
-      border-bottom: 1px solid #ead7c3;
-      background: rgba(255, 255, 255, 0.94);
-    }
-
-    .voices-page-brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      color: #30261f;
-      text-decoration: none;
-    }
-
-    .voices-page-brand img {
-      width: 54px;
-      height: 54px;
-      border-radius: 999px;
-    }
-
-    .voices-page-brand small,
-    .voices-page-brand strong {
-      display: block;
-      line-height: 1.35;
-    }
-
-    .voices-page-brand small {
-      color: #2f6f3e;
-      font-size: 0.78rem;
-      font-weight: 900;
-    }
-
-    .voices-page-brand strong {
-      font-size: 1.24rem;
-      font-weight: 900;
-    }
-
-    .voices-page-header__cta {
-      display: inline-flex;
-      min-height: 44px;
-      align-items: center;
-      justify-content: center;
-      padding: 0 18px;
-      border-radius: 999px;
-      background: #2f6f3e;
-      color: #fff;
-      font-weight: 900;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
     .voices-page-hero {
       padding: 70px 16px 46px;
       background:
@@ -4551,10 +4505,10 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
       align-items: start;
       overflow: hidden;
-      border: 1px solid #ead7c3;
+      border: 1px solid #d9ec8c;
       border-radius: 22px;
       background: #fbfff1;
-      box-shadow: 0 18px 42px rgba(48, 38, 31, 0.1);
+      box-shadow: 0 18px 42px rgba(87, 116, 24, 0.12);
       scroll-margin-top: 96px;
     }
 
@@ -4578,8 +4532,8 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       justify-content: center;
       margin: 0;
       padding: 18px;
-      border-right: 1px solid #ead7c3;
-      background: #fffaf4;
+      border-right: 1px solid #d9ec8c;
+      background: #f7ffe7;
     }
 
     .voices-page-card__sheet img {
@@ -4601,7 +4555,7 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
 
     .voices-page-card__meta {
       margin: 0 0 12px;
-      color: #e96a42;
+      color: #7aa21d;
       font-size: 0.92rem;
       font-weight: 900;
       line-height: 1.7;
@@ -4635,7 +4589,7 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       padding: 0;
       border-radius: 0;
       background: transparent;
-      color: #2f6f3e;
+      color: #6f9718;
       font-size: 0.95rem;
       font-weight: 900;
     }
@@ -4665,7 +4619,7 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       margin: 38px auto 64px;
       padding: clamp(28px, 5vw, 44px);
       border-radius: 24px;
-      background: linear-gradient(135deg, #fff3e8 0%, #eef7ef 100%);
+      background: linear-gradient(135deg, #f7ffe7 0%, #eef7ef 100%);
       text-align: center;
       box-shadow: 0 18px 42px rgba(48, 38, 31, 0.1);
     }
@@ -4694,42 +4648,7 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       box-shadow: 0 12px 24px rgba(6, 199, 85, 0.22);
     }
 
-    .voices-page-footer {
-      padding: 26px 16px;
-      border-top: 1px solid #ead7c3;
-      background: #fff;
-      color: #64748b;
-      text-align: center;
-    }
-
-    .voices-page-footer a {
-      color: #2f6f3e;
-      font-weight: 900;
-      text-decoration: none;
-    }
-
-    .voices-page-footer p {
-      margin: 10px 0 0;
-      font-size: 0.86rem;
-      font-weight: 700;
-    }
-
     @media (max-width: 760px) {
-      .voices-page-header {
-        align-items: flex-start;
-        padding: 12px 14px;
-      }
-
-      .voices-page-brand strong {
-        font-size: 1.04rem;
-      }
-
-      .voices-page-header__cta {
-        min-height: 40px;
-        padding: 0 12px;
-        font-size: 0.88rem;
-      }
-
       .voices-page-hero {
         padding: 54px 16px 34px;
         text-align: left;
@@ -4751,7 +4670,7 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       .voices-page-card__sheet {
         padding: 10px;
         border-right: 0;
-        border-bottom: 1px solid #ead7c3;
+        border-bottom: 1px solid #d9ec8c;
       }
 
       .voices-page-card__sheet img {
@@ -5045,33 +4964,54 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       padding-top: clamp(4.75rem, 8vw, 7rem) !important;
     }
 
+    #faq .lp-faq-list {
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+      background: #fff;
+    }
+
+    #faq .lp-faq-item {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    #faq .lp-faq-item:last-child {
+      border-bottom: 0;
+    }
+
     #faq dt {
       display: flex;
       gap: 0.55rem;
       align-items: baseline;
-      color: #123f34;
-      font-size: 1.02rem;
+      color: #15803d;
+      font-size: 1.12rem;
       font-weight: 900;
       line-height: 1.55;
       letter-spacing: 0;
     }
 
-    #faq dt span,
-    #faq dd span {
-      color: #1f6f52;
+    #faq dt span {
+      color: #2563eb;
       font-weight: 900;
       flex: 0 0 auto;
+      line-height: 1;
     }
 
     #faq dd {
       display: flex;
       gap: 0.55rem;
       margin-top: 0.45rem;
-      color: #475569;
+      color: #111827;
       font-size: 0.95rem;
       font-weight: 700;
       line-height: 1.85;
       letter-spacing: 0;
+    }
+
+    #faq dd span {
+      color: #dc2626;
+      font-weight: 900;
+      flex: 0 0 auto;
     }
 
     @media (max-width: 640px) {
@@ -5084,14 +5024,19 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       }
 
       #faq dt {
-        font-size: 0.98rem;
+        font-size: 1.04rem;
       }
 
-    #faq dd {
-      font-size: 0.9rem;
-      line-height: 1.75;
+      #faq .lp-faq-item {
+        padding: 0.78rem 0;
+      }
+
+      #faq dd {
+        margin-top: 0.35rem;
+        font-size: 0.9rem;
+        line-height: 1.72;
+      }
     }
-  }
 
     .lp-access-summary {
       display: grid;

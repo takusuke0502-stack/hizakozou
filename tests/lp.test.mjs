@@ -15,8 +15,14 @@ const trackingConfigPath = path.join(repoRoot, "scripts", "tracking-config.js");
 const trackingJsPath = path.join(repoRoot, "scripts", "tracking.js");
 const trackingConfig = existsSync(trackingConfigPath) ? readFileSync(trackingConfigPath, "utf8") : "";
 const trackingJs = existsSync(trackingJsPath) ? readFileSync(trackingJsPath, "utf8") : "";
+const siteTitle =
+  "柏市の足腰専門整体院｜腰痛・坐骨神経痛・股関節痛・膝痛に｜整体院ひざこぞう";
 const broadenedMetaDescription =
-  "柏市で長引く痛みやシビレにお悩みなら、整体院ひざこぞうへ。歩き始めの膝の痛み、どこに行っても良くならなかった頑固な腰痛、坐骨神経痛など足腰のシビレ、自律神経の乱れまで、原因となる筋肉へ的確にアプローチして解消します。柏駅西口徒歩8分、完全予約制で一人ひとりに丁寧に対応。";
+  "柏駅西口徒歩8分。腰痛・坐骨神経痛・脊柱管狭窄症・股関節痛・膝の痛みなど、足腰の慢性的な痛みに対応する整体院です。国家資格者が身体の状態と動き方を丁寧に確認し、無理のない施術とセルフケアでサポートします。";
+const localBusinessDescription =
+  "整体院ひざこぞうは、柏駅西口徒歩8分の足腰専門整体院です。腰痛、坐骨神経痛、股関節痛、膝の痛みなど、足腰の慢性的な不調に対して、国家資格者が身体の状態と動き方を丁寧に確認します。";
+const footerSymptomsText =
+  "腰痛／ぎっくり腰／坐骨神経痛／脊柱管狭窄症／椎間板ヘルニア／股関節痛／変形性股関節症／膝の痛み／変形性膝関節症／足首・足裏の不調";
 
 function readPageIfExists(fileName) {
   const pagePath = path.join(repoRoot, fileName);
@@ -80,6 +86,10 @@ function getElementSlice(startMarker, closeMarker = "</nav>") {
   assert.ok(end > start, `missing close marker after ${startMarker}`);
 
   return html.slice(start, end + closeMarker.length);
+}
+
+function getFooterBlocks(pageHtml) {
+  return [...pageHtml.matchAll(/<footer class="hk-footer-section">[\s\S]*?<\/footer>/g)].map((match) => match[0]);
 }
 
 function getTopLevelSectionSlice(sectionId) {
@@ -190,7 +200,7 @@ test("LP adds a diagram-backed three-reason block before the MSM method", () => 
   ];
 
   assert.match(reasons, /<section id="knee-msm-reasons" class="knee-msm-reasons" aria-labelledby="knee-msm-reasons-title">/);
-  assert.match(reasons, /根本改善の真実/);
+  assert.match(reasons, /痛みが戻る仕組み/);
   assert.match(reasons, /あなたの[\s\S]*足腰の痛み・しびれ[\s\S]*が戻ってしまう、本当の理由/);
   assert.match(reasons, /痛みは一生戻り続けます。/);
   assert.match(reasons, /MSMメソッドが解き明かす「痛み・しびれの根本原因」/);
@@ -344,7 +354,7 @@ test("LP replaces the treatment flow with an accessible 6-step photo slider afte
       "カウンセリング",
       "問診票をもとに、歩き始め、階段、立ち上がり、買い物など、日常のどの場面で膝が不安なのかを伺います。",
       "image/consultation-scene-768.webp",
-      "膝の状態を丁寧に確認するカウンセリングの様子"
+      "足腰の状態を丁寧に確認するカウンセリングの様子"
     ],
     [
       "身体の状態チェック",
@@ -429,10 +439,76 @@ test("LP flow slider JavaScript uses scoped controls, dots, and counters without
 });
 
 test("LP canonicalizes direct index.html visits to the root URL", () => {
+  assert.match(html, new RegExp(`<title>${escapeRegExp(siteTitle)}<\\/title>`));
+  assert.match(html, new RegExp(`<meta property="og:title" content="${escapeRegExp(siteTitle)}">`));
+  assert.match(html, new RegExp(`<meta name="twitter:title" content="${escapeRegExp(siteTitle)}">`));
+  assert.match(html, /<meta property="og:image:alt" content="整体院ひざこぞう｜柏市で足腰の痛みやシビレの相談ができる整体院LP">/);
+  assert.doesNotMatch(html, /【柏市の膝痛整体】/);
+  assert.doesNotMatch(html, /整体院ひざこぞう｜柏市で膝痛を中心に慢性痛の相談ができる整体院LP/);
   assert.match(html, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/">/);
   assert.match(html, /\^https\?:\$.*window\.location\.protocol/);
   assert.match(html, /window\.location\.pathname\.endsWith\("\/index\.html"\)/);
   assert.match(html, /window\.location\.replace\(canonicalPath \+ window\.location\.search \+ window\.location\.hash\)/);
+});
+
+test("shared brand labels no longer present the site as knee-pain-only", () => {
+  const symptomPages = walkFiles(
+    path.join(repoRoot, "symptoms"),
+    (filePath) => filePath.endsWith(".html")
+  );
+  const pages = [
+    path.join(repoRoot, "index.html"),
+    path.join(repoRoot, "staff.html"),
+    ...symptomPages
+  ];
+
+    for (const pagePath of pages) {
+      const pageHtml = readFileSync(pagePath, "utf8");
+      const repoPath = toRepoPath(pagePath);
+
+      assert.doesNotMatch(pageHtml, /膝痛専門整体院 ひざこぞう/, `${repoPath} should not use the old footer specialty`);
+      assert.doesNotMatch(pageHtml, /千葉県柏市｜膝痛・慢性痛専門/, `${repoPath} should not use the old footer subtitle`);
+      assert.match(pageHtml, /柏市の足腰専門整体院 整体院ひざこぞう/, `${repoPath} should use the broadened footer specialty`);
+      assert.match(pageHtml, /千葉県柏市｜腰痛・坐骨神経痛・股関節痛・膝痛など足腰の慢性痛相談/, `${repoPath} should use the broadened footer subtitle`);
+    }
+  });
+
+test("site footers use the foot-waist symptom list consistently", () => {
+  const requiredFooterPages = [
+    "index.html",
+    "faq.html",
+    "voices.html",
+    "access.html",
+    "staff.html",
+    ...readdirSync(path.join(repoRoot, "symptoms"))
+      .filter((name) => name.endsWith(".html"))
+      .map((name) => `symptoms/${name}`)
+  ];
+    const oldFooterTerms = /O脚|膝の水|半月板の不安|膝の引っかかり|肩こり|首の痛み|五十肩|顎関節症|足のシビレ|足腰のしびれ|歩き始めの痛み|階段の痛み/;
+
+  for (const repoPath of requiredFooterPages) {
+    const pageHtml = readFileSync(path.join(repoRoot, repoPath), "utf8");
+    const footerBlocks = getFooterBlocks(pageHtml);
+
+    assert.ok(footerBlocks.length > 0, `${repoPath} should include the shared footer`);
+    for (const footerBlock of footerBlocks) {
+      assert.match(footerBlock, new RegExp(escapeRegExp(footerSymptomsText)), `${repoPath} should use the new footer symptom list`);
+      assert.doesNotMatch(footerBlock, oldFooterTerms, `${repoPath} should not keep old footer symptom wording`);
+    }
+  }
+
+  const htmlFiles = walkFiles(repoRoot, (filePath) => filePath.endsWith(".html"));
+  for (const pagePath of htmlFiles) {
+    const pageHtml = readFileSync(pagePath, "utf8");
+    const repoPath = toRepoPath(pagePath);
+    for (const footerBlock of getFooterBlocks(pageHtml)) {
+      assert.match(footerBlock, new RegExp(escapeRegExp(footerSymptomsText)), `${repoPath} should use the unified footer symptom list`);
+      assert.doesNotMatch(footerBlock, oldFooterTerms, `${repoPath} should not keep old footer symptom wording`);
+    }
+  }
+
+  assert.match(buildBlogScript, new RegExp(escapeRegExp(footerSymptomsText)), "blog/symptom generation should keep the footer symptom list in sync");
+  assert.doesNotMatch(buildBlogScript, /膝の痛み／変形性膝関節症／O脚／膝の水／半月板の不安／膝の引っかかり／腰痛／股関節痛／坐骨神経痛／足のシビレ/);
 });
 
 test("desktop header groups access/contact and exposes keyboard-friendly real dropdowns", () => {
@@ -721,7 +797,7 @@ test("LP metadata broadens SEO target from female knee pain to chronic pain", ()
   assert.match(html, new RegExp(`<meta name="description" content="${escapeRegExp(broadenedMetaDescription)}">`));
   assert.match(html, new RegExp(`<meta property="og:description" content="${escapeRegExp(broadenedMetaDescription)}">`));
   assert.match(html, new RegExp(`<meta name="twitter:description" content="${escapeRegExp(broadenedMetaDescription)}">`));
-  assert.equal(localBusinessBlocks[0].description, broadenedMetaDescription);
+  assert.equal(localBusinessBlocks[0].description, localBusinessDescription);
   assert.doesNotMatch(getSectionSlice("<head>", "</head>"), /お悩みの女性へ/);
   assert.match(hero, /それは慣れたのではなく、諦めているだけかもしれない。/);
   assert.match(hero, /もう一度、自分の体と向き合う時間をつくりませんか。/);
@@ -850,6 +926,102 @@ test("LP voice teaser links to a dedicated voices page with anchored cards", () 
   assert.match(voicesHtml, /LINEで予約・相談する/);
   assert.match(voicesHtml, /scrollToHashTarget/);
   assert.match(html, /id="voice" class="py-20 voice-list-section" hidden aria-hidden="true"/);
+});
+
+test("voices page uses yellow-green accent colors", () => {
+  assert.match(getCssRule(".voices-page-card"), /border:\s*1px solid #d9ec8c/);
+  assert.match(getCssRule(".voices-page-card"), /box-shadow:\s*0 18px 42px rgba\(87,\s*116,\s*24,\s*0\.12\)/);
+  assert.match(getCssRule(".voices-page-card__sheet"), /border-right:\s*1px solid #d9ec8c/);
+  assert.match(getCssRule(".voices-page-card__sheet"), /background:\s*#f7ffe7/);
+  assert.match(getCssRule(".voices-page-card__meta"), /color:\s*#7aa21d/);
+  assert.match(getCssRule(".voices-page-card__rows strong"), /color:\s*#6f9718/);
+  assert.match(getCssRule(".voices-page-cta"), /background:\s*linear-gradient\(135deg,\s*#f7ffe7 0%,\s*#eef7ef 100%\)/);
+  assert.doesNotMatch(voicesHtml, /voices-page-header|voices-page-footer/);
+  assert.match(mainCss, /@media \(max-width: 760px\)[\s\S]*\.voices-page-card__sheet\s*\{[\s\S]*border-bottom:\s*1px solid #d9ec8c/);
+});
+
+test("voices and FAQ pages use the shared top-page header and footer chrome", () => {
+  const pages = [
+    ["voices.html", voicesHtml],
+    ["faq.html", readPageIfExists("faq.html")]
+  ];
+  const headerLinks = [
+    ["index.html#top", "ホーム"],
+    ["staff.html", "代表紹介"],
+    ["index.html#knee-msm-reasons", "当院の特徴"],
+    ["index.html#msm-method", "MSMメソッドとは？"],
+    ["symptoms/lower-back-pain.html", "腰痛"],
+    ["symptoms/sciatica.html", "坐骨神経痛"],
+    ["symptoms/spinal-stenosis.html", "脊柱管狭窄症"],
+    ["symptoms/lumbar-disc-herniation.html", "椎間板ヘルニア"],
+    ["symptoms/hip-osteoarthritis.html", "股関節痛"],
+    ["symptoms/knee-osteoarthritis.html", "膝痛"],
+    ["symptoms/index.html", "その他の慢性症状"],
+    ["index.html#flow", "施術の流れ"],
+    ["index.html#price", "料金"],
+    ["blog/", "コラム"],
+    ["index.html#access", "アクセス・予約"]
+  ];
+  const footerLinks = [
+    ["index.html#top", "ホーム"],
+    ["index.html#troubles", "お悩み"],
+    ["index.html#seo-guide", "当院の考え方"],
+    ["index.html#flow", "施術の流れ"],
+    ["staff.html", "院長紹介"],
+    ["index.html#price", "料金"],
+    ["blog/", "コラム"],
+    ["faq.html", "よくある質問"],
+    ["access.html", "アクセス"],
+    ["index.html#contact", "ご予約・お問合せ"]
+  ];
+
+  for (const [pageName, pageHtml] of pages) {
+    const bodyOpen = pageHtml.indexOf("<body");
+    const mainOpen = pageHtml.indexOf("<main", bodyOpen);
+    const headerBlock = pageHtml.slice(bodyOpen, mainOpen);
+    const footerStart = pageHtml.indexOf('<footer class="hk-footer-section">');
+    const footerEnd = pageHtml.indexOf("</footer>", footerStart);
+    const footerBlock = footerStart >= 0 && footerEnd >= 0
+      ? pageHtml.slice(footerStart, footerEnd + "</footer>".length)
+      : "";
+
+    assert.match(pageHtml, /pb-24 md:pb-0/, `${pageName} should reserve space for the shared mobile fixed CTA`);
+    assert.match(headerBlock, /<header id="header" class="site-header">/, `${pageName} should include the shared header`);
+    assert.match(headerBlock, /class="site-header__upper"/, `${pageName} should include the top-page upper header`);
+    assert.match(headerBlock, /class="site-brand"/, `${pageName} should include the shared brand`);
+    assert.match(headerBlock, /class="site-header-badges"/, `${pageName} should include the shared badges`);
+    assert.match(headerBlock, /href="tel:0471143274"/, `${pageName} should include the shared phone CTA`);
+    assert.match(headerBlock, /id="menuBtn" class="site-menu-toggle"/, `${pageName} should include the shared hamburger button`);
+    assert.match(headerBlock, /<nav class="site-nav" aria-label="メインナビゲーション">/, `${pageName} should include the desktop nav`);
+    assert.match(headerBlock, /<nav class="site-mobile-nav hidden" id="mobileNav"/, `${pageName} should include the mobile nav`);
+    assert.match(headerBlock, /site-mobile-nav__group/, `${pageName} should keep grouped mobile nav links`);
+    assert.doesNotMatch(headerBlock, /detail-header|detail-nav|voices-page-header|voices-page-brand|voices-page-header__cta/, `${pageName} should not use a page-specific header`);
+    assert.doesNotMatch(headerBlock, /href="#(?:top|flow|price|access|contact|knee-msm-reasons|msm-method)"/, `${pageName} should not point chrome links to missing same-page anchors`);
+
+    for (const [href, label] of headerLinks) {
+      assert.match(headerBlock, new RegExp(`href="${escapeRegExp(href)}"`), `${pageName} should link ${label}`);
+      assert.match(headerBlock, new RegExp(escapeRegExp(label)), `${pageName} should show ${label}`);
+    }
+
+    assert.ok(footerBlock, `${pageName} should include the shared footer`);
+    assert.match(footerBlock, /class="hk-footer-brand"/, `${pageName} should include the shared footer brand`);
+    assert.match(footerBlock, /class="hk-footer-nav"/, `${pageName} should include the shared footer navigation`);
+    assert.match(footerBlock, /class="hk-footer-symptoms"/, `${pageName} should include the shared symptom summary`);
+    assert.doesNotMatch(footerBlock, /voices-page-footer|detail-footer/, `${pageName} should not use a page-specific footer`);
+    for (const [href, label] of footerLinks) {
+      assert.match(footerBlock, new RegExp(`href="${escapeRegExp(href)}"`), `${pageName} footer should link ${label}`);
+      assert.match(footerBlock, new RegExp(escapeRegExp(label)), `${pageName} footer should show ${label}`);
+    }
+
+    assert.match(pageHtml, /<span id="top" class="page-top-anchor" aria-hidden="true"><\/span>/, `${pageName} should expose the shared page-top anchor`);
+    assert.match(pageHtml, /<button type="button" class="page-top-button" aria-label="ページ上部へ戻る">/, `${pageName} should include the shared page-top button`);
+    assert.match(pageHtml, /class="mobile-fixed-cta[^"]*"/, `${pageName} should include the shared mobile LINE CTA`);
+    assert.match(pageHtml, /<script src="scripts\/main\.js" defer><\/script>/, `${pageName} should use the shared header behavior script`);
+  }
+
+  assert.match(mainJs, /menuBtn\?\.addEventListener\('click'/);
+  assert.match(mainJs, /setupMobileMenuLinks\(\);/);
+  assert.match(mainJs, /setupHeaderSymptomDropdown\(\);/);
 });
 
 test("patient voice summaries read like direct content summaries", () => {
@@ -1025,7 +1197,7 @@ test("LP Step 3 adds conversion copy, review proof, flyer-style price CTA, and t
   assert.doesNotMatch(hero, /また旅行に行けた。孫と公園を歩けた。/);
   assert.match(price, /「先生に出会えて良かった。」<br>「もっと早く来ていれば良かった」と/);
   assert.match(price, /多くの方から感謝の声を頂いています。まずは一度試してください。/);
-  assert.match(price, /私があなたの膝痛を全力で改善させます！/);
+  assert.match(price, /足腰のつらさを一緒に整理し、動きやすい身体づくりをサポートします。/);
   assert.match(price, /初回限定/);
   assert.match(price, /特別価格/);
   assert.match(price, /痛みの原因を/);
@@ -1064,7 +1236,8 @@ test("LP Step 3 adds conversion copy, review proof, flyer-style price CTA, and t
 
 test("LP exposes a real contact anchor for generated blog CTAs", () => {
   assert.match(html, /id="contact"/, "LP should expose a contact anchor");
-  assert.doesNotMatch(buildBlogScript, /#contact/, "blog templates should not point to a missing contact anchor by accident");
+  assert.match(buildBlogScript, /CONTACT_PATH: "\/#access"/, "blog CTAs should continue to use the access reservation block");
+  assert.match(buildBlogScript, /href="\.\.\/index\.html#contact"/, "generated symptom footers may link to the real LP contact anchor");
 });
 
 test("LP runtime blog preview keeps compact cards and avoids speculative image variants", () => {
@@ -1557,9 +1730,9 @@ test("LP keeps the knee-pain specialty axis and presents the updated three-step 
   );
   const metaDescription = broadenedMetaDescription;
 
-  assert.match(html, /<title>【柏市の膝痛整体】変形性膝関節症・階段の痛みに｜整体院ひざこぞう<\/title>/);
+  assert.match(html, new RegExp(`<title>${escapeRegExp(siteTitle)}<\\/title>`));
   assert.match(html, new RegExp(`<meta name="description" content="${metaDescription}">`));
-  assert.match(html, /【柏市の膝痛整体】変形性膝関節症・階段の痛みに｜整体院ひざこぞう/);
+  assert.match(html, new RegExp(escapeRegExp(siteTitle)));
   assert.match(hero, /痛みに慣れようとしている[\s\S]*自分に、/);
   assert.match(hero, /気づいていますか。/);
   assert.match(hero, /それは慣れたのではなく、諦めているだけかもしれない。/);
@@ -1719,12 +1892,22 @@ test("LP renders Google review slider from provided real review data", () => {
   assert.match(mainJs, /setupGoogleReviewScroller\(\)/);
 });
 
-test("LP FAQ keeps four lightweight reservation questions and links to the detail page", () => {
+test("LP FAQ keeps six lightweight reservation questions and links to the detail page", () => {
   const expectedQuestions = [
     "初回はどのくらい時間がかかりますか？",
     "痛い施術ですか？",
     "病院に通いながらでも大丈夫ですか？",
-    "予約はLINEでできますか？"
+    "どのくらいのペースで通えばいいですか？",
+    "どんな服装で行けばいいですか？",
+    "回数券を無理にすすめられることはありますか？"
+  ];
+  const expectedAnswers = [
+    "初回は約90分を目安に、カウンセリング・状態確認・施術・今後のご説明を行います。お身体の状態を丁寧に確認するため、少し長めにお時間をいただいています。",
+    "強く揉んだり、無理に動かしたりする施術ではありません。状態を確認しながら、安心して受けていただける範囲で進めます。",
+    "はい、大丈夫です。病院での検査や治療を否定せず、併用しながらできることを一緒に考えていきます。",
+    "症状の強さや生活での負担によって変わります。初回で状態を確認したうえで、無理のない通院ペースをご提案します。必要以上に通わせるようなご案内はしません。",
+    "膝や股関節まわりを動かしやすい服装がおすすめです。スカートや硬いジーンズより、ゆとりのあるズボンや動きやすい服装だと確認しやすくなります。",
+    "無理なご提案や押し売りはしません。必要な通院の目安はお伝えしますが、通い方はご本人の希望やご都合を確認しながら決めていきます。"
   ];
   const faqSection = getTopLevelSectionSlice("faq");
 
@@ -1732,12 +1915,22 @@ test("LP FAQ keeps four lightweight reservation questions and links to the detai
     (match) => match[1].trim()
   );
 
-  assert.deepEqual(renderedQuestions, expectedQuestions, "LP FAQ should contain only the four requested questions in order");
-  assert.match(faqSection, /初回は約90分を目安に/);
+  assert.deepEqual(renderedQuestions, expectedQuestions, "LP FAQ should contain the six requested questions in order");
+  for (const answer of expectedAnswers) {
+    assert.match(faqSection, new RegExp(escapeRegExp(answer)));
+  }
   assert.match(faqSection, /その他のよくある質問を見る/);
   assert.match(faqSection, /href="faq\.html"/);
   assert.equal((faqSection.match(/<details\b/g) ?? []).length, 0, "LP FAQ should not use heavy one-question cards");
-  assert.equal((faqSection.match(/<dt>/g) ?? []).length, 4, "LP FAQ should render exactly four lightweight list questions");
+  assert.equal((faqSection.match(/<dt>/g) ?? []).length, 6, "LP FAQ should render exactly six lightweight list questions");
+  assert.equal((faqSection.match(/class="lp-faq-item"/g) ?? []).length, 6, "LP FAQ items should use compact custom spacing");
+  assert.match(mainCss, /#faq dt\s*\{[\s\S]*color:\s*#15803d/);
+  assert.match(mainCss, /#faq dt\s*\{[\s\S]*font-size:\s*1\.12rem/);
+  assert.match(mainCss, /#faq dt span\s*\{[\s\S]*color:\s*#2563eb/);
+  assert.match(mainCss, /#faq dd\s*\{[\s\S]*color:\s*#111827/);
+  assert.match(mainCss, /#faq dd span\s*\{[\s\S]*color:\s*#dc2626/);
+  assert.match(mainCss, /#faq \.lp-faq-item\s*\{[\s\S]*padding:\s*0\.9rem 0/);
+  assert.match(mainCss, /@media \(max-width:\s*640px\)\s*\{[\s\S]*#faq \.lp-faq-item\s*\{[\s\S]*padding:\s*0\.78rem 0/);
 
   const faqSchema = getJsonLdBlocks("FAQPage")[0];
 
@@ -1747,7 +1940,13 @@ test("LP FAQ keeps four lightweight reservation questions and links to the detai
     expectedQuestions,
     "FAQ schema should stay aligned with the rendered FAQ questions"
   );
-  assert.doesNotMatch(faqSection, /変形性膝関節症と言われても受けられますか？|何回くらい通えばいいですか？|どんな服装で行けばいいですか？|健康保険は使えますか？|駐車場はありますか？|予約のキャンセル・変更はできますか？/);
+  assert.deepEqual(
+    faqSchema.mainEntity.map((entry) => entry.acceptedAnswer.text),
+    expectedAnswers,
+    "FAQ schema answers should stay aligned with the rendered FAQ answers"
+  );
+  assert.doesNotMatch(faqSection, /予約はLINEでできますか？|公式LINEからご予約いただけます|変形性膝関節症と言われても受けられますか？|健康保険は使えますか？|駐車場はありますか？|予約のキャンセル・変更はできますか？/);
+  assert.match(html, /LINEからご希望日時を送ってください。空き状況を確認して、こちらから返信いたします。/);
 });
 
 test("LP director profile is compact on mobile and groups personal notes after the career", () => {
@@ -1777,13 +1976,22 @@ test("FAQ and access detail pages exist with SEO, detail links, and LINE reserva
   assert.equal(existsSync(path.join(repoRoot, "access.html")), true, "access.html should exist");
   assert.equal(existsSync(path.join(repoRoot, "symptoms/index.html")), true, "symptoms/index.html should exist");
 
-  assert.match(faqHtml, /<title>よくある質問｜柏市の膝痛専門整体院ひざこぞう<\/title>/);
+    assert.match(faqHtml, /<title>よくある質問｜柏市の足腰専門整体院ひざこぞう<\/title>/);
+    assert.match(faqHtml, /<meta property="og:title" content="よくある質問｜柏市の足腰専門整体院ひざこぞう">/);
+  assert.doesNotMatch(faqHtml, /柏市の膝痛専門整体院/);
   assert.match(faqHtml, /<meta name="description" content="整体院ひざこぞうによくいただくご質問をまとめました。初回の流れ、服装、施術内容、通院回数、料金、予約方法、アクセスについてご確認いただけます。">/);
   assert.match(faqHtml, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/faq\.html">/);
   assert.match(faqHtml, /"@type": "FAQPage"/);
-  for (const category of ["初めての方へ", "施術について", "膝痛・症状について", "通院回数・料金について", "予約・キャンセルについて", "アクセス・設備について"]) {
-    assert.match(faqHtml, new RegExp(escapeRegExp(category)));
-  }
+    for (const category of ["初めての方へ", "施術について", "足腰の痛み・症状について", "通院回数・料金について", "予約・キャンセルについて", "アクセス・設備について"]) {
+      assert.match(faqHtml, new RegExp(escapeRegExp(category)));
+    }
+  assert.doesNotMatch(faqHtml, /膝痛・症状について/);
+  assert.match(faqHtml, /\.faq-card summary\s*\{[\s\S]*font-size:\s*clamp\(1\.16rem,\s*2\.4vw,\s*1\.45rem\)/);
+  assert.match(faqHtml, /\.faq-card summary\s*\{[\s\S]*color:\s*#15803d/);
+  assert.match(faqHtml, /\.faq-card summary b\s*\{[\s\S]*font-size:\s*1\.15em/);
+  assert.match(faqHtml, /\.faq-card summary b\s*\{[\s\S]*color:\s*#2563eb/);
+  assert.match(faqHtml, /\.faq-card summary i\s*\{[\s\S]*color:\s*#15803d/);
+  assert.match(faqHtml, /\.faq-card p\s*\{[\s\S]*color:\s*#111827/);
   for (const movedQuestion of ["健康保険は使えますか？", "駐車場はありますか？", "予約のキャンセル・変更はできますか？", "階段の下りで膝が痛いのはなぜですか？"]) {
     assert.match(faqHtml, new RegExp(escapeRegExp(movedQuestion)));
   }
@@ -1830,25 +2038,26 @@ test("FAQ and access detail pages exist with SEO, detail links, and LINE reserva
   assert.match(accessHtml, /href="tel:0471143274"/);
   assert.match(accessHtml, /<iframe[\s\S]*整体院ひざこぞうへのアクセスマップ/);
 
-  assert.match(symptomsIndexHtml, /<title>その他の慢性症状｜整体院ひざこぞう<\/title>/);
-  assert.match(symptomsIndexHtml, /<h1 id="page-title">その他の慢性症状<\/h1>/);
+  assert.match(symptomsIndexHtml, /<title>足腰の症状別ページ｜整体院ひざこぞう<\/title>/);
+  assert.match(symptomsIndexHtml, /<h1 id="page-title">足腰の症状別ページ<\/h1>/);
   assert.match(symptomsIndexHtml, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/symptoms\/">/);
-  for (const [href, label] of [
-    ["scoliosis.html", "側弯症"],
-    ["frozen-shoulder.html", "五十肩"],
-    ["shoulder-stiffness.html", "肩こり"],
-    ["cervical-spondylosis.html", "頸椎症"],
-    ["thoracic-outlet.html", "胸郭出口症候群"],
-    ["elbow-tendinopathy.html", "肘の痛み（腱症）"],
-    ["plantar-fasciitis.html", "足底筋膜炎"],
-    ["carpal-tunnel.html", "手根管症候群"],
-    ["tmj.html", "顎関節症"]
-  ]) {
-    assert.match(symptomsIndexHtml, new RegExp(`href="${escapeRegExp(href)}"`));
-    assert.match(symptomsIndexHtml, new RegExp(escapeRegExp(label)));
-    assert.equal(existsSync(path.join(repoRoot, "symptoms", href)), true, `${href} should exist`);
-  }
-});
+    for (const [href, label] of [
+      ["lower-back-pain.html", "腰痛"],
+      ["sciatica.html", "坐骨神経痛"],
+      ["spinal-stenosis.html", "脊柱管狭窄症"],
+      ["lumbar-disc-herniation.html", "腰椎椎間板ヘルニア"],
+      ["hip-osteoarthritis.html", "変形性股関節症"],
+      ["plantar-fasciitis.html", "足底筋膜炎"]
+    ]) {
+      assert.match(symptomsIndexHtml, new RegExp(`href="${escapeRegExp(href)}"`));
+      assert.match(symptomsIndexHtml, new RegExp(escapeRegExp(label)));
+      assert.equal(existsSync(path.join(repoRoot, "symptoms", href)), true, `${href} should exist`);
+    }
+    for (const offAxis of ["frozen-shoulder.html", "shoulder-stiffness.html", "tmj.html"]) {
+      assert.doesNotMatch(symptomsIndexHtml, new RegExp(`href="${escapeRegExp(offAxis)}"`));
+      assert.match(readFileSync(path.join(repoRoot, "symptoms", offAxis), "utf8"), /<meta name="robots" content="noindex,follow">/);
+    }
+  });
 
 test("staff profile page uses transplanted chrome and editable staff sections", () => {
   const staffHtml = readPageIfExists("staff.html");
@@ -1878,22 +2087,88 @@ test("staff profile page uses transplanted chrome and editable staff sections", 
     assert.match(staffHtml, new RegExp(escapeRegExp(label)), `staff page should show ${label}`);
   }
 
-  for (const heading of ["代表紹介", "ごあいさつ", "プロフィール"]) {
+  for (const heading of [
+    "代表紹介",
+    "ごあいさつ",
+    "院名「ひざこぞう」に込めた想い",
+    "私が足腰の施術を大切にしている理由",
+    "これまでの歩み・経歴",
+    "施術で大切にしていること",
+    "初めての方へ",
+    "プロフィール",
+    "ご予約・ご相談"
+  ]) {
     assert.match(staffHtml, new RegExp(escapeRegExp(heading)), `staff page should include ${heading}`);
   }
   assert.doesNotMatch(staffHtml, /メディア実績や取り組みなど/);
   assert.doesNotMatch(staffHtml, /staff-note-grid|staff-note-card/);
+  assert.doesNotMatch(staffHtml, /staff-profile__|staff-quote-list|staff-photo--portrait|staff-profile-simple__inner|staff-profile-simple__photo/);
 
-  for (const label of ["業歴", "取得資格", "施術メニュー", "趣味・特技", "得意なアドバイス内容", "健康のために行っていること"]) {
-    assert.match(staffHtml, new RegExp(`<dt>${escapeRegExp(label)}<\\/dt>`), `staff page should include profile row ${label}`);
+  for (const phrase of [
+    "整体院ひざこぞうで施術を担当している、川上卓哉です。",
+    "どんな人が施術するのか",
+    "子どもの頃の“ひざこぞう”",
+    "膝・腰・股関節・足首",
+    "腰痛や坐骨神経痛",
+    "学生時代にサッカーで膝を痛め",
+    "20歳の頃にはクローン病",
+    "優しく、わかりやすく、無理に押しつけない",
+    "この痛みとずっと付き合うしかない"
+  ]) {
+    assert.match(staffHtml, new RegExp(escapeRegExp(phrase)), `staff page should include human copy: ${phrase}`);
   }
 
+  const greetingIndex = staffHtml.indexOf('id="staff-greeting-title"');
+  const profileIndex = staffHtml.indexOf('class="staff-profile-simple staff-section"');
+  const nameOriginIndex = staffHtml.indexOf('id="staff-name-title"');
+  assert.ok(greetingIndex !== -1 && profileIndex !== -1 && nameOriginIndex !== -1);
+  assert.ok(greetingIndex < profileIndex, "staff simple profile should follow the greeting section");
+  assert.ok(profileIndex < nameOriginIndex, "staff simple profile should appear before the name-origin section");
+
+  for (const label of ["名前：", "出身：", "資格・修了：", "施術歴：", "大切にしていること：", "好きなこと：", "得意なアドバイス内容：", "健康習慣："]) {
+    assert.match(staffHtml, new RegExp(`<dt>${escapeRegExp(label)}<\\/dt>`), `staff page should include profile row ${label}`);
+  }
+  assert.match(staffHtml, /<section class="staff-profile-simple staff-section" aria-labelledby="staff-profile-title">/);
+  assert.match(staffHtml, /class="staff-profile-layout"/);
+  assert.match(staffHtml, /class="staff-profile-photo"/);
+  assert.match(staffHtml, /class="staff-profile-list"/);
+  assert.match(staffHtml, /class="staff-profile-row"/);
+  assert.match(staffHtml, /src="image\/director-kawakami-profile-768\.webp"/);
+  assert.match(staffHtml, /<dd>柔道整復師（国家資格）／MSMメソッド修了<\/dd>/);
+  assert.match(staffHtml, /<dd>サッカー観戦、映画鑑賞、水族館、動物園<br>自然がいっぱいあるところに行くこと<\/dd>/);
+  assert.match(staffHtml, /<dd>日常生活の中から原因を見つけること。<br>動きの癖を見つけ、痛みの大元を見つけること。<br>その方に合ったセルフケアを見つけること。<\/dd>/);
+  assert.match(staffHtml, /<dd>自炊で栄養管理をすること。<br>定期的に温泉に入り、心も体もリフレッシュすること。<br>1〜2リットルの水を飲むこと。<br>普段、患者様にお伝えしているセルフケアを自分でも行っています。そのため調子がいいです（笑）<\/dd>/);
+  assert.doesNotMatch(staffHtml, /<dt>対応症状：?<\/dt>|<dt>施術方針：?<\/dt>/);
+  const profileSection = staffHtml.slice(profileIndex, nameOriginIndex);
+  assert.doesNotMatch(profileSection, /対応症状|施術方針/);
+  const profileCssBlocks = [...staffHtml.matchAll(/\.(?:staff-profile-simple|staff-profile-layout|staff-profile-photo|staff-profile-list|staff-profile-row)[^{]*\{[^}]*\}/g)].map((match) => match[0]).join("\n");
+  assert.match(profileCssBlocks, /\.staff-profile-simple \{/);
+  assert.match(profileCssBlocks, /\.staff-profile-layout \{[\s\S]*grid-template-columns: minmax\(180px, 240px\) 1fr/);
+  assert.match(profileCssBlocks, /\.staff-profile-row \{[\s\S]*border-bottom: 1px solid rgba\(47, 79, 63, 0\.16\)/);
+  assert.match(profileCssBlocks, /\.staff-profile-row dt \{[\s\S]*color: #0f6b4b/);
+  assert.doesNotMatch(profileSection, /健康に気をつけていること/);
+  assert.doesNotMatch(profileSection, /box-shadow|border-radius/);
+  assert.doesNotMatch(profileCssBlocks, /box-shadow\s*:/);
+  assert.doesNotMatch(profileCssBlocks, /border-radius\s*:/);
+
+  for (const concern of ["階段を降りるのが怖い。", "歩き始めに痛む。", "買い物や旅行に行くのが不安。", "正座やしゃがむ動作がつらい。"]) {
+    assert.match(staffHtml, new RegExp(`<p>${escapeRegExp(concern)}<\\/p>`), `concern should be plain paragraph: ${concern}`);
+    assert.doesNotMatch(staffHtml, new RegExp(`<[^>]+class="[^"]*staff-text-(?:marker|red|underline)[^"]*"[^>]*>${escapeRegExp(concern)}`));
+  }
+
+  for (const emphasized of ["痛む場所だけを見て終わりにしない", "足腰の不調は、生活の自由さに関わる", "もう一度、安心して歩ける身体へ", "優しく、わかりやすく、無理に押しつけない", "痛みが戻りにくい身体づくり"]) {
+    assert.match(staffHtml, new RegExp(`<span class="staff-text-(?:marker|red|underline)">${escapeRegExp(emphasized)}<\\/span>`));
+  }
+
+  assert.match(staffHtml, /href="https:\/\/lin\.ee\/X01F2mP"[\s\S]*LINEで相談・予約する/);
+  assert.match(staffHtml, /href="tel:0471143274"[\s\S]*電話で相談する/);
   assert.match(staffHtml, /<!-- 編集: ごあいさつ本文。段落を増減しても大丈夫です。 -->/);
   assert.match(staffHtml, /<!-- 編集: プロフィール項目。dtが項目名、ddが内容です。 -->/);
+  assert.match(staffHtml, /<!-- 編集: CTA前の締め文。予約前に背中を押す文章です。 -->/);
   assert.match(staffHtml, /src="image\/staff-greeting-treatment\.jpeg"/);
-  assert.match(staffHtml, /src="image\/director-kawakami-profile-768\.webp"/);
   assert.equal(existsSync(path.join(repoRoot, "image", "staff-greeting-treatment.jpeg")), true);
   assert.equal(existsSync(path.join(repoRoot, "image", "director-kawakami-profile-768.webp")), true);
+  assert.doesNotMatch(staffHtml, /必ず治る|治る|完治|改善率が高い|必ず改善/);
 });
 
 test("Navigation exposes FAQ and access detail pages without replacing reservation anchors", () => {

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>代表紹介｜整体院ひざこぞう</title>
-  <meta name="description" content="整体院ひざこぞう代表・川上卓哉のごあいさつ、プロフィール、資格をご紹介します。柏市で足腰の痛みや慢性症状に向き合う整体院です。">
+  <meta name="description" content="整体院ひざこぞう代表・川上卓哉の想い、院名の由来、足腰の施術を大切にしている理由、プロフィールをご紹介します。柏市で膝・腰・股関節など足腰の悩みに向き合う整体院です。">
   <link rel="canonical" href="https://hizakozou.jp/staff.html">
   <meta name="robots" content="max-image-preview:large">
 
@@ -17,14 +17,14 @@
   <meta property="og:url" content="https://hizakozou.jp/staff.html">
   <meta property="og:type" content="profile">
   <meta property="og:title" content="代表紹介｜整体院ひざこぞう">
-  <meta property="og:description" content="整体院ひざこぞう代表・川上卓哉のごあいさつ、プロフィール、資格をご紹介します。">
+  <meta property="og:description" content="整体院ひざこぞう代表・川上卓哉の想い、院名の由来、足腰の施術を大切にしている理由、プロフィールをご紹介します。">
   <meta property="og:site_name" content="整体院ひざこぞう">
   <meta property="og:image" content="https://hizakozou.jp/image/director-kawakami-profile.webp">
   <meta property="og:image:alt" content="整体院ひざこぞう 代表 川上卓哉">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="代表紹介｜整体院ひざこぞう">
-  <meta name="twitter:description" content="整体院ひざこぞう代表・川上卓哉のごあいさつ、プロフィール、資格をご紹介します。">
+  <meta name="twitter:description" content="整体院ひざこぞう代表・川上卓哉の想い、院名の由来、足腰の施術を大切にしている理由、プロフィールをご紹介します。">
   <meta name="twitter:image" content="https://hizakozou.jp/image/director-kawakami-profile.webp">
 
   <script type="application/ld+json">
@@ -139,12 +139,8 @@
       height: auto;
     }
 
-    .staff-photo--portrait {
-      max-width: 300px;
-      margin: 0 auto;
-    }
-
     .staff-text {
+      max-width: 760px;
       color: #324940;
       font-size: 1rem;
       font-weight: 700;
@@ -159,55 +155,188 @@
       margin-top: 1.15rem;
     }
 
-    .staff-profile {
-      display: grid;
-      grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
-      gap: 34px;
-      align-items: start;
-    }
-
-    .staff-profile__name {
-      margin: 18px 0 0;
+    .staff-text h3 {
+      margin: 2rem 0 0.7rem;
       color: #123f31;
-      font-size: 1.45rem;
+      font-size: 1.18rem;
       font-weight: 900;
+      line-height: 1.5;
+    }
+
+    .staff-care-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .staff-care-item {
+      padding: 20px;
+      border: 1px solid #dce8e1;
+      border-radius: 10px;
+      background: #fbfdfb;
+    }
+
+    .staff-care-item h3 {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      margin: 0 0 10px;
+      color: #123f31;
+      font-size: 1.12rem;
+      font-weight: 900;
+    }
+
+    .staff-care-item h3 span {
+      color: #1f5f4a;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+    }
+
+    .staff-care-item p {
+      margin: 0;
+      color: #324940;
+      font-weight: 700;
+      line-height: 1.9;
+    }
+
+    .staff-care-item p + p {
+      margin-top: 0.75rem;
+    }
+
+    .staff-cta-box {
+      padding: clamp(24px, 4vw, 36px);
+      border: 1px solid #d9eadf;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #f4faf5 0%, #fff 55%, #eef7ef 100%);
       text-align: center;
     }
 
-    .staff-profile__role {
-      margin: 6px 0 0;
-      color: #5f776c;
-      font-size: 0.94rem;
-      font-weight: 800;
-      text-align: center;
+    .staff-cta-box .staff-text {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .staff-cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .staff-cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: min(100%, 260px);
+      min-height: 54px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 900;
+      line-height: 1.2;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .staff-cta-button:hover,
+    .staff-cta-button:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(31, 95, 74, 0.16);
+      outline: none;
+    }
+
+    .staff-cta-button--line {
+      background: #06c755;
+      color: #fff;
+    }
+
+    .staff-cta-button--phone {
+      border: 1px solid #bfd9cb;
+      background: #fff;
+      color: #1f5f4a;
+    }
+
+    .staff-profile-simple {
+      margin-top: 56px;
+      padding-top: 8px;
+    }
+
+    .staff-profile-simple h2 {
+      margin: 0;
+      color: #123f31;
+      font-size: 1.35rem;
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    .staff-profile-layout {
+      display: grid;
+      grid-template-columns: minmax(180px, 240px) 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-top: 24px;
+    }
+
+    .staff-profile-photo {
+      margin: 0;
+    }
+
+    .staff-profile-photo img {
+      display: block;
+      width: 100%;
+      max-width: 240px;
+      height: auto;
     }
 
     .staff-profile-list {
       display: grid;
-      gap: 12px;
       margin: 0;
     }
 
     .staff-profile-row {
       display: grid;
-      grid-template-columns: 11rem minmax(0, 1fr);
-      gap: 16px;
-      padding: 16px 0;
-      border-bottom: 1px solid #e5eee9;
+      grid-template-columns: 180px 1fr;
+      gap: 8px;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(47, 79, 63, 0.16);
+    }
+
+    .staff-profile-row:first-child {
+      border-top: 1px solid rgba(47, 79, 63, 0.16);
     }
 
     .staff-profile-row dt {
-      color: #1f5f4a;
-      font-size: 0.95rem;
+      margin: 0;
+      color: #0f6b4b;
       font-weight: 900;
+      line-height: 1.9;
+      white-space: nowrap;
     }
 
     .staff-profile-row dd {
       margin: 0;
-      color: #324940;
-      font-size: 0.98rem;
+      color: #1f332b;
       font-weight: 700;
-      line-height: 1.8;
+      line-height: 1.9;
+    }
+
+    .staff-text-marker {
+      background: linear-gradient(transparent 62%, rgba(255, 214, 125, 0.55) 62%);
+      font-weight: 700;
+    }
+
+    .staff-text-red {
+      color: #b9483c;
+      font-weight: 700;
+    }
+
+    .staff-text-underline {
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-thickness: 0.12em;
+      text-underline-offset: 0.18em;
     }
 
     @media (max-width: 760px) {
@@ -225,15 +354,28 @@
         padding: 13px 16px;
       }
 
-      .staff-greeting,
-      .staff-profile {
+      .staff-greeting {
         grid-template-columns: 1fr;
+      }
+
+      .staff-profile-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .staff-profile-photo img {
+        max-width: 220px;
+        margin: 0 auto;
       }
 
       .staff-profile-row {
         grid-template-columns: 1fr;
-        gap: 6px;
+        gap: 2px;
         padding: 14px 0;
+      }
+
+      .staff-profile-row dt {
+        white-space: normal;
       }
     }
   </style>
@@ -383,8 +525,12 @@
     <section class="staff-hero" aria-labelledby="staff-title">
       <div class="staff-hero__inner">
         <h1 id="staff-title" class="staff-hero__title">代表紹介</h1>
-        <!-- 編集: ページ冒頭のリード文。代表紹介ページ全体の短い説明に差し替えてください。 -->
-        <p class="staff-hero__lead">整体院ひざこぞうで施術を担当する代表の想いと、これまでの歩みをご紹介します。</p>
+        <!-- 編集: 代表紹介ページのリード文。初めて読む方に向けた導入文です。 -->
+        <div class="staff-hero__lead">
+          <p>整体院ひざこぞうで施術を担当している、川上卓哉です。</p>
+          <p>このページでは、私がどのような想いで整体院ひざこぞうを始めたのか、なぜ膝や腰など足腰の不調に向き合っているのかをお伝えします。</p>
+          <p>技術や資格だけではなく、「どんな人が施術するのか」は、初めて来院される方にとってとても大切だと思っています。少し長くなりますが、私の考え方や人柄が少しでも伝われば嬉しいです。</p>
+        </div>
       </div>
     </section>
 
@@ -397,50 +543,172 @@
         <div class="staff-text">
           <!-- 編集: ごあいさつ本文。段落を増減しても大丈夫です。 -->
           <p>はじめまして。整体院ひざこぞう代表の川上卓哉です。</p>
-          <p>当院では、膝や腰などの痛みで日常生活に不安を感じている方が、もう一度ご自身の体に前向きになれるよう、丁寧なカウンセリングと状態確認を大切にしています。</p>
-          <p>痛む場所だけを見るのではなく、姿勢・動き方・筋肉の働き方まで確認し、その方に合った施術とセルフケアをご提案します。どんな小さなお悩みでも、安心してご相談ください。</p>
+          <p>私はこれまで、接骨院・整骨院・整体院で、外傷から慢性的な痛みまで幅広く施術に携わってきました。</p>
+          <p>その中で強く感じてきたのは、膝や腰、股関節などの足腰の不調は、単に「痛い場所だけ」を見ても良くなりにくいということです。</p>
+          <p>膝が痛い方でも、原因をたどると股関節や足首、姿勢、歩き方、筋肉の使い方が関係していることがあります。腰痛や坐骨神経痛でも、同じように体全体の使い方が関係していることがあります。</p>
+          <p>だから当院では、<span class="staff-text-underline">痛む場所だけを見て終わりにしない</span>ことを大切にしています。「なぜそこに負担がかかっているのか」「どうすれば日常生活で痛みが戻りにくくなるのか」を一緒に整理していきます。</p>
+          <p>初めての場所に相談するのは、不安もあると思います。だからこそ、強引な施術や無理な提案はせず、まずは今のお身体の状態をわかりやすくお伝えすることを大切にしています。</p>
         </div>
       </div>
     </section>
 
-    <section class="staff-section" aria-labelledby="staff-profile-title">
-      <h2 id="staff-profile-title" class="staff-heading-band">プロフィール</h2>
-      <div class="staff-profile">
-        <div>
-          <figure class="staff-photo staff-photo--portrait">
-            <img src="image/director-kawakami-profile-768.webp" srcset="image/director-kawakami-profile-480.webp 480w, image/director-kawakami-profile-768.webp 768w, image/director-kawakami-profile.webp 1200w" sizes="(max-width: 760px) 240px, 260px" alt="整体院ひざこぞう 代表 川上卓哉の顔写真" loading="lazy" decoding="async" width="768" height="1024">
-          </figure>
-          <!-- 編集: 氏名・肩書き。 -->
-          <p class="staff-profile__name">川上 卓哉</p>
-          <p class="staff-profile__role">整体院ひざこぞう 代表</p>
+    <section class="staff-profile-simple staff-section" aria-labelledby="staff-profile-title">
+      <h2 id="staff-profile-title">プロフィール</h2>
+      <div class="staff-profile-layout">
+        <div class="staff-profile-photo">
+          <img src="image/director-kawakami-profile-768.webp" srcset="image/director-kawakami-profile-480.webp 480w, image/director-kawakami-profile-768.webp 768w, image/director-kawakami-profile.webp 1200w" sizes="(max-width: 760px) 220px, 240px" alt="整体院ひざこぞう 代表 川上卓哉の顔写真" loading="lazy" decoding="async" width="768" height="1024">
         </div>
         <dl class="staff-profile-list">
           <!-- 編集: プロフィール項目。dtが項目名、ddが内容です。 -->
           <div class="staff-profile-row">
-            <dt>業歴</dt>
-            <dd>施術歴14年。接骨院・整骨院・整体院で外傷から慢性痛まで幅広く対応してきました。</dd>
+            <dt>名前：</dt>
+            <dd>川上 卓哉</dd>
           </div>
           <div class="staff-profile-row">
-            <dt>取得資格</dt>
+            <dt>出身：</dt>
+            <dd>千葉県松戸市</dd>
+          </div>
+          <div class="staff-profile-row">
+            <dt>資格・修了：</dt>
             <dd>柔道整復師（国家資格）／MSMメソッド修了</dd>
           </div>
           <div class="staff-profile-row">
-            <dt>施術メニュー</dt>
-            <dd>慢性痛整体、膝痛整体、腰痛・坐骨神経痛の整体、姿勢・動作の見直し、セルフケア指導</dd>
+            <dt>施術歴：</dt>
+            <dd>14年</dd>
           </div>
           <div class="staff-profile-row">
-            <dt>趣味・特技</dt>
-            <dd>サッカー観戦、温泉、料理。体の使い方を分かりやすく説明すること。</dd>
+            <dt>大切にしていること：</dt>
+            <dd>優しく、わかりやすく、無理に押しつけないこと</dd>
           </div>
           <div class="staff-profile-row">
-            <dt>得意なアドバイス内容</dt>
-            <dd>歩き方、階段動作、日常生活で膝や腰に負担をかけにくい体の使い方。</dd>
+            <dt>好きなこと：</dt>
+            <dd>サッカー観戦、映画鑑賞、水族館、動物園<br>自然がいっぱいあるところに行くこと</dd>
           </div>
           <div class="staff-profile-row">
-            <dt>健康のために行っていること</dt>
-            <dd>食事と睡眠のリズムを整えること、無理なく続けられる運動、体調に合わせた休息。</dd>
+            <dt>得意なアドバイス内容：</dt>
+            <dd>日常生活の中から原因を見つけること。<br>動きの癖を見つけ、痛みの大元を見つけること。<br>その方に合ったセルフケアを見つけること。</dd>
+          </div>
+          <div class="staff-profile-row">
+            <dt>健康習慣：</dt>
+            <dd>自炊で栄養管理をすること。<br>定期的に温泉に入り、心も体もリフレッシュすること。<br>1〜2リットルの水を飲むこと。<br>普段、患者様にお伝えしているセルフケアを自分でも行っています。そのため調子がいいです（笑）</dd>
           </div>
         </dl>
+      </div>
+    </section>
+
+    <section class="staff-section" aria-labelledby="staff-name-title">
+      <h2 id="staff-name-title" class="staff-heading-band">院名「ひざこぞう」に込めた想い</h2>
+      <div class="staff-text">
+        <!-- 編集: 院名の由来。クリニック名に込めた想いを伝えるセクションです。 -->
+        <p>「ひざこぞう」という名前には、2つの想いを込めています。</p>
+        <h3>足腰の不調にしっかり向き合いたい</h3>
+        <p>1つ目は、私自身が膝を含めた足腰の施術に力を入れてきたことです。</p>
+        <p>これまで多くの方のお身体を見てきた中で、膝・腰・股関節・足首など、<span class="staff-text-marker">足腰の不調は、生活の自由さに関わる</span>と感じてきました。</p>
+        <p>階段を降りるのが怖い。</p>
+        <p>歩き始めに痛む。</p>
+        <p>買い物や旅行に行くのが不安。</p>
+        <p>正座やしゃがむ動作がつらい。</p>
+        <p>こうした悩みは、単なる痛みではなく、その方の生活そのものに影響します。</p>
+        <p>だからこそ、足腰の不調にしっかり向き合いたいと思いました。</p>
+        <h3>もう一度、わんぱくに動ける身体を目指してほしい</h3>
+        <p>2つ目は、「もう一度、わんぱくに動ける身体を取り戻してほしい」という想いです。</p>
+        <p>子どもの頃の“ひざこぞう”は、転んだり、走ったり、遊んだり、夢中で動いていた象徴のようなものだと思っています。</p>
+        <p>もちろん大人になれば、若い頃とまったく同じように動く必要はありません。</p>
+        <p>それでも、<span class="staff-text-marker">もう一度、安心して歩ける身体へ</span>向かっていきたい。</p>
+        <p>「また歩くのが楽しくなった」「外に出るのが怖くなくなった」「自分の足で動ける自信が戻ってきた」そう感じていただける方を増やしたい。</p>
+        <p>そんな想いから、整体院ひざこぞうという名前にしました。</p>
+      </div>
+    </section>
+
+    <section class="staff-section" aria-labelledby="staff-leg-title">
+      <h2 id="staff-leg-title" class="staff-heading-band">私が足腰の施術を大切にしている理由</h2>
+      <div class="staff-text">
+        <!-- 編集: 足腰の施術を大切にしている理由。膝だけでなく腰・股関節・坐骨神経痛にも触れています。 -->
+        <p>足腰の痛みは、生活の質に直結します。</p>
+        <p>膝が痛いと階段が不安になります。</p>
+        <p>腰が痛いと長く歩くことがつらくなります。</p>
+        <p>股関節や坐骨神経痛のような症状があると、外出そのものが億劫になることもあります。</p>
+        <p>痛みが長引くと、いつの間にか行動範囲が狭くなり、「本当は行きたいけど、やめておこう」「痛くなるかもしれないから、無理しないでおこう」と、やりたいことを我慢する場面が増えてしまいます。</p>
+        <p>私は、そういう方を見るたびに、ただ痛みを一時的に楽にするだけでは不十分だと感じてきました。</p>
+        <p>大切なのは、痛みの出にくい身体の使い方を身につけ、日常生活の中で安心して動ける状態を目指すことです。</p>
+        <p>当院では、MSMメソッドをもとに、硬くなった関節や筋肉を整えること、眠っている筋肉を使えるようにすること、歩き方や立ち方など日常の動作を見直すことを組み合わせながら、</p>
+        <p><span class="staff-text-underline">痛みが戻りにくい身体づくり</span>を目指します。</p>
+      </div>
+    </section>
+
+    <section class="staff-section" aria-labelledby="staff-history-title">
+      <h2 id="staff-history-title" class="staff-heading-band">これまでの歩み・経歴</h2>
+      <div class="staff-text">
+        <!-- 編集: 経歴と代表自身の経験。年表ではなく読み物として編集しやすい形にしています。 -->
+        <p>私は柔道整復師の国家資格を取得後、接骨院・整骨院・整体院で経験を積んできました。</p>
+        <p>接骨院では、骨折・脱臼・捻挫・打撲・挫傷など、急性のケガに多く関わりました。</p>
+        <p>整骨院では、エコー検査なども含めて、身体の状態を確認しながら施術する経験を積みました。</p>
+        <p>その後、整体院では慢性的な痛みや、長く続く不調に悩む方を多く担当してきました。</p>
+        <p>その中で感じたのは、慢性的な痛みほど「その場だけ楽にする」だけでは足りないということです。</p>
+        <p>施術直後は楽になっても、普段の姿勢や歩き方、筋肉の使い方が変わらなければ、また同じところに負担がかかってしまいます。</p>
+        <p>だから私は、施術だけでなく、状態説明・セルフケア・動作指導まで含めて、その方の生活に合った形でサポートすることを大切にしています。</p>
+        <h3>自分自身の経験から感じていること</h3>
+        <p>私自身も、学生時代にサッカーで膝を痛め、思うように動けない時期がありました。</p>
+        <p>好きなことができない。歩くのもつらい。周りと同じように動けない。</p>
+        <p>そういう経験があるからこそ、膝や足腰の痛みで不安を感じている方の気持ちは、少しはわかるつもりです。</p>
+        <p>また、20歳の頃にはクローン病を経験し、入退院を繰り返した時期もありました。</p>
+        <p>その経験から、健康は当たり前ではないこと、身体の不調が日常生活や気持ちにまで影響することを強く実感しました。</p>
+        <p>だからこそ私は、ただ症状を見るのではなく、その方の生活背景や不安にも目を向けたいと思っています。</p>
+      </div>
+    </section>
+
+    <section class="staff-section" aria-labelledby="staff-care-title">
+      <h2 id="staff-care-title" class="staff-heading-band">施術で大切にしていること</h2>
+      <div class="staff-care-list">
+        <!-- 編集: 施術で大切にしている3つの方針。順番や文章は自由に変更できます。 -->
+        <article class="staff-care-item">
+          <h3><span>1.</span>まず話をしっかり聞くこと</h3>
+          <p>いつから痛いのか、どんな動きでつらいのか、何ができなくて困っているのか、病院では何と言われたのか。</p>
+          <p>痛みの背景は人それぞれです。同じ膝痛でも、原因や生活で困っていることは違います。</p>
+          <p>だから、最初のカウンセリングを大切にしています。</p>
+        </article>
+        <article class="staff-care-item">
+          <h3><span>2.</span>できるだけわかりやすく説明すること</h3>
+          <p>専門用語ばかりで説明されても、不安は解消されません。</p>
+          <p>当院では、今の身体がどうなっているのか、なぜ痛みが出やすいのか、これから何を目指すのかを、できるだけわかりやすい言葉でお伝えします。</p>
+        </article>
+        <article class="staff-care-item">
+          <h3><span>3.</span>無理に押しつけないこと</h3>
+          <p>強い刺激が苦手な方もいます。運動が苦手な方もいます。通院ペースや生活環境も人それぞれです。</p>
+          <p>だから当院では、<span class="staff-text-red">優しく、わかりやすく、無理に押しつけない</span>姿勢を大切にしています。</p>
+          <p>その方の状態に合わせて、できることから一緒に進めていきます。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="staff-section" aria-labelledby="staff-first-title">
+      <h2 id="staff-first-title" class="staff-heading-band">初めての方へ</h2>
+      <div class="staff-text">
+        <!-- 編集: 初めて来院する方への安心材料。予約前の不安をやわらげる文章です。 -->
+        <p>初めて整体院に来るときは、不安があって当然です。</p>
+        <p>「本当に相談していい症状なのかな」「強い施術をされないかな」「通わないといけないと言われるのかな」</p>
+        <p>そう思う方もいると思います。</p>
+        <p>当院では、まずお身体の状態を確認し、今どのような負担がかかっているのかを説明します。</p>
+        <p>そのうえで、必要な施術やセルフケアをご提案します。納得できないまま進めることはありません。</p>
+        <p>膝、腰、股関節、坐骨神経痛など、足腰の痛みや不安でお悩みの方は、まずは一度ご相談ください。</p>
+        <p>あなたがもう一度、自分の身体に前向きになれるように、丁寧にサポートします。</p>
+      </div>
+    </section>
+
+    <section class="staff-section" aria-labelledby="staff-cta-title">
+      <h2 id="staff-cta-title" class="staff-heading-band">ご予約・ご相談</h2>
+      <div class="staff-cta-box">
+        <div class="staff-text">
+          <!-- 編集: CTA前の締め文。予約前に背中を押す文章です。 -->
+          <p>痛みがある生活に慣れてしまうと、少しずつ行動範囲が狭くなってしまいます。</p>
+          <p>でも、身体の状態を整理し、正しい順番で向き合っていけば、まだできることはあります。</p>
+          <p>「この痛みとずっと付き合うしかない」と諦める前に、一度ご相談ください。</p>
+          <p>整体院ひざこぞうは、あなたがもう一度安心して歩き、動ける毎日を目指してサポートします。</p>
+        </div>
+        <div class="staff-cta-buttons">
+          <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="staff-cta-button staff-cta-button--line">LINEで相談・予約する</a>
+          <a href="tel:0471143274" class="staff-cta-button staff-cta-button--phone">電話で相談する</a>
+        </div>
       </div>
     </section>
 
@@ -460,9 +728,9 @@
         </a>
 
         <address class="hk-footer-info">
-          <strong>膝痛専門整体院 ひざこぞう</strong>
+          <strong>柏市の足腰専門整体院 整体院ひざこぞう</strong>
           <span>千葉県柏市あけぼの4-4-3 BoaSorte柏 305</span>
-          <span>千葉県柏市｜膝痛・慢性痛専門</span>
+          <span>千葉県柏市｜腰痛・坐骨神経痛・股関節痛・膝痛など足腰の慢性痛相談</span>
           <span>完全予約制／受付時間：9:00〜19:00／定休日：日曜</span>
           <a href="tel:0471143274">TEL：04-7114-3274</a>
         </address>
@@ -483,7 +751,7 @@
 
       <div class="hk-footer-symptoms">
         <p class="hk-footer-symptoms-label">対応している主な症状</p>
-        <p>膝の痛み／変形性膝関節症／O脚／膝の水／半月板の不安／膝の引っかかり／腰痛／肩こり／首の痛み</p>
+        <p>腰痛／ぎっくり腰／坐骨神経痛／脊柱管狭窄症／椎間板ヘルニア／股関節痛／変形性股関節症／膝の痛み／変形性膝関節症／足首・足裏の不調</p>
       </div>
 
       <p class="hk-footer-review">
