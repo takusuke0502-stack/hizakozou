@@ -171,27 +171,42 @@ test("LP removes the long-knee-pain accordion guide block", () => {
   assert.doesNotMatch(html, /「動くとまた痛いかも」という不安も積み重なる/);
 });
 
-test("LP troubles section speaks to foot, low-back, hip pain and numbness without changing CTAs", () => {
-  const troubles = getTopLevelSectionSlice("troubles");
+test("LP troubles section uses a compact checklist without changing CTAs", () => {
+  const troubles = getSectionSlice('id="troubles"', 'class="voice-trust"');
 
   for (const concern of [
-    "朝起きると腰が重く、すぐに動き出せない",
-    "長く座っていると腰やお尻がつらくなる",
-    "歩いていると足にしびれが出て、休みたくなる",
-    "階段の上り下りが不安になってきた",
-    "股関節や足の付け根がつまって歩きづらい",
-    "病院では「年齢のせい」「様子を見ましょう」と言われた",
-    "薬や湿布だけでは、"
+    "こんなお悩みを抱えていませんか？",
+    "長い間、",
+    "慢性的な腰痛",
+    "歩き始めや長く歩くと",
+    "足腰がつらい",
+    "膝や股関節が痛い",
+    "目が覚める",
+    "とても憂鬱",
+    "満足できなかった",
+    "薬やブロック注射",
+    "慢性痛",
+    "諦めている"
   ]) {
     assert.match(troubles, new RegExp(escapeRegExp(concern)));
   }
 
-  assert.match(troubles, /この先が不安/);
-  assert.match(troubles, /alt="足腰の痛みやしびれに悩む方"/);
+  assert.match(troubles, /class="troubles-check__heading"/);
+  assert.match(troubles, /class="troubles-check__list"/);
+  assert.equal((troubles.match(/<li>/g) || []).length, 8);
+  assert.equal((troubles.match(/<strong>/g) || []).length, 9);
+  assert.doesNotMatch(troubles, /<img\b/);
+  assert.doesNotMatch(troubles, /alt="足腰の痛みやしびれに悩む方"/);
   assert.doesNotMatch(troubles, /歩き始めや立ち上がりで、膝にズキッとした痛みが出る/);
   assert.doesNotMatch(troubles, /膝をかばって歩いているうちに/);
   assert.doesNotMatch(troubles, /正座やしゃがむ動作がしづらく/);
   assert.doesNotMatch(troubles, /LINEで|電話で|無料相談|予約/);
+  assert.match(mainCss, /\.troubles-check__heading\s*{[\s\S]*background:\s*linear-gradient\(180deg,\s*#eeeeee 0%,\s*#e4e4e4 100%\);/);
+  assert.match(mainCss, /\.troubles-check__heading::after\s*{[\s\S]*border-top:\s*18px solid #e4e4e4;/);
+  assert.match(mainCss, /\.troubles-check__list\s*{[\s\S]*background:\s*#fff;/);
+  assert.match(mainCss, /\.troubles-check__list li::before\s*{[\s\S]*border:\s*2px solid #222;/);
+  assert.match(mainCss, /\.troubles-check__list li::after\s*{[\s\S]*border-left:\s*4px solid #e3342f;[\s\S]*border-bottom:\s*4px solid #e3342f;/);
+  assert.match(mainCss, /\.troubles-check__list strong\s*{[\s\S]*color:\s*#c53632;[\s\S]*font-weight:\s*900;/);
 });
 
 test("LP adds a diagram-backed three-reason block before the MSM method", () => {
