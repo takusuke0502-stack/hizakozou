@@ -1947,6 +1947,43 @@ test("symptom pages replace the visual guide cards with the top-page flow slider
   assert.match(headerJs, /setupFlowSlider\(\);/);
 });
 
+test("symptom pages reuse the top-page static FAQ design", () => {
+  const symptomDir = path.join(repoRoot, "symptoms");
+  const symptomPages = readdirSync(symptomDir).filter((name) => name.endsWith(".html") && name !== "index.html");
+  const pagesWithFaq = [];
+
+  for (const fileName of symptomPages) {
+    const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
+    assert.match(symptomHtml, /<link rel="stylesheet" href="site-faq\.css">/, `${fileName} should include copied top-page FAQ styles`);
+
+    const faqStart = symptomHtml.indexOf('<section class="faq" id="faq">');
+    assert.ok(faqStart > -1, `${fileName} should include the FAQ section`);
+    const faqEnd = symptomHtml.indexOf("</section>", faqStart);
+    const faqBlock = symptomHtml.slice(faqStart, faqEnd + "</section>".length);
+    pagesWithFaq.push(fileName);
+
+    assert.match(faqBlock, /<h2 class="section-title">&#12424;&#12367;&#12354;&#12427;&#36074;&#21839;<\/h2>/, `${fileName} should use the top FAQ heading`);
+    assert.match(faqBlock, /<p class="faq__lead">&#20104;&#32004;&#21069;/, `${fileName} should include the top FAQ lead`);
+    assert.match(faqBlock, /<dl class="lp-faq-list">/, `${fileName} should use the top static FAQ list`);
+    assert.match(faqBlock, /<div class="lp-faq-item">/, `${fileName} should render compact FAQ items`);
+    assert.match(faqBlock, /<dt>\s*<span>Q\.<\/span>/, `${fileName} should render Q labels like the top page`);
+    assert.match(faqBlock, /<dd>\s*<span>A\.<\/span>/, `${fileName} should render A labels like the top page`);
+    assert.match(faqBlock, /href="\.\.\/faq\.html" class="faq__more-link"/, `${fileName} should link to the shared FAQ detail page`);
+    assert.doesNotMatch(faqBlock, /<details|<summary|faq__q-text|faq__a-text|chevron/, `${fileName} should remove the old accordion FAQ markup`);
+  }
+
+  assert.equal(pagesWithFaq.length, 24, "all symptom detail pages should receive the copied top-page FAQ design");
+
+  const faqCss = readFileSync(path.join(symptomDir, "site-faq.css"), "utf8");
+  assert.match(faqCss, /Copied from the top-page FAQ design/);
+  assert.match(faqCss, /\.faq \.lp-faq-list\s*\{[\s\S]*border-top:\s*1px solid #e2e8f0;[\s\S]*background:\s*#fff;/);
+  assert.match(faqCss, /\.faq dt\s*\{[\s\S]*color:\s*#15803d;[\s\S]*font-size:\s*1\.12rem;/);
+  assert.match(faqCss, /\.faq dt span\s*\{[\s\S]*color:\s*#2563eb;/);
+  assert.match(faqCss, /\.faq dd\s*\{[\s\S]*color:\s*#111827;[\s\S]*line-height:\s*1\.85;/);
+  assert.match(faqCss, /\.faq dd span\s*\{[\s\S]*color:\s*#dc2626;/);
+  assert.match(faqCss, /@media \(max-width: 640px\)\s*\{[\s\S]*\.faq \.lp-faq-item\s*\{[\s\S]*padding:\s*0\.78rem 0;/);
+});
+
 test("symptom related cards show an absolute arrow affordance without extra CTA text", () => {
   const symptomDir = path.join(repoRoot, "symptoms");
   const arrowPattern = /<span class="related-symptom-card__arrow" aria-hidden="true">›<\/span>/g;

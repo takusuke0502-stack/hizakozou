@@ -232,6 +232,7 @@
 @media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
 @media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}.symptom-voices__grid{gap:1rem}.symptom-voice-card__body{padding:1rem}.symptom-voices__note{text-align:left}}
 /* BLOG_RELATED_ARTICLES_STYLES_END */
+
   </style>
 <script type="application/ld+json">
 {
@@ -291,6 +292,7 @@
   <link rel="stylesheet" href="site-header.css">
   <link rel="stylesheet" href="site-footer.css">
   <link rel="stylesheet" href="site-flow.css">
+  <link rel="stylesheet" href="site-faq.css">
 </head>
 <body>
   <header id="header" class="site-header">
@@ -769,56 +771,50 @@
       </div>
     </section>
 <!-- SYMPTOM_PATIENT_VOICES_END -->
-
-<section class="faq">
+    <section class="faq" id="faq">
       <div class="container max-w-3xl">
-        <h2 class="section-title">肩こりに関するよくあるご質問</h2>
-        <div class="faq__list">
-          <details>
-            <summary>
-              <div class="faq__q">
-                <span class="faq__q-label">Q.</span>
-                <span class="faq__q-text">ストレートネックと言われましたが、治りますか？</span>
-              </div>
-              <span class="chevron">
-                <i data-lucide="chevron-down" style="width:1.25rem;height:1.25rem;color:#64748b;" aria-hidden="true"></i>
-              </span>
-            </summary>
-            <div class="faq__a">
-              <span class="faq__a-label">A.</span>
-              <p class="faq__a-text">ストレートネックの多くは骨の変形ではなく、姿勢の崩れによって首のカーブが失われた状態です。姿勢改善と筋バランスを整えることで症状の改善が期待できます。</p>
-            </div>
-          </details>
-          <details>
-            <summary>
-              <div class="faq__q">
-                <span class="faq__q-label">Q.</span>
-                <span class="faq__q-text">肩こりから頭痛がするのですが、整体で対応できますか？</span>
-              </div>
-              <span class="chevron">
-                <i data-lucide="chevron-down" style="width:1.25rem;height:1.25rem;color:#64748b;" aria-hidden="true"></i>
-              </span>
-            </summary>
-            <div class="faq__a">
-              <span class="faq__a-label">A.</span>
-              <p class="faq__a-text">首・肩の筋緊張が原因の「緊張型頭痛」であれば、筋肉をほぐし姿勢を改善することで頭痛が軽減するケースが多いです。まずは状態を確認させていただきます。</p>
-            </div>
-          </details>
-          <details>
-            <summary>
-              <div class="faq__q">
-                <span class="faq__q-label">Q.</span>
-                <span class="faq__q-text">何回くらい通えば改善しますか？</span>
-              </div>
-              <span class="chevron">
-                <i data-lucide="chevron-down" style="width:1.25rem;height:1.25rem;color:#64748b;" aria-hidden="true"></i>
-              </span>
-            </summary>
-            <div class="faq__a">
-              <span class="faq__a-label">A.</span>
-              <p class="faq__a-text">慢性的な肩こりの場合、まずは週1〜2回を1〜2ヶ月続けていただき、姿勢と体の使い方を定着させていきます。セルフケアをしっかり実践される方は早い段階で効果を実感されることが多いです。</p>
-            </div>
-          </details>
+        <div class="faq__heading">
+          <h2 class="section-title">&#12424;&#12367;&#12354;&#12427;&#36074;&#21839;</h2>
+          <p class="faq__lead">&#20104;&#32004;&#21069;&#12395;&#29305;&#12395;&#22810;&#12356;&#19981;&#23433;&#12384;&#12369;&#12434;&#12289;&#30701;&#12367;&#12414;&#12392;&#12417;&#12414;&#12375;&#12383;&#12290;</p>
+        </div>
+
+        <dl class="lp-faq-list">
+          <div class="lp-faq-item">
+            <dt>
+              <span>Q.</span>
+              ストレートネックと言われましたが、治りますか？
+            </dt>
+            <dd>
+              <span>A.</span>
+              ストレートネックの多くは骨の変形ではなく、姿勢の崩れによって首のカーブが失われた状態です。姿勢改善と筋バランスを整えることで症状の改善が期待できます。
+            </dd>
+          </div>
+          <div class="lp-faq-item">
+            <dt>
+              <span>Q.</span>
+              肩こりから頭痛がするのですが、整体で対応できますか？
+            </dt>
+            <dd>
+              <span>A.</span>
+              首・肩の筋緊張が原因の「緊張型頭痛」であれば、筋肉をほぐし姿勢を改善することで頭痛が軽減するケースが多いです。まずは状態を確認させていただきます。
+            </dd>
+          </div>
+          <div class="lp-faq-item">
+            <dt>
+              <span>Q.</span>
+              何回くらい通えば改善しますか？
+            </dt>
+            <dd>
+              <span>A.</span>
+              慢性的な肩こりの場合、まずは週1〜2回を1〜2ヶ月続けていただき、姿勢と体の使い方を定着させていきます。セルフケアをしっかり実践される方は早い段階で効果を実感されることが多いです。
+            </dd>
+          </div>
+        </dl>
+
+        <div class="faq__more">
+          <a href="../faq.html" class="faq__more-link">
+            &#12381;&#12398;&#20182;&#12398;&#12424;&#12367;&#12354;&#12427;&#36074;&#21839;&#12434;&#35211;&#12427; <span aria-hidden="true">&rarr;</span>
+          </a>
         </div>
       </div>
     </section>
