@@ -287,24 +287,27 @@ test("LP uses the mock-style MSM three-step CTA without duplicating the old meth
   assert.match(method, /STEP\s*<strong>01<\/strong>/);
   assert.match(method, /STEP 01 — Mobility（緩める）/);
   assert.match(method, /硬くなった筋肉をゆるめ、動きを広げる/);
-  assert.match(method, /膝に負担をかけている足首・股関節まわりの硬くなった筋肉を整え、関節が動きやすい状態に戻します。/);
-  assert.match(method, /可動域が広がることで、次のステップで「サボり筋」が働きやすい土台をつくります。/);
+  assert.match(method, /日々の悪い動作の繰り返しで使いすぎているガンバリ筋を緩めて、サボり筋が働くための土台をつくります。/);
+  assert.doesNotMatch(method, /日々の不良動作で使いすぎている過労筋を緩めて、サボり筋が働くための土台をつくります。/);
+  assert.doesNotMatch(method, /膝に負担をかけている足首・股関節まわりの硬くなった筋肉を整え、関節が動きやすい状態に戻します。/);
   assert.match(method, /STEP\s*<strong>02<\/strong>/);
   assert.match(method, /STEP 02 — Stability（鍛える）/);
   assert.match(method, /サボり筋を1つずつ目覚めさせる/);
-  assert.match(method, /正しい動作に必要な「サボり筋」を、1つずつ使えるようにしていきます。/);
-  assert.match(method, /ただ鍛えるのではなく、歩く・立つ・階段を上るなどの動作につなげるための準備を行います。/);
+  assert.match(method, /正しい動作に必要なサボり筋を、1つずつ使えるようにします。ただ鍛えるのではなく、歩く・立つ・階段動作につなげる準備を行います。/);
+  assert.doesNotMatch(method, /正しい動作に必要な「サボり筋」を、1つずつ使えるようにしていきます。/);
   assert.match(method, /STEP\s*<strong>03<\/strong>/);
   assert.match(method, /STEP 03 — Movement（使える）/);
   assert.match(method, /痛みに戻らない動きを身につける/);
-  assert.match(method, /使えるようになった筋肉を、歩き方・立ち上がり・階段動作などに落とし込みます。/);
-  assert.match(method, /足腰に負担をかけにくい体の使い方を覚え、痛みをくり返しにくい状態を目指します。/);
+  assert.match(method, /使えるようになった筋肉を、歩き方・立ち上がり・階段動作に落とし込みます。足腰に負担をかけにくい体の使い方を身につけます。/);
+  assert.doesNotMatch(method, /使えるようになった筋肉を、歩き方・立ち上がり・階段動作などに落とし込みます。/);
   assert.match(method, /Mobilityアプローチの施術イメージ/);
   assert.match(method, /Stabilityトレーニングのイメージ/);
   assert.match(method, /Movement動作指導のイメージ/);
   assert.match(method, /繰り返しに、終止符を/);
   assert.match(method, /無料相談・ご予約はこちら/);
   assert.match(method, /href="https:\/\/lin\.ee\/X01F2mP"/);
+  assert.equal((method.match(/class="knee-msm-step__icon"/g) || []).length, 0);
+  assert.doesNotMatch(method, /<span class="knee-msm-step__icon" aria-hidden="true">[MS]<\/span>/);
   assert.equal((method.match(/実装時は実際の写真に差し替え/g) || []).length, 0);
   assert.doesNotMatch(method, /CTAビジュアル画像/);
   assert.doesNotMatch(method, /knee-msm-cta__visual/);
@@ -338,8 +341,10 @@ test("LP MSM step cards use existing illustrations in unified contain frames", (
   assert.match(mainCss, /\.knee-msm-steps-container\s*{[\s\S]*max-width:\s*1120px;[\s\S]*margin:\s*34px auto 0;[\s\S]*padding:\s*0 24px;/);
   assert.match(mainCss, /\.knee-msm-step-list\s*{[\s\S]*grid-template-columns:\s*repeat\(3,\s*minmax\(300px,\s*1fr\)\);[\s\S]*gap:\s*24px;[\s\S]*margin-top:\s*0;/);
   assert.match(mainCss, /\.knee-msm-step\s*{[\s\S]*display:\s*flex;[\s\S]*flex-direction:\s*column;[\s\S]*min-width:\s*0;/);
+  assert.match(mainCss, /\.knee-msm-step__head\s*{[\s\S]*grid-template-columns:\s*minmax\(0,\s*1fr\);[\s\S]*min-height:\s*clamp\(7\.6rem,\s*11vw,\s*8\.8rem\);/);
   assert.match(mainCss, /\.knee-msm-step h3\s*{[\s\S]*writing-mode:\s*horizontal-tb;[\s\S]*word-break:\s*normal;[\s\S]*overflow-wrap:\s*break-word;/);
-  assert.match(mainCss, /\.knee-msm-step__visual\s*{[\s\S]*height:\s*126px;[\s\S]*border-radius:\s*14px;[\s\S]*margin-top:\s*16px;[\s\S]*background:\s*#fff;/);
+  assert.match(mainCss, /\.knee-msm-step__visual\s*{[^}]*height:\s*126px;[^}]*border-radius:\s*14px;[^}]*margin-top:\s*16px;[^}]*background:\s*#fff;/);
+  assert.doesNotMatch(mainCss, /\.knee-msm-step__visual\s*{[^}]*margin-top:\s*auto;/);
   assert.match(mainCss, /\.knee-msm-step__image\s*{[\s\S]*width:\s*100%;[\s\S]*height:\s*100%;[\s\S]*object-fit:\s*contain;/);
   assert.match(mainCss, /@media\s*\(max-width:\s*1023px\)\s*{[\s\S]*\.knee-msm-steps-container\s*{[\s\S]*max-width:\s*680px;[\s\S]*\.knee-msm-step-list\s*{[\s\S]*grid-template-columns:\s*1fr;/);
 });
@@ -378,21 +383,21 @@ test("LP adds a readable six-reason clinic strengths section", () => {
     [
       "特徴1",
       "徹底したカウンセリングと全身検査で「痛みの本当の原因」を特定",
-      "腰や肩を触らない？ レントゲンに写らない根本原因を初回に突き止めます",
+      "腰や肩を触らない？<br>レントゲンに写らない根本原因を初回に突き止めます",
       "image/flow-medical-interview-form-card.webp",
       "問診票を記入しながら丁寧にカウンセリングする様子"
     ],
     [
       "特徴2",
       "接骨院や整体院で「施術歴14年」の院長が、最初から最後まで責任担当",
-      "国家資格保持者によるマンツーマン施術。途中で担当が変わる不安はありません",
+      "国家資格保持者によるマンツーマン施術。<br>途中で担当が変わる不安はありません",
       "image/qualification-judotherapist-license.webp",
       "柔道整復師免許証"
     ],
     [
       "特徴3",
       "整形外科学会も推奨する運動療法「MSMメソッド」を導入",
-      "バキバキしない！医学的根拠に基づいたアプローチで痛みを根本から見直します",
+      "バキバキしない！医学的根拠に基づいたアプローチで<br>痛みを根本から見直します",
       "image/flow-movement-assessment-768.webp",
       "関節や動きを確認しながら運動療法を行う様子"
     ],
@@ -405,15 +410,15 @@ test("LP adds a readable six-reason clinic strengths section", () => {
     ],
     [
       "特徴5",
-      "プロ直伝の「徹底したセルフケア指導」で、10年後も再発しにくい身体へ",
-      "動画やオンラインでも続かなかった痛み対策を、あなた専用のストレッチでサポート",
+      "セルフケアを習得し、ご自身でカラダを改善できる「卒業」を目指します",
+      "動画をまねするだけでは分からない、<br>あなたの身体に合ったセルフケアを個別に指導",
       "image/treatment-stretch-768.webp",
       "自宅で続けやすいセルフケアを説明する様子"
     ],
     [
       "特徴6",
       "完全予約制・清潔で綺麗な個室のプライベート空間",
-      "周囲の目を気にせず、リラックスして何でも相談できる環境をお約束",
+      "周囲の目を気にせず<br>リラックスして何でも相談できる環境をお約束",
       "image/clinic-room-private.webp",
       "清潔で落ち着いた雰囲気の施術室"
     ]
@@ -422,6 +427,15 @@ test("LP adds a readable six-reason clinic strengths section", () => {
   assert.match(clinicReasons, /<section id="clinic-reasons" class="clinic-reasons" aria-labelledby="clinic-reasons-title">/);
   assert.match(clinicReasons, /<h2 id="clinic-reasons-title">当院が選ばれる<span>6つ<\/span>の理由<\/h2>/);
   assert.doesNotMatch(clinicReasons, /7つの理由/);
+  assert.match(clinicReasons, /長年諦めていた重度な腰痛・坐骨神経痛・膝の痛み・シビレにも対応<\/p>/);
+  assert.doesNotMatch(clinicReasons, /長年諦めていた重度な腰痛・坐骨神経痛・膝の痛み・シビレにも対応<br>/);
+  assert.doesNotMatch(clinicReasons, /プロ直伝の「徹底したセルフケア指導」で、10年後も再発しにくい身体へ/);
+  assert.doesNotMatch(clinicReasons, /動画やオンラインでも続かなかった痛み対策を、あなた専用のストレッチでサポート/);
+  assert.match(clinicReasons, /当院では、施術を受け続けることをゴールにはしていません。/);
+  assert.match(clinicReasons, /YouTubeやSNSには、ストレッチや体操の情報が数多くあります。/);
+  assert.match(clinicReasons, /反り腰の方が腰を強く反る運動を続けたり/);
+  assert.match(clinicReasons, /今の状態に必要なストレッチや体操を一人ひとりに合わせてお伝えします。/);
+  assert.match(clinicReasons, /ご自身でカラダを改善・管理できる「卒業」を目指します。/);
   assert.equal((clinicReasons.match(/class="clinic-reason-card"/g) || []).length, 6);
   assert.equal((clinicReasons.match(/class="clinic-reason-card__label"/g) || []).length, 6);
   assert.equal((clinicReasons.match(/class="clinic-reason-card__image"/g) || []).length, 6);
@@ -1347,8 +1361,8 @@ test("LP Step 3 adds conversion copy, review proof, flyer-style price CTA, and t
   assert.match(hero, /もう一度、自分の体と向き合う時間をつくりませんか。/);
   assert.doesNotMatch(hero, /また旅行に行けた。孫と公園を歩けた。/);
   assert.match(price, /「先生に出会えて良かった。」<br>「もっと早く来ていれば良かった」と/);
-  assert.match(price, /多くの方から感謝の声を頂いています。まずは一度試してください。/);
-  assert.match(price, /足腰のつらさを一緒に整理し、動きやすい身体づくりをサポートします。/);
+  assert.match(price, /<p class="hk-pricing-copy__line">多くの方から感謝の声を頂いています。まずは一度試してください。<\/p>/);
+  assert.match(price, /<p class="hk-pricing-copy__line">足腰のつらさを一緒に整理し、動きやすい身体づくりをサポートします。<\/p>/);
   assert.match(price, /初回限定/);
   assert.match(price, /特別価格/);
   assert.match(price, /痛みの原因を/);
@@ -1362,7 +1376,8 @@ test("LP Step 3 adds conversion copy, review proof, flyer-style price CTA, and t
   assert.match(price, /data-total="6"/);
   assert.match(price, /data-remaining/);
   assert.match(price, /お電話でのご予約はこちら/);
-  assert.match(price, /LINEで1分かんたん仮予約/);
+  assert.match(price, /LINEで相談・予約する/);
+  assert.doesNotMatch(price, /LINEで1分かんたん仮予約|LINEで１分かんたん仮予約/);
   assert.match(price, /会員登録不要/);
   assert.match(price, /予約完了ではありません/);
   assert.match(mainJs, /WEEKS_CONFIG/);
@@ -2003,7 +2018,8 @@ test("LP splits CTA roles between mid-page consultation and final reservation", 
   const accessSection = getSectionSlice('id="access"', "<footer");
 
   assert.match(priceSection, /お電話でのご予約はこちら/);
-  assert.match(priceSection, /LINEで1分かんたん仮予約/);
+  assert.match(priceSection, /LINEで相談・予約する/);
+  assert.doesNotMatch(priceSection, /LINEで1分かんたん仮予約|LINEで１分かんたん仮予約/);
   assert.match(priceSection, /会員登録不要/);
   assert.match(priceSection, /現金/);
   assert.match(priceSection, /各種クレジットカード/);
@@ -2011,6 +2027,10 @@ test("LP splits CTA roles between mid-page consultation and final reservation", 
   assert.doesNotMatch(priceSection, /腰・股関節・膝・足まわりの痛みや不安を抱えている方へ。/);
   assert.doesNotMatch(priceSection, /まずは今の状態を一緒に確認していきましょう。/);
   assert.doesNotMatch(priceSection, /LINEで予約する/);
+  assert.match(mainCss, /\.hk-pricing-copy\s*{[^}]*max-width:\s*34em;[^}]*text-wrap:\s*pretty;[^}]*word-break:\s*keep-all;[^}]*overflow-wrap:\s*break-word;/);
+  assert.match(mainCss, /\.hk-pricing-copy__line\s*{[^}]*display:\s*block;[^}]*max-width:\s*30em;[^}]*margin:\s*0\.25rem auto 0;/);
+  assert.match(accessSection, /一人で悩まず、まずは私にご相談ください。/);
+  assert.doesNotMatch(accessSection, /足腰の状態を一度整理してみませんか？/);
   assert.match(accessSection, /柏駅西口から徒歩約8分/);
   assert.match(accessSection, /院名/);
   assert.match(accessSection, /整体院ひざこぞう/);
@@ -2103,16 +2123,14 @@ test("LP FAQ keeps six lightweight reservation questions and links to the detail
     "痛い施術ですか？",
     "病院に通いながらでも大丈夫ですか？",
     "どのくらいのペースで通えばいいですか？",
-    "どんな服装で行けばいいですか？",
-    "回数券を無理にすすめられることはありますか？"
+    "駐車場はありますか？"
   ];
   const expectedAnswers = [
     "初回は約90分を目安に、カウンセリング・状態確認・施術・今後のご説明を行います。お身体の状態を丁寧に確認するため、少し長めにお時間をいただいています。",
     "強く揉んだり、無理に動かしたりする施術ではありません。状態を確認しながら、安心して受けていただける範囲で進めます。",
     "はい、大丈夫です。病院での検査や治療を否定せず、併用しながらできることを一緒に考えていきます。",
     "症状の強さや生活での負担によって変わります。初回で状態を確認したうえで、無理のない通院ペースをご提案します。必要以上に通わせるようなご案内はしません。",
-    "膝や股関節まわりを動かしやすい服装がおすすめです。スカートや硬いジーンズより、ゆとりのあるズボンや動きやすい服装だと確認しやすくなります。",
-    "無理なご提案や押し売りはしません。必要な通院の目安はお伝えしますが、通い方はご本人の希望やご都合を確認しながら決めていきます。"
+    "専用駐車場はございませんが、徒歩1〜2分の場所にコインパーキングが複数あります。初回ご来院時は、駐車料金として300円を当院で負担いたします。"
   ];
   const faqSection = getTopLevelSectionSlice("faq");
 
@@ -2127,8 +2145,8 @@ test("LP FAQ keeps six lightweight reservation questions and links to the detail
   assert.match(faqSection, /その他のよくある質問を見る/);
   assert.match(faqSection, /href="faq\.html"/);
   assert.equal((faqSection.match(/<details\b/g) ?? []).length, 0, "LP FAQ should not use heavy one-question cards");
-  assert.equal((faqSection.match(/<dt>/g) ?? []).length, 6, "LP FAQ should render exactly six lightweight list questions");
-  assert.equal((faqSection.match(/class="lp-faq-item"/g) ?? []).length, 6, "LP FAQ items should use compact custom spacing");
+  assert.equal((faqSection.match(/<dt>/g) ?? []).length, 5, "LP FAQ should render exactly five lightweight list questions");
+  assert.equal((faqSection.match(/class="lp-faq-item"/g) ?? []).length, 5, "LP FAQ items should use compact custom spacing");
   assert.match(mainCss, /#faq dt\s*\{[\s\S]*color:\s*#15803d/);
   assert.match(mainCss, /#faq dt\s*\{[\s\S]*font-size:\s*1\.12rem/);
   assert.match(mainCss, /#faq dt span\s*\{[\s\S]*color:\s*#2563eb/);
@@ -2150,7 +2168,7 @@ test("LP FAQ keeps six lightweight reservation questions and links to the detail
     expectedAnswers,
     "FAQ schema answers should stay aligned with the rendered FAQ answers"
   );
-  assert.doesNotMatch(faqSection, /予約はLINEでできますか？|公式LINEからご予約いただけます|変形性膝関節症と言われても受けられますか？|健康保険は使えますか？|駐車場はありますか？|予約のキャンセル・変更はできますか？/);
+  assert.doesNotMatch(faqSection, /予約はLINEでできますか？|公式LINEからご予約いただけます|変形性膝関節症と言われても受けられますか？|健康保険は使えますか？|どんな服装で行けばいいですか？|回数券を無理にすすめられることはありますか？|無理なご提案や押し売りはしません。|予約のキャンセル・変更はできますか？/);
   assert.match(html, /LINEからご希望日時を送ってください。空き状況を確認して、こちらから返信いたします。/);
 });
 
@@ -2260,7 +2278,8 @@ test("FAQ and access detail pages exist with SEO, detail links, and LINE reserva
   assert.match(accessHtml, /scrollBy\(\{\s*left:\s*direction \* scrollAmount,\s*behavior:\s*'smooth'\s*\}\)/);
   assert.match(accessHtml, /こちらがBoaSorte柏の建物玄関です/);
   assert.match(accessHtml, /href="https:\/\/lin\.ee\/X01F2mP"/);
-  assert.match(accessHtml, /LINEで1分かんたん仮予約/);
+  assert.match(accessHtml, /LINEで相談・予約する/);
+  assert.doesNotMatch(accessHtml, /LINEで1分かんたん仮予約|LINEで１分かんたん仮予約/);
   assert.match(accessHtml, /会員登録不要/);
   assert.match(accessHtml, /電話で確認する/);
   assert.match(accessHtml, /href="tel:0471143274"/);

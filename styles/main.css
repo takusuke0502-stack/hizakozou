@@ -1307,15 +1307,26 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
 
     .hk-pricing-copy {
       color: #1f1a16;
+      max-width: 34em;
+      margin: 0 auto;
       font-size: clamp(1rem, 4vw, 1.22rem);
       font-weight: 900;
       line-height: 1.65;
+      text-wrap: pretty;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     .hk-pricing-quote {
       color: #a31515;
       font-size: clamp(1.35rem, 6vw, 2rem);
       line-height: 1.35;
+    }
+
+    .hk-pricing-copy__line {
+      display: block;
+      max-width: 30em;
+      margin: 0.25rem auto 0;
     }
 
     .hk-pricing-normal {
@@ -3059,31 +3070,10 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
 
     .knee-msm-step__head {
       display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
-      gap: 16px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
       align-items: start;
-    }
-
-    .knee-msm-step__icon {
-      display: inline-flex;
-      width: 52px;
-      height: 52px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: #e96a42;
-      color: #fff;
-      font-size: 1.35rem;
-      font-weight: 900;
-      line-height: 1;
-    }
-
-    .knee-msm-step--stability .knee-msm-step__icon {
-      background: #2f77b4;
-    }
-
-    .knee-msm-step--movement .knee-msm-step__icon {
-      background: #4f8a4f;
+      min-height: clamp(7.6rem, 11vw, 8.8rem);
     }
 
     .knee-msm-step__number,
@@ -3138,7 +3128,7 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       border-radius: 14px;
       align-items: center;
       justify-content: center;
-      margin-top: auto;
+      margin-top: 16px;
       padding: 12px;
       background: #fff;
       color: #7a5738;
@@ -3306,11 +3296,6 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
 
       .knee-msm-step__head {
         grid-template-columns: 1fr;
-      }
-
-      .knee-msm-step__icon {
-        width: 46px;
-        height: 46px;
       }
 
       .knee-msm-step__visual {
