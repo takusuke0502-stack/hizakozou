@@ -134,12 +134,57 @@
     });
   };
 
+  const setupPricingDeadline = () => {
+    const deadlineEl = document.querySelector('[data-deadline]');
+    const remainingEl = document.querySelector('[data-remaining]');
+    const totalEl = document.querySelector('[data-total]');
+    if (!deadlineEl && !remainingEl && !totalEl) return;
+
+    const weeksConfig = [
+      { remaining: 2, total: 6 },
+      { remaining: 1, total: 6 },
+      { remaining: 3, total: 6 },
+      { remaining: 4, total: 6 }
+    ];
+
+    const now = new Date();
+    const daysUntilSaturday = (6 - now.getDay() + 7) % 7 || 7;
+    const deadline = new Date(now);
+    deadline.setDate(now.getDate() + daysUntilSaturday);
+
+    const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+    if (deadlineEl) {
+      deadlineEl.textContent = `${deadline.getMonth() + 1}月${deadline.getDate()}日(${weekdays[deadline.getDay()]})`;
+    }
+
+    const weekStart = new Date(now);
+    const daysSinceMonday = (now.getDay() + 6) % 7;
+    weekStart.setDate(now.getDate() - daysSinceMonday);
+    weekStart.setHours(0, 0, 0, 0);
+
+    const baseMonday = new Date(2026, 0, 5);
+    const msPerWeek = 7 * 24 * 60 * 60 * 1000;
+    const weekIndex = Math.floor((weekStart.getTime() - baseMonday.getTime()) / msPerWeek);
+    const config = weeksConfig[((weekIndex % weeksConfig.length) + weeksConfig.length) % weeksConfig.length];
+
+    if (totalEl) {
+      totalEl.dataset.total = String(config.total);
+      totalEl.textContent = String(config.total);
+    }
+
+    if (remainingEl) {
+      remainingEl.dataset.remaining = String(config.remaining);
+      remainingEl.textContent = `残り${config.remaining}名様`;
+    }
+  };
+
   syncHeaderHeight();
   setMenuState(false);
   setupHeaderSymptomDropdown();
   setupMobileMenuLinks();
   setupPageTopButton();
   setupFlowSlider();
+  setupPricingDeadline();
 
   if (menuBtn) {
     menuBtn.addEventListener('click', () => {

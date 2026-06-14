@@ -139,6 +139,7 @@ test("LP follows the new section order for the knee-pain explanation flow", () =
     'class="voice-trust"',
     'class="google-reviews voice-trust__google"',
     'id="flow"',
+    'id="clinic-tour-video"',
     'id="knee-msm-reasons"',
     'id="msm-method"',
     'id="clinic-reasons"',
@@ -161,6 +162,16 @@ test("LP follows the new section order for the knee-pain explanation flow", () =
       `${markers[index - 1]} should appear before ${markers[index]}`
     );
   }
+});
+
+test("LP places the clinic tour video directly after the treatment flow", () => {
+  const tourVideo = getTopLevelSectionSlice("clinic-tour-video");
+
+  assert.match(tourVideo, /<section id="clinic-tour-video" class="clinic-tour-video" aria-labelledby="clinic-tour-video-title">/);
+  assert.match(tourVideo, /<p class="clinic-tour-video__eyebrow">MOVIE<\/p>/);
+  assert.match(tourVideo, /<h2 id="clinic-tour-video-title" class="clinic-tour-video__title">院内紹介動画<\/h2>/);
+  assert.match(tourVideo, /<iframe[\s\S]*class="clinic-tour-video__iframe"[\s\S]*src="https:\/\/www\.youtube\.com\/embed\/cr1uFyrt4GA"[\s\S]*title="院内紹介動画"[\s\S]*loading="lazy"[\s\S]*allowfullscreen>/);
+  assert.doesNotMatch(tourVideo, /ご予約・ご相談|LINEからお気軽に|院内の雰囲気をご覧ください/);
 });
 
 test("LP removes the long-knee-pain accordion guide block", () => {
@@ -1494,6 +1505,46 @@ test("knee osteoarthritis page is a diagnosis-specific reservation LP", () => {
 
   for (const pattern of forbiddenPatterns) {
     assert.doesNotMatch(kneeHtml, pattern, `knee osteoarthritis LP should avoid ${pattern}`);
+  }
+});
+
+test("major symptom pages reuse the exact top-page pricing section", () => {
+  const topPricingStart = html.indexOf('<section id="price" class="hk-pricing-section"');
+  const topPricingEnd = html.indexOf("</section>", topPricingStart) + "</section>".length;
+  const normalizeLineEndings = (value) => value.replace(/\r\n/g, "\n").trim();
+  const topPricingSection = normalizeLineEndings(html.slice(topPricingStart, topPricingEnd));
+  const symptomPricingCss = readFileSync(new URL("../symptoms/site-pricing.css", import.meta.url), "utf8");
+  const symptomHeaderJs = readFileSync(new URL("../symptoms/site-header.js", import.meta.url), "utf8");
+  const targetPages = [
+    "symptoms/lower-back-pain.html",
+    "symptoms/sciatica.html",
+    "symptoms/spinal-stenosis.html",
+    "symptoms/knee-osteoarthritis.html",
+    "symptoms/hip-osteoarthritis.html",
+    "symptoms/lumbar-disc-herniation.html"
+  ];
+
+  assert.ok(topPricingStart > -1, "top page pricing section should exist");
+  assert.match(symptomPricingCss, /\.hk-pricing-section\s*{/);
+  assert.match(symptomPricingCss, /\.hk-pricing-price__num\s*{[\s\S]*font-size:\s*clamp\(4\.3rem,\s*18vw,\s*7\.2rem\);/);
+  assert.match(symptomPricingCss, /@media\s*\(max-width:\s*390px\)\s*{[\s\S]*\.hk-pricing-price\s*{[\s\S]*flex-wrap:\s*wrap;/);
+  assert.match(symptomHeaderJs, /const deadlineEl = document\.querySelector\('\[data-deadline\]'\);/);
+
+  for (const page of targetPages) {
+    const pageHtml = readPageIfExists(page);
+    const priceMatches = pageHtml.match(/<section id="price" class="hk-pricing-section"/g) ?? [];
+    const priceStart = pageHtml.indexOf('<section id="price" class="hk-pricing-section"');
+    const priceEnd = pageHtml.indexOf("</section>", priceStart) + "</section>".length;
+    const priceSection = normalizeLineEndings(pageHtml.slice(priceStart, priceEnd));
+
+    assert.equal(priceMatches.length, 1, `${page} should have exactly one copied pricing section`);
+    assert.equal(priceSection, topPricingSection, `${page} should copy the top-page pricing HTML exactly`);
+    assert.match(pageHtml, /<link rel="stylesheet" href="site-pricing\.css">/, `${page} should load the shared pricing CSS`);
+    assert.doesNotMatch(pageHtml, /<section class="lp-pricing">/, `${page} should not keep the old lp-pricing block`);
+    assert.match(priceSection, /href="tel:0471143274" class="hk-pricing-call"/, `${page} should keep the top-page phone link`);
+    assert.match(priceSection, /href="https:\/\/lin\.ee\/X01F2mP" target="_blank" rel="noopener noreferrer" class="hk-pricing-line"/, `${page} should keep the top-page LINE link`);
+    assert.match(priceSection, /data-deadline/, `${page} should keep the deadline hook`);
+    assert.match(priceSection, /data-remaining/, `${page} should keep the remaining-slots hook`);
   }
 });
 
