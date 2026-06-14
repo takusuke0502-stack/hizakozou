@@ -3399,7 +3399,7 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       font-family: var(--font-heading);
       font-size: clamp(1.05rem, 2.6vw, 1.28rem);
       font-weight: 900;
-      line-height: 1.65;
+      line-height: 1.56;
       letter-spacing: 0;
     }
 
@@ -3421,13 +3421,33 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
     .clinic-reason-card__text p {
       margin: 0;
       color: #3f342c;
-      font-size: 0.92rem;
-      font-weight: 700;
-      line-height: 1.85;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.9;
     }
 
     .clinic-reason-card__text p + p {
-      margin-top: 0.7rem;
+      margin-top: 1.25rem;
+    }
+
+    .feature-emphasis {
+      color: #9a4f36;
+      font-weight: 700;
+    }
+
+    .feature-marker {
+      font-weight: 700;
+      background: linear-gradient(
+        transparent 68%,
+        rgba(218, 154, 105, 0.32) 68%
+      );
+      padding: 0 0.08em;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    .feature-bold {
+      font-weight: 700;
     }
 
     .clinic-reason-card__image-frame {
@@ -3483,7 +3503,7 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
 
       .clinic-reason-card h3 {
         font-size: 1.08rem;
-        line-height: 1.62;
+        line-height: 1.56;
       }
 
       .clinic-reason-card__lead {
@@ -3492,8 +3512,8 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       }
 
       .clinic-reason-card__text p {
-        font-size: 0.92rem;
-        line-height: 1.82;
+        font-size: 1rem;
+        line-height: 1.9;
       }
 
       .clinic-reason-card__image-frame {

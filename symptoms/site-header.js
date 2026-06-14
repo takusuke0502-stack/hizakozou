@@ -178,6 +178,141 @@
     }
   };
 
+  const setupContactForm = () => {
+    const contactForm = document.getElementById('contactForm');
+    if (!(contactForm instanceof HTMLFormElement)) return;
+
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMessage');
+    const formError = document.getElementById('form-error');
+    const gasUrl = 'https://script.google.com/macros/s/AKfycbzxlY8wFSXpgtyP9TVFwFM2BCrzfihbkmEOjYd5PROmEubX3B4NLxOhYOvZxeg7zZbc1w/exec';
+
+    const refreshIcons = (scope) => {
+      if (!window.lucide || typeof window.lucide.createIcons !== 'function') return;
+      if (scope) {
+        window.lucide.createIcons({ nodes: scope.querySelectorAll('[data-lucide]') });
+        return;
+      }
+      window.lucide.createIcons();
+    };
+
+    const clearFieldError = (id) => {
+      const field = document.getElementById(id);
+      const error = document.getElementById(`${id}-error`);
+      field?.setAttribute('aria-invalid', 'false');
+      error?.classList.add('hidden');
+    };
+
+    const setFieldError = (id, message) => {
+      const field = document.getElementById(id);
+      const error = document.getElementById(`${id}-error`);
+      field?.setAttribute('aria-invalid', 'true');
+      if (error) {
+        error.textContent = message;
+        error.classList.remove('hidden');
+      }
+    };
+
+    const setFormError = (message) => {
+      if (!formError) return;
+      formError.textContent = message;
+      formError.classList.remove('hidden');
+      formError.focus();
+    };
+
+    const clearFormError = () => {
+      if (!formError) return;
+      formError.textContent = '';
+      formError.classList.add('hidden');
+    };
+
+    const validateForm = () => {
+      const validations = [
+        {
+          id: 'name',
+          message: 'お名前を入力してください。',
+          valid: (value) => value.trim().length > 0
+        },
+        {
+          id: 'phone',
+          message: '電話番号を正しく入力してください。',
+          valid: (value) => /^[0-9\-()+\s]{10,15}$/.test(value.trim())
+        }
+      ];
+
+      let firstInvalid = null;
+      clearFormError();
+
+      validations.forEach(({ id, message, valid }) => {
+        const input = document.getElementById(id);
+        if (!(input instanceof HTMLInputElement)) return;
+        clearFieldError(id);
+        if (!valid(input.value)) {
+          setFieldError(id, message);
+          if (!firstInvalid) firstInvalid = input;
+        }
+      });
+
+      return firstInvalid;
+    };
+
+    const setSubmitBusy = (isBusy) => {
+      if (!(submitBtn instanceof HTMLButtonElement)) return;
+      submitBtn.disabled = isBusy;
+      submitBtn.setAttribute('aria-busy', String(isBusy));
+      submitBtn.innerHTML = isBusy
+        ? '<i data-lucide="loader-2" class="h-5 w-5" aria-hidden="true"></i> 送信中…'
+        : '<i data-lucide="send" class="h-5 w-5" aria-hidden="true"></i> メールフォームを送信する';
+      refreshIcons(submitBtn);
+    };
+
+    ['name', 'phone'].forEach((id) => {
+      document.getElementById(id)?.addEventListener('input', () => clearFieldError(id));
+    });
+
+    contactForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const firstInvalid = validateForm();
+      if (firstInvalid) {
+        firstInvalid.focus();
+        return;
+      }
+
+      setSubmitBusy(true);
+      clearFormError();
+
+      try {
+        const response = await fetch(gasUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+          },
+          body: new URLSearchParams(new FormData(contactForm)).toString()
+        });
+        const contentType = response.headers.get('content-type') || '';
+        const payload = contentType.includes('application/json') ? await response.json() : null;
+
+        if (!response.ok || payload?.ok === false || payload?.status === 'error') {
+          throw new Error(payload?.message || '送信に失敗しました。');
+        }
+
+        contactForm.classList.add('hidden');
+        successMsg?.classList.remove('hidden');
+        successMsg?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        successMsg?.focus({ preventScroll: true });
+        window.setTimeout(() => {
+          window.location.assign('/thanks.html');
+        }, 350);
+      } catch (error) {
+        console.error('Contact form submit error:', error);
+        setFormError('送信に失敗しました。時間をおいて再送するか、LINE予約・お電話をご利用ください。');
+      } finally {
+        setSubmitBusy(false);
+      }
+    });
+  };
+
   syncHeaderHeight();
   setMenuState(false);
   setupHeaderSymptomDropdown();
@@ -185,6 +320,7 @@
   setupPageTopButton();
   setupFlowSlider();
   setupPricingDeadline();
+  setupContactForm();
 
   if (menuBtn) {
     menuBtn.addEventListener('click', () => {

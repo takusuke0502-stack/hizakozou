@@ -49,28 +49,9 @@
     .breadcrumb__nav{font-size:12px;font-weight:700;color:var(--slate-500);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
     .breadcrumb__nav a:hover{color:var(--blue-600)}
     /* Hero */
-    .hero{background:linear-gradient(135deg,#1e3a8a 0%,#1e40af 50%,#2563eb 100%);padding:3rem 1rem 4rem;position:relative;overflow:hidden}
-    .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
-    .hero__inner{position:relative;z-index:1}
-    .hero__label{display:inline-flex;align-items:center;gap:.375rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:12px;font-weight:700;padding:.25rem .75rem;border-radius:9999px;margin-bottom:1rem;backdrop-filter:blur(4px)}
-    .hero__title{font-size:clamp(1.45rem,5.8vw,1.75rem);font-weight:900;color:#fff;line-height:1.4;letter-spacing:0;margin-bottom:1.25rem;overflow-wrap:anywhere;word-break:break-all}
-    .hero__title span{display:block}
-    @media(min-width:768px){.hero__title{font-size:3rem}}
-    .hero__catch{font-size:1rem;font-weight:700;color:rgba(255,255,255,.85);line-height:1.8;border-left:3px solid rgba(255,255,255,.5);padding-left:1rem;overflow-wrap:anywhere;word-break:break-all}
-    .hero__catch span{display:block}
-    @media(min-width:768px){.hero__catch{font-size:1.125rem}}
-    .hero__actions{display:flex;flex-direction:column;gap:.75rem;margin-top:1.75rem}
-    @media(min-width:640px){.hero__actions{flex-direction:row;align-items:center}}
-    .hero__btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border-radius:var(--radius-xl);padding:1rem 1.25rem;font-size:1rem;font-weight:900;box-shadow:0 8px 20px rgba(15,23,42,.16);transition:transform .2s,background .2s,border-color .2s}
-    .hero__btn:hover,.hero__btn:focus-visible{transform:translateY(-1px);outline:2px solid rgba(255,255,255,.6);outline-offset:3px}
-    .hero__btn--line{background:var(--green-line);color:#fff}
-    .hero__btn--tel{background:#fff;color:var(--blue-900);border:1px solid rgba(255,255,255,.5)}
-    .hero__facts{display:grid;gap:.75rem;margin-top:1.25rem}
-    @media(min-width:640px){.hero__facts{grid-template-columns:repeat(3,minmax(0,1fr))}}
-    .hero__fact{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:var(--radius-xl);padding:.8rem .9rem;color:#fff}
-    .hero__fact-label{display:block;font-size:11px;font-weight:900;letter-spacing:.08em;color:#bfdbfe;margin-bottom:.2rem}
-    .hero__fact-main{display:block;font-size:14px;font-weight:900;line-height:1.55}
-    .hero__note{margin-top:1rem;font-size:12px;font-weight:700;line-height:1.8;color:#dbeafe}
+    .symptom-image-hero{width:100%;margin:0;padding:0;overflow:hidden;background-color:#faf7f1}
+    .symptom-image-hero picture,.symptom-image-hero__image{display:block;width:100%;height:auto;margin:0;padding:0;border:0;object-fit:contain}
+    @media(max-width:767px){.symptom-image-hero{width:100%;margin-left:0}.symptom-image-hero__image{width:100%;height:auto;object-fit:contain}}
     /* Section title */
     .section-title{font-size:clamp(1.25rem,5vw,1.45rem);font-weight:900;color:var(--blue-900);text-align:center;margin:0 auto 2.5rem;position:relative;padding-bottom:1rem;max-width:min(100%,22rem);overflow-wrap:anywhere;word-break:break-all}
     .section-title::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:50px;height:4px;background:var(--blue-600);border-radius:2px}
@@ -302,6 +283,617 @@
 @media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}.symptom-voices__grid{gap:1rem}.symptom-voice-card__body{padding:1rem}.symptom-voices__note{text-align:left}}
 /* BLOG_RELATED_ARTICLES_STYLES_END */
 
+
+
+    /* Copied from top page troubles-check section. */
+
+    .troubles-check {
+      padding: 64px 16px 72px;
+      background: #f5f6f7;
+    }
+
+    .troubles-check__inner {
+      width: min(100%, 760px);
+      margin: 0 auto;
+    }
+
+    .troubles-check__heading {
+      position: relative;
+      margin: 0 auto 34px;
+      padding: 22px 20px;
+      background: linear-gradient(180deg, #eeeeee 0%, #e4e4e4 100%);
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.75);
+    }
+
+    .troubles-check__heading::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -18px;
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-top: 18px solid #e4e4e4;
+      transform: translateX(-50%);
+    }
+
+    .troubles-check__heading h2 {
+      margin: 0;
+      color: #111827;
+      font-family: var(--font-heading);
+      font-size: clamp(1.65rem, 4.8vw, 2.45rem);
+      font-weight: 900;
+      line-height: 1.32;
+      letter-spacing: 0;
+    }
+
+    .troubles-check__list {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 28px 26px 30px;
+      list-style: none;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      box-shadow: 0 20px 42px -30px rgba(17,24,39,0.32);
+    }
+
+    .troubles-check__list li {
+      position: relative;
+      min-height: 34px;
+      padding-left: 42px;
+      color: #222;
+      font-size: clamp(1.05rem, 2.4vw, 1.28rem);
+      font-weight: 700;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+
+    .troubles-check__list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.28em;
+      width: 25px;
+      height: 25px;
+      background: #fff;
+      border: 2px solid #222;
+      border-radius: 2px;
+    }
+
+    .troubles-check__list li::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 0.14em;
+      width: 26px;
+      height: 14px;
+      border-left: 4px solid #e3342f;
+      border-bottom: 4px solid #e3342f;
+      transform: rotate(-45deg);
+      transform-origin: center;
+    }
+
+    .troubles-check__list strong {
+      color: #c53632;
+      font-weight: 900;
+    }
+
+    @media (max-width: 480px) {
+      .troubles-check {
+        padding: 48px 12px 56px;
+      }
+
+      .troubles-check__heading {
+        margin-bottom: 30px;
+        padding: 18px 12px;
+      }
+
+      .troubles-check__heading::after {
+        bottom: -15px;
+        border-left-width: 15px;
+        border-right-width: 15px;
+        border-top-width: 15px;
+      }
+
+      .troubles-check__list {
+        gap: 12px;
+        padding: 22px 16px 24px;
+        border-radius: 8px;
+      }
+
+      .troubles-check__list li {
+        padding-left: 36px;
+        font-size: 1.02rem;
+        line-height: 1.7;
+      }
+
+      .troubles-check__list li::before {
+        width: 23px;
+        height: 23px;
+      }
+
+      .troubles-check__list li::after {
+        left: 5px;
+        width: 24px;
+        height: 13px;
+      }
+    }
+
+/* ACCESS_CONTACT_COPY_START */
+#access {
+  padding: 3.5rem 0;
+  background: #fff;
+}
+
+#access .max-w-5xl {
+  max-width: 64rem;
+}
+
+#access .text-center {
+  text-align: center;
+}
+
+#access .mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+#access .mb-4 {
+  margin-bottom: 1rem;
+}
+
+#access .mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+#access .mt-10 {
+  margin-top: 2.5rem;
+}
+
+#access .mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#access .max-w-2xl {
+  max-width: 42rem;
+}
+
+#access .text-sm {
+  font-size: 0.875rem;
+}
+
+#access .text-base {
+  font-size: 1rem;
+}
+
+#access .text-2xl {
+  font-size: 1.5rem;
+  line-height: 1.35;
+}
+
+#access .font-bold,
+#access .font-black {
+  font-weight: 900;
+}
+
+#access .leading-relaxed {
+  line-height: 1.75;
+}
+
+#access .text-orange-600 {
+  color: #ea580c;
+}
+
+#access .text-slate-900 {
+  color: #0f172a;
+}
+
+#access .text-slate-600 {
+  color: #475569;
+}
+
+.lp-access-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+  gap: clamp(24px, 4vw, 40px);
+  align-items: start;
+  margin: 0 auto;
+}
+
+.lp-access-info {
+  margin: 0;
+  border-top: 1px solid #d6dbe0;
+  border-bottom: 1px solid #d6dbe0;
+  color: #123f5d;
+}
+
+.lp-access-info__row {
+  display: grid;
+  grid-template-columns: 104px 30px minmax(0, 1fr);
+  align-items: start;
+  border-bottom: 1px solid #d6dbe0;
+  padding: 16px 0;
+  column-gap: 18px;
+}
+
+.lp-access-info__row:last-child {
+  border-bottom: 0;
+}
+
+.lp-access-info__row::before {
+  content: "/";
+  grid-column: 2;
+  color: #c9cfd4;
+  font-size: 1.35rem;
+  font-weight: 300;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.lp-access-info dt {
+  grid-column: 1;
+  color: #2e4864;
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.8;
+}
+
+.lp-access-info dd {
+  display: grid;
+  grid-column: 3;
+  gap: 4px;
+  margin: 0;
+  color: #16304c;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.75;
+}
+
+.lp-access-info a {
+  width: fit-content;
+  margin-top: 4px;
+  color: #ee6a24;
+  font-size: 0.92rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.lp-access-info a:hover,
+.lp-access-info a:focus-visible {
+  color: #c75417;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.lp-access-hours {
+  border-radius: 8px;
+  background: #f5f5f6;
+  color: #16304c;
+  padding: clamp(22px, 4vw, 32px);
+}
+
+.lp-access-hours__table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: #16304c;
+  font-size: 0.94rem;
+}
+
+.lp-access-hours__table caption {
+  margin-bottom: 14px;
+  text-align: left;
+  color: #16304c;
+  font-weight: 900;
+}
+
+.lp-access-hours__table th,
+.lp-access-hours__table td {
+  border-bottom: 1px solid #d7d7d7;
+  padding: 13px 4px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.lp-access-hours__table th:first-child {
+  width: 116px;
+  text-align: left;
+}
+
+.lp-access-hours__table thead th {
+  font-size: 0.88rem;
+  font-weight: 900;
+}
+
+.lp-access-hours__table tbody th {
+  font-weight: 700;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.lp-access-hours__table td {
+  color: #ee6a24;
+  font-weight: 900;
+}
+
+.lp-access-hours p {
+  margin: 14px 0 0;
+  color: #2e4864;
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1.7;
+}
+
+.lp-access-hours p span {
+  color: #ee6a24;
+  font-weight: 900;
+}
+
+.contact-form-section {
+  border: 1px solid #d1fae5;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #fff 0%, #fff 45%, #ecfdf5 100%);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.10);
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.contact-form-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.38fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.contact-mail-form,
+.contact-line-pop {
+  border: 1px solid #d8e6d7;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 14px 28px rgba(36, 83, 70, 0.08);
+}
+
+.contact-mail-form {
+  display: grid;
+  gap: 14px;
+  padding: clamp(18px, 3vw, 24px);
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.contact-field {
+  display: grid;
+  gap: 7px;
+}
+
+.contact-field label {
+  color: #174f3f;
+  font-size: 0.92rem;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.contact-field label span {
+  margin-left: 0.45rem;
+  border-radius: 999px;
+  background: #fff3e8;
+  color: #d75b1f;
+  padding: 0.16rem 0.48rem;
+  font-size: 0.72rem;
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  border: 1px solid #d6e3d6;
+  border-radius: 12px;
+  background: #fbfdf9;
+  color: #16304c;
+  padding: 0.82rem 0.9rem;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.contact-field textarea {
+  min-height: 128px;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-color: #2f7d5b;
+  background: #fff;
+  outline: 3px solid rgba(47, 125, 91, 0.16);
+}
+
+.contact-field-error,
+.contact-form-error {
+  color: #b42318;
+  font-size: 0.86rem;
+  font-weight: 900;
+  line-height: 1.6;
+}
+
+.contact-form-error {
+  border-radius: 12px;
+  background: #fff1f0;
+  padding: 0.8rem 0.9rem;
+}
+
+.contact-form-note {
+  color: #526b62;
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1.75;
+}
+
+.contact-submit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 52px;
+  border: 0;
+  border-radius: 14px;
+  background: #174f3f;
+  color: #fff;
+  padding: 0.95rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 900;
+  box-shadow: 0 14px 24px rgba(23, 79, 63, 0.18);
+  cursor: pointer;
+}
+
+.contact-submit-button:disabled {
+  cursor: wait;
+}
+
+.contact-line-pop {
+  position: relative;
+  padding: 20px;
+  color: #16304c;
+}
+
+.contact-line-pop::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: -9px;
+  width: 18px;
+  height: 18px;
+  border-left: 1px solid #d8e6d7;
+  border-bottom: 1px solid #d8e6d7;
+  background: #fff;
+  transform: rotate(45deg);
+}
+
+.contact-line-pop__label {
+  color: #e96a42;
+  font-size: 0.82rem;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.contact-line-pop h4 {
+  margin-top: 0.3rem;
+  color: #174f3f;
+  font-size: 1.2rem;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.contact-line-pop p:not(.contact-line-pop__label) {
+  margin-top: 0.65rem;
+  color: #526b62;
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.75;
+}
+
+.contact-line-pop a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 12px;
+  background: #06c755;
+  color: #fff;
+  padding: 0.9rem 1rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+#successMessage {
+  margin-top: 1.5rem;
+  border-radius: 16px;
+  background: #ecfdf5;
+  color: #174f3f;
+  padding: 1.25rem;
+  text-align: center;
+  font-weight: 900;
+}
+
+#successMessage a {
+  display: inline-flex;
+  margin-top: 0.75rem;
+  color: #ee6a24;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  #access .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 1.35;
+  }
+
+  #access .md\:text-base {
+    font-size: 1rem;
+  }
+
+  .contact-form-section {
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .lp-access-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .lp-access-info__row {
+    grid-template-columns: 82px 18px minmax(0, 1fr);
+    column-gap: 12px;
+    padding: 14px 0;
+  }
+
+  .lp-access-info dt,
+  .lp-access-info dd {
+    font-size: 0.92rem;
+  }
+
+  .lp-access-hours {
+    padding: 20px 16px;
+  }
+
+  .lp-access-hours__table {
+    font-size: 0.82rem;
+  }
+
+  .lp-access-hours__table th:first-child {
+    width: 88px;
+  }
+
+  .lp-access-hours__table th,
+  .lp-access-hours__table td {
+    padding: 11px 2px;
+  }
+
+  .contact-form-layout,
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-line-pop::before {
+    top: -9px;
+    left: 24px;
+  }
+}
+/* ACCESS_CONTACT_COPY_END */
 
   </style>
 <script type="application/ld+json">
@@ -539,90 +1131,37 @@
       </div>
     </div>
 
-    <section class="hero">
-      <div class="container max-w-4xl hero__inner">
-        <div class="hero__label">
-          <i data-lucide="activity" style="width:14px;height:14px;" aria-hidden="true"></i>
-          柏市 / 変形性膝関節症の整体相談
-        </div>
-        <h1 class="hero__title" aria-label="柏市で変形性膝関節症と言われた方へ｜階段・歩き始めの膝痛相談"><span>柏市で変形性膝関節症と</span><span>言われた方へ</span><span>階段・歩き始めの膝痛相談</span></h1>
-        <p class="hero__catch"><span>「階段がこわい」「歩き始めの数歩がつらい」</span><span>「手術の話が出て不安」</span><span>そんな方へ。病院での説明を大切にしながら、</span><span>日常生活で膝に負担が集まりやすい動きを</span><span>一緒に確認します。</span></p>
-        <div class="hero__actions" aria-label="予約と相談">
-          <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="hero__btn hero__btn--line">
-            <i data-lucide="message-circle" style="width:1.25rem;height:1.25rem;" aria-hidden="true"></i>
-            今の膝の状態を送って相談する
-          </a>
-          <a href="tel:0471143274" class="hero__btn hero__btn--tel">
-            <i data-lucide="phone" style="width:1.25rem;height:1.25rem;" aria-hidden="true"></i>
-            電話で相談する
-          </a>
-        </div>
-        <div class="hero__facts" aria-label="院の基本情報">
-          <div class="hero__fact">
-            <span class="hero__fact-label">ACCESS</span>
-            <span class="hero__fact-main">柏駅西口徒歩8分</span>
-          </div>
-          <div class="hero__fact">
-            <span class="hero__fact-label">STAFF</span>
-            <span class="hero__fact-main">国家資格者が対応</span>
-          </div>
-          <div class="hero__fact">
-            <span class="hero__fact-label">STYLE</span>
-            <span class="hero__fact-main">完全予約制で相談しやすい環境</span>
-          </div>
-        </div>
-        <p class="hero__note">診断・画像検査・薬の処方は医療機関の領域です。当院では、身体の使い方と膝への負担を整理します。</p>
-      </div>
+    <section class="symptom-image-hero">
+      <picture>
+        <source media="(max-width: 767px)" srcset="../image/symptom-hero/変形性膝関節症-sp.webp">
+        <img
+          src="../image/symptom-hero/変形性膝関節症.webp"
+          alt="変形性膝関節症でお悩みの方へ"
+          width="1600"
+          height="900"
+          class="symptom-image-hero__image"
+          fetchpriority="high"
+          decoding="async"
+        >
+      </picture>
     </section>
 
-    <section class="concerns">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">こんなお悩みは<br>ありませんか？</h2>
-        <div class="concerns__list">
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">階段の上り下りで膝がつらく、特に下りがこわい</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">朝や座った後、歩き始めの数歩で膝が痛む</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">椅子から立ち上がるとき、膝に力を入れるのがこわい</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">膝の内側が痛み、長く歩くと重だるくなる</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">注射や湿布だけで様子を見続けることに不安がある</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">手術を勧められたが、まず日常生活でできることも知りたい</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">このまま歩けなくなるのではと不安になることがある</p>
-          </div>
+    <section id="troubles" class="troubles-check">
+      <div class="troubles-check__inner">
+        <div class="troubles-check__heading">
+          <h2>こんなお悩みを抱えていませんか？</h2>
         </div>
-        <p class="concerns__footer">一つでも当てはまる方は、<strong>今の膝の状態と動き方を整理するタイミングかもしれません。</strong></p>
+
+        <ul class="troubles-check__list" aria-label="変形性膝関節症でよくあるお悩み">
+          <li>歩き始めや立ち上がりで<strong>膝が痛む</strong></li>
+          <li>階段の上り下りで<strong>膝に強い負担を感じる</strong></li>
+          <li>正座やしゃがむ動作が<strong>できなくなってきた</strong></li>
+          <li>膝に水がたまる、<strong>腫れぼったい感じ</strong>がある</li>
+          <li>膝の曲げ伸ばしで<strong>引っかかりや違和感</strong>がある</li>
+          <li>朝起きたときに膝がこわばり、<strong>動きにくい</strong></li>
+          <li>整形外科で<strong>「年齢のせい」</strong>と言われた</li>
+          <li>もう以前のようには歩けないと<strong>諦めている</strong></li>
+        </ul>
       </div>
     </section>
     <section id="flow" class="flow-slider" aria-labelledby="flow-title" data-flow-slider>
@@ -1173,49 +1712,6 @@
       </div>
     </section>
 
-    <section class="access-summary">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">アクセス・ご予約</h2>
-        <div class="access-card">
-          <div>
-            <p class="section-lead" style="text-align:left;margin:0 0 1.25rem;">柏市周辺で変形性膝関節症や膝痛について相談したい方へ。完全予約制で、お一人ずつ落ち着いてお話を伺います。</p>
-            <dl class="access-list">
-              <div>
-                <dt>アクセス</dt>
-                <dd>柏駅西口徒歩8分</dd>
-              </div>
-              <div>
-                <dt>予約</dt>
-                <dd>完全予約制</dd>
-              </div>
-              <div>
-                <dt>電話番号</dt>
-                <dd><a href="tel:0471143274">04-7114-3274</a></dd>
-              </div>
-              <div>
-                <dt>営業時間</dt>
-                <dd>9:00〜19:00 / 定休日：日曜</dd>
-              </div>
-            </dl>
-          </div>
-          <div class="access-links">
-            <a class="access-link access-link--primary" href="/#contact">
-              <i data-lucide="message-circle" style="width:1.1rem;height:1.1rem;" aria-hidden="true"></i>
-              トップページの予約フォームへ
-            </a>
-            <a class="access-link access-link--soft" href="/#access">
-              <i data-lucide="map-pin" style="width:1.1rem;height:1.1rem;" aria-hidden="true"></i>
-              アクセス詳細を見る
-            </a>
-            <a class="access-link access-link--soft" href="/#price">
-              <i data-lucide="wallet" style="width:1.1rem;height:1.1rem;" aria-hidden="true"></i>
-              トップページの料金案内を見る
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- RELATED_SYMPTOMS_NAV_START -->
 <section class="related-symptoms">
       <div class="container max-w-4xl">
@@ -1335,6 +1831,124 @@
         <p class="cta__area">柏市をはじめ、松戸市・我孫子市・取手市・野田市・流山市・守谷市など近隣エリアからもご来院いただいています。</p>
       </div>
     </section>
+    <section id="access" class="py-14 bg-white">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="text-center mb-6">
+          <h2 class="section-title mb-4">アクセス</h2>
+        </div>
+
+        <div class="lp-access-summary" data-access-summary-card>
+          <dl class="lp-access-info" aria-label="店舗情報">
+            <div class="lp-access-info__row">
+              <dt>院名</dt>
+              <dd>整体院ひざこぞう</dd>
+            </div>
+            <div class="lp-access-info__row">
+              <dt>電話番号</dt>
+              <dd>04-7114-3274</dd>
+            </div>
+            <div class="lp-access-info__row">
+              <dt>住所</dt>
+              <dd>
+                <span>〒277-0841</span>
+                <span>千葉県柏市あけぼの4-4-3 BoaSorte柏305</span>
+              </dd>
+            </div>
+            <div class="lp-access-info__row">
+              <dt>アクセス</dt>
+              <dd>
+                <span>柏駅西口から徒歩約8分</span>
+                <span>マンション内の完全予約制整体院です。</span>
+                <a href="../access.html">詳しいアクセスを見る <span aria-hidden="true">›</span></a>
+              </dd>
+            </div>
+          </dl>
+
+          <div class="lp-access-hours" aria-label="受付時間">
+            <table class="lp-access-hours__table">
+              <caption>受付時間</caption>
+              <thead>
+                <tr>
+                  <th scope="col">時間</th>
+                  <th scope="col">月</th>
+                  <th scope="col">火</th>
+                  <th scope="col">水</th>
+                  <th scope="col">木</th>
+                  <th scope="col">金</th>
+                  <th scope="col">土</th>
+                  <th scope="col">日</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">9:00〜19:00</th>
+                  <td>●</td>
+                  <td>●</td>
+                  <td>●</td>
+                  <td>●</td>
+                  <td>●</td>
+                  <td>●</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+            <p><span aria-hidden="true">●</span> 完全予約制／定休日：日曜</p>
+            <p>詳しい道順・建物入口・駐車場については、アクセスページでご確認いただけます。</p>
+          </div>
+        </div>
+
+        <div id="contact" class="contact-form-section mt-10 rounded-[28px] border border-emerald-100 bg-gradient-to-br from-white via-white to-emerald-50 p-6 shadow-lg md:p-10">
+          <div class="text-center">
+            <p class="mb-3 text-sm font-black text-orange-600">最後に、ご相談はこちらから</p>
+            <h3 class="mb-4 text-2xl font-black text-slate-900 md:text-3xl">一人で悩まず、まずは私にご相談ください。</h3>
+            <p class="mx-auto mb-6 max-w-2xl text-sm font-bold leading-relaxed text-slate-600 md:text-base">メールフォームからお名前・お悩み・ご希望日時をお送りください。確認後、折り返しご連絡いたします。</p>
+          </div>
+          <div class="contact-form-layout">
+            <form id="contactForm" class="contact-mail-form" novalidate>
+              <div class="contact-form-grid">
+                <div class="contact-field">
+                  <label for="name">お名前<span>必須</span></label>
+                  <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-error" placeholder="例：山田 花子">
+                  <p id="name-error" class="contact-field-error hidden">お名前を入力してください。</p>
+                </div>
+                <div class="contact-field">
+                  <label for="phone">電話番号<span>必須</span></label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" required aria-describedby="phone-error" placeholder="例：090-0000-0000">
+                  <p id="phone-error" class="contact-field-error hidden">電話番号を入力してください。</p>
+                </div>
+              </div>
+              <div class="contact-field">
+                <label for="preferredDate">ご希望日時</label>
+                <input id="preferredDate" name="preferredDate" type="text" placeholder="例：平日午前、6月5日 10時ごろ">
+              </div>
+              <div class="contact-field">
+                <label for="message">ご相談内容</label>
+                <textarea id="message" name="message" rows="4" placeholder="足腰の状態や、気になっていることをご記入ください。"></textarea>
+              </div>
+              <p id="form-error" class="contact-form-error hidden" role="alert" tabindex="-1"></p>
+              <p class="contact-form-note">送信だけでは予約完了ではありません。内容確認後、折り返しご連絡いたします。</p>
+              <button id="submitBtn" type="submit" class="contact-submit-button">
+                <i data-lucide="send" class="h-5 w-5" aria-hidden="true"></i> メールフォームを送信する
+              </button>
+            </form>
+            <aside class="contact-line-pop" aria-label="LINE相談のご案内">
+              <p class="contact-line-pop__label">すぐ相談したい方へ</p>
+              <h4>LINEで相談する</h4>
+              <p>写真や短い文章でも大丈夫です。空き状況の確認もLINEからできます。</p>
+              <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">
+                <i data-lucide="message-circle" class="h-5 w-5" aria-hidden="true"></i> LINEで相談する
+              </a>
+            </aside>
+          </div>
+          <div id="successMessage" class="hidden" role="status" aria-live="polite" tabindex="-1">
+            <p>送信が完了しました。</p>
+            <a href="../access.html">アクセスを確認する</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
 
     <div class="back">
       <a href="../" class="back__link">

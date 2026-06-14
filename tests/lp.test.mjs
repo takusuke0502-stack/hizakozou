@@ -57,6 +57,10 @@ function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+function stripHtmlTags(value) {
+  return value.replace(/<[^>]*>/g, "");
+}
+
 function getJsonLdBlocks(type) {
   const matches = [...html.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/g)];
 
@@ -390,6 +394,7 @@ test("LP MSM CTA uses soft LP colors instead of a dark brown block", () => {
 
 test("LP adds a readable six-reason clinic strengths section", () => {
   const clinicReasons = getTopLevelSectionSlice("clinic-reasons");
+  const clinicReasonsText = stripHtmlTags(clinicReasons);
   const expectedReasons = [
     [
       "特徴1",
@@ -438,30 +443,31 @@ test("LP adds a readable six-reason clinic strengths section", () => {
   assert.match(clinicReasons, /<section id="clinic-reasons" class="clinic-reasons" aria-labelledby="clinic-reasons-title">/);
   assert.match(clinicReasons, /<h2 id="clinic-reasons-title">当院が選ばれる<span>6つ<\/span>の理由<\/h2>/);
   assert.doesNotMatch(clinicReasons, /7つの理由/);
-  assert.match(clinicReasons, /長年諦めていた重度な腰痛・坐骨神経痛・膝の痛み・シビレにも対応<\/p>/);
+  assert.match(clinicReasonsText, /長年諦めていた重度な腰痛・坐骨神経痛・膝の痛み・シビレにも対応/);
   assert.doesNotMatch(clinicReasons, /長年諦めていた重度な腰痛・坐骨神経痛・膝の痛み・シビレにも対応<br>/);
   assert.doesNotMatch(clinicReasons, /プロ直伝の「徹底したセルフケア指導」で、10年後も再発しにくい身体へ/);
   assert.doesNotMatch(clinicReasons, /動画やオンラインでも続かなかった痛み対策を、あなた専用のストレッチでサポート/);
-  assert.match(clinicReasons, /当院では、施術を受け続けることをゴールにはしていません。/);
-  assert.match(clinicReasons, /YouTubeやSNSには、ストレッチや体操の情報が数多くあります。/);
-  assert.match(clinicReasons, /反り腰の方が腰を強く反る運動を続けたり/);
-  assert.match(clinicReasons, /今の状態に必要なストレッチや体操を一人ひとりに合わせてお伝えします。/);
-  assert.match(clinicReasons, /ご自身でカラダを改善・管理できる「卒業」を目指します。/);
+  assert.match(clinicReasonsText, /当院では、施術を受け続けることをゴールにしていません。/);
+  assert.match(clinicReasonsText, /ご自身の身体を理解し、不調を自分で整えられるようになることを目指します。/);
+  assert.match(clinicReasonsText, /YouTubeやSNSのストレッチ情報は多くありますが、身体の状態に合わない運動は腰や膝の負担を増やすこともあります。/);
+  assert.match(clinicReasonsText, /今の状態に合ったセルフケアを一人ひとりにお伝えします。/);
+  assert.match(clinicReasonsText, /ご自身でカラダを管理できる「卒業」を目指します。/);
   assert.equal((clinicReasons.match(/class="clinic-reason-card"/g) || []).length, 6);
   assert.equal((clinicReasons.match(/class="clinic-reason-card__label"/g) || []).length, 6);
   assert.equal((clinicReasons.match(/class="clinic-reason-card__image"/g) || []).length, 6);
 
   for (const [label, title, lead, src, alt] of expectedReasons) {
     assert.match(clinicReasons, new RegExp(escapeRegExp(label)));
-    assert.match(clinicReasons, new RegExp(escapeRegExp(title)));
-    assert.match(clinicReasons, new RegExp(escapeRegExp(lead)));
+    assert.match(clinicReasonsText, new RegExp(escapeRegExp(title)));
+    assert.match(clinicReasonsText, new RegExp(escapeRegExp(lead.replace("<br>", ""))));
     assert.match(clinicReasons, new RegExp(`<img[^>]+src="${escapeRegExp(src)}"[^>]+alt="${escapeRegExp(alt)}"[^>]+class="clinic-reason-card__image"`));
 
     const cardStart = clinicReasons.indexOf(label);
     const nextCardStart = clinicReasons.indexOf('<article class="clinic-reason-card">', cardStart + 1);
     const card = clinicReasons.slice(cardStart, nextCardStart > -1 ? nextCardStart : clinicReasons.length);
-    const titleIndex = card.indexOf(title);
-    const leadIndex = card.indexOf(lead);
+    const cardText = stripHtmlTags(card);
+    const titleIndex = cardText.indexOf(title);
+    const leadIndex = cardText.indexOf(lead.replace("<br>", ""));
     const imageIndex = card.indexOf(`src="${src}"`);
     const textIndex = card.indexOf('class="clinic-reason-card__text"');
 
@@ -470,10 +476,13 @@ test("LP adds a readable six-reason clinic strengths section", () => {
     assert.ok(textIndex > imageIndex, `${label} should place the explanation text after the photo`);
   }
 
-  assert.match(clinicReasons, /多くの患者様が「腰が痛いのに腰を触らないことにびっくりした」/);
-  assert.match(clinicReasons, /柔道整復師（国家資格）を持つ院長自らが施術を担当します。/);
-  assert.match(clinicReasons, /日本整形外科学会でもその有効性と重要性が推奨されている「運動療法」/);
-  assert.match(clinicReasons, /他のお客様と時間が重なりにくいため、デリケートなお身体のお悩みも一対一で安心してご相談いただけます。/);
+  assert.match(clinicReasonsText, /多くの患者様が「腰が痛いのに腰を触らないことにびっくりした」/);
+  assert.match(clinicReasonsText, /柔道整復師（国家資格）を持つ院長自らが施術を担当します。/);
+  assert.match(clinicReasonsText, /日本整形外科学会でもその有効性と重要性が推奨されている「運動療法」/);
+  assert.match(clinicReasonsText, /他のお客様と時間が重なりにくいため、デリケートなお身体のお悩みも一対一で安心してご相談いただけます。/);
+  assert.equal((clinicReasons.match(/class="feature-emphasis"/g) || []).length, 12);
+  assert.equal((clinicReasons.match(/class="feature-marker"/g) || []).length, 12);
+  assert.equal((clinicReasons.match(/class="feature-bold"/g) || []).length, 6);
 });
 
 test("LP clinic strengths CSS keeps the reference-like vertical layout responsive", () => {
@@ -488,7 +497,11 @@ test("LP clinic strengths CSS keeps the reference-like vertical layout responsiv
   assert.match(mainCss, /\.clinic-reason-card__label\s*{[\s\S]*width:\s*min\(320px,\s*82%\);[\s\S]*border-radius:\s*0;[\s\S]*background:\s*#bd927f;/);
   assert.match(mainCss, /\.clinic-reason-card__body\s*{[\s\S]*padding:\s*0;[\s\S]*background:\s*transparent;[\s\S]*box-shadow:\s*none;/);
   assert.match(mainCss, /\.clinic-reason-card__lead\s*{[\s\S]*font-size:\s*0\.9rem;[\s\S]*line-height:\s*1\.7;/);
-  assert.match(mainCss, /\.clinic-reason-card__text p\s*{[\s\S]*font-size:\s*0\.92rem;[\s\S]*line-height:\s*1\.85;/);
+  assert.match(mainCss, /\.clinic-reason-card__text p\s*{[\s\S]*font-size:\s*1rem;[\s\S]*font-weight:\s*500;[\s\S]*line-height:\s*1\.9;/);
+  assert.match(mainCss, /\.clinic-reason-card__text p \+ p\s*{[\s\S]*margin-top:\s*1\.25rem;/);
+  assert.match(mainCss, /\.feature-emphasis\s*{[\s\S]*color:\s*#9a4f36;[\s\S]*font-weight:\s*700;/);
+  assert.match(mainCss, /\.feature-marker\s*{[\s\S]*background:\s*linear-gradient\([\s\S]*rgba\(218,\s*154,\s*105,\s*0\.32\)[\s\S]*box-decoration-break:\s*clone;/);
+  assert.match(mainCss, /\.feature-bold\s*{[\s\S]*font-weight:\s*700;/);
   assert.match(mainCss, /\.clinic-reason-card__image-frame\s*{[\s\S]*width:\s*min\(100%,\s*300px\);[\s\S]*margin:\s*20px auto 0;/);
   assert.match(mainCss, /\.clinic-reason-card__image\s*{[\s\S]*width:\s*100%;[\s\S]*max-height:\s*260px;[\s\S]*object-fit:\s*contain;/);
   assert.match(mainCss, /@media\s*\(max-width:\s*640px\)\s*{[\s\S]*\.clinic-reasons\s*{[\s\S]*padding:\s*46px 14px 56px;[\s\S]*\.clinic-reason-card__label\s*{[\s\S]*width:\s*min\(320px,\s*86%\);[\s\S]*\.clinic-reason-card__image-frame\s*{[\s\S]*width:\s*min\(78vw,\s*280px\);/);
@@ -1463,16 +1476,13 @@ test("knee osteoarthritis page is a diagnosis-specific reservation LP", () => {
     "どれくらい通う必要がありますか？"
   ];
   const requiredCopy = [
-    "柏市で変形性膝関節症と言われた方へ｜階段・歩き始めの膝痛相談",
     "整体でできること・できないこと",
     "病院と併用しながら相談できます",
     "当院は医療機関ではありません",
     "膝や歩き方のお悩みでご相談いただいた方の声",
     "初回の流れ",
     "初回限定",
-    "1,980",
-    "柏駅西口徒歩8分",
-    "今の膝の状態を送って相談する"
+    "1,980"
   ];
   const forbiddenPatterns = [
     /治る/,
@@ -1487,7 +1497,9 @@ test("knee osteoarthritis page is a diagnosis-specific reservation LP", () => {
 
   assert.match(kneeHtml, /<title>柏市で変形性膝関節症の整体相談｜歩き始め・階段の膝痛｜整体院ひざこぞう<\/title>/);
   assert.match(kneeHtml, new RegExp(`<meta name="description" content="${escapeRegExp(expectedDescription)}">`));
-  assert.equal((kneeHtml.match(/<h1\b/g) ?? []).length, 1, "knee osteoarthritis LP should have one h1");
+  assert.equal((kneeHtml.match(/<h1\b/g) ?? []).length, 0, "knee osteoarthritis LP should not duplicate image-contained hero text");
+  assert.match(kneeHtml, /<section class="symptom-image-hero">\s*<picture>\s*<source media="\(max-width: 767px\)" srcset="\.\.\/image\/symptom-hero\/変形性膝関節症-sp\.webp">\s*<img\s+src="\.\.\/image\/symptom-hero\/変形性膝関節症\.webp"\s+alt="変形性膝関節症でお悩みの方へ"[\s\S]*?class="symptom-image-hero__image"[\s\S]*?fetchpriority="high"[\s\S]*?decoding="async"[\s\S]*?>\s*<\/picture>\s*<\/section>/);
+  assert.doesNotMatch(kneeHtml, /<section class="hero">/);
 
   for (const copy of requiredCopy) {
     assert.match(kneeHtml, new RegExp(escapeRegExp(copy)), `knee osteoarthritis LP should include: ${copy}`);
@@ -1499,9 +1511,10 @@ test("knee osteoarthritis page is a diagnosis-specific reservation LP", () => {
 
   assert.match(kneeHtml, /href="https:\/\/lin\.ee\/X01F2mP"/);
   assert.match(kneeHtml, /href="tel:0471143274"/);
-  assert.match(kneeHtml, /href="\/#price"/);
-  assert.match(kneeHtml, /href="\/#access"/);
-  assert.match(kneeHtml, /href="\/#contact"/);
+  assert.match(kneeHtml, /<section id="price" class="hk-pricing-section"/);
+  assert.match(kneeHtml, /<section id="access" class="py-14 bg-white"/);
+  assert.match(kneeHtml, /<div id="contact" class="contact-form-section/);
+  assert.match(kneeHtml, /href="\.\.\/access\.html"/);
 
   for (const pattern of forbiddenPatterns) {
     assert.doesNotMatch(kneeHtml, pattern, `knee osteoarthritis LP should avoid ${pattern}`);
@@ -1545,6 +1558,147 @@ test("major symptom pages reuse the exact top-page pricing section", () => {
     assert.match(priceSection, /href="https:\/\/lin\.ee\/X01F2mP" target="_blank" rel="noopener noreferrer" class="hk-pricing-line"/, `${page} should keep the top-page LINE link`);
     assert.match(priceSection, /data-deadline/, `${page} should keep the deadline hook`);
     assert.match(priceSection, /data-remaining/, `${page} should keep the remaining-slots hook`);
+  }
+});
+
+test("major symptom pages replace concerns with top-page troubles-check layout", () => {
+  const targetPages = [
+    {
+      page: "symptoms/lower-back-pain.html",
+      aria: "腰痛でよくあるお悩み",
+      heroSrc: "../image/symptom-hero/腰痛・ギックリ腰.webp",
+      heroMobileSrc: "../image/symptom-hero/腰痛・ギックリ腰-sp.webp",
+      heroAlt: "腰痛・ぎっくり腰でお悩みの方へ",
+      items: [
+        "長い間、<strong>慢性的な腰痛</strong>に悩まされている",
+        "立ち上がりや歩き始めに<strong>腰が痛む</strong>",
+        "長く立っていたり歩いたりすると<strong>足腰がつらい</strong>",
+        "寝返りのたびに腰が痛くて<strong>目が覚める</strong>",
+        "毎朝、腰の重さやこわばりを感じている",
+        "整形外科や整骨院に通っても<strong>満足できなかった</strong>",
+        "薬やブロック注射に<strong>頼り続けたくない</strong>",
+        "もうこの腰痛は良くならないと<strong>諦めている</strong>"
+      ]
+    },
+    {
+      page: "symptoms/sciatica.html",
+      aria: "坐骨神経痛でよくあるお悩み",
+      heroSrc: "../image/symptom-hero/坐骨神経痛.webp",
+      heroMobileSrc: "../image/symptom-hero/坐骨神経痛-sp.webp",
+      heroAlt: "坐骨神経痛でお悩みの方へ",
+      items: [
+        "お尻から脚にかけて<strong>痛みやしびれ</strong>がある",
+        "長く座っていると<strong>お尻や脚がつらくなる</strong>",
+        "立ち上がりや歩き始めに<strong>電気が走るように痛む</strong>",
+        "長く歩くと<strong>脚のしびれが強くなる</strong>",
+        "寝ているときも脚が痛み、<strong>目が覚める</strong>",
+        "病院で坐骨神経痛と言われたが<strong>変化を感じられない</strong>",
+        "薬や注射に<strong>頼り続けたくない</strong>",
+        "痛みやしびれが不安で、<strong>外出を控えている</strong>"
+      ]
+    },
+    {
+      page: "symptoms/spinal-stenosis.html",
+      aria: "脊柱管狭窄症でよくあるお悩み",
+      heroSrc: "../image/symptom-hero/脊柱菅狭窄症.webp",
+      heroMobileSrc: "../image/symptom-hero/脊柱菅狭窄症-sp.webp",
+      heroAlt: "脊柱管狭窄症でお悩みの方へ",
+      items: [
+        "少し歩くと脚が痛くなり、<strong>休憩が必要になる</strong>",
+        "お尻や太もも、ふくらはぎに<strong>しびれや重さ</strong>がある",
+        "立ち続けていると<strong>足腰がつらくなる</strong>",
+        "前かがみになると<strong>少し楽に感じる</strong>",
+        "買い物や散歩で<strong>長い距離を歩けなくなった</strong>",
+        "病院で脊柱管狭窄症と言われ、<strong>手術が不安</strong>",
+        "薬やブロック注射に<strong>頼り続けたくない</strong>",
+        "このまま歩けなくなるのではと<strong>不安を感じている</strong>"
+      ]
+    },
+    {
+      page: "symptoms/knee-osteoarthritis.html",
+      aria: "変形性膝関節症でよくあるお悩み",
+      heroSrc: "../image/symptom-hero/変形性膝関節症.webp",
+      heroMobileSrc: "../image/symptom-hero/変形性膝関節症-sp.webp",
+      heroAlt: "変形性膝関節症でお悩みの方へ",
+      items: [
+        "歩き始めや立ち上がりで<strong>膝が痛む</strong>",
+        "階段の上り下りで<strong>膝に強い負担を感じる</strong>",
+        "正座やしゃがむ動作が<strong>できなくなってきた</strong>",
+        "膝に水がたまる、<strong>腫れぼったい感じ</strong>がある",
+        "膝の曲げ伸ばしで<strong>引っかかりや違和感</strong>がある",
+        "朝起きたときに膝がこわばり、<strong>動きにくい</strong>",
+        "整形外科で<strong>「年齢のせい」</strong>と言われた",
+        "もう以前のようには歩けないと<strong>諦めている</strong>"
+      ]
+    },
+    {
+      page: "symptoms/hip-osteoarthritis.html",
+      aria: "変形性股関節症でよくあるお悩み",
+      heroSrc: "../image/symptom-hero/変形性股関節症.webp",
+      heroMobileSrc: "../image/symptom-hero/変形性股関節症-sp.webp",
+      heroAlt: "変形性股関節症でお悩みの方へ",
+      items: [
+        "足の付け根やお尻に<strong>痛みや違和感</strong>がある",
+        "歩き始めや長く歩いたあとに<strong>股関節が痛む</strong>",
+        "靴下を履く、足の爪を切る動作が<strong>つらい</strong>",
+        "階段や片脚で立つと<strong>股関節が痛む</strong>",
+        "車の乗り降りや方向転換が<strong>しづらい</strong>",
+        "夜寝ていても股関節が痛くて<strong>目が覚める</strong>",
+        "病院で手術を勧められたが、<strong>できれば避けたい</strong>",
+        "このまま歩けなくなるのではと<strong>不安を感じている</strong>"
+      ]
+    },
+    {
+      page: "symptoms/lumbar-disc-herniation.html",
+      aria: "腰椎椎間板ヘルニアでよくあるお悩み",
+      heroSrc: "../image/symptom-hero/椎間板ヘルニア.webp",
+      heroMobileSrc: "../image/symptom-hero/椎間板ヘルニア-sp.webp",
+      heroAlt: "椎間板ヘルニアでお悩みの方へ",
+      items: [
+        "腰からお尻、脚にかけて<strong>痛みやしびれ</strong>がある",
+        "長時間座っていると<strong>腰や脚がつらくなる</strong>",
+        "前かがみになると<strong>痛みやしびれが強くなる</strong>",
+        "立ち上がるときに<strong>腰から脚へ痛みが走る</strong>",
+        "咳やくしゃみをすると<strong>腰に響く</strong>",
+        "寝返りや起き上がりで腰が痛み、<strong>目が覚める</strong>",
+        "病院でヘルニアと言われたが<strong>なかなか変化がない</strong>",
+        "薬や注射、手術に頼る前に<strong>できることを探している</strong>"
+      ]
+    }
+  ];
+
+  for (const { page, aria, heroSrc, heroMobileSrc, heroAlt, items } of targetPages) {
+    const pageHtml = readPageIfExists(page);
+    const heroIndex = pageHtml.indexOf('<section class="symptom-image-hero">');
+    const troublesIndex = pageHtml.indexOf('<section id="troubles" class="troubles-check">');
+    const flowIndex = pageHtml.indexOf('<section id="flow" class="flow-slider"');
+    const sectionEnd = pageHtml.indexOf("</section>", troublesIndex) + "</section>".length;
+    const section = pageHtml.slice(troublesIndex, sectionEnd);
+    const resolvedHeroImage = path.join(repoRoot, path.dirname(page), heroSrc);
+    const resolvedHeroMobileImage = path.join(repoRoot, path.dirname(page), heroMobileSrc);
+
+    assert.ok(heroIndex > -1 && heroIndex < troublesIndex && troublesIndex < flowIndex, `${page} should keep image hero, troubles, flow order`);
+    assert.doesNotMatch(pageHtml, /<section class="hero">/, `${page} should remove the old blue hero section`);
+    assert.match(pageHtml, new RegExp(`<img\\s+src="${escapeRegExp(heroSrc)}"\\s+alt="${escapeRegExp(heroAlt)}"[\\s\\S]*?width="1600"[\\s\\S]*?height="900"[\\s\\S]*?class="symptom-image-hero__image"[\\s\\S]*?fetchpriority="high"[\\s\\S]*?decoding="async"`), `${page} should use the requested hero image`);
+    assert.match(pageHtml, new RegExp(`<source\\s+media="\\(max-width: 767px\\)"\\s+srcset="${escapeRegExp(heroMobileSrc)}"`), `${page} should use the requested mobile hero image`);
+    assert.match(pageHtml, /\.symptom-image-hero\s*{[\s\S]*width:\s*100%;[\s\S]*background-color:\s*#faf7f1/);
+    assert.match(pageHtml, /\.symptom-image-hero picture,\.symptom-image-hero__image\s*{[\s\S]*width:\s*100%;[\s\S]*height:\s*auto;[\s\S]*object-fit:\s*contain/);
+    assert.match(pageHtml, /@media\s*\(max-width:\s*767px\)\s*{[\s\S]*\.symptom-image-hero\s*{[\s\S]*margin-left:\s*0/);
+    assert.ok(existsSync(resolvedHeroImage), `${page} should reference an existing hero image`);
+    assert.ok(existsSync(resolvedHeroMobileImage), `${page} should reference an existing mobile hero image`);
+    assert.equal((pageHtml.match(/id="troubles"/g) ?? []).length, 1, `${page} should have one troubles id`);
+    assert.equal((section.match(/<li>/g) ?? []).length, 8, `${page} should render eight concerns`);
+    assert.match(section, /<h2>こんなお悩みを抱えていませんか？<\/h2>/, `${page} should use the top-page heading`);
+    assert.match(section, new RegExp(`aria-label="${escapeRegExp(aria)}"`), `${page} should use the requested aria label`);
+    assert.doesNotMatch(pageHtml, /<section class="concerns">/, `${page} should remove the old concerns section`);
+    assert.doesNotMatch(section, /一つでも当てはまる方は|concern-item|concerns__footer/, `${page} should not keep old concern content`);
+    assert.match(pageHtml, /\/\* Copied from top page troubles-check section\. \*\//, `${page} should include copied troubles CSS`);
+    assert.match(pageHtml, /\.troubles-check__heading::after\s*{[\s\S]*border-top:\s*18px solid #e4e4e4;/, `${page} should keep the top-page heading triangle`);
+    assert.match(pageHtml, /@media\s*\(max-width:\s*480px\)\s*{[\s\S]*\.troubles-check__list li::after\s*{[\s\S]*width:\s*24px;/, `${page} should keep the mobile troubles CSS`);
+
+    for (const item of items) {
+      assert.match(section, new RegExp(escapeRegExp(`<li>${item}</li>`)), `${page} should include concern: ${item}`);
+    }
   }
 });
 
