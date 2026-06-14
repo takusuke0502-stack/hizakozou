@@ -1817,14 +1817,24 @@
     <section class="voice-trust" aria-labelledby="voice-trust-title">
       <div class="voice-trust__inner">
         <div class="voice-trust__header">
-          <p class="voice-trust__label">VOICE</p>
-          <h2 id="voice-trust-title" class="voice-trust__title">
-            患者様の声
-          </h2>
-          <p class="voice-trust__lead">
-            当院には、膝・腰・股関節の痛みや、歩くことへの不安でお悩みの方がご相談に来られています。<br>
-            同じようなお悩みで来院された方のお声をご紹介します。
-          </p>
+          <div class="voice-reassurance-copy">
+            <h2 id="voice-trust-title" class="voice-reassurance-copy__headline">
+              <span class="voice-reassurance-copy__headline-text">
+                <span class="voice-reassurance-copy__brown">もう、</span>
+                <span class="voice-reassurance-copy__orange">一人で悩まなくて<span class="voice-reassurance-copy__mark">大丈夫です！</span></span>
+              </span>
+            </h2>
+            <p class="voice-reassurance-copy__support">
+              <span>どこへ行っても良くならなかった方が、</span>
+              <span>当院で<span class="voice-reassurance-copy__green voice-reassurance-copy__mark">歩く喜びを取り戻しています。</span></span>
+            </p>
+            <p class="voice-reassurance-copy__commitment">
+              <span>つらい足腰のお悩みは、</span>
+              <span class="voice-reassurance-copy__commitment-accent">
+                <span class="voice-reassurance-copy__orange voice-reassurance-copy__mark">私にお任せください。</span>
+              </span>
+            </p>
+          </div>
         </div>
 
         <div class="voice-trust__assurance" aria-label="来院前の不安をやわらげるご案内">
@@ -1991,27 +2001,9 @@
 
     <section id="knee-msm-reasons" class="knee-msm-reasons" aria-labelledby="knee-msm-reasons-title">
       <div class="knee-msm-reasons__inner">
-        <div class="knee-msm-hero">
-          <p class="knee-msm-hero__eyebrow">痛みが戻る仕組み</p>
-          <h2 id="knee-msm-reasons-title" class="knee-msm-hero__title">
-            あなたの<span class="knee-msm-highlight">足腰の痛み・しびれ</span>が戻ってしまう、本当の理由
-          </h2>
-          <p class="knee-msm-hero__text">
-            「揉んでもらうとその場は楽になるけれど、翌朝にはまた痛い…」<br>
-            「注射や薬を続けても、結局同じことの繰り返し…」
-          </p>
-          <p class="knee-msm-hero__badge">MSMメソッドが解き明かす「痛み・しびれの根本原因」</p>
-        </div>
-
-        <div class="knee-msm-empathy" aria-label="こんなお悩み、ありませんか">
-          <p class="knee-msm-empathy__label">こんなお悩み、ありませんか？</p>
-          <p>何度もぶり返すのは、痛みが出ている場所が「被害者」に過ぎないからです。</p>
-          <p>痛む場所をいくら揉んでも、根本原因である「<span class="knee-msm-highlight">土台の崩れ</span>」と「<span class="knee-msm-highlight">脳の記憶</span>」を変えない限り、痛みは一生戻り続けます。</p>
-        </div>
-
         <div class="knee-msm-intro">
           <p class="knee-msm-intro__label">なぜ治らないのか</p>
-          <h3>痛みがぶり返す「3つの原因」</h3>
+          <h3 id="knee-msm-reasons-title">痛みがぶり返す「3つの原因」</h3>
           <p>
             何度も同じ痛みを繰り返す背景には、筋肉の働き方、足元からのゆがみ、そして毎日の動きを覚えてしまう脳と神経のクセがあります。
           </p>
@@ -2065,25 +2057,6 @@
           </div>
         </article>
 
-        <div class="knee-msm-approach-box">
-          <div class="knee-msm-approach-box__header">
-            <h3>この2つを組み合わせるのがMSMメソッド独自の視点</h3>
-            <p>STRUCTURE & NEUROLOGICAL APPROACH</p>
-          </div>
-
-          <div class="knee-msm-approaches">
-            <div class="knee-msm-approach knee-msm-approach--exercise">
-              <p class="knee-msm-approach__label">運動療法（スタビリティワーク）</p>
-              <h4>サボり筋を狙って刺激</h4>
-              <p>眠っている筋肉をピンポイントで働かせ、関節や骨盤を正しい位置で支えられるようにします。</p>
-            </div>
-            <div class="knee-msm-approach knee-msm-approach--cognitive">
-              <p class="knee-msm-approach__label">認知行動療法的アプローチ</p>
-              <h4>「悪い動き方」の記憶をリセット</h4>
-              <p>無意識に繰り返しているかばい動きを自覚し、脳からの動作指令を正しく書き換えることで、神経の過敏化を抑えていきます。</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -2277,7 +2250,6 @@
             <h2 class="section-title">初回で行うこと / 行わないこと</h2>
             <img src="/img/first-visit/leaf-right.png" alt="" aria-hidden="true" loading="lazy" decoding="async" width="32" height="26">
           </div>
-          <p class="text-slate-600 font-bold leading-relaxed">初回は、いきなり施術を進めるのではなく、状態の整理と説明を先に行います。不安を整理してから進めたい方に向けたご案内です。</p>
         </div>
         <div class="columns">
           <article class="card card-do" aria-label="初回で行うこと">
@@ -2377,7 +2349,7 @@
             </div>
             <div class="director-profile__message">
               <p class="director-profile__eyebrow">院長からのメッセージ</p>
-              <h2 class="director-profile__title">痛みの背景まで、一緒に整理します。</h2>
+              <h2 class="director-profile__title">痛み、シビレの根本原因を追求します。</h2>
               <div class="director-profile__copy">
                 <p>病院や整骨院に通っても<span class="director-profile__mark">改善しない痛み</span>に悩む方が多く来院されています。</p>
                 <p>当院では筋肉だけでなく、神経の動きやすさや身体の使い方まで評価し、<span class="director-profile__mark">原因</span>を見極めます。</p>
@@ -2668,90 +2640,7 @@
           <p>施術中は電話に出られないことがあります。後ほど折り返しお電話いたします。</p>
         </div>
 
-        <p class="hk-pricing-note">
-          腰・股関節・膝・足まわりの痛みや不安を抱えている方へ。<br>
-          まずは今の状態を一緒に確認していきましょう。
-        </p>
-
         <div class="hk-pricing-rule" aria-hidden="true"></div>
-      </div>
-    </section>
-
-    <section id="faq" class="py-16 bg-white">
-      <div class="container mx-auto px-4 max-w-3xl">
-        <div class="text-center mb-8">
-          <h2 class="section-title mb-4">よくある質問</h2>
-          <p class="text-slate-600 font-bold">予約前に特に多い不安だけを、短くまとめました。</p>
-        </div>
-
-        <dl class="lp-faq-list">
-          <div class="lp-faq-item">
-            <dt>
-              <span>Q.</span>
-              初回はどのくらい時間がかかりますか？
-            </dt>
-            <dd>
-              <span>A.</span>
-              初回は約90分を目安に、カウンセリング・状態確認・施術・今後のご説明を行います。お身体の状態を丁寧に確認するため、少し長めにお時間をいただいています。
-            </dd>
-          </div>
-          <div class="lp-faq-item">
-            <dt>
-              <span>Q.</span>
-              痛い施術ですか？
-            </dt>
-            <dd>
-              <span>A.</span>
-              強く揉んだり、無理に動かしたりする施術ではありません。状態を確認しながら、安心して受けていただける範囲で進めます。
-            </dd>
-          </div>
-          <div class="lp-faq-item">
-            <dt>
-              <span>Q.</span>
-              病院に通いながらでも大丈夫ですか？
-            </dt>
-            <dd>
-              <span>A.</span>
-              はい、大丈夫です。病院での検査や治療を否定せず、併用しながらできることを一緒に考えていきます。
-            </dd>
-          </div>
-          <div class="lp-faq-item">
-            <dt>
-              <span>Q.</span>
-              どのくらいのペースで通えばいいですか？
-            </dt>
-            <dd>
-              <span>A.</span>
-              症状の強さや生活での負担によって変わります。初回で状態を確認したうえで、無理のない通院ペースをご提案します。必要以上に通わせるようなご案内はしません。
-            </dd>
-          </div>
-          <div class="lp-faq-item">
-            <dt>
-              <span>Q.</span>
-              どんな服装で行けばいいですか？
-            </dt>
-            <dd>
-              <span>A.</span>
-              膝や股関節まわりを動かしやすい服装がおすすめです。スカートや硬いジーンズより、ゆとりのあるズボンや動きやすい服装だと確認しやすくなります。
-            </dd>
-          </div>
-          <div class="lp-faq-item">
-            <dt>
-              <span>Q.</span>
-              回数券を無理にすすめられることはありますか？
-            </dt>
-            <dd>
-              <span>A.</span>
-              無理なご提案や押し売りはしません。必要な通院の目安はお伝えしますが、通い方はご本人の希望やご都合を確認しながら決めていきます。
-            </dd>
-          </div>
-        </dl>
-
-        <div class="mt-5 text-center">
-          <a href="faq.html" class="inline-flex items-center justify-center gap-1.5 text-sm font-black text-emerald-900 underline decoration-emerald-300 underline-offset-4 transition hover:text-emerald-700">
-            その他のよくある質問を見る <span aria-hidden="true">→</span>
-          </a>
-        </div>
       </div>
     </section>
 
@@ -2868,6 +2757,84 @@
             <p>送信が完了しました。</p>
             <a href="access.html">アクセスを確認する</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <div class="text-center mb-8">
+          <h2 class="section-title mb-4">よくある質問</h2>
+          <p class="text-slate-600 font-bold">予約前に特に多い不安だけを、短くまとめました。</p>
+        </div>
+
+        <dl class="lp-faq-list">
+          <div class="lp-faq-item">
+            <dt>
+              <span>Q.</span>
+              初回はどのくらい時間がかかりますか？
+            </dt>
+            <dd>
+              <span>A.</span>
+              初回は約90分を目安に、カウンセリング・状態確認・施術・今後のご説明を行います。お身体の状態を丁寧に確認するため、少し長めにお時間をいただいています。
+            </dd>
+          </div>
+          <div class="lp-faq-item">
+            <dt>
+              <span>Q.</span>
+              痛い施術ですか？
+            </dt>
+            <dd>
+              <span>A.</span>
+              強く揉んだり、無理に動かしたりする施術ではありません。状態を確認しながら、安心して受けていただける範囲で進めます。
+            </dd>
+          </div>
+          <div class="lp-faq-item">
+            <dt>
+              <span>Q.</span>
+              病院に通いながらでも大丈夫ですか？
+            </dt>
+            <dd>
+              <span>A.</span>
+              はい、大丈夫です。病院での検査や治療を否定せず、併用しながらできることを一緒に考えていきます。
+            </dd>
+          </div>
+          <div class="lp-faq-item">
+            <dt>
+              <span>Q.</span>
+              どのくらいのペースで通えばいいですか？
+            </dt>
+            <dd>
+              <span>A.</span>
+              症状の強さや生活での負担によって変わります。初回で状態を確認したうえで、無理のない通院ペースをご提案します。必要以上に通わせるようなご案内はしません。
+            </dd>
+          </div>
+          <div class="lp-faq-item">
+            <dt>
+              <span>Q.</span>
+              どんな服装で行けばいいですか？
+            </dt>
+            <dd>
+              <span>A.</span>
+              膝や股関節まわりを動かしやすい服装がおすすめです。スカートや硬いジーンズより、ゆとりのあるズボンや動きやすい服装だと確認しやすくなります。
+            </dd>
+          </div>
+          <div class="lp-faq-item">
+            <dt>
+              <span>Q.</span>
+              回数券を無理にすすめられることはありますか？
+            </dt>
+            <dd>
+              <span>A.</span>
+              無理なご提案や押し売りはしません。必要な通院の目安はお伝えしますが、通い方はご本人の希望やご都合を確認しながら決めていきます。
+            </dd>
+          </div>
+        </dl>
+
+        <div class="mt-5 text-center">
+          <a href="faq.html" class="inline-flex items-center justify-center gap-1.5 text-sm font-black text-emerald-900 underline decoration-emerald-300 underline-offset-4 transition hover:text-emerald-700">
+            その他のよくある質問を見る <span aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
     </section>

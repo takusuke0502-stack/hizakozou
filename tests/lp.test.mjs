@@ -146,8 +146,8 @@ test("LP follows the new section order for the knee-pain explanation flow", () =
     'id="profile"',
     'id="voice"',
     'id="price"',
-    'id="faq"',
-    'id="access"'
+    'id="access"',
+    'id="faq"'
   ];
 
   const positions = markers.map((marker) => html.indexOf(marker));
@@ -218,23 +218,27 @@ test("LP adds a diagram-backed three-reason block before the MSM method", () => 
   ];
 
   assert.match(reasons, /<section id="knee-msm-reasons" class="knee-msm-reasons" aria-labelledby="knee-msm-reasons-title">/);
-  assert.match(reasons, /痛みが戻る仕組み/);
-  assert.match(reasons, /あなたの[\s\S]*足腰の痛み・しびれ[\s\S]*が戻ってしまう、本当の理由/);
-  assert.match(reasons, /痛みは一生戻り続けます。/);
-  assert.match(reasons, /MSMメソッドが解き明かす「痛み・しびれの根本原因」/);
-  assert.match(reasons, /こんなお悩み、ありませんか/);
-  assert.match(reasons, /揉んでもらうとその場は楽になるけれど、翌朝にはまた痛い/);
-  assert.match(reasons, /何度もぶり返すのは、痛みが出ている場所が「被害者」に過ぎないからです。/);
+  assert.doesNotMatch(reasons, /痛みが戻る仕組み/);
+  assert.doesNotMatch(reasons, /あなたの[\s\S]*足腰の痛み・しびれ[\s\S]*が戻ってしまう、本当の理由/);
+  assert.doesNotMatch(reasons, /痛みは一生戻り続けます。/);
+  assert.doesNotMatch(reasons, /MSMメソッドが解き明かす「痛み・しびれの根本原因」/);
+  assert.doesNotMatch(reasons, /こんなお悩み、ありませんか/);
+  assert.doesNotMatch(reasons, /揉んでもらうとその場は楽になるけれど、翌朝にはまた痛い/);
+  assert.doesNotMatch(reasons, /注射や薬を続けても、結局同じことの繰り返し/);
+  assert.doesNotMatch(reasons, /何度もぶり返すのは、痛みが出ている場所が「被害者」に過ぎないからです。/);
   assert.match(reasons, /痛みがぶり返す「3つの原因」/);
+  assert.match(reasons, /<h3 id="knee-msm-reasons-title">痛みがぶり返す「3つの原因」<\/h3>/);
   assert.match(reasons, /サボり筋[\s\S]*を放置して、[\s\S]*頑張りすぎな筋肉[\s\S]*だけを揉んでいるから/);
   assert.match(reasons, /腰や膝はただの被害者。真犯人は「[\s\S]*足首のゆがみ[\s\S]*」にあるから/);
   assert.match(reasons, /毎日の「間違った動き」を、脳と神経が記憶してしまっているから/);
   assert.doesNotMatch(reasons, /断ち切るべきループ|knee-msm-cycle|特定箇所への負担|その場しのぎの治療/);
-  assert.match(reasons, /運動療法（スタビリティワーク）/);
-  assert.match(reasons, /サボり筋を狙って刺激/);
-  assert.match(reasons, /認知行動療法的アプローチ/);
-  assert.match(reasons, /「悪い動き方」の記憶をリセット/);
-  assert.match(reasons, /この2つを組み合わせるのがMSMメソッド独自の視点/);
+  assert.doesNotMatch(reasons, /運動療法（スタビリティワーク）/);
+  assert.doesNotMatch(reasons, /サボり筋を狙って刺激/);
+  assert.doesNotMatch(reasons, /認知行動療法的アプローチ/);
+  assert.doesNotMatch(reasons, /「悪い動き方」の記憶をリセット/);
+  assert.doesNotMatch(reasons, /この2つを組み合わせるのがMSMメソッド独自の視点/);
+  assert.doesNotMatch(reasons, /STRUCTURE & NEUROLOGICAL APPROACH/);
+  assert.doesNotMatch(reasons, /class="knee-msm-approach-box"/);
   assert.doesNotMatch(reasons, /メインビジュアル画像/);
   assert.doesNotMatch(reasons, /class="knee-msm-hero__visual"/);
   assert.equal((reasons.match(/class="knee-msm-reason__diagram"/g) || []).length, 3);
@@ -263,10 +267,10 @@ test("LP adds a diagram-backed three-reason block before the MSM method", () => 
 test("LP highlights the new foot-low-back and nerve keywords with a soft underline", () => {
   const reasons = getTopLevelSectionSlice("knee-msm-reasons");
 
-  assert.equal((reasons.match(/class="knee-msm-highlight"/g) || []).length, 6);
-  assert.match(reasons, /<span class="knee-msm-highlight">足腰の痛み・しびれ<\/span>/);
-  assert.match(reasons, /<span class="knee-msm-highlight">土台の崩れ<\/span>/);
-  assert.match(reasons, /<span class="knee-msm-highlight">脳の記憶<\/span>/);
+  assert.equal((reasons.match(/class="knee-msm-highlight"/g) || []).length, 3);
+  assert.doesNotMatch(reasons, /<span class="knee-msm-highlight">足腰の痛み・しびれ<\/span>/);
+  assert.doesNotMatch(reasons, /<span class="knee-msm-highlight">土台の崩れ<\/span>/);
+  assert.doesNotMatch(reasons, /<span class="knee-msm-highlight">脳の記憶<\/span>/);
   assert.match(reasons, /<span class="knee-msm-highlight">サボり筋<\/span>/);
   assert.match(reasons, /<span class="knee-msm-highlight">頑張りすぎな筋肉<\/span>/);
   assert.match(reasons, /<span class="knee-msm-highlight">足首のゆがみ<\/span>/);
@@ -970,8 +974,9 @@ test("LP and symptom patient voices include approved assets and symptom-only add
   assert.match(html, /image\/patient-voice-yn\.webp/);
   assert.match(html, /image\/patient-voice-kk-anonymized\.webp/);
   assert.match(html, /image\/patient-voice-numajiri\.webp/);
-  assert.match(html, /<p class="voice-trust__label">VOICE<\/p>/);
-  assert.match(html, /患者様の声/);
+  assert.match(html, /class="voice-reassurance-copy"/);
+  assert.match(html, /一人で悩まなくて/);
+  assert.match(html, /大丈夫です！/);
   assert.match(html, /image\/voice-kajitani\.webp/);
   assert.match(html, /image\/voice-kk\.webp/);
   assert.match(html, /image\/voice-numajiri\.webp/);
@@ -1023,8 +1028,11 @@ test("LP and symptom patient voices include approved assets and symptom-only add
 
 test("LP voice teaser links to a dedicated voices page with anchored cards", () => {
   assert.match(html, /<section class="voice-trust"/);
-  assert.match(html, /<p class="voice-trust__label">VOICE<\/p>/);
-  assert.match(html, /<h2 id="voice-trust-title" class="voice-trust__title">\s*患者様の声\s*<\/h2>/);
+  assert.match(html, /<h2 id="voice-trust-title" class="voice-reassurance-copy__headline">/);
+  assert.match(html, /一人で悩まなくて/);
+  assert.match(html, /大丈夫です！/);
+  assert.match(html, /歩く喜びを取り戻しています。/);
+  assert.match(html, /私にお任せください。/);
   assert.doesNotMatch(html, /VOICE &amp; RESULT/);
   assert.match(html, /class="voice-trust__assurance"/);
   assert.match(html, /ご相談に来られた方のお声があります/);
@@ -1035,7 +1043,8 @@ test("LP voice teaser links to a dedicated voices page with anchored cards", () 
   assert.match(html, /voices\.html#voice-4/);
   assert.match(html, /voices\.html" class="voice-trust__button"/);
   assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust\s*\{[\s\S]*padding:\s*44px 14px 50px/);
-  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust__assurance\s*\{[\s\S]*display:\s*none/);
+  assert.doesNotMatch(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust__assurance\s*\{\s*display:\s*none/);
+  assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust__assurance\s*\{[\s\S]*display:\s*block/);
   assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust__cards\s*\{[\s\S]*gap:\s*28px/);
   assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust-card\s*\{[\s\S]*grid-template-columns:\s*clamp\(96px,\s*28vw,\s*116px\)\s+minmax\(0,\s*1fr\)/);
   assert.match(mainCss, /@media \(max-width: 640px\)[\s\S]*\.voice-trust-card\s*\{[\s\S]*padding:\s*16px/);
@@ -1789,6 +1798,45 @@ test("LP places Google reviews under the voice more button before flow", () => {
   assert.match(html, /#first-visit-policy,\s*#profile\s*{[\s\S]*background:\s*#fff !important;[\s\S]*background-image:\s*none !important;/);
 });
 
+test("LP patient voice intro uses the reassurance message and keeps the result banner visible on mobile", () => {
+  const voiceTrust = getSectionSlice('class="voice-trust"', 'class="google-reviews voice-trust__google"');
+
+  assert.doesNotMatch(voiceTrust, /<p class="voice-trust__label">VOICE<\/p>/);
+  assert.doesNotMatch(voiceTrust, /<h2 id="voice-trust-title" class="voice-trust__title">\s*患者様の声\s*<\/h2>/);
+  assert.doesNotMatch(voiceTrust, /当院には、膝・腰・股関節の痛みや、歩くことへの不安でお悩みの方がご相談に来られています。/);
+  assert.doesNotMatch(voiceTrust, /同じようなお悩みで来院された方のお声をご紹介します。/);
+
+  for (const phrase of [
+    "もう、",
+    "一人で悩まなくて",
+    "大丈夫です！",
+    "どこへ行っても良くならなかった方が、",
+    "当院で",
+    "歩く喜びを取り戻しています。",
+    "つらい足腰のお悩みは、",
+    "私にお任せください。"
+  ]) {
+    assert.match(voiceTrust, new RegExp(escapeRegExp(phrase)));
+  }
+
+  assert.match(voiceTrust, /class="voice-reassurance-copy"/);
+  assert.match(voiceTrust, /class="voice-reassurance-copy__headline"/);
+  assert.match(voiceTrust, /class="voice-reassurance-copy__headline-text"/);
+  assert.match(voiceTrust, /class="voice-reassurance-copy__orange">一人で悩まなくて<span class="voice-reassurance-copy__mark">大丈夫です！<\/span>/);
+  assert.match(voiceTrust, /class="voice-reassurance-copy__green voice-reassurance-copy__mark"/);
+  assert.match(voiceTrust, /class="voice-reassurance-copy__commitment-accent"/);
+  assert.match(voiceTrust, /class="voice-reassurance-copy__orange voice-reassurance-copy__mark">私にお任せください。<\/span>/);
+  assert.match(voiceTrust, /src="image\/voice-result-banner\.webp"/);
+  assert.match(voiceTrust, /alt="当院の施術で改善した喜びのお声を紹介するビジュアル"/);
+
+  assert.match(mainCss, /\.voice-reassurance-copy__headline\s*\{[\s\S]*font-size:\s*clamp\(1\.6rem,\s*4vw,\s*2\.75rem\)/);
+  assert.match(mainCss, /\.voice-reassurance-copy__orange\s*\{[\s\S]*color:\s*#f05a24/);
+  assert.match(mainCss, /\.voice-reassurance-copy__green\s*\{[\s\S]*color:\s*#2f7d32/);
+  assert.match(mainCss, /\.voice-reassurance-copy__mark::after\s*\{[\s\S]*background:\s*rgba\(255,\s*217,\s*40,\s*0\.82\)/);
+  assert.match(mainCss, /\.voice-trust__assurance\s*\{[\s\S]*display:\s*block;/);
+  assert.doesNotMatch(mainCss, /@media \(max-width:\s*640px\)\s*\{[\s\S]*\.voice-trust__assurance\s*\{\s*display:\s*none;/);
+});
+
 test("LP first-visit policy uses the PNG icon set accessibly", () => {
   const firstVisit = getTopLevelSectionSlice("first-visit-policy");
   const informativeIcons = [
@@ -1807,6 +1855,8 @@ test("LP first-visit policy uses the PNG icon set accessibly", () => {
   ];
 
   assert.doesNotMatch(firstVisit, /image\/initial-visit-what-we-do\.webp/);
+  assert.doesNotMatch(firstVisit, /初回は、いきなり施術を進めるのではなく、状態の整理と説明を先に行います。/);
+  assert.doesNotMatch(firstVisit, /不安を整理してから進めたい方に向けたご案内です。/);
 
   for (const [src, alt] of informativeIcons) {
     const imgTag = firstVisit.match(new RegExp(`<img\\b(?=[^>]*\\bsrc="${escapeRegExp(src)}")[^>]*>`, "i"))?.[0];
@@ -1958,6 +2008,8 @@ test("LP splits CTA roles between mid-page consultation and final reservation", 
   assert.match(priceSection, /現金/);
   assert.match(priceSection, /各種クレジットカード/);
   assert.match(priceSection, /PayPay/);
+  assert.doesNotMatch(priceSection, /腰・股関節・膝・足まわりの痛みや不安を抱えている方へ。/);
+  assert.doesNotMatch(priceSection, /まずは今の状態を一緒に確認していきましょう。/);
   assert.doesNotMatch(priceSection, /LINEで予約する/);
   assert.match(accessSection, /柏駅西口から徒歩約8分/);
   assert.match(accessSection, /院名/);
@@ -1985,12 +2037,13 @@ test("LP splits CTA roles between mid-page consultation and final reservation", 
   assert.doesNotMatch(accessSection, /access-step1-480\.webp/);
 });
 
-test("LP gives FAQ and access enough breathing room before the final contact flow", () => {
+test("LP places FAQ below access with enough breathing room before the footer", () => {
   const faqIndex = html.indexOf('id="faq"');
   const accessIndex = html.indexOf('id="access"');
 
   assert.ok(faqIndex > -1, "FAQ section should exist");
-  assert.ok(accessIndex > faqIndex, "access should still follow FAQ");
+  assert.ok(accessIndex > -1, "access section should exist");
+  assert.ok(faqIndex > accessIndex, "FAQ should follow access");
   assert.match(mainCss, /#faq\s*\{[\s\S]*padding-bottom:\s*clamp\(4\.75rem,\s*8vw,\s*7rem\)\s*!important;/);
   assert.match(mainCss, /#faq\s*\{[\s\S]*margin-bottom:\s*clamp\(1\.25rem,\s*3vw,\s*2\.5rem\)\s*!important;/);
   assert.match(mainCss, /#access\s*\{[\s\S]*padding-top:\s*clamp\(4\.75rem,\s*8vw,\s*7rem\)\s*!important;/);
@@ -2108,7 +2161,8 @@ test("LP director profile is a short message card that links to the staff page",
   assert.match(profile, /src="image\/director-kawakami-profile-768\.webp"/);
   assert.match(profile, /alt="整体院ひざこぞう 院長 川上卓哉"/);
   assert.match(profile, /院長からのメッセージ/);
-  assert.match(profile, /痛みの背景まで、一緒に整理します。/);
+  assert.match(profile, /痛み、シビレの根本原因を追求します。/);
+  assert.doesNotMatch(profile, /痛みの背景まで、一緒に整理します。/);
   assert.match(profile, /病院や整骨院に通っても<span class="director-profile__mark">改善しない痛み<\/span>に悩む方が多く来院されています。/);
   assert.match(profile, /当院では筋肉だけでなく、神経の動きやすさや身体の使い方まで評価し、<span class="director-profile__mark">原因<\/span>を見極めます。/);
   assert.match(profile, /すべての症状に同じ結果を約束することはできませんが、<span class="director-profile__mark">改善に向かう最短ルート<\/span>を一緒に探します。/);
