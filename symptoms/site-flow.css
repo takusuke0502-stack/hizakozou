@@ -51,6 +51,8 @@
     .flow-slider__slides {
       position: relative;
       min-width: 0;
+      touch-action: pan-y;
+      user-select: none;
     }
 
     .flow-slide {

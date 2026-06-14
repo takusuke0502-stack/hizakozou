@@ -598,6 +598,7 @@ test("LP flow slider CSS keeps the mock layout responsive without hiding no-js c
   assert.match(mainCss, /\.flow-slider__media\s*{[\s\S]*aspect-ratio:\s*4\s*\/\s*3;[\s\S]*overflow:\s*hidden;/);
   assert.match(mainCss, /\.flow-slider__image\s*{[\s\S]*width:\s*100%;[\s\S]*height:\s*100%;[\s\S]*object-fit:\s*cover;[\s\S]*object-position:\s*center;/);
   assert.match(mainCss, /\.flow-slider__arrow\s*{[\s\S]*width:\s*56px;[\s\S]*height:\s*56px;[\s\S]*background:\s*#f2653f;/);
+  assert.match(mainCss, /\.flow-slider__slides\s*{[\s\S]*touch-action:\s*pan-y;[\s\S]*user-select:\s*none;/);
   assert.match(mainCss, /\.flow-swipe-hint\s*\{[\s\S]*text-align:\s*center;[\s\S]*font-size:\s*0\.9rem;[\s\S]*margin-top:\s*12px;[\s\S]*color:\s*#1f5f4a;/);
   assert.match(mainCss, /\.flow-swipe-arrow\s*\{[\s\S]*display:\s*inline-block;[\s\S]*margin-left:\s*8px;[\s\S]*animation:\s*swipeArrow 1\.2s ease-in-out infinite;/);
   assert.match(mainCss, /@keyframes swipeArrow\s*\{[\s\S]*0%\s*\{\s*transform:\s*translateX\(0\);\s*opacity:\s*0\.5;\s*\}[\s\S]*50%\s*\{\s*transform:\s*translateX\(8px\);\s*opacity:\s*1;\s*\}[\s\S]*100%\s*\{\s*transform:\s*translateX\(0\);\s*opacity:\s*0\.5;\s*\}/);
@@ -615,6 +616,12 @@ test("LP flow slider JavaScript uses scoped controls, dots, and counters without
   assert.match(mainJs, /querySelectorAll\('\[data-flow-slide\]'\)/);
   assert.match(mainJs, /querySelector\('\[data-flow-current\]'\)/);
   assert.match(mainJs, /querySelectorAll\('\[data-flow-dot\]'\)/);
+  assert.match(mainJs, /querySelector\('\.flow-slider__slides'\)/);
+  assert.match(mainJs, /swipeMinDistance\s*=\s*44/);
+  assert.match(mainJs, /pointerdown/);
+  assert.match(mainJs, /pointerup/);
+  assert.match(mainJs, /pointercancel/);
+  assert.match(mainJs, /setSlide\(deltaX < 0 \? currentIndex \+ 1 : currentIndex - 1\)/);
   assert.match(mainJs, /aria-hidden/);
   assert.match(mainJs, /aria-selected/);
   assert.match(mainJs, /\.hidden\s*=/);
@@ -1920,6 +1927,7 @@ test("symptom pages replace the visual guide cards with the top-page flow slider
   assert.match(flowCss, /\.flow-slider\s*\{[\s\S]*padding:\s*72px 16px 84px;[\s\S]*overflow:\s*hidden;/);
   assert.match(flowCss, /\.flow-slider__media\s*\{[\s\S]*aspect-ratio:\s*4\s*\/\s*3;[\s\S]*overflow:\s*hidden;/);
   assert.match(flowCss, /\.flow-slider\.is-enhanced \.flow-slide:not\(\.is-active\)\s*\{[\s\S]*display:\s*none;/);
+  assert.match(flowCss, /\.flow-slider__slides\s*\{[\s\S]*touch-action:\s*pan-y;[\s\S]*user-select:\s*none;/);
   assert.match(flowCss, /@media \(max-width: 640px\)\s*\{[\s\S]*\.flow-slider__arrow\s*\{[\s\S]*width:\s*44px;[\s\S]*height:\s*44px;/);
   assert.match(flowCss, /\.flow-swipe-hint\s*\{[\s\S]*text-align:\s*center;[\s\S]*font-size:\s*0\.9rem;[\s\S]*margin-top:\s*12px;[\s\S]*color:\s*#1f5f4a;/);
   assert.match(flowCss, /\.flow-swipe-arrow\s*\{[\s\S]*display:\s*inline-block;[\s\S]*margin-left:\s*8px;[\s\S]*animation:\s*swipeArrow 1\.2s ease-in-out infinite;/);
@@ -1928,6 +1936,12 @@ test("symptom pages replace the visual guide cards with the top-page flow slider
   assert.match(headerJs, /const setupFlowSlider = \(\) =>/);
   assert.match(headerJs, /document\.querySelectorAll\('\[data-flow-slider\]'\)/);
   assert.match(headerJs, /slider\.classList\.add\('is-enhanced'\)/);
+  assert.match(headerJs, /querySelector\('\.flow-slider__slides'\)/);
+  assert.match(headerJs, /swipeMinDistance\s*=\s*44/);
+  assert.match(headerJs, /pointerdown/);
+  assert.match(headerJs, /pointerup/);
+  assert.match(headerJs, /pointercancel/);
+  assert.match(headerJs, /setSlide\(deltaX < 0 \? currentIndex \+ 1 : currentIndex - 1\)/);
   assert.match(headerJs, /event\.key === 'ArrowLeft'/);
   assert.match(headerJs, /event\.key === 'ArrowRight'/);
   assert.match(headerJs, /setupFlowSlider\(\);/);
@@ -1936,6 +1950,14 @@ test("symptom pages replace the visual guide cards with the top-page flow slider
 test("symptom related cards show an absolute arrow affordance without extra CTA text", () => {
   const symptomDir = path.join(repoRoot, "symptoms");
   const arrowPattern = /<span class="related-symptom-card__arrow" aria-hidden="true">›<\/span>/g;
+  const majorSymptomPages = new Set([
+    "lower-back-pain.html",
+    "sciatica.html",
+    "spinal-stenosis.html",
+    "knee-osteoarthritis.html",
+    "hip-osteoarthritis.html",
+    "lumbar-disc-herniation.html"
+  ]);
 
   assert.match(buildBlogScript, /\.related-symptom-card\{[^}]*position:relative[^}]*padding:1rem 3\.25rem 1rem 1rem/);
   assert.match(buildBlogScript, /\.related-symptom-card__arrow\{[^}]*position:absolute[^}]*right:1rem[^}]*top:50%/);
@@ -1945,6 +1967,12 @@ test("symptom related cards show an absolute arrow affordance without extra CTA 
   for (const fileName of readdirSync(symptomDir).filter((name) => name.endsWith(".html"))) {
     const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
     const relatedSection = symptomHtml.match(/<section class="related-symptoms">[\s\S]*?<\/section>/)?.[0] ?? "";
+
+    if (majorSymptomPages.has(fileName)) {
+      assert.equal(relatedSection, "", `${fileName} should not render related symptom cards`);
+      continue;
+    }
+
     const cardCount = (relatedSection.match(/class="related-symptom-card"/g) ?? []).length;
     const arrowCount = (relatedSection.match(arrowPattern) ?? []).length;
 

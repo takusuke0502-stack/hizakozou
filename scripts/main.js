@@ -435,10 +435,16 @@ function setupFlowSlider() {
     const nextButton = slider.querySelector('[data-flow-next]');
     const currentEl = slider.querySelector('[data-flow-current]');
     const totalEl = slider.querySelector('[data-flow-total]');
+    const slideArea = slider.querySelector('.flow-slider__slides');
 
     if (!slides.length) return;
 
     const total = slides.length;
+    const swipeMinDistance = 44;
+    const swipeMaxVerticalDrift = 70;
+    let swipeStartX = 0;
+    let swipeStartY = 0;
+    let isSwipeTracking = false;
     let currentIndex = slides.findIndex((slide) => slide.classList.contains('is-active'));
     if (currentIndex < 0) currentIndex = 0;
 
@@ -473,6 +479,30 @@ function setupFlowSlider() {
 
     dots.forEach((dot, index) => {
       dot.addEventListener('click', () => setSlide(index));
+    });
+
+    slideArea?.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      swipeStartX = event.clientX;
+      swipeStartY = event.clientY;
+      isSwipeTracking = true;
+      slideArea.setPointerCapture?.(event.pointerId);
+    });
+
+    slideArea?.addEventListener('pointerup', (event) => {
+      if (!isSwipeTracking) return;
+      isSwipeTracking = false;
+      slideArea.releasePointerCapture?.(event.pointerId);
+
+      const deltaX = event.clientX - swipeStartX;
+      const deltaY = event.clientY - swipeStartY;
+      if (Math.abs(deltaX) < swipeMinDistance || Math.abs(deltaY) > swipeMaxVerticalDrift) return;
+
+      setSlide(deltaX < 0 ? currentIndex + 1 : currentIndex - 1);
+    });
+
+    slideArea?.addEventListener('pointercancel', () => {
+      isSwipeTracking = false;
     });
 
     slider.addEventListener('keydown', (event) => {

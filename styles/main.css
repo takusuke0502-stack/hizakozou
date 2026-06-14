@@ -3597,6 +3597,8 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
     .flow-slider__slides {
       position: relative;
       min-width: 0;
+      touch-action: pan-y;
+      user-select: none;
     }
 
     .flow-slide {
