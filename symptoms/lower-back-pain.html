@@ -164,20 +164,47 @@
     .mobile-cta__btn--tel{background:var(--blue-600)}.mobile-cta__btn--line{background:var(--green-line)}
     .mobile-cta__sub{font-size:10px;opacity:.85;font-weight:400}
 
-    /* BLOG_RELATED_ARTICLES_STYLES_START */
-.related-articles{padding:3.25rem 1rem;background:#f8fbff;border-top:1px solid #dbeafe}
-.related-articles__eyebrow{text-align:center;font-size:13px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin-bottom:.75rem}
-.related-articles__title{text-align:center;font-size:1.5rem;font-weight:900;color:#1e3a8a;margin-bottom:.75rem}
-.related-articles__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
-.related-articles__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-.related-article-card{display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:8px;padding:1.25rem;text-decoration:none;box-shadow:0 2px 10px rgba(37,99,235,.06);transition:transform .2s,border-color .2s,box-shadow .2s}
-.related-article-card:hover,.related-article-card:focus-visible{transform:translateY(-2px);border-color:#93c5fd;box-shadow:0 10px 20px rgba(37,99,235,.12);outline:none}
-.related-article-card__meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
-.related-article-card__pill{display:inline-flex;align-items:center;border-radius:9999px;background:#eff6ff;color:#2563eb;font-size:11px;font-weight:900;padding:.25rem .625rem}
-.related-article-card__time{font-size:11px;font-weight:700;color:#64748b}
-.related-article-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
-.related-article-card__desc{font-size:13px;font-weight:700;color:#475569;line-height:1.8}
-.related-article-card__link{display:inline-flex;align-items:center;gap:.35rem;font-size:13px;font-weight:900;color:#2563eb}
+/* BLOG_RELATED_ARTICLES_STYLES_START */
+.related-articles-slider{padding:3rem 0;background:linear-gradient(180deg,#fffaf3 0%,#fff 100%);border-top:1px solid #eadfce;overflow:hidden}
+.related-articles-slider__inner{position:relative}
+.related-articles-slider__header{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:1.25rem}
+.related-articles-slider__title{position:relative;margin:0;padding-left:.85rem;font-size:1.35rem;font-weight:900;line-height:1.45;color:#17324d}
+.related-articles-slider__title::before{content:'';position:absolute;left:0;top:.18em;width:4px;height:1.65em;border-radius:999px;background:linear-gradient(180deg,#167044,#f2a65a)}
+.related-articles-slider__all{display:inline-flex;align-items:center;gap:.25rem;min-height:44px;padding:.25rem .15rem;font-size:13px;font-weight:900;color:#167044;white-space:nowrap;text-decoration:none}
+.related-articles-slider__all:hover,.related-articles-slider__all:focus-visible{text-decoration:underline;text-underline-offset:4px;outline:2px solid rgba(22,112,68,.25);outline-offset:4px;border-radius:6px}
+.related-articles-slider__viewport{position:relative;max-width:100%;overflow:hidden}
+.related-articles-slider__track{--related-card-size:clamp(260px,31%,320px);display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scroll-padding-inline:2.75rem;padding:.25rem 2.75rem 1rem;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab;touch-action:pan-x pan-y}
+.related-articles-slider__track::-webkit-scrollbar{display:none}
+.related-articles-slider__track::after{content:'';flex:0 0 max(0px,calc(100% - var(--related-card-size)))}
+.related-articles-slider__track.is-dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.related-articles-slider__track:focus-visible{outline:3px solid rgba(22,112,68,.28);outline-offset:4px;border-radius:14px}
+.related-articles-slider__card{flex:0 0 var(--related-card-size);display:flex;flex-direction:column;min-height:312px;background:#fff;border:1px solid #e2ded6;border-radius:12px;overflow:hidden;box-shadow:0 8px 22px rgba(23,50,77,.08);scroll-snap-align:start;text-decoration:none;color:inherit;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.related-articles-slider__card:hover,.related-articles-slider__card:focus-visible{transform:translateY(-3px);border-color:#f2a65a;box-shadow:0 14px 28px rgba(23,50,77,.12);outline:none}
+.related-articles-slider__thumb{display:block;aspect-ratio:16/9;background:#f5f0e8;overflow:hidden}
+.related-articles-slider__thumb img{width:100%;height:100%;object-fit:cover;transition:transform .25s ease}
+.related-articles-slider__card:hover .related-articles-slider__thumb img,.related-articles-slider__card:focus-visible .related-articles-slider__thumb img{transform:scale(1.035)}
+.related-articles-slider__body{display:flex;flex-direction:column;gap:.55rem;padding:.9rem .95rem 1rem;min-height:0}
+.related-articles-slider__meta{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.related-articles-slider__category{display:inline-flex;align-items:center;border-radius:999px;background:#eef7f0;color:#167044;font-size:11px;font-weight:900;line-height:1;padding:.32rem .55rem;max-width:56%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.related-articles-slider__date{font-size:11px;font-weight:700;color:#7b8794;white-space:nowrap}
+.related-articles-slider__card-title{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:.94rem;font-weight:900;line-height:1.58;color:#17324d}
+.related-articles-slider__arrow{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:44px;height:44px;border:1px solid #e2ded6;border-radius:999px;background:rgba(255,255,255,.96);box-shadow:0 8px 18px rgba(23,50,77,.14);color:#167044;cursor:pointer;transform:translateY(-55%);transition:background .2s ease,border-color .2s ease,box-shadow .2s ease,opacity .2s ease}
+.related-articles-slider__arrow:hover,.related-articles-slider__arrow:focus-visible{background:#fff7ec;border-color:#f2a65a;box-shadow:0 10px 22px rgba(23,50,77,.18);outline:2px solid rgba(242,166,90,.35);outline-offset:3px}
+.related-articles-slider__arrow[disabled]{opacity:0;pointer-events:none}
+.related-articles-slider__arrow--prev{left:.35rem}
+.related-articles-slider__arrow--next{right:.35rem}
+.related-articles-slider__footer{display:grid;gap:.7rem;justify-items:center;margin-top:.25rem}
+.related-articles-slider__dots{display:flex;align-items:center;justify-content:center;gap:.48rem;min-height:20px}
+.related-articles-slider__dot{width:8px;height:8px;border:0;border-radius:999px;background:#d8d8d8;cursor:pointer;padding:0;transition:width .2s ease,background .2s ease}
+.related-articles-slider__dot[aria-current="true"]{width:18px;background:#167044}
+.related-articles-slider__dot:focus-visible{outline:2px solid rgba(22,112,68,.35);outline-offset:4px}
+.related-articles-slider__hint{display:none;align-items:center;gap:.45rem;margin:0;font-size:12px;font-weight:900;color:#65758a;line-height:1.4}
+.related-articles-slider__hint svg{width:16px;height:16px;color:#f2a65a;flex:0 0 auto}
+@media(min-width:1200px){.related-articles-slider__track{--related-card-size:calc((100% - 36px)/3)}}
+@media(min-width:768px) and (max-width:1199px){.related-articles-slider__track{--related-card-size:calc((100% - 18px)/2)}}
+@media(max-width:767px){.related-articles-slider{padding:2.35rem 0}.related-articles-slider__header{align-items:flex-start;margin-bottom:.85rem}.related-articles-slider__title{font-size:1.08rem;line-height:1.55}.related-articles-slider__all{font-size:12px;min-height:38px}.related-articles-slider__viewport{margin-right:-1rem}.related-articles-slider__track{--related-card-size:min(82vw,330px);gap:13px;padding:.2rem 1rem .85rem .05rem;scroll-padding-inline:.05rem}.related-articles-slider__card{min-height:268px;border-radius:11px}.related-articles-slider__body{padding:.75rem .8rem .85rem;gap:.45rem}.related-articles-slider__category{font-size:10px;padding:.28rem .5rem}.related-articles-slider__date{font-size:10px}.related-articles-slider__card-title{font-size:.86rem;line-height:1.55;-webkit-line-clamp:3}.related-articles-slider__arrow{display:none}.related-articles-slider__hint{display:inline-flex}.related-articles-slider__dot{width:7px;height:7px}.related-articles-slider__dot[aria-current="true"]{width:16px}}
+@media(max-width:420px){.related-articles-slider__header{display:grid;gap:.4rem}.related-articles-slider__all{justify-self:start}.related-articles-slider__track{--related-card-size:83vw}}
+@media(prefers-reduced-motion:reduce){.related-articles-slider__track{scroll-behavior:auto}.related-articles-slider__card,.related-articles-slider__thumb img,.related-articles-slider__dot,.related-articles-slider__arrow{transition:none}}
 .related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #e2e8f0}
 .related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.1em;margin:0 0 .7rem}
 .related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .75rem}
@@ -224,7 +251,6 @@
 .symptom-footer__links a{font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;transition:color .2s}
 .symptom-footer__links a:hover,.symptom-footer__links a:focus-visible{color:#60a5fa;outline:none;text-decoration:underline;text-underline-offset:4px}
 .symptom-footer__note{font-size:10px;color:#64748b;font-weight:700;line-height:2;margin:0}
-@media(min-width:768px){.related-articles__title{font-size:1.75rem}}
 @media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
 @media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}.symptom-voices__grid{gap:1rem}.symptom-voice-card__body{padding:1rem}.symptom-voices__note{text-align:left}}
 /* BLOG_RELATED_ARTICLES_STYLES_END */
@@ -841,7 +867,6 @@
 }
 /* ACCESS_CONTACT_COPY_END */
 
-
   </style>
 <script type="application/ld+json">
 {
@@ -1439,7 +1464,8 @@
       </div>
     </section>
 <!-- SYMPTOM_PATIENT_VOICES_END -->
-    <section class="faq" id="faq">
+
+<section class="faq" id="faq">
       <div class="container max-w-3xl">
         <div class="faq__heading">
           <h2 class="section-title">&#12424;&#12367;&#12354;&#12427;&#36074;&#21839;</h2>
@@ -1489,53 +1515,102 @@
 
 
 <!-- BLOG_RELATED_ARTICLES_START -->
-<section class="related-articles">
-      <div class="container max-w-4xl">
-        <p class="related-articles__eyebrow">RELATED BLOG</p>
-        <h2 class="related-articles__title">腰痛に関連する記事</h2>
-        <p class="related-articles__lead">症状ページとあわせて、考え方やセルフケアの整理に役立つ記事をまとめています。気になる内容から無理なく読み進めてみてください。</p>
-        <div class="related-articles__grid">
+<section id="related-articles" class="related-articles-slider" aria-labelledby="related-articles-title" data-related-article-slider>
+      <div class="container max-w-4xl related-articles-slider__inner">
+        <div class="related-articles-slider__header">
+          <h2 id="related-articles-title" class="related-articles-slider__title">腰痛でお悩みの方におすすめの記事</h2>
+          <a class="related-articles-slider__all" href="../blog/">すべての記事を見る <span aria-hidden="true">›</span></a>
+        </div>
 
-          <a class="related-article-card" href="../blog/posts/lumbricals-knee-low-back-pain-relation/">
-            <div class="related-article-card__meta">
-              <span class="related-article-card__pill">膝痛</span>
-            </div>
-            <div class="related-article-card__title">意外と大事な足の指の筋肉「虫様筋」──膝痛・腰痛と深い関係があります</div>
-            <p class="related-article-card__desc">足の指の小さな筋肉「虫様筋」が、なぜ膝痛や腰痛と関係するのかを解説します。足裏アーチ、地面からの反力、歩き方、体幹の安定まで、整体院ひざこぞうが土台から整…</p>
-            <span class="related-article-card__link">記事を読む <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
-          </a>
+        <div class="related-articles-slider__viewport">
+          <button class="related-articles-slider__arrow related-articles-slider__arrow--prev" type="button" aria-label="前の記事を見る" data-related-prev>
+            <i data-lucide="chevron-left" aria-hidden="true"></i>
+          </button>
 
-          <a class="related-article-card" href="../blog/posts/low-back-pain-hip-stiffness-relation/">
-            <div class="related-article-card__meta">
-              <span class="related-article-card__pill">腰痛</span>
-            </div>
-            <div class="related-article-card__title">腰痛の原因は腰にない？股関節の硬さと負担を減らす3ステップ｜柏市の整体院ひざこぞう</div>
-            <p class="related-article-card__desc">腰痛で腰を揉んでも変わりにくい方へ。腰は「被害者」であり、原因は股関節の可動域制限にあることがあります。股関節と腰椎の役割分担や大腰筋の重要性をふまえて、…</p>
-            <span class="related-article-card__link">記事を読む <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
-          </a>
+          <div class="related-articles-slider__track" role="list" tabindex="0" aria-label="腰痛に関連する記事" data-related-track>
+            <a class="related-articles-slider__card" href="../blog/posts/low-back-pain-hip-stiffness-relation/" role="listitem">
+              <span class="related-articles-slider__thumb">
+                <img src="../image/hip-osteoarthritis-symptom.webp" alt="股関節の硬さと腰痛の関係を説明するイメージ" width="1200" height="675" loading="lazy" decoding="async">
+              </span>
+              <span class="related-articles-slider__body">
+                <span class="related-articles-slider__meta">
+                  <span class="related-articles-slider__category">腰痛</span>
+                  <time class="related-articles-slider__date" datetime="2026-04-03">2026.04.03</time>
+                </span>
+                <span class="related-articles-slider__card-title">腰痛の原因は腰にない？股関節の硬さと負担を減らす3ステップ｜柏市の整体院ひざこぞう</span>
+              </span>
+            </a>
 
-          <a class="related-article-card" href="../blog/posts/lower-back-pain-and-knee-link/">
-            <div class="related-article-card__meta">
-              <span class="related-article-card__pill">腰痛</span>
-            </div>
-            <div class="related-article-card__title">膝をかばって腰までつらいときの見方</div>
-            <p class="related-article-card__desc">膝の痛みをかばううちに腰まで気になってきた方へ向けて、体のつながりと無理のない整え方を整理した記事です。</p>
-            <span class="related-article-card__link">記事を読む <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
-          </a>
+            <a class="related-articles-slider__card" href="../blog/posts/morning-low-back-pain-causes-multifidus/" role="listitem">
+              <span class="related-articles-slider__thumb">
+                <img src="../image/lower-back-symptom.webp" alt="朝の腰痛に悩む方の腰まわりのイメージ" width="1200" height="675" loading="lazy" decoding="async">
+              </span>
+              <span class="related-articles-slider__body">
+                <span class="related-articles-slider__meta">
+                  <span class="related-articles-slider__category">腰痛</span>
+                  <time class="related-articles-slider__date" datetime="2026-04-03">2026.04.03</time>
+                </span>
+                <span class="related-articles-slider__card-title">朝起きると腰が痛いのはなぜ？原因分析と負担を減らす3ステップ｜柏市の整体院ひざこぞう</span>
+              </span>
+            </a>
 
-          <a class="related-article-card" href="../blog/posts/morning-low-back-pain-causes-multifidus/">
-            <div class="related-article-card__meta">
-              <span class="related-article-card__pill">腰痛</span>
-            </div>
-            <div class="related-article-card__title">朝起きると腰が痛いのはなぜ？原因分析と負担を減らす3ステップ｜柏市の整体院ひざこぞう</div>
-            <p class="related-article-card__desc">朝一番の腰痛でお悩みの方へ。病院の検査で異常がなくても痛む理由には、背骨の深層筋「多裂筋」の機能低下や脳の過敏なセンサーが関わっていることがあります。柏市…</p>
-            <span class="related-article-card__link">記事を読む <i data-lucide="arrow-right" style="width:.875rem;height:.875rem;" aria-hidden="true"></i></span>
-          </a>
+            <a class="related-articles-slider__card" href="../blog/posts/lower-back-pain-and-knee-link/" role="listitem">
+              <span class="related-articles-slider__thumb">
+                <img src="../image/lower-back-symptom.webp" alt="膝をかばって腰に負担がかかる状態のイメージ" width="1200" height="675" loading="lazy" decoding="async">
+              </span>
+              <span class="related-articles-slider__body">
+                <span class="related-articles-slider__meta">
+                  <span class="related-articles-slider__category">腰痛</span>
+                  <time class="related-articles-slider__date" datetime="2026-03-31">2026.03.31</time>
+                </span>
+                <span class="related-articles-slider__card-title">膝をかばって腰までつらいときの見方</span>
+              </span>
+            </a>
 
+            <a class="related-articles-slider__card" href="../blog/posts/sciatica-piriformis-relation/" role="listitem">
+              <span class="related-articles-slider__thumb">
+                <img src="../image/sciatica-symptom.webp" alt="坐骨神経痛とお尻まわりのしびれのイメージ" width="1200" height="675" loading="lazy" decoding="async">
+              </span>
+              <span class="related-articles-slider__body">
+                <span class="related-articles-slider__meta">
+                  <span class="related-articles-slider__category">シビレ</span>
+                  <time class="related-articles-slider__date" datetime="2026-04-03">2026.04.03</time>
+                </span>
+                <span class="related-articles-slider__card-title">坐骨神経痛と梨状筋の意外な関係｜お尻のしびれを「動き」から整える方法</span>
+              </span>
+            </a>
+
+            <a class="related-articles-slider__card" href="../blog/posts/spinal-stenosis-exercise-before-surgery/" role="listitem">
+              <span class="related-articles-slider__thumb">
+                <img src="../image/medical-interview.webp" alt="脊柱管狭窄症やヘルニアの相談をする様子" width="1200" height="675" loading="lazy" decoding="async">
+              </span>
+              <span class="related-articles-slider__body">
+                <span class="related-articles-slider__meta">
+                  <span class="related-articles-slider__category">シビレ</span>
+                  <time class="related-articles-slider__date" datetime="2026-04-09">2026.04.09</time>
+                </span>
+                <span class="related-articles-slider__card-title">「手術しかない」と言われる前に——脊柱管狭窄症・ヘルニアの痛みとしびれに運動療法が役立つ理由</span>
+              </span>
+            </a>
+          </div>
+
+          <button class="related-articles-slider__arrow related-articles-slider__arrow--next" type="button" aria-label="次の記事を見る" data-related-next>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div class="related-articles-slider__footer">
+          <div class="related-articles-slider__dots" aria-label="関連記事のページ送り" data-related-dots></div>
+          <p class="related-articles-slider__hint">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            左右にスワイプして記事を見られます
+          </p>
         </div>
       </div>
     </section>
 <!-- BLOG_RELATED_ARTICLES_END -->
+
+
 
     <section id="price" class="hk-pricing-section" aria-labelledby="hk-pricing-title">
       <div class="hk-pricing-card">
@@ -1735,8 +1810,6 @@
       </div>
     </section>
 
-
-
     <div class="back">
       <a href="../" class="back__link">
         <i data-lucide="arrow-left" style="width:1.25rem;height:1.25rem;" aria-hidden="true"></i>
@@ -1815,6 +1888,142 @@
       <span class="mobile-cta__sub">24時間受付</span>
     </a>
   </div>
+
+  <script>
+    (() => {
+      const slider = document.querySelector('[data-related-article-slider]');
+      if (!slider) return;
+
+      const track = slider.querySelector('[data-related-track]');
+      const prev = slider.querySelector('[data-related-prev]');
+      const next = slider.querySelector('[data-related-next]');
+      const dotsRoot = slider.querySelector('[data-related-dots]');
+      const cards = Array.from(slider.querySelectorAll('.related-articles-slider__card'));
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!track || !cards.length) return;
+
+      const getCardStep = () => {
+        const first = cards[0];
+        const second = cards[1];
+        if (!first) return track.clientWidth;
+        if (second) return second.offsetLeft - first.offsetLeft;
+        return first.getBoundingClientRect().width;
+      };
+
+      const getActiveIndex = () => {
+        const target = track.scrollLeft;
+        let activeIndex = 0;
+        let closest = Number.POSITIVE_INFINITY;
+        cards.forEach((card, index) => {
+          const distance = Math.abs(card.offsetLeft - cards[0].offsetLeft - target);
+          if (distance < closest) {
+            closest = distance;
+            activeIndex = index;
+          }
+        });
+        return activeIndex;
+      };
+
+      const scrollToCard = (index) => {
+        const card = cards[Math.max(0, Math.min(index, cards.length - 1))];
+        if (!card) return;
+        track.scrollTo({
+          left: card.offsetLeft - cards[0].offsetLeft,
+          behavior: reducedMotion ? 'auto' : 'smooth',
+        });
+      };
+
+      const dots = cards.map((_, index) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'related-articles-slider__dot';
+        dot.setAttribute('aria-label', `${index + 1}番目の記事へ移動`);
+        dot.addEventListener('click', () => scrollToCard(index));
+        dotsRoot?.appendChild(dot);
+        return dot;
+      });
+
+      const updateControls = () => {
+        const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth - 2);
+        const hasOverflow = maxScroll > 1;
+        const activeIndex = getActiveIndex();
+
+        if (prev) {
+          prev.disabled = !hasOverflow || track.scrollLeft <= 2;
+          prev.hidden = !hasOverflow;
+        }
+        if (next) {
+          next.disabled = !hasOverflow || track.scrollLeft >= maxScroll;
+          next.hidden = !hasOverflow;
+        }
+        if (dotsRoot) dotsRoot.hidden = !hasOverflow || cards.length < 2;
+        dots.forEach((dot, index) => {
+          dot.setAttribute('aria-current', index === activeIndex ? 'true' : 'false');
+        });
+      };
+
+      let scrollFrame = 0;
+      track.addEventListener('scroll', () => {
+        window.cancelAnimationFrame(scrollFrame);
+        scrollFrame = window.requestAnimationFrame(updateControls);
+      }, { passive: true });
+
+      prev?.addEventListener('click', () => {
+        track.scrollBy({ left: -getCardStep(), behavior: reducedMotion ? 'auto' : 'smooth' });
+      });
+      next?.addEventListener('click', () => {
+        track.scrollBy({ left: getCardStep(), behavior: reducedMotion ? 'auto' : 'smooth' });
+      });
+
+      track.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        const direction = event.key === 'ArrowRight' ? 1 : -1;
+        track.scrollBy({ left: direction * getCardStep(), behavior: reducedMotion ? 'auto' : 'smooth' });
+      });
+
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartScroll = 0;
+      let suppressClick = false;
+
+      track.addEventListener('pointerdown', (event) => {
+        if (event.pointerType === 'touch') return;
+        isDragging = true;
+        dragStartX = event.clientX;
+        dragStartScroll = track.scrollLeft;
+        suppressClick = false;
+        track.classList.add('is-dragging');
+        track.setPointerCapture(event.pointerId);
+      });
+
+      track.addEventListener('pointermove', (event) => {
+        if (!isDragging) return;
+        const delta = event.clientX - dragStartX;
+        if (Math.abs(delta) > 5) suppressClick = true;
+        track.scrollLeft = dragStartScroll - delta;
+      });
+
+      const stopDrag = (event) => {
+        if (!isDragging) return;
+        isDragging = false;
+        track.classList.remove('is-dragging');
+        if (track.hasPointerCapture(event.pointerId)) track.releasePointerCapture(event.pointerId);
+      };
+
+      track.addEventListener('pointerup', stopDrag);
+      track.addEventListener('pointercancel', stopDrag);
+      track.addEventListener('click', (event) => {
+        if (!suppressClick) return;
+        event.preventDefault();
+        event.stopPropagation();
+        suppressClick = false;
+      }, true);
+
+      window.addEventListener('resize', updateControls, { passive: true });
+      updateControls();
+    })();
+  </script>
 
   <script>
     lucide.createIcons();
