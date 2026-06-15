@@ -421,8 +421,8 @@ test("LP adds a readable six-reason clinic strengths section", () => {
       "特徴4",
       "足腰の慢性痛に特化した「豊富な知識と経験」",
       "長年諦めていた重度な腰痛・坐骨神経痛・膝の痛み・シビレにも対応",
-      "image/consultation-scene-768.webp",
-      "足腰の慢性痛について丁寧に相談している様子"
+      "image/flow-counseling-board-768.webp",
+      "足腰の慢性痛についてホワイトボードを使って説明している様子"
     ],
     [
       "特徴5",
@@ -535,8 +535,8 @@ test("LP replaces the treatment flow with an accessible 6-step photo slider afte
     [
       "カウンセリング",
       "問診票をもとに、歩き始め、階段、立ち上がり、買い物など、日常のどの場面で膝が不安なのかを伺います。",
-      "image/consultation-scene-768.webp",
-      "足腰の状態を丁寧に確認するカウンセリングの様子"
+      "image/flow-counseling-board-768.webp",
+      "ホワイトボードを使って体の状態を説明するカウンセリングの様子"
     ],
     [
       "身体の状態チェック",
@@ -547,8 +547,8 @@ test("LP replaces the treatment flow with an accessible 6-step photo slider afte
     [
       "状態説明、施術方針の説明",
       "なぜ痛みが出やすいのか、これから何を目指すのかを、専門用語を使いすぎず分かりやすくお伝えします。",
-      "image/consultation-scene-768.webp",
-      "施術方針をわかりやすく説明している様子"
+      "image/flow-plan-consultation-768.webp",
+      "施術方針を丁寧に説明している様子"
     ],
     [
       "施術開始",
@@ -1886,9 +1886,9 @@ test("symptom pages replace the visual guide cards with the top-page flow slider
   const pagesWithFlow = [];
   const expectedImages = [
     "../image/flow-medical-interview-form-768.webp",
-    "../image/consultation-scene-768.webp",
+    "../image/flow-counseling-board-768.webp",
     "../image/flow-movement-assessment-768.webp",
-    "../image/consultation-scene-768.webp",
+    "../image/flow-plan-consultation-768.webp",
     "../image/flow-treatment-session-768.webp",
     "../image/treatment-stretch-768.webp"
   ];
