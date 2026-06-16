@@ -535,8 +535,8 @@ test("LP replaces the treatment flow with an accessible 6-step photo slider afte
     [
       "カウンセリング",
       "問診票をもとに、歩き始め、階段、立ち上がり、買い物など、日常のどの場面で膝が不安なのかを伺います。",
-      "image/flow-counseling-board-768.webp",
-      "ホワイトボードを使って体の状態を説明するカウンセリングの様子"
+      "image/flow-plan-consultation-768.webp",
+      "カウンセリングでお悩みや日常の状態を伺っている様子"
     ],
     [
       "身体の状態チェック",
@@ -547,8 +547,8 @@ test("LP replaces the treatment flow with an accessible 6-step photo slider afte
     [
       "状態説明、施術方針の説明",
       "なぜ痛みが出やすいのか、これから何を目指すのかを、専門用語を使いすぎず分かりやすくお伝えします。",
-      "image/flow-plan-consultation-768.webp",
-      "施術方針を丁寧に説明している様子"
+      "image/flow-counseling-board-768.webp",
+      "ホワイトボードを使って体の状態と施術方針を説明している様子"
     ],
     [
       "施術開始",
@@ -2017,6 +2017,46 @@ test("symptom related cards show an absolute arrow affordance without extra CTA 
     assert.equal(arrowCount, cardCount, `${fileName} should add one arrow to each related symptom card`);
     assert.doesNotMatch(relatedSection, />詳しく見る<|>症状ページを見る</, `${fileName} should not add CTA text`);
   }
+});
+
+test("major symptom pages use the swipeable related article slider", () => {
+  const symptomDir = path.join(repoRoot, "symptoms");
+  const pages = [
+    "lower-back-pain.html",
+    "sciatica.html",
+    "spinal-stenosis.html",
+    "lumbar-disc-herniation.html",
+    "hip-osteoarthritis.html"
+  ];
+
+  for (const fileName of pages) {
+    const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
+    const relatedSection = symptomHtml.match(/<!-- BLOG_RELATED_ARTICLES_START -->[\s\S]*?<!-- BLOG_RELATED_ARTICLES_END -->/)?.[0] ?? "";
+
+    assert.match(relatedSection, /class="related-articles-slider"/, `${fileName} should use the slider section`);
+    assert.match(relatedSection, /data-related-article-slider/, `${fileName} should initialize the related article slider`);
+    assert.match(relatedSection, /data-related-track/, `${fileName} should expose a scroll track`);
+    assert.match(relatedSection, /data-related-prev/, `${fileName} should include the previous control`);
+    assert.match(relatedSection, /data-related-next/, `${fileName} should include the next control`);
+    assert.match(relatedSection, /data-related-dots/, `${fileName} should render dot pagination`);
+    assert.match(relatedSection, /related-articles-slider__thumb/, `${fileName} should show article thumbnails`);
+    assert.doesNotMatch(relatedSection, /related-articles__grid|related-article-card__desc|class="related-article-card"/, `${fileName} should remove the old vertical related article cards`);
+    assert.match(symptomHtml, /const slider = document\.querySelector\('\[data-related-article-slider\]'\);/, `${fileName} should include the slider JavaScript`);
+  }
+});
+
+test("lower back related article slider prioritizes the intended waist and nerve articles", () => {
+  const html = readFileSync(path.join(repoRoot, "symptoms", "lower-back-pain.html"), "utf8");
+  const section = html.match(/<!-- BLOG_RELATED_ARTICLES_START -->[\s\S]*?<!-- BLOG_RELATED_ARTICLES_END -->/)?.[0] ?? "";
+  const hrefs = [...section.matchAll(/class="related-articles-slider__card" href="([^"]+)"/g)].map((match) => match[1]);
+
+  assert.deepEqual(hrefs.slice(0, 5), [
+    "../blog/posts/low-back-pain-hip-stiffness-relation/",
+    "../blog/posts/morning-low-back-pain-causes-multifidus/",
+    "../blog/posts/lower-back-pain-and-knee-link/",
+    "../blog/posts/sciatica-piriformis-relation/",
+    "../blog/posts/spinal-stenosis-exercise-before-surgery/"
+  ]);
 });
 
 test("blog sources and generated posts avoid strong medical guarantee wording", () => {

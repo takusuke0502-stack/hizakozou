@@ -145,7 +145,14 @@ const symptomConfigs = {
     symptomKey: "lower-back-pain",
     label: "腰痛",
     keywords: ["腰痛", "腰", "立ち上がり", "歩行不安"],
-    categoryHints: ["lower-back-pain", "exercise-therapy", "knee-pain"]
+    categoryHints: ["lower-back-pain", "exercise-therapy", "knee-pain"],
+    pinnedSlugs: [
+      "low-back-pain-hip-stiffness-relation",
+      "morning-low-back-pain-causes-multifidus",
+      "lower-back-pain-and-knee-link",
+      "sciatica-piriformis-relation",
+      "spinal-stenosis-exercise-before-surgery"
+    ]
   },
   "sciatica.html": {
     symptomKey: "sciatica",
@@ -227,6 +234,14 @@ const symptomConfigs = {
   }
 };
 
+const relatedArticleSliderFiles = new Set([
+  "lower-back-pain.html",
+  "sciatica.html",
+  "spinal-stenosis.html",
+  "lumbar-disc-herniation.html",
+  "hip-osteoarthritis.html"
+]);
+
 const patientVoices = [
   {
     name: "K.K様",
@@ -286,6 +301,46 @@ const patientVoices = [
 
 const relatedArticlesStyles = `
 /* BLOG_RELATED_ARTICLES_STYLES_START */
+.related-articles-slider{padding:3rem 0;background:linear-gradient(180deg,#fffaf3 0%,#fff 100%);border-top:1px solid #eadfce;overflow:hidden}
+.related-articles-slider__inner{position:relative}
+.related-articles-slider__header{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:1.25rem}
+.related-articles-slider__title{position:relative;margin:0;padding-left:.85rem;font-size:1.35rem;font-weight:900;line-height:1.45;color:#17324d}
+.related-articles-slider__title::before{content:'';position:absolute;left:0;top:.18em;width:4px;height:1.65em;border-radius:999px;background:linear-gradient(180deg,#167044,#f2a65a)}
+.related-articles-slider__all{display:inline-flex;align-items:center;gap:.25rem;min-height:44px;padding:.25rem .15rem;font-size:13px;font-weight:900;color:#167044;white-space:nowrap;text-decoration:none}
+.related-articles-slider__all:hover,.related-articles-slider__all:focus-visible{text-decoration:underline;text-underline-offset:4px;outline:2px solid rgba(22,112,68,.25);outline-offset:4px;border-radius:6px}
+.related-articles-slider__viewport{position:relative;max-width:100%;overflow:hidden}
+.related-articles-slider__track{--related-card-size:clamp(260px,31%,320px);display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scroll-padding-inline:2.75rem;padding:.25rem 2.75rem 1rem;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab;touch-action:pan-x pan-y}
+.related-articles-slider__track::-webkit-scrollbar{display:none}
+.related-articles-slider__track::after{content:'';flex:0 0 max(0px,calc(100% - var(--related-card-size)))}
+.related-articles-slider__track.is-dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.related-articles-slider__track:focus-visible{outline:3px solid rgba(22,112,68,.28);outline-offset:4px;border-radius:14px}
+.related-articles-slider__card{flex:0 0 var(--related-card-size);display:flex;flex-direction:column;min-height:312px;background:#fff;border:1px solid #e2ded6;border-radius:12px;overflow:hidden;box-shadow:0 8px 22px rgba(23,50,77,.08);scroll-snap-align:start;text-decoration:none;color:inherit;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.related-articles-slider__card:hover,.related-articles-slider__card:focus-visible{transform:translateY(-3px);border-color:#f2a65a;box-shadow:0 14px 28px rgba(23,50,77,.12);outline:none}
+.related-articles-slider__thumb{display:block;aspect-ratio:16/9;background:#f5f0e8;overflow:hidden}
+.related-articles-slider__thumb img{width:100%;height:100%;object-fit:cover;transition:transform .25s ease}
+.related-articles-slider__card:hover .related-articles-slider__thumb img,.related-articles-slider__card:focus-visible .related-articles-slider__thumb img{transform:scale(1.035)}
+.related-articles-slider__body{display:flex;flex-direction:column;gap:.55rem;padding:.9rem .95rem 1rem;min-height:0}
+.related-articles-slider__meta{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.related-articles-slider__category{display:inline-flex;align-items:center;border-radius:999px;background:#eef7f0;color:#167044;font-size:11px;font-weight:900;line-height:1;padding:.32rem .55rem;max-width:56%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.related-articles-slider__date{font-size:11px;font-weight:700;color:#7b8794;white-space:nowrap}
+.related-articles-slider__card-title{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:.94rem;font-weight:900;line-height:1.58;color:#17324d}
+.related-articles-slider__arrow{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:44px;height:44px;border:1px solid #e2ded6;border-radius:999px;background:rgba(255,255,255,.96);box-shadow:0 8px 18px rgba(23,50,77,.14);color:#167044;cursor:pointer;transform:translateY(-55%);transition:background .2s ease,border-color .2s ease,box-shadow .2s ease,opacity .2s ease}
+.related-articles-slider__arrow:hover,.related-articles-slider__arrow:focus-visible{background:#fff7ec;border-color:#f2a65a;box-shadow:0 10px 22px rgba(23,50,77,.18);outline:2px solid rgba(242,166,90,.35);outline-offset:3px}
+.related-articles-slider__arrow[disabled]{opacity:0;pointer-events:none}
+.related-articles-slider__arrow--prev{left:.35rem}
+.related-articles-slider__arrow--next{right:.35rem}
+.related-articles-slider__footer{display:grid;gap:.7rem;justify-items:center;margin-top:.25rem}
+.related-articles-slider__dots{display:flex;align-items:center;justify-content:center;gap:.48rem;min-height:20px}
+.related-articles-slider__dot{width:8px;height:8px;border:0;border-radius:999px;background:#d8d8d8;cursor:pointer;padding:0;transition:width .2s ease,background .2s ease}
+.related-articles-slider__dot[aria-current="true"]{width:18px;background:#167044}
+.related-articles-slider__dot:focus-visible{outline:2px solid rgba(22,112,68,.35);outline-offset:4px}
+.related-articles-slider__hint{display:none;align-items:center;gap:.45rem;margin:0;font-size:12px;font-weight:900;color:#65758a;line-height:1.4}
+.related-articles-slider__hint svg{width:16px;height:16px;color:#f2a65a;flex:0 0 auto}
+@media(min-width:1200px){.related-articles-slider__track{--related-card-size:calc((100% - 36px)/3)}}
+@media(min-width:768px) and (max-width:1199px){.related-articles-slider__track{--related-card-size:calc((100% - 18px)/2)}}
+@media(max-width:767px){.related-articles-slider{padding:2.35rem 0}.related-articles-slider__header{align-items:flex-start;margin-bottom:.85rem}.related-articles-slider__title{font-size:1.08rem;line-height:1.55}.related-articles-slider__all{font-size:12px;min-height:38px}.related-articles-slider__viewport{margin-right:-1rem}.related-articles-slider__track{--related-card-size:min(82vw,330px);gap:13px;padding:.2rem 1rem .85rem .05rem;scroll-padding-inline:.05rem}.related-articles-slider__card{min-height:268px;border-radius:11px}.related-articles-slider__body{padding:.75rem .8rem .85rem;gap:.45rem}.related-articles-slider__category{font-size:10px;padding:.28rem .5rem}.related-articles-slider__date{font-size:10px}.related-articles-slider__card-title{font-size:.86rem;line-height:1.55;-webkit-line-clamp:3}.related-articles-slider__arrow{display:none}.related-articles-slider__hint{display:inline-flex}.related-articles-slider__dot{width:7px;height:7px}.related-articles-slider__dot[aria-current="true"]{width:16px}}
+@media(max-width:420px){.related-articles-slider__header{display:grid;gap:.4rem}.related-articles-slider__all{justify-self:start}.related-articles-slider__track{--related-card-size:83vw}}
+@media(prefers-reduced-motion:reduce){.related-articles-slider__track{scroll-behavior:auto}.related-articles-slider__card,.related-articles-slider__thumb img,.related-articles-slider__dot,.related-articles-slider__arrow{transition:none}}
 .related-articles{padding:3.25rem 1rem;background:#f8fbff;border-top:1px solid #dbeafe}
 .related-articles__eyebrow{text-align:center;font-size:13px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin-bottom:.75rem}
 .related-articles__title{text-align:center;font-size:1.5rem;font-weight:900;color:#1e3a8a;margin-bottom:.75rem}
@@ -349,6 +404,151 @@ const relatedArticlesStyles = `
 @media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
 @media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}.symptom-voices__grid{gap:1rem}.symptom-voice-card__body{padding:1rem}.symptom-voices__note{text-align:left}}
 /* BLOG_RELATED_ARTICLES_STYLES_END */
+`.trim();
+
+const relatedArticleSliderScript = `
+  <!-- RELATED_ARTICLES_SLIDER_SCRIPT_START -->
+  <script>
+    (() => {
+      const slider = document.querySelector('[data-related-article-slider]');
+      if (!slider) return;
+
+      const track = slider.querySelector('[data-related-track]');
+      const prev = slider.querySelector('[data-related-prev]');
+      const next = slider.querySelector('[data-related-next]');
+      const dotsRoot = slider.querySelector('[data-related-dots]');
+      const cards = Array.from(slider.querySelectorAll('.related-articles-slider__card'));
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!track || !cards.length) return;
+
+      const getCardStep = () => {
+        const first = cards[0];
+        const second = cards[1];
+        if (!first) return track.clientWidth;
+        if (second) return second.offsetLeft - first.offsetLeft;
+        return first.getBoundingClientRect().width;
+      };
+
+      const getActiveIndex = () => {
+        const target = track.scrollLeft;
+        let activeIndex = 0;
+        let closest = Number.POSITIVE_INFINITY;
+        cards.forEach((card, index) => {
+          const distance = Math.abs(card.offsetLeft - cards[0].offsetLeft - target);
+          if (distance < closest) {
+            closest = distance;
+            activeIndex = index;
+          }
+        });
+        return activeIndex;
+      };
+
+      const scrollToCard = (index) => {
+        const card = cards[Math.max(0, Math.min(index, cards.length - 1))];
+        if (!card) return;
+        track.scrollTo({
+          left: card.offsetLeft - cards[0].offsetLeft,
+          behavior: reducedMotion ? 'auto' : 'smooth',
+        });
+      };
+
+      const dots = cards.map((_, index) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'related-articles-slider__dot';
+        dot.setAttribute('aria-label', String(index + 1) + '番目の記事へ移動');
+        dot.addEventListener('click', () => scrollToCard(index));
+        dotsRoot?.appendChild(dot);
+        return dot;
+      });
+
+      const updateControls = () => {
+        const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth - 2);
+        const hasOverflow = maxScroll > 1;
+        const activeIndex = getActiveIndex();
+
+        if (prev) {
+          prev.disabled = !hasOverflow || track.scrollLeft <= 2;
+          prev.hidden = !hasOverflow;
+        }
+        if (next) {
+          next.disabled = !hasOverflow || track.scrollLeft >= maxScroll;
+          next.hidden = !hasOverflow;
+        }
+        if (dotsRoot) dotsRoot.hidden = !hasOverflow || cards.length < 2;
+        dots.forEach((dot, index) => {
+          dot.setAttribute('aria-current', index === activeIndex ? 'true' : 'false');
+        });
+      };
+
+      let scrollFrame = 0;
+      track.addEventListener('scroll', () => {
+        window.cancelAnimationFrame(scrollFrame);
+        scrollFrame = window.requestAnimationFrame(updateControls);
+      }, { passive: true });
+
+      prev?.addEventListener('click', () => {
+        track.scrollBy({ left: -getCardStep(), behavior: reducedMotion ? 'auto' : 'smooth' });
+      });
+      next?.addEventListener('click', () => {
+        track.scrollBy({ left: getCardStep(), behavior: reducedMotion ? 'auto' : 'smooth' });
+      });
+
+      track.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        const direction = event.key === 'ArrowRight' ? 1 : -1;
+        track.scrollBy({ left: direction * getCardStep(), behavior: reducedMotion ? 'auto' : 'smooth' });
+      });
+
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartScroll = 0;
+      let suppressClick = false;
+
+      track.addEventListener('pointerdown', (event) => {
+        if (event.pointerType === 'touch' || event.button !== 0) return;
+        isDragging = true;
+        suppressClick = false;
+        dragStartX = event.clientX;
+        dragStartScroll = track.scrollLeft;
+        track.classList.add('is-dragging');
+        track.setPointerCapture(event.pointerId);
+      });
+
+      track.addEventListener('pointermove', (event) => {
+        if (!isDragging) return;
+        const delta = event.clientX - dragStartX;
+        if (Math.abs(delta) > 6) suppressClick = true;
+        track.scrollLeft = dragStartScroll - delta;
+      });
+
+      const stopDragging = (event) => {
+        if (!isDragging) return;
+        isDragging = false;
+        track.classList.remove('is-dragging');
+        if (event.pointerId && track.hasPointerCapture(event.pointerId)) {
+          track.releasePointerCapture(event.pointerId);
+        }
+        window.setTimeout(() => {
+          suppressClick = false;
+        }, 0);
+      };
+
+      track.addEventListener('pointerup', stopDragging);
+      track.addEventListener('pointercancel', stopDragging);
+      track.addEventListener('pointerleave', stopDragging);
+      track.addEventListener('click', (event) => {
+        if (!suppressClick) return;
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
+
+      window.addEventListener('resize', updateControls);
+      updateControls();
+    })();
+  </script>
+  <!-- RELATED_ARTICLES_SLIDER_SCRIPT_END -->
 `.trim();
 
 export async function buildBlog() {
@@ -478,9 +678,11 @@ async function updateSymptomPages(site, posts) {
       html = ensureNoindexFollow(html);
     }
 
-    const matchedPosts = selectRelatedPosts(config, posts).slice(0, 4);
+    const relatedPostLimit = isRelatedArticleSliderPage(fileName) ? 5 : 4;
+    const matchedPosts = selectRelatedPosts(config, posts).slice(0, relatedPostLimit);
     const sectionHtml = matchedPosts.length ? buildRelatedArticlesSection(site, config, matchedPosts) : "";
     html = replaceRelatedSection(html, sectionHtml);
+    html = upsertRelatedArticleSliderScript(html, config);
     html = normalizeSymptomPageDesign(html, site, config);
 
     await fs.writeFile(fullPath, cleanGeneratedText(html), "utf8");
@@ -769,6 +971,23 @@ function upsertRelatedStyles(html) {
   return html.replace("</style>", `\n    ${relatedArticlesStyles}\n  </style>`);
 }
 
+function upsertRelatedArticleSliderScript(html, config = {}) {
+  const markerPattern = /\s*<!-- RELATED_ARTICLES_SLIDER_SCRIPT_START -->[\s\S]*?<!-- RELATED_ARTICLES_SLIDER_SCRIPT_END -->\s*/;
+  let nextHtml = html.replace(markerPattern, "\n");
+  nextHtml = nextHtml.replace(/\s*<script>\s*\(\(\) => \{\s*const slider = document\.querySelector\('\[data-related-article-slider\]'\);[\s\S]*?\}\)\(\);\s*<\/script>\s*/, "\n");
+
+  if (!isRelatedArticleSliderPage(config.fileName)) {
+    return nextHtml;
+  }
+
+  const lucidePattern = /(\s*<script>\s*lucide\.createIcons\(\);\s*<\/script>)/;
+  if (lucidePattern.test(nextHtml)) {
+    return nextHtml.replace(lucidePattern, `\n  ${relatedArticleSliderScript}$1`);
+  }
+
+  return nextHtml.replace("</body>", `\n  ${relatedArticleSliderScript}\n</body>`);
+}
+
 function upsertSymptomPatientVoices(html, config = {}) {
   const startMarker = "<!-- SYMPTOM_PATIENT_VOICES_START -->";
   const endMarker = "<!-- SYMPTOM_PATIENT_VOICES_END -->";
@@ -931,6 +1150,10 @@ ${endMarker}
 
 function buildRelatedSymptomsNavigation(config = {}) {
   const currentFileName = config.fileName || config.page || "";
+  if (isRelatedArticleSliderPage(currentFileName) || currentFileName === "knee-osteoarthritis.html") {
+    return "";
+  }
+
   const isKneeConcernTarget = relatedKneeConcernTargetFiles.has(currentFileName);
   const navigationItems = isKneeConcernTarget ? relatedKneeConcernItems : symptomNavigationItems;
   const sectionTitle = isKneeConcernTarget ? "関連する膝の悩み" : "ほかの症状も確認できます";
@@ -1090,7 +1313,23 @@ function normalizePath(value) {
   return String(value || "").replace(/^https?:\/\/[^/]+/i, "").replace(/\/index\.html$/i, "/");
 }
 
+function isRelatedArticleSliderPage(fileName) {
+  return relatedArticleSliderFiles.has(fileName);
+}
+
+function toSymptomPageAssetPath(value) {
+  const assetPath = String(value || "/ogp.webp");
+  if (assetPath.startsWith("http://") || assetPath.startsWith("https://")) return assetPath;
+  if (assetPath.startsWith("../")) return assetPath;
+  if (assetPath.startsWith("/")) return `..${assetPath}`;
+  return `../${assetPath}`;
+}
+
 function buildRelatedArticlesSection(site, config, posts) {
+  if (isRelatedArticleSliderPage(config.fileName)) {
+    return buildRelatedArticlesSliderSection(config, posts);
+  }
+
   const cards = posts.map((post) => `
           <a class="related-article-card" href="../blog/posts/${post.slug}/">
             <div class="related-article-card__meta">
@@ -1110,6 +1349,60 @@ function buildRelatedArticlesSection(site, config, posts) {
         <p class="related-articles__lead">症状ページとあわせて、考え方やセルフケアの整理に役立つ記事をまとめています。気になる内容から無理なく読み進めてみてください。</p>
         <div class="related-articles__grid">
 ${cards}
+        </div>
+      </div>
+    </section>
+  `.trim();
+}
+
+function buildRelatedArticlesSliderSection(config, posts) {
+  const title = `${config.label}でお悩みの方におすすめの記事`;
+  const cards = posts.map((post) => {
+    const dateValue = post.updatedDate || post.date;
+    const thumbSrc = toSymptomPageAssetPath(post.eyecatch);
+    return `
+            <a class="related-articles-slider__card" href="../blog/posts/${escapeHtml(post.slug)}/" role="listitem">
+              <span class="related-articles-slider__thumb">
+                <img src="${escapeHtml(thumbSrc)}" alt="${escapeHtml(post.title)}のイメージ" loading="lazy" decoding="async">
+              </span>
+              <span class="related-articles-slider__body">
+                <span class="related-articles-slider__meta">
+                  <span class="related-articles-slider__category">${escapeHtml(post.category.name)}</span>
+                  <time class="related-articles-slider__date" datetime="${escapeHtml(dateValue)}">${escapeHtml(formatDotDate(dateValue))}</time>
+                </span>
+                <span class="related-articles-slider__card-title">${escapeHtml(post.title)}</span>
+              </span>
+            </a>`;
+  }).join("");
+
+  return `
+    <section id="related-articles" class="related-articles-slider" aria-labelledby="related-articles-title" data-related-article-slider>
+      <div class="container max-w-4xl related-articles-slider__inner">
+        <div class="related-articles-slider__header">
+          <h2 id="related-articles-title" class="related-articles-slider__title">${escapeHtml(title)}</h2>
+          <a class="related-articles-slider__all" href="../blog/">すべての記事を見る <span aria-hidden="true">›</span></a>
+        </div>
+
+        <div class="related-articles-slider__viewport">
+          <button class="related-articles-slider__arrow related-articles-slider__arrow--prev" type="button" aria-label="前の記事を見る" data-related-prev>
+            <i data-lucide="chevron-left" style="width:1.35rem;height:1.35rem;" aria-hidden="true"></i>
+          </button>
+
+          <div class="related-articles-slider__track" role="list" tabindex="0" aria-label="${escapeHtml(config.label)}に関連する記事" data-related-track>
+${cards}
+          </div>
+
+          <button class="related-articles-slider__arrow related-articles-slider__arrow--next" type="button" aria-label="次の記事を見る" data-related-next>
+            <i data-lucide="chevron-right" style="width:1.35rem;height:1.35rem;" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div class="related-articles-slider__footer">
+          <div class="related-articles-slider__dots" aria-label="関連記事のページ送り" data-related-dots></div>
+          <p class="related-articles-slider__hint">
+            <i data-lucide="move-horizontal" aria-hidden="true"></i>
+            左右にスワイプして記事を見られます
+          </p>
         </div>
       </div>
     </section>

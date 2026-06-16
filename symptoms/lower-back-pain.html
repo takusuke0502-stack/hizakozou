@@ -205,6 +205,19 @@
 @media(max-width:767px){.related-articles-slider{padding:2.35rem 0}.related-articles-slider__header{align-items:flex-start;margin-bottom:.85rem}.related-articles-slider__title{font-size:1.08rem;line-height:1.55}.related-articles-slider__all{font-size:12px;min-height:38px}.related-articles-slider__viewport{margin-right:-1rem}.related-articles-slider__track{--related-card-size:min(82vw,330px);gap:13px;padding:.2rem 1rem .85rem .05rem;scroll-padding-inline:.05rem}.related-articles-slider__card{min-height:268px;border-radius:11px}.related-articles-slider__body{padding:.75rem .8rem .85rem;gap:.45rem}.related-articles-slider__category{font-size:10px;padding:.28rem .5rem}.related-articles-slider__date{font-size:10px}.related-articles-slider__card-title{font-size:.86rem;line-height:1.55;-webkit-line-clamp:3}.related-articles-slider__arrow{display:none}.related-articles-slider__hint{display:inline-flex}.related-articles-slider__dot{width:7px;height:7px}.related-articles-slider__dot[aria-current="true"]{width:16px}}
 @media(max-width:420px){.related-articles-slider__header{display:grid;gap:.4rem}.related-articles-slider__all{justify-self:start}.related-articles-slider__track{--related-card-size:83vw}}
 @media(prefers-reduced-motion:reduce){.related-articles-slider__track{scroll-behavior:auto}.related-articles-slider__card,.related-articles-slider__thumb img,.related-articles-slider__dot,.related-articles-slider__arrow{transition:none}}
+.related-articles{padding:3.25rem 1rem;background:#f8fbff;border-top:1px solid #dbeafe}
+.related-articles__eyebrow{text-align:center;font-size:13px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin-bottom:.75rem}
+.related-articles__title{text-align:center;font-size:1.5rem;font-weight:900;color:#1e3a8a;margin-bottom:.75rem}
+.related-articles__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
+.related-articles__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-article-card{display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:8px;padding:1.25rem;text-decoration:none;box-shadow:0 2px 10px rgba(37,99,235,.06);transition:transform .2s,border-color .2s,box-shadow .2s}
+.related-article-card:hover,.related-article-card:focus-visible{transform:translateY(-2px);border-color:#93c5fd;box-shadow:0 10px 20px rgba(37,99,235,.12);outline:none}
+.related-article-card__meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
+.related-article-card__pill{display:inline-flex;align-items:center;border-radius:9999px;background:#eff6ff;color:#2563eb;font-size:11px;font-weight:900;padding:.25rem .625rem}
+.related-article-card__time{font-size:11px;font-weight:700;color:#64748b}
+.related-article-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
+.related-article-card__desc{font-size:13px;font-weight:700;color:#475569;line-height:1.8}
+.related-article-card__link{display:inline-flex;align-items:center;gap:.35rem;font-size:13px;font-weight:900;color:#2563eb}
 .related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #e2e8f0}
 .related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.1em;margin:0 0 .7rem}
 .related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .75rem}
@@ -251,6 +264,7 @@
 .symptom-footer__links a{font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;transition:color .2s}
 .symptom-footer__links a:hover,.symptom-footer__links a:focus-visible{color:#60a5fa;outline:none;text-decoration:underline;text-underline-offset:4px}
 .symptom-footer__note{font-size:10px;color:#64748b;font-weight:700;line-height:2;margin:0}
+@media(min-width:768px){.related-articles__title{font-size:1.75rem}}
 @media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
 @media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}.symptom-voices__grid{gap:1rem}.symptom-voice-card__body{padding:1rem}.symptom-voices__note{text-align:left}}
 /* BLOG_RELATED_ARTICLES_STYLES_END */
@@ -1143,7 +1157,7 @@
 
             <article id="flow-slide-2" class="flow-slide" data-flow-slide data-flow-index="1">
               <div class="flow-slider__media">
-          <img src="../image/flow-counseling-board-768.webp" alt="ホワイトボードを使って体の状態を説明するカウンセリングの様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="576">
+          <img src="../image/flow-plan-consultation-768.webp" alt="カウンセリングでお悩みや日常の状態を伺っている様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="432">
         </div>
           <h3 class="flow-slide__title">カウンセリング</h3>
           <p class="flow-slide__text">問診票をもとに、歩き始め、階段、立ち上がり、買い物など、日常のどの場面で膝が不安なのかを伺います。</p>
@@ -1159,7 +1173,7 @@
 
             <article id="flow-slide-4" class="flow-slide" data-flow-slide data-flow-index="3">
               <div class="flow-slider__media">
-          <img src="../image/flow-plan-consultation-768.webp" alt="施術方針を丁寧に説明している様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="432">
+          <img src="../image/flow-counseling-board-768.webp" alt="ホワイトボードを使って体の状態と施術方針を説明している様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="576">
         </div>
           <h3 class="flow-slide__title">状態説明、施術方針の説明</h3>
           <p class="flow-slide__text">なぜ痛みが出やすいのか、これから何を目指すのかを、専門用語を使いすぎず分かりやすくお伝えします。</p>
@@ -1514,6 +1528,10 @@
     </section>
 
 
+<!-- RELATED_SYMPTOMS_NAV_START -->
+
+<!-- RELATED_SYMPTOMS_NAV_END -->
+
 <!-- BLOG_RELATED_ARTICLES_START -->
 <section id="related-articles" class="related-articles-slider" aria-labelledby="related-articles-title" data-related-article-slider>
       <div class="container max-w-4xl related-articles-slider__inner">
@@ -1524,70 +1542,67 @@
 
         <div class="related-articles-slider__viewport">
           <button class="related-articles-slider__arrow related-articles-slider__arrow--prev" type="button" aria-label="前の記事を見る" data-related-prev>
-            <i data-lucide="chevron-left" aria-hidden="true"></i>
+            <i data-lucide="chevron-left" style="width:1.35rem;height:1.35rem;" aria-hidden="true"></i>
           </button>
 
           <div class="related-articles-slider__track" role="list" tabindex="0" aria-label="腰痛に関連する記事" data-related-track>
+
             <a class="related-articles-slider__card" href="../blog/posts/low-back-pain-hip-stiffness-relation/" role="listitem">
               <span class="related-articles-slider__thumb">
-                <img src="../image/hip-osteoarthritis-symptom.webp" alt="股関節の硬さと腰痛の関係を説明するイメージ" width="1200" height="675" loading="lazy" decoding="async">
+                <img src="../image/hip-osteoarthritis-symptom.webp" alt="腰痛の原因は腰にない？股関節の硬さと負担を減らす3ステップ｜柏市の整体院ひざこぞうのイメージ" loading="lazy" decoding="async">
               </span>
               <span class="related-articles-slider__body">
                 <span class="related-articles-slider__meta">
                   <span class="related-articles-slider__category">腰痛</span>
-                  <time class="related-articles-slider__date" datetime="2026-04-03">2026.04.03</time>
+                  <time class="related-articles-slider__date" datetime="2026-04-03">2026.4.3</time>
                 </span>
                 <span class="related-articles-slider__card-title">腰痛の原因は腰にない？股関節の硬さと負担を減らす3ステップ｜柏市の整体院ひざこぞう</span>
               </span>
             </a>
-
             <a class="related-articles-slider__card" href="../blog/posts/morning-low-back-pain-causes-multifidus/" role="listitem">
               <span class="related-articles-slider__thumb">
-                <img src="../image/lower-back-symptom.webp" alt="朝の腰痛に悩む方の腰まわりのイメージ" width="1200" height="675" loading="lazy" decoding="async">
+                <img src="../image/lower-back-symptom.webp" alt="朝起きると腰が痛いのはなぜ？原因分析と負担を減らす3ステップ｜柏市の整体院ひざこぞうのイメージ" loading="lazy" decoding="async">
               </span>
               <span class="related-articles-slider__body">
                 <span class="related-articles-slider__meta">
                   <span class="related-articles-slider__category">腰痛</span>
-                  <time class="related-articles-slider__date" datetime="2026-04-03">2026.04.03</time>
+                  <time class="related-articles-slider__date" datetime="2026-04-03">2026.4.3</time>
                 </span>
                 <span class="related-articles-slider__card-title">朝起きると腰が痛いのはなぜ？原因分析と負担を減らす3ステップ｜柏市の整体院ひざこぞう</span>
               </span>
             </a>
-
             <a class="related-articles-slider__card" href="../blog/posts/lower-back-pain-and-knee-link/" role="listitem">
               <span class="related-articles-slider__thumb">
-                <img src="../image/lower-back-symptom.webp" alt="膝をかばって腰に負担がかかる状態のイメージ" width="1200" height="675" loading="lazy" decoding="async">
+                <img src="../image/lower-back-symptom.webp" alt="膝をかばって腰までつらいときの見方のイメージ" loading="lazy" decoding="async">
               </span>
               <span class="related-articles-slider__body">
                 <span class="related-articles-slider__meta">
                   <span class="related-articles-slider__category">腰痛</span>
-                  <time class="related-articles-slider__date" datetime="2026-03-31">2026.03.31</time>
+                  <time class="related-articles-slider__date" datetime="2026-03-31">2026.3.31</time>
                 </span>
                 <span class="related-articles-slider__card-title">膝をかばって腰までつらいときの見方</span>
               </span>
             </a>
-
             <a class="related-articles-slider__card" href="../blog/posts/sciatica-piriformis-relation/" role="listitem">
               <span class="related-articles-slider__thumb">
-                <img src="../image/sciatica-symptom.webp" alt="坐骨神経痛とお尻まわりのしびれのイメージ" width="1200" height="675" loading="lazy" decoding="async">
+                <img src="../image/sciatica-symptom.webp" alt="坐骨神経痛と梨状筋の意外な関係｜お尻のしびれを「動き」から整える方法のイメージ" loading="lazy" decoding="async">
               </span>
               <span class="related-articles-slider__body">
                 <span class="related-articles-slider__meta">
                   <span class="related-articles-slider__category">シビレ</span>
-                  <time class="related-articles-slider__date" datetime="2026-04-03">2026.04.03</time>
+                  <time class="related-articles-slider__date" datetime="2026-04-03">2026.4.3</time>
                 </span>
                 <span class="related-articles-slider__card-title">坐骨神経痛と梨状筋の意外な関係｜お尻のしびれを「動き」から整える方法</span>
               </span>
             </a>
-
             <a class="related-articles-slider__card" href="../blog/posts/spinal-stenosis-exercise-before-surgery/" role="listitem">
               <span class="related-articles-slider__thumb">
-                <img src="../image/medical-interview.webp" alt="脊柱管狭窄症やヘルニアの相談をする様子" width="1200" height="675" loading="lazy" decoding="async">
+                <img src="../image/medical-interview.webp" alt="「手術しかない」と言われる前に——脊柱管狭窄症・ヘルニアの痛みとしびれに運動療法が役立つ理由のイメージ" loading="lazy" decoding="async">
               </span>
               <span class="related-articles-slider__body">
                 <span class="related-articles-slider__meta">
                   <span class="related-articles-slider__category">シビレ</span>
-                  <time class="related-articles-slider__date" datetime="2026-04-09">2026.04.09</time>
+                  <time class="related-articles-slider__date" datetime="2026-04-09">2026.4.9</time>
                 </span>
                 <span class="related-articles-slider__card-title">「手術しかない」と言われる前に——脊柱管狭窄症・ヘルニアの痛みとしびれに運動療法が役立つ理由</span>
               </span>
@@ -1595,7 +1610,7 @@
           </div>
 
           <button class="related-articles-slider__arrow related-articles-slider__arrow--next" type="button" aria-label="次の記事を見る" data-related-next>
-            <i data-lucide="chevron-right" aria-hidden="true"></i>
+            <i data-lucide="chevron-right" style="width:1.35rem;height:1.35rem;" aria-hidden="true"></i>
           </button>
         </div>
 
@@ -1888,7 +1903,7 @@
       <span class="mobile-cta__sub">24時間受付</span>
     </a>
   </div>
-
+  <!-- RELATED_ARTICLES_SLIDER_SCRIPT_START -->
   <script>
     (() => {
       const slider = document.querySelector('[data-related-article-slider]');
@@ -1937,7 +1952,7 @@
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.className = 'related-articles-slider__dot';
-        dot.setAttribute('aria-label', `${index + 1}番目の記事へ移動`);
+        dot.setAttribute('aria-label', String(index + 1) + '番目の記事へ移動');
         dot.addEventListener('click', () => scrollToCard(index));
         dotsRoot?.appendChild(dot);
         return dot;
@@ -1988,11 +2003,11 @@
       let suppressClick = false;
 
       track.addEventListener('pointerdown', (event) => {
-        if (event.pointerType === 'touch') return;
+        if (event.pointerType === 'touch' || event.button !== 0) return;
         isDragging = true;
+        suppressClick = false;
         dragStartX = event.clientX;
         dragStartScroll = track.scrollLeft;
-        suppressClick = false;
         track.classList.add('is-dragging');
         track.setPointerCapture(event.pointerId);
       });
@@ -2000,32 +2015,37 @@
       track.addEventListener('pointermove', (event) => {
         if (!isDragging) return;
         const delta = event.clientX - dragStartX;
-        if (Math.abs(delta) > 5) suppressClick = true;
+        if (Math.abs(delta) > 6) suppressClick = true;
         track.scrollLeft = dragStartScroll - delta;
       });
 
-      const stopDrag = (event) => {
+      const stopDragging = (event) => {
         if (!isDragging) return;
         isDragging = false;
         track.classList.remove('is-dragging');
-        if (track.hasPointerCapture(event.pointerId)) track.releasePointerCapture(event.pointerId);
+        if (event.pointerId && track.hasPointerCapture(event.pointerId)) {
+          track.releasePointerCapture(event.pointerId);
+        }
+        window.setTimeout(() => {
+          suppressClick = false;
+        }, 0);
       };
 
-      track.addEventListener('pointerup', stopDrag);
-      track.addEventListener('pointercancel', stopDrag);
+      track.addEventListener('pointerup', stopDragging);
+      track.addEventListener('pointercancel', stopDragging);
+      track.addEventListener('pointerleave', stopDragging);
       track.addEventListener('click', (event) => {
         if (!suppressClick) return;
         event.preventDefault();
         event.stopPropagation();
-        suppressClick = false;
       }, true);
 
-      window.addEventListener('resize', updateControls, { passive: true });
+      window.addEventListener('resize', updateControls);
       updateControls();
     })();
   </script>
-
-  <script>
+  <!-- RELATED_ARTICLES_SLIDER_SCRIPT_END -->
+<script>
     lucide.createIcons();
   </script>
   <script src="site-header.js"></script>
