@@ -881,6 +881,179 @@
 }
 /* ACCESS_CONTACT_COPY_END */
 
+/* LOWER_BACK_EDUCATION_STYLES_START */
+.lb-education{--lb-green:#356b2f;--lb-green-dark:#234d24;--lb-green-soft:#eef5e9;--lb-cream:#faf7f0;--lb-cream-deep:#f4efe5;--lb-text:#252a27;--lb-muted:#59635d;--lb-border:#dfe4dc;background:#fff;color:var(--lb-text)}
+.lb-education-section{padding:clamp(72px,8vw,104px) 0;border-top:1px solid var(--lb-border)}
+.lb-education-section--white{background:#fff}
+.lb-education-section--cream,.lb-education-section--flow{background:var(--lb-cream)}
+.lb-education-section--medical{background:#f4f2ed}
+.lb-education-section--frequency{padding-top:56px;padding-bottom:72px;background:#fff}
+.lb-section-title{position:relative;margin:0 0 clamp(32px,5vw,52px);padding-bottom:18px;color:var(--lb-text);font-size:clamp(1.7rem,3vw,2.35rem);font-weight:900;line-height:1.45;letter-spacing:0;text-align:left}
+.lb-section-title::after{content:"";position:absolute;left:0;bottom:0;width:52px;height:3px;background:var(--lb-green);border-radius:999px}
+.lb-section-lead{max-width:760px;margin:-18px 0 48px;color:var(--lb-muted);font-size:1rem;font-weight:700;line-height:1.95}
+.lb-copy{color:var(--lb-muted);font-size:1rem;font-weight:700;line-height:1.95}
+.lb-copy p{margin:0}
+.lb-copy p+p{margin-top:1.15rem}
+.lb-copy strong{color:var(--lb-green-dark);font-weight:900}
+.lb-copy--accent{border-left:3px solid var(--lb-green);padding-left:24px}
+.lb-cause-layout{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(320px,.96fr);gap:clamp(36px,6vw,68px);align-items:center}
+.lb-cause-visual{margin:0;border:1px solid var(--lb-border);background:#fff;padding:18px}
+.lb-cause-visual img{display:block;width:100%;height:auto}
+.lb-cause-visual figcaption{margin-top:12px;color:#667068;font-size:.78rem;font-weight:700;line-height:1.65;text-align:center}
+.lb-factor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--lb-border);border-left:1px solid var(--lb-border)}
+.lb-factor{min-width:0;border-right:1px solid var(--lb-border);border-bottom:1px solid var(--lb-border);padding:clamp(28px,4vw,42px)}
+.lb-factor__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.lb-factor__number{color:var(--lb-green);font-size:1.7rem;font-weight:900;line-height:1}
+.lb-factor__icon{display:grid;place-items:center;width:48px;height:48px;border:1px solid #b9cbb4;border-radius:50%;color:var(--lb-green)}
+.lb-factor__icon svg{width:23px;height:23px;stroke-width:1.7}
+.lb-factor h3{margin:0 0 12px;color:var(--lb-text);font-size:1.1rem;font-weight:900;line-height:1.55}
+.lb-factor p{margin:0;color:var(--lb-muted);font-size:.94rem;font-weight:700;line-height:1.85}
+.lb-pain-flow{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(32px,4vw,54px);align-items:start;margin-top:8px}
+.lb-pain-flow::before{content:"";position:absolute;top:27px;left:7%;right:7%;height:1px;background:#b7c7b1}
+.lb-pain-flow__step{position:relative;z-index:1;text-align:center}
+.lb-pain-flow__number{display:grid;place-items:center;width:56px;height:56px;margin:0 auto 18px;border:2px solid var(--lb-green);border-radius:50%;background:var(--lb-cream);color:var(--lb-green-dark);font-size:1.05rem;font-weight:900}
+.lb-pain-flow__step p{margin:0;color:var(--lb-text);font-size:.94rem;font-weight:900;line-height:1.75}
+.lb-pain-flow__arrow{position:absolute;top:16px;z-index:2;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--lb-cream);color:var(--lb-green)}
+.lb-pain-flow__arrow svg{width:17px;height:17px}
+.lb-pain-flow__arrow--1{left:24.2%}
+.lb-pain-flow__arrow--2{left:49.1%}
+.lb-pain-flow__arrow--3{left:74%}
+.lb-flow-note{max-width:760px;margin:42px auto 0;border-top:1px solid #d7ddd3;padding-top:22px;color:#687168;font-size:.84rem;font-weight:700;line-height:1.85;text-align:center}
+.lb-massage-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(360px,1.1fr);gap:clamp(40px,6vw,72px);align-items:center}
+.lb-cycle{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.lb-cycle__item{display:flex;align-items:center;gap:12px;min-height:70px;border-top:1px solid var(--lb-border);border-bottom:1px solid var(--lb-border);padding:14px 4px;color:var(--lb-text);font-size:.9rem;font-weight:900;line-height:1.5}
+.lb-cycle__item svg{width:22px;height:22px;flex:0 0 auto;color:var(--lb-green);stroke-width:1.7}
+.lb-cycle__item--last{grid-column:2/4}
+.lb-cycle__arrow{display:grid;place-items:center;color:#8ca188}
+.lb-cycle__arrow svg{width:18px;height:18px}
+.lb-medical-note{border:1px solid #d9d4ca;background:#fbfaf7;padding:clamp(26px,5vw,44px)}
+.lb-medical-note__heading{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:start}
+.lb-medical-note__icon{display:grid;place-items:center;width:52px;height:52px;border:1px solid #a9b7a4;border-radius:50%;color:var(--lb-green-dark)}
+.lb-medical-note__icon svg{width:25px;height:25px;stroke-width:1.7}
+.lb-medical-note h2{margin:0;color:var(--lb-text);font-size:clamp(1.35rem,2.4vw,1.85rem);font-weight:900;line-height:1.55}
+.lb-medical-note__heading p{margin:14px 0 0;color:var(--lb-muted);font-size:.95rem;font-weight:700;line-height:1.85}
+.lb-medical-note__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px;margin:30px 0 0;padding:0;border-top:1px solid #ddd8cf;list-style:none}
+.lb-medical-note__item{position:relative;border-bottom:1px solid #ddd8cf;padding:16px 8px 16px 27px;color:#4c534e;font-size:.92rem;font-weight:800;line-height:1.65}
+.lb-medical-note__item::before{content:"";position:absolute;left:5px;top:1.55em;width:8px;height:8px;border:2px solid var(--lb-green);border-radius:50%}
+.lb-assessment-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.9fr);grid-template-areas:"intro media" "checklist media";gap:26px clamp(40px,6vw,68px);align-items:start}
+.lb-assessment__intro{grid-area:intro}
+.lb-assessment__media{grid-area:media;margin:0;align-self:stretch}
+.lb-assessment__media img{display:block;width:100%;height:100%;min-height:430px;border:1px solid var(--lb-border);object-fit:cover}
+.lb-check-list{grid-area:checklist;display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.lb-check-list li{display:flex;align-items:flex-start;gap:11px;color:#3c453f;font-size:.94rem;font-weight:800;line-height:1.65}
+.lb-check-list svg{width:20px;height:20px;flex:0 0 auto;margin-top:.22em;color:var(--lb-green);stroke-width:2}
+.lb-approach-steps{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(34px,5vw,62px);margin-top:10px}
+.lb-approach-steps::before{content:"";position:absolute;top:72px;left:13%;right:13%;height:1px;background:#b7c7b1}
+.lb-approach-step{position:relative;z-index:1;text-align:center}
+.lb-approach-step__number{display:block;margin-bottom:13px;color:var(--lb-green);font-size:.78rem;font-weight:900;letter-spacing:.08em}
+.lb-approach-step__icon{display:grid;place-items:center;width:72px;height:72px;margin:0 auto 18px;border:2px solid var(--lb-green);border-radius:50%;background:var(--lb-cream);color:var(--lb-green-dark)}
+.lb-approach-step__icon svg{width:29px;height:29px;stroke-width:1.65}
+.lb-approach-step__label{margin:0 0 10px;color:var(--lb-green);font-size:.84rem;font-weight:900}
+.lb-approach-step h3{margin:0 0 13px;color:var(--lb-text);font-size:1.08rem;font-weight:900;line-height:1.55}
+.lb-approach-step>p:last-child{margin:0;color:var(--lb-muted);font-size:.9rem;font-weight:700;line-height:1.85;text-align:left}
+.lb-approach-steps__arrow{position:absolute;top:61px;z-index:2;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--lb-cream);color:var(--lb-green)}
+.lb-approach-steps__arrow svg{width:17px;height:17px}
+.lb-approach-steps__arrow--1{left:32.2%}
+.lb-approach-steps__arrow--2{left:65.6%}
+.lb-consult-section{padding:0 0 clamp(72px,8vw,96px);background:var(--lb-cream);border-bottom:1px solid var(--lb-border)}
+.lb-consult-cta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:34px;align-items:center;border:1px solid #aebfa8;border-radius:12px;background:#f3f8ef;padding:clamp(26px,4vw,38px)}
+.lb-consult-cta h2{margin:0;color:var(--lb-green-dark);font-size:clamp(1.25rem,2vw,1.6rem);font-weight:900;line-height:1.55}
+.lb-consult-cta p{margin:10px 0 0;color:#536052;font-size:.94rem;font-weight:700;line-height:1.8}
+.lb-consult-cta__link{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;border-radius:8px;background:var(--lb-green);color:#fff;padding:14px 20px;font-size:.93rem;font-weight:900;line-height:1.4;text-align:center;text-decoration:none;transition:background .2s ease,transform .2s ease}
+.lb-consult-cta__link:hover,.lb-consult-cta__link:focus-visible{background:var(--lb-green-dark);transform:translateY(-1px);outline:3px solid rgba(53,107,47,.2);outline-offset:3px}
+.lb-consult-cta__link svg{width:20px;height:20px;flex:0 0 auto}
+.lb-frequency{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;border-top:1px solid var(--lb-border);border-bottom:1px solid var(--lb-border);padding:30px 0}
+.lb-frequency__icon{display:grid;place-items:center;width:50px;height:50px;border:1px solid #b9cbb4;border-radius:50%;color:var(--lb-green)}
+.lb-frequency__icon svg{width:23px;height:23px;stroke-width:1.7}
+.lb-frequency h2{margin:0 0 12px;color:var(--lb-text);font-size:1.35rem;font-weight:900;line-height:1.5}
+.lb-frequency p{margin:0;color:var(--lb-muted);font-size:.94rem;font-weight:700;line-height:1.85}
+.lb-frequency p+p{margin-top:6px}
+.symptom-voices{padding-top:clamp(72px,8vw,96px);padding-bottom:clamp(72px,8vw,96px);background:#fff;border-top:1px solid var(--lb-border)}
+.symptom-voices__eyebrow{color:var(--lb-green);letter-spacing:.08em}
+.symptom-voices__title{position:relative;color:var(--lb-text);padding-bottom:15px}
+.symptom-voices__title::after{content:"";position:absolute;left:50%;bottom:0;width:46px;height:3px;background:var(--lb-green);transform:translateX(-50%)}
+.symptom-voices__lead{color:var(--lb-muted)}
+.symptom-voice-card{border-color:var(--lb-border);border-radius:6px;box-shadow:0 7px 18px rgba(37,42,39,.055)}
+.symptom-voice-card__key{color:var(--lb-green)}
+.faq{padding-top:clamp(72px,8vw,96px);padding-bottom:clamp(72px,8vw,96px);background:var(--lb-cream)}
+.faq .section-title{color:var(--lb-text)}
+.faq .section-title::after{background:var(--lb-green)}
+.related-articles-slider{padding-top:clamp(72px,8vw,96px);padding-bottom:clamp(72px,8vw,96px);background:#fff;border-top:1px solid var(--lb-border)}
+.related-articles-slider__title{color:var(--lb-text)}
+.related-articles-slider__title::before{background:var(--lb-green)}
+.related-articles-slider__card{border-color:var(--lb-border);box-shadow:0 6px 16px rgba(37,42,39,.055)}
+.related-articles-slider__card:hover,.related-articles-slider__card:focus-visible{box-shadow:0 9px 20px rgba(37,42,39,.08)}
+.related-articles-slider__category,.related-articles-slider__all{color:var(--lb-green)}
+.related-articles-slider__category{background:var(--lb-green-soft)}
+.related-articles-slider__dot[aria-current="true"]{background:var(--lb-green)}
+.hk-pricing-section,#access{border-top:1px solid var(--lb-border)}
+@media(max-width:767px){
+  .lb-education-section{padding:68px 0}
+  .lb-education-section--frequency{padding-top:42px;padding-bottom:72px}
+  .lb-section-title{margin-bottom:30px;padding-bottom:15px;font-size:clamp(1.5rem,7vw,1.85rem);line-height:1.5}
+  .lb-section-title::after{width:44px}
+  .lb-section-lead{margin:-8px 0 34px;font-size:.96rem;line-height:1.85}
+  .lb-copy{font-size:.96rem;line-height:1.85}
+  .lb-copy--accent{padding-left:18px}
+  .lb-cause-layout{grid-template-columns:1fr;gap:30px}
+  .lb-cause-visual{padding:10px}
+  .lb-factor-grid{grid-template-columns:1fr;border-left:0}
+  .lb-factor{border-right:0;padding:26px 4px}
+  .lb-factor__top{margin-bottom:14px}
+  .lb-factor__icon{width:44px;height:44px}
+  .lb-factor h3{font-size:1.04rem}
+  .lb-factor p{font-size:.93rem}
+  .lb-pain-flow{grid-template-columns:1fr;gap:0;margin-left:5px;padding-left:46px}
+  .lb-pain-flow::before{top:26px;bottom:26px;left:27px;right:auto;width:1px;height:auto}
+  .lb-pain-flow__step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;min-height:92px;text-align:left}
+  .lb-pain-flow__number{width:54px;height:54px;margin:0 0 0 -46px}
+  .lb-pain-flow__step p{font-size:.95rem}
+  .lb-pain-flow__arrow{display:none}
+  .lb-pc-only{display:none}
+  .lb-flow-note{margin-top:26px;text-align:left}
+  .lb-massage-layout{grid-template-columns:1fr;gap:36px}
+  .lb-cycle{grid-template-columns:1fr;gap:0;border-top:1px solid var(--lb-border)}
+  .lb-cycle__item,.lb-cycle__item--last{grid-column:auto;border-top:0;border-bottom:1px solid var(--lb-border);padding:16px 5px}
+  .lb-cycle__arrow{height:28px;border-bottom:1px solid var(--lb-border)}
+  .lb-cycle__arrow svg{transform:rotate(90deg)}
+  .lb-medical-note{padding:24px 18px}
+  .lb-medical-note__heading{grid-template-columns:1fr;gap:15px}
+  .lb-medical-note__icon{width:46px;height:46px}
+  .lb-medical-note h2{font-size:1.3rem}
+  .lb-medical-note__list{grid-template-columns:1fr;gap:0;margin-top:24px}
+  .lb-assessment-layout{grid-template-columns:1fr;grid-template-areas:"intro" "media" "checklist";gap:28px}
+  .lb-assessment__media img{height:auto;min-height:0}
+  .lb-check-list{gap:13px}
+  .lb-approach-steps{grid-template-columns:1fr;gap:0;margin-left:5px;padding-left:48px}
+  .lb-approach-steps::before{top:42px;bottom:42px;left:27px;right:auto;width:1px;height:auto}
+  .lb-approach-step{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:17px;min-height:210px;text-align:left}
+  .lb-approach-step__number{grid-column:2;margin:0 0 8px}
+  .lb-approach-step__icon{grid-column:1;grid-row:1/5;width:60px;height:60px;margin:0 0 0 -48px;background:var(--lb-cream)}
+  .lb-approach-step__icon svg{width:25px;height:25px}
+  .lb-approach-step__label,.lb-approach-step h3,.lb-approach-step>p:last-child{grid-column:2}
+  .lb-approach-step__label{margin-bottom:7px}
+  .lb-approach-step h3{font-size:1.04rem}
+  .lb-approach-steps__arrow{display:none}
+  .lb-consult-section{padding-bottom:72px}
+  .lb-consult-cta{grid-template-columns:1fr;gap:22px;padding:24px 18px}
+  .lb-consult-cta__link{width:100%;min-height:52px}
+  .lb-frequency{grid-template-columns:1fr;gap:16px;padding:26px 0}
+  .lb-frequency h2{font-size:1.25rem}
+  .symptom-voices,.faq,.related-articles-slider{padding-top:72px;padding-bottom:72px}
+  .symptom-voices{padding-left:16px;padding-right:16px}
+  .symptom-voices__grid{gap:18px}
+  .symptom-voice-card{box-shadow:none}
+  .related-articles-slider__card{box-shadow:0 4px 12px rgba(37,42,39,.05)}
+}
+@media(min-width:768px) and (max-width:1024px){
+  .lb-cause-layout,.lb-assessment-layout{grid-template-columns:minmax(0,1fr) minmax(300px,.9fr);gap:40px}
+  .lb-massage-layout{grid-template-columns:1fr;gap:38px}
+  .lb-cycle{max-width:760px}
+  .lb-approach-steps{gap:34px}
+  .lb-approach-step h3{font-size:1rem}
+}
+/* LOWER_BACK_EDUCATION_STYLES_END */
+
   </style>
 <script type="application/ld+json">
 {
@@ -1128,254 +1301,228 @@
         </ul>
       </div>
     </section>
-    <section id="flow" class="flow-slider" aria-labelledby="flow-title" data-flow-slider>
-      <div class="flow-slider__inner">
-        <div class="flow-slider__heading-band">
-          <p class="flow-slider__eyebrow">FLOW</p>
-          <h2 id="flow-title" class="flow-slider__title">当院での施術の流れ</h2>
+
+
+<!-- LOWER_BACK_EDUCATION_START -->
+    <div class="lb-education">
+      <section class="lb-education-section lb-education-section--white" aria-labelledby="lb-cause-title">
+        <div class="container max-w-4xl">
+          <h2 id="lb-cause-title" class="lb-section-title">腰痛はなぜ起こるのか？</h2>
+          <div class="lb-cause-layout">
+            <div class="lb-copy">
+              <p>腰痛の原因は、腰だけにあるとは限りません。</p>
+              <p>長時間同じ姿勢を続けたり、股関節や背中が動きにくくなったりすると、本来は身体全体で分担するはずの負担が腰に集中します。</p>
+              <p>その状態が続くことで、筋肉が緊張したり、動いたときに痛みを感じやすくなったりすることがあります。</p>
+              <p>痛みが出ている場所だけでなく、「なぜ腰に負担が集まっているのか」を確認することが大切です。</p>
+            </div>
+            <figure class="lb-cause-visual">
+              <img src="../image/イラスト/腰・神経/骨盤と腰椎のゆがみタイプ.webp" alt="骨盤と腰椎の動き方の違いを示したイラスト" loading="lazy" decoding="async" width="800" height="600">
+              <figcaption>骨盤や背中の動き方によって、腰に集まる負担は変わります。</figcaption>
+            </figure>
+          </div>
         </div>
+      </section>
 
-        <p class="flow-swipe-hint">写真は左右にスライドできます<span class="flow-swipe-arrow" aria-hidden="true">&gt;</span></p>
-
-        <div class="flow-slider__stage">
-          <button type="button" class="flow-slider__arrow flow-slider__arrow--prev" data-flow-prev aria-label="前のステップを見る">
-            <span aria-hidden="true">‹</span>
-          </button>
-
-          <p class="flow-slider__counter" aria-live="polite" aria-atomic="true">
-            <span data-flow-current>01</span> / <span data-flow-total>06</span>
-          </p>
-
-          <div class="flow-slider__slides" aria-live="polite">
-            <article id="flow-slide-1" class="flow-slide is-active" data-flow-slide data-flow-index="0">
-              <div class="flow-slider__media">
-                <img src="../image/flow-medical-interview-form-768.webp" alt="初回時に問診票を記入する様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="432">
+      <section class="lb-education-section lb-education-section--cream" aria-labelledby="lb-factors-title">
+        <div class="container max-w-4xl">
+          <h2 id="lb-factors-title" class="lb-section-title">腰に負担が集まりやすくなる4つの要因</h2>
+          <div class="lb-factor-grid">
+            <article class="lb-factor">
+              <div class="lb-factor__top">
+                <span class="lb-factor__number">01</span>
+                <span class="lb-factor__icon" aria-hidden="true"><i data-lucide="clock-3"></i></span>
               </div>
-          <h3 class="flow-slide__title">問診票記入</h3>
-          <p class="flow-slide__text">いつから痛いのか、どんな動きでつらいのか、病院で言われたことなどを問診票にご記入いただきます。</p>
+              <h3>長時間同じ姿勢が続く</h3>
+              <p>デスクワークや運転、立ち仕事などで同じ姿勢が続くと、腰まわりの筋肉が緊張し、動き始めに腰の重さや痛みを感じやすくなります。</p>
             </article>
-
-            <article id="flow-slide-2" class="flow-slide" data-flow-slide data-flow-index="1">
-              <div class="flow-slider__media">
-          <img src="../image/flow-plan-consultation-768.webp" alt="カウンセリングでお悩みや日常の状態を伺っている様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="432">
-        </div>
-          <h3 class="flow-slide__title">カウンセリング</h3>
-          <p class="flow-slide__text">問診票をもとに、歩き始め、階段、立ち上がり、買い物など、日常のどの場面で膝が不安なのかを伺います。</p>
-            </article>
-
-            <article id="flow-slide-3" class="flow-slide" data-flow-slide data-flow-index="2">
-              <div class="flow-slider__media">
-                <img src="../image/flow-movement-assessment-768.webp" alt="股関節や膝の動きを確認している様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="576">
+            <article class="lb-factor">
+              <div class="lb-factor__top">
+                <span class="lb-factor__number">02</span>
+                <span class="lb-factor__icon" aria-hidden="true"><i data-lucide="move-3d"></i></span>
               </div>
-          <h3 class="flow-slide__title">身体の状態チェック</h3>
-          <p class="flow-slide__text">膝だけでなく、股関節・足首・姿勢・歩き方も確認し、どこに負担が集まりやすいかを見ていきます。</p>
+              <h3>股関節や背中が動きにくい</h3>
+              <p>股関節や背中が十分に動かないと、その不足を補うために腰が必要以上に動き、負担が集中しやすくなります。</p>
             </article>
-
-            <article id="flow-slide-4" class="flow-slide" data-flow-slide data-flow-index="3">
-              <div class="flow-slider__media">
-          <img src="../image/flow-counseling-board-768.webp" alt="ホワイトボードを使って体の状態と施術方針を説明している様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="576">
-        </div>
-          <h3 class="flow-slide__title">状態説明、施術方針の説明</h3>
-          <p class="flow-slide__text">なぜ痛みが出やすいのか、これから何を目指すのかを、専門用語を使いすぎず分かりやすくお伝えします。</p>
+            <article class="lb-factor">
+              <div class="lb-factor__top">
+                <span class="lb-factor__number">03</span>
+                <span class="lb-factor__icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+              </div>
+              <h3>身体を支える筋肉がうまく働いていない</h3>
+              <p>お腹やお尻など、姿勢や動作を支える筋肉がうまく使えていないと、腰まわりの筋肉が頑張りすぎる状態になります。</p>
             </article>
-
-            <article id="flow-slide-5" class="flow-slide" data-flow-slide data-flow-index="4">
-              <div class="flow-slider__media">
-          <img src="../image/flow-treatment-session-768.webp" alt="膝や股関節まわりへの施術の様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="432">
-        </div>
-          <h3 class="flow-slide__title">施術開始</h3>
-          <p class="flow-slide__text">やさしく身体を整えながら、立つ・歩く・階段などの動きにつながるように運動療法も行います。</p>
-            </article>
-
-            <article id="flow-slide-6" class="flow-slide" data-flow-slide data-flow-index="5">
-              <div class="flow-slider__media">
-          <img src="../image/treatment-stretch-768.webp" alt="自宅でできるセルフケアを説明する様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="768">
-        </div>
-          <h3 class="flow-slide__title">セルフケアと施術後の説明</h3>
-          <p class="flow-slide__text">ご自宅で気をつけることや簡単なセルフケア、施術後の状態と今後の目安をご案内します。</p>
+            <article class="lb-factor">
+              <div class="lb-factor__top">
+                <span class="lb-factor__number">04</span>
+                <span class="lb-factor__icon" aria-hidden="true"><i data-lucide="package-open"></i></span>
+              </div>
+              <h3>腰に負担がかかる動作を繰り返している</h3>
+              <p>立ち上がる、かがむ、物を持つといった日常動作の癖によって、同じ場所に負担が繰り返しかかることがあります。</p>
             </article>
           </div>
-
-          <button type="button" class="flow-slider__arrow flow-slider__arrow--next" data-flow-next aria-label="次のステップを見る">
-            <span aria-hidden="true">›</span>
-          </button>
         </div>
+      </section>
 
-        <div class="flow-slider__dots" role="tablist" aria-label="施術の流れのステップ">
-          <button type="button" class="flow-slider__dot is-active" data-flow-dot data-flow-index="0" role="tab" aria-controls="flow-slide-1" aria-selected="true" aria-label="1番目のステップを表示"></button>
-          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="1" role="tab" aria-controls="flow-slide-2" aria-selected="false" aria-label="2番目のステップを表示"></button>
-          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="2" role="tab" aria-controls="flow-slide-3" aria-selected="false" aria-label="3番目のステップを表示"></button>
-          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="3" role="tab" aria-controls="flow-slide-4" aria-selected="false" aria-label="4番目のステップを表示"></button>
-          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="4" role="tab" aria-controls="flow-slide-5" aria-selected="false" aria-label="5番目のステップを表示"></button>
-          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="5" role="tab" aria-controls="flow-slide-6" aria-selected="false" aria-label="6番目のステップを表示"></button>
+      <section class="lb-education-section lb-education-section--flow" aria-labelledby="lb-flow-title">
+        <div class="container max-w-4xl">
+          <h2 id="lb-flow-title" class="lb-section-title">腰痛が起きるまでの流れ</h2>
+          <div class="lb-pain-flow" role="list" aria-label="腰痛が起きるまでの一例">
+            <div class="lb-pain-flow__step" role="listitem">
+              <span class="lb-pain-flow__number">1</span>
+              <p>股関節や背中が<br class="lb-pc-only">動きにくくなる</p>
+            </div>
+            <div class="lb-pain-flow__step" role="listitem">
+              <span class="lb-pain-flow__number">2</span>
+              <p>腰が代わりに<br class="lb-pc-only">動きすぎる</p>
+            </div>
+            <div class="lb-pain-flow__step" role="listitem">
+              <span class="lb-pain-flow__number">3</span>
+              <p>筋肉や関節へ<br class="lb-pc-only">負担が集中する</p>
+            </div>
+            <div class="lb-pain-flow__step" role="listitem">
+              <span class="lb-pain-flow__number">4</span>
+              <p>腰の重さ・痛み・ぎっくり腰などが起こりやすくなる</p>
+            </div>
+            <span class="lb-pain-flow__arrow lb-pain-flow__arrow--1" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+            <span class="lb-pain-flow__arrow lb-pain-flow__arrow--2" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+            <span class="lb-pain-flow__arrow lb-pain-flow__arrow--3" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+          </div>
+          <p class="lb-flow-note">これは腰痛が起こる一例です。腰痛の原因や状態は一人ひとり異なるため、実際には姿勢や関節の動き、筋肉の働き、日常動作などを確認する必要があります。</p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="cause">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">腰痛はなぜ起こるのか</h2>
-
-        <div class="prose">
-          <p>腰痛の多くは「<span class="highlight">過緊張</span>」と「<span class="highlight">過可動</span>」が組み合わさった状態です。腰そのものが悪いというより、腰が全身の問題を一手に引き受けてしまうことで発症します。</p>
-        </div>
-
-        <div class="mechanism">
-          <p class="mechanism__title">腰痛が起きるメカニズム</p>
-          <div class="mechanism__flow">
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">1</div>
-              <p class="mechanism__step-text">股関節・胸椎が硬くなって働きにくくなった筋肉化</p>
+      <section class="lb-education-section lb-education-section--white" aria-labelledby="lb-massage-title">
+        <div class="container max-w-4xl">
+          <h2 id="lb-massage-title" class="lb-section-title">なぜマッサージを受けても戻ることがあるのか？</h2>
+          <div class="lb-massage-layout">
+            <div class="lb-copy lb-copy--accent">
+              <p>硬くなった腰の筋肉をマッサージすると、一時的に楽になることがあります。</p>
+              <p>しかし、股関節の硬さや身体の使い方など、腰に負担を集めている要因が残っていると、日常生活に戻ったときに再び腰が緊張しやすくなります。</p>
+              <p><strong>大切なのは、腰を緩めることだけではありません。</strong></p>
+              <p>腰以外の関節の動きや、身体を支える筋肉、立つ・座る・かがむといった動作まで確認することです。</p>
             </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">2</div>
-              <p class="mechanism__step-text">腰が「代わりに動く関節」になる</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">3</div>
-              <p class="mechanism__step-text">腰椎に過度な負担が集中する</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__result">
-              <svg class="mechanism__result-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:#fff;">
-                <path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
-              </svg>
-              <p class="mechanism__result-text">腰痛・ぎっくり腰が発症・再発</p>
+            <div class="lb-cycle" aria-label="腰痛の悪循環の一例">
+              <div class="lb-cycle__item"><i data-lucide="weight" aria-hidden="true"></i><span>腰に負担がかかる</span></div>
+              <span class="lb-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="lb-cycle__item"><i data-lucide="activity" aria-hidden="true"></i><span>腰が緊張する</span></div>
+              <span class="lb-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="lb-cycle__item"><i data-lucide="triangle-alert" aria-hidden="true"></i><span>痛みが出る</span></div>
+              <span class="lb-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="lb-cycle__item"><i data-lucide="person-standing" aria-hidden="true"></i><span>身体を固める</span></div>
+              <span class="lb-cycle__arrow" aria-hidden="true"><i data-lucide="rotate-cw"></i></span>
+              <div class="lb-cycle__item lb-cycle__item--last"><i data-lucide="refresh-cw" aria-hidden="true"></i><span>さらに腰へ負担が集中する</span></div>
             </div>
           </div>
         </div>
+      </section>
 
-        <div class="prose" style="margin-top:1.75rem;">
-          <p>ぎっくり腰は、猫背（腰椎後弯位）から急に動いたり重い物を持ったりした瞬間に、多裂筋や椎間関節に過剰な負担がかかって発症します。多裂筋は本来「体幹を安定させる働きにくくなった筋肉」であるはずが、一瞬で過負荷になるのです。</p>
-        </div>
-
-        <div class="vicious-cycle">
-          <p class="vicious-cycle__title">
-            <i data-lucide="alert-triangle" style="width:1.125rem;height:1.125rem;" aria-hidden="true"></i>
-            マッサージで戻る理由：痛みの悪循環
-          </p>
-          <div class="cycle-flow">
-            <span class="cycle-item">痛みへの恐怖</span>
-            <span class="cycle-arrow">→</span>
-            <span class="cycle-item">体を過剰に固める</span>
-            <span class="cycle-arrow">→</span>
-            <span class="cycle-item">血流悪化・筋硬直</span>
-            <span class="cycle-arrow">→</span>
-            <span class="cycle-item">また痛みが出る</span>
-          </div>
-        </div>
-
-        <div class="key-point">
-          <p class="key-point__label">✦ ポイント</p>
-          <p class="key-point__text">マッサージで一時的に楽になっても翌日には戻るのは、「硬くなる原因」が残ったままだからです。腰に負担が集中しにくい体の使い方へ整えていくことが、改善を目指すうえで大切です。</p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SYMPTOM_MID_CTA_START -->
-<section class="symptom-mid-cta">
-      <div class="container max-w-4xl symptom-mid-cta__inner">
-        <div>
-          <p class="symptom-mid-cta__eyebrow">相談の目安</p>
-          <h2 class="symptom-mid-cta__title">原因を知るだけでなく、今の状態に合う進め方を確認しませんか？</h2>
-          <p class="symptom-mid-cta__text">痛み方や生活で困っている場面は人によって違います。読みながら「自分も近いかも」と感じた方は、来院前にLINEで状況を送っていただいて大丈夫です。</p>
-        </div>
-        <div class="symptom-mid-cta__actions">
-          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで相談する</a>
-          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--tel" href="tel:0471143274">電話で相談する</a>
-        </div>
-      </div>
-    </section>
-<!-- SYMPTOM_MID_CTA_END -->
-
-<section class="approach">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">当院の腰痛へのアプローチ</h2>
-        <p class="approach__intro">
-          当院では <strong style="color:#1e40af;">ひざこぞう式整体（緩める → 鍛える → 動作改善）</strong> の流れで、負担を減らしながら改善を目指します
-        </p>
-        <img src="../image/写真/症状/デスクワーク中に腰痛を感じる女性.webp" alt="デスクワーク中に腰痛を感じる女性" class="feature-photo feature-photo--full" style="width:100%; max-height:320px; object-fit:cover; border-radius:1rem; box-shadow:0 10px 25px -5px rgba(0,0,0,0.08); margin-bottom:2.5rem; border:1px solid #e2e8f0;" loading="lazy" decoding="async" width="800" height="533">
-
-        <div class="msm-steps">
-
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--1">
-                <span class="msm-step__badge-num">1</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--1">緩める｜可動性</span>
-                <h3 class="msm-step__title">原因となっている関節の可動性を取り戻す</h3>
-                <p class="msm-step__text">腰だけでなく、股関節・胸椎・骨盤まわりの頑張りすぎている筋肉を丁寧に調整します。急性期はまず最も楽な姿勢（安楽肢位）を見つけ、そこからアプローチを開始します。</p>
+      <section class="lb-education-section lb-education-section--medical" aria-labelledby="lb-medical-title">
+        <div class="container max-w-4xl">
+          <div class="lb-medical-note">
+            <div class="lb-medical-note__heading">
+              <span class="lb-medical-note__icon" aria-hidden="true"><i data-lucide="stethoscope"></i></span>
+              <div>
+                <h2 id="lb-medical-title">このような症状がある場合は、まず医療機関へご相談ください</h2>
+                <p>腰痛の中には、医療機関での検査や治療が優先されるものもあります。以下のような症状がある場合は、整体を受ける前に整形外科などの医療機関へご相談ください。</p>
               </div>
             </div>
+            <ul class="lb-medical-note__list">
+              <li class="lb-medical-note__item">強い痛みが急激に悪化している</li>
+              <li class="lb-medical-note__item">発熱や強い体調不良を伴っている</li>
+              <li class="lb-medical-note__item">転倒や事故のあとから強い痛みが続いている</li>
+              <li class="lb-medical-note__item">足に力が入りにくい、感覚が大きく低下している</li>
+              <li class="lb-medical-note__item">排尿や排便の異常を伴っている</li>
+              <li class="lb-medical-note__item">安静にしていても強い痛みが続いている</li>
+            </ul>
           </div>
-
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--2">
-                <span class="msm-step__badge-num">2</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--2">鍛える｜安定性</span>
-                <h3 class="msm-step__title">体幹・インナーマッスルを再稼働させる</h3>
-                <p class="msm-step__text">「腰から曲げる」癖を「股関節から曲げる」に修正するだけで腰への負担は大きく変わります。サボっていた体幹深部筋を段階的に再教育します。</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--3">
-                <span class="msm-step__badge-num">3</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--3">動作改善｜動作</span>
-                <h3 class="msm-step__title">負担が戻りにくい体づくりと日常への定着</h3>
-                <p class="msm-step__text">ご自宅でもできる簡単なセルフケアをお伝えし、「院に来ないと維持できない」ではなく「自分で腰を守れる」状態を目指します。座り方・立ち方のコツも具体的にアドバイスします。</p>
-              </div>
-            </div>
-          </div>
-
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="frequency">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">通院頻度の目安</h2>
-        <div class="frequency__card">
-          <div class="frequency__icon">
-            <i data-lucide="calendar" aria-hidden="true"></i>
+      <section class="lb-education-section lb-education-section--white" aria-labelledby="lb-assessment-title">
+        <div class="container max-w-4xl">
+          <h2 id="lb-assessment-title" class="lb-section-title">当院では腰だけでなく、全身の動きを確認します</h2>
+          <div class="lb-assessment-layout">
+            <div class="lb-assessment__intro lb-copy">
+              <p>同じ「腰痛」でも、痛みが出る場面や身体の状態は人によって異なります。</p>
+              <p>柏市の整体院ひざこぞうでは、痛みがある場所だけを施術するのではなく、姿勢や関節の動き、筋肉の働き、日常動作まで確認します。</p>
+              <p>カウンセリングと身体のチェックをもとに、現在の状態と施術方針を分かりやすくご説明します。</p>
+            </div>
+            <figure class="lb-assessment__media">
+              <img src="../image/flow-movement-assessment-768.webp" alt="施術者が股関節と脚の動きを確認している様子" loading="lazy" decoding="async" width="768" height="576">
+            </figure>
+            <ul class="lb-check-list">
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>痛みが出る姿勢や動作</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>股関節・背中・骨盤の動き</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>お腹やお尻など身体を支える筋肉</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>立ち上がり、かがむ、歩くといった日常動作</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>仕事や生活で腰に負担がかかる場面</span></li>
+            </ul>
           </div>
-          <div>
-            <p class="frequency__text">
-              最初の1〜2ヶ月は<strong>週1〜2回</strong>のペースをおすすめしています。痛みが安定してきたら間隔を広げていきます。
-            </p>
-            <div class="frequency__phases">
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--a"></span>
-                <span class="frequency__phase-label">最初の1〜2ヶ月：週1〜2回</span>
-              </div>
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--b"></span>
-                <span class="frequency__phase-label">安定後：2週に1回</span>
-              </div>
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--c"></span>
-                <span class="frequency__phase-label">メンテナンス期：月1回</span>
-              </div>
+        </div>
+      </section>
+
+      <section class="lb-education-section lb-education-section--cream" aria-labelledby="lb-approach-title">
+        <div class="container max-w-4xl">
+          <h2 id="lb-approach-title" class="lb-section-title">整体院ひざこぞうの腰痛へのアプローチ</h2>
+          <p class="lb-section-lead">当院では、身体をただ緩めるだけではなく、「動かす・支える・使い方を整える」という流れで、腰に負担が集中しにくい身体づくりを目指します。</p>
+          <div class="lb-approach-steps">
+            <article class="lb-approach-step">
+              <span class="lb-approach-step__number">STEP 1</span>
+              <span class="lb-approach-step__icon" aria-hidden="true"><i data-lucide="move"></i></span>
+              <p class="lb-approach-step__label">動かす｜可動性</p>
+              <h3>股関節や背中の動きを整える</h3>
+              <p>腰だけでなく、股関節・背中・骨盤まわりの状態を確認し、動きにくくなっている部分へやさしくアプローチします。</p>
+            </article>
+            <article class="lb-approach-step">
+              <span class="lb-approach-step__number">STEP 2</span>
+              <span class="lb-approach-step__icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+              <p class="lb-approach-step__label">支える｜安定性</p>
+              <h3>身体を支える筋肉を使いやすくする</h3>
+              <p>お腹やお尻など、姿勢や動作を支える筋肉が働きやすくなるように、状態に合わせた運動を行います。</p>
+            </article>
+            <article class="lb-approach-step">
+              <span class="lb-approach-step__number">STEP 3</span>
+              <span class="lb-approach-step__icon" aria-hidden="true"><i data-lucide="footprints"></i></span>
+              <p class="lb-approach-step__label">使う｜動作改善</p>
+              <h3>腰に負担が集中しにくい動作を身につける</h3>
+              <p>立ち上がる、かがむ、物を持つなど、実際の日常動作を確認し、無理なく続けられる身体の使い方やセルフケアをお伝えします。</p>
+            </article>
+            <span class="lb-approach-steps__arrow lb-approach-steps__arrow--1" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+            <span class="lb-approach-steps__arrow lb-approach-steps__arrow--2" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="lb-consult-section" aria-labelledby="lb-consult-title">
+        <div class="container max-w-4xl">
+          <div class="lb-consult-cta">
+            <div>
+              <h2 id="lb-consult-title">自分の腰痛がどのタイプか分からない方へ</h2>
+              <p>痛みが出る動作や、病院で言われたことなどをLINEで送っていただければ、来院前のご相談も可能です。</p>
+            </div>
+            <a class="lb-consult-cta__link" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">
+              <i data-lucide="message-circle" aria-hidden="true"></i>
+              LINEで腰痛について相談する
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="lb-education-section lb-education-section--frequency" aria-labelledby="lb-frequency-title">
+        <div class="container max-w-4xl">
+          <div class="lb-frequency">
+            <span class="lb-frequency__icon" aria-hidden="true"><i data-lucide="calendar-days"></i></span>
+            <div>
+              <h2 id="lb-frequency-title">通院頻度について</h2>
+              <p>通院頻度は、痛みの強さや期間、生活環境、目指す状態によって異なります。</p>
+              <p>初回に身体の状態を確認したうえで、必要な頻度と期間の目安をご説明します。</p>
+              <p>無理に通院を勧めることはありませんので、ご希望や生活状況も含めてご相談ください。</p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
+<!-- LOWER_BACK_EDUCATION_END -->
 
     <!-- SYMPTOM_PATIENT_VOICES_START -->
 <section class="symptom-voices">
@@ -1478,6 +1625,90 @@
       </div>
     </section>
 <!-- SYMPTOM_PATIENT_VOICES_END -->
+
+<section id="flow" class="flow-slider" aria-labelledby="flow-title" data-flow-slider>
+      <div class="flow-slider__inner">
+        <div class="flow-slider__heading-band">
+          <p class="flow-slider__eyebrow">FLOW</p>
+          <h2 id="flow-title" class="flow-slider__title">当院での施術の流れ</h2>
+        </div>
+
+        <p class="flow-swipe-hint">写真は左右にスライドできます<span class="flow-swipe-arrow" aria-hidden="true">&gt;</span></p>
+
+        <div class="flow-slider__stage">
+          <button type="button" class="flow-slider__arrow flow-slider__arrow--prev" data-flow-prev aria-label="前のステップを見る">
+            <span aria-hidden="true">‹</span>
+          </button>
+
+          <p class="flow-slider__counter" aria-live="polite" aria-atomic="true">
+            <span data-flow-current>01</span> / <span data-flow-total>06</span>
+          </p>
+
+          <div class="flow-slider__slides" aria-live="polite">
+            <article id="flow-slide-1" class="flow-slide is-active" data-flow-slide data-flow-index="0">
+              <div class="flow-slider__media">
+                <img src="../image/flow-medical-interview-form-768.webp" alt="初回時に問診票を記入する様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="432">
+              </div>
+          <h3 class="flow-slide__title">問診票記入</h3>
+          <p class="flow-slide__text">いつから痛いのか、どんな動きでつらいのか、病院で言われたことなどを問診票にご記入いただきます。</p>
+            </article>
+
+            <article id="flow-slide-2" class="flow-slide" data-flow-slide data-flow-index="1">
+              <div class="flow-slider__media">
+          <img src="../image/flow-plan-consultation-768.webp" alt="カウンセリングでお悩みや日常の状態を伺っている様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="432">
+        </div>
+          <h3 class="flow-slide__title">カウンセリング</h3>
+          <p class="flow-slide__text">問診票をもとに、歩き始め、階段、立ち上がり、買い物など、日常のどの場面で膝が不安なのかを伺います。</p>
+            </article>
+
+            <article id="flow-slide-3" class="flow-slide" data-flow-slide data-flow-index="2">
+              <div class="flow-slider__media">
+                <img src="../image/flow-movement-assessment-768.webp" alt="股関節や膝の動きを確認している様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="576">
+              </div>
+          <h3 class="flow-slide__title">身体の状態チェック</h3>
+          <p class="flow-slide__text">膝だけでなく、股関節・足首・姿勢・歩き方も確認し、どこに負担が集まりやすいかを見ていきます。</p>
+            </article>
+
+            <article id="flow-slide-4" class="flow-slide" data-flow-slide data-flow-index="3">
+              <div class="flow-slider__media">
+          <img src="../image/flow-counseling-board-768.webp" alt="ホワイトボードを使って体の状態と施術方針を説明している様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="576">
+        </div>
+          <h3 class="flow-slide__title">状態説明、施術方針の説明</h3>
+          <p class="flow-slide__text">なぜ痛みが出やすいのか、これから何を目指すのかを、専門用語を使いすぎず分かりやすくお伝えします。</p>
+            </article>
+
+            <article id="flow-slide-5" class="flow-slide" data-flow-slide data-flow-index="4">
+              <div class="flow-slider__media">
+          <img src="../image/flow-treatment-session-768.webp" alt="膝や股関節まわりへの施術の様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="432">
+        </div>
+          <h3 class="flow-slide__title">施術開始</h3>
+          <p class="flow-slide__text">やさしく身体を整えながら、立つ・歩く・階段などの動きにつながるように運動療法も行います。</p>
+            </article>
+
+            <article id="flow-slide-6" class="flow-slide" data-flow-slide data-flow-index="5">
+              <div class="flow-slider__media">
+          <img src="../image/treatment-stretch-768.webp" alt="自宅でできるセルフケアを説明する様子" class="flow-slider__image" loading="lazy" decoding="async" width="768" height="768">
+        </div>
+          <h3 class="flow-slide__title">セルフケアと施術後の説明</h3>
+          <p class="flow-slide__text">ご自宅で気をつけることや簡単なセルフケア、施術後の状態と今後の目安をご案内します。</p>
+            </article>
+          </div>
+
+          <button type="button" class="flow-slider__arrow flow-slider__arrow--next" data-flow-next aria-label="次のステップを見る">
+            <span aria-hidden="true">›</span>
+          </button>
+        </div>
+
+        <div class="flow-slider__dots" role="tablist" aria-label="施術の流れのステップ">
+          <button type="button" class="flow-slider__dot is-active" data-flow-dot data-flow-index="0" role="tab" aria-controls="flow-slide-1" aria-selected="true" aria-label="1番目のステップを表示"></button>
+          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="1" role="tab" aria-controls="flow-slide-2" aria-selected="false" aria-label="2番目のステップを表示"></button>
+          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="2" role="tab" aria-controls="flow-slide-3" aria-selected="false" aria-label="3番目のステップを表示"></button>
+          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="3" role="tab" aria-controls="flow-slide-4" aria-selected="false" aria-label="4番目のステップを表示"></button>
+          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="4" role="tab" aria-controls="flow-slide-5" aria-selected="false" aria-label="5番目のステップを表示"></button>
+          <button type="button" class="flow-slider__dot" data-flow-dot data-flow-index="5" role="tab" aria-controls="flow-slide-6" aria-selected="false" aria-label="6番目のステップを表示"></button>
+        </div>
+      </div>
+    </section>
 
 <section class="faq" id="faq">
       <div class="container max-w-3xl">

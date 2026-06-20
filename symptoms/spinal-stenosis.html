@@ -882,7 +882,180 @@
 /* ACCESS_CONTACT_COPY_END */
 
 
-  </style>
+
+/* SPINAL_STENOSIS_EDUCATION_STYLES_START */
+.stenosis-education{--stenosis-green:#356b2f;--stenosis-green-dark:#234d24;--stenosis-green-soft:#eef5e9;--stenosis-cream:#faf7f0;--stenosis-cream-deep:#f4efe5;--stenosis-text:#252a27;--stenosis-muted:#59635d;--stenosis-border:#dfe4dc;background:#fff;color:var(--stenosis-text)}
+.stenosis-education-section{padding:clamp(72px,8vw,104px) 0;border-top:1px solid var(--stenosis-border)}
+.stenosis-education-section--white{background:#fff}
+.stenosis-education-section--cream,.stenosis-education-section--flow{background:var(--stenosis-cream)}
+.stenosis-education-section--medical{background:#f4f2ed}
+.stenosis-education-section--frequency{padding-top:56px;padding-bottom:72px;background:#fff}
+.stenosis-section-title{position:relative;margin:0 0 clamp(32px,5vw,52px);padding-bottom:18px;color:var(--stenosis-text);font-size:clamp(1.7rem,3vw,2.35rem);font-weight:900;line-height:1.45;letter-spacing:0;text-align:left}
+.stenosis-section-title::after{content:"";position:absolute;left:0;bottom:0;width:52px;height:3px;background:var(--stenosis-green);border-radius:999px}
+.stenosis-section-lead{max-width:760px;margin:-18px 0 48px;color:var(--stenosis-muted);font-size:1rem;font-weight:700;line-height:1.95}
+.stenosis-copy{color:var(--stenosis-muted);font-size:1rem;font-weight:700;line-height:1.95}
+.stenosis-copy p{margin:0}
+.stenosis-copy p+p{margin-top:1.15rem}
+.stenosis-copy strong{color:var(--stenosis-green-dark);font-weight:900}
+.stenosis-copy--accent{border-left:3px solid var(--stenosis-green);padding-left:24px}
+.stenosis-cause-layout{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(320px,.96fr);gap:clamp(36px,6vw,68px);align-items:center}
+.stenosis-cause-visual{margin:0;border:1px solid var(--stenosis-border);background:#fff;padding:18px}
+.stenosis-cause-visual img{display:block;width:100%;height:auto}
+.stenosis-cause-visual figcaption{margin-top:12px;color:#667068;font-size:.78rem;font-weight:700;line-height:1.65;text-align:center}
+.stenosis-factor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--stenosis-border);border-left:1px solid var(--stenosis-border)}
+.stenosis-factor{min-width:0;border-right:1px solid var(--stenosis-border);border-bottom:1px solid var(--stenosis-border);padding:clamp(28px,4vw,42px)}
+.stenosis-factor__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.stenosis-factor__number{color:var(--stenosis-green);font-size:1.7rem;font-weight:900;line-height:1}
+.stenosis-factor__icon{display:grid;place-items:center;width:48px;height:48px;border:1px solid #b9cbb4;border-radius:50%;color:var(--stenosis-green)}
+.stenosis-factor__icon svg{width:23px;height:23px;stroke-width:1.7}
+.stenosis-factor h3{margin:0 0 12px;color:var(--stenosis-text);font-size:1.1rem;font-weight:900;line-height:1.55}
+.stenosis-factor p{margin:0;color:var(--stenosis-muted);font-size:.94rem;font-weight:700;line-height:1.85}
+.stenosis-symptom-flow{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(32px,4vw,54px);align-items:start;margin-top:8px}
+.stenosis-symptom-flow::before{content:"";position:absolute;top:27px;left:7%;right:7%;height:1px;background:#b7c7b1}
+.stenosis-symptom-flow__step{position:relative;z-index:1;text-align:center}
+.stenosis-symptom-flow__number{display:grid;place-items:center;width:56px;height:56px;margin:0 auto 18px;border:2px solid var(--stenosis-green);border-radius:50%;background:var(--stenosis-cream);color:var(--stenosis-green-dark);font-size:1.05rem;font-weight:900}
+.stenosis-symptom-flow__step p{margin:0;color:var(--stenosis-text);font-size:.94rem;font-weight:900;line-height:1.75}
+.stenosis-symptom-flow__arrow{position:absolute;top:16px;z-index:2;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--stenosis-cream);color:var(--stenosis-green)}
+.stenosis-symptom-flow__arrow svg{width:17px;height:17px}
+.stenosis-symptom-flow__arrow--1{left:24.2%}
+.stenosis-symptom-flow__arrow--2{left:49.1%}
+.stenosis-symptom-flow__arrow--3{left:74%}
+.stenosis-flow-note{max-width:760px;margin:42px auto 0;border-top:1px solid #d7ddd3;padding-top:22px;color:#687168;font-size:.84rem;font-weight:700;line-height:1.85;text-align:center}
+.stenosis-massage-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(360px,1.1fr);gap:clamp(40px,6vw,72px);align-items:center}
+.stenosis-cycle{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.stenosis-cycle__item{display:flex;align-items:center;gap:12px;min-height:70px;border-top:1px solid var(--stenosis-border);border-bottom:1px solid var(--stenosis-border);padding:14px 4px;color:var(--stenosis-text);font-size:.9rem;font-weight:900;line-height:1.5}
+.stenosis-cycle__item svg{width:22px;height:22px;flex:0 0 auto;color:var(--stenosis-green);stroke-width:1.7}
+.stenosis-cycle__item--last{grid-column:2/4}
+.stenosis-cycle__arrow{display:grid;place-items:center;color:#8ca188}
+.stenosis-cycle__arrow svg{width:18px;height:18px}
+.stenosis-medical-note{border:1px solid #d9d4ca;background:#fbfaf7;padding:clamp(26px,5vw,44px)}
+.stenosis-medical-note__heading{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:start}
+.stenosis-medical-note__icon{display:grid;place-items:center;width:52px;height:52px;border:1px solid #a9b7a4;border-radius:50%;color:var(--stenosis-green-dark)}
+.stenosis-medical-note__icon svg{width:25px;height:25px;stroke-width:1.7}
+.stenosis-medical-note h2{margin:0;color:var(--stenosis-text);font-size:clamp(1.35rem,2.4vw,1.85rem);font-weight:900;line-height:1.55}
+.stenosis-medical-note__heading p{margin:14px 0 0;color:var(--stenosis-muted);font-size:.95rem;font-weight:700;line-height:1.85}
+.stenosis-medical-note__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px;margin:30px 0 0;padding:0;border-top:1px solid #ddd8cf;list-style:none}
+.stenosis-medical-note__item{position:relative;border-bottom:1px solid #ddd8cf;padding:16px 8px 16px 27px;color:#4c534e;font-size:.92rem;font-weight:800;line-height:1.65}
+.stenosis-medical-note__item::before{content:"";position:absolute;left:5px;top:1.55em;width:8px;height:8px;border:2px solid var(--stenosis-green);border-radius:50%}
+.stenosis-assessment-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.9fr);grid-template-areas:"intro media" "checklist media";gap:26px clamp(40px,6vw,68px);align-items:start}
+.stenosis-assessment__intro{grid-area:intro}
+.stenosis-assessment__media{grid-area:media;margin:0;align-self:stretch}
+.stenosis-assessment__media img{display:block;width:100%;height:100%;min-height:430px;border:1px solid var(--stenosis-border);object-fit:cover}
+.stenosis-check-list{grid-area:checklist;display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.stenosis-check-list li{display:flex;align-items:flex-start;gap:11px;color:#3c453f;font-size:.94rem;font-weight:800;line-height:1.65}
+.stenosis-check-list svg{width:20px;height:20px;flex:0 0 auto;margin-top:.22em;color:var(--stenosis-green);stroke-width:2}
+.stenosis-approach-steps{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(34px,5vw,62px);margin-top:10px}
+.stenosis-approach-steps::before{content:"";position:absolute;top:72px;left:13%;right:13%;height:1px;background:#b7c7b1}
+.stenosis-approach-step{position:relative;z-index:1;text-align:center}
+.stenosis-approach-step__number{display:block;margin-bottom:13px;color:var(--stenosis-green);font-size:.78rem;font-weight:900;letter-spacing:.08em}
+.stenosis-approach-step__icon{display:grid;place-items:center;width:72px;height:72px;margin:0 auto 18px;border:2px solid var(--stenosis-green);border-radius:50%;background:var(--stenosis-cream);color:var(--stenosis-green-dark)}
+.stenosis-approach-step__icon svg{width:29px;height:29px;stroke-width:1.65}
+.stenosis-approach-step__label{margin:0 0 10px;color:var(--stenosis-green);font-size:.84rem;font-weight:900}
+.stenosis-approach-step h3{margin:0 0 13px;color:var(--stenosis-text);font-size:1.08rem;font-weight:900;line-height:1.55}
+.stenosis-approach-step>p:last-child{margin:0;color:var(--stenosis-muted);font-size:.9rem;font-weight:700;line-height:1.85;text-align:left}
+.stenosis-approach-steps__arrow{position:absolute;top:61px;z-index:2;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--stenosis-cream);color:var(--stenosis-green)}
+.stenosis-approach-steps__arrow svg{width:17px;height:17px}
+.stenosis-approach-steps__arrow--1{left:32.2%}
+.stenosis-approach-steps__arrow--2{left:65.6%}
+.stenosis-consult-section{padding:0 0 clamp(72px,8vw,96px);background:var(--stenosis-cream);border-bottom:1px solid var(--stenosis-border)}
+.stenosis-consult-cta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:34px;align-items:center;border:1px solid #aebfa8;border-radius:12px;background:#f3f8ef;padding:clamp(26px,4vw,38px)}
+.stenosis-consult-cta h2{margin:0;color:var(--stenosis-green-dark);font-size:clamp(1.25rem,2vw,1.6rem);font-weight:900;line-height:1.55}
+.stenosis-consult-cta p{margin:10px 0 0;color:#536052;font-size:.94rem;font-weight:700;line-height:1.8}
+.stenosis-consult-cta__link{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;border-radius:8px;background:var(--stenosis-green);color:#fff;padding:14px 20px;font-size:.93rem;font-weight:900;line-height:1.4;text-align:center;text-decoration:none;transition:background .2s ease,transform .2s ease}
+.stenosis-consult-cta__link:hover,.stenosis-consult-cta__link:focus-visible{background:var(--stenosis-green-dark);transform:translateY(-1px);outline:3px solid rgba(53,107,47,.2);outline-offset:3px}
+.stenosis-consult-cta__link svg{width:20px;height:20px;flex:0 0 auto}
+.stenosis-frequency{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;border-top:1px solid var(--stenosis-border);border-bottom:1px solid var(--stenosis-border);padding:30px 0}
+.stenosis-frequency__icon{display:grid;place-items:center;width:50px;height:50px;border:1px solid #b9cbb4;border-radius:50%;color:var(--stenosis-green)}
+.stenosis-frequency__icon svg{width:23px;height:23px;stroke-width:1.7}
+.stenosis-frequency h2{margin:0 0 12px;color:var(--stenosis-text);font-size:1.35rem;font-weight:900;line-height:1.5}
+.stenosis-frequency p{margin:0;color:var(--stenosis-muted);font-size:.94rem;font-weight:700;line-height:1.85}
+.stenosis-frequency p+p{margin-top:6px}
+.symptom-voices{padding-top:clamp(72px,8vw,96px);padding-bottom:clamp(72px,8vw,96px);background:#fff;border-top:1px solid var(--stenosis-border)}
+.symptom-voices__eyebrow{color:var(--stenosis-green);letter-spacing:.08em}
+.symptom-voices__title{position:relative;color:var(--stenosis-text);padding-bottom:15px}
+.symptom-voices__title::after{content:"";position:absolute;left:50%;bottom:0;width:46px;height:3px;background:var(--stenosis-green);transform:translateX(-50%)}
+.symptom-voices__lead{color:var(--stenosis-muted)}
+.symptom-voice-card{border-color:var(--stenosis-border);border-radius:6px;box-shadow:0 7px 18px rgba(37,42,39,.055)}
+.symptom-voice-card__key{color:var(--stenosis-green)}
+.faq{padding-top:clamp(72px,8vw,96px);padding-bottom:clamp(72px,8vw,96px);background:var(--stenosis-cream)}
+.faq .section-title{color:var(--stenosis-text)}
+.faq .section-title::after{background:var(--stenosis-green)}
+.related-articles-slider{padding-top:clamp(72px,8vw,96px);padding-bottom:clamp(72px,8vw,96px);background:#fff;border-top:1px solid var(--stenosis-border)}
+.related-articles-slider__title{color:var(--stenosis-text)}
+.related-articles-slider__title::before{background:var(--stenosis-green)}
+.related-articles-slider__card{border-color:var(--stenosis-border);box-shadow:0 6px 16px rgba(37,42,39,.055)}
+.related-articles-slider__card:hover,.related-articles-slider__card:focus-visible{box-shadow:0 9px 20px rgba(37,42,39,.08)}
+.related-articles-slider__category,.related-articles-slider__all{color:var(--stenosis-green)}
+.related-articles-slider__category{background:var(--stenosis-green-soft)}
+.related-articles-slider__dot[aria-current="true"]{background:var(--stenosis-green)}
+.hk-pricing-section,#access{border-top:1px solid var(--stenosis-border)}
+@media(max-width:767px){
+  .stenosis-education-section{padding:68px 0}
+  .stenosis-education-section--frequency{padding-top:42px;padding-bottom:72px}
+  .stenosis-section-title{margin-bottom:30px;padding-bottom:15px;font-size:clamp(1.5rem,7vw,1.85rem);line-height:1.5}
+  .stenosis-section-title::after{width:44px}
+  .stenosis-section-lead{margin:-8px 0 34px;font-size:.96rem;line-height:1.85}
+  .stenosis-copy{font-size:.96rem;line-height:1.85}
+  .stenosis-copy--accent{padding-left:18px}
+  .stenosis-cause-layout{grid-template-columns:1fr;gap:30px}
+  .stenosis-cause-visual{padding:10px}
+  .stenosis-factor-grid{grid-template-columns:1fr;border-left:0}
+  .stenosis-factor{border-right:0;padding:26px 4px}
+  .stenosis-factor__top{margin-bottom:14px}
+  .stenosis-factor__icon{width:44px;height:44px}
+  .stenosis-factor h3{font-size:1.04rem}
+  .stenosis-factor p{font-size:.93rem}
+  .stenosis-symptom-flow{grid-template-columns:1fr;gap:0;margin-left:5px;padding-left:46px}
+  .stenosis-symptom-flow::before{top:26px;bottom:26px;left:27px;right:auto;width:1px;height:auto}
+  .stenosis-symptom-flow__step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;min-height:92px;text-align:left}
+  .stenosis-symptom-flow__number{width:54px;height:54px;margin:0 0 0 -46px}
+  .stenosis-symptom-flow__step p{font-size:.95rem}
+  .stenosis-symptom-flow__arrow{display:none}
+  .stenosis-pc-only{display:none}
+  .stenosis-flow-note{margin-top:26px;text-align:left}
+  .stenosis-massage-layout{grid-template-columns:1fr;gap:36px}
+  .stenosis-cycle{grid-template-columns:1fr;gap:0;border-top:1px solid var(--stenosis-border)}
+  .stenosis-cycle__item,.stenosis-cycle__item--last{grid-column:auto;border-top:0;border-bottom:1px solid var(--stenosis-border);padding:16px 5px}
+  .stenosis-cycle__arrow{height:28px;border-bottom:1px solid var(--stenosis-border)}
+  .stenosis-cycle__arrow svg{transform:rotate(90deg)}
+  .stenosis-medical-note{padding:24px 18px}
+  .stenosis-medical-note__heading{grid-template-columns:1fr;gap:15px}
+  .stenosis-medical-note__icon{width:46px;height:46px}
+  .stenosis-medical-note h2{font-size:1.3rem}
+  .stenosis-medical-note__list{grid-template-columns:1fr;gap:0;margin-top:24px}
+  .stenosis-assessment-layout{grid-template-columns:1fr;grid-template-areas:"intro" "media" "checklist";gap:28px}
+  .stenosis-assessment__media img{height:auto;min-height:0}
+  .stenosis-check-list{gap:13px}
+  .stenosis-approach-steps{grid-template-columns:1fr;gap:0;margin-left:5px;padding-left:48px}
+  .stenosis-approach-steps::before{top:42px;bottom:42px;left:27px;right:auto;width:1px;height:auto}
+  .stenosis-approach-step{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:17px;min-height:210px;text-align:left}
+  .stenosis-approach-step__number{grid-column:2;margin:0 0 8px}
+  .stenosis-approach-step__icon{grid-column:1;grid-row:1/5;width:60px;height:60px;margin:0 0 0 -48px;background:var(--stenosis-cream)}
+  .stenosis-approach-step__icon svg{width:25px;height:25px}
+  .stenosis-approach-step__label,.stenosis-approach-step h3,.stenosis-approach-step>p:last-child{grid-column:2}
+  .stenosis-approach-step__label{margin-bottom:7px}
+  .stenosis-approach-step h3{font-size:1.04rem}
+  .stenosis-approach-steps__arrow{display:none}
+  .stenosis-consult-section{padding-bottom:72px}
+  .stenosis-consult-cta{grid-template-columns:1fr;gap:22px;padding:24px 18px}
+  .stenosis-consult-cta__link{width:100%;min-height:52px}
+  .stenosis-frequency{grid-template-columns:1fr;gap:16px;padding:26px 0}
+  .stenosis-frequency h2{font-size:1.25rem}
+  .symptom-voices,.faq,.related-articles-slider{padding-top:72px;padding-bottom:72px}
+  .symptom-voices{padding-left:16px;padding-right:16px}
+  .symptom-voices__grid{gap:18px}
+  .symptom-voice-card{box-shadow:none}
+  .related-articles-slider__card{box-shadow:0 4px 12px rgba(37,42,39,.05)}
+}
+@media(min-width:768px) and (max-width:1024px){
+  .stenosis-cause-layout,.stenosis-assessment-layout{grid-template-columns:minmax(0,1fr) minmax(300px,.9fr);gap:40px}
+  .stenosis-massage-layout{grid-template-columns:1fr;gap:38px}
+  .stenosis-cycle{max-width:760px}
+  .stenosis-approach-steps{gap:34px}
+  .stenosis-approach-step h3{font-size:1rem}
+}
+/* SPINAL_STENOSIS_EDUCATION_STYLES_END */
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1128,7 +1301,230 @@
         </ul>
       </div>
     </section>
-    <section id="flow" class="flow-slider" aria-labelledby="flow-title" data-flow-slider>
+
+
+<!-- SPINAL_STENOSIS_EDUCATION_START -->
+    <div class="stenosis-education">
+      <section class="stenosis-education-section stenosis-education-section--white" aria-labelledby="stenosis-cause-title">
+        <div class="container max-w-4xl">
+          <h2 id="stenosis-cause-title" class="stenosis-section-title">脊柱管狭窄症はなぜ起こるのか？</h2>
+          <div class="stenosis-cause-layout">
+            <div class="stenosis-copy">
+              <p>脊柱管狭窄症は、腰の神経が通る空間が狭くなり、立つ・歩くときに脚の痛みやしびれ、重だるさなどを感じることがある状態です。</p>
+              <p>画像で確認される腰の変化だけでなく、腰が反りやすい姿勢、股関節や背中の動きにくさ、歩き方などが、症状の出方に関わる場合があります。</p>
+              <p>歩いているとつらくなり、座ったり前かがみで休んだりすると楽になることがありますが、症状や歩ける距離には個人差があります。</p>
+              <p>当院では画像上の変化を扱うのではなく、「どの姿勢や動作で腰や脚への負担が増えているのか」を確認します。</p>
+            </div>
+            <figure class="stenosis-cause-visual">
+              <img src="../image/spinal-stenosis-diagram.webp" alt="腰の神経が通る脊柱管と周辺組織を示したイメージ図" loading="lazy" decoding="async" width="1200" height="1200">
+              <figcaption>脊柱管は腰の神経が通る空間です。状態や症状の出方は一人ひとり異なります。</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="stenosis-education-section stenosis-education-section--cream" aria-labelledby="stenosis-factors-title">
+        <div class="container max-w-4xl">
+          <h2 id="stenosis-factors-title" class="stenosis-section-title">歩きづらさや脚の症状につながりやすい4つの要因</h2>
+          <div class="stenosis-factor-grid">
+            <article class="stenosis-factor">
+              <div class="stenosis-factor__top">
+                <span class="stenosis-factor__number">01</span>
+                <span class="stenosis-factor__icon" aria-hidden="true"><i data-lucide="person-standing"></i></span>
+              </div>
+              <h3>立つ・歩くと腰が反りやすい</h3>
+              <p>身体を起こすと腰が強く反る姿勢では、立っているときや歩いているときに腰まわりへ負担が集まりやすくなることがあります。</p>
+            </article>
+            <article class="stenosis-factor">
+              <div class="stenosis-factor__top">
+                <span class="stenosis-factor__number">02</span>
+                <span class="stenosis-factor__icon" aria-hidden="true"><i data-lucide="move-3d"></i></span>
+              </div>
+              <h3>股関節や背中が動きにくい</h3>
+              <p>股関節や背中の動きが少ないと、歩くときに腰がその動きを補い、同じ場所へ負担が重なりやすくなります。</p>
+            </article>
+            <article class="stenosis-factor">
+              <div class="stenosis-factor__top">
+                <span class="stenosis-factor__number">03</span>
+                <span class="stenosis-factor__icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+              </div>
+              <h3>身体を支える筋肉がうまく働いていない</h3>
+              <p>お腹やお尻など、姿勢や歩行を支える筋肉が使いにくいと、腰や脚の一部が頑張りすぎる状態になることがあります。</p>
+            </article>
+            <article class="stenosis-factor">
+              <div class="stenosis-factor__top">
+                <span class="stenosis-factor__number">04</span>
+                <span class="stenosis-factor__icon" aria-hidden="true"><i data-lucide="footprints"></i></span>
+              </div>
+              <h3>症状への不安で歩く量が減っている</h3>
+              <p>痛みやしびれが不安で活動量が減ると、脚の筋力や持久力が落ち、以前より短い距離でも疲れやすくなることがあります。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="stenosis-education-section stenosis-education-section--flow" aria-labelledby="stenosis-flow-title">
+        <div class="container max-w-4xl">
+          <h2 id="stenosis-flow-title" class="stenosis-section-title">歩くと脚がつらくなるまでの流れ</h2>
+          <div class="stenosis-symptom-flow" role="list" aria-label="歩くと脚がつらくなるまでの一例">
+            <div class="stenosis-symptom-flow__step" role="listitem">
+              <span class="stenosis-symptom-flow__number">1</span>
+              <p>股関節や背中が<br class="stenosis-pc-only">動きにくくなる</p>
+            </div>
+            <div class="stenosis-symptom-flow__step" role="listitem">
+              <span class="stenosis-symptom-flow__number">2</span>
+              <p>立つ・歩く動作で<br class="stenosis-pc-only">腰へ負担が集まる</p>
+            </div>
+            <div class="stenosis-symptom-flow__step" role="listitem">
+              <span class="stenosis-symptom-flow__number">3</span>
+              <p>神経の周辺へ<br class="stenosis-pc-only">負担が重なる</p>
+            </div>
+            <div class="stenosis-symptom-flow__step" role="listitem">
+              <span class="stenosis-symptom-flow__number">4</span>
+              <p>脚の痛み・しびれ・重だるさを感じ、休みたくなる</p>
+            </div>
+            <span class="stenosis-symptom-flow__arrow stenosis-symptom-flow__arrow--1" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+            <span class="stenosis-symptom-flow__arrow stenosis-symptom-flow__arrow--2" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+            <span class="stenosis-symptom-flow__arrow stenosis-symptom-flow__arrow--3" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+          </div>
+          <p class="stenosis-flow-note">これは歩行時に症状が出る一例です。脊柱管狭窄症の状態や症状は一人ひとり異なるため、実際には痛みやしびれの範囲、姿勢、歩ける距離、関節の動き、筋肉の働きなどを確認する必要があります。</p>
+        </div>
+      </section>
+
+      <section class="stenosis-education-section stenosis-education-section--white" aria-labelledby="stenosis-rest-title">
+        <div class="container max-w-4xl">
+          <h2 id="stenosis-rest-title" class="stenosis-section-title">なぜ休むと楽でも、歩くとまたつらくなるのか？</h2>
+          <div class="stenosis-massage-layout">
+            <div class="stenosis-copy stenosis-copy--accent">
+              <p>座ったり前かがみになったりして休むと、腰や脚の症状が一時的に落ち着くことがあります。</p>
+              <p>しかし、立つ姿勢や歩き方、股関節の動きなど、歩行時に負担を集めている要因が残っていると、歩き始めてから再び症状を感じやすくなります。</p>
+              <p><strong>大切なのは、無理に歩き続けることでも、動かずに休み続けることでもありません。</strong></p>
+              <p>身体の状態を確認し、安全な範囲で動き方や休み方を調整しながら、活動量を保つことが大切です。</p>
+            </div>
+            <div class="stenosis-cycle" aria-label="歩行時の症状と活動量低下の悪循環の一例">
+              <div class="stenosis-cycle__item"><i data-lucide="footprints" aria-hidden="true"></i><span>立つ・歩くと負担がかかる</span></div>
+              <span class="stenosis-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="stenosis-cycle__item"><i data-lucide="activity" aria-hidden="true"></i><span>脚に痛み・しびれを感じる</span></div>
+              <span class="stenosis-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="stenosis-cycle__item"><i data-lucide="armchair" aria-hidden="true"></i><span>休むと一時的に楽になる</span></div>
+              <span class="stenosis-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="stenosis-cycle__item"><i data-lucide="person-standing" aria-hidden="true"></i><span>歩くことを避けるようになる</span></div>
+              <span class="stenosis-cycle__arrow" aria-hidden="true"><i data-lucide="rotate-cw"></i></span>
+              <div class="stenosis-cycle__item stenosis-cycle__item--last"><i data-lucide="refresh-cw" aria-hidden="true"></i><span>筋力や持久力が落ち、さらに歩きづらくなる</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stenosis-education-section stenosis-education-section--medical" aria-labelledby="stenosis-medical-title">
+        <div class="container max-w-4xl">
+          <div class="stenosis-medical-note">
+            <div class="stenosis-medical-note__heading">
+              <span class="stenosis-medical-note__icon" aria-hidden="true"><i data-lucide="stethoscope"></i></span>
+              <div>
+                <h2 id="stenosis-medical-title">このような症状がある場合は、まず医療機関へご相談ください</h2>
+                <p>腰や脚の症状の中には、医療機関での検査や治療が優先されるものもあります。以下のような症状がある場合は、整体を受ける前に整形外科などの医療機関へご相談ください。</p>
+              </div>
+            </div>
+            <ul class="stenosis-medical-note__list">
+              <li class="stenosis-medical-note__item">足に力が入りにくくなり、歩きにくさが急に進んでいる</li>
+              <li class="stenosis-medical-note__item">股のまわりの感覚低下や排尿・排便の異常がある</li>
+              <li class="stenosis-medical-note__item">両脚の症状が急に強くなった、または範囲が広がっている</li>
+              <li class="stenosis-medical-note__item">安静時や夜間にも強い痛みが続いている</li>
+              <li class="stenosis-medical-note__item">発熱や強い体調不良を伴っている</li>
+              <li class="stenosis-medical-note__item">転倒や事故のあとから強い症状が続いている</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="stenosis-education-section stenosis-education-section--white" aria-labelledby="stenosis-assessment-title">
+        <div class="container max-w-4xl">
+          <h2 id="stenosis-assessment-title" class="stenosis-section-title">当院では歩ける距離だけでなく、全身の動きを確認します</h2>
+          <div class="stenosis-assessment-layout">
+            <div class="stenosis-assessment__intro stenosis-copy">
+              <p>同じ「脊柱管狭窄症」でも、症状が出るまでの距離や姿勢、休むときの体勢、身体の状態は人によって異なります。</p>
+              <p>柏市の整体院ひざこぞうでは、腰や脚だけを見るのではなく、背中・骨盤・股関節・足首の動き、身体を支える筋肉、歩き方まで確認します。</p>
+              <p>医療機関での検査内容も伺いながら、現在の状態と当院で行うことを分かりやすくご説明します。</p>
+            </div>
+            <figure class="stenosis-assessment__media">
+              <img src="../image/flow-movement-assessment-768.webp" alt="施術者が股関節と脚の動きを確認している様子" loading="lazy" decoding="async" width="768" height="576">
+            </figure>
+            <ul class="stenosis-check-list">
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>症状が出るまでの距離や時間、楽になる姿勢</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>腰・背中・骨盤・股関節の動き</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>お腹やお尻など身体を支える筋肉</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>立ち姿勢、歩幅、足の運び方</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>買い物や通勤など生活で困っている場面</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="stenosis-education-section stenosis-education-section--cream" aria-labelledby="stenosis-approach-title">
+        <div class="container max-w-4xl">
+          <h2 id="stenosis-approach-title" class="stenosis-section-title">整体院ひざこぞうの脊柱管狭窄症へのアプローチ</h2>
+          <p class="stenosis-section-lead">当院では、身体をただ緩めるだけではなく、「動かす・支える・歩き方を整える」という流れで、腰や脚に負担が集中しにくい身体づくりを目指します。</p>
+          <div class="stenosis-approach-steps">
+            <article class="stenosis-approach-step">
+              <span class="stenosis-approach-step__number">STEP 1</span>
+              <span class="stenosis-approach-step__icon" aria-hidden="true"><i data-lucide="move"></i></span>
+              <p class="stenosis-approach-step__label">動かす｜可動性</p>
+              <h3>股関節や背中の動きを整える</h3>
+              <p>腰だけでなく、股関節・背中・骨盤まわりの状態を確認し、歩くときに動きにくくなっている部分へやさしくアプローチします。</p>
+            </article>
+            <article class="stenosis-approach-step">
+              <span class="stenosis-approach-step__number">STEP 2</span>
+              <span class="stenosis-approach-step__icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+              <p class="stenosis-approach-step__label">支える｜安定性</p>
+              <h3>身体を支える筋肉を使いやすくする</h3>
+              <p>お腹やお尻、脚など、立つ・歩く動作を支える筋肉が働きやすくなるように、状態に合わせた運動を行います。</p>
+            </article>
+            <article class="stenosis-approach-step">
+              <span class="stenosis-approach-step__number">STEP 3</span>
+              <span class="stenosis-approach-step__icon" aria-hidden="true"><i data-lucide="footprints"></i></span>
+              <p class="stenosis-approach-step__label">使う｜歩行改善</p>
+              <h3>無理のない歩き方と休み方を身につける</h3>
+              <p>歩幅や姿勢、休憩の取り方を確認し、症状に配慮しながら日常で続けられる歩き方やセルフケアをお伝えします。</p>
+            </article>
+            <span class="stenosis-approach-steps__arrow stenosis-approach-steps__arrow--1" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+            <span class="stenosis-approach-steps__arrow stenosis-approach-steps__arrow--2" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="stenosis-consult-section" aria-labelledby="stenosis-consult-title">
+        <div class="container max-w-4xl">
+          <div class="stenosis-consult-cta">
+            <div>
+              <h2 id="stenosis-consult-title">どの程度動いてよいか不安な方へ</h2>
+              <p>歩ける距離、症状が出る場所、病院で言われたことなどをLINEで送っていただければ、来院前のご相談も可能です。</p>
+            </div>
+            <a class="stenosis-consult-cta__link" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">
+              <i data-lucide="message-circle" aria-hidden="true"></i>
+              LINEで脊柱管狭窄症について相談する
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="stenosis-education-section stenosis-education-section--frequency" aria-labelledby="stenosis-frequency-title">
+        <div class="container max-w-4xl">
+          <div class="stenosis-frequency">
+            <span class="stenosis-frequency__icon" aria-hidden="true"><i data-lucide="calendar-days"></i></span>
+            <div>
+              <h2 id="stenosis-frequency-title">通院頻度について</h2>
+              <p>通院頻度は、症状の強さ、歩ける距離、続いている期間、生活環境、目指す状態によって異なります。</p>
+              <p>初回に身体の状態を確認したうえで、必要な頻度と期間の目安をご説明します。</p>
+              <p>無理に通院を勧めることはありませんので、ご希望や生活状況も含めてご相談ください。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+<!-- SPINAL_STENOSIS_EDUCATION_END -->
+
+        <section id="flow" class="flow-slider" aria-labelledby="flow-title" data-flow-slider>
       <div class="flow-slider__inner">
         <div class="flow-slider__heading-band">
           <p class="flow-slider__eyebrow">FLOW</p>
@@ -1212,144 +1608,7 @@
       </div>
     </section>
 
-    <section class="cause">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">脊柱管狭窄症はなぜ起こるのか</h2>
-        <div class="prose"><p>脊柱管狭窄症では、腰が反りやすい状態や股関節・胸椎の硬さが重なることで、神経まわりの負担が強くなることがあります。</p><p>また、足先の使いにくさや体幹の不安定さがあると、歩くたびに腰へ負担が集まりやすくなります。当院では、その積み重なった負担を一つずつ整理していきます。</p></div>
-        <div style="margin-top:1.75rem; margin-bottom:2rem; background:#fff; border:1px solid #e2e8f0; border-radius:1rem; padding:.75rem; box-shadow:0 10px 25px -5px rgba(0,0,0,0.08);">
-          <img src="../image/spinal-stenosis-diagram.webp" alt="脊柱管で神経が圧迫されるイメージ図" class="feature-photo feature-photo--full" style="width:100%; max-height:320px; object-fit:contain; background:#fff; border-radius:.75rem;" loading="lazy" decoding="async" width="1200" height="1200">
-        </div>
-        <div class="mechanism">
-          <p class="mechanism__title">腰が反りすぎるメカニズム</p>
-          <div class="mechanism__flow">
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">1</div>
-              <p class="mechanism__step-text">股関節・胸椎が硬くなって可動域が低下</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">2</div>
-              <p class="mechanism__step-text">体を起こす動きを腰椎が代わりに担う</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">3</div>
-              <p class="mechanism__step-text">腹部インナーマッスルが働きにくくなった筋肉化して体幹が不安定</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__result">
-              <svg class="mechanism__result-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:#fff;"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-              <p class="mechanism__result-text">腰椎が過度に反り脊柱管が圧迫される</p>
-            </div>
-          </div>
-        </div>
-        <div class="vicious-cycle">
-          <p class="vicious-cycle__title">
-            <i data-lucide="alert-triangle" style="width:1.125rem;height:1.125rem;" aria-hidden="true"></i>
-            「歩けなくなる」負の連鎖
-          </p>
-          <div class="cycle-flow"><span class="cycle-item">歩くとしびれる</span><span class="cycle-arrow">→</span><span class="cycle-item">歩かなくなる</span><span class="cycle-arrow">→</span><span class="cycle-item">筋力が落ちる</span><span class="cycle-arrow">→</span><span class="cycle-item">もっと歩けなくなる</span></div>
-        </div>
-        <div class="key-point">
-          <p class="key-point__label">✦ ポイント</p>
-          <p class="key-point__text">状態に合わせて安全な範囲で体を動かし続けることは、歩きやすさを保つうえで大切です。不安が強くなる前に、今できることを整理していくことが重要です。</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SYMPTOM_MID_CTA_START -->
-<section class="symptom-mid-cta">
-      <div class="container max-w-4xl symptom-mid-cta__inner">
-        <div>
-          <p class="symptom-mid-cta__eyebrow">相談の目安</p>
-          <h2 class="symptom-mid-cta__title">原因を知るだけでなく、今の状態に合う進め方を確認しませんか？</h2>
-          <p class="symptom-mid-cta__text">痛み方や生活で困っている場面は人によって違います。読みながら「自分も近いかも」と感じた方は、来院前にLINEで状況を送っていただいて大丈夫です。</p>
-        </div>
-        <div class="symptom-mid-cta__actions">
-          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで相談する</a>
-          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--tel" href="tel:0471143274">電話で相談する</a>
-        </div>
-      </div>
-    </section>
-<!-- SYMPTOM_MID_CTA_END -->
-
-<section class="approach">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">当院の脊柱管狭窄症へのアプローチ</h2>
-        <p class="approach__intro">股関節や胸椎の動きを整え、体幹を安定させ、歩き方の負担を少しずつ減らしていく3ステップで改善を目指します</p>
-        <img src="../image/spinal-stenosis-symptom.webp" alt="歩くと腰や脚のつらさが気になる方のイメージ" class="feature-photo feature-photo--full" style="width:100%; max-height:320px; object-fit:contain; background:#fff; padding:.5rem; border-radius:1rem; box-shadow:0 10px 25px -5px rgba(0,0,0,0.08); margin-bottom:2.5rem; border:1px solid #e2e8f0;" loading="lazy" decoding="async" width="1600" height="1600">
-        <div class="msm-steps">
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--1">
-                <span class="msm-step__badge-num">1</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--1">可動性の回復</span>
-                <h3 class="msm-step__title">股関節・胸椎の頑張りすぎている筋肉をほぐす</h3>
-                <p class="msm-step__text">腰が反りすぎる原因となっている股関節・胸椎の頑張りすぎている筋肉（大腿直筋・腸脛靭帯など）を手技でほぐし、「腰の代わりに動ける関節」を取り戻します。足趾の働きにくくなった筋肉へのアプローチも合わせて行います。</p>
-              </div>
-            </div>
-          </div>
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--2">
-                <span class="msm-step__badge-num">2</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--2">安定性の再獲得</span>
-                <h3 class="msm-step__title">腹部インナーマッスルを再稼働して腰を守る</h3>
-                <p class="msm-step__text">サボっていた腹筋群（特に腹横筋などのインナーマッスル）を正しく使えるようにし、腰椎が過度に反らないよう体幹の安定性を作ります。仰向けや四つ這いなど安全な姿勢から始めます。</p>
-              </div>
-            </div>
-          </div>
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--3">
-                <span class="msm-step__badge-num">3</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--3">動作の定着</span>
-                <h3 class="msm-step__title">「今日は◯メートル歩けた」の成功体験を積む</h3>
-                <p class="msm-step__text">小さな成功体験を積み重ねることを大切にしています。歩行フォームや途中で休む際の姿勢のコツもお伝えし、日常の中で「歩く自信」を取り戻していただきます。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="frequency">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">通院頻度の目安</h2>
-        <div class="frequency__card">
-          <div class="frequency__icon">
-            <i data-lucide="calendar" style="width:1.5rem;height:1.5rem;color:#fff;" aria-hidden="true"></i>
-          </div>
-          <div>
-            <p class="frequency__text">最初の1〜2ヶ月は<strong>週1〜2回</strong>のペースをおすすめしています。歩行距離や症状の改善に合わせて間隔を広げていきます。</p>
-            <div class="frequency__phases">
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--a"></span>
-                <span class="frequency__phase-label">最初の1〜2ヶ月：週1〜2回</span>
-              </div>
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--b"></span>
-                <span class="frequency__phase-label">安定後：2週に1回</span>
-              </div>
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--c"></span>
-                <span class="frequency__phase-label">メンテナンス期：月1回</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="faq" id="faq">
+<section class="faq" id="faq">
       <div class="container max-w-3xl">
         <div class="faq__heading">
           <h2 class="section-title">&#12424;&#12367;&#12354;&#12427;&#36074;&#21839;</h2>
