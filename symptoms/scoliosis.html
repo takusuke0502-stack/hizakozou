@@ -222,18 +222,21 @@
 .related-article-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
 .related-article-card__desc{font-size:13px;font-weight:700;color:#475569;line-height:1.8}
 .related-article-card__link{display:inline-flex;align-items:center;gap:.35rem;font-size:13px;font-weight:900;color:#2563eb}
-.related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #e2e8f0}
-.related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.1em;margin:0 0 .7rem}
-.related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .75rem}
-.related-symptoms__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
-.related-symptoms__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem}
-.related-symptom-card{position:relative;display:flex;flex-direction:column;gap:.55rem;min-height:126px;background:#f8fbff;border:1px solid #dbeafe;border-radius:8px;padding:1rem 3.25rem 1rem 1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
-.related-symptom-card:hover,.related-symptom-card:focus-visible{transform:translateY(-2px);background:#fff;border-color:#93c5fd;box-shadow:0 8px 18px rgba(37,99,235,.1);outline:none}
-.related-symptom-card__label{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
-.related-symptom-card__description{font-size:13px;font-weight:700;color:#475569;line-height:1.75}
-.related-symptom-card__arrow{position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#f8fbff;border:1px solid #dbeafe;color:#2563eb;font-size:22px;font-weight:900;line-height:1;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
-.related-symptom-card:hover .related-symptom-card__arrow,.related-symptom-card:focus-visible .related-symptom-card__arrow{background:#2563eb;border-color:#2563eb;color:#fff;transform:translateY(-50%) translateX(2px)}
-@media(max-width:640px){.related-symptom-card{padding-right:3rem}.related-symptom-card__arrow{right:.85rem;width:30px;height:30px;font-size:20px}}
+.related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #dfe4dc}
+.related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#356b2f;letter-spacing:.1em;margin:0 0 .7rem}
+.related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#223b2d;line-height:1.55;margin:0 0 .75rem}
+.related-symptoms__lead{text-align:center;font-size:14px;font-weight:700;color:#59635d;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
+.related-symptoms__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem}
+.related-symptom-card{position:relative;display:flex;flex-direction:column;gap:.55rem;min-height:118px;background:#fff;border:1px solid #dfe4dc;border-radius:8px;padding:1rem 3.25rem 1rem 1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
+.related-symptom-card:hover,.related-symptom-card:focus-visible{transform:translateY(-2px);background:#fafcf8;border-color:#9bb596;box-shadow:0 8px 18px rgba(35,77,36,.09);outline:3px solid rgba(53,107,47,.16);outline-offset:2px}
+.related-symptom-card__label{font-size:1rem;font-weight:900;color:#234d24;line-height:1.5}
+.related-symptom-card__description{font-size:13px;font-weight:700;color:#59635d;line-height:1.75}
+.related-symptom-card__arrow{position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#f6f9f3;border:1px solid #cbd8c6;color:#356b2f;font-size:22px;font-weight:900;line-height:1;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
+.related-symptom-card:hover .related-symptom-card__arrow,.related-symptom-card:focus-visible .related-symptom-card__arrow{background:#356b2f;border-color:#356b2f;color:#fff;transform:translateY(-50%) translateX(2px)}
+.related-symptoms__all{display:flex;justify-content:center;margin-top:1.35rem}
+.related-symptoms__all-link{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:44px;border-bottom:1px solid #8aa384;color:#234d24;font-size:14px;font-weight:900;text-decoration:none}
+.related-symptoms__all-link:hover,.related-symptoms__all-link:focus-visible{color:#356b2f;border-color:#356b2f;outline:3px solid rgba(53,107,47,.16);outline-offset:5px}
+@media(max-width:640px){.related-symptoms{padding:2.75rem 1rem}.related-symptoms__grid{grid-template-columns:1fr}.related-symptom-card{min-height:104px;padding-right:3rem}.related-symptom-card__arrow{right:.85rem;width:30px;height:30px;font-size:20px}}
 .symptom-mid-cta{padding:2.75rem 1rem;background:#fff;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
 .symptom-mid-cta__inner{display:grid;gap:1.25rem;align-items:center;background:#f8fbff;border:1px solid #bfdbfe;border-radius:8px;padding:1.5rem}
 .symptom-mid-cta__eyebrow{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
@@ -272,6 +275,251 @@
 @media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
 @media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}.symptom-voices__grid{gap:1rem}.symptom-voice-card__body{padding:1rem}.symptom-voices__note{text-align:left}}
 /* BLOG_RELATED_ARTICLES_STYLES_END */
+
+    /* Copied from top page troubles-check section. */
+
+    .troubles-check {
+      padding: 64px 16px 72px;
+      background: #f5f6f7;
+    }
+
+    .troubles-check__inner {
+      width: min(100%, 760px);
+      margin: 0 auto;
+    }
+
+    .troubles-check__heading {
+      position: relative;
+      margin: 0 auto 34px;
+      padding: 22px 20px;
+      background: linear-gradient(180deg, #eeeeee 0%, #e4e4e4 100%);
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.75);
+    }
+
+    .troubles-check__heading::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -18px;
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-top: 18px solid #e4e4e4;
+      transform: translateX(-50%);
+    }
+
+    .troubles-check__heading h2 {
+      margin: 0;
+      color: #111827;
+      font-family: var(--font-heading);
+      font-size: clamp(1.65rem, 4.8vw, 2.45rem);
+      font-weight: 900;
+      line-height: 1.32;
+      letter-spacing: 0;
+    }
+
+    .troubles-check__list {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 28px 26px 30px;
+      list-style: none;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      box-shadow: 0 20px 42px -30px rgba(17,24,39,0.32);
+    }
+
+    .troubles-check__list li {
+      position: relative;
+      min-height: 34px;
+      padding-left: 42px;
+      color: #222;
+      font-size: clamp(1.05rem, 2.4vw, 1.28rem);
+      font-weight: 700;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+
+    .troubles-check__list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.28em;
+      width: 25px;
+      height: 25px;
+      background: #fff;
+      border: 2px solid #222;
+      border-radius: 2px;
+    }
+
+    .troubles-check__list li::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 0.14em;
+      width: 26px;
+      height: 14px;
+      border-left: 4px solid #e3342f;
+      border-bottom: 4px solid #e3342f;
+      transform: rotate(-45deg);
+      transform-origin: center;
+    }
+
+    .troubles-check__list strong {
+      color: #c53632;
+      font-weight: 900;
+    }
+
+    @media (max-width: 480px) {
+      .troubles-check {
+        padding: 48px 12px 56px;
+      }
+
+      .troubles-check__heading {
+        margin-bottom: 30px;
+        padding: 18px 12px;
+      }
+
+      .troubles-check__heading::after {
+        bottom: -15px;
+        border-left-width: 15px;
+        border-right-width: 15px;
+        border-top-width: 15px;
+      }
+
+      .troubles-check__list {
+        gap: 12px;
+        padding: 22px 16px 24px;
+        border-radius: 8px;
+      }
+
+      .troubles-check__list li {
+        padding-left: 36px;
+        font-size: 1.02rem;
+        line-height: 1.7;
+      }
+
+      .troubles-check__list li::before {
+        width: 23px;
+        height: 23px;
+      }
+
+      .troubles-check__list li::after {
+        left: 5px;
+        width: 24px;
+        height: 13px;
+      }
+    }
+
+/* SCOLIOSIS_EDUCATION_STYLES_START */
+.scoliosis-education{--scoliosis-green:#356b2f;--scoliosis-green-dark:#234d24;--scoliosis-green-soft:#eef5e9;--scoliosis-cream:#faf7f0;--scoliosis-text:#252a27;--scoliosis-muted:#59635d;--scoliosis-border:#dfe4dc;background:#fff;color:var(--scoliosis-text)}
+.scoliosis-education-section{padding:clamp(72px,8vw,104px) 0;border-top:1px solid var(--scoliosis-border)}
+.scoliosis-education-section--white{background:#fff}
+.scoliosis-education-section--cream,.scoliosis-education-section--flow{background:var(--scoliosis-cream)}
+.scoliosis-education-section--medical{background:#f4f2ed}
+.scoliosis-education-section--frequency{padding-top:56px;padding-bottom:72px;background:#fff}
+.scoliosis-section-title{position:relative;margin:0 0 clamp(32px,5vw,52px);padding-bottom:18px;color:var(--scoliosis-text);font-size:clamp(1.7rem,3vw,2.35rem);font-weight:900;line-height:1.45;letter-spacing:0;text-align:left}
+.scoliosis-section-title::after{content:"";position:absolute;left:0;bottom:0;width:52px;height:3px;background:var(--scoliosis-green);border-radius:999px}
+.scoliosis-section-lead{max-width:760px;margin:-18px 0 48px;color:var(--scoliosis-muted);font-size:1rem;font-weight:700;line-height:1.95}
+.scoliosis-copy{color:var(--scoliosis-muted);font-size:1rem;font-weight:700;line-height:1.95}
+.scoliosis-copy p{margin:0}.scoliosis-copy p+p{margin-top:1.15rem}.scoliosis-copy strong{color:var(--scoliosis-green-dark);font-weight:900}
+.scoliosis-copy--accent{border-left:3px solid var(--scoliosis-green);padding-left:24px}
+.scoliosis-cause-layout{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(320px,.96fr);gap:clamp(36px,6vw,68px);align-items:center}
+.scoliosis-cause-visual{margin:0;border:1px solid var(--scoliosis-border);background:#fff;padding:18px}
+.scoliosis-cause-visual img{display:block;width:100%;height:auto}
+.scoliosis-cause-visual figcaption{margin-top:12px;color:#667068;font-size:.78rem;font-weight:700;line-height:1.65;text-align:center}
+.scoliosis-factor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--scoliosis-border);border-left:1px solid var(--scoliosis-border)}
+.scoliosis-factor{min-width:0;border-right:1px solid var(--scoliosis-border);border-bottom:1px solid var(--scoliosis-border);padding:clamp(28px,4vw,42px)}
+.scoliosis-factor__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.scoliosis-factor__number{color:var(--scoliosis-green);font-size:1.7rem;font-weight:900;line-height:1}
+.scoliosis-factor__icon{display:grid;place-items:center;width:48px;height:48px;border:1px solid #b9cbb4;border-radius:50%;color:var(--scoliosis-green)}
+.scoliosis-factor__icon svg{width:23px;height:23px;stroke-width:1.7}
+.scoliosis-factor h3{margin:0 0 12px;color:var(--scoliosis-text);font-size:1.1rem;font-weight:900;line-height:1.55}
+.scoliosis-factor p{margin:0;color:var(--scoliosis-muted);font-size:.94rem;font-weight:700;line-height:1.85}
+.scoliosis-symptom-flow{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(32px,4vw,54px);align-items:start;margin-top:8px}
+.scoliosis-symptom-flow::before{content:"";position:absolute;top:27px;left:7%;right:7%;height:1px;background:#b7c7b1}
+.scoliosis-symptom-flow__step{position:relative;z-index:1;text-align:center}
+.scoliosis-symptom-flow__number{display:grid;place-items:center;width:56px;height:56px;margin:0 auto 18px;border:2px solid var(--scoliosis-green);border-radius:50%;background:var(--scoliosis-cream);color:var(--scoliosis-green-dark);font-size:1.05rem;font-weight:900}
+.scoliosis-symptom-flow__step p{margin:0;color:var(--scoliosis-text);font-size:.94rem;font-weight:900;line-height:1.75}
+.scoliosis-symptom-flow__arrow{position:absolute;top:16px;z-index:2;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--scoliosis-cream);color:var(--scoliosis-green)}
+.scoliosis-symptom-flow__arrow svg{width:17px;height:17px}
+.scoliosis-symptom-flow__arrow--1{left:24.2%}.scoliosis-symptom-flow__arrow--2{left:49.1%}.scoliosis-symptom-flow__arrow--3{left:74%}
+.scoliosis-flow-note{max-width:760px;margin:42px auto 0;border-top:1px solid #d7ddd3;padding-top:22px;color:#687168;font-size:.84rem;font-weight:700;line-height:1.85;text-align:center}
+.scoliosis-relief-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(360px,1.1fr);gap:clamp(40px,6vw,72px);align-items:center}
+.scoliosis-cycle{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.scoliosis-cycle__item{display:flex;align-items:center;gap:12px;min-height:70px;border-top:1px solid var(--scoliosis-border);border-bottom:1px solid var(--scoliosis-border);padding:14px 4px;color:var(--scoliosis-text);font-size:.9rem;font-weight:900;line-height:1.5}
+.scoliosis-cycle__item svg{width:22px;height:22px;flex:0 0 auto;color:var(--scoliosis-green);stroke-width:1.7}
+.scoliosis-cycle__item--last{grid-column:2/4}
+.scoliosis-cycle__arrow{display:grid;place-items:center;color:#8ca188}.scoliosis-cycle__arrow svg{width:18px;height:18px}
+.scoliosis-medical-note{border:1px solid #d9d4ca;background:#fbfaf7;padding:clamp(26px,5vw,44px)}
+.scoliosis-medical-note__heading{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:start}
+.scoliosis-medical-note__icon{display:grid;place-items:center;width:52px;height:52px;border:1px solid #a9b7a4;border-radius:50%;color:var(--scoliosis-green-dark)}
+.scoliosis-medical-note__icon svg{width:25px;height:25px;stroke-width:1.7}
+.scoliosis-medical-note h2{margin:0;color:var(--scoliosis-text);font-size:clamp(1.35rem,2.4vw,1.85rem);font-weight:900;line-height:1.55}
+.scoliosis-medical-note__heading p{margin:14px 0 0;color:var(--scoliosis-muted);font-size:.95rem;font-weight:700;line-height:1.85}
+.scoliosis-medical-note__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px;margin:30px 0 0;padding:0;border-top:1px solid #ddd8cf;list-style:none}
+.scoliosis-medical-note__item{position:relative;border-bottom:1px solid #ddd8cf;padding:16px 8px 16px 27px;color:#4c534e;font-size:.92rem;font-weight:800;line-height:1.65}
+.scoliosis-medical-note__item::before{content:"";position:absolute;left:5px;top:1.55em;width:8px;height:8px;border:2px solid var(--scoliosis-green);border-radius:50%}
+.scoliosis-assessment-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.9fr);grid-template-areas:"intro media" "checklist media";gap:26px clamp(40px,6vw,68px);align-items:start}
+.scoliosis-assessment__intro{grid-area:intro}.scoliosis-assessment__media{grid-area:media;margin:0;align-self:stretch}
+.scoliosis-assessment__media img{display:block;width:100%;height:100%;min-height:430px;border:1px solid var(--scoliosis-border);object-fit:cover}
+.scoliosis-check-list{grid-area:checklist;display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.scoliosis-check-list li{display:flex;align-items:flex-start;gap:11px;color:#3c453f;font-size:.94rem;font-weight:800;line-height:1.65}
+.scoliosis-check-list svg{width:20px;height:20px;flex:0 0 auto;margin-top:.22em;color:var(--scoliosis-green);stroke-width:2}
+.scoliosis-approach-steps{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(34px,5vw,62px);margin-top:10px}
+.scoliosis-approach-steps::before{content:"";position:absolute;top:72px;left:13%;right:13%;height:1px;background:#b7c7b1}
+.scoliosis-approach-step{position:relative;z-index:1;text-align:center}
+.scoliosis-approach-step__number{display:block;margin-bottom:13px;color:var(--scoliosis-green);font-size:.78rem;font-weight:900;letter-spacing:.08em}
+.scoliosis-approach-step__icon{display:grid;place-items:center;width:72px;height:72px;margin:0 auto 18px;border:2px solid var(--scoliosis-green);border-radius:50%;background:var(--scoliosis-cream);color:var(--scoliosis-green-dark)}
+.scoliosis-approach-step__icon svg{width:29px;height:29px;stroke-width:1.65}
+.scoliosis-approach-step__label{margin:0 0 10px;color:var(--scoliosis-green);font-size:.84rem;font-weight:900}
+.scoliosis-approach-step h3{margin:0 0 13px;color:var(--scoliosis-text);font-size:1.08rem;font-weight:900;line-height:1.55}
+.scoliosis-approach-step>p:last-child{margin:0;color:var(--scoliosis-muted);font-size:.9rem;font-weight:700;line-height:1.85;text-align:left}
+.scoliosis-approach-steps__arrow{position:absolute;top:61px;z-index:2;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--scoliosis-cream);color:var(--scoliosis-green)}
+.scoliosis-approach-steps__arrow svg{width:17px;height:17px}
+.scoliosis-approach-steps__arrow--1{left:32.2%}.scoliosis-approach-steps__arrow--2{left:65.6%}
+.scoliosis-consult-section{padding:0 0 clamp(72px,8vw,96px);background:var(--scoliosis-cream);border-bottom:1px solid var(--scoliosis-border)}
+.scoliosis-consult-cta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:34px;align-items:center;border:1px solid #aebfa8;border-radius:12px;background:#f3f8ef;padding:clamp(26px,4vw,38px)}
+.scoliosis-consult-cta h2{margin:0;color:var(--scoliosis-green-dark);font-size:clamp(1.25rem,2vw,1.6rem);font-weight:900;line-height:1.55}
+.scoliosis-consult-cta p{margin:10px 0 0;color:#536052;font-size:.94rem;font-weight:700;line-height:1.8}
+.scoliosis-consult-cta__link{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;border-radius:8px;background:var(--scoliosis-green);color:#fff;padding:14px 20px;font-size:.93rem;font-weight:900;line-height:1.4;text-align:center;text-decoration:none;transition:background .2s ease,transform .2s ease}
+.scoliosis-consult-cta__link:hover,.scoliosis-consult-cta__link:focus-visible{background:var(--scoliosis-green-dark);transform:translateY(-1px);outline:3px solid rgba(53,107,47,.2);outline-offset:3px}
+.scoliosis-consult-cta__link svg{width:20px;height:20px;flex:0 0 auto}
+.scoliosis-frequency{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;border-top:1px solid var(--scoliosis-border);border-bottom:1px solid var(--scoliosis-border);padding:30px 0}
+.scoliosis-frequency__icon{display:grid;place-items:center;width:50px;height:50px;border:1px solid #b9cbb4;border-radius:50%;color:var(--scoliosis-green)}
+.scoliosis-frequency__icon svg{width:23px;height:23px;stroke-width:1.7}
+.scoliosis-frequency h2{margin:0 0 12px;color:var(--scoliosis-text);font-size:1.35rem;font-weight:900;line-height:1.5}
+.scoliosis-frequency p{margin:0;color:var(--scoliosis-muted);font-size:.94rem;font-weight:700;line-height:1.85}.scoliosis-frequency p+p{margin-top:6px}
+@media(max-width:767px){
+  .scoliosis-education-section{padding:68px 0}.scoliosis-education-section--frequency{padding-top:42px;padding-bottom:72px}
+  .scoliosis-section-title{margin-bottom:30px;padding-bottom:15px;font-size:clamp(1.5rem,7vw,1.85rem);line-height:1.5}.scoliosis-section-title::after{width:44px}
+  .scoliosis-section-lead{margin:-8px 0 34px;font-size:.96rem;line-height:1.85}.scoliosis-copy{font-size:.96rem;line-height:1.85}.scoliosis-copy--accent{padding-left:18px}
+  .scoliosis-cause-layout{grid-template-columns:1fr;gap:30px}.scoliosis-cause-visual{padding:10px}
+  .scoliosis-factor-grid{grid-template-columns:1fr;border-left:0}.scoliosis-factor{border-right:0;padding:26px 4px}.scoliosis-factor__top{margin-bottom:14px}.scoliosis-factor__icon{width:44px;height:44px}
+  .scoliosis-factor h3{font-size:1.04rem}.scoliosis-factor p{font-size:.93rem}
+  .scoliosis-symptom-flow{grid-template-columns:1fr;gap:0;margin-left:5px;padding-left:46px}.scoliosis-symptom-flow::before{top:26px;bottom:26px;left:27px;right:auto;width:1px;height:auto}
+  .scoliosis-symptom-flow__step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;min-height:92px;text-align:left}.scoliosis-symptom-flow__number{width:54px;height:54px;margin:0 0 0 -46px}
+  .scoliosis-symptom-flow__step p{font-size:.95rem}.scoliosis-symptom-flow__arrow{display:none}.scoliosis-pc-only{display:none}.scoliosis-flow-note{margin-top:26px;text-align:left}
+  .scoliosis-relief-layout{grid-template-columns:1fr;gap:36px}.scoliosis-cycle{grid-template-columns:1fr;gap:0;border-top:1px solid var(--scoliosis-border)}
+  .scoliosis-cycle__item,.scoliosis-cycle__item--last{grid-column:auto;border-top:0;border-bottom:1px solid var(--scoliosis-border);padding:16px 5px}.scoliosis-cycle__arrow{height:28px;border-bottom:1px solid var(--scoliosis-border)}.scoliosis-cycle__arrow svg{transform:rotate(90deg)}
+  .scoliosis-medical-note{padding:24px 18px}.scoliosis-medical-note__heading{grid-template-columns:1fr;gap:15px}.scoliosis-medical-note__icon{width:46px;height:46px}.scoliosis-medical-note h2{font-size:1.3rem}.scoliosis-medical-note__list{grid-template-columns:1fr;gap:0;margin-top:24px}
+  .scoliosis-assessment-layout{grid-template-columns:1fr;grid-template-areas:"intro" "media" "checklist";gap:28px}.scoliosis-assessment__media img{height:auto;min-height:0}.scoliosis-check-list{gap:13px}
+  .scoliosis-approach-steps{grid-template-columns:1fr;gap:0;margin-left:5px;padding-left:48px}.scoliosis-approach-steps::before{top:42px;bottom:42px;left:27px;right:auto;width:1px;height:auto}
+  .scoliosis-approach-step{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:17px;min-height:210px;text-align:left}.scoliosis-approach-step__number{grid-column:2;margin:0 0 8px}
+  .scoliosis-approach-step__icon{grid-column:1;grid-row:1/5;width:60px;height:60px;margin:0 0 0 -48px;background:var(--scoliosis-cream)}.scoliosis-approach-step__icon svg{width:25px;height:25px}
+  .scoliosis-approach-step__label,.scoliosis-approach-step h3,.scoliosis-approach-step>p:last-child{grid-column:2}.scoliosis-approach-step__label{margin-bottom:7px}.scoliosis-approach-step h3{font-size:1.04rem}.scoliosis-approach-steps__arrow{display:none}
+  .scoliosis-consult-section{padding-bottom:72px}.scoliosis-consult-cta{grid-template-columns:1fr;gap:22px;padding:24px 18px}.scoliosis-consult-cta__link{width:100%;min-height:52px}
+  .scoliosis-frequency{grid-template-columns:1fr;gap:16px;padding:26px 0}.scoliosis-frequency h2{font-size:1.25rem}
+}
+@media(min-width:768px) and (max-width:1024px){
+  .scoliosis-cause-layout,.scoliosis-assessment-layout{grid-template-columns:minmax(0,1fr) minmax(300px,.9fr);gap:40px}
+  .scoliosis-relief-layout{grid-template-columns:1fr;gap:38px}.scoliosis-cycle{max-width:760px}.scoliosis-approach-steps{gap:34px}.scoliosis-approach-step h3{font-size:1rem}
+}
+@media(prefers-reduced-motion:reduce){.scoliosis-consult-cta__link{transition:none}}
+/* SCOLIOSIS_EDUCATION_STYLES_END */
 
   </style>
 <script type="application/ld+json">
@@ -420,7 +668,7 @@
               <a href="./lumbar-disc-herniation.html" class="site-nav__dropdown-link">椎間板ヘルニア</a>
               <a href="./hip-osteoarthritis.html" class="site-nav__dropdown-link">股関節痛</a>
               <a href="./knee-osteoarthritis.html" class="site-nav__dropdown-link">膝痛</a>
-              <a href="./index.html" class="site-nav__dropdown-link">その他の足腰の症状</a>
+              <a href="./index.html" class="site-nav__dropdown-link">すべての症状を見る</a>
             </div>
           </div>
           <a href="../index.html#flow" class="site-nav__item">
@@ -460,7 +708,7 @@
               <a href="./lumbar-disc-herniation.html" class="site-mobile-nav__subitem">椎間板ヘルニア</a>
               <a href="./hip-osteoarthritis.html" class="site-mobile-nav__subitem">股関節痛</a>
               <a href="./knee-osteoarthritis.html" class="site-mobile-nav__subitem">膝痛</a>
-              <a href="./index.html" class="site-mobile-nav__subitem">その他の足腰の症状</a>
+              <a href="./index.html" class="site-mobile-nav__subitem">すべての症状を見る</a>
             </div>
           </div>
           <a href="../index.html#flow" class="site-mobile-nav__item">流れ</a>
@@ -498,183 +746,189 @@
       </div>
     </section>
 
-    <section class="concerns">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">こんなお悩みはありませんか？</h2>
-        <div class="concerns__list">
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">肩の高さや骨盤の傾きが左右で違うと言われた</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">背中や腰の片側だけが張りやすい</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">立ち姿勢や歩き方の左右差が気になる</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">側弯症と診断され、何に気をつければよいか分からない</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">姿勢を正そうとしてもすぐ疲れてしまう</p>
-          </div>
+    <section id="troubles" class="troubles-check">
+      <div class="troubles-check__inner">
+        <div class="troubles-check__heading">
+          <h2>こんなお悩みを抱えていませんか？</h2>
         </div>
-        <p class="concerns__footer">一つでも当てはまる方は、<strong>当院がお力になれる可能性があります。</strong></p>
+
+        <ul class="troubles-check__list" aria-label="側弯症と姿勢の左右差でよくあるお悩み">
+          <li>肩の高さや骨盤の傾きが<strong>左右で違う</strong>と言われた</li>
+          <li>背中や腰の<strong>片側だけが張りやすい</strong></li>
+          <li>立ち姿勢や歩き方の<strong>左右差が気になる</strong></li>
+          <li>側弯症と言われ、<strong>何に気をつけるか分からない</strong></li>
+          <li>姿勢を正そうとすると<strong>すぐ疲れてしまう</strong></li>
+          <li>長く座ると<strong>背中や腰がつらい</strong></li>
+          <li>呼吸や身体をひねる動作が<strong>しにくく感じる</strong></li>
+          <li>今の身体でできることを<strong>整理して知りたい</strong></li>
+        </ul>
       </div>
     </section>
 
 
-    <section class="cause">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">側弯症で負担が出やすくなる理由</h2>
-        <div class="prose"><p>側弯症では、背骨のカーブそのものだけでなく、肩甲骨、肋骨、骨盤、股関節の動きの左右差が重なり、腰や背中、首肩の一部に負担が集まりやすくなります。</p><p>曲がりを無理に真っすぐにするのではなく、今の体でどこが頑張りすぎているか、どこが使いにくくなっているかを整理することが大切です。</p></div>
-        <div style="margin-top:1.75rem; margin-bottom:2rem; background:#fff; border:1px solid #e2e8f0; border-radius:1rem; padding:.75rem; box-shadow:0 10px 25px -5px rgba(0,0,0,0.08);">
-          <img src="../image/イラスト/腰・神経/脊柱側弯の姿勢比較.webp" alt="側弯症による姿勢の左右差を示すイメージ" class="feature-photo feature-photo--full" style="width:100%; max-height:320px; object-fit:contain; background:#fff; border-radius:.75rem;" loading="lazy" decoding="async" width="1200" height="1200">
-        </div>
-        <div class="mechanism">
-          <p class="mechanism__title">左右差が強くなりやすい流れ</p>
-          <div class="mechanism__flow">
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">1</div>
-              <p class="mechanism__step-text">背骨や肋骨、骨盤まわりの動きに左右差が出る</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">2</div>
-              <p class="mechanism__step-text">片側の腰や背中が頑張り続ける</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">3</div>
-              <p class="mechanism__step-text">体幹の支えが弱くなり姿勢保持が疲れやすい</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__result">
-              <svg class="mechanism__result-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:#fff;"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-              <p class="mechanism__result-text">痛みや張り、動きづらさが出やすくなる</p>
-            </div>
-          </div>
-        </div>
-        <div class="vicious-cycle">
-          <p class="vicious-cycle__title">
-            <i data-lucide="alert-triangle" style="width:1.125rem;height:1.125rem;" aria-hidden="true"></i>
-            姿勢を固めてしまう負の連鎖
-          </p>
-          <div class="cycle-flow"><span class="cycle-item">ゆがみが気になる</span><span class="cycle-arrow">→</span><span class="cycle-item">体を固める</span><span class="cycle-arrow">→</span><span class="cycle-item">左右差が強まる</span><span class="cycle-arrow">→</span><span class="cycle-item">さらに疲れやすくなる</span></div>
-        </div>
-        <div class="key-point">
-          <p class="key-point__label">✦ ポイント</p>
-          <p class="key-point__text">側弯症は見た目の曲がりだけで判断せず、痛み、呼吸、歩き方、体幹の安定性を合わせて見ることが大切です。無理に伸ばすより、負担の偏りを減らすことを優先します。</p>
-        </div>
-      </div>
-    </section>
 
-    <!-- SYMPTOM_MID_CTA_START -->
-<section class="symptom-mid-cta">
-      <div class="container max-w-4xl symptom-mid-cta__inner">
-        <div>
-          <p class="symptom-mid-cta__eyebrow">相談の目安</p>
-          <h2 class="symptom-mid-cta__title">原因を知るだけでなく、今の状態に合う進め方を確認しませんか？</h2>
-          <p class="symptom-mid-cta__text">痛み方や生活で困っている場面は人によって違います。読みながら「自分も近いかも」と感じた方は、来院前にLINEで状況を送っていただいて大丈夫です。</p>
+<!-- SCOLIOSIS_EDUCATION_START -->
+    <div class="scoliosis-education">
+      <section class="scoliosis-education-section scoliosis-education-section--white" aria-labelledby="scoliosis-cause-title">
+        <div class="container max-w-4xl">
+          <h2 id="scoliosis-cause-title" class="scoliosis-section-title">側弯症ではなぜ身体の一部に負担が集まりやすいのか？</h2>
+          <div class="scoliosis-cause-layout">
+            <div class="scoliosis-copy">
+              <p>側弯症では、背骨の形だけでなく、肋骨・肩甲骨・骨盤・股関節の動き方にも左右差がみられることがあります。</p>
+              <p>座る、立つ、歩く、物を持つといった動作の中で、動きやすい側ばかりを使う状態が続くと、腰や背中、首肩など一部へ負担が集まりやすくなります。</p>
+              <p>また、姿勢を整えようとして身体を固めすぎると、呼吸や動作が窮屈になり、かえって疲れやすくなることがあります。</p>
+              <p>背骨の形を変えることを目的にするのではなく、「今の身体でどこへ負担が偏っているのか」を確認することが大切です。</p>
+            </div>
+            <figure class="scoliosis-cause-visual">
+              <img src="../image/イラスト/腰・神経/脊柱側弯の姿勢比較.webp" alt="背骨や肩、骨盤の左右差を示した側弯症の姿勢イラスト" loading="lazy" decoding="async" width="1200" height="1200">
+              <figcaption>同じ側弯症でも、動きや負担の感じ方には個人差があります。</figcaption>
+            </figure>
+          </div>
         </div>
-        <div class="symptom-mid-cta__actions">
-          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで相談する</a>
-          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--tel" href="tel:0471143274">電話で相談する</a>
-        </div>
-      </div>
-    </section>
-<!-- SYMPTOM_MID_CTA_END -->
+      </section>
 
-<section class="approach">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">当院の側弯症へのアプローチ</h2>
-        <p class="approach__intro">背骨だけでなく肋骨、骨盤、股関節の動きを整え、左右差による負担を減らす3ステップで改善を目指します</p>
-        <img src="../image/レントゲン/側弯症XP.webp" alt="側弯症の背骨レントゲン画像" class="feature-photo feature-photo--full" style="width:100%; max-height:320px; object-fit:contain; background:#fff; padding:.5rem; border-radius:1rem; box-shadow:0 10px 25px -5px rgba(0,0,0,0.08); margin-bottom:2.5rem; border:1px solid #e2e8f0;" loading="lazy" decoding="async" width="1600" height="1600">
-        <div class="msm-steps">
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--1">
-                <span class="msm-step__badge-num">1</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--1">可動性の回復</span>
-                <h3 class="msm-step__title">背中・腰・股関節の頑張りすぎている筋肉をほぐす</h3>
-                <p class="msm-step__text">片側だけに負担が集まりやすい背中、腰、股関節まわりの筋肉を手技でゆるめます。痛みや張りが強いところだけでなく、反対側の使いにくさも確認します。</p>
-              </div>
-            </div>
-          </div>
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--2">
-                <span class="msm-step__badge-num">2</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--2">安定性の再獲得</span>
-                <h3 class="msm-step__title">腹部インナーマッスルを再稼働して姿勢を支える</h3>
-                <p class="msm-step__text">腹横筋などのインナーマッスルを使いやすくし、背骨だけで姿勢を保とうとする負担を減らします。仰向けや四つ這いなど安全な姿勢から始めます。</p>
-              </div>
-            </div>
-          </div>
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--3">
-                <span class="msm-step__badge-num">3</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--3">動作の定着</span>
-                <h3 class="msm-step__title">左右差を減らす動きを日常に定着させる</h3>
-                <p class="msm-step__text">立ち方、座り方、歩き方、呼吸のしやすさを確認し、日常で負担が偏りにくい動きを練習します。姿勢を固めるのではなく、動ける余裕を作ります。</p>
-              </div>
-            </div>
+      <section class="scoliosis-education-section scoliosis-education-section--cream" aria-labelledby="scoliosis-factors-title">
+        <div class="container max-w-4xl">
+          <h2 id="scoliosis-factors-title" class="scoliosis-section-title">負担の偏りにつながりやすい4つの要因</h2>
+          <div class="scoliosis-factor-grid">
+            <article class="scoliosis-factor">
+              <div class="scoliosis-factor__top"><span class="scoliosis-factor__number">01</span><span class="scoliosis-factor__icon" aria-hidden="true"><i data-lucide="armchair"></i></span></div>
+              <h3>同じ姿勢が長く続く</h3>
+              <p>勉強やデスクワークで同じ向きへ寄りかかる姿勢が続くと、片側の背中や腰が休みにくくなり、張りや疲れを感じやすくなります。</p>
+            </article>
+            <article class="scoliosis-factor">
+              <div class="scoliosis-factor__top"><span class="scoliosis-factor__number">02</span><span class="scoliosis-factor__icon" aria-hidden="true"><i data-lucide="wind"></i></span></div>
+              <h3>肋骨や背中が動きにくい</h3>
+              <p>背中や肋骨の一部が動きにくいと、呼吸や身体をひねる動作で別の場所が代わりに動き、負担が偏ることがあります。</p>
+            </article>
+            <article class="scoliosis-factor">
+              <div class="scoliosis-factor__top"><span class="scoliosis-factor__number">03</span><span class="scoliosis-factor__icon" aria-hidden="true"><i data-lucide="move-3d"></i></span></div>
+              <h3>骨盤や股関節の動きに左右差がある</h3>
+              <p>片側の股関節が使いにくいと、歩く、立ち上がるといった動作で骨盤や腰が補い、同じ側へ負担が集まりやすくなります。</p>
+            </article>
+            <article class="scoliosis-factor">
+              <div class="scoliosis-factor__top"><span class="scoliosis-factor__number">04</span><span class="scoliosis-factor__icon" aria-hidden="true"><i data-lucide="shield-alert"></i></span></div>
+              <h3>左右差を気にして身体を固めている</h3>
+              <p>姿勢を崩さないよう力を入れ続けると、呼吸が浅くなり、動くために必要な余裕が減って疲れやすくなることがあります。</p>
+            </article>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="frequency">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">通院頻度の目安</h2>
-        <div class="frequency__card">
-          <div class="frequency__icon">
-            <i data-lucide="calendar" style="width:1.5rem;height:1.5rem;color:#fff;" aria-hidden="true"></i>
+      <section class="scoliosis-education-section scoliosis-education-section--flow" aria-labelledby="scoliosis-flow-title">
+        <div class="container max-w-4xl">
+          <h2 id="scoliosis-flow-title" class="scoliosis-section-title">痛みや張りが起きるまでの流れ</h2>
+          <div class="scoliosis-symptom-flow" role="list" aria-label="側弯症で痛みや張りが起きるまでの一例">
+            <div class="scoliosis-symptom-flow__step" role="listitem"><span class="scoliosis-symptom-flow__number">1</span><p>背中や骨盤の動きに<br class="scoliosis-pc-only">左右差がある</p></div>
+            <div class="scoliosis-symptom-flow__step" role="listitem"><span class="scoliosis-symptom-flow__number">2</span><p>動きやすい側で<br class="scoliosis-pc-only">動作を補う</p></div>
+            <div class="scoliosis-symptom-flow__step" role="listitem"><span class="scoliosis-symptom-flow__number">3</span><p>腰・背中・首肩へ<br class="scoliosis-pc-only">負担が偏る</p></div>
+            <div class="scoliosis-symptom-flow__step" role="listitem"><span class="scoliosis-symptom-flow__number">4</span><p>痛み・張り・疲れやすさを感じることがある</p></div>
+            <span class="scoliosis-symptom-flow__arrow scoliosis-symptom-flow__arrow--1" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+            <span class="scoliosis-symptom-flow__arrow scoliosis-symptom-flow__arrow--2" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+            <span class="scoliosis-symptom-flow__arrow scoliosis-symptom-flow__arrow--3" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
           </div>
-          <div>
-            <p class="frequency__text">最初の1〜2ヶ月は<strong>週1回程度</strong>のペースを目安に、痛みや張り、動きやすさの変化を確認しながら進めます。成長期の急な変化や強い痛みがある場合は、医療機関での確認を優先します。</p>
-            <div class="frequency__phases">
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--a"></span>
-                <span class="frequency__phase-label">最初の1〜2ヶ月：週1回程度</span>
-              </div>
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--b"></span>
-                <span class="frequency__phase-label">安定後：2週に1回</span>
-              </div>
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--c"></span>
-                <span class="frequency__phase-label">メンテナンス期：月1回</span>
-              </div>
+          <p class="scoliosis-flow-note">これは負担が偏る一例です。側弯の程度と痛みの強さは必ずしも一致せず、状態には個人差があります。実際には呼吸、関節の動き、筋肉の働き、日常動作などを確認する必要があります。</p>
+        </div>
+      </section>
+
+      <section class="scoliosis-education-section scoliosis-education-section--white" aria-labelledby="scoliosis-relief-title">
+        <div class="container max-w-4xl">
+          <h2 id="scoliosis-relief-title" class="scoliosis-section-title">なぜ一部をほぐしても戻ることがあるのか？</h2>
+          <div class="scoliosis-relief-layout">
+            <div class="scoliosis-copy scoliosis-copy--accent">
+              <p>張りを感じる腰や背中をほぐすと、一時的に楽になることがあります。</p>
+              <p>しかし、肋骨や股関節の動きにくさ、身体の使い方など、同じ場所へ負担を集めている要因が残っていると、日常生活へ戻ったときに再び緊張しやすくなります。</p>
+              <p><strong>大切なのは、見た目やつらい場所だけを整えることではありません。</strong></p>
+              <p>呼吸、背中・骨盤・股関節の動き、立つ・座る・歩くといった動作を合わせて確認することです。</p>
+            </div>
+            <div class="scoliosis-cycle" aria-label="側弯症で負担が続く流れの一例">
+              <div class="scoliosis-cycle__item"><i data-lucide="armchair" aria-hidden="true"></i><span>同じ姿勢や動作が続く</span></div>
+              <span class="scoliosis-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="scoliosis-cycle__item"><i data-lucide="activity" aria-hidden="true"></i><span>片側の筋肉が緊張する</span></div>
+              <span class="scoliosis-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="scoliosis-cycle__item"><i data-lucide="triangle-alert" aria-hidden="true"></i><span>痛みや張りを感じる</span></div>
+              <span class="scoliosis-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="scoliosis-cycle__item"><i data-lucide="person-standing" aria-hidden="true"></i><span>姿勢を守ろうと身体を固める</span></div>
+              <span class="scoliosis-cycle__arrow" aria-hidden="true"><i data-lucide="rotate-cw"></i></span>
+              <div class="scoliosis-cycle__item scoliosis-cycle__item--last"><i data-lucide="refresh-cw" aria-hidden="true"></i><span>さらに負担が偏りやすくなる</span></div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="scoliosis-education-section scoliosis-education-section--medical" aria-labelledby="scoliosis-medical-title">
+        <div class="container max-w-4xl">
+          <div class="scoliosis-medical-note">
+            <div class="scoliosis-medical-note__heading">
+              <span class="scoliosis-medical-note__icon" aria-hidden="true"><i data-lucide="stethoscope"></i></span>
+              <div><h2 id="scoliosis-medical-title">このような症状がある場合は、まず医療機関へご相談ください</h2><p>側弯症では、整形外科での経過確認が優先される場合があります。以下のような症状がある場合は、整体を受ける前に医療機関へご相談ください。</p></div>
+            </div>
+            <ul class="scoliosis-medical-note__list">
+              <li class="scoliosis-medical-note__item">成長期に肩や背中の左右差が急に大きくなっている</li>
+              <li class="scoliosis-medical-note__item">強い痛みが急激に悪化している</li>
+              <li class="scoliosis-medical-note__item">転倒や事故のあとから痛みが続いている</li>
+              <li class="scoliosis-medical-note__item">手足のしびれ、力の入りにくさ、歩きにくさが進んでいる</li>
+              <li class="scoliosis-medical-note__item">排尿・排便の異常や強い息苦しさがある</li>
+              <li class="scoliosis-medical-note__item">発熱や安静時・夜間の強い痛みを伴っている</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="scoliosis-education-section scoliosis-education-section--white" aria-labelledby="scoliosis-assessment-title">
+        <div class="container max-w-4xl">
+          <h2 id="scoliosis-assessment-title" class="scoliosis-section-title">当院では背骨の形だけでなく、全身の動きを確認します</h2>
+          <div class="scoliosis-assessment-layout">
+            <div class="scoliosis-assessment__intro scoliosis-copy">
+              <p>同じ「側弯症」でも、痛む場所や疲れやすい動作、身体の使い方は人によって異なります。</p>
+              <p>柏市の整体院ひざこぞうでは、背骨の見た目だけを見るのではなく、呼吸、肋骨・骨盤・股関節の動き、立ち方や歩き方まで確認します。</p>
+              <p>カウンセリングと身体のチェックをもとに、整体で対応できる範囲と施術方針を分かりやすくご説明します。</p>
+            </div>
+            <figure class="scoliosis-assessment__media"><img src="../image/flow-movement-assessment-768.webp" alt="施術者が脚と股関節の動きを確認している様子" loading="lazy" decoding="async" width="768" height="576"></figure>
+            <ul class="scoliosis-check-list">
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>痛みや張りが出る姿勢・時間帯・動作</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>呼吸と肋骨・背中の動き</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>骨盤・股関節・肩甲骨の左右の動き</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>立ち上がり、歩行、片脚で支える動作</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>仕事や生活で負担が偏りやすい場面</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="scoliosis-education-section scoliosis-education-section--cream" aria-labelledby="scoliosis-approach-title">
+        <div class="container max-w-4xl">
+          <h2 id="scoliosis-approach-title" class="scoliosis-section-title">整体院ひざこぞうの側弯症へのアプローチ</h2>
+          <p class="scoliosis-section-lead">当院では、背骨を強く押したり形を変えようとしたりせず、「動かす・支える・使い方を整える」という流れで、身体の一部へ負担が偏りにくい状態を目指します。</p>
+          <div class="scoliosis-approach-steps">
+            <article class="scoliosis-approach-step"><span class="scoliosis-approach-step__number">STEP 1</span><span class="scoliosis-approach-step__icon" aria-hidden="true"><i data-lucide="move"></i></span><p class="scoliosis-approach-step__label">動かす｜可動性</p><h3>背中・肋骨・股関節の動きを整える</h3><p>左右それぞれの動きやすさを確認し、動きにくくなっている部分へ無理のない範囲でやさしくアプローチします。</p></article>
+            <article class="scoliosis-approach-step"><span class="scoliosis-approach-step__number">STEP 2</span><span class="scoliosis-approach-step__icon" aria-hidden="true"><i data-lucide="shield-check"></i></span><p class="scoliosis-approach-step__label">支える｜安定性</p><h3>呼吸しながら身体を支えやすくする</h3><p>身体を固めるのではなく、呼吸を続けながら姿勢や動作を支えられるよう、状態に合わせた運動を行います。</p></article>
+            <article class="scoliosis-approach-step"><span class="scoliosis-approach-step__number">STEP 3</span><span class="scoliosis-approach-step__icon" aria-hidden="true"><i data-lucide="footprints"></i></span><p class="scoliosis-approach-step__label">使う｜動作改善</p><h3>負担が偏りにくい動作を身につける</h3><p>座る、立つ、歩く、物を持つなどの日常動作を確認し、続けやすい身体の使い方やセルフケアをお伝えします。</p></article>
+            <span class="scoliosis-approach-steps__arrow scoliosis-approach-steps__arrow--1" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+            <span class="scoliosis-approach-steps__arrow scoliosis-approach-steps__arrow--2" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="scoliosis-consult-section" aria-labelledby="scoliosis-consult-title">
+        <div class="container max-w-4xl">
+          <div class="scoliosis-consult-cta">
+            <div><h2 id="scoliosis-consult-title">自分の身体の左右差をどう考えればよいか分からない方へ</h2><p>痛みが出る動作や、病院で言われたことなどをLINEで送っていただければ、来院前のご相談も可能です。</p></div>
+            <a class="scoliosis-consult-cta__link" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer"><i data-lucide="message-circle" aria-hidden="true"></i>LINEで側弯症について相談する</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="scoliosis-education-section scoliosis-education-section--frequency" aria-labelledby="scoliosis-frequency-title">
+        <div class="container max-w-4xl">
+          <div class="scoliosis-frequency">
+            <span class="scoliosis-frequency__icon" aria-hidden="true"><i data-lucide="calendar-days"></i></span>
+            <div><h2 id="scoliosis-frequency-title">通院頻度について</h2><p>通院頻度は、痛みや疲れやすさの程度、生活環境、医療機関での経過観察、目指す状態によって異なります。</p><p>初回に身体の状態を確認したうえで、必要な頻度と期間の目安をご説明します。</p><p>無理に通院を勧めることはありませんので、ご希望や生活状況も含めてご相談ください。</p></div>
+          </div>
+        </div>
+      </section>
+    </div>
+<!-- SCOLIOSIS_EDUCATION_END -->
     <section id="flow" class="flow-slider" aria-labelledby="flow-title" data-flow-slider>
       <div class="flow-slider__inner">
         <div class="flow-slider__heading-band">
@@ -811,40 +1065,33 @@
 <section class="related-symptoms">
       <div class="container max-w-4xl">
         <p class="related-symptoms__eyebrow">RELATED SYMPTOMS</p>
-        <h2 class="related-symptoms__title">ほかの症状も確認できます</h2>
-        <p class="related-symptoms__lead">痛みをかばう姿勢が続くと、別の部位にも負担がかかりやすくなります。気になる症状があれば、あわせて確認してみてください。</p>
+        <h2 class="related-symptoms__title">この症状に関連するページ</h2>
+        <p class="related-symptoms__lead">痛む場所や動作が近い症状ページも、あわせてご確認いただけます。</p>
         <div class="related-symptoms__grid">
 
-          <a class="related-symptom-card" href="knee-osteoarthritis.html">
-            <span class="related-symptom-card__label">変形性膝関節症</span>
-            <span class="related-symptom-card__description">階段や歩き始めの膝痛、膝のこわばりが気になる方へ。</span>
+          <a class="related-symptom-card" href="lower-back-pain.html">
+            <span class="related-symptom-card__label">腰痛</span>
+            <span class="related-symptom-card__description">立ち上がりや長時間同じ姿勢で腰がつらい方へ。</span>
             <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
-          <a class="related-symptom-card" href="knee-effusion.html">
-            <span class="related-symptom-card__label">膝の水（関節水腫）</span>
-            <span class="related-symptom-card__description">膝の腫れや水が溜まる不安を整理したい方へ。</span>
+          <a class="related-symptom-card" href="cervical-spondylosis.html">
+            <span class="related-symptom-card__label">頚椎症・首の痛み</span>
+            <span class="related-symptom-card__description">首の痛みや腕へのしびれが続く方へ。</span>
             <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
-          <a class="related-symptom-card" href="pes-anserine-bursitis.html">
-            <span class="related-symptom-card__label">膝の内側の痛み</span>
-            <span class="related-symptom-card__description">鵞足炎や内側の違和感が続く方へ。</span>
+          <a class="related-symptom-card" href="shoulder-stiffness.html">
+            <span class="related-symptom-card__label">肩こり</span>
+            <span class="related-symptom-card__description">首肩の重さや頭痛を伴うこりが気になる方へ。</span>
             <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
-          <a class="related-symptom-card" href="knee-lateral-pain.html">
-            <span class="related-symptom-card__label">膝の外側の痛み</span>
-            <span class="related-symptom-card__description">腸脛靭帯炎や外側半月板まわりが気になる方へ。</span>
+          <a class="related-symptom-card" href="hip-osteoarthritis.html">
+            <span class="related-symptom-card__label">股関節痛・変形性股関節症</span>
+            <span class="related-symptom-card__description">歩行や体重をかけた時の股関節痛が気になる方へ。</span>
             <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
-          <a class="related-symptom-card" href="knee-posterior-pain.html">
-            <span class="related-symptom-card__label">膝の裏側の痛み</span>
-            <span class="related-symptom-card__description">ベーカー嚢腫や膝裏の張りが気になる方へ。</span>
-            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="related-symptom-card" href="knee-front-pain.html">
-            <span class="related-symptom-card__label">膝の前側の痛み</span>
-            <span class="related-symptom-card__description">階段や立ち上がりでお皿まわりが気になる方へ。</span>
-            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
-          </a>
+        </div>
+        <div class="related-symptoms__all">
+          <a class="related-symptoms__all-link" href="index.html">すべての症状を見る <span aria-hidden="true">›</span></a>
         </div>
       </div>
     </section>

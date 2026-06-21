@@ -223,18 +223,21 @@
 .related-article-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
 .related-article-card__desc{font-size:13px;font-weight:700;color:#475569;line-height:1.8}
 .related-article-card__link{display:inline-flex;align-items:center;gap:.35rem;font-size:13px;font-weight:900;color:#2563eb}
-.related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #e2e8f0}
-.related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.1em;margin:0 0 .7rem}
-.related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .75rem}
-.related-symptoms__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
-.related-symptoms__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem}
-.related-symptom-card{position:relative;display:flex;flex-direction:column;gap:.55rem;min-height:126px;background:#f8fbff;border:1px solid #dbeafe;border-radius:8px;padding:1rem 3.25rem 1rem 1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
-.related-symptom-card:hover,.related-symptom-card:focus-visible{transform:translateY(-2px);background:#fff;border-color:#93c5fd;box-shadow:0 8px 18px rgba(37,99,235,.1);outline:none}
-.related-symptom-card__label{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
-.related-symptom-card__description{font-size:13px;font-weight:700;color:#475569;line-height:1.75}
-.related-symptom-card__arrow{position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#f8fbff;border:1px solid #dbeafe;color:#2563eb;font-size:22px;font-weight:900;line-height:1;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
-.related-symptom-card:hover .related-symptom-card__arrow,.related-symptom-card:focus-visible .related-symptom-card__arrow{background:#2563eb;border-color:#2563eb;color:#fff;transform:translateY(-50%) translateX(2px)}
-@media(max-width:640px){.related-symptom-card{padding-right:3rem}.related-symptom-card__arrow{right:.85rem;width:30px;height:30px;font-size:20px}}
+.related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #dfe4dc}
+.related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#356b2f;letter-spacing:.1em;margin:0 0 .7rem}
+.related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#223b2d;line-height:1.55;margin:0 0 .75rem}
+.related-symptoms__lead{text-align:center;font-size:14px;font-weight:700;color:#59635d;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
+.related-symptoms__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem}
+.related-symptom-card{position:relative;display:flex;flex-direction:column;gap:.55rem;min-height:118px;background:#fff;border:1px solid #dfe4dc;border-radius:8px;padding:1rem 3.25rem 1rem 1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
+.related-symptom-card:hover,.related-symptom-card:focus-visible{transform:translateY(-2px);background:#fafcf8;border-color:#9bb596;box-shadow:0 8px 18px rgba(35,77,36,.09);outline:3px solid rgba(53,107,47,.16);outline-offset:2px}
+.related-symptom-card__label{font-size:1rem;font-weight:900;color:#234d24;line-height:1.5}
+.related-symptom-card__description{font-size:13px;font-weight:700;color:#59635d;line-height:1.75}
+.related-symptom-card__arrow{position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#f6f9f3;border:1px solid #cbd8c6;color:#356b2f;font-size:22px;font-weight:900;line-height:1;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
+.related-symptom-card:hover .related-symptom-card__arrow,.related-symptom-card:focus-visible .related-symptom-card__arrow{background:#356b2f;border-color:#356b2f;color:#fff;transform:translateY(-50%) translateX(2px)}
+.related-symptoms__all{display:flex;justify-content:center;margin-top:1.35rem}
+.related-symptoms__all-link{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:44px;border-bottom:1px solid #8aa384;color:#234d24;font-size:14px;font-weight:900;text-decoration:none}
+.related-symptoms__all-link:hover,.related-symptoms__all-link:focus-visible{color:#356b2f;border-color:#356b2f;outline:3px solid rgba(53,107,47,.16);outline-offset:5px}
+@media(max-width:640px){.related-symptoms{padding:2.75rem 1rem}.related-symptoms__grid{grid-template-columns:1fr}.related-symptom-card{min-height:104px;padding-right:3rem}.related-symptom-card__arrow{right:.85rem;width:30px;height:30px;font-size:20px}}
 .symptom-mid-cta{padding:2.75rem 1rem;background:#fff;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
 .symptom-mid-cta__inner{display:grid;gap:1.25rem;align-items:center;background:#f8fbff;border:1px solid #bfdbfe;border-radius:8px;padding:1.5rem}
 .symptom-mid-cta__eyebrow{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
@@ -273,6 +276,251 @@
 @media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
 @media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}.symptom-voices__grid{gap:1rem}.symptom-voice-card__body{padding:1rem}.symptom-voices__note{text-align:left}}
 /* BLOG_RELATED_ARTICLES_STYLES_END */
+
+    /* Copied from top page troubles-check section. */
+
+    .troubles-check {
+      padding: 64px 16px 72px;
+      background: #f5f6f7;
+    }
+
+    .troubles-check__inner {
+      width: min(100%, 760px);
+      margin: 0 auto;
+    }
+
+    .troubles-check__heading {
+      position: relative;
+      margin: 0 auto 34px;
+      padding: 22px 20px;
+      background: linear-gradient(180deg, #eeeeee 0%, #e4e4e4 100%);
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.75);
+    }
+
+    .troubles-check__heading::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -18px;
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-top: 18px solid #e4e4e4;
+      transform: translateX(-50%);
+    }
+
+    .troubles-check__heading h2 {
+      margin: 0;
+      color: #111827;
+      font-family: var(--font-heading);
+      font-size: clamp(1.65rem, 4.8vw, 2.45rem);
+      font-weight: 900;
+      line-height: 1.32;
+      letter-spacing: 0;
+    }
+
+    .troubles-check__list {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 28px 26px 30px;
+      list-style: none;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      box-shadow: 0 20px 42px -30px rgba(17,24,39,0.32);
+    }
+
+    .troubles-check__list li {
+      position: relative;
+      min-height: 34px;
+      padding-left: 42px;
+      color: #222;
+      font-size: clamp(1.05rem, 2.4vw, 1.28rem);
+      font-weight: 700;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+
+    .troubles-check__list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.28em;
+      width: 25px;
+      height: 25px;
+      background: #fff;
+      border: 2px solid #222;
+      border-radius: 2px;
+    }
+
+    .troubles-check__list li::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 0.14em;
+      width: 26px;
+      height: 14px;
+      border-left: 4px solid #e3342f;
+      border-bottom: 4px solid #e3342f;
+      transform: rotate(-45deg);
+      transform-origin: center;
+    }
+
+    .troubles-check__list strong {
+      color: #c53632;
+      font-weight: 900;
+    }
+
+    @media (max-width: 480px) {
+      .troubles-check {
+        padding: 48px 12px 56px;
+      }
+
+      .troubles-check__heading {
+        margin-bottom: 30px;
+        padding: 18px 12px;
+      }
+
+      .troubles-check__heading::after {
+        bottom: -15px;
+        border-left-width: 15px;
+        border-right-width: 15px;
+        border-top-width: 15px;
+      }
+
+      .troubles-check__list {
+        gap: 12px;
+        padding: 22px 16px 24px;
+        border-radius: 8px;
+      }
+
+      .troubles-check__list li {
+        padding-left: 36px;
+        font-size: 1.02rem;
+        line-height: 1.7;
+      }
+
+      .troubles-check__list li::before {
+        width: 23px;
+        height: 23px;
+      }
+
+      .troubles-check__list li::after {
+        left: 5px;
+        width: 24px;
+        height: 13px;
+      }
+    }
+
+/* TMJ_EDUCATION_STYLES_START */
+.tmj-education{--tmj-green:#356b2f;--tmj-green-dark:#234d24;--tmj-green-soft:#eef5e9;--tmj-cream:#faf7f0;--tmj-text:#252a27;--tmj-muted:#59635d;--tmj-border:#dfe4dc;background:#fff;color:var(--tmj-text)}
+.tmj-education-section{padding:clamp(72px,8vw,104px) 0;border-top:1px solid var(--tmj-border)}
+.tmj-education-section--white{background:#fff}
+.tmj-education-section--cream,.tmj-education-section--flow{background:var(--tmj-cream)}
+.tmj-education-section--medical{background:#f4f2ed}
+.tmj-education-section--frequency{padding-top:56px;padding-bottom:72px;background:#fff}
+.tmj-section-title{position:relative;margin:0 0 clamp(32px,5vw,52px);padding-bottom:18px;color:var(--tmj-text);font-size:clamp(1.7rem,3vw,2.35rem);font-weight:900;line-height:1.45;letter-spacing:0;text-align:left}
+.tmj-section-title::after{content:"";position:absolute;left:0;bottom:0;width:52px;height:3px;background:var(--tmj-green);border-radius:999px}
+.tmj-section-lead{max-width:760px;margin:-18px 0 48px;color:var(--tmj-muted);font-size:1rem;font-weight:700;line-height:1.95}
+.tmj-copy{color:var(--tmj-muted);font-size:1rem;font-weight:700;line-height:1.95}
+.tmj-copy p{margin:0}.tmj-copy p+p{margin-top:1.15rem}.tmj-copy strong{color:var(--tmj-green-dark);font-weight:900}
+.tmj-copy--accent{border-left:3px solid var(--tmj-green);padding-left:24px}
+.tmj-cause-layout{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(320px,.96fr);gap:clamp(36px,6vw,68px);align-items:center}
+.tmj-cause-visual{margin:0;border:1px solid var(--tmj-border);background:#fff;padding:18px}
+.tmj-cause-visual img{display:block;width:100%;height:auto}
+.tmj-cause-visual figcaption{margin-top:12px;color:#667068;font-size:.78rem;font-weight:700;line-height:1.65;text-align:center}
+.tmj-factor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--tmj-border);border-left:1px solid var(--tmj-border)}
+.tmj-factor{min-width:0;border-right:1px solid var(--tmj-border);border-bottom:1px solid var(--tmj-border);padding:clamp(28px,4vw,42px)}
+.tmj-factor__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.tmj-factor__number{color:var(--tmj-green);font-size:1.7rem;font-weight:900;line-height:1}
+.tmj-factor__icon{display:grid;place-items:center;width:48px;height:48px;border:1px solid #b9cbb4;border-radius:50%;color:var(--tmj-green)}
+.tmj-factor__icon svg{width:23px;height:23px;stroke-width:1.7}
+.tmj-factor h3{margin:0 0 12px;color:var(--tmj-text);font-size:1.1rem;font-weight:900;line-height:1.55}
+.tmj-factor p{margin:0;color:var(--tmj-muted);font-size:.94rem;font-weight:700;line-height:1.85}
+.tmj-symptom-flow{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(32px,4vw,54px);align-items:start;margin-top:8px}
+.tmj-symptom-flow::before{content:"";position:absolute;top:27px;left:7%;right:7%;height:1px;background:#b7c7b1}
+.tmj-symptom-flow__step{position:relative;z-index:1;text-align:center}
+.tmj-symptom-flow__number{display:grid;place-items:center;width:56px;height:56px;margin:0 auto 18px;border:2px solid var(--tmj-green);border-radius:50%;background:var(--tmj-cream);color:var(--tmj-green-dark);font-size:1.05rem;font-weight:900}
+.tmj-symptom-flow__step p{margin:0;color:var(--tmj-text);font-size:.94rem;font-weight:900;line-height:1.75}
+.tmj-symptom-flow__arrow{position:absolute;top:16px;z-index:2;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--tmj-cream);color:var(--tmj-green)}
+.tmj-symptom-flow__arrow svg{width:17px;height:17px}
+.tmj-symptom-flow__arrow--1{left:24.2%}.tmj-symptom-flow__arrow--2{left:49.1%}.tmj-symptom-flow__arrow--3{left:74%}
+.tmj-flow-note{max-width:760px;margin:42px auto 0;border-top:1px solid #d7ddd3;padding-top:22px;color:#687168;font-size:.84rem;font-weight:700;line-height:1.85;text-align:center}
+.tmj-relief-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(360px,1.1fr);gap:clamp(40px,6vw,72px);align-items:center}
+.tmj-cycle{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.tmj-cycle__item{display:flex;align-items:center;gap:12px;min-height:70px;border-top:1px solid var(--tmj-border);border-bottom:1px solid var(--tmj-border);padding:14px 4px;color:var(--tmj-text);font-size:.9rem;font-weight:900;line-height:1.5}
+.tmj-cycle__item svg{width:22px;height:22px;flex:0 0 auto;color:var(--tmj-green);stroke-width:1.7}
+.tmj-cycle__item--last{grid-column:2/4}
+.tmj-cycle__arrow{display:grid;place-items:center;color:#8ca188}.tmj-cycle__arrow svg{width:18px;height:18px}
+.tmj-medical-note{border:1px solid #d9d4ca;background:#fbfaf7;padding:clamp(26px,5vw,44px)}
+.tmj-medical-note__heading{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:start}
+.tmj-medical-note__icon{display:grid;place-items:center;width:52px;height:52px;border:1px solid #a9b7a4;border-radius:50%;color:var(--tmj-green-dark)}
+.tmj-medical-note__icon svg{width:25px;height:25px;stroke-width:1.7}
+.tmj-medical-note h2{margin:0;color:var(--tmj-text);font-size:clamp(1.35rem,2.4vw,1.85rem);font-weight:900;line-height:1.55}
+.tmj-medical-note__heading p{margin:14px 0 0;color:var(--tmj-muted);font-size:.95rem;font-weight:700;line-height:1.85}
+.tmj-medical-note__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px;margin:30px 0 0;padding:0;border-top:1px solid #ddd8cf;list-style:none}
+.tmj-medical-note__item{position:relative;border-bottom:1px solid #ddd8cf;padding:16px 8px 16px 27px;color:#4c534e;font-size:.92rem;font-weight:800;line-height:1.65}
+.tmj-medical-note__item::before{content:"";position:absolute;left:5px;top:1.55em;width:8px;height:8px;border:2px solid var(--tmj-green);border-radius:50%}
+.tmj-assessment-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.9fr);grid-template-areas:"intro media" "checklist media";gap:26px clamp(40px,6vw,68px);align-items:start}
+.tmj-assessment__intro{grid-area:intro}.tmj-assessment__media{grid-area:media;margin:0;align-self:stretch}
+.tmj-assessment__media img{display:block;width:100%;height:100%;min-height:430px;border:1px solid var(--tmj-border);object-fit:cover}
+.tmj-check-list{grid-area:checklist;display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.tmj-check-list li{display:flex;align-items:flex-start;gap:11px;color:#3c453f;font-size:.94rem;font-weight:800;line-height:1.65}
+.tmj-check-list svg{width:20px;height:20px;flex:0 0 auto;margin-top:.22em;color:var(--tmj-green);stroke-width:2}
+.tmj-approach-steps{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(34px,5vw,62px);margin-top:10px}
+.tmj-approach-steps::before{content:"";position:absolute;top:72px;left:13%;right:13%;height:1px;background:#b7c7b1}
+.tmj-approach-step{position:relative;z-index:1;text-align:center}
+.tmj-approach-step__number{display:block;margin-bottom:13px;color:var(--tmj-green);font-size:.78rem;font-weight:900;letter-spacing:.08em}
+.tmj-approach-step__icon{display:grid;place-items:center;width:72px;height:72px;margin:0 auto 18px;border:2px solid var(--tmj-green);border-radius:50%;background:var(--tmj-cream);color:var(--tmj-green-dark)}
+.tmj-approach-step__icon svg{width:29px;height:29px;stroke-width:1.65}
+.tmj-approach-step__label{margin:0 0 10px;color:var(--tmj-green);font-size:.84rem;font-weight:900}
+.tmj-approach-step h3{margin:0 0 13px;color:var(--tmj-text);font-size:1.08rem;font-weight:900;line-height:1.55}
+.tmj-approach-step>p:last-child{margin:0;color:var(--tmj-muted);font-size:.9rem;font-weight:700;line-height:1.85;text-align:left}
+.tmj-approach-steps__arrow{position:absolute;top:61px;z-index:2;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--tmj-cream);color:var(--tmj-green)}
+.tmj-approach-steps__arrow svg{width:17px;height:17px}
+.tmj-approach-steps__arrow--1{left:32.2%}.tmj-approach-steps__arrow--2{left:65.6%}
+.tmj-consult-section{padding:0 0 clamp(72px,8vw,96px);background:var(--tmj-cream);border-bottom:1px solid var(--tmj-border)}
+.tmj-consult-cta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:34px;align-items:center;border:1px solid #aebfa8;border-radius:12px;background:#f3f8ef;padding:clamp(26px,4vw,38px)}
+.tmj-consult-cta h2{margin:0;color:var(--tmj-green-dark);font-size:clamp(1.25rem,2vw,1.6rem);font-weight:900;line-height:1.55}
+.tmj-consult-cta p{margin:10px 0 0;color:#536052;font-size:.94rem;font-weight:700;line-height:1.8}
+.tmj-consult-cta__link{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;border-radius:8px;background:var(--tmj-green);color:#fff;padding:14px 20px;font-size:.93rem;font-weight:900;line-height:1.4;text-align:center;text-decoration:none;transition:background .2s ease,transform .2s ease}
+.tmj-consult-cta__link:hover,.tmj-consult-cta__link:focus-visible{background:var(--tmj-green-dark);transform:translateY(-1px);outline:3px solid rgba(53,107,47,.2);outline-offset:3px}
+.tmj-consult-cta__link svg{width:20px;height:20px;flex:0 0 auto}
+.tmj-frequency{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;border-top:1px solid var(--tmj-border);border-bottom:1px solid var(--tmj-border);padding:30px 0}
+.tmj-frequency__icon{display:grid;place-items:center;width:50px;height:50px;border:1px solid #b9cbb4;border-radius:50%;color:var(--tmj-green)}
+.tmj-frequency__icon svg{width:23px;height:23px;stroke-width:1.7}
+.tmj-frequency h2{margin:0 0 12px;color:var(--tmj-text);font-size:1.35rem;font-weight:900;line-height:1.5}
+.tmj-frequency p{margin:0;color:var(--tmj-muted);font-size:.94rem;font-weight:700;line-height:1.85}.tmj-frequency p+p{margin-top:6px}
+@media(max-width:767px){
+  .tmj-education-section{padding:68px 0}.tmj-education-section--frequency{padding-top:42px;padding-bottom:72px}
+  .tmj-section-title{margin-bottom:30px;padding-bottom:15px;font-size:clamp(1.5rem,7vw,1.85rem);line-height:1.5}.tmj-section-title::after{width:44px}
+  .tmj-section-lead{margin:-8px 0 34px;font-size:.96rem;line-height:1.85}.tmj-copy{font-size:.96rem;line-height:1.85}.tmj-copy--accent{padding-left:18px}
+  .tmj-cause-layout{grid-template-columns:1fr;gap:30px}.tmj-cause-visual{padding:10px}
+  .tmj-factor-grid{grid-template-columns:1fr;border-left:0}.tmj-factor{border-right:0;padding:26px 4px}.tmj-factor__top{margin-bottom:14px}.tmj-factor__icon{width:44px;height:44px}
+  .tmj-factor h3{font-size:1.04rem}.tmj-factor p{font-size:.93rem}
+  .tmj-symptom-flow{grid-template-columns:1fr;gap:0;margin-left:5px;padding-left:46px}.tmj-symptom-flow::before{top:26px;bottom:26px;left:27px;right:auto;width:1px;height:auto}
+  .tmj-symptom-flow__step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;min-height:92px;text-align:left}.tmj-symptom-flow__number{width:54px;height:54px;margin:0 0 0 -46px}
+  .tmj-symptom-flow__step p{font-size:.95rem}.tmj-symptom-flow__arrow{display:none}.tmj-pc-only{display:none}.tmj-flow-note{margin-top:26px;text-align:left}
+  .tmj-relief-layout{grid-template-columns:1fr;gap:36px}.tmj-cycle{grid-template-columns:1fr;gap:0;border-top:1px solid var(--tmj-border)}
+  .tmj-cycle__item,.tmj-cycle__item--last{grid-column:auto;border-top:0;border-bottom:1px solid var(--tmj-border);padding:16px 5px}.tmj-cycle__arrow{height:28px;border-bottom:1px solid var(--tmj-border)}.tmj-cycle__arrow svg{transform:rotate(90deg)}
+  .tmj-medical-note{padding:24px 18px}.tmj-medical-note__heading{grid-template-columns:1fr;gap:15px}.tmj-medical-note__icon{width:46px;height:46px}.tmj-medical-note h2{font-size:1.3rem}.tmj-medical-note__list{grid-template-columns:1fr;gap:0;margin-top:24px}
+  .tmj-assessment-layout{grid-template-columns:1fr;grid-template-areas:"intro" "media" "checklist";gap:28px}.tmj-assessment__media img{height:auto;min-height:0}.tmj-check-list{gap:13px}
+  .tmj-approach-steps{grid-template-columns:1fr;gap:0;margin-left:5px;padding-left:48px}.tmj-approach-steps::before{top:42px;bottom:42px;left:27px;right:auto;width:1px;height:auto}
+  .tmj-approach-step{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:17px;min-height:210px;text-align:left}.tmj-approach-step__number{grid-column:2;margin:0 0 8px}
+  .tmj-approach-step__icon{grid-column:1;grid-row:1/5;width:60px;height:60px;margin:0 0 0 -48px;background:var(--tmj-cream)}.tmj-approach-step__icon svg{width:25px;height:25px}
+  .tmj-approach-step__label,.tmj-approach-step h3,.tmj-approach-step>p:last-child{grid-column:2}.tmj-approach-step__label{margin-bottom:7px}.tmj-approach-step h3{font-size:1.04rem}.tmj-approach-steps__arrow{display:none}
+  .tmj-consult-section{padding-bottom:72px}.tmj-consult-cta{grid-template-columns:1fr;gap:22px;padding:24px 18px}.tmj-consult-cta__link{width:100%;min-height:52px}
+  .tmj-frequency{grid-template-columns:1fr;gap:16px;padding:26px 0}.tmj-frequency h2{font-size:1.25rem}
+}
+@media(min-width:768px) and (max-width:1024px){
+  .tmj-cause-layout,.tmj-assessment-layout{grid-template-columns:minmax(0,1fr) minmax(300px,.9fr);gap:40px}
+  .tmj-relief-layout{grid-template-columns:1fr;gap:38px}.tmj-cycle{max-width:760px}.tmj-approach-steps{gap:34px}.tmj-approach-step h3{font-size:1rem}
+}
+@media(prefers-reduced-motion:reduce){.tmj-consult-cta__link{transition:none}}
+/* TMJ_EDUCATION_STYLES_END */
 
   </style>
 <script type="application/ld+json">
@@ -421,7 +669,7 @@
               <a href="./lumbar-disc-herniation.html" class="site-nav__dropdown-link">椎間板ヘルニア</a>
               <a href="./hip-osteoarthritis.html" class="site-nav__dropdown-link">股関節痛</a>
               <a href="./knee-osteoarthritis.html" class="site-nav__dropdown-link">膝痛</a>
-              <a href="./index.html" class="site-nav__dropdown-link">その他の足腰の症状</a>
+              <a href="./index.html" class="site-nav__dropdown-link">すべての症状を見る</a>
             </div>
           </div>
           <a href="../index.html#flow" class="site-nav__item">
@@ -461,7 +709,7 @@
               <a href="./lumbar-disc-herniation.html" class="site-mobile-nav__subitem">椎間板ヘルニア</a>
               <a href="./hip-osteoarthritis.html" class="site-mobile-nav__subitem">股関節痛</a>
               <a href="./knee-osteoarthritis.html" class="site-mobile-nav__subitem">膝痛</a>
-              <a href="./index.html" class="site-mobile-nav__subitem">その他の足腰の症状</a>
+              <a href="./index.html" class="site-mobile-nav__subitem">すべての症状を見る</a>
             </div>
           </div>
           <a href="../index.html#flow" class="site-mobile-nav__item">流れ</a>
@@ -499,179 +747,188 @@
       </div>
     </section>
 
-    <section class="concerns">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">こんなお悩みはありませんか？</h2>
-        <div class="concerns__list">
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">口を大きく開けられない、または開けると痛い</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">あごがカクカク、ジャリジャリと音がする</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">食事中にあごが疲れる、痛くなる</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">朝起きたとき、あごがこわばっている</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">ストレスが多いと症状がひどくなる気がする</p>
-          </div>
+    <section id="troubles" class="troubles-check">
+      <div class="troubles-check__inner">
+        <div class="troubles-check__heading">
+          <h2>こんなお悩みを抱えていませんか？</h2>
         </div>
-        <p class="concerns__footer">一つでも当てはまる方は、<strong>当院がお力になれる可能性があります。</strong></p>
+
+        <ul class="troubles-check__list" aria-label="顎関節症とあごの痛みでよくあるお悩み">
+          <li>口を大きく開けると<strong>あごが痛い</strong></li>
+          <li>口を開けたときに<strong>カクカク音がする</strong></li>
+          <li>食事中に<strong>あごが疲れる</strong></li>
+          <li>朝起きると<strong>あごがこわばっている</strong></li>
+          <li>あくびで口を開けるのが<strong>不安</strong></li>
+          <li>硬い物を噛むと<strong>あごがつらい</strong></li>
+          <li>気づくと<strong>歯を食いしばっている</strong></li>
+          <li>歯科と整体のどちらへ<strong>相談するか迷っている</strong></li>
+        </ul>
       </div>
     </section>
 
-    <section class="cause">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">顎関節症はなぜ起こるのか</h2>
-        <div class="prose"><p>顎関節症は「<span class="highlight">あごだけの問題ではない</span>」症状です。スマホやPCの使い過ぎで胸椎が後弯（猫背）になると頭部が前方へ変位し、首の最上部（頚椎C0-C1）の可動性が著しく低下します。</p><p>ここが動かなくなると咬筋・側頭筋などの咀嚼筋が頑張りすぎている筋肉化して過緊張し、三叉神経や血管を圧迫して頭痛・耳鳴りを二次的に引き起こすこともあります。</p></div>
-        <div class="mechanism">
-          <p class="mechanism__title">顎関節症が起きる姿勢の連鎖</p>
-          <div class="mechanism__flow">
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">1</div>
-              <p class="mechanism__step-text">胸椎後弯（猫背）が習慣化</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">2</div>
-              <p class="mechanism__step-text">頭部が前方へ変位</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">3</div>
-              <p class="mechanism__step-text">頚椎C0-C1の可動性が低下</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__result">
-              <svg class="mechanism__result-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:#fff;"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-              <p class="mechanism__result-text">咀嚼筋が頑張りすぎている筋肉化→あごの痛み・開口障害</p>
-            </div>
-          </div>
-        </div>
-        <div class="vicious-cycle">
-          <p class="vicious-cycle__title">
-            <i data-lucide="alert-triangle" style="width:1.125rem;height:1.125rem;" aria-hidden="true"></i>
-            マウスピースだけでは改善しない理由
-          </p>
-          <div class="cycle-flow"><span class="cycle-item">マウスピースで歯を守る</span><span class="cycle-arrow">→</span><span class="cycle-item">首・肩の緊張はそのまま</span><span class="cycle-arrow">→</span><span class="cycle-item">姿勢の崩れが続く</span><span class="cycle-arrow">→</span><span class="cycle-item">あごへの負担が続く</span></div>
-        </div>
-        <div class="key-point">
-          <p class="key-point__label">✦ ポイント</p>
-          <p class="key-point__text">噛み合わせ・歯ぎしり・ストレスが誘因になることはありますが、その土台に姿勢の連鎖があります。マウスピースと並行して姿勢・頚椎への介入が改善の近道です。</p>
-        </div>
-      </div>
-    </section>
 
-    <!-- SYMPTOM_MID_CTA_START -->
-<section class="symptom-mid-cta">
-      <div class="container max-w-4xl symptom-mid-cta__inner">
-        <div>
-          <p class="symptom-mid-cta__eyebrow">相談の目安</p>
-          <h2 class="symptom-mid-cta__title">原因を知るだけでなく、今の状態に合う進め方を確認しませんか？</h2>
-          <p class="symptom-mid-cta__text">痛み方や生活で困っている場面は人によって違います。読みながら「自分も近いかも」と感じた方は、来院前にLINEで状況を送っていただいて大丈夫です。</p>
+<!-- TMJ_EDUCATION_START -->
+    <div class="tmj-education">
+      <section class="tmj-education-section tmj-education-section--white" aria-labelledby="tmj-cause-title">
+        <div class="container max-w-4xl">
+          <h2 id="tmj-cause-title" class="tmj-section-title">顎関節症はなぜ起こるのか？</h2>
+          <div class="tmj-cause-layout">
+            <div class="tmj-copy">
+              <p>顎関節症による痛みや口の開けにくさは、あごだけの一つの理由で起こるとは限りません。</p>
+              <p>食いしばりや歯ぎしり、片側で噛む癖、口を大きく開ける動作などが重なると、あごの関節や周囲の筋肉へ負担が集まりやすくなります。</p>
+              <p>さらに、首や肩に力が入った姿勢が続くと、頭を支える負担と一緒にあごまわりも緊張しやすくなることがあります。</p>
+              <p>歯や噛み合わせの問題が疑われる場合は歯科での確認を優先し、そのうえで首・肩・呼吸・日常動作も整理することが大切です。</p>
+            </div>
+            <figure class="tmj-cause-visual">
+              <img src="../image/イラスト/足・手・その他/顎関節と頭蓋骨の構造.webp" alt="顎関節と頭蓋骨、口を動かす位置関係を示したイラスト" loading="lazy" decoding="async" width="800" height="600">
+              <figcaption>あごの状態には、関節・筋肉・歯の状態・日常の使い方などが関係します。</figcaption>
+            </figure>
+          </div>
         </div>
-        <div class="symptom-mid-cta__actions">
-          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで相談する</a>
-          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--tel" href="tel:0471143274">電話で相談する</a>
-        </div>
-      </div>
-    </section>
-<!-- SYMPTOM_MID_CTA_END -->
+      </section>
 
-<section class="approach">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">当院の顎関節症へのアプローチ</h2>
-        <p class="approach__intro">胸椎・頚椎の可動性を回復し、頭部を安定させ、咀嚼筋をリリースする3段階で負担の軽減を目指します</p>
-        <img src="../image/イラスト/足・手・その他/噛みしめで緊張する側頭筋と咬筋.webp" alt="噛みしめで緊張する側頭筋と咬筋" class="feature-photo feature-photo--full" style="width:100%; max-height:320px; object-fit:contain; background:#fff; padding:.5rem; border-radius:1rem; box-shadow:0 10px 25px -5px rgba(0,0,0,0.08); margin-bottom:2.5rem; border:1px solid #e2e8f0;" loading="lazy" decoding="async" width="800" height="620">
-        <div class="msm-steps">
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--1">
-                <span class="msm-step__badge-num">1</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--1">可動性の回復</span>
-                <h3 class="msm-step__title">胸椎・頚椎C0-C1の可動性を手技で回復</h3>
-                <p class="msm-step__text">土台となる胸椎の後弯を改善し、頭部の位置を正しく戻します。頚椎C0-C1の可動性を手技で引き出し、あごへの負担が減る環境を整えます。</p>
-              </div>
-            </div>
-          </div>
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--2">
-                <span class="msm-step__badge-num">2</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--2">安定性の再獲得</span>
-                <h3 class="msm-step__title">頚部深層筋（働きにくくなった筋肉）を再起動</h3>
-                <p class="msm-step__text">頭部を正しい位置に保つためにサボってしまった頚部深層筋（頚長筋など）を再稼働させます。頭が安定すると咀嚼筋の頑張りすぎている筋肉化が自然と緩和されます。</p>
-              </div>
-            </div>
-          </div>
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--3">
-                <span class="msm-step__badge-num">3</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--3">動作の定着</span>
-                <h3 class="msm-step__title">咀嚼筋のリリースと日常の食いしばり対策</h3>
-                <p class="msm-step__text">過緊張した咬筋・側頭筋への手技を加え、あごまわりの動きを滑らかにします。日中の食いしばり癖に気づくセルフモニタリング法や就寝前のリラクゼーション法もお伝えします。</p>
-              </div>
-            </div>
+      <section class="tmj-education-section tmj-education-section--cream" aria-labelledby="tmj-factors-title">
+        <div class="container max-w-4xl">
+          <h2 id="tmj-factors-title" class="tmj-section-title">あごに負担が集まりやすくなる4つの要因</h2>
+          <div class="tmj-factor-grid">
+            <article class="tmj-factor">
+              <div class="tmj-factor__top"><span class="tmj-factor__number">01</span><span class="tmj-factor__icon" aria-hidden="true"><i data-lucide="circle-dot"></i></span></div>
+              <h3>食いしばりや歯ぎしりが続く</h3>
+              <p>集中しているときや睡眠中に強く噛みしめる状態が続くと、あごまわりの筋肉や関節が休みにくくなることがあります。</p>
+            </article>
+            <article class="tmj-factor">
+              <div class="tmj-factor__top"><span class="tmj-factor__number">02</span><span class="tmj-factor__icon" aria-hidden="true"><i data-lucide="utensils"></i></span></div>
+              <h3>片側で噛む・大きく口を開ける</h3>
+              <p>いつも同じ側で噛む、硬い物を続けて食べる、大きなあくびをするといった動作で、一方の関節へ負担が偏ることがあります。</p>
+            </article>
+            <article class="tmj-factor">
+              <div class="tmj-factor__top"><span class="tmj-factor__number">03</span><span class="tmj-factor__icon" aria-hidden="true"><i data-lucide="monitor"></i></span></div>
+              <h3>首や背中が動きにくい</h3>
+              <p>スマートフォンやパソコンを長く見る姿勢で首や肩が緊張すると、頭とあごを動かす余裕が減ることがあります。</p>
+            </article>
+            <article class="tmj-factor">
+              <div class="tmj-factor__top"><span class="tmj-factor__number">04</span><span class="tmj-factor__icon" aria-hidden="true"><i data-lucide="wind"></i></span></div>
+              <h3>緊張が続き、力が抜けにくい</h3>
+              <p>ストレスや浅い呼吸によって首・肩・あごに力が入り続けると、口を開ける動作がぎこちなくなることがあります。</p>
+            </article>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="frequency">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">通院頻度の目安</h2>
-        <div class="frequency__card">
-          <div class="frequency__icon">
-            <i data-lucide="calendar" style="width:1.5rem;height:1.5rem;color:#fff;" aria-hidden="true"></i>
+      <section class="tmj-education-section tmj-education-section--flow" aria-labelledby="tmj-flow-title">
+        <div class="container max-w-4xl">
+          <h2 id="tmj-flow-title" class="tmj-section-title">あごの痛み・開けにくさが起きるまでの流れ</h2>
+          <div class="tmj-symptom-flow" role="list" aria-label="あごの痛みや開けにくさが起きるまでの一例">
+            <div class="tmj-symptom-flow__step" role="listitem"><span class="tmj-symptom-flow__number">1</span><p>食いしばりや同じ姿勢が<br class="tmj-pc-only">長く続く</p></div>
+            <div class="tmj-symptom-flow__step" role="listitem"><span class="tmj-symptom-flow__number">2</span><p>首・肩・あごの筋肉が<br class="tmj-pc-only">緊張する</p></div>
+            <div class="tmj-symptom-flow__step" role="listitem"><span class="tmj-symptom-flow__number">3</span><p>あごの動きへ<br class="tmj-pc-only">負担が集まる</p></div>
+            <div class="tmj-symptom-flow__step" role="listitem"><span class="tmj-symptom-flow__number">4</span><p>痛み・音・開けにくさを感じることがある</p></div>
+            <span class="tmj-symptom-flow__arrow tmj-symptom-flow__arrow--1" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+            <span class="tmj-symptom-flow__arrow tmj-symptom-flow__arrow--2" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+            <span class="tmj-symptom-flow__arrow tmj-symptom-flow__arrow--3" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
           </div>
-          <div>
-            <p class="frequency__text">最初の1〜2ヶ月は<strong>週1〜2回</strong>のペースをおすすめしています。あごの症状と姿勢の改善に合わせて間隔を広げていきます。</p>
-            <div class="frequency__phases">
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--a"></span>
-                <span class="frequency__phase-label">最初の1〜2ヶ月：週1〜2回</span>
-              </div>
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--b"></span>
-                <span class="frequency__phase-label">安定後：2週に1回</span>
-              </div>
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--c"></span>
-                <span class="frequency__phase-label">メンテナンス期：月1回</span>
-              </div>
+          <p class="tmj-flow-note">これは顎関節症の症状が起こる一例です。原因や状態は一人ひとり異なるため、歯や噛み合わせ、あごの動き、首・肩の状態、生活習慣などを確認する必要があります。</p>
+        </div>
+      </section>
+
+      <section class="tmj-education-section tmj-education-section--white" aria-labelledby="tmj-relief-title">
+        <div class="container max-w-4xl">
+          <h2 id="tmj-relief-title" class="tmj-section-title">なぜあごをほぐしても戻ることがあるのか？</h2>
+          <div class="tmj-relief-layout">
+            <div class="tmj-copy tmj-copy--accent">
+              <p>あごまわりをやさしくほぐすと、一時的に楽になることがあります。</p>
+              <p>しかし、食いしばり、片側で噛む癖、首や肩の緊張など、あごへ負担を集めている要因が残っていると、日常生活へ戻ったときに再びつらさを感じやすくなります。</p>
+              <p><strong>マウスピースは歯を守るために大切ですが、それだけで全身の緊張や日中の癖が変わるとは限りません。</strong></p>
+              <p>歯科での確認と必要なケアを受けながら、首・肩・呼吸・食事中の使い方を合わせて見直すことが大切です。</p>
+            </div>
+            <div class="tmj-cycle" aria-label="あごへの負担が続く流れの一例">
+              <div class="tmj-cycle__item"><i data-lucide="circle-dot" aria-hidden="true"></i><span>食いしばりや片側噛みが続く</span></div>
+              <span class="tmj-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="tmj-cycle__item"><i data-lucide="activity" aria-hidden="true"></i><span>首・肩・あごが緊張する</span></div>
+              <span class="tmj-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="tmj-cycle__item"><i data-lucide="triangle-alert" aria-hidden="true"></i><span>痛みや開けにくさを感じる</span></div>
+              <span class="tmj-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="tmj-cycle__item"><i data-lucide="shield-alert" aria-hidden="true"></i><span>口を動かさないよう力が入る</span></div>
+              <span class="tmj-cycle__arrow" aria-hidden="true"><i data-lucide="rotate-cw"></i></span>
+              <div class="tmj-cycle__item tmj-cycle__item--last"><i data-lucide="refresh-cw" aria-hidden="true"></i><span>さらにあごへ負担が集まる</span></div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="tmj-education-section tmj-education-section--medical" aria-labelledby="tmj-medical-title">
+        <div class="container max-w-4xl">
+          <div class="tmj-medical-note">
+            <div class="tmj-medical-note__heading">
+              <span class="tmj-medical-note__icon" aria-hidden="true"><i data-lucide="stethoscope"></i></span>
+              <div><h2 id="tmj-medical-title">このような症状がある場合は、まず歯科・医療機関へご相談ください</h2><p>あごの痛みや開けにくさの中には、歯科や医療機関での検査・治療が優先されるものもあります。以下の場合は整体を受ける前にご相談ください。</p></div>
+            </div>
+            <ul class="tmj-medical-note__list">
+              <li class="tmj-medical-note__item">口が急に開かない、または閉じられない</li>
+              <li class="tmj-medical-note__item">転倒や衝突のあとから強い痛みや変形がある</li>
+              <li class="tmj-medical-note__item">あごや顔に強い腫れ、赤み、熱感がある</li>
+              <li class="tmj-medical-note__item">歯や歯ぐきの痛み、噛み合わせの急な変化がある</li>
+              <li class="tmj-medical-note__item">顔のしびれ、動かしにくさ、強い頭痛を伴っている</li>
+              <li class="tmj-medical-note__item">痛みで食事や水分を十分に取れない</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="tmj-education-section tmj-education-section--white" aria-labelledby="tmj-assessment-title">
+        <div class="container max-w-4xl">
+          <h2 id="tmj-assessment-title" class="tmj-section-title">当院ではあごだけでなく、首・肩・全身の動きを確認します</h2>
+          <div class="tmj-assessment-layout">
+            <div class="tmj-assessment__intro tmj-copy">
+              <p>同じ「顎関節症」でも、痛み、音、口の開けにくさ、食いしばる場面は人によって異なります。</p>
+              <p>柏市の整体院ひざこぞうでは、あごを直接強く動かすのではなく、首・肩・背中の動き、呼吸、頭の支え方、日常の癖まで確認します。</p>
+              <p>歯科で確認すべき状態を分けたうえで、カウンセリングと身体のチェックをもとに施術方針をご説明します。</p>
+            </div>
+            <figure class="tmj-assessment__media"><img src="../image/flow-movement-assessment-768.webp" alt="施術者が身体の動きと左右差を確認している様子" loading="lazy" decoding="async" width="768" height="576"></figure>
+            <ul class="tmj-check-list">
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>痛み・音・開けにくさが出る場面</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>あごを開閉したときの動きと左右差</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>首・肩・背中の動きと頭の支え方</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>呼吸の深さと食いしばりに気づく場面</span></li>
+              <li><i data-lucide="circle-check" aria-hidden="true"></i><span>食事・仕事・睡眠など生活で負担がかかる場面</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="tmj-education-section tmj-education-section--cream" aria-labelledby="tmj-approach-title">
+        <div class="container max-w-4xl">
+          <h2 id="tmj-approach-title" class="tmj-section-title">整体院ひざこぞうの顎関節症へのアプローチ</h2>
+          <p class="tmj-section-lead">当院では、あごだけを緩めるのではなく、「動かす・支える・使い方を整える」という流れで、あごへ負担が集中しにくい状態を目指します。</p>
+          <div class="tmj-approach-steps">
+            <article class="tmj-approach-step"><span class="tmj-approach-step__number">STEP 1</span><span class="tmj-approach-step__icon" aria-hidden="true"><i data-lucide="move"></i></span><p class="tmj-approach-step__label">動かす｜可動性</p><h3>首・肩・背中の動きを整える</h3><p>あごを強く動かさず、首・肩・背中の状態を確認し、動きにくくなっている部分へやさしくアプローチします。</p></article>
+            <article class="tmj-approach-step"><span class="tmj-approach-step__number">STEP 2</span><span class="tmj-approach-step__icon" aria-hidden="true"><i data-lucide="shield-check"></i></span><p class="tmj-approach-step__label">支える｜安定性</p><h3>力を抜いて頭とあごを支えやすくする</h3><p>呼吸や身体の状態に合わせて、首・肩・あごへ力を入れ続けなくても姿勢を保ちやすい状態を目指します。</p></article>
+            <article class="tmj-approach-step"><span class="tmj-approach-step__number">STEP 3</span><span class="tmj-approach-step__icon" aria-hidden="true"><i data-lucide="utensils"></i></span><p class="tmj-approach-step__label">使う｜動作改善</p><h3>食いしばりや噛み方の癖に気づく</h3><p>食事、仕事、睡眠前などの状況を確認し、日中に力を抜く工夫や無理なく続けられるセルフケアをお伝えします。</p></article>
+            <span class="tmj-approach-steps__arrow tmj-approach-steps__arrow--1" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+            <span class="tmj-approach-steps__arrow tmj-approach-steps__arrow--2" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="tmj-consult-section" aria-labelledby="tmj-consult-title">
+        <div class="container max-w-4xl">
+          <div class="tmj-consult-cta">
+            <div><h2 id="tmj-consult-title">自分のあごの状態をどこへ相談すべきか分からない方へ</h2><p>痛みや音が出る場面、歯科で言われたことなどをLINEで送っていただければ、来院前のご相談も可能です。</p></div>
+            <a class="tmj-consult-cta__link" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer"><i data-lucide="message-circle" aria-hidden="true"></i>LINEで顎関節症について相談する</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="tmj-education-section tmj-education-section--frequency" aria-labelledby="tmj-frequency-title">
+        <div class="container max-w-4xl">
+          <div class="tmj-frequency">
+            <span class="tmj-frequency__icon" aria-hidden="true"><i data-lucide="calendar-days"></i></span>
+            <div><h2 id="tmj-frequency-title">通院頻度について</h2><p>通院頻度は、痛みや開けにくさの程度、歯科での治療状況、生活環境、目指す状態によって異なります。</p><p>初回に身体の状態を確認したうえで、必要な頻度と期間の目安をご説明します。</p><p>無理に通院を勧めることはありませんので、ご希望や生活状況も含めてご相談ください。</p></div>
+          </div>
+        </div>
+      </section>
+    </div>
+<!-- TMJ_EDUCATION_END -->
     <section id="flow" class="flow-slider" aria-labelledby="flow-title" data-flow-slider>
       <div class="flow-slider__inner">
         <div class="flow-slider__heading-band">
@@ -808,40 +1065,28 @@
 <section class="related-symptoms">
       <div class="container max-w-4xl">
         <p class="related-symptoms__eyebrow">RELATED SYMPTOMS</p>
-        <h2 class="related-symptoms__title">ほかの症状も確認できます</h2>
-        <p class="related-symptoms__lead">痛みをかばう姿勢が続くと、別の部位にも負担がかかりやすくなります。気になる症状があれば、あわせて確認してみてください。</p>
+        <h2 class="related-symptoms__title">この症状に関連するページ</h2>
+        <p class="related-symptoms__lead">痛む場所や動作が近い症状ページも、あわせてご確認いただけます。</p>
         <div class="related-symptoms__grid">
 
-          <a class="related-symptom-card" href="knee-osteoarthritis.html">
-            <span class="related-symptom-card__label">変形性膝関節症</span>
-            <span class="related-symptom-card__description">階段や歩き始めの膝痛、膝のこわばりが気になる方へ。</span>
+          <a class="related-symptom-card" href="shoulder-stiffness.html">
+            <span class="related-symptom-card__label">肩こり</span>
+            <span class="related-symptom-card__description">首肩の重さや頭痛を伴うこりが気になる方へ。</span>
             <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
-          <a class="related-symptom-card" href="knee-effusion.html">
-            <span class="related-symptom-card__label">膝の水（関節水腫）</span>
-            <span class="related-symptom-card__description">膝の腫れや水が溜まる不安を整理したい方へ。</span>
+          <a class="related-symptom-card" href="cervical-spondylosis.html">
+            <span class="related-symptom-card__label">頚椎症・首の痛み</span>
+            <span class="related-symptom-card__description">首の痛みや腕へのしびれが続く方へ。</span>
             <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
-          <a class="related-symptom-card" href="pes-anserine-bursitis.html">
-            <span class="related-symptom-card__label">膝の内側の痛み</span>
-            <span class="related-symptom-card__description">鵞足炎や内側の違和感が続く方へ。</span>
+          <a class="related-symptom-card" href="thoracic-outlet.html">
+            <span class="related-symptom-card__label">胸郭出口症候群</span>
+            <span class="related-symptom-card__description">首肩から腕にかけてしびれやだるさがある方へ。</span>
             <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
-          <a class="related-symptom-card" href="knee-lateral-pain.html">
-            <span class="related-symptom-card__label">膝の外側の痛み</span>
-            <span class="related-symptom-card__description">腸脛靭帯炎や外側半月板まわりが気になる方へ。</span>
-            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="related-symptom-card" href="knee-posterior-pain.html">
-            <span class="related-symptom-card__label">膝の裏側の痛み</span>
-            <span class="related-symptom-card__description">ベーカー嚢腫や膝裏の張りが気になる方へ。</span>
-            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="related-symptom-card" href="knee-front-pain.html">
-            <span class="related-symptom-card__label">膝の前側の痛み</span>
-            <span class="related-symptom-card__description">階段や立ち上がりでお皿まわりが気になる方へ。</span>
-            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
-          </a>
+        </div>
+        <div class="related-symptoms__all">
+          <a class="related-symptoms__all-link" href="index.html">すべての症状を見る <span aria-hidden="true">›</span></a>
         </div>
       </div>
     </section>

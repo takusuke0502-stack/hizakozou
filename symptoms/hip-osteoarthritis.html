@@ -216,18 +216,21 @@
 .related-article-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
 .related-article-card__desc{font-size:13px;font-weight:700;color:#475569;line-height:1.8}
 .related-article-card__link{display:inline-flex;align-items:center;gap:.35rem;font-size:13px;font-weight:900;color:#2563eb}
-.related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #e2e8f0}
-.related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.1em;margin:0 0 .7rem}
-.related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .75rem}
-.related-symptoms__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
-.related-symptoms__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem}
-.related-symptom-card{position:relative;display:flex;flex-direction:column;gap:.55rem;min-height:126px;background:#f8fbff;border:1px solid #dbeafe;border-radius:8px;padding:1rem 3.25rem 1rem 1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
-.related-symptom-card:hover,.related-symptom-card:focus-visible{transform:translateY(-2px);background:#fff;border-color:#93c5fd;box-shadow:0 8px 18px rgba(37,99,235,.1);outline:none}
-.related-symptom-card__label{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
-.related-symptom-card__description{font-size:13px;font-weight:700;color:#475569;line-height:1.75}
-.related-symptom-card__arrow{position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#f8fbff;border:1px solid #dbeafe;color:#2563eb;font-size:22px;font-weight:900;line-height:1;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
-.related-symptom-card:hover .related-symptom-card__arrow,.related-symptom-card:focus-visible .related-symptom-card__arrow{background:#2563eb;border-color:#2563eb;color:#fff;transform:translateY(-50%) translateX(2px)}
-@media(max-width:640px){.related-symptom-card{padding-right:3rem}.related-symptom-card__arrow{right:.85rem;width:30px;height:30px;font-size:20px}}
+.related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #dfe4dc}
+.related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#356b2f;letter-spacing:.1em;margin:0 0 .7rem}
+.related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#223b2d;line-height:1.55;margin:0 0 .75rem}
+.related-symptoms__lead{text-align:center;font-size:14px;font-weight:700;color:#59635d;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
+.related-symptoms__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem}
+.related-symptom-card{position:relative;display:flex;flex-direction:column;gap:.55rem;min-height:118px;background:#fff;border:1px solid #dfe4dc;border-radius:8px;padding:1rem 3.25rem 1rem 1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
+.related-symptom-card:hover,.related-symptom-card:focus-visible{transform:translateY(-2px);background:#fafcf8;border-color:#9bb596;box-shadow:0 8px 18px rgba(35,77,36,.09);outline:3px solid rgba(53,107,47,.16);outline-offset:2px}
+.related-symptom-card__label{font-size:1rem;font-weight:900;color:#234d24;line-height:1.5}
+.related-symptom-card__description{font-size:13px;font-weight:700;color:#59635d;line-height:1.75}
+.related-symptom-card__arrow{position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#f6f9f3;border:1px solid #cbd8c6;color:#356b2f;font-size:22px;font-weight:900;line-height:1;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
+.related-symptom-card:hover .related-symptom-card__arrow,.related-symptom-card:focus-visible .related-symptom-card__arrow{background:#356b2f;border-color:#356b2f;color:#fff;transform:translateY(-50%) translateX(2px)}
+.related-symptoms__all{display:flex;justify-content:center;margin-top:1.35rem}
+.related-symptoms__all-link{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:44px;border-bottom:1px solid #8aa384;color:#234d24;font-size:14px;font-weight:900;text-decoration:none}
+.related-symptoms__all-link:hover,.related-symptoms__all-link:focus-visible{color:#356b2f;border-color:#356b2f;outline:3px solid rgba(53,107,47,.16);outline-offset:5px}
+@media(max-width:640px){.related-symptoms{padding:2.75rem 1rem}.related-symptoms__grid{grid-template-columns:1fr}.related-symptom-card{min-height:104px;padding-right:3rem}.related-symptom-card__arrow{right:.85rem;width:30px;height:30px;font-size:20px}}
 .symptom-mid-cta{padding:2.75rem 1rem;background:#fff;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
 .symptom-mid-cta__inner{display:grid;gap:1.25rem;align-items:center;background:#f8fbff;border:1px solid #bfdbfe;border-radius:8px;padding:1.5rem}
 .symptom-mid-cta__eyebrow{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
@@ -983,7 +986,6 @@
 }
 /* HIP_PAIN_EDUCATION_STYLES_END */
 
-
   </style>
 <script type="application/ld+json">
 {
@@ -1130,7 +1132,7 @@
               <a href="./lumbar-disc-herniation.html" class="site-nav__dropdown-link">椎間板ヘルニア</a>
               <a href="./hip-osteoarthritis.html" class="site-nav__dropdown-link">股関節痛</a>
               <a href="./knee-osteoarthritis.html" class="site-nav__dropdown-link">膝痛</a>
-              <a href="./index.html" class="site-nav__dropdown-link">その他の足腰の症状</a>
+              <a href="./index.html" class="site-nav__dropdown-link">すべての症状を見る</a>
             </div>
           </div>
           <a href="../index.html#flow" class="site-nav__item">
@@ -1170,7 +1172,7 @@
               <a href="./lumbar-disc-herniation.html" class="site-mobile-nav__subitem">椎間板ヘルニア</a>
               <a href="./hip-osteoarthritis.html" class="site-mobile-nav__subitem">股関節痛</a>
               <a href="./knee-osteoarthritis.html" class="site-mobile-nav__subitem">膝痛</a>
-              <a href="./index.html" class="site-mobile-nav__subitem">その他の足腰の症状</a>
+              <a href="./index.html" class="site-mobile-nav__subitem">すべての症状を見る</a>
             </div>
           </div>
           <a href="../index.html#flow" class="site-mobile-nav__item">流れ</a>
@@ -1597,7 +1599,39 @@
 
 
 <!-- RELATED_SYMPTOMS_NAV_START -->
+<section class="related-symptoms">
+      <div class="container max-w-4xl">
+        <p class="related-symptoms__eyebrow">RELATED SYMPTOMS</p>
+        <h2 class="related-symptoms__title">この症状に関連するページ</h2>
+        <p class="related-symptoms__lead">痛む場所や動作が近い症状ページも、あわせてご確認いただけます。</p>
+        <div class="related-symptoms__grid">
 
+          <a class="related-symptom-card" href="lower-back-pain.html">
+            <span class="related-symptom-card__label">腰痛</span>
+            <span class="related-symptom-card__description">立ち上がりや長時間同じ姿勢で腰がつらい方へ。</span>
+            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="related-symptom-card" href="sciatica.html">
+            <span class="related-symptom-card__label">坐骨神経痛</span>
+            <span class="related-symptom-card__description">お尻から脚にかけて痛みやしびれがある方へ。</span>
+            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="related-symptom-card" href="knee-osteoarthritis.html">
+            <span class="related-symptom-card__label">変形性膝関節症</span>
+            <span class="related-symptom-card__description">歩き始めや階段で膝痛が続く方へ。</span>
+            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="related-symptom-card" href="plantar-fasciitis.html">
+            <span class="related-symptom-card__label">足底筋膜炎・足裏の痛み</span>
+            <span class="related-symptom-card__description">朝の一歩目や歩行時に足裏が痛む方へ。</span>
+            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
+          </a>
+        </div>
+        <div class="related-symptoms__all">
+          <a class="related-symptoms__all-link" href="index.html">すべての症状を見る <span aria-hidden="true">›</span></a>
+        </div>
+      </div>
+    </section>
 <!-- RELATED_SYMPTOMS_NAV_END -->
 
 <!-- BLOG_RELATED_ARTICLES_START -->

@@ -21,56 +21,104 @@ const NOINDEX_SYMPTOM_FILES = new Set([
 const BLOG_INDEX_HIDDEN_CATEGORIES = new Set(["neck-shoulder-hand"]);
 const NOINDEX_POST_CATEGORIES = new Set(["neck-shoulder-hand"]);
 
-const symptomNavigationItems = [
-  { href: "knee-osteoarthritis.html", label: "変形性膝関節症", description: "階段や歩き始めの膝痛、膝のこわばりが気になる方へ。" },
-  { href: "knee-effusion.html", label: "膝の水（関節水腫）", description: "膝の腫れや水が溜まる不安を整理したい方へ。" },
-  { href: "pes-anserine-bursitis.html", label: "膝の内側の痛み", description: "鵞足炎や内側の違和感が続く方へ。" },
-  { href: "knee-lateral-pain.html", label: "膝の外側の痛み", description: "腸脛靭帯炎や外側半月板まわりが気になる方へ。" },
-  { href: "knee-posterior-pain.html", label: "膝の裏側の痛み", description: "ベーカー嚢腫や膝裏の張りが気になる方へ。" },
-  { href: "knee-front-pain.html", label: "膝の前側の痛み", description: "階段や立ち上がりでお皿まわりが気になる方へ。" },
-  { href: "meniscus-knee-pain.html", label: "半月板損傷・膝の引っかかり", description: "曲げ伸ばしや引っかかり感が気になる方へ。" },
-  { href: "bowlegs-knee-pain.html", label: "O脚・膝のゆがみ", description: "膝の内側や脚のゆがみが気になる方へ。" },
-  { href: "knee-hyperextension.html", label: "反張膝・膝が伸びすぎる", description: "立つと膝が後ろへ入りやすい方へ。" },
-  { href: "ankle-stiffness-knee-pain.html", label: "足首の硬さと膝痛", description: "足首や足裏の使いにくさが膝に響く方へ。" },
-  { href: "hip-osteoarthritis.html", label: "股関節の痛み", description: "歩き方や膝への負担と股関節の関係を知りたい方へ。" },
-  { href: "lower-back-pain.html", label: "腰痛", description: "膝をかばう姿勢や歩き方と腰痛の関係が気になる方へ。" },
-  { href: "sciatica.html", label: "坐骨神経痛", description: "お尻から脚のしびれや痛みが続く方へ。" },
-  { href: "spinal-stenosis.html", label: "脊柱管狭窄症", description: "歩くと脚がつらい、休むと楽になる症状がある方へ。" },
-  { href: "lumbar-disc-herniation.html", label: "腰椎椎間板ヘルニア", description: "腰からお尻、脚への痛みやしびれが気になる方へ。" },
-  { href: "plantar-fasciitis.html", label: "足底筋膜炎・足裏の痛み", description: "歩き始めの足裏やかかとの痛みが気になる方へ。" }
+const symptomDirectoryGroups = [
+  {
+    id: "waist-leg",
+    title: "腰・お尻・脚",
+    description: "腰の重さや、お尻から脚にかけての痛み・しびれが気になる方へ。",
+    items: [
+      { href: "lower-back-pain.html", label: "腰痛", description: "立ち上がりや長時間同じ姿勢で腰がつらい方へ。" },
+      { href: "sciatica.html", label: "坐骨神経痛", description: "お尻から脚にかけて痛みやしびれがある方へ。" },
+      { href: "spinal-stenosis.html", label: "脊柱管狭窄症", description: "歩くと脚がつらく、休むと少し楽になる方へ。" },
+      { href: "lumbar-disc-herniation.html", label: "腰椎椎間板ヘルニア", description: "腰からお尻、脚へ広がる症状が気になる方へ。" }
+    ]
+  },
+  {
+    id: "hip",
+    title: "股関節",
+    description: "歩き始めや立ち上がりで、足の付け根やお尻が痛む方へ。",
+    items: [
+      { href: "hip-osteoarthritis.html", label: "股関節痛・変形性股関節症", description: "歩行や体重をかけた時の股関節痛が気になる方へ。" }
+    ]
+  },
+  {
+    id: "knee",
+    title: "膝",
+    description: "痛む場所や動作、腫れ・引っかかりなどから近いページを探せます。",
+    items: [
+      { href: "knee-osteoarthritis.html", label: "変形性膝関節症", description: "歩き始めや階段で膝痛が続く方へ。" },
+      { href: "knee-effusion.html", label: "膝に水がたまる・腫れる", description: "膝の腫れや重さが気になる方へ。" },
+      { href: "pes-anserine-bursitis.html", label: "膝の内側の痛み", description: "膝の内側やや下の痛みが気になる方へ。" },
+      { href: "knee-lateral-pain.html", label: "膝の外側の痛み", description: "歩くと膝の外側が張る、痛む方へ。" },
+      { href: "knee-posterior-pain.html", label: "膝の裏側の痛み", description: "膝裏の張りや曲げ伸ばしの重さがある方へ。" },
+      { href: "knee-front-pain.html", label: "膝の前側・お皿まわりの痛み", description: "階段や立ち上がりで前側が痛む方へ。" },
+      { href: "meniscus-knee-pain.html", label: "半月板・膝の引っかかり", description: "曲げ伸ばしで引っかかりや不安がある方へ。" },
+      { href: "bowlegs-knee-pain.html", label: "O脚・膝のゆがみ", description: "脚の形や膝内側への負担が気になる方へ。" },
+      { href: "knee-hyperextension.html", label: "反張膝・膝が伸びすぎる", description: "立つと膝が後ろへ入りやすい方へ。" },
+      { href: "ankle-stiffness-knee-pain.html", label: "足首の硬さと膝痛", description: "足元の使いにくさが膝に響く方へ。" }
+    ]
+  },
+  {
+    id: "foot",
+    title: "足首・足裏",
+    description: "歩き始めの足裏やかかとの痛みが気になる方へ。",
+    items: [
+      { href: "plantar-fasciitis.html", label: "足底筋膜炎・足裏の痛み", description: "朝の一歩目や歩行時に足裏が痛む方へ。" }
+    ]
+  },
+  {
+    id: "upper-body",
+    title: "首・肩・腕・手",
+    description: "首肩のこり、腕や手のしびれ、肩や肘の動かしづらさがある方へ。",
+    items: [
+      { href: "shoulder-stiffness.html", label: "肩こり", description: "首肩の重さや頭痛を伴うこりが気になる方へ。" },
+      { href: "frozen-shoulder.html", label: "五十肩・肩が上がらない", description: "腕を上げる、後ろへ回す動作がつらい方へ。" },
+      { href: "cervical-spondylosis.html", label: "頚椎症・首の痛み", description: "首の痛みや腕へのしびれが続く方へ。" },
+      { href: "thoracic-outlet.html", label: "胸郭出口症候群", description: "首肩から腕にかけてしびれやだるさがある方へ。" },
+      { href: "carpal-tunnel.html", label: "手根管症候群・手のしびれ", description: "手指のしびれや細かな作業のしにくさがある方へ。" },
+      { href: "elbow-tendinopathy.html", label: "肘の痛み・テニス肘", description: "物を持つ、ひねる動作で肘が痛む方へ。" }
+    ]
+  },
+  {
+    id: "posture-jaw",
+    title: "背骨・姿勢・顎",
+    description: "姿勢の左右差や背骨のカーブ、顎の動かしづらさが気になる方へ。",
+    items: [
+      { href: "scoliosis.html", label: "側弯症・姿勢の左右差", description: "背骨のカーブや肩・骨盤の左右差が気になる方へ。" },
+      { href: "tmj.html", label: "顎関節症・あごの痛み", description: "口を開けると痛む、音が鳴る方へ。" }
+    ]
+  }
 ];
 
-const relatedKneeConcernTargetFiles = new Set([
-  "knee-osteoarthritis.html",
-  "knee-effusion.html",
-  "pes-anserine-bursitis.html",
-  "knee-lateral-pain.html",
-  "knee-posterior-pain.html",
-  "knee-front-pain.html",
-  "meniscus-knee-pain.html",
-  "bowlegs-knee-pain.html",
-  "knee-hyperextension.html",
-  "ankle-stiffness-knee-pain.html",
-  "plantar-fasciitis.html",
-  "lower-back-pain.html",
-  "sciatica.html"
-]);
+const symptomNavigationItems = symptomDirectoryGroups.flatMap((group) => group.items);
+const symptomNavigationByFile = new Map(symptomNavigationItems.map((item) => [item.href, item]));
 
-const relatedKneeConcernItems = [
-  { href: "knee-osteoarthritis.html", label: "変形性膝関節症でお悩みの方へ", description: "歩き始めや階段で膝痛が続く方へ。" },
-  { href: "knee-effusion.html", label: "膝に水がたまる・腫れぼったい方へ", description: "膝の腫れや重さが気になる方へ。" },
-  { href: "pes-anserine-bursitis.html", label: "膝の内側が痛い・鵞足炎が気になる方へ", description: "内側やや下の痛みを整理したい方へ。" },
-  { href: "knee-lateral-pain.html", label: "膝の外側が痛い方へ", description: "歩くと外側が張る、違和感が出る方へ。" },
-  { href: "knee-posterior-pain.html", label: "膝の裏が痛い・腫れる方へ", description: "膝裏の張りや曲げ伸ばしの重さが気になる方へ。" },
-  { href: "knee-front-pain.html", label: "膝の前側・お皿まわりが痛い方へ", description: "階段や立ち上がりで前側が気になる方へ。" },
-  { href: "meniscus-knee-pain.html", label: "半月板損傷・膝の引っかかりが気になる方へ", description: "曲げ伸ばしの違和感や不安がある方へ。" },
-  { href: "bowlegs-knee-pain.html", label: "O脚・膝のゆがみが気になる方へ", description: "膝の内側に負担が集まりやすい方へ。" },
-  { href: "knee-hyperextension.html", label: "反張膝・膝が伸びすぎる方へ", description: "立つと膝が後ろへ入りやすい方へ。" },
-  { href: "ankle-stiffness-knee-pain.html", label: "足首の硬さと膝痛が気になる方へ", description: "足元から膝の負担を整理したい方へ。" },
-  { href: "../blog/posts/walking-start-knee-pain-cause/", label: "歩き始めに膝が痛い方へ", description: "立ち上がりや一歩目の痛みを整理した記事です。" },
-  { href: "../blog/posts/knee-pain-daily-care/", label: "しゃがむと膝が痛い方はこちら", description: "正座や立ち上がりも含めて、日常動作で膝に負担が集まる理由を整理します。" },
-  { href: "../blog/posts/hip-stiffness-knee-low-back-pain-relation/", label: "股関節や足首の硬さと膝痛の関係", description: "膝だけでなく周辺の動きも確認したい方へ。" }
-];
+const relatedSymptomFiles = {
+  "lower-back-pain.html": ["sciatica.html", "spinal-stenosis.html", "lumbar-disc-herniation.html", "hip-osteoarthritis.html"],
+  "sciatica.html": ["lower-back-pain.html", "lumbar-disc-herniation.html", "spinal-stenosis.html", "hip-osteoarthritis.html"],
+  "spinal-stenosis.html": ["lower-back-pain.html", "sciatica.html", "lumbar-disc-herniation.html"],
+  "lumbar-disc-herniation.html": ["lower-back-pain.html", "sciatica.html", "spinal-stenosis.html"],
+  "hip-osteoarthritis.html": ["lower-back-pain.html", "sciatica.html", "knee-osteoarthritis.html", "plantar-fasciitis.html"],
+  "knee-osteoarthritis.html": ["knee-effusion.html", "pes-anserine-bursitis.html", "knee-front-pain.html", "hip-osteoarthritis.html"],
+  "knee-effusion.html": ["knee-osteoarthritis.html", "pes-anserine-bursitis.html", "knee-front-pain.html", "knee-posterior-pain.html"],
+  "pes-anserine-bursitis.html": ["knee-osteoarthritis.html", "knee-front-pain.html", "bowlegs-knee-pain.html", "ankle-stiffness-knee-pain.html"],
+  "knee-lateral-pain.html": ["knee-osteoarthritis.html", "meniscus-knee-pain.html", "ankle-stiffness-knee-pain.html", "hip-osteoarthritis.html"],
+  "knee-posterior-pain.html": ["knee-osteoarthritis.html", "meniscus-knee-pain.html", "knee-effusion.html", "hip-osteoarthritis.html"],
+  "knee-front-pain.html": ["knee-osteoarthritis.html", "meniscus-knee-pain.html", "ankle-stiffness-knee-pain.html", "hip-osteoarthritis.html"],
+  "meniscus-knee-pain.html": ["knee-osteoarthritis.html", "knee-front-pain.html", "knee-lateral-pain.html", "knee-posterior-pain.html"],
+  "bowlegs-knee-pain.html": ["knee-osteoarthritis.html", "pes-anserine-bursitis.html", "ankle-stiffness-knee-pain.html", "hip-osteoarthritis.html"],
+  "knee-hyperextension.html": ["knee-osteoarthritis.html", "knee-posterior-pain.html", "ankle-stiffness-knee-pain.html", "hip-osteoarthritis.html"],
+  "ankle-stiffness-knee-pain.html": ["knee-osteoarthritis.html", "knee-front-pain.html", "plantar-fasciitis.html", "bowlegs-knee-pain.html"],
+  "plantar-fasciitis.html": ["ankle-stiffness-knee-pain.html", "knee-osteoarthritis.html", "hip-osteoarthritis.html", "lower-back-pain.html"],
+  "shoulder-stiffness.html": ["frozen-shoulder.html", "cervical-spondylosis.html", "thoracic-outlet.html", "tmj.html"],
+  "frozen-shoulder.html": ["shoulder-stiffness.html", "cervical-spondylosis.html", "thoracic-outlet.html"],
+  "cervical-spondylosis.html": ["shoulder-stiffness.html", "thoracic-outlet.html", "carpal-tunnel.html", "frozen-shoulder.html"],
+  "thoracic-outlet.html": ["shoulder-stiffness.html", "cervical-spondylosis.html", "carpal-tunnel.html"],
+  "carpal-tunnel.html": ["thoracic-outlet.html", "cervical-spondylosis.html", "elbow-tendinopathy.html"],
+  "elbow-tendinopathy.html": ["shoulder-stiffness.html", "thoracic-outlet.html", "carpal-tunnel.html"],
+  "scoliosis.html": ["lower-back-pain.html", "cervical-spondylosis.html", "shoulder-stiffness.html", "hip-osteoarthritis.html"],
+  "tmj.html": ["shoulder-stiffness.html", "cervical-spondylosis.html", "thoracic-outlet.html"]
+};
 
 const symptomConfigs = {
   "knee-osteoarthritis.html": {
@@ -354,18 +402,21 @@ const relatedArticlesStyles = `
 .related-article-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
 .related-article-card__desc{font-size:13px;font-weight:700;color:#475569;line-height:1.8}
 .related-article-card__link{display:inline-flex;align-items:center;gap:.35rem;font-size:13px;font-weight:900;color:#2563eb}
-.related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #e2e8f0}
-.related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.1em;margin:0 0 .7rem}
-.related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .75rem}
-.related-symptoms__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
-.related-symptoms__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem}
-.related-symptom-card{position:relative;display:flex;flex-direction:column;gap:.55rem;min-height:126px;background:#f8fbff;border:1px solid #dbeafe;border-radius:8px;padding:1rem 3.25rem 1rem 1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
-.related-symptom-card:hover,.related-symptom-card:focus-visible{transform:translateY(-2px);background:#fff;border-color:#93c5fd;box-shadow:0 8px 18px rgba(37,99,235,.1);outline:none}
-.related-symptom-card__label{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
-.related-symptom-card__description{font-size:13px;font-weight:700;color:#475569;line-height:1.75}
-.related-symptom-card__arrow{position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#f8fbff;border:1px solid #dbeafe;color:#2563eb;font-size:22px;font-weight:900;line-height:1;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
-.related-symptom-card:hover .related-symptom-card__arrow,.related-symptom-card:focus-visible .related-symptom-card__arrow{background:#2563eb;border-color:#2563eb;color:#fff;transform:translateY(-50%) translateX(2px)}
-@media(max-width:640px){.related-symptom-card{padding-right:3rem}.related-symptom-card__arrow{right:.85rem;width:30px;height:30px;font-size:20px}}
+.related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #dfe4dc}
+.related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#356b2f;letter-spacing:.1em;margin:0 0 .7rem}
+.related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#223b2d;line-height:1.55;margin:0 0 .75rem}
+.related-symptoms__lead{text-align:center;font-size:14px;font-weight:700;color:#59635d;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
+.related-symptoms__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem}
+.related-symptom-card{position:relative;display:flex;flex-direction:column;gap:.55rem;min-height:118px;background:#fff;border:1px solid #dfe4dc;border-radius:8px;padding:1rem 3.25rem 1rem 1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
+.related-symptom-card:hover,.related-symptom-card:focus-visible{transform:translateY(-2px);background:#fafcf8;border-color:#9bb596;box-shadow:0 8px 18px rgba(35,77,36,.09);outline:3px solid rgba(53,107,47,.16);outline-offset:2px}
+.related-symptom-card__label{font-size:1rem;font-weight:900;color:#234d24;line-height:1.5}
+.related-symptom-card__description{font-size:13px;font-weight:700;color:#59635d;line-height:1.75}
+.related-symptom-card__arrow{position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#f6f9f3;border:1px solid #cbd8c6;color:#356b2f;font-size:22px;font-weight:900;line-height:1;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
+.related-symptom-card:hover .related-symptom-card__arrow,.related-symptom-card:focus-visible .related-symptom-card__arrow{background:#356b2f;border-color:#356b2f;color:#fff;transform:translateY(-50%) translateX(2px)}
+.related-symptoms__all{display:flex;justify-content:center;margin-top:1.35rem}
+.related-symptoms__all-link{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:44px;border-bottom:1px solid #8aa384;color:#234d24;font-size:14px;font-weight:900;text-decoration:none}
+.related-symptoms__all-link:hover,.related-symptoms__all-link:focus-visible{color:#356b2f;border-color:#356b2f;outline:3px solid rgba(53,107,47,.16);outline-offset:5px}
+@media(max-width:640px){.related-symptoms{padding:2.75rem 1rem}.related-symptoms__grid{grid-template-columns:1fr}.related-symptom-card{min-height:104px;padding-right:3rem}.related-symptom-card__arrow{right:.85rem;width:30px;height:30px;font-size:20px}}
 .symptom-mid-cta{padding:2.75rem 1rem;background:#fff;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
 .symptom-mid-cta__inner{display:grid;gap:1.25rem;align-items:center;background:#f8fbff;border:1px solid #bfdbfe;border-radius:8px;padding:1.5rem}
 .symptom-mid-cta__eyebrow{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
@@ -607,6 +658,7 @@ export async function buildBlog() {
   await fs.writeFile(path.join(blogDir, "index.html"), cleanGeneratedText(indexHtml), "utf8");
 
   await updateSymptomPages(blogData.site, posts);
+  await updateSymptomsDirectoryPage();
 
   await fs.writeFile(path.join(rootDir, "blog.html"), cleanGeneratedText(buildBlogRedirectHtml()), "utf8");
   await fs.writeFile(path.join(rootDir, "blog-detail.html"), cleanGeneratedText(buildLegacyDetailRedirectHtml()), "utf8");
@@ -687,6 +739,130 @@ async function updateSymptomPages(site, posts) {
 
     await fs.writeFile(fullPath, cleanGeneratedText(html), "utf8");
   }
+}
+
+const symptomsDirectoryStyles = `
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: "BIZ UDPGothic", "Noto Sans JP", system-ui, sans-serif; line-height: 1.8; color: #263b34; background: #fff; }
+    a { color: inherit; }
+    .page { min-height: 100vh; padding: 88px 18px 72px; background: #fff; }
+    .symptom-directory-hero { width: min(960px, 100%); margin: 0 auto; padding: clamp(34px, 6vw, 64px) 0 clamp(48px, 7vw, 76px); border-bottom: 1px solid #dfe4dc; }
+    .symptom-directory-hero__label { margin: 0 0 12px; color: #356b2f; font-size: .82rem; font-weight: 900; letter-spacing: .08em; }
+    .symptom-directory-hero h1 { position: relative; margin: 0 0 26px; padding-bottom: 18px; color: #223b2d; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.35; letter-spacing: 0; }
+    .symptom-directory-hero h1::after { content: ""; position: absolute; left: 0; bottom: 0; width: 52px; height: 3px; background: #356b2f; }
+    .symptom-directory-hero__lead { max-width: 720px; margin: 0; color: #59635d; font-size: clamp(1rem, 2vw, 1.12rem); font-weight: 700; line-height: 1.9; }
+    .symptom-directory-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .symptom-directory-hero__button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 11px 18px; border: 1px solid #356b2f; border-radius: 8px; background: #356b2f; color: #fff; font-size: .94rem; font-weight: 900; text-decoration: none; }
+    .symptom-directory-hero__button--secondary { background: #fff; color: #234d24; }
+    .symptom-directory-hero__button:hover, .symptom-directory-hero__button:focus-visible { outline: 3px solid rgba(53,107,47,.18); outline-offset: 3px; }
+    .symptom-directory { width: min(960px, 100%); margin: 0 auto; padding: clamp(58px, 8vw, 92px) 0 0; }
+    .symptom-directory__heading { margin-bottom: clamp(34px, 5vw, 52px); }
+    .symptom-directory__heading h2 { position: relative; margin: 0 0 18px; padding-bottom: 15px; color: #223b2d; font-size: clamp(1.65rem, 3vw, 2.2rem); line-height: 1.45; letter-spacing: 0; }
+    .symptom-directory__heading h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 46px; height: 3px; background: #356b2f; }
+    .symptom-directory__heading p { margin: 0; color: #59635d; font-size: .98rem; font-weight: 700; line-height: 1.85; }
+    .symptom-directory__groups { columns: 2; column-gap: clamp(44px, 6vw, 72px); }
+    .symptom-directory__group { display: inline-block; width: 100%; min-width: 0; margin-bottom: 34px; padding: 34px 0 6px; border-top: 1px solid #dfe4dc; break-inside: avoid; }
+    .symptom-directory__group-header { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: start; margin-bottom: 19px; }
+    .symptom-directory__group-icon { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid #aebfa8; border-radius: 50%; color: #356b2f; }
+    .symptom-directory__group-icon svg { width: 20px; height: 20px; stroke-width: 1.8; }
+    .symptom-directory__group h3 { margin: 0 0 5px; color: #223b2d; font-size: 1.24rem; line-height: 1.45; }
+    .symptom-directory__group-description { margin: 0; color: #69736c; font-size: .84rem; font-weight: 700; line-height: 1.7; }
+    .symptom-directory__links { display: grid; gap: 0; border-top: 1px solid #e5e9e2; }
+    .symptom-directory__link { position: relative; display: grid; gap: 4px; min-height: 76px; padding: 14px 46px 14px 4px; border-bottom: 1px solid #e5e9e2; text-decoration: none; }
+    .symptom-directory__link-title { color: #234d24; font-size: .98rem; font-weight: 900; line-height: 1.5; }
+    .symptom-directory__link-description { color: #69736c; font-size: .79rem; font-weight: 700; line-height: 1.65; }
+    .symptom-directory__link-arrow { position: absolute; right: 4px; top: 50%; display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid #cbd8c6; border-radius: 50%; color: #356b2f; font-size: 20px; font-weight: 900; line-height: 1; transform: translateY(-50%); transition: background .2s, color .2s, transform .2s; }
+    .symptom-directory__link:hover, .symptom-directory__link:focus-visible { background: #fafcf8; outline: 3px solid rgba(53,107,47,.15); outline-offset: 2px; }
+    .symptom-directory__link:hover .symptom-directory__link-arrow, .symptom-directory__link:focus-visible .symptom-directory__link-arrow { background: #356b2f; color: #fff; transform: translateY(-50%) translateX(2px); }
+    @media (max-width: 767px) {
+      .page { padding: 60px 16px 94px; }
+      .symptom-directory-hero { padding-top: 30px; padding-bottom: 52px; }
+      .symptom-directory-hero__actions { display: grid; }
+      .symptom-directory-hero__button { width: 100%; }
+      .symptom-directory__groups { columns: 1; }
+      .symptom-directory__group { margin-bottom: 24px; padding-top: 30px; }
+      .symptom-directory__group-header { gap: 12px; }
+      .symptom-directory__link { min-height: 72px; }
+    }
+`;
+
+async function updateSymptomsDirectoryPage() {
+  const directoryPath = path.join(symptomsDir, "index.html");
+  let html = await fs.readFile(directoryPath, "utf8");
+
+  html = html.replace(/<title>[\s\S]*?<\/title>/, "<title>症状別ページ｜整体院ひざこぞう</title>");
+  html = html.replace(
+    /<meta name="description" content="[^"]*">/,
+    '<meta name="description" content="腰・お尻・脚、股関節、膝、足首・足裏、首・肩・腕・手、背骨・姿勢・顎の症状別ページを部位から探せます。">'
+  );
+  html = html.replace(/<style>[\s\S]*?<\/style>/, `<style>${symptomsDirectoryStyles}\n  </style>`);
+  html = html.replace(/<main class="page">[\s\S]*?<\/main>/, buildSymptomsDirectoryMain());
+  html = normalizeSymptomsDirectoryLinkLabel(html);
+
+  await fs.writeFile(directoryPath, cleanGeneratedText(html), "utf8");
+}
+
+function buildSymptomsDirectoryMain() {
+  const iconByGroup = {
+    "waist-leg": "person-standing",
+    hip: "accessibility",
+    knee: "activity",
+    foot: "footprints",
+    "upper-body": "hand",
+    "posture-jaw": "scan-face"
+  };
+  const groups = symptomDirectoryGroups
+    .map((group) => {
+      const links = group.items
+        .map((item) => `
+            <a class="symptom-directory__link" href="${escapeHtml(item.href)}">
+              <span class="symptom-directory__link-title">${escapeHtml(item.label)}</span>
+              <span class="symptom-directory__link-description">${escapeHtml(item.description)}</span>
+              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+            </a>`)
+        .join("");
+      return `
+        <section class="symptom-directory__group" aria-labelledby="symptom-group-${escapeHtml(group.id)}">
+          <div class="symptom-directory__group-header">
+            <span class="symptom-directory__group-icon" aria-hidden="true"><i data-lucide="${iconByGroup[group.id]}"></i></span>
+            <div>
+              <h3 id="symptom-group-${escapeHtml(group.id)}">${escapeHtml(group.title)}</h3>
+              <p class="symptom-directory__group-description">${escapeHtml(group.description)}</p>
+            </div>
+          </div>
+          <div class="symptom-directory__links">
+${links}
+          </div>
+        </section>`;
+    })
+    .join("");
+
+  return `<main class="page">
+    <span id="top" class="page-top-anchor" aria-hidden="true"></span>
+    <section class="symptom-directory-hero" aria-labelledby="page-title">
+      <p class="symptom-directory-hero__label">SYMPTOMS</p>
+      <h1 id="page-title">症状別ページ</h1>
+      <p class="symptom-directory-hero__lead">痛む場所や、つらさを感じる動作に近いページからご覧ください。病名が分からない場合も、気になる部位から探せます。</p>
+      <div class="symptom-directory-hero__actions">
+        <a class="symptom-directory-hero__button" href="../index.html#contact">相談・予約へ進む</a>
+        <a class="symptom-directory-hero__button symptom-directory-hero__button--secondary" href="../index.html">トップページへ戻る</a>
+      </div>
+    </section>
+
+    <section class="symptom-directory" aria-labelledby="symptom-directory-title">
+      <div class="symptom-directory__heading">
+        <h2 id="symptom-directory-title">気になる場所から症状を探す</h2>
+        <p>同じ場所の痛みでも状態には個人差があります。近い内容が複数ある場合は、あわせてご確認ください。</p>
+      </div>
+      <div class="symptom-directory__groups">
+${groups}
+      </div>
+    </section>
+  </main>`;
+}
+
+function normalizeSymptomsDirectoryLinkLabel(html) {
+  return html.replaceAll("その他の足腰の症状", "すべての症状を見る").replaceAll("その他の慢性症状", "すべての症状を見る");
 }
 
 const detailedSymptomContent = {
@@ -1119,6 +1295,7 @@ function buildSymptomMidCta(site) {
 
 export function normalizeSymptomPageDesign(html, site = {}, config = {}) {
   let output = upsertRelatedSymptomsNavigation(html, config);
+  output = normalizeSymptomsDirectoryLinkLabel(output);
   output = replaceSymptomFooter(output, site);
   return output;
 }
@@ -1150,19 +1327,11 @@ ${endMarker}
 
 function buildRelatedSymptomsNavigation(config = {}) {
   const currentFileName = config.fileName || config.page || "";
-  if (isRelatedArticleSliderPage(currentFileName) || currentFileName === "knee-osteoarthritis.html") {
-    return "";
-  }
-
-  const isKneeConcernTarget = relatedKneeConcernTargetFiles.has(currentFileName);
-  const navigationItems = isKneeConcernTarget ? relatedKneeConcernItems : symptomNavigationItems;
-  const sectionTitle = isKneeConcernTarget ? "関連する膝の悩み" : "ほかの症状も確認できます";
-  const sectionLead = isKneeConcernTarget
-    ? "膝の痛みは、痛む場所や動作によって原因の見方が変わることがあります。気になる症状があれば、あわせてご覧ください。"
-    : "痛みをかばう姿勢が続くと、別の部位にも負担がかかりやすくなります。気になる症状があれば、あわせて確認してみてください。";
+  const relatedFiles = relatedSymptomFiles[currentFileName] || [];
+  const navigationItems = relatedFiles
+    .map((fileName) => symptomNavigationByFile.get(fileName))
+    .filter(Boolean);
   const cards = navigationItems
-    .filter((item) => item.href !== currentFileName)
-    .slice(0, isKneeConcernTarget ? 8 : 6)
     .map((item) => `
           <a class="related-symptom-card" href="${escapeHtml(item.href)}">
             <span class="related-symptom-card__label">${escapeHtml(item.label)}</span>
@@ -1174,10 +1343,13 @@ function buildRelatedSymptomsNavigation(config = {}) {
   return `<section class="related-symptoms">
       <div class="container max-w-4xl">
         <p class="related-symptoms__eyebrow">RELATED SYMPTOMS</p>
-        <h2 class="related-symptoms__title">${sectionTitle}</h2>
-        <p class="related-symptoms__lead">${sectionLead}</p>
+        <h2 class="related-symptoms__title">この症状に関連するページ</h2>
+        <p class="related-symptoms__lead">痛む場所や動作が近い症状ページも、あわせてご確認いただけます。</p>
         <div class="related-symptoms__grid">
 ${cards}
+        </div>
+        <div class="related-symptoms__all">
+          <a class="related-symptoms__all-link" href="index.html">すべての症状を見る <span aria-hidden="true">›</span></a>
         </div>
       </div>
     </section>`;

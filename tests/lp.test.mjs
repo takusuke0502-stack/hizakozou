@@ -18,6 +18,12 @@ const spinalStenosisHtml = readFileSync(new URL("../symptoms/spinal-stenosis.htm
 const kneeOsteoarthritisHtml = readFileSync(new URL("../symptoms/knee-osteoarthritis.html", import.meta.url), "utf8");
 const hipOsteoarthritisHtml = readFileSync(new URL("../symptoms/hip-osteoarthritis.html", import.meta.url), "utf8");
 const lumbarDiscHerniationHtml = readFileSync(new URL("../symptoms/lumbar-disc-herniation.html", import.meta.url), "utf8");
+const shoulderStiffnessHtml = readFileSync(new URL("../symptoms/shoulder-stiffness.html", import.meta.url), "utf8");
+const plantarFasciitisHtml = readFileSync(new URL("../symptoms/plantar-fasciitis.html", import.meta.url), "utf8");
+const scoliosisHtml = readFileSync(new URL("../symptoms/scoliosis.html", import.meta.url), "utf8");
+const tmjHtml = readFileSync(new URL("../symptoms/tmj.html", import.meta.url), "utf8");
+const frozenShoulderHtml = readFileSync(new URL("../symptoms/frozen-shoulder.html", import.meta.url), "utf8");
+const thoracicOutletHtml = readFileSync(new URL("../symptoms/thoracic-outlet.html", import.meta.url), "utf8");
 const trackingConfigPath = path.join(repoRoot, "scripts", "tracking-config.js");
 const trackingJsPath = path.join(repoRoot, "scripts", "tracking.js");
 const trackingConfig = existsSync(trackingConfigPath) ? readFileSync(trackingConfigPath, "utf8") : "";
@@ -728,7 +734,7 @@ test("desktop header groups access/contact and exposes keyboard-friendly real dr
     ["symptoms/lumbar-disc-herniation.html", "椎間板ヘルニア"],
     ["symptoms/hip-osteoarthritis.html", "股関節痛"],
     ["symptoms/knee-osteoarthritis.html", "膝痛"],
-    ["symptoms/index.html", "その他の慢性症状"]
+    ["symptoms/index.html", "すべての症状を見る"]
   ];
   const removedKneeHeaderLinks = [
     "symptoms/pes-anserine-bursitis.html",
@@ -1163,7 +1169,7 @@ test("voices and FAQ pages use the shared top-page header and footer chrome", ()
     ["symptoms/lumbar-disc-herniation.html", "椎間板ヘルニア"],
     ["symptoms/hip-osteoarthritis.html", "股関節痛"],
     ["symptoms/knee-osteoarthritis.html", "膝痛"],
-    ["symptoms/index.html", "その他の慢性症状"],
+    ["symptoms/index.html", "すべての症状を見る"],
     ["index.html#flow", "施術の流れ"],
     ["index.html#price", "料金"],
     ["blog/", "コラム"],
@@ -1720,6 +1726,36 @@ test("major symptom pages replace concerns with top-page troubles-check layout",
   }
 });
 
+test("all symptom detail pages use the lower-back troubles-check design", () => {
+  const detailPages = readdirSync(path.join(repoRoot, "symptoms"))
+    .filter((name) => name.endsWith(".html") && name !== "index.html")
+    .sort();
+
+  assert.equal(detailPages.length, 24, "the complete symptom detail page set should be covered");
+
+  for (const fileName of detailPages) {
+    const page = `symptoms/${fileName}`;
+    const pageHtml = readPageIfExists(page);
+    const troublesMatches = pageHtml.match(/<section id="troubles" class="troubles-check">/g) ?? [];
+    const troublesIndex = pageHtml.indexOf('<section id="troubles" class="troubles-check">');
+    const sectionEnd = pageHtml.indexOf("</section>", troublesIndex) + "</section>".length;
+    const section = troublesIndex > -1 ? pageHtml.slice(troublesIndex, sectionEnd) : "";
+
+    assert.equal(troublesMatches.length, 1, `${page} should have exactly one troubles-check section`);
+    assert.match(section, /<h2>こんなお悩みを抱えていませんか？<\/h2>/, `${page} should use the lower-back heading`);
+    assert.equal((section.match(/<li>/g) ?? []).length, 8, `${page} should show eight symptom-specific concerns`);
+    assert.match(section, /<ul class="troubles-check__list" aria-label="[^"]+でよくあるお悩み">/, `${page} should provide a symptom-specific aria label`);
+    assert.ok((section.match(/<strong>[^<]+<\/strong>/g) ?? []).length >= 4, `${page} should use red emphasis on key phrases`);
+    assert.doesNotMatch(pageHtml, /<section class="concerns">/, `${page} should remove the legacy concerns section`);
+    assert.doesNotMatch(section, /concern-item|concerns__footer|一つでも当てはまる方は/, `${page} should not retain legacy concern markup`);
+    assert.match(pageHtml, /\/\* Copied from top page troubles-check section\. \*\//, `${page} should include the shared troubles-check CSS`);
+    assert.match(pageHtml, /\.troubles-check__heading::after\s*{[\s\S]*border-top:\s*18px solid #e4e4e4;/, `${page} should keep the heading triangle`);
+    assert.match(pageHtml, /\.troubles-check__list li::before\s*{[\s\S]*border:\s*2px solid #222;/, `${page} should keep the checkbox outline`);
+    assert.match(pageHtml, /\.troubles-check__list li::after\s*{[\s\S]*border-left:\s*4px solid #e3342f;[\s\S]*border-bottom:\s*4px solid #e3342f;/, `${page} should keep the red check mark`);
+    assert.match(pageHtml, /@media\s*\(max-width:\s*480px\)\s*{[\s\S]*\.troubles-check__list li::after\s*{[\s\S]*width:\s*24px;/, `${page} should keep the compact mobile layout`);
+  }
+});
+
 test("symptom pages avoid strong medical guarantee wording", () => {
   const symptomDir = path.join(repoRoot, "symptoms");
   const strongPatterns = [
@@ -1779,7 +1815,7 @@ test("all symptom pages use the transplanted top-page header and mobile hamburge
     ["lumbar-disc-herniation.html", "椎間板ヘルニア"],
     ["hip-osteoarthritis.html", "股関節痛"],
     ["knee-osteoarthritis.html", "膝痛"],
-    ["index.html", "その他の足腰の症状"]
+    ["index.html", "すべての症状を見る"]
   ];
 
   for (const fileName of symptomPages) {
@@ -2016,34 +2052,23 @@ test("symptom pages reuse the top-page static FAQ design", () => {
 test("symptom related cards show an absolute arrow affordance without extra CTA text", () => {
   const symptomDir = path.join(repoRoot, "symptoms");
   const arrowPattern = /<span class="related-symptom-card__arrow" aria-hidden="true">›<\/span>/g;
-  const majorSymptomPages = new Set([
-    "lower-back-pain.html",
-    "sciatica.html",
-    "spinal-stenosis.html",
-    "knee-osteoarthritis.html",
-    "hip-osteoarthritis.html",
-    "lumbar-disc-herniation.html"
-  ]);
 
   assert.match(buildBlogScript, /\.related-symptom-card\{[^}]*position:relative[^}]*padding:1rem 3\.25rem 1rem 1rem/);
   assert.match(buildBlogScript, /\.related-symptom-card__arrow\{[^}]*position:absolute[^}]*right:1rem[^}]*top:50%/);
   assert.match(buildBlogScript, /\.related-symptom-card:hover \.related-symptom-card__arrow,/);
-  assert.match(buildBlogScript, /@media\(max-width:640px\)\{\.related-symptom-card\{padding-right:3rem\}\.related-symptom-card__arrow\{right:\.85rem;width:30px;height:30px;font-size:20px\}\}/);
+  assert.match(buildBlogScript, /@media\(max-width:640px\)\{\.related-symptoms\{[\s\S]*\.related-symptom-card__arrow\{right:\.85rem;width:30px;height:30px;font-size:20px\}\}/);
 
   for (const fileName of readdirSync(symptomDir).filter((name) => name.endsWith(".html"))) {
+    if (fileName === "index.html") continue;
     const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
     const relatedSection = symptomHtml.match(/<section class="related-symptoms">[\s\S]*?<\/section>/)?.[0] ?? "";
-
-    if (majorSymptomPages.has(fileName)) {
-      assert.equal(relatedSection, "", `${fileName} should not render related symptom cards`);
-      continue;
-    }
 
     const cardCount = (relatedSection.match(/class="related-symptom-card"/g) ?? []).length;
     const arrowCount = (relatedSection.match(arrowPattern) ?? []).length;
 
-    assert.ok(cardCount > 0, `${fileName} should render related symptom cards`);
+    assert.ok(cardCount >= 3 && cardCount <= 4, `${fileName} should render 3-4 related symptom cards`);
     assert.equal(arrowCount, cardCount, `${fileName} should add one arrow to each related symptom card`);
+    assert.match(relatedSection, /class="related-symptoms__all-link" href="index\.html"/);
     assert.doesNotMatch(relatedSection, />詳しく見る<|>症状ページを見る</, `${fileName} should not add CTA text`);
   }
 });
@@ -2098,13 +2123,13 @@ test("lower back education redesign stays inside the requested page range", () =
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(lowerBackHtml.slice(bodyStart, redesignStart)),
-    "39a20241f8ebe95b10595fc0f79f74a03a2f6a0dc7a5241b19d2abc29c8f1e81",
-    "header, hero, and concerns markup must remain unchanged"
+    "789d89e5e5445994a22c8119f1c404b56d65c7447067e80f37ec570395f0bbc3",
+    "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(lowerBackHtml.slice(voicesStart)),
-    "7ba3183b834128ea924348294c2d8bf3dbc6b0a9c9004a7e301ce435e5da384f",
-    "patient voices, relocated treatment flow, FAQ, related articles, CTAs, access, forms, footer, and scripts must remain unchanged"
+    "753962c54ccae396ac217f6b2d6c0703417272e6925b45cccc5af70ac1360f2f",
+    "patient voices onward must match the approved related-navigation baseline"
   );
 });
 
@@ -2157,6 +2182,421 @@ test("lower back education CSS is scoped and switches diagrams to mobile timelin
   assert.doesNotMatch(styles, /body\s*\{|html\s*\{|\.site-header|\.mobile-cta\{/);
 });
 
+test("shoulder stiffness education redesign preserves the existing page boundaries", () => {
+  const bodyStart = shoulderStiffnessHtml.indexOf("<body");
+  const redesignStart = shoulderStiffnessHtml.indexOf("<!-- SHOULDER_STIFFNESS_EDUCATION_START -->");
+  const voicesStart = shoulderStiffnessHtml.indexOf("    <!-- SYMPTOM_PATIENT_VOICES_START -->");
+
+  assert.ok(bodyStart > -1);
+  assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
+  assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
+  assert.equal(
+    sha256(shoulderStiffnessHtml.slice(bodyStart, redesignStart)),
+    "9e11ee82d7860c05f1519b669771e546197fbfb899d8b3d156406f08e383d833",
+    "header, hero, and unified troubles markup must remain unchanged"
+  );
+  assert.equal(
+    sha256(shoulderStiffnessHtml.slice(voicesStart)),
+    "9b9f4c799ccdcf9e5e932cef38988d0875807f0badf7f2d5283631037fc1090e",
+    "patient voices onward must remain unchanged"
+  );
+});
+
+test("shoulder stiffness education follows the approved patient-friendly sequence", () => {
+  const section = shoulderStiffnessHtml.match(/<!-- SHOULDER_STIFFNESS_EDUCATION_START -->[\s\S]*?<!-- SHOULDER_STIFFNESS_EDUCATION_END -->/)?.[0] ?? "";
+  const headings = [
+    "肩こりはなぜ起こるのか？",
+    "首・肩に負担が集まりやすくなる4つの要因",
+    "肩こりが起きるまでの流れ",
+    "なぜマッサージを受けても戻ることがあるのか？",
+    "このような症状がある場合は、まず医療機関へご相談ください",
+    "当院では首・肩だけでなく、全身の動きを確認します",
+    "整体院ひざこぞうの肩こりへのアプローチ",
+    "自分の肩こりがどのタイプか分からない方へ",
+    "通院頻度について"
+  ];
+
+  assert.ok(section, "the scoped shoulder-stiffness education block should exist");
+  const positions = headings.map((heading) => section.indexOf(heading));
+  positions.forEach((position, index) => {
+    assert.ok(position > -1, `missing shoulder-stiffness heading: ${headings[index]}`);
+  });
+  for (let index = 1; index < positions.length; index += 1) {
+    assert.ok(positions[index - 1] < positions[index], `${headings[index - 1]} should appear before ${headings[index]}`);
+  }
+
+  assert.equal((section.match(/class="shoulder-factor"/g) ?? []).length, 4, "four load factors should be shown");
+  assert.equal((section.match(/class="shoulder-symptom-flow__step"/g) ?? []).length, 4, "the symptom flow should contain four steps");
+  assert.equal((section.match(/class="shoulder-approach-step"/g) ?? []).length, 3, "the clinic approach should contain three steps");
+  assert.equal((section.match(/class="shoulder-medical-note__item"/g) ?? []).length, 6, "the medical referral note should show six warning signs");
+  assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで肩こりについて相談する/);
+  assert.match(section, /src="\.\.\/image\/イラスト\/肩・首\/肩甲骨周囲の筋肉と肩こり\.webp"/);
+  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.doesNotMatch(section, /根本原因|肩こりの正体|必ず改善|完治|根本治療|再発を防ぐ|頚部深層筋|前鋸筋|菱形筋|再稼働/);
+  assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|frequency__phases|frequency__phase/);
+});
+
+test("shoulder stiffness education CSS is scoped and responsive", () => {
+  const styles = shoulderStiffnessHtml.match(/\/\* SHOULDER_STIFFNESS_EDUCATION_STYLES_START \*\/[\s\S]*?\/\* SHOULDER_STIFFNESS_EDUCATION_STYLES_END \*\//)?.[0] ?? "";
+
+  assert.ok(styles, "scoped shoulder-stiffness education styles should exist");
+  assert.match(styles, /\.shoulder-education-section\{/);
+  assert.match(styles, /\.shoulder-factor-grid\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.shoulder-symptom-flow\{[^}]*grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.shoulder-approach-steps\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.shoulder-factor-grid\{grid-template-columns:1fr/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.shoulder-symptom-flow\{grid-template-columns:1fr/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.shoulder-approach-steps\{grid-template-columns:1fr/);
+  assert.match(styles, /\.shoulder-consult-cta__link\{[^}]*min-height:44px/);
+  assert.doesNotMatch(styles, /body\s*\{|html\s*\{|\.site-header|\.mobile-cta\{/);
+});
+
+test("plantar fasciitis education redesign preserves the existing page boundaries", () => {
+  const bodyStart = plantarFasciitisHtml.indexOf("<body");
+  const redesignStart = plantarFasciitisHtml.indexOf("<!-- PLANTAR_FASCIITIS_EDUCATION_START -->");
+  const flowStart = plantarFasciitisHtml.indexOf('    <section id="flow"');
+
+  assert.ok(bodyStart > -1);
+  assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
+  assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
+  assert.equal(
+    sha256(plantarFasciitisHtml.slice(bodyStart, redesignStart)),
+    "cb9ebf9a3b7a876252f6cd5361cbda7424ef341a79594b67d4e941359fe2700f",
+    "header, hero, and unified troubles markup must remain unchanged"
+  );
+  assert.equal(
+    sha256(plantarFasciitisHtml.slice(flowStart)),
+    "8b96f654c364fb0144ed8b07e4890538ec83f4ba61a9e21522fdaab26302e277",
+    "treatment flow onward must remain unchanged"
+  );
+});
+
+test("plantar fasciitis education follows the approved patient-friendly sequence", () => {
+  const section = plantarFasciitisHtml.match(/<!-- PLANTAR_FASCIITIS_EDUCATION_START -->[\s\S]*?<!-- PLANTAR_FASCIITIS_EDUCATION_END -->/)?.[0] ?? "";
+  const headings = [
+    "足底筋膜炎・かかとの痛みはなぜ起こるのか？",
+    "足裏に負担が集まりやすくなる4つの要因",
+    "かかとの痛みが起きるまでの流れ",
+    "なぜ休んだり足裏をほぐしても戻ることがあるのか？",
+    "このような症状がある場合は、まず医療機関へご相談ください",
+    "当院では足裏だけでなく、全身の動きを確認します",
+    "整体院ひざこぞうの足底筋膜炎へのアプローチ",
+    "自分のかかとの痛みがどのタイプか分からない方へ",
+    "通院頻度について"
+  ];
+
+  assert.ok(section, "the scoped plantar-fasciitis education block should exist");
+  const positions = headings.map((heading) => section.indexOf(heading));
+  positions.forEach((position, index) => {
+    assert.ok(position > -1, `missing plantar-fasciitis heading: ${headings[index]}`);
+  });
+  for (let index = 1; index < positions.length; index += 1) {
+    assert.ok(positions[index - 1] < positions[index], `${headings[index - 1]} should appear before ${headings[index]}`);
+  }
+
+  assert.equal((section.match(/class="plantar-factor"/g) ?? []).length, 4, "four load factors should be shown");
+  assert.equal((section.match(/class="plantar-symptom-flow__step"/g) ?? []).length, 4, "the symptom flow should contain four steps");
+  assert.equal((section.match(/class="plantar-approach-step"/g) ?? []).length, 3, "the clinic approach should contain three steps");
+  assert.equal((section.match(/class="plantar-medical-note__item"/g) ?? []).length, 6, "the medical referral note should show six warning signs");
+  assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで足底筋膜炎について相談する/);
+  assert.match(section, /src="\.\.\/image\/イラスト\/足・手・その他\/足底筋膜と足裏の筋肉構造\.webp"/);
+  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.doesNotMatch(section, /根本原因|完治|根本治療|再発しない|再発予防|過緊張|インナーマッスル|再教育|痛みの根っこ|原因を特定/);
+  assert.doesNotMatch(section, /週1〜2回|2〜8回|安定期|frequency__phases|frequency__phase/);
+});
+
+test("plantar fasciitis education CSS is scoped and responsive", () => {
+  const styles = plantarFasciitisHtml.match(/\/\* PLANTAR_FASCIITIS_EDUCATION_STYLES_START \*\/[\s\S]*?\/\* PLANTAR_FASCIITIS_EDUCATION_STYLES_END \*\//)?.[0] ?? "";
+
+  assert.ok(styles, "scoped plantar-fasciitis education styles should exist");
+  assert.match(styles, /\.plantar-education-section\{/);
+  assert.match(styles, /\.plantar-factor-grid\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.plantar-symptom-flow\{[^}]*grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.plantar-approach-steps\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.plantar-factor-grid\{grid-template-columns:1fr/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.plantar-symptom-flow\{grid-template-columns:1fr/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.plantar-approach-steps\{grid-template-columns:1fr/);
+  assert.match(styles, /\.plantar-consult-cta__link\{[^}]*min-height:44px/);
+  assert.doesNotMatch(styles, /body\s*\{|html\s*\{|\.site-header|\.mobile-cta\{/);
+});
+
+test("scoliosis education redesign preserves the existing page boundaries", () => {
+  const bodyStart = scoliosisHtml.indexOf("<body");
+  const redesignStart = scoliosisHtml.indexOf("<!-- SCOLIOSIS_EDUCATION_START -->");
+  const flowStart = scoliosisHtml.indexOf('    <section id="flow"');
+
+  assert.ok(bodyStart > -1);
+  assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
+  assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
+  assert.equal(
+    sha256(scoliosisHtml.slice(bodyStart, redesignStart)),
+    "d78ffd8454845f7eed9df74637897b64d75e256c0849673bc51e06282c49e03f",
+    "header, hero, and unified troubles markup must remain unchanged"
+  );
+  assert.equal(
+    sha256(scoliosisHtml.slice(flowStart)),
+    "5c2cee21a74e177b22049212e7b8d1d100f3f660d8765e00f218c288f049e19e",
+    "treatment flow onward must remain unchanged"
+  );
+});
+
+test("scoliosis education follows the approved patient-friendly sequence", () => {
+  const section = scoliosisHtml.match(/<!-- SCOLIOSIS_EDUCATION_START -->[\s\S]*?<!-- SCOLIOSIS_EDUCATION_END -->/)?.[0] ?? "";
+  const headings = [
+    "側弯症ではなぜ身体の一部に負担が集まりやすいのか？",
+    "負担の偏りにつながりやすい4つの要因",
+    "痛みや張りが起きるまでの流れ",
+    "なぜ一部をほぐしても戻ることがあるのか？",
+    "このような症状がある場合は、まず医療機関へご相談ください",
+    "当院では背骨の形だけでなく、全身の動きを確認します",
+    "整体院ひざこぞうの側弯症へのアプローチ",
+    "自分の身体の左右差をどう考えればよいか分からない方へ",
+    "通院頻度について"
+  ];
+
+  assert.ok(section, "the scoped scoliosis education block should exist");
+  const positions = headings.map((heading) => section.indexOf(heading));
+  positions.forEach((position, index) => {
+    assert.ok(position > -1, `missing scoliosis heading: ${headings[index]}`);
+  });
+  for (let index = 1; index < positions.length; index += 1) {
+    assert.ok(positions[index - 1] < positions[index], `${headings[index - 1]} should appear before ${headings[index]}`);
+  }
+
+  assert.equal((section.match(/class="scoliosis-factor"/g) ?? []).length, 4);
+  assert.equal((section.match(/class="scoliosis-symptom-flow__step"/g) ?? []).length, 4);
+  assert.equal((section.match(/class="scoliosis-approach-step"/g) ?? []).length, 3);
+  assert.equal((section.match(/class="scoliosis-medical-note__item"/g) ?? []).length, 6);
+  assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで側弯症について相談する/);
+  assert.match(section, /src="\.\.\/image\/イラスト\/腰・神経\/脊柱側弯の姿勢比較\.webp"/);
+  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.doesNotMatch(section, /真っすぐにする|矯正|必ず改善|完治|根本治療|インナーマッスル|再稼働|頑張りすぎている筋肉/);
+  assert.doesNotMatch(section, /最初の1〜2ヶ月|週1回程度|2週に1回|メンテナンス期|frequency__phases|frequency__phase/);
+});
+
+test("scoliosis education CSS is scoped and responsive", () => {
+  const styles = scoliosisHtml.match(/\/\* SCOLIOSIS_EDUCATION_STYLES_START \*\/[\s\S]*?\/\* SCOLIOSIS_EDUCATION_STYLES_END \*\//)?.[0] ?? "";
+
+  assert.ok(styles, "scoped scoliosis education styles should exist");
+  assert.match(styles, /\.scoliosis-education-section\{/);
+  assert.match(styles, /\.scoliosis-factor-grid\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.scoliosis-symptom-flow\{[^}]*grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.scoliosis-approach-steps\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.scoliosis-factor-grid\{grid-template-columns:1fr/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.scoliosis-symptom-flow\{grid-template-columns:1fr/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.scoliosis-approach-steps\{grid-template-columns:1fr/);
+  assert.match(styles, /\.scoliosis-consult-cta__link\{[^}]*min-height:44px/);
+  assert.doesNotMatch(styles, /body\s*\{|html\s*\{|\.site-header|\.mobile-cta\{/);
+});
+
+test("TMJ education redesign preserves the existing page boundaries", () => {
+  const bodyStart = tmjHtml.indexOf("<body");
+  const redesignStart = tmjHtml.indexOf("<!-- TMJ_EDUCATION_START -->");
+  const flowStart = tmjHtml.indexOf('    <section id="flow"');
+
+  assert.ok(bodyStart > -1);
+  assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
+  assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
+  assert.equal(
+    sha256(tmjHtml.slice(bodyStart, redesignStart)),
+    "38e9128f4207e9849d306d09043f6bc45865292d01e909e185e94430f249c542",
+    "header, hero, and unified troubles markup must remain unchanged"
+  );
+  assert.equal(
+    sha256(tmjHtml.slice(flowStart)),
+    "7314e7d70c449a538e6023fbdba870034bd5ec7f09fd8c0906787803d40f311a",
+    "treatment flow onward must remain unchanged"
+  );
+});
+
+test("TMJ education follows the approved patient-friendly sequence", () => {
+  const section = tmjHtml.match(/<!-- TMJ_EDUCATION_START -->[\s\S]*?<!-- TMJ_EDUCATION_END -->/)?.[0] ?? "";
+  const headings = [
+    "顎関節症はなぜ起こるのか？",
+    "あごに負担が集まりやすくなる4つの要因",
+    "あごの痛み・開けにくさが起きるまでの流れ",
+    "なぜあごをほぐしても戻ることがあるのか？",
+    "このような症状がある場合は、まず歯科・医療機関へご相談ください",
+    "当院ではあごだけでなく、首・肩・全身の動きを確認します",
+    "整体院ひざこぞうの顎関節症へのアプローチ",
+    "自分のあごの状態をどこへ相談すべきか分からない方へ",
+    "通院頻度について"
+  ];
+
+  assert.ok(section, "the scoped TMJ education block should exist");
+  const positions = headings.map((heading) => section.indexOf(heading));
+  positions.forEach((position, index) => {
+    assert.ok(position > -1, `missing TMJ heading: ${headings[index]}`);
+  });
+  for (let index = 1; index < positions.length; index += 1) {
+    assert.ok(positions[index - 1] < positions[index], `${headings[index - 1]} should appear before ${headings[index]}`);
+  }
+
+  assert.equal((section.match(/class="tmj-factor"/g) ?? []).length, 4);
+  assert.equal((section.match(/class="tmj-symptom-flow__step"/g) ?? []).length, 4);
+  assert.equal((section.match(/class="tmj-approach-step"/g) ?? []).length, 3);
+  assert.equal((section.match(/class="tmj-medical-note__item"/g) ?? []).length, 6);
+  assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで顎関節症について相談する/);
+  assert.match(section, /src="\.\.\/image\/イラスト\/足・手・その他\/顎関節と頭蓋骨の構造\.webp"/);
+  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.match(section, /歯科での確認/);
+  assert.doesNotMatch(section, /根本原因|胸椎後弯|頭部前方変位|C0-C1|三叉神経|改善の近道|再起動|再稼働|頚部深層筋/);
+  assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|2週に1回|メンテナンス期|frequency__phases|frequency__phase/);
+});
+
+test("TMJ education CSS is scoped and responsive", () => {
+  const styles = tmjHtml.match(/\/\* TMJ_EDUCATION_STYLES_START \*\/[\s\S]*?\/\* TMJ_EDUCATION_STYLES_END \*\//)?.[0] ?? "";
+
+  assert.ok(styles, "scoped TMJ education styles should exist");
+  assert.match(styles, /\.tmj-education-section\{/);
+  assert.match(styles, /\.tmj-factor-grid\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.tmj-symptom-flow\{[^}]*grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.tmj-approach-steps\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.tmj-factor-grid\{grid-template-columns:1fr/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.tmj-symptom-flow\{grid-template-columns:1fr/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.tmj-approach-steps\{grid-template-columns:1fr/);
+  assert.match(styles, /\.tmj-consult-cta__link\{[^}]*min-height:44px/);
+  assert.doesNotMatch(styles, /body\s*\{|html\s*\{|\.site-header|\.mobile-cta\{/);
+});
+
+test("frozen shoulder education redesign preserves the existing page boundaries", () => {
+  const bodyStart = frozenShoulderHtml.indexOf("<body");
+  const redesignStart = frozenShoulderHtml.indexOf("<!-- FROZEN_SHOULDER_EDUCATION_START -->");
+  const flowStart = frozenShoulderHtml.indexOf('    <section id="flow"');
+
+  assert.ok(bodyStart > -1);
+  assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
+  assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
+  assert.equal(
+    sha256(frozenShoulderHtml.slice(bodyStart, redesignStart)),
+    "2f987e3f6c3d85e9e925e68d077671f7f630c2effa0a1e950b637c5d2de5bc1f",
+    "header, hero, and unified troubles markup must remain unchanged"
+  );
+  assert.equal(
+    sha256(frozenShoulderHtml.slice(flowStart)),
+    "1523e734460fbab4c1b63c92f109391654197bbade43ca9ed3fedaacc05fbbc2",
+    "treatment flow onward must remain unchanged"
+  );
+});
+
+test("frozen shoulder education follows the approved patient-friendly sequence", () => {
+  const section = frozenShoulderHtml.match(/<!-- FROZEN_SHOULDER_EDUCATION_START -->[\s\S]*?<!-- FROZEN_SHOULDER_EDUCATION_END -->/)?.[0] ?? "";
+  const headings = [
+    "五十肩はなぜ起こるのか？",
+    "肩が動かしにくくなる4つの要因",
+    "肩の痛み・動かしにくさが続くまでの流れ",
+    "なぜ肩をほぐしても戻ることがあるのか？",
+    "このような症状がある場合は、まず医療機関へご相談ください",
+    "当院では肩だけでなく、全身の動きを確認します",
+    "整体院ひざこぞうの五十肩へのアプローチ",
+    "自分の肩が今どの状態か分からない方へ",
+    "通院頻度について"
+  ];
+
+  assert.ok(section, "the scoped frozen-shoulder education block should exist");
+  const positions = headings.map((heading) => section.indexOf(heading));
+  positions.forEach((position, index) => {
+    assert.ok(position > -1, `missing frozen-shoulder heading: ${headings[index]}`);
+  });
+  for (let index = 1; index < positions.length; index += 1) {
+    assert.ok(positions[index - 1] < positions[index], `${headings[index - 1]} should appear before ${headings[index]}`);
+  }
+
+  assert.equal((section.match(/class="frozen-factor"/g) ?? []).length, 4);
+  assert.equal((section.match(/class="frozen-symptom-flow__step"/g) ?? []).length, 4);
+  assert.equal((section.match(/class="frozen-approach-step"/g) ?? []).length, 3);
+  assert.equal((section.match(/class="frozen-medical-note__item"/g) ?? []).length, 6);
+  assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで五十肩について相談する/);
+  assert.match(section, /src="\.\.\/image\/イラスト\/肩・首\/肩関節の可動域と痛みの角度\.webp"/);
+  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.doesNotMatch(section, /本当の原因|前方へのズレ|癒着|根本原因|根本治療|完治|必ず改善|再発しない|再稼働|サボった筋肉/);
+  assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|2週に1回|メンテナンス期|frequency__phases|frequency__phase/);
+});
+
+test("frozen shoulder education CSS is scoped and responsive", () => {
+  const styles = frozenShoulderHtml.match(/\/\* FROZEN_SHOULDER_EDUCATION_STYLES_START \*\/[\s\S]*?\/\* FROZEN_SHOULDER_EDUCATION_STYLES_END \*\//)?.[0] ?? "";
+
+  assert.ok(styles, "scoped frozen-shoulder education styles should exist");
+  assert.match(styles, /\.frozen-education-section\{/);
+  assert.match(styles, /\.frozen-factor-grid\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.frozen-symptom-flow\{[^}]*grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.frozen-approach-steps\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.frozen-factor-grid\{grid-template-columns:1fr/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.frozen-symptom-flow\{grid-template-columns:1fr/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.frozen-approach-steps\{grid-template-columns:1fr/);
+  assert.match(styles, /\.frozen-consult-cta__link\{[^}]*min-height:44px/);
+  assert.doesNotMatch(styles, /body\s*\{|html\s*\{|\.site-header|\.mobile-cta\{/);
+});
+
+test("thoracic outlet education redesign preserves the existing page boundaries", () => {
+  const bodyStart = thoracicOutletHtml.indexOf("<body");
+  const redesignStart = thoracicOutletHtml.indexOf("<!-- THORACIC_OUTLET_EDUCATION_START -->");
+  const flowStart = thoracicOutletHtml.indexOf('    <section id="flow"');
+
+  assert.ok(bodyStart > -1);
+  assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
+  assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
+  assert.equal(
+    sha256(thoracicOutletHtml.slice(bodyStart, redesignStart)),
+    "01421e1e5bb7ac0ebd69b487467a4caea6ee9166f70e5828abe6bc0f719b188b",
+    "header, hero, and unified troubles markup must remain unchanged"
+  );
+  assert.equal(
+    sha256(thoracicOutletHtml.slice(flowStart)),
+    "abd491b8ef9998b1c37586620bf7a22b7ef2ddb0f79fc3c6f94facf82c12c175",
+    "treatment flow onward must remain unchanged"
+  );
+});
+
+test("thoracic outlet education follows the approved patient-friendly sequence", () => {
+  const section = thoracicOutletHtml.match(/<!-- THORACIC_OUTLET_EDUCATION_START -->[\s\S]*?<!-- THORACIC_OUTLET_EDUCATION_END -->/)?.[0] ?? "";
+  const headings = [
+    "胸郭出口症候群ではなぜ腕や手に症状が出るのか？",
+    "腕や手の症状につながりやすい4つの要因",
+    "しびれ・だるさが起きるまでの流れ",
+    "なぜ首や肩をほぐしても戻ることがあるのか？",
+    "このような症状がある場合は、まず医療機関へご相談ください",
+    "当院ではしびれる場所だけでなく、全身の動きを確認します",
+    "整体院ひざこぞうの胸郭出口症候群へのアプローチ",
+    "自分のしびれをどこへ相談すべきか分からない方へ",
+    "通院頻度について"
+  ];
+
+  assert.ok(section, "the scoped thoracic-outlet education block should exist");
+  const positions = headings.map((heading) => section.indexOf(heading));
+  positions.forEach((position, index) => {
+    assert.ok(position > -1, `missing thoracic-outlet heading: ${headings[index]}`);
+  });
+  for (let index = 1; index < positions.length; index += 1) {
+    assert.ok(positions[index - 1] < positions[index], `${headings[index - 1]} should appear before ${headings[index]}`);
+  }
+
+  assert.equal((section.match(/class="thoracic-factor"/g) ?? []).length, 4);
+  assert.equal((section.match(/class="thoracic-symptom-flow__step"/g) ?? []).length, 4);
+  assert.equal((section.match(/class="thoracic-approach-step"/g) ?? []).length, 3);
+  assert.equal((section.match(/class="thoracic-medical-note__item"/g) ?? []).length, 6);
+  assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで胸郭出口症候群について相談する/);
+  assert.match(section, /src="\.\.\/image\/イラスト\/肩・首\/肩から腕にしびれが出る女性\.webp"/);
+  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.doesNotMatch(section, /圧迫ポイントを特定|通り道を広げ|姿勢から改善|根本原因|根本治療|完治|必ず改善|再発しない|再稼働|サボった筋肉/);
+  assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|2週に1回|メンテナンス期|frequency__phases|frequency__phase/);
+});
+
+test("thoracic outlet education CSS is scoped and responsive", () => {
+  const styles = thoracicOutletHtml.match(/\/\* THORACIC_OUTLET_EDUCATION_STYLES_START \*\/[\s\S]*?\/\* THORACIC_OUTLET_EDUCATION_STYLES_END \*\//)?.[0] ?? "";
+
+  assert.ok(styles, "scoped thoracic-outlet education styles should exist");
+  assert.match(styles, /\.thoracic-education-section\{/);
+  assert.match(styles, /\.thoracic-factor-grid\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.thoracic-symptom-flow\{[^}]*grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.thoracic-approach-steps\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.thoracic-factor-grid\{grid-template-columns:1fr/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.thoracic-symptom-flow\{grid-template-columns:1fr/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.thoracic-approach-steps\{grid-template-columns:1fr/);
+  assert.match(styles, /\.thoracic-consult-cta__link\{[^}]*min-height:44px/);
+  assert.doesNotMatch(styles, /body\s*\{|html\s*\{|\.site-header|\.mobile-cta\{/);
+});
+
 test("sciatica education redesign stays inside the matching lower-back page range", () => {
   const bodyStart = sciaticaHtml.indexOf("<body");
   const redesignStart = sciaticaHtml.indexOf("<!-- SCIATICA_EDUCATION_START -->");
@@ -2167,13 +2607,13 @@ test("sciatica education redesign stays inside the matching lower-back page rang
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(sciaticaHtml.slice(bodyStart, redesignStart)),
-    "dba2d7d6646c9da26cf3671a7b167fe9271264cf623f7139c2b516eab2bf070f",
-    "header, hero, and concerns markup must remain unchanged"
+    "8675d3d2e4f0d1aa69ff091ee416f24e54c905e7c6cc38309403f891de94d35f",
+    "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(sciaticaHtml.slice(voicesStart)),
-    "75d5de1a62cbd8dae181546d4e90f6030504fd92c53fef92a796fdd2654eb0f1",
-    "patient voices, treatment flow, FAQ, related articles, CTAs, access, forms, footer, and scripts must remain unchanged"
+    "1be33ec27461cc80a906e073395c62eee473318de6f2d0a4d006d249d08238ac",
+    "patient voices onward must match the approved related-navigation baseline"
   );
 });
 
@@ -2236,13 +2676,13 @@ test("spinal stenosis education redesign preserves the existing page boundaries"
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(spinalStenosisHtml.slice(bodyStart, redesignStart)),
-    "958613e62a088035666402e78de621e647d5ca98b7f3630519bcb55292e6f663",
-    "header, hero, and concerns markup must remain unchanged"
+    "b2fbcafad93c3ef7e82c931cb44c9a11485895dace88697a4a053b922e93971a",
+    "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(spinalStenosisHtml.slice(flowStart)),
-    "47795bf5f2963855fea07cd819d88530495fad6a27764380742452aa5542da0d",
-    "treatment flow, FAQ, related articles, CTAs, access, forms, footer, and scripts must remain unchanged"
+    "0332035cdad875e5b01db15a4ce44f1d55be747291402ff93c294f19f6804d73",
+    "treatment flow onward must match the approved related-navigation baseline"
   );
 });
 
@@ -2305,13 +2745,13 @@ test("knee pain education redesign preserves the existing page boundaries", () =
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(bodyStart, redesignStart)),
-    "006f7f3ff50927d3d5b7e602558b7cc8bd158757a50362316988183c23f5c618",
-    "header, hero, and concerns markup must remain unchanged"
+    "b3f41ec049c26bc42279497a475350ad5fae1efc9be39e6d8e8a2cc6e6a5efb7",
+    "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(voicesStart)),
-    "8a9d32298c9c00b2c82f82539905db96ec8fa785f4364a4c5a1cc5f28002fe11",
-    "patient voices, treatment flow, FAQ, related articles, CTAs, access, forms, footer, and scripts must remain unchanged"
+    "7d9e9dc6a7a1793d68e70e4e75327e27e54efef6867e72ea50a8c14f8df7edd5",
+    "patient voices onward must match the approved related-navigation baseline"
   );
 });
 
@@ -2374,13 +2814,13 @@ test("hip pain education redesign preserves the existing page boundaries", () =>
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(hipOsteoarthritisHtml.slice(bodyStart, redesignStart)),
-    "7fa1745adae474c00da265ab98eff7d5f9eeabbb4621609e7c425c72db231959",
-    "header, hero, and concerns markup must remain unchanged"
+    "fa817277797646fa9b8dcbba2982b369136eca0ef61ff01b775da4d2e82b5e88",
+    "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(hipOsteoarthritisHtml.slice(voicesStart)),
-    "041b5ed9a13da007b256e343acdfd5dc7634f4fb7ade4c17047a71a387643add",
-    "patient voices, treatment flow, FAQ, related articles, CTAs, access, forms, footer, and scripts must remain unchanged"
+    "f97d30c0e9bc2acc8494f2838cf930fd0351ef2e9042d9b6339e3cc5f0f6d34a",
+    "patient voices onward must match the approved related-navigation baseline"
   );
 });
 
@@ -2443,13 +2883,13 @@ test("disc herniation education redesign preserves the existing page boundaries"
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(bodyStart, redesignStart)),
-    "eefd92d9354c52d8810000dd1f38e515d750044c06a31347bf534864dbbcc688",
-    "header, hero, and concerns markup must remain unchanged"
+    "45a9df7a882283d1c725d6b334f6d602ef944a15820b19d099b88d8ac7919b4c",
+    "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(flowStart)),
-    "b88dd2d70d3a824a5b3d46818d2da2eca136afea794a576e63f3f3e68f0e7cf2",
-    "treatment flow, FAQ, related articles, CTAs, access, forms, footer, and scripts must remain unchanged"
+    "cacbba9a7203e2413b8a0c4167bfa06cd7a8bd77ab3c2f0d5b757d3795ca9fa2",
+    "treatment flow onward must match the approved related-navigation baseline"
   );
 });
 
@@ -3038,25 +3478,56 @@ test("FAQ and access detail pages exist with SEO, detail links, and LINE reserva
   assert.match(accessHtml, /href="tel:0471143274"/);
   assert.match(accessHtml, /<iframe[\s\S]*整体院ひざこぞうへのアクセスマップ/);
 
-  assert.match(symptomsIndexHtml, /<title>足腰の症状別ページ｜整体院ひざこぞう<\/title>/);
-  assert.match(symptomsIndexHtml, /<h1 id="page-title">足腰の症状別ページ<\/h1>/);
+  assert.match(symptomsIndexHtml, /<title>症状別ページ｜整体院ひざこぞう<\/title>/);
+  assert.match(symptomsIndexHtml, /<h1 id="page-title">症状別ページ<\/h1>/);
+  assert.match(symptomsIndexHtml, /気になる場所から症状を探す/);
   assert.match(symptomsIndexHtml, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/symptoms\/">/);
+    for (const groupTitle of [
+      "腰・お尻・脚",
+      "股関節",
+      "膝",
+      "足首・足裏",
+      "首・肩・腕・手",
+      "背骨・姿勢・顎"
+    ]) {
+      assert.match(symptomsIndexHtml, new RegExp(escapeRegExp(groupTitle)));
+    }
     for (const [href, label] of [
       ["lower-back-pain.html", "腰痛"],
       ["sciatica.html", "坐骨神経痛"],
       ["spinal-stenosis.html", "脊柱管狭窄症"],
       ["lumbar-disc-herniation.html", "腰椎椎間板ヘルニア"],
       ["hip-osteoarthritis.html", "変形性股関節症"],
-      ["plantar-fasciitis.html", "足底筋膜炎"]
+      ["knee-osteoarthritis.html", "変形性膝関節症"],
+      ["knee-effusion.html", "膝に水"],
+      ["pes-anserine-bursitis.html", "膝の内側"],
+      ["knee-lateral-pain.html", "膝の外側"],
+      ["knee-posterior-pain.html", "膝の裏側"],
+      ["knee-front-pain.html", "膝の前側"],
+      ["meniscus-knee-pain.html", "半月板"],
+      ["bowlegs-knee-pain.html", "O脚"],
+      ["knee-hyperextension.html", "反張膝"],
+      ["ankle-stiffness-knee-pain.html", "足首の硬さ"],
+      ["plantar-fasciitis.html", "足底筋膜炎"],
+      ["shoulder-stiffness.html", "肩こり"],
+      ["frozen-shoulder.html", "五十肩"],
+      ["cervical-spondylosis.html", "頚椎症"],
+      ["thoracic-outlet.html", "胸郭出口症候群"],
+      ["carpal-tunnel.html", "手根管症候群"],
+      ["elbow-tendinopathy.html", "肘の痛み"],
+      ["scoliosis.html", "側弯症"],
+      ["tmj.html", "顎関節症"]
     ]) {
       assert.match(symptomsIndexHtml, new RegExp(`href="${escapeRegExp(href)}"`));
       assert.match(symptomsIndexHtml, new RegExp(escapeRegExp(label)));
       assert.equal(existsSync(path.join(repoRoot, "symptoms", href)), true, `${href} should exist`);
     }
     for (const offAxis of ["frozen-shoulder.html", "shoulder-stiffness.html", "tmj.html"]) {
-      assert.doesNotMatch(symptomsIndexHtml, new RegExp(`href="${escapeRegExp(offAxis)}"`));
       assert.match(readFileSync(path.join(repoRoot, "symptoms", offAxis), "utf8"), /<meta name="robots" content="noindex,follow">/);
     }
+    const directoryLinks = [...symptomsIndexHtml.matchAll(/class="symptom-directory__link" href="([^"]+)"/g)].map((match) => match[1]);
+    assert.equal(directoryLinks.length, 24);
+    assert.equal(new Set(directoryLinks).size, 24);
   });
 
 test("staff profile page uses transplanted chrome and editable staff sections", () => {

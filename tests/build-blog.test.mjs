@@ -236,6 +236,8 @@ test("normalizeSymptomPageDesign replaces inline symptom navigation and footer c
   const output = normalizeSymptomPageDesign(html, {
     name: "整体院ひざこぞう",
     subtitle: "柏市の整体院"
+  }, {
+    fileName: "shoulder-stiffness.html"
   });
 
   assert.match(output, /class="related-symptoms"/);
@@ -247,6 +249,86 @@ test("normalizeSymptomPageDesign replaces inline symptom navigation and footer c
   assert.doesNotMatch(output, /膝痛専門整体院 ひざこぞう/);
   assert.doesNotMatch(output, /onmouseover/);
   assert.doesNotMatch(output, /style="display:flex;"/);
+});
+
+test("symptom related navigation is specific to the current body area", () => {
+  const html = `
+    <main>
+      <!-- RELATED_SYMPTOMS_NAV_START -->
+      <section class="related-symptoms"></section>
+      <!-- RELATED_SYMPTOMS_NAV_END -->
+      <!-- BLOG_RELATED_ARTICLES_START -->
+      <section class="related-articles"></section>
+      <!-- BLOG_RELATED_ARTICLES_END -->
+    </main>
+    <footer></footer>
+  `;
+
+  const shoulderOutput = normalizeSymptomPageDesign(html, site, {
+    fileName: "shoulder-stiffness.html"
+  });
+  assert.match(shoulderOutput, /href="frozen-shoulder\.html"/);
+  assert.match(shoulderOutput, /href="cervical-spondylosis\.html"/);
+  assert.match(shoulderOutput, /href="thoracic-outlet\.html"/);
+  assert.doesNotMatch(shoulderOutput, /href="shoulder-stiffness\.html"/);
+  assert.doesNotMatch(shoulderOutput, /href="knee-osteoarthritis\.html"/);
+  assert.match(shoulderOutput, /href="index\.html"[^>]*>[\s\S]*すべての症状を見る/);
+
+  const lowerBackOutput = normalizeSymptomPageDesign(html, site, {
+    fileName: "lower-back-pain.html"
+  });
+  assert.match(lowerBackOutput, /href="sciatica\.html"/);
+  assert.match(lowerBackOutput, /href="spinal-stenosis\.html"/);
+  assert.match(lowerBackOutput, /href="lumbar-disc-herniation\.html"/);
+  assert.doesNotMatch(lowerBackOutput, /href="lower-back-pain\.html"/);
+  assert.doesNotMatch(lowerBackOutput, /href="shoulder-stiffness\.html"/);
+});
+
+test("symptom related navigation stays compact on every configured page", () => {
+  const html = `
+    <main>
+      <!-- RELATED_SYMPTOMS_NAV_START -->
+      <section class="related-symptoms"></section>
+      <!-- RELATED_SYMPTOMS_NAV_END -->
+    </main>
+    <footer></footer>
+  `;
+  const files = [
+    "lower-back-pain.html",
+    "sciatica.html",
+    "spinal-stenosis.html",
+    "lumbar-disc-herniation.html",
+    "hip-osteoarthritis.html",
+    "knee-osteoarthritis.html",
+    "knee-effusion.html",
+    "pes-anserine-bursitis.html",
+    "knee-lateral-pain.html",
+    "knee-posterior-pain.html",
+    "knee-front-pain.html",
+    "meniscus-knee-pain.html",
+    "bowlegs-knee-pain.html",
+    "knee-hyperextension.html",
+    "ankle-stiffness-knee-pain.html",
+    "plantar-fasciitis.html",
+    "shoulder-stiffness.html",
+    "frozen-shoulder.html",
+    "cervical-spondylosis.html",
+    "thoracic-outlet.html",
+    "carpal-tunnel.html",
+    "elbow-tendinopathy.html",
+    "scoliosis.html",
+    "tmj.html"
+  ];
+
+  for (const fileName of files) {
+    const output = normalizeSymptomPageDesign(html, site, { fileName });
+    const relatedSection = output.match(/<section class="related-symptoms">[\s\S]*?<\/section>/)?.[0] ?? "";
+    const cardCount = (relatedSection.match(/class="related-symptom-card"/g) ?? []).length;
+
+    assert.ok(cardCount >= 3 && cardCount <= 4, `${fileName} should show 3-4 related pages`);
+    assert.doesNotMatch(relatedSection, new RegExp(`href="${fileName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`));
+    assert.match(relatedSection, /class="related-symptoms__all-link" href="index\.html"/);
+  }
 });
 
 test("buildPostContent adds article takeaways and a middle consultation CTA", () => {

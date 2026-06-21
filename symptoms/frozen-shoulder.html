@@ -222,18 +222,21 @@
 .related-article-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
 .related-article-card__desc{font-size:13px;font-weight:700;color:#475569;line-height:1.8}
 .related-article-card__link{display:inline-flex;align-items:center;gap:.35rem;font-size:13px;font-weight:900;color:#2563eb}
-.related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #e2e8f0}
-.related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.1em;margin:0 0 .7rem}
-.related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .75rem}
-.related-symptoms__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
-.related-symptoms__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem}
-.related-symptom-card{position:relative;display:flex;flex-direction:column;gap:.55rem;min-height:126px;background:#f8fbff;border:1px solid #dbeafe;border-radius:8px;padding:1rem 3.25rem 1rem 1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
-.related-symptom-card:hover,.related-symptom-card:focus-visible{transform:translateY(-2px);background:#fff;border-color:#93c5fd;box-shadow:0 8px 18px rgba(37,99,235,.1);outline:none}
-.related-symptom-card__label{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
-.related-symptom-card__description{font-size:13px;font-weight:700;color:#475569;line-height:1.75}
-.related-symptom-card__arrow{position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#f8fbff;border:1px solid #dbeafe;color:#2563eb;font-size:22px;font-weight:900;line-height:1;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
-.related-symptom-card:hover .related-symptom-card__arrow,.related-symptom-card:focus-visible .related-symptom-card__arrow{background:#2563eb;border-color:#2563eb;color:#fff;transform:translateY(-50%) translateX(2px)}
-@media(max-width:640px){.related-symptom-card{padding-right:3rem}.related-symptom-card__arrow{right:.85rem;width:30px;height:30px;font-size:20px}}
+.related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #dfe4dc}
+.related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#356b2f;letter-spacing:.1em;margin:0 0 .7rem}
+.related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#223b2d;line-height:1.55;margin:0 0 .75rem}
+.related-symptoms__lead{text-align:center;font-size:14px;font-weight:700;color:#59635d;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
+.related-symptoms__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem}
+.related-symptom-card{position:relative;display:flex;flex-direction:column;gap:.55rem;min-height:118px;background:#fff;border:1px solid #dfe4dc;border-radius:8px;padding:1rem 3.25rem 1rem 1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
+.related-symptom-card:hover,.related-symptom-card:focus-visible{transform:translateY(-2px);background:#fafcf8;border-color:#9bb596;box-shadow:0 8px 18px rgba(35,77,36,.09);outline:3px solid rgba(53,107,47,.16);outline-offset:2px}
+.related-symptom-card__label{font-size:1rem;font-weight:900;color:#234d24;line-height:1.5}
+.related-symptom-card__description{font-size:13px;font-weight:700;color:#59635d;line-height:1.75}
+.related-symptom-card__arrow{position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#f6f9f3;border:1px solid #cbd8c6;color:#356b2f;font-size:22px;font-weight:900;line-height:1;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
+.related-symptom-card:hover .related-symptom-card__arrow,.related-symptom-card:focus-visible .related-symptom-card__arrow{background:#356b2f;border-color:#356b2f;color:#fff;transform:translateY(-50%) translateX(2px)}
+.related-symptoms__all{display:flex;justify-content:center;margin-top:1.35rem}
+.related-symptoms__all-link{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:44px;border-bottom:1px solid #8aa384;color:#234d24;font-size:14px;font-weight:900;text-decoration:none}
+.related-symptoms__all-link:hover,.related-symptoms__all-link:focus-visible{color:#356b2f;border-color:#356b2f;outline:3px solid rgba(53,107,47,.16);outline-offset:5px}
+@media(max-width:640px){.related-symptoms{padding:2.75rem 1rem}.related-symptoms__grid{grid-template-columns:1fr}.related-symptom-card{min-height:104px;padding-right:3rem}.related-symptom-card__arrow{right:.85rem;width:30px;height:30px;font-size:20px}}
 .symptom-mid-cta{padding:2.75rem 1rem;background:#fff;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
 .symptom-mid-cta__inner{display:grid;gap:1.25rem;align-items:center;background:#f8fbff;border:1px solid #bfdbfe;border-radius:8px;padding:1.5rem}
 .symptom-mid-cta__eyebrow{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
@@ -271,7 +274,164 @@
 @media(min-width:768px){.related-articles__title{font-size:1.75rem}}
 @media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
 @media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}.symptom-voices__grid{gap:1rem}.symptom-voice-card__body{padding:1rem}.symptom-voices__note{text-align:left}}
+/* FROZEN_SHOULDER_EDUCATION_STYLES_START */
+.frozen-education{--frozen-green:#356b2f;--frozen-green-dark:#234d24;--frozen-cream:#faf7f0;--frozen-text:#252a27;--frozen-muted:#59635d;--frozen-border:#dfe4dc;background:#fff;color:var(--frozen-text)}
+.frozen-education-section{padding:clamp(72px,8vw,104px) 0;border-top:1px solid var(--frozen-border)}
+.frozen-education-section--cream,.frozen-education-section--flow{background:var(--frozen-cream)}.frozen-education-section--medical{background:#f4f2ed}.frozen-education-section--frequency{padding-top:56px;padding-bottom:72px}
+.frozen-section-title{position:relative;margin:0 0 clamp(32px,5vw,52px);padding-bottom:18px;color:var(--frozen-text);font-size:clamp(1.7rem,3vw,2.35rem);font-weight:900;line-height:1.45;text-align:left}.frozen-section-title::after{content:"";position:absolute;left:0;bottom:0;width:52px;height:3px;background:var(--frozen-green)}
+.frozen-section-lead{max-width:760px;margin:-18px 0 48px;color:var(--frozen-muted);font-size:1rem;font-weight:700;line-height:1.95}.frozen-copy{color:var(--frozen-muted);font-size:1rem;font-weight:700;line-height:1.95}.frozen-copy p{margin:0}.frozen-copy p+p{margin-top:1.15rem}.frozen-copy strong{color:var(--frozen-green-dark)}.frozen-copy--accent{border-left:3px solid var(--frozen-green);padding-left:24px}
+.frozen-cause-layout{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(320px,.96fr);gap:clamp(36px,6vw,68px);align-items:center}.frozen-cause-visual{margin:0;border:1px solid var(--frozen-border);background:#fff;padding:18px}.frozen-cause-visual img{display:block;width:100%;height:auto}.frozen-cause-visual figcaption{margin-top:12px;color:#667068;font-size:.78rem;font-weight:700;line-height:1.65;text-align:center}
+.frozen-factor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--frozen-border);border-left:1px solid var(--frozen-border)}.frozen-factor{border-right:1px solid var(--frozen-border);border-bottom:1px solid var(--frozen-border);padding:clamp(28px,4vw,42px)}.frozen-factor__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.frozen-factor__number{color:var(--frozen-green);font-size:1.7rem;font-weight:900}.frozen-factor__icon{display:grid;place-items:center;width:48px;height:48px;border:1px solid #b9cbb4;border-radius:50%;color:var(--frozen-green)}.frozen-factor__icon svg{width:23px;height:23px}.frozen-factor h3{margin:0 0 12px;font-size:1.1rem;line-height:1.55}.frozen-factor p{margin:0;color:var(--frozen-muted);font-size:.94rem;font-weight:700;line-height:1.85}
+.frozen-symptom-flow{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(32px,4vw,54px);margin-top:8px}.frozen-symptom-flow::before{content:"";position:absolute;top:27px;left:7%;right:7%;height:1px;background:#b7c7b1}.frozen-symptom-flow__step{position:relative;z-index:1;text-align:center}.frozen-symptom-flow__number{display:grid;place-items:center;width:56px;height:56px;margin:0 auto 18px;border:2px solid var(--frozen-green);border-radius:50%;background:var(--frozen-cream);font-weight:900}.frozen-symptom-flow__step p{margin:0;font-size:.94rem;font-weight:900;line-height:1.75}.frozen-symptom-flow__arrow{position:absolute;top:16px;z-index:2;color:var(--frozen-green)}.frozen-symptom-flow__arrow--1{left:24.2%}.frozen-symptom-flow__arrow--2{left:49.1%}.frozen-symptom-flow__arrow--3{left:74%}.frozen-flow-note{max-width:760px;margin:42px auto 0;border-top:1px solid #d7ddd3;padding-top:22px;color:#687168;font-size:.84rem;font-weight:700;line-height:1.85;text-align:center}
+.frozen-relief-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(360px,1.1fr);gap:clamp(40px,6vw,72px);align-items:center}.frozen-cycle{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}.frozen-cycle__item{display:flex;align-items:center;gap:12px;min-height:70px;border-block:1px solid var(--frozen-border);padding:14px 4px;font-size:.9rem;font-weight:900;line-height:1.5}.frozen-cycle__item svg{width:22px;color:var(--frozen-green)}.frozen-cycle__item--last{grid-column:2/4}.frozen-cycle__arrow{color:#8ca188}
+.frozen-medical-note{border:1px solid #d9d4ca;background:#fbfaf7;padding:clamp(26px,5vw,44px)}.frozen-medical-note__heading{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px}.frozen-medical-note__icon{display:grid;place-items:center;width:52px;height:52px;border:1px solid #a9b7a4;border-radius:50%;color:var(--frozen-green-dark)}.frozen-medical-note h2{margin:0;font-size:clamp(1.35rem,2.4vw,1.85rem);line-height:1.55}.frozen-medical-note__heading p{margin:14px 0 0;color:var(--frozen-muted);font-size:.95rem;font-weight:700;line-height:1.85}.frozen-medical-note__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px;margin:30px 0 0;padding:0;border-top:1px solid #ddd8cf;list-style:none}.frozen-medical-note__item{position:relative;border-bottom:1px solid #ddd8cf;padding:16px 8px 16px 27px;color:#4c534e;font-size:.92rem;font-weight:800;line-height:1.65}.frozen-medical-note__item::before{content:"";position:absolute;left:5px;top:1.55em;width:8px;height:8px;border:2px solid var(--frozen-green);border-radius:50%}
+.frozen-assessment-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.9fr);grid-template-areas:"intro media" "checklist media";gap:26px clamp(40px,6vw,68px)}.frozen-assessment__intro{grid-area:intro}.frozen-assessment__media{grid-area:media;margin:0}.frozen-assessment__media img{display:block;width:100%;height:100%;min-height:430px;border:1px solid var(--frozen-border);object-fit:cover}.frozen-check-list{grid-area:checklist;display:grid;gap:12px;margin:0;padding:0;list-style:none}.frozen-check-list li{display:flex;gap:11px;color:#3c453f;font-size:.94rem;font-weight:800;line-height:1.65}.frozen-check-list svg{width:20px;flex:0 0 auto;color:var(--frozen-green)}
+.frozen-approach-steps{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(34px,5vw,62px)}.frozen-approach-steps::before{content:"";position:absolute;top:72px;left:13%;right:13%;height:1px;background:#b7c7b1}.frozen-approach-step{position:relative;z-index:1;text-align:center}.frozen-approach-step__number{display:block;margin-bottom:13px;color:var(--frozen-green);font-size:.78rem;font-weight:900}.frozen-approach-step__icon{display:grid;place-items:center;width:72px;height:72px;margin:0 auto 18px;border:2px solid var(--frozen-green);border-radius:50%;background:var(--frozen-cream);color:var(--frozen-green-dark)}.frozen-approach-step__label{margin:0 0 10px;color:var(--frozen-green);font-size:.84rem;font-weight:900}.frozen-approach-step h3{margin:0 0 13px;font-size:1.08rem;line-height:1.55}.frozen-approach-step>p:last-child{margin:0;color:var(--frozen-muted);font-size:.9rem;font-weight:700;line-height:1.85;text-align:left}.frozen-approach-steps__arrow{position:absolute;top:61px;z-index:2;color:var(--frozen-green)}.frozen-approach-steps__arrow--1{left:32.2%}.frozen-approach-steps__arrow--2{left:65.6%}
+.frozen-consult-section{padding:0 0 clamp(72px,8vw,96px);background:var(--frozen-cream)}.frozen-consult-cta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:34px;align-items:center;border:1px solid #aebfa8;border-radius:12px;background:#f3f8ef;padding:clamp(26px,4vw,38px)}.frozen-consult-cta h2{margin:0;color:var(--frozen-green-dark);font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.55}.frozen-consult-cta p{margin:10px 0 0;color:#536052;font-size:.94rem;font-weight:700;line-height:1.8}.frozen-consult-cta__link{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;border-radius:8px;background:var(--frozen-green);color:#fff;padding:14px 20px;font-size:.93rem;font-weight:900;text-align:center;text-decoration:none;transition:background .2s ease,transform .2s ease}.frozen-consult-cta__link:focus-visible{outline:3px solid rgba(53,107,47,.2);outline-offset:3px}
+.frozen-frequency{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;border-block:1px solid var(--frozen-border);padding:30px 0}.frozen-frequency__icon{display:grid;place-items:center;width:50px;height:50px;border:1px solid #b9cbb4;border-radius:50%;color:var(--frozen-green)}.frozen-frequency h2{margin:0 0 12px;font-size:1.35rem}.frozen-frequency p{margin:0;color:var(--frozen-muted);font-size:.94rem;font-weight:700;line-height:1.85}.frozen-frequency p+p{margin-top:6px}
+@media(max-width:767px){.frozen-education-section{padding:68px 0}.frozen-education-section--frequency{padding-top:42px;padding-bottom:72px}.frozen-section-title{font-size:clamp(1.5rem,7vw,1.85rem)}.frozen-section-lead{margin:-8px 0 34px}.frozen-copy--accent{padding-left:18px}.frozen-cause-layout{grid-template-columns:1fr;gap:30px}.frozen-factor-grid{grid-template-columns:1fr;border-left:0}.frozen-factor{border-right:0;padding:26px 4px}.frozen-symptom-flow{grid-template-columns:1fr;gap:0;margin-left:5px;padding-left:46px}.frozen-symptom-flow::before{top:26px;bottom:26px;left:27px;right:auto;width:1px;height:auto}.frozen-symptom-flow__step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;min-height:92px;text-align:left}.frozen-symptom-flow__number{width:54px;height:54px;margin:0 0 0 -46px}.frozen-symptom-flow__arrow{display:none}.frozen-flow-note{text-align:left}.frozen-relief-layout{grid-template-columns:1fr}.frozen-cycle{grid-template-columns:1fr;gap:0}.frozen-cycle__item,.frozen-cycle__item--last{grid-column:auto}.frozen-cycle__arrow svg{transform:rotate(90deg)}.frozen-medical-note__heading,.frozen-medical-note__list{grid-template-columns:1fr}.frozen-assessment-layout{grid-template-columns:1fr;grid-template-areas:"intro" "media" "checklist"}.frozen-assessment__media img{height:auto;min-height:0}.frozen-approach-steps{grid-template-columns:1fr;gap:0;margin-left:5px;padding-left:48px}.frozen-approach-steps::before{top:42px;bottom:42px;left:27px;right:auto;width:1px;height:auto}.frozen-approach-step{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:17px;min-height:210px;text-align:left}.frozen-approach-step__number,.frozen-approach-step__label,.frozen-approach-step h3,.frozen-approach-step>p:last-child{grid-column:2}.frozen-approach-step__icon{grid-column:1;grid-row:1/5;width:60px;height:60px;margin-left:-48px}.frozen-approach-steps__arrow{display:none}.frozen-consult-cta{grid-template-columns:1fr}.frozen-consult-cta__link{width:100%;min-height:52px}.frozen-frequency{grid-template-columns:1fr}}
+@media(min-width:768px) and (max-width:1024px){.frozen-cause-layout,.frozen-assessment-layout{grid-template-columns:minmax(0,1fr) minmax(300px,.9fr);gap:40px}.frozen-relief-layout{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.frozen-consult-cta__link{transition:none}}
+/* FROZEN_SHOULDER_EDUCATION_STYLES_END */
 /* BLOG_RELATED_ARTICLES_STYLES_END */
+
+    /* Copied from top page troubles-check section. */
+
+    .troubles-check {
+      padding: 64px 16px 72px;
+      background: #f5f6f7;
+    }
+
+    .troubles-check__inner {
+      width: min(100%, 760px);
+      margin: 0 auto;
+    }
+
+    .troubles-check__heading {
+      position: relative;
+      margin: 0 auto 34px;
+      padding: 22px 20px;
+      background: linear-gradient(180deg, #eeeeee 0%, #e4e4e4 100%);
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.75);
+    }
+
+    .troubles-check__heading::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -18px;
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-top: 18px solid #e4e4e4;
+      transform: translateX(-50%);
+    }
+
+    .troubles-check__heading h2 {
+      margin: 0;
+      color: #111827;
+      font-family: var(--font-heading);
+      font-size: clamp(1.65rem, 4.8vw, 2.45rem);
+      font-weight: 900;
+      line-height: 1.32;
+      letter-spacing: 0;
+    }
+
+    .troubles-check__list {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 28px 26px 30px;
+      list-style: none;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      box-shadow: 0 20px 42px -30px rgba(17,24,39,0.32);
+    }
+
+    .troubles-check__list li {
+      position: relative;
+      min-height: 34px;
+      padding-left: 42px;
+      color: #222;
+      font-size: clamp(1.05rem, 2.4vw, 1.28rem);
+      font-weight: 700;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+
+    .troubles-check__list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.28em;
+      width: 25px;
+      height: 25px;
+      background: #fff;
+      border: 2px solid #222;
+      border-radius: 2px;
+    }
+
+    .troubles-check__list li::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 0.14em;
+      width: 26px;
+      height: 14px;
+      border-left: 4px solid #e3342f;
+      border-bottom: 4px solid #e3342f;
+      transform: rotate(-45deg);
+      transform-origin: center;
+    }
+
+    .troubles-check__list strong {
+      color: #c53632;
+      font-weight: 900;
+    }
+
+    @media (max-width: 480px) {
+      .troubles-check {
+        padding: 48px 12px 56px;
+      }
+
+      .troubles-check__heading {
+        margin-bottom: 30px;
+        padding: 18px 12px;
+      }
+
+      .troubles-check__heading::after {
+        bottom: -15px;
+        border-left-width: 15px;
+        border-right-width: 15px;
+        border-top-width: 15px;
+      }
+
+      .troubles-check__list {
+        gap: 12px;
+        padding: 22px 16px 24px;
+        border-radius: 8px;
+      }
+
+      .troubles-check__list li {
+        padding-left: 36px;
+        font-size: 1.02rem;
+        line-height: 1.7;
+      }
+
+      .troubles-check__list li::before {
+        width: 23px;
+        height: 23px;
+      }
+
+      .troubles-check__list li::after {
+        left: 5px;
+        width: 24px;
+        height: 13px;
+      }
+    }
 
   </style>
 <script type="application/ld+json">
@@ -420,7 +580,7 @@
               <a href="./lumbar-disc-herniation.html" class="site-nav__dropdown-link">椎間板ヘルニア</a>
               <a href="./hip-osteoarthritis.html" class="site-nav__dropdown-link">股関節痛</a>
               <a href="./knee-osteoarthritis.html" class="site-nav__dropdown-link">膝痛</a>
-              <a href="./index.html" class="site-nav__dropdown-link">その他の足腰の症状</a>
+              <a href="./index.html" class="site-nav__dropdown-link">すべての症状を見る</a>
             </div>
           </div>
           <a href="../index.html#flow" class="site-nav__item">
@@ -460,7 +620,7 @@
               <a href="./lumbar-disc-herniation.html" class="site-mobile-nav__subitem">椎間板ヘルニア</a>
               <a href="./hip-osteoarthritis.html" class="site-mobile-nav__subitem">股関節痛</a>
               <a href="./knee-osteoarthritis.html" class="site-mobile-nav__subitem">膝痛</a>
-              <a href="./index.html" class="site-mobile-nav__subitem">その他の足腰の症状</a>
+              <a href="./index.html" class="site-mobile-nav__subitem">すべての症状を見る</a>
             </div>
           </div>
           <a href="../index.html#flow" class="site-mobile-nav__item">流れ</a>
@@ -498,184 +658,129 @@
       </div>
     </section>
 
-    <section class="concerns">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">こんなお悩みはありませんか？</h2>
-        <div class="concerns__list">
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">肩が痛くて腕を上げられない</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">髪を結ぶ、背中に手を回す動作ができない</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">夜中にズキズキ痛んで、痛い方を下にして寝られない</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">肩が固まって、可動域がどんどん狭くなっている</p>
-          </div>
-          <div class="concern-item">
-            <div class="concern-item__icon">
-              <i data-lucide="check" style="width:1rem;height:1rem;color:#2563eb;" aria-hidden="true"></i>
-            </div>
-            <p class="concern-item__text">「時間が経てば治る」と言われたが、なかなか良くならない</p>
-          </div>
+    <section id="troubles" class="troubles-check">
+      <div class="troubles-check__inner">
+        <div class="troubles-check__heading">
+          <h2>こんなお悩みを抱えていませんか？</h2>
         </div>
-        <p class="concerns__footer">一つでも当てはまる方は、<strong>当院がお力になれる可能性があります。</strong></p>
+
+        <ul class="troubles-check__list" aria-label="五十肩でよくあるお悩み">
+          <li>肩が痛くて<strong>腕を上げられない</strong></li>
+          <li>髪を結ぶ、背中に手を回す動作が<strong>できない</strong></li>
+          <li>夜中に肩が痛み、<strong>目が覚める</strong></li>
+          <li>痛い方を下にして<strong>寝られない</strong></li>
+          <li>服の着脱や上着を着る動作が<strong>つらい</strong></li>
+          <li>肩が固まり、<strong>動かせる範囲が狭くなった</strong></li>
+          <li>時間が経てばよいと言われたが<strong>変化を感じにくい</strong></li>
+          <li>無理に動かしてよいのか<strong>判断できず不安</strong></li>
+        </ul>
       </div>
     </section>
 
-    <section class="cause">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">五十肩はなぜ起こるのか</h2>
-        <div class="prose"><p>五十肩の本当の原因は「<span class="highlight">上腕骨頭の前方へのズレ</span>」です。スマホやPCの使い過ぎで猫背になると、大胸筋・小胸筋などの前側の筋肉（頑張りすぎている筋肉）が過緊張し、骨頭を前方へ引き出してしまいます。</p><p>この状態で腕を動かすと、骨頭が肩峰の下の組織を挟み込む「肩峰下インピンジメント」が発生し、強い炎症と夜間痛を引き起こします。</p></div>
-        <div class="mechanism">
-          <p class="mechanism__title">五十肩が悪化するメカニズム</p>
-          <div class="mechanism__flow">
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">1</div>
-              <p class="mechanism__step-text">大胸筋・小胸筋が頑張りすぎている筋肉化（猫背・巻き肩）</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">2</div>
-              <p class="mechanism__step-text">上腕骨頭が前方へズレる</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">3</div>
-              <p class="mechanism__step-text">肩甲骨の動きが働きにくくなった筋肉化して低下</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__step">
-              <div class="mechanism__step-num">4</div>
-              <p class="mechanism__step-text">肩関節だけで無理に動かし炎症悪化</p>
-            </div>
-            <div class="mechanism__arrow"></div>
-            <div class="mechanism__result">
-              <svg class="mechanism__result-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:#fff;"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-              <p class="mechanism__result-text">炎症→拘縮→可動域の低下が進行</p>
-            </div>
-          </div>
-        </div>
-        <div class="vicious-cycle">
-          <p class="vicious-cycle__title">
-            <i data-lucide="alert-triangle" style="width:1.125rem;height:1.125rem;" aria-hidden="true"></i>
-            時期を誤ると悪循環になります
-          </p>
-          <div class="cycle-flow"><span class="cycle-item">炎症期に無理に動かす</span><span class="cycle-arrow">→</span><span class="cycle-item">炎症が長引く</span><span class="cycle-arrow">→</span><span class="cycle-item">拘縮期に安静を続ける</span><span class="cycle-arrow">→</span><span class="cycle-item">関節包が癒着・固まる</span></div>
-        </div>
-        <div class="key-point">
-          <p class="key-point__label">✦ ポイント</p>
-          <p class="key-point__text">五十肩には「炎症期・拘縮期・回復期」の3つの時期があり、時期によって最適な対処がまったく異なります。時期の見極めが施術で最も重要なポイントです。</p>
-        </div>
-      </div>
-    </section>
 
-    <!-- SYMPTOM_MID_CTA_START -->
-<section class="symptom-mid-cta">
-      <div class="container max-w-4xl symptom-mid-cta__inner">
-        <div>
-          <p class="symptom-mid-cta__eyebrow">相談の目安</p>
-          <h2 class="symptom-mid-cta__title">原因を知るだけでなく、今の状態に合う進め方を確認しませんか？</h2>
-          <p class="symptom-mid-cta__text">痛み方や生活で困っている場面は人によって違います。読みながら「自分も近いかも」と感じた方は、来院前にLINEで状況を送っていただいて大丈夫です。</p>
+<!-- FROZEN_SHOULDER_EDUCATION_START -->
+    <div class="frozen-education">
+      <section class="frozen-education-section frozen-education-section--white" aria-labelledby="frozen-cause-title">
+        <div class="container max-w-4xl">
+          <h2 id="frozen-cause-title" class="frozen-section-title">五十肩はなぜ起こるのか？</h2>
+          <div class="frozen-cause-layout">
+            <div class="frozen-copy">
+              <p>五十肩と呼ばれる肩の痛みや動かしにくさは、一つの原因だけで起こるとは限りません。</p>
+              <p>肩まわりの組織に負担がかかって痛みが出ると、身体は肩を守ろうとして動きを小さくします。その状態が続くことで、肩関節や肩甲骨がさらに動かしにくくなることがあります。</p>
+              <p>洗髪、着替え、棚の物を取るといった動作が減ると、肩を動かす機会も少なくなり、日常生活で不便を感じやすくなります。</p>
+              <p>痛みの強さや動かせる範囲には個人差があるため、無理に腕を上げず、現在の状態に合った進め方を確認することが大切です。</p>
+            </div>
+            <figure class="frozen-cause-visual">
+              <img src="../image/イラスト/肩・首/肩関節の可動域と痛みの角度.webp" alt="肩を上げる角度と痛みが出る範囲を示したイラスト" loading="lazy" decoding="async" width="800" height="600">
+              <figcaption>痛む角度や動かしにくい方向は、一人ひとり異なります。</figcaption>
+            </figure>
+          </div>
         </div>
-        <div class="symptom-mid-cta__actions">
-          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで相談する</a>
-          <a class="symptom-mid-cta__btn symptom-mid-cta__btn--tel" href="tel:0471143274">電話で相談する</a>
-        </div>
-      </div>
-    </section>
-<!-- SYMPTOM_MID_CTA_END -->
+      </section>
 
-<section class="approach">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">当院の五十肩（肩関節周囲炎）へのアプローチ</h2>
-        <p class="approach__intro">今の時期を正確に見極め、段階に合わせた手技と運動を組み合わせて負担の軽減を目指します</p>
-        <img src="../image/frozen-shoulder-symptom.webp" alt="肩の痛みや上がりにくさが気になる方のイメージ" class="feature-photo" style="width:100%; max-height:320px; object-fit:contain; background:#fff; padding:.5rem; border-radius:1rem; box-shadow:0 10px 25px -5px rgba(0,0,0,0.08); margin-bottom:2.5rem; border:1px solid #e2e8f0;" loading="lazy" decoding="async" width="1600" height="1600">
-        <div class="msm-steps">
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--1">
-                <span class="msm-step__badge-num">1</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--1">可動性の回復</span>
-                <h3 class="msm-step__title">炎症期は周辺から丁寧にアプローチ</h3>
-                <p class="msm-step__text">炎症期は肩への直接刺激を避け、鎖骨・肘・胸椎など周辺からアプローチ。拘縮期に入ったら前方・後方の癒着した組織をほぐし、肩甲骨の可動性を取り戻します。</p>
-              </div>
-            </div>
-          </div>
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--2">
-                <span class="msm-step__badge-num">2</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--2">安定性の再獲得</span>
-                <h3 class="msm-step__title">サボった肩甲骨まわりの筋肉を再起動</h3>
-                <p class="msm-step__text">前鋸筋・菱形筋など、サボってしまった肩甲骨周囲の筋肉を再稼働させ、肩関節を正しい位置でキープできる安定性を作ります。</p>
-              </div>
-            </div>
-          </div>
-          <div class="msm-step">
-            <div class="msm-step__header">
-              <div class="msm-step__badge msm-step__badge--3">
-                <span class="msm-step__badge-num">3</span>
-                <span class="msm-step__badge-label">STEP</span>
-              </div>
-              <div class="msm-step__body">
-                <span class="msm-step__tag msm-step__tag--3">動作の定着</span>
-                <h3 class="msm-step__title">5関節の連動を整えて日常動作を取り戻す</h3>
-                <p class="msm-step__text">肩甲上腕・肩鎖・胸鎖・第2肩関節・肩甲胸郭の5つの関節が連動して動くよう調整し、着替えや洗髪などの日常動作を安全に取り戻せるよう練習します。</p>
-              </div>
-            </div>
+      <section class="frozen-education-section frozen-education-section--cream" aria-labelledby="frozen-factors-title">
+        <div class="container max-w-4xl">
+          <h2 id="frozen-factors-title" class="frozen-section-title">肩が動かしにくくなる4つの要因</h2>
+          <div class="frozen-factor-grid">
+            <article class="frozen-factor"><div class="frozen-factor__top"><span class="frozen-factor__number">01</span><span class="frozen-factor__icon" aria-hidden="true"><i data-lucide="shield-alert"></i></span></div><h3>痛みを避けて肩を動かさない</h3><p>痛い動きを避ける期間が続くと、腕を上げる、後ろへ回すといった動作が少なくなり、肩が動かしにくくなることがあります。</p></article>
+            <article class="frozen-factor"><div class="frozen-factor__top"><span class="frozen-factor__number">02</span><span class="frozen-factor__icon" aria-hidden="true"><i data-lucide="move"></i></span></div><h3>肩甲骨や背中が動きにくい</h3><p>肩甲骨や背中の動きが小さいと、腕を上げるときに肩関節へ負担が集まり、痛みや引っかかりを感じやすくなります。</p></article>
+            <article class="frozen-factor"><div class="frozen-factor__top"><span class="frozen-factor__number">03</span><span class="frozen-factor__icon" aria-hidden="true"><i data-lucide="bed-double"></i></span></div><h3>夜間や寝返りで肩へ負担がかかる</h3><p>寝る姿勢や寝返りで痛む肩が押されたり腕の重さが加わったりすると、夜間に痛みを感じやすくなることがあります。</p></article>
+            <article class="frozen-factor"><div class="frozen-factor__top"><span class="frozen-factor__number">04</span><span class="frozen-factor__icon" aria-hidden="true"><i data-lucide="briefcase-business"></i></span></div><h3>同じ使い方や姿勢が続く</h3><p>パソコン作業や家事などで腕を身体の前に置く時間が長いと、肩や首まわりが緊張し、動き始めにつらさを感じることがあります。</p></article>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="frequency">
-      <div class="container max-w-4xl">
-        <h2 class="section-title">通院頻度の目安</h2>
-        <div class="frequency__card">
-          <div class="frequency__icon">
-            <i data-lucide="calendar" style="width:1.5rem;height:1.5rem;color:#fff;" aria-hidden="true"></i>
-          </div>
-          <div>
-            <p class="frequency__text">最初の1〜2ヶ月は<strong>週1〜2回</strong>のペースをおすすめしています。時期の進行に合わせて頻度を調整し、状態が安定してきたら間隔を広げていきます。</p>
-            <div class="frequency__phases">
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--a"></span>
-                <span class="frequency__phase-label">最初の1〜2ヶ月：週1〜2回</span>
-              </div>
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--b"></span>
-                <span class="frequency__phase-label">安定後：2週に1回</span>
-              </div>
-              <div class="frequency__phase">
-                <span class="frequency__phase-dot frequency__phase-dot--c"></span>
-                <span class="frequency__phase-label">メンテナンス期：月1回</span>
-              </div>
+      <section class="frozen-education-section frozen-education-section--flow" aria-labelledby="frozen-flow-title">
+        <div class="container max-w-4xl">
+          <h2 id="frozen-flow-title" class="frozen-section-title">肩の痛み・動かしにくさが続くまでの流れ</h2>
+          <ol class="frozen-symptom-flow" aria-label="肩の痛みや動かしにくさが続くまでの一例">
+            <li class="frozen-symptom-flow__step"><span class="frozen-symptom-flow__number">1</span><p>肩を動かしたときに<br>痛みを感じる</p></li>
+            <li class="frozen-symptom-flow__step"><span class="frozen-symptom-flow__number">2</span><p>痛みを避けて<br>動かす範囲が小さくなる</p></li>
+            <li class="frozen-symptom-flow__step"><span class="frozen-symptom-flow__number">3</span><p>肩関節や肩甲骨が<br>動かしにくくなる</p></li>
+            <li class="frozen-symptom-flow__step"><span class="frozen-symptom-flow__number">4</span><p>着替え・洗髪・睡眠で<br>困ることが増える</p></li>
+            <span class="frozen-symptom-flow__arrow frozen-symptom-flow__arrow--1" aria-hidden="true"><i data-lucide="arrow-right"></i></span><span class="frozen-symptom-flow__arrow frozen-symptom-flow__arrow--2" aria-hidden="true"><i data-lucide="arrow-right"></i></span><span class="frozen-symptom-flow__arrow frozen-symptom-flow__arrow--3" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+          </ol>
+          <p class="frozen-flow-note">これは五十肩でみられる経過の一例です。痛みの強さや動かせる範囲、回復までの経過には個人差があるため、実際の状態を確認する必要があります。</p>
+        </div>
+      </section>
+
+      <section class="frozen-education-section frozen-education-section--white" aria-labelledby="frozen-relief-title">
+        <div class="container max-w-4xl">
+          <h2 id="frozen-relief-title" class="frozen-section-title">なぜ肩をほぐしても戻ることがあるのか？</h2>
+          <div class="frozen-relief-layout">
+            <div class="frozen-copy frozen-copy--accent">
+              <p>首や肩まわりをやさしくほぐすと、一時的に楽になることがあります。</p>
+              <p>しかし、痛みを避ける動きや肩甲骨・背中の動きにくさが残っていると、日常生活へ戻ったときに再び肩へ負担が集まりやすくなります。</p>
+              <p><strong>大切なのは、痛む場所を緩めることだけではありません。</strong></p>
+              <p>痛みの強さに合わせて肩を動かせる範囲を確認し、肩甲骨や背中、実際の生活動作まで段階的に整えることです。</p>
+            </div>
+            <div class="frozen-cycle" aria-label="肩の動かしにくさが続く流れの一例">
+              <div class="frozen-cycle__item"><i data-lucide="activity" aria-hidden="true"></i><span>肩を動かすと痛む</span></div><span class="frozen-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="frozen-cycle__item"><i data-lucide="shield" aria-hidden="true"></i><span>腕を動かさないようにする</span></div><span class="frozen-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="frozen-cycle__item"><i data-lucide="move-diagonal-2" aria-hidden="true"></i><span>動かせる範囲が狭くなる</span></div><span class="frozen-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="frozen-cycle__item"><i data-lucide="shirt" aria-hidden="true"></i><span>日常動作でさらに肩をかばう</span></div><span class="frozen-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+              <div class="frozen-cycle__item frozen-cycle__item--last"><i data-lucide="repeat-2" aria-hidden="true"></i><span>肩が動かしにくい状態が続く</span></div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="frozen-education-section frozen-education-section--medical" aria-labelledby="frozen-medical-title">
+        <div class="container max-w-4xl"><div class="frozen-medical-note">
+          <div class="frozen-medical-note__heading"><span class="frozen-medical-note__icon" aria-hidden="true"><i data-lucide="stethoscope"></i></span><div><h2 id="frozen-medical-title">このような症状がある場合は、まず医療機関へご相談ください</h2><p>肩の痛みの中には、整形外科などでの検査や治療が優先されるものもあります。以下の場合は整体を受ける前に医療機関へご相談ください。</p></div></div>
+          <ul class="frozen-medical-note__list"><li class="frozen-medical-note__item">転倒や衝突のあとから強い痛みや変形がある</li><li class="frozen-medical-note__item">肩に強い腫れ、赤み、熱感がある</li><li class="frozen-medical-note__item">腕に急に力が入らない、または感覚が大きく低下している</li><li class="frozen-medical-note__item">発熱や強い体調不良を伴っている</li><li class="frozen-medical-note__item">胸の痛み、息苦しさ、冷や汗を伴っている</li><li class="frozen-medical-note__item">安静時や夜間も強い痛みが続き、悪化している</li></ul>
+        </div></div>
+      </section>
+
+      <section class="frozen-education-section frozen-education-section--white" aria-labelledby="frozen-assessment-title">
+        <div class="container max-w-4xl">
+          <h2 id="frozen-assessment-title" class="frozen-section-title">当院では肩だけでなく、全身の動きを確認します</h2>
+          <div class="frozen-assessment-layout">
+            <div class="frozen-assessment__intro frozen-copy"><p>同じ「五十肩」でも、痛む角度や夜間痛の有無、困っている動作は人によって異なります。</p><p>柏市の整体院ひざこぞうでは、肩を無理に動かすのではなく、肩甲骨・背中・首の動きや、腕を使う日常動作まで確認します。</p><p>カウンセリングと身体のチェックをもとに、現在の状態と無理のない施術方針をご説明します。</p></div>
+            <figure class="frozen-assessment__media"><img src="../image/flow-movement-assessment-768.webp" alt="施術者が肩や全身の動きを確認している様子" loading="lazy" decoding="async" width="768" height="576"></figure>
+            <ul class="frozen-check-list"><li><i data-lucide="circle-check" aria-hidden="true"></i><span>痛みが出る角度、方向、時間帯</span></li><li><i data-lucide="circle-check" aria-hidden="true"></i><span>肩関節と肩甲骨の動き</span></li><li><i data-lucide="circle-check" aria-hidden="true"></i><span>首・背中・肋骨の動き</span></li><li><i data-lucide="circle-check" aria-hidden="true"></i><span>着替え、洗髪、手を後ろへ回す動作</span></li><li><i data-lucide="circle-check" aria-hidden="true"></i><span>仕事・家事・睡眠で肩に負担がかかる場面</span></li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="frozen-education-section frozen-education-section--cream" aria-labelledby="frozen-approach-title">
+        <div class="container max-w-4xl">
+          <h2 id="frozen-approach-title" class="frozen-section-title">整体院ひざこぞうの五十肩へのアプローチ</h2>
+          <p class="frozen-section-lead">当院では、痛みを我慢して動かすのではなく、「動かす・支える・使い方を整える」という流れで、日常動作を行いやすい身体づくりを目指します。</p>
+          <div class="frozen-approach-steps">
+            <article class="frozen-approach-step"><span class="frozen-approach-step__number">STEP 1</span><span class="frozen-approach-step__icon" aria-hidden="true"><i data-lucide="move"></i></span><p class="frozen-approach-step__label">動かす｜可動性</p><h3>痛みに合わせて肩まわりを動かす</h3><p>肩・肩甲骨・背中の状態を確認し、痛みを強めない範囲で動きにくい部分へやさしくアプローチします。</p></article>
+            <article class="frozen-approach-step"><span class="frozen-approach-step__number">STEP 2</span><span class="frozen-approach-step__icon" aria-hidden="true"><i data-lucide="shield-check"></i></span><p class="frozen-approach-step__label">支える｜安定性</p><h3>腕を支える筋肉を使いやすくする</h3><p>肩甲骨や体幹が腕の重さを支えやすくなるように、現在の動かせる範囲に合わせた運動を行います。</p></article>
+            <article class="frozen-approach-step"><span class="frozen-approach-step__number">STEP 3</span><span class="frozen-approach-step__icon" aria-hidden="true"><i data-lucide="shirt"></i></span><p class="frozen-approach-step__label">使う｜動作改善</p><h3>必要な日常動作を段階的に練習する</h3><p>着替え、洗髪、棚へ手を伸ばすなど、困っている動作を確認し、続けやすい身体の使い方やセルフケアをお伝えします。</p></article>
+            <span class="frozen-approach-steps__arrow frozen-approach-steps__arrow--1" aria-hidden="true"><i data-lucide="arrow-right"></i></span><span class="frozen-approach-steps__arrow frozen-approach-steps__arrow--2" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="frozen-consult-section" aria-labelledby="frozen-consult-title"><div class="container max-w-4xl"><div class="frozen-consult-cta"><div><h2 id="frozen-consult-title">自分の肩が今どの状態か分からない方へ</h2><p>痛む動作や、病院で言われたことなどをLINEで送っていただければ、来院前のご相談も可能です。</p></div><a class="frozen-consult-cta__link" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer"><i data-lucide="message-circle" aria-hidden="true"></i>LINEで五十肩について相談する</a></div></div></section>
+
+      <section class="frozen-education-section frozen-education-section--frequency" aria-labelledby="frozen-frequency-title"><div class="container max-w-4xl"><div class="frozen-frequency"><span class="frozen-frequency__icon" aria-hidden="true"><i data-lucide="calendar-days"></i></span><div><h2 id="frozen-frequency-title">通院頻度について</h2><p>通院頻度は、痛みの強さや動かせる範囲、生活環境、医療機関での治療状況、目指す動作によって異なります。</p><p>初回に身体の状態を確認したうえで、必要な頻度と期間の目安をご説明します。</p><p>無理に通院を勧めることはありませんので、ご希望や生活状況も含めてご相談ください。</p></div></div></div></section>
+    </div>
+<!-- FROZEN_SHOULDER_EDUCATION_END -->
     <section id="flow" class="flow-slider" aria-labelledby="flow-title" data-flow-slider>
       <div class="flow-slider__inner">
         <div class="flow-slider__heading-band">
@@ -812,40 +917,28 @@
 <section class="related-symptoms">
       <div class="container max-w-4xl">
         <p class="related-symptoms__eyebrow">RELATED SYMPTOMS</p>
-        <h2 class="related-symptoms__title">ほかの症状も確認できます</h2>
-        <p class="related-symptoms__lead">痛みをかばう姿勢が続くと、別の部位にも負担がかかりやすくなります。気になる症状があれば、あわせて確認してみてください。</p>
+        <h2 class="related-symptoms__title">この症状に関連するページ</h2>
+        <p class="related-symptoms__lead">痛む場所や動作が近い症状ページも、あわせてご確認いただけます。</p>
         <div class="related-symptoms__grid">
 
-          <a class="related-symptom-card" href="knee-osteoarthritis.html">
-            <span class="related-symptom-card__label">変形性膝関節症</span>
-            <span class="related-symptom-card__description">階段や歩き始めの膝痛、膝のこわばりが気になる方へ。</span>
+          <a class="related-symptom-card" href="shoulder-stiffness.html">
+            <span class="related-symptom-card__label">肩こり</span>
+            <span class="related-symptom-card__description">首肩の重さや頭痛を伴うこりが気になる方へ。</span>
             <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
-          <a class="related-symptom-card" href="knee-effusion.html">
-            <span class="related-symptom-card__label">膝の水（関節水腫）</span>
-            <span class="related-symptom-card__description">膝の腫れや水が溜まる不安を整理したい方へ。</span>
+          <a class="related-symptom-card" href="cervical-spondylosis.html">
+            <span class="related-symptom-card__label">頚椎症・首の痛み</span>
+            <span class="related-symptom-card__description">首の痛みや腕へのしびれが続く方へ。</span>
             <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
-          <a class="related-symptom-card" href="pes-anserine-bursitis.html">
-            <span class="related-symptom-card__label">膝の内側の痛み</span>
-            <span class="related-symptom-card__description">鵞足炎や内側の違和感が続く方へ。</span>
+          <a class="related-symptom-card" href="thoracic-outlet.html">
+            <span class="related-symptom-card__label">胸郭出口症候群</span>
+            <span class="related-symptom-card__description">首肩から腕にかけてしびれやだるさがある方へ。</span>
             <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
           </a>
-          <a class="related-symptom-card" href="knee-lateral-pain.html">
-            <span class="related-symptom-card__label">膝の外側の痛み</span>
-            <span class="related-symptom-card__description">腸脛靭帯炎や外側半月板まわりが気になる方へ。</span>
-            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="related-symptom-card" href="knee-posterior-pain.html">
-            <span class="related-symptom-card__label">膝の裏側の痛み</span>
-            <span class="related-symptom-card__description">ベーカー嚢腫や膝裏の張りが気になる方へ。</span>
-            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="related-symptom-card" href="knee-front-pain.html">
-            <span class="related-symptom-card__label">膝の前側の痛み</span>
-            <span class="related-symptom-card__description">階段や立ち上がりでお皿まわりが気になる方へ。</span>
-            <span class="related-symptom-card__arrow" aria-hidden="true">›</span>
-          </a>
+        </div>
+        <div class="related-symptoms__all">
+          <a class="related-symptoms__all-link" href="index.html">すべての症状を見る <span aria-hidden="true">›</span></a>
         </div>
       </div>
     </section>
