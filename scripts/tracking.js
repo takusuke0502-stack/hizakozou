@@ -81,6 +81,25 @@
     };
   }
 
+  function getSymptomSlug() {
+    const match = window.location.pathname.match(/\/symptoms\/([^/]+?)(?:\.html)?\/?$/);
+    return match ? match[1] : "";
+  }
+
+  function getCtaLocation(link) {
+    if (!link) return "";
+    if (link.dataset.trackingLocation) return link.dataset.trackingLocation;
+
+    const container = link.closest("[data-tracking-section], section, header, footer, nav");
+    if (!container) return "";
+    if (container.dataset.trackingSection) return container.dataset.trackingSection;
+    if (container.id) return container.id;
+
+    return Array.from(container.classList).find((name) =>
+      /(cta|consult|contact|pricing|header|footer|mobile|hero)/.test(name)
+    ) || "";
+  }
+
   window.hkTrackConversion = function hkTrackConversion(type, options = {}) {
     const conversion = conversions[type];
     const eventCallback = options.eventCallback;
@@ -97,6 +116,9 @@
       event_category: "conversion",
       event_label: type,
       link_url: options.linkUrl,
+      link_text: options.linkText,
+      cta_location: options.ctaLocation,
+      symptom_slug: getSymptomSlug(),
       page_location: window.location.href
     });
 
@@ -160,15 +182,16 @@
       if (!link) return;
 
       const href = link.getAttribute("href") || "";
-      const text = link.textContent || "";
+      const text = (link.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
+      const ctaLocation = getCtaLocation(link);
 
       if (href.toLowerCase().startsWith("tel:")) {
-        window.hkTrackConversion("phone", { linkUrl: href });
+        window.hkTrackConversion("phone", { linkUrl: href, linkText: text, ctaLocation });
         return;
       }
 
       if (isLineLink(href, text)) {
-        window.hkTrackConversion("line", { linkUrl: href });
+        window.hkTrackConversion("line", { linkUrl: href, linkText: text, ctaLocation });
       }
     },
     { capture: true }

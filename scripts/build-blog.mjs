@@ -248,25 +248,29 @@ const symptomConfigs = {
     symptomKey: "cervical-spondylosis",
     label: "頚椎症",
     keywords: ["頚椎症", "首の痛み", "しびれ", "慢性痛"],
-    categoryHints: ["neck-shoulder-hand", "numbness", "exercise-therapy"]
+    categoryHints: ["neck-shoulder-hand", "numbness", "exercise-therapy"],
+    pinnedSlugs: ["hand-numbness-causes-treatment", "shoulder-stiffness-posture-breathing", "frozen-shoulder-safe-movement"]
   },
   "thoracic-outlet.html": {
     symptomKey: "thoracic-outlet",
     label: "胸郭出口症候群",
     keywords: ["胸郭出口症候群", "腕のしびれ", "首肩", "慢性痛"],
-    categoryHints: ["neck-shoulder-hand", "numbness", "exercise-therapy"]
+    categoryHints: ["neck-shoulder-hand", "numbness", "exercise-therapy"],
+    pinnedSlugs: ["hand-numbness-causes-treatment", "shoulder-stiffness-posture-breathing", "frozen-shoulder-safe-movement"]
   },
   "carpal-tunnel.html": {
     symptomKey: "carpal-tunnel",
     label: "手根管症候群",
     keywords: ["手根管症候群", "手のしびれ", "慢性痛"],
-    categoryHints: ["neck-shoulder-hand", "numbness", "exercise-therapy"]
+    categoryHints: ["neck-shoulder-hand", "numbness", "exercise-therapy"],
+    pinnedSlugs: ["hand-numbness-causes-treatment", "elbow-pain-grip-shoulder", "shoulder-stiffness-posture-breathing"]
   },
   "elbow-tendinopathy.html": {
     symptomKey: "elbow-tendinopathy",
     label: "肘の痛み",
     keywords: ["肘の痛み", "肘", "慢性痛"],
-    categoryHints: ["neck-shoulder-hand", "exercise-therapy"]
+    categoryHints: ["neck-shoulder-hand", "exercise-therapy"],
+    pinnedSlugs: ["elbow-pain-grip-shoulder", "shoulder-stiffness-posture-breathing", "hand-numbness-causes-treatment"]
   },
   "plantar-fasciitis.html": {
     symptomKey: "plantar-fasciitis",
