@@ -2113,6 +2113,228 @@ test("lower back related article slider prioritizes the intended waist and nerve
   ]);
 });
 
+const kneeDetailEducationPages = [
+  {
+    file: "knee-effusion.html",
+    marker: "KNEE_EFFUSION",
+    prefix: "effusion",
+    headings: [
+      "膝に水がたまる・腫れるのはなぜ起こるのか？",
+      "膝が腫れやすくなる4つの要因",
+      "膝の腫れや重さが起きるまでの流れ",
+      "なぜ水を抜いても、また腫れることがあるのか？",
+      "このような症状がある場合は、まず医療機関へご相談ください",
+      "当院では腫れている膝だけでなく、全身の動きを確認します",
+      "整体院ひざこぞうの膝の腫れへのアプローチ",
+      "膝の腫れをどこへ相談すればよいか分からない方へ",
+      "通院頻度について"
+    ],
+    requiredPhrases: ["急な強い腫れ", "水を抜く処置を否定するものではありません"]
+  },
+  {
+    file: "pes-anserine-bursitis.html",
+    marker: "MEDIAL_KNEE_PAIN",
+    prefix: "medial",
+    headings: [
+      "膝の内側の痛みはなぜ起こるのか？",
+      "膝の内側に負担が集まりやすくなる4つの要因",
+      "膝の内側が痛くなるまでの流れ",
+      "なぜ内側を休ませても、また痛むことがあるのか？",
+      "このような症状がある場合は、まず医療機関へご相談ください",
+      "当院では膝の内側だけでなく、全身の動きを確認します",
+      "整体院ひざこぞうの膝の内側の痛みへのアプローチ",
+      "膝の内側のどこが痛いのか説明しにくい方へ",
+      "通院頻度について"
+    ],
+    requiredPhrases: ["内側やや下", "鵞足炎という説明を受けた方"]
+  },
+  {
+    file: "knee-lateral-pain.html",
+    marker: "LATERAL_KNEE_PAIN",
+    prefix: "lateral",
+    headings: [
+      "膝の外側の痛みはなぜ起こるのか？",
+      "膝の外側に負担が集まりやすくなる4つの要因",
+      "膝の外側が痛くなるまでの流れ",
+      "なぜ外側をほぐしても、また痛むことがあるのか？",
+      "このような症状がある場合は、まず医療機関へご相談ください",
+      "当院では膝の外側だけでなく、全身の動きを確認します",
+      "整体院ひざこぞうの膝の外側の痛みへのアプローチ",
+      "歩くと外側が痛む理由を整理したい方へ",
+      "通院頻度について"
+    ],
+    requiredPhrases: ["坂道や長く歩いたあと", "腸脛靭帯炎や外側半月板"]
+  },
+  {
+    file: "knee-posterior-pain.html",
+    marker: "POSTERIOR_KNEE_PAIN",
+    prefix: "posterior",
+    headings: [
+      "膝の裏側の痛みはなぜ起こるのか？",
+      "膝の裏側に負担が集まりやすくなる4つの要因",
+      "膝の裏側がつらくなるまでの流れ",
+      "なぜ膝裏をほぐしても、また張ることがあるのか？",
+      "このような症状がある場合は、まず医療機関へご相談ください",
+      "当院では膝の裏側だけでなく、全身の動きを確認します",
+      "整体院ひざこぞうの膝の裏側の痛みへのアプローチ",
+      "膝裏の張りと腫れの違いが分からない方へ",
+      "通院頻度について"
+    ],
+    requiredPhrases: ["ふくらはぎの急な腫れ", "ベーカー嚢腫という説明を受けた方"]
+  },
+  {
+    file: "knee-front-pain.html",
+    marker: "FRONT_KNEE_PAIN",
+    prefix: "frontknee",
+    headings: [
+      "膝の前側・お皿まわりの痛みはなぜ起こるのか？",
+      "膝の前側に負担が集まりやすくなる4つの要因",
+      "膝の前側が痛くなるまでの流れ",
+      "なぜ前側を休ませても、また痛むことがあるのか？",
+      "このような症状がある場合は、まず医療機関へご相談ください",
+      "当院では膝の前側だけでなく、全身の動きを確認します",
+      "整体院ひざこぞうの膝の前側の痛みへのアプローチ",
+      "階段や立ち上がりで痛む理由を整理したい方へ",
+      "通院頻度について"
+    ],
+    requiredPhrases: ["階段を下りる", "膝が伸ばせない"]
+  },
+  {
+    file: "meniscus-knee-pain.html",
+    marker: "MENISCUS_KNEE_PAIN",
+    prefix: "meniscus",
+    headings: [
+      "膝の引っかかりや半月板まわりの不安はなぜ起こるのか？",
+      "膝にねじれや圧が集まりやすくなる4つの要因",
+      "膝の引っかかりが起きるまでの流れ",
+      "なぜ休んでも、また引っかかることがあるのか？",
+      "このような症状がある場合は、まず医療機関へご相談ください",
+      "当院では引っかかる場所だけでなく、全身の動きを確認します",
+      "整体院ひざこぞうの膝の引っかかりへのアプローチ",
+      "半月板まわりをどこへ相談すればよいか分からない方へ",
+      "通院頻度について"
+    ],
+    requiredPhrases: ["膝が動かないほどのロック", "診断や治療は医療機関の領域"]
+  },
+  {
+    file: "bowlegs-knee-pain.html",
+    marker: "BOWLEGS_KNEE_PAIN",
+    prefix: "bowlegs",
+    headings: [
+      "O脚・膝のゆがみで負担が偏るのはなぜか？",
+      "膝への負担が偏りやすくなる4つの要因",
+      "立ち方から膝の痛みにつながるまでの流れ",
+      "なぜ膝をほぐしても、また負担が偏ることがあるのか？",
+      "このような症状がある場合は、まず医療機関へご相談ください",
+      "当院では脚の形だけでなく、全身の動きを確認します",
+      "整体院ひざこぞうのO脚・膝のゆがみへのアプローチ",
+      "脚の形と膝の痛みをどう考えればよいか分からない方へ",
+      "通院頻度について"
+    ],
+    requiredPhrases: ["脚の見た目を無理に変えるのではなく", "骨格そのものを真っすぐにする"]
+  },
+  {
+    file: "knee-hyperextension.html",
+    marker: "KNEE_HYPEREXTENSION",
+    prefix: "hyperextension",
+    headings: [
+      "反張膝・膝が伸びすぎるのはなぜか？",
+      "膝を後ろへ押し込みやすくなる4つの要因",
+      "膝が伸びすぎて負担になるまでの流れ",
+      "なぜ姿勢を意識しても、また膝を押し込むことがあるのか？",
+      "このような症状がある場合は、まず医療機関へご相談ください",
+      "当院では膝の角度だけでなく、全身の動きを確認します",
+      "整体院ひざこぞうの反張膝へのアプローチ",
+      "立つと膝が伸びすぎる理由を整理したい方へ",
+      "通院頻度について"
+    ],
+    requiredPhrases: ["膝を後方へ押し込む", "無理に膝を曲げる"]
+  },
+  {
+    file: "ankle-stiffness-knee-pain.html",
+    marker: "ANKLE_STIFFNESS_KNEE_PAIN",
+    prefix: "ankleknee",
+    headings: [
+      "足首の硬さが膝の痛みにつながることがあるのはなぜか？",
+      "足元から膝へ負担が集まりやすくなる4つの要因",
+      "足首の動きにくさから膝が痛くなるまでの流れ",
+      "なぜ膝だけをほぐしても、また痛むことがあるのか？",
+      "このような症状がある場合は、まず医療機関へご相談ください",
+      "当院では膝だけでなく、足首から全身の動きを確認します",
+      "整体院ひざこぞうの足首の硬さと膝痛へのアプローチ",
+      "足首と膝のどちらを相談すればよいか分からない方へ",
+      "通院頻度について"
+    ],
+    requiredPhrases: ["足首だけが唯一の原因", "体重をかけられない"]
+  }
+];
+
+test("nine knee symptom education pages follow the shared patient-friendly sequence", () => {
+  for (const config of kneeDetailEducationPages) {
+    const pageHtml = readFileSync(path.join(repoRoot, "symptoms", config.file), "utf8");
+    const sectionPattern = new RegExp(`<!-- ${config.marker}_EDUCATION_START -->[\\s\\S]*?<!-- ${config.marker}_EDUCATION_END -->`);
+    const section = pageHtml.match(sectionPattern)?.[0] ?? "";
+
+    assert.ok(section, `${config.file} should contain its scoped education block`);
+    const positions = config.headings.map((heading) => section.indexOf(heading));
+    positions.forEach((position, index) => {
+      assert.ok(position > -1, `${config.file} is missing heading: ${config.headings[index]}`);
+    });
+    for (let index = 1; index < positions.length; index += 1) {
+      assert.ok(positions[index - 1] < positions[index], `${config.file} headings should stay in the approved order`);
+    }
+
+    assert.equal((section.match(new RegExp(`class="${config.prefix}-factor"`, "g")) ?? []).length, 4, `${config.file} should show four factors`);
+    assert.equal((section.match(new RegExp(`class="${config.prefix}-symptom-flow__step"`, "g")) ?? []).length, 4, `${config.file} should show four flow steps`);
+    assert.equal((section.match(new RegExp(`class="${config.prefix}-approach-step"`, "g")) ?? []).length, 3, `${config.file} should show three approach steps`);
+    assert.equal((section.match(new RegExp(`class="${config.prefix}-medical-note__item"`, "g")) ?? []).length, 6, `${config.file} should show six medical warning signs`);
+    assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"/, `${config.file} should keep the approved LINE link`);
+    assert.match(section, /通院頻度は、[^。]+によって異なります/, `${config.file} should explain individualized visit frequency`);
+    assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|frequency__phases|frequency__phase/, `${config.file} should not prescribe fixed visit counts`);
+    for (const phrase of config.requiredPhrases) {
+      assert.ok(section.includes(phrase), `${config.file} should include symptom-specific phrase: ${phrase}`);
+    }
+  }
+});
+
+test("nine knee symptom education styles are scoped and responsive", () => {
+  for (const config of kneeDetailEducationPages) {
+    const pageHtml = readFileSync(path.join(repoRoot, "symptoms", config.file), "utf8");
+    const stylesPattern = new RegExp(`/\\* ${config.marker}_EDUCATION_STYLES_START \\*/[\\s\\S]*?/\\* ${config.marker}_EDUCATION_STYLES_END \\*/`);
+    const styles = pageHtml.match(stylesPattern)?.[0] ?? "";
+
+    assert.ok(styles, `${config.file} should contain scoped education styles`);
+    assert.match(styles, new RegExp(`\\.${config.prefix}-education-section\\{`));
+    assert.match(styles, new RegExp(`\\.${config.prefix}-factor-grid\\{[^}]*grid-template-columns:repeat\\(2,minmax\\(0,1fr\\)\\)`));
+    assert.match(styles, new RegExp(`\\.${config.prefix}-symptom-flow\\{[^}]*grid-template-columns:repeat\\(4,minmax\\(0,1fr\\)\\)`));
+    assert.match(styles, new RegExp(`\\.${config.prefix}-approach-steps\\{[^}]*grid-template-columns:repeat\\(3,minmax\\(0,1fr\\)\\)`));
+    assert.match(styles, new RegExp(`@media\\(max-width:767px\\)\\{[\\s\\S]*?\\.${config.prefix}-factor-grid\\{grid-template-columns:1fr`));
+    assert.match(styles, new RegExp(`@media\\(max-width:767px\\)\\{[\\s\\S]*?\\.${config.prefix}-symptom-flow\\{grid-template-columns:1fr`));
+    assert.match(styles, new RegExp(`@media\\(max-width:767px\\)\\{[\\s\\S]*?\\.${config.prefix}-approach-steps\\{grid-template-columns:1fr`));
+    assert.match(styles, new RegExp(`\\.${config.prefix}-consult-cta__link\\{[^}]*min-height:44px`));
+    assert.doesNotMatch(styles, /body\s*\{|html\s*\{|\.site-header|\.mobile-cta\{/);
+  }
+});
+
+test("nine knee symptom education redesign preserves existing page features", () => {
+  for (const config of kneeDetailEducationPages) {
+    const pageHtml = readFileSync(path.join(repoRoot, "symptoms", config.file), "utf8");
+    const troublesStart = pageHtml.indexOf('<section id="troubles" class="troubles-check">');
+    const redesignStart = pageHtml.indexOf(`<!-- ${config.marker}_EDUCATION_START -->`);
+    const redesignEnd = pageHtml.indexOf(`<!-- ${config.marker}_EDUCATION_END -->`);
+    const flowStart = pageHtml.indexOf('<section id="flow"');
+
+    assert.ok(troublesStart > -1 && troublesStart < redesignStart, `${config.file} should preserve the troubles section above the redesign`);
+    assert.ok(redesignEnd > redesignStart && redesignEnd < flowStart, `${config.file} should keep the redesign above treatment flow`);
+    assert.match(pageHtml, /<section id="flow" class="flow-slider"/);
+    assert.match(pageHtml, /<section class="faq" id="faq">/);
+    assert.match(pageHtml, /<!-- RELATED_SYMPTOMS_NAV_START -->/);
+    assert.match(pageHtml, /<!-- BLOG_RELATED_ARTICLES_START -->/);
+    assert.match(pageHtml, /href="tel:0471143274"/);
+    assert.match(pageHtml, /href="https:\/\/lin\.ee\/X01F2mP"/);
+  }
+});
+
 test("lower back education redesign stays inside the requested page range", () => {
   const bodyStart = lowerBackHtml.indexOf("<body");
   const redesignStart = lowerBackHtml.indexOf("<!-- LOWER_BACK_EDUCATION_START -->");

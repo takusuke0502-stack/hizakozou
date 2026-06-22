@@ -66,6 +66,31 @@ const posts = [
   }
 ];
 
+test("upsertRelatedStyles preserves education styles stored beside the generated related styles", async () => {
+  const buildBlogModule = await import("../scripts/build-blog.mjs");
+  assert.equal(typeof buildBlogModule.upsertRelatedStyles, "function");
+
+  const educationStyles = `/* SAMPLE_EDUCATION_STYLES_START */
+.sample-education{color:#234d24}
+/* SAMPLE_EDUCATION_STYLES_END */`;
+  const input = `<style>
+/* BLOG_RELATED_ARTICLES_STYLES_START */
+.old-related{color:red}
+${educationStyles}
+/* BLOG_RELATED_ARTICLES_STYLES_END */
+</style>`;
+
+  const output = buildBlogModule.upsertRelatedStyles(input);
+
+  assert.equal((output.match(/SAMPLE_EDUCATION_STYLES_START/g) ?? []).length, 1);
+  assert.match(output, /\.related-articles-slider\{/);
+  assert.match(output, /\.sample-education\{color:#234d24\}/);
+  assert.ok(
+    output.indexOf("BLOG_RELATED_ARTICLES_STYLES_END") < output.indexOf("SAMPLE_EDUCATION_STYLES_START"),
+    "page-owned education styles should be moved outside the generated related-style marker"
+  );
+});
+
 test("blog index starts with compact search filters and article lists", () => {
   const html = buildIndexContent(site, posts, categories);
 

@@ -1140,9 +1140,15 @@ function ensureNoindexFollow(html) {
   return html.replace(/(<meta name="viewport"[^>]*>\s*)/i, '$1\n  <meta name="robots" content="noindex,follow">');
 }
 
-function upsertRelatedStyles(html) {
+export function upsertRelatedStyles(html) {
   if (html.includes("BLOG_RELATED_ARTICLES_STYLES_START")) {
-    return html.replace(/\/\* BLOG_RELATED_ARTICLES_STYLES_START \*\/[\s\S]*?\/\* BLOG_RELATED_ARTICLES_STYLES_END \*\//, relatedArticlesStyles);
+    const relatedStylesPattern = /\/\* BLOG_RELATED_ARTICLES_STYLES_START \*\/[\s\S]*?\/\* BLOG_RELATED_ARTICLES_STYLES_END \*\//;
+    const currentRelatedStyles = html.match(relatedStylesPattern)?.[0] ?? "";
+    const educationStyles = currentRelatedStyles.match(/\/\* [A-Z0-9_]+_EDUCATION_STYLES_START \*\/[\s\S]*?\/\* [A-Z0-9_]+_EDUCATION_STYLES_END \*\//g) ?? [];
+    const replacement = educationStyles.length
+      ? `${relatedArticlesStyles}\n${educationStyles.join("\n")}`
+      : relatedArticlesStyles;
+    return html.replace(relatedStylesPattern, replacement);
   }
   return html.replace("</style>", `\n    ${relatedArticlesStyles}\n  </style>`);
 }
