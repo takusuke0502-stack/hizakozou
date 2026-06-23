@@ -690,6 +690,29 @@ function setupGoogleReviewScroller() {
   });
 }
 
+function setupTopPageTracking() {
+  const guidance = document.querySelector('[data-top-medical-guidance]');
+  if (guidance && typeof IntersectionObserver === 'function') {
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      window.hkTrackEvent?.('top_medical_guidance_view', {
+        content_group: 'top_medical_guidance'
+      });
+      observer.disconnect();
+    }, { threshold: 0.35 });
+    observer.observe(guidance);
+  }
+
+  let formStarted = false;
+  contactForm?.addEventListener('input', () => {
+    if (formStarted) return;
+    formStarted = true;
+    window.hkTrackEvent?.('top_contact_form_start', {
+      content_group: 'top_contact'
+    });
+  }, { passive: true });
+}
+
 refreshIcons();
 syncHeaderHeight();
 setMenuState(false);
@@ -701,6 +724,7 @@ setupFlowSlider();
 setupGalleryTriggers();
 setupGoogleReviewScroller();
 hydrateBlogPreview();
+setupTopPageTracking();
 
 let scrollTicking = false;
 window.addEventListener('scroll', () => {
@@ -762,6 +786,10 @@ contactForm?.addEventListener('submit', async (event) => {
     firstInvalid.focus();
     return;
   }
+
+  window.hkTrackEvent?.('top_contact_form_submit', {
+    content_group: 'top_contact'
+  });
 
   setSubmitBusy(true);
   clearFormError();

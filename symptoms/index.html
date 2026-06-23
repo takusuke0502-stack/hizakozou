@@ -29,7 +29,18 @@
     .symptom-directory__heading h2 { position: relative; margin: 0 0 18px; padding-bottom: 15px; color: #223b2d; font-size: clamp(1.65rem, 3vw, 2.2rem); line-height: 1.45; letter-spacing: 0; }
     .symptom-directory__heading h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 46px; height: 3px; background: #356b2f; }
     .symptom-directory__heading p { margin: 0; color: #59635d; font-size: .98rem; font-weight: 700; line-height: 1.85; }
+    .symptom-directory__modes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0 0 clamp(34px, 5vw, 52px); }
+    .symptom-directory__mode { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: center; min-height: 58px; padding: 10px 14px; border: 1px solid #cbd8c6; border-radius: 8px; background: #fff; color: #365047; font: inherit; font-size: .9rem; font-weight: 900; line-height: 1.45; text-align: left; cursor: pointer; }
+    .symptom-directory__mode-number { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #aebfa8; border-radius: 50%; color: #356b2f; font-size: .78rem; }
+    .symptom-directory__mode[aria-selected="true"] { border-color: #356b2f; background: #f2f7ef; color: #234d24; box-shadow: inset 0 -3px 0 #356b2f; }
+    .symptom-directory__mode[aria-selected="true"] .symptom-directory__mode-number { border-color: #356b2f; background: #356b2f; color: #fff; }
+    .symptom-directory__mode:hover, .symptom-directory__mode:focus-visible { outline: 3px solid rgba(53,107,47,.16); outline-offset: 2px; }
+    .symptom-directory__panel[hidden] { display: none; }
+    .symptom-directory__panel-heading { margin: 0 0 22px; padding-left: 14px; border-left: 4px solid #d58b40; }
+    .symptom-directory__panel-heading h3 { margin: 0; color: #223b2d; font-size: clamp(1.25rem, 2.4vw, 1.6rem); line-height: 1.5; }
+    .symptom-directory__panel-heading p { margin: .4rem 0 0; color: #69736c; font-size: .86rem; font-weight: 700; line-height: 1.7; }
     .symptom-directory__groups { columns: 2; column-gap: clamp(44px, 6vw, 72px); }
+    .symptom-directory__quick-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; border-top: 1px solid #e5e9e2; }
     .symptom-directory__group { display: inline-block; width: 100%; min-width: 0; margin-bottom: 34px; padding: 34px 0 6px; border-top: 1px solid #dfe4dc; break-inside: avoid; }
     .symptom-directory__group-header { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: start; margin-bottom: 19px; }
     .symptom-directory__group-icon { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid #aebfa8; border-radius: 50%; color: #356b2f; }
@@ -48,7 +59,10 @@
       .symptom-directory-hero { padding-top: 30px; padding-bottom: 52px; }
       .symptom-directory-hero__actions { display: grid; }
       .symptom-directory-hero__button { width: 100%; }
+      .symptom-directory__modes { grid-template-columns: 1fr; gap: 8px; }
+      .symptom-directory__mode { min-height: 52px; }
       .symptom-directory__groups { columns: 1; }
+      .symptom-directory__quick-links { grid-template-columns: 1fr; }
       .symptom-directory__group { margin-bottom: 24px; padding-top: 30px; }
       .symptom-directory__group-header { gap: 12px; }
       .symptom-directory__link { min-height: 72px; }
@@ -212,10 +226,29 @@
 
     <section class="symptom-directory" aria-labelledby="symptom-directory-title">
       <div class="symptom-directory__heading">
-        <h2 id="symptom-directory-title">気になる場所から症状を探す</h2>
-        <p>同じ場所の痛みでも状態には個人差があります。近い内容が複数ある場合は、あわせてご確認ください。</p>
+        <h2 id="symptom-directory-title">自分に近い探し方を選んでください</h2>
+        <p>病名が分からなくても大丈夫です。痛む場所、つらい動作、医療機関で言われた名前のいずれかから探せます。</p>
       </div>
-      <div class="symptom-directory__groups">
+      <div class="symptom-directory__modes" role="tablist" aria-label="症状ページの探し方">
+        <button type="button" id="directory-tab-location" class="symptom-directory__mode" role="tab" aria-selected="true" data-directory-mode="location" aria-controls="directory-panel-location" tabindex="0">
+          <span class="symptom-directory__mode-number" aria-hidden="true">1</span>
+          <span>痛む場所から探す</span>
+        </button>
+        <button type="button" id="directory-tab-movement" class="symptom-directory__mode" role="tab" aria-selected="false" data-directory-mode="movement" aria-controls="directory-panel-movement" tabindex="-1">
+          <span class="symptom-directory__mode-number" aria-hidden="true">2</span>
+          <span>つらい動作から探す</span>
+        </button>
+        <button type="button" id="directory-tab-diagnosis" class="symptom-directory__mode" role="tab" aria-selected="false" data-directory-mode="diagnosis" aria-controls="directory-panel-diagnosis" tabindex="-1">
+          <span class="symptom-directory__mode-number" aria-hidden="true">3</span>
+          <span>病院で言われた名前から探す</span>
+        </button>
+      </div>
+      <div id="directory-panel-location" class="symptom-directory__panel" role="tabpanel" aria-labelledby="directory-tab-location" data-directory-panel="location">
+        <div class="symptom-directory__panel-heading">
+          <h3>痛む場所から探す</h3>
+          <p>同じ場所の痛みでも状態には個人差があります。近い内容が複数ある場合は、あわせてご確認ください。</p>
+        </div>
+        <div class="symptom-directory__groups">
 
         <section class="symptom-directory__group" aria-labelledby="symptom-group-waist-leg">
           <div class="symptom-directory__group-header">
@@ -227,22 +260,22 @@
           </div>
           <div class="symptom-directory__links">
 
-            <a class="symptom-directory__link" href="lower-back-pain.html">
+            <a class="symptom-directory__link" href="lower-back-pain.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">腰痛</span>
               <span class="symptom-directory__link-description">立ち上がりや長時間同じ姿勢で腰がつらい方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="sciatica.html">
+            <a class="symptom-directory__link" href="sciatica.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">坐骨神経痛</span>
               <span class="symptom-directory__link-description">お尻から脚にかけて痛みやしびれがある方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="spinal-stenosis.html">
+            <a class="symptom-directory__link" href="spinal-stenosis.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">脊柱管狭窄症</span>
               <span class="symptom-directory__link-description">歩くと脚がつらく、休むと少し楽になる方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="lumbar-disc-herniation.html">
+            <a class="symptom-directory__link" href="lumbar-disc-herniation.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">腰椎椎間板ヘルニア</span>
               <span class="symptom-directory__link-description">腰からお尻、脚へ広がる症状が気になる方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
@@ -259,7 +292,7 @@
           </div>
           <div class="symptom-directory__links">
 
-            <a class="symptom-directory__link" href="hip-osteoarthritis.html">
+            <a class="symptom-directory__link" href="hip-osteoarthritis.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">股関節痛・変形性股関節症</span>
               <span class="symptom-directory__link-description">歩行や体重をかけた時の股関節痛が気になる方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
@@ -276,52 +309,52 @@
           </div>
           <div class="symptom-directory__links">
 
-            <a class="symptom-directory__link" href="knee-osteoarthritis.html">
+            <a class="symptom-directory__link" href="knee-osteoarthritis.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">変形性膝関節症</span>
               <span class="symptom-directory__link-description">歩き始めや階段で膝痛が続く方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="knee-effusion.html">
+            <a class="symptom-directory__link" href="knee-effusion.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">膝に水がたまる・腫れる</span>
               <span class="symptom-directory__link-description">膝の腫れや重さが気になる方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="pes-anserine-bursitis.html">
+            <a class="symptom-directory__link" href="pes-anserine-bursitis.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">膝の内側の痛み</span>
               <span class="symptom-directory__link-description">膝の内側やや下の痛みが気になる方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="knee-lateral-pain.html">
+            <a class="symptom-directory__link" href="knee-lateral-pain.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">膝の外側の痛み</span>
               <span class="symptom-directory__link-description">歩くと膝の外側が張る、痛む方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="knee-posterior-pain.html">
+            <a class="symptom-directory__link" href="knee-posterior-pain.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">膝の裏側の痛み</span>
               <span class="symptom-directory__link-description">膝裏の張りや曲げ伸ばしの重さがある方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="knee-front-pain.html">
+            <a class="symptom-directory__link" href="knee-front-pain.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">膝の前側・お皿まわりの痛み</span>
               <span class="symptom-directory__link-description">階段や立ち上がりで前側が痛む方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="meniscus-knee-pain.html">
+            <a class="symptom-directory__link" href="meniscus-knee-pain.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">半月板・膝の引っかかり</span>
               <span class="symptom-directory__link-description">曲げ伸ばしで引っかかりや不安がある方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="bowlegs-knee-pain.html">
+            <a class="symptom-directory__link" href="bowlegs-knee-pain.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">O脚・膝のゆがみ</span>
               <span class="symptom-directory__link-description">脚の形や膝内側への負担が気になる方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="knee-hyperextension.html">
+            <a class="symptom-directory__link" href="knee-hyperextension.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">反張膝・膝が伸びすぎる</span>
               <span class="symptom-directory__link-description">立つと膝が後ろへ入りやすい方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="ankle-stiffness-knee-pain.html">
+            <a class="symptom-directory__link" href="ankle-stiffness-knee-pain.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">足首の硬さと膝痛</span>
               <span class="symptom-directory__link-description">足元の使いにくさが膝に響く方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
@@ -338,7 +371,7 @@
           </div>
           <div class="symptom-directory__links">
 
-            <a class="symptom-directory__link" href="plantar-fasciitis.html">
+            <a class="symptom-directory__link" href="plantar-fasciitis.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">足底筋膜炎・足裏の痛み</span>
               <span class="symptom-directory__link-description">朝の一歩目や歩行時に足裏が痛む方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
@@ -355,32 +388,32 @@
           </div>
           <div class="symptom-directory__links">
 
-            <a class="symptom-directory__link" href="shoulder-stiffness.html">
+            <a class="symptom-directory__link" href="shoulder-stiffness.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">肩こり</span>
               <span class="symptom-directory__link-description">首肩の重さや頭痛を伴うこりが気になる方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="frozen-shoulder.html">
+            <a class="symptom-directory__link" href="frozen-shoulder.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">五十肩・肩が上がらない</span>
               <span class="symptom-directory__link-description">腕を上げる、後ろへ回す動作がつらい方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="cervical-spondylosis.html">
+            <a class="symptom-directory__link" href="cervical-spondylosis.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">頚椎症・首の痛み</span>
               <span class="symptom-directory__link-description">首の痛みや腕へのしびれが続く方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="thoracic-outlet.html">
+            <a class="symptom-directory__link" href="thoracic-outlet.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">胸郭出口症候群</span>
               <span class="symptom-directory__link-description">首肩から腕にかけてしびれやだるさがある方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="carpal-tunnel.html">
+            <a class="symptom-directory__link" href="carpal-tunnel.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">手根管症候群・手のしびれ</span>
               <span class="symptom-directory__link-description">手指のしびれや細かな作業のしにくさがある方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="elbow-tendinopathy.html">
+            <a class="symptom-directory__link" href="elbow-tendinopathy.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">肘の痛み・テニス肘</span>
               <span class="symptom-directory__link-description">物を持つ、ひねる動作で肘が痛む方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
@@ -397,18 +430,127 @@
           </div>
           <div class="symptom-directory__links">
 
-            <a class="symptom-directory__link" href="scoliosis.html">
+            <a class="symptom-directory__link" href="scoliosis.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">側弯症・姿勢の左右差</span>
               <span class="symptom-directory__link-description">背骨のカーブや肩・骨盤の左右差が気になる方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
-            <a class="symptom-directory__link" href="tmj.html">
+            <a class="symptom-directory__link" href="tmj.html" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">顎関節症・あごの痛み</span>
               <span class="symptom-directory__link-description">口を開けると痛む、音が鳴る方へ。</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
             </a>
           </div>
         </section>
+        </div>
+      </div>
+      <div id="directory-panel-movement" class="symptom-directory__panel" role="tabpanel" aria-labelledby="directory-tab-movement" data-directory-panel="movement" hidden>
+        <div class="symptom-directory__panel-heading">
+          <h3>つらい動作から探す</h3>
+          <p>日常生活で困っている場面に近い項目を選んでください。</p>
+        </div>
+        <div class="symptom-directory__quick-links">
+
+          <a class="symptom-directory__link" href="plantar-fasciitis.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">朝の一歩目が痛い</span>
+            <span class="symptom-directory__link-description">かかと・足裏の痛みが気になる方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="lower-back-pain.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">立ち上がると腰が痛い</span>
+            <span class="symptom-directory__link-description">動き始めの腰の重さや痛みが気になる方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="knee-osteoarthritis.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">立ち上がると膝が痛い</span>
+            <span class="symptom-directory__link-description">椅子から立つ時の膝痛が気になる方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="knee-front-pain.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">階段で膝が痛い</span>
+            <span class="symptom-directory__link-description">膝の前側やお皿まわりが気になる方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="spinal-stenosis.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">長く歩くと脚がしびれる</span>
+            <span class="symptom-directory__link-description">休むと変化する脚の症状がある方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="frozen-shoulder.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">腕を上げると肩が痛い</span>
+            <span class="symptom-directory__link-description">腕を上げる、後ろへ回す動作がつらい方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="elbow-tendinopathy.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">物を持つ・ひねると肘が痛い</span>
+            <span class="symptom-directory__link-description">家事や仕事で肘へ負担がかかる方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="tmj.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">口を開けると顎が痛い</span>
+            <span class="symptom-directory__link-description">顎の痛み、音、動かしにくさが気になる方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+        </div>
+      </div>
+      <div id="directory-panel-diagnosis" class="symptom-directory__panel" role="tabpanel" aria-labelledby="directory-tab-diagnosis" data-directory-panel="diagnosis" hidden>
+        <div class="symptom-directory__panel-heading">
+          <h3>病院で言われた名前から探す</h3>
+          <p>医療機関で伝えられた診断名に近いページからご確認ください。</p>
+        </div>
+        <div class="symptom-directory__quick-links">
+
+          <a class="symptom-directory__link" href="knee-osteoarthritis.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">変形性膝関節症</span>
+            <span class="symptom-directory__link-description">歩き始めや階段で膝痛が続く方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="hip-osteoarthritis.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">変形性股関節症</span>
+            <span class="symptom-directory__link-description">股関節の痛みや歩きづらさがある方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="lumbar-disc-herniation.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">腰椎椎間板ヘルニア</span>
+            <span class="symptom-directory__link-description">腰から脚へ広がる症状がある方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="spinal-stenosis.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">脊柱管狭窄症</span>
+            <span class="symptom-directory__link-description">歩くと脚がつらくなる方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="cervical-spondylosis.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">頚椎症</span>
+            <span class="symptom-directory__link-description">首の痛みや腕のしびれが続く方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="frozen-shoulder.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">五十肩</span>
+            <span class="symptom-directory__link-description">肩が上がらない、夜間も痛む方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="thoracic-outlet.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">胸郭出口症候群</span>
+            <span class="symptom-directory__link-description">首肩から腕にしびれやだるさがある方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="carpal-tunnel.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">手根管症候群</span>
+            <span class="symptom-directory__link-description">手指のしびれや細かな作業のしにくさがある方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="scoliosis.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">側弯症</span>
+            <span class="symptom-directory__link-description">背骨のカーブや姿勢の左右差が気になる方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="symptom-directory__link" href="tmj.html" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">顎関節症</span>
+            <span class="symptom-directory__link-description">顎の痛み、音、動かしにくさがある方へ。</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>
+        </div>
       </div>
     </section>
   </main>
@@ -468,5 +610,44 @@
     TOP
   </button>
   <script src="site-header.js"></script>
+<!-- SYMPTOM_DIRECTORY_SCRIPT_START -->
+  <script>
+    (() => {
+      const root = document.querySelector('.symptom-directory');
+      if (!root) return;
+      const tabs = Array.from(root.querySelectorAll('[data-directory-mode]'));
+      const panels = Array.from(root.querySelectorAll('[data-directory-panel]'));
+      if (!tabs.length || !panels.length) return;
+      root.classList.add('is-enhanced');
+
+      const activate = (nextTab, focus = false) => {
+        const mode = nextTab.dataset.directoryMode;
+        tabs.forEach((tab) => {
+          const selected = tab === nextTab;
+          tab.setAttribute('aria-selected', String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+        });
+        panels.forEach((panel) => {
+          panel.hidden = panel.dataset.directoryPanel !== mode;
+        });
+        if (focus) nextTab.focus();
+      };
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activate(tab));
+        tab.addEventListener('keydown', (event) => {
+          let nextIndex = index;
+          if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+          if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+          if (event.key === 'Home') nextIndex = 0;
+          if (event.key === 'End') nextIndex = tabs.length - 1;
+          if (nextIndex === index && !['Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          activate(tabs[nextIndex], true);
+        });
+      });
+    })();
+  </script>
+  <!-- SYMPTOM_DIRECTORY_SCRIPT_END -->
 </body>
 </html>

@@ -159,6 +159,23 @@
     return true;
   };
 
+  window.hkTrackEvent = function hkTrackEvent(eventName, params = {}) {
+    if (!eventName || !ga4MeasurementId || typeof window.gtag !== "function") {
+      return false;
+    }
+
+    window.gtag(
+      "event",
+      eventName,
+      cleanParams({
+        ...params,
+        symptom_slug: getSymptomSlug(),
+        page_location: window.location.href
+      })
+    );
+    return true;
+  };
+
   function getClickedLink(target) {
     if (!(target instanceof Element)) return null;
     return target.closest("a[href]");
@@ -175,9 +192,43 @@
     );
   }
 
+  function getTargetSymptomSlug(href) {
+    const match = href.match(/(?:^|\/)([^/?#]+?)(?:\.html)?(?:[?#].*)?$/);
+    if (!match) return "";
+    const slug = match[1];
+    return slug === "index" ? "" : slug;
+  }
+
+  function getExplorationEvent(link) {
+    if (link.matches("[data-top-symptom-link]")) return "top_symptom_link_click";
+    if (link.matches("[data-top-all-symptoms]")) return "top_all_symptoms_click";
+    if (link.classList.contains("symptom-directory__link")) return "symptom_directory_link_click";
+    if (link.classList.contains("symptom-page-toc__link")) return "symptom_toc_click";
+    if (link.classList.contains("related-symptom-card")) return "related_symptom_click";
+    if (
+      link.classList.contains("related-articles-slider__card") ||
+      link.classList.contains("related-article-card")
+    ) {
+      return "related_article_click";
+    }
+    if (link.classList.contains("symptom-trust__reference")) return "medical_reference_click";
+    if (link.classList.contains("symptom-trust__reviewer-link")) return "staff_profile_click";
+    return "";
+  }
+
   document.addEventListener(
     "click",
     (event) => {
+      const modeButton = event.target instanceof Element
+        ? event.target.closest("[data-directory-mode]")
+        : null;
+      if (modeButton) {
+        window.hkTrackEvent("symptom_directory_mode_select", {
+          directory_mode: modeButton.dataset.directoryMode,
+          content_group: "symptom_directory"
+        });
+      }
+
       const link = getClickedLink(event.target);
       if (!link) return;
 
@@ -192,6 +243,19 @@
 
       if (isLineLink(href, text)) {
         window.hkTrackConversion("line", { linkUrl: href, linkText: text, ctaLocation });
+        return;
+      }
+
+      const explorationEvent = getExplorationEvent(link);
+      if (explorationEvent) {
+        window.hkTrackEvent(explorationEvent, {
+          link_url: href,
+          link_text: text,
+          cta_location: ctaLocation,
+          directory_mode: link.closest("[data-directory-panel]")?.dataset.directoryPanel,
+          target_symptom_slug: link.dataset.symptomSlug || getTargetSymptomSlug(href),
+          content_group: link.dataset.trackingContentGroup || ""
+        });
       }
     },
     { capture: true }

@@ -511,13 +511,220 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
       padding-top: 48px !important;
     }
 
+    .top-symptom-guide {
+      overflow: hidden;
+      border-top: 1px solid #ece5d8;
+      border-bottom: 1px solid #ece5d8;
+      background: #fffdf8;
+      padding: 72px 20px;
+      color: #18324c;
+    }
+
+    .top-symptom-guide__inner {
+      width: min(100%, 1120px);
+      margin: 0 auto;
+    }
+
+    .top-symptom-guide__heading {
+      max-width: 720px;
+      margin: 0 auto 32px;
+      text-align: center;
+    }
+
+    .top-symptom-guide__eyebrow {
+      margin: 0 0 8px;
+      color: #2d6048;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+    }
+
+    .top-symptom-guide__heading h2 {
+      margin: 0;
+      color: #18324c;
+      font-family: var(--font-heading);
+      font-size: clamp(1.65rem, 3vw, 2.25rem);
+      font-weight: 900;
+      line-height: 1.4;
+      letter-spacing: 0;
+    }
+
+    .top-symptom-guide__heading h2::after {
+      content: "";
+      display: block;
+      width: 44px;
+      height: 3px;
+      margin: 14px auto 16px;
+      background: #b59a5b;
+    }
+
+    .top-symptom-guide__heading > p:last-child {
+      margin: 0;
+      color: #526b62;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    .top-symptom-guide__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 1px solid #dfe5df;
+      border-left: 1px solid #dfe5df;
+      background: #fff;
+    }
+
+    .top-symptom-guide__card {
+      min-height: 72px;
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr) 24px;
+      gap: 12px;
+      align-items: center;
+      border-right: 1px solid #dfe5df;
+      border-bottom: 1px solid #dfe5df;
+      background: #fff;
+      color: #18324c;
+      padding: 18px;
+      text-decoration: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .top-symptom-guide__card:hover,
+    .top-symptom-guide__card:focus-visible {
+      background: #f3f8f3;
+      color: #194533;
+      outline: none;
+    }
+
+    .top-symptom-guide__card:focus-visible {
+      box-shadow: inset 0 0 0 3px rgba(45, 96, 72, 0.28);
+    }
+
+    .top-symptom-guide__number {
+      color: #b59a5b;
+      font-size: 0.78rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .top-symptom-guide__card strong,
+    .top-symptom-guide__card small {
+      display: block;
+    }
+
+    .top-symptom-guide__card strong {
+      font-size: 1rem;
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .top-symptom-guide__card small {
+      margin-top: 4px;
+      color: #5c6d67;
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .top-symptom-guide__arrow {
+      color: #2d6048;
+      font-size: 1.5rem;
+      line-height: 1;
+      text-align: right;
+    }
+
+    .top-symptom-guide__all {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: fit-content;
+      margin: 24px auto 0;
+      border-bottom: 1px solid #2d6048;
+      color: #194533;
+      padding: 4px 2px;
+      font-size: 0.95rem;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .top-symptom-guide__all:hover,
+    .top-symptom-guide__all:focus-visible {
+      color: #b35b25;
+      border-bottom-color: #b35b25;
+      outline: none;
+    }
+
+    .top-medical-guidance {
+      margin-top: 48px;
+      border-left: 4px solid #b59a5b;
+      background: #f4f3ef;
+      padding: 22px 26px;
+    }
+
+    .top-medical-guidance__heading {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .top-medical-guidance__mark {
+      width: 28px;
+      height: 28px;
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 28px;
+      border: 1px solid #92783d;
+      border-radius: 50%;
+      color: #765d25;
+      font-weight: 900;
+    }
+
+    .top-medical-guidance h3 {
+      margin: 0;
+      color: #3c3f3d;
+      font-size: 1rem;
+      font-weight: 900;
+      line-height: 1.6;
+    }
+
+    .top-medical-guidance ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 28px;
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .top-medical-guidance li {
+      position: relative;
+      color: #555b57;
+      padding-left: 18px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .top-medical-guidance li::before {
+      content: "";
+      position: absolute;
+      top: 0.75em;
+      left: 1px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #92783d;
+    }
+
     @media (min-width: 1024px) {
       .hz-hero {
         padding-top: 64px !important;
       }
     }
 
-    @media (max-width: 1023px) {
+    @media (max-width: 1079px) {
       :root {
         --header-h: 58px;
       }
@@ -536,6 +743,10 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
         justify-content: space-between;
         gap: 10px;
         padding: 7px 0;
+      }
+
+      .top-symptom-guide__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .site-header-badges,
@@ -716,6 +927,42 @@ body { font-family: var(--font-readable); letter-spacing: 0.04em; line-height: 1
     }
 
     @media (max-width: 767px) {
+      .top-symptom-guide {
+        padding: 64px 18px;
+      }
+
+      .top-symptom-guide__heading {
+        margin-bottom: 26px;
+      }
+
+      .top-symptom-guide__heading > p:last-child {
+        font-size: 0.94rem;
+      }
+
+      .top-symptom-guide__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .top-symptom-guide__card {
+        grid-template-columns: 34px minmax(0, 1fr) 22px;
+        gap: 10px;
+        padding: 16px 14px;
+      }
+
+      .top-medical-guidance {
+        margin-top: 40px;
+        padding: 20px 18px;
+      }
+
+      .top-medical-guidance__heading {
+        align-items: flex-start;
+      }
+
+      .top-medical-guidance ul {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
       .page-top-button {
         bottom: 94px;
         right: 16px;

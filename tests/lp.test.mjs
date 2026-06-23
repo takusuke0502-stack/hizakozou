@@ -11,6 +11,7 @@ const repoRoot = fileURLToPath(new URL("..", import.meta.url));
 const mainJs = readFileSync(new URL("../scripts/main.js", import.meta.url), "utf8");
 const mainCss = readFileSync(new URL("../styles/main.css", import.meta.url), "utf8");
 const buildBlogScript = readFileSync(new URL("../scripts/build-blog.mjs", import.meta.url), "utf8");
+const siteDiscoveryCss = readFileSync(new URL("../symptoms/site-discovery.css", import.meta.url), "utf8");
 const generateBlogScript = readFileSync(new URL("../scripts/generate-blog.mjs", import.meta.url), "utf8");
 const lowerBackHtml = readFileSync(new URL("../symptoms/lower-back-pain.html", import.meta.url), "utf8");
 const sciaticaHtml = readFileSync(new URL("../symptoms/sciatica.html", import.meta.url), "utf8");
@@ -28,8 +29,13 @@ const carpalTunnelHtml = readFileSync(new URL("../symptoms/carpal-tunnel.html", 
 const elbowTendinopathyHtml = readFileSync(new URL("../symptoms/elbow-tendinopathy.html", import.meta.url), "utf8");
 const trackingConfigPath = path.join(repoRoot, "scripts", "tracking-config.js");
 const trackingJsPath = path.join(repoRoot, "scripts", "tracking.js");
+const topIconsPath = path.join(repoRoot, "scripts", "top-icons.js");
 const trackingConfig = existsSync(trackingConfigPath) ? readFileSync(trackingConfigPath, "utf8") : "";
 const trackingJs = existsSync(trackingJsPath) ? readFileSync(trackingJsPath, "utf8") : "";
+const topIconsJs = existsSync(topIconsPath) ? readFileSync(topIconsPath, "utf8") : "";
+const symptomDirectoryHtml = readFileSync(new URL("../symptoms/index.html", import.meta.url), "utf8");
+const symptomEvaluationPath = path.join(repoRoot, "docs", "analytics", "symptom-pages-28-day-evaluation.md");
+const symptomEvaluation = existsSync(symptomEvaluationPath) ? readFileSync(symptomEvaluationPath, "utf8") : "";
 const siteTitle =
   "柏市の足腰専門整体院｜腰痛・坐骨神経痛・股関節痛・膝痛に｜整体院ひざこぞう";
 const broadenedMetaDescription =
@@ -892,7 +898,7 @@ test("LP mobile pricing layout prevents the first-visit label from overlapping t
 test("sitewide Google tracking scripts load from the head on every HTML page", () => {
   const htmlFiles = walkFiles(repoRoot, (filePath) => filePath.endsWith(".html"));
   const missing = [];
-  const headPattern = /<head>[\s\S]*<script src="\/scripts\/tracking-config\.js"(?: defer)?><\/script>\s*<script src="\/scripts\/tracking\.js"(?: defer)?><\/script>[\s\S]*<\/head>/;
+  const headPattern = /<head>[\s\S]*<script src="\/scripts\/tracking-config\.js(?:\?v=\d+)?"(?: defer)?><\/script>\s*<script src="\/scripts\/tracking\.js(?:\?v=\d+)?"(?: defer)?><\/script>[\s\S]*<\/head>/;
 
   for (const filePath of htmlFiles) {
     const pageHtml = readFileSync(filePath, "utf8");
@@ -907,14 +913,13 @@ test("sitewide Google tracking scripts load from the head on every HTML page", (
 test("tracking config is ready for GA4 and the live Google Ads ID", () => {
   assert.equal(existsSync(trackingConfigPath), true, "tracking-config.js should exist");
   assert.match(trackingConfig, /window\.HK_TRACKING_CONFIG/);
-  assert.match(trackingConfig, /ga4MeasurementId:\s*""/);
+  assert.match(trackingConfig, /ga4MeasurementId:\s*"G-Z44VRQ2E61"/);
   assert.match(trackingConfig, /googleAdsConversionId:\s*"AW-18109043080"/);
   assert.match(trackingConfig, /line:\s*""/);
   assert.match(trackingConfig, /phone:\s*""/);
   assert.match(trackingConfig, /form:\s*""/);
   assert.match(trackingConfig, /reservation:\s*""/);
   assert.match(trackingConfig, /thanks:\s*""/);
-  assert.doesNotMatch(trackingConfig, /G-[A-Z0-9]{5,}/);
 });
 
 test("tracking runtime wires GA4 page views and Google Ads conversion events", () => {
@@ -968,6 +973,259 @@ test("major image-hero symptom pages use lightweight desktop sources without cha
     assert.equal(existsSync(optimizedAsset), true, `${assetBase} should have an optimized desktop asset`);
     assert.ok(statSync(optimizedAsset).size < 450 * 1024, `${assetBase} optimized asset should stay below 450KB`);
   }
+});
+
+test("all symptom detail images reserve their rendered space", () => {
+  const symptomDetailFiles = readdirSync(path.join(repoRoot, "symptoms"))
+    .filter((name) => name.endsWith(".html") && name !== "index.html");
+
+  for (const symptomFile of symptomDetailFiles) {
+    const symptomHtml = readFileSync(path.join(repoRoot, "symptoms", symptomFile), "utf8");
+    const imageTags = symptomHtml.match(/<img\b[^>]*>/gi) || [];
+
+    for (const imageTag of imageTags) {
+      assert.match(imageTag, /\bwidth="\d+"/, `${symptomFile} image should declare width: ${imageTag}`);
+      assert.match(imageTag, /\bheight="\d+"/, `${symptomFile} image should declare height: ${imageTag}`);
+    }
+  }
+});
+
+test("all symptom detail pages expose BreadcrumbList structured data", () => {
+  const symptomDetailFiles = readdirSync(path.join(repoRoot, "symptoms"))
+    .filter((name) => name.endsWith(".html") && name !== "index.html");
+
+  for (const symptomFile of symptomDetailFiles) {
+    const symptomHtml = readFileSync(path.join(repoRoot, "symptoms", symptomFile), "utf8");
+    assert.match(
+      symptomHtml,
+      /<script type="application\/ld\+json">[\s\S]*?"@type": "BreadcrumbList"[\s\S]*?<\/script>/,
+      `${symptomFile} should expose breadcrumb structured data`
+    );
+  }
+});
+
+test("all symptom detail pages are indexable and listed in the sitemap", () => {
+  const symptomDetailFiles = readdirSync(path.join(repoRoot, "symptoms"))
+    .filter((name) => name.endsWith(".html") && name !== "index.html");
+  const sitemap = readFileSync(path.join(repoRoot, "sitemap.xml"), "utf8");
+
+  for (const symptomFile of symptomDetailFiles) {
+    const symptomHtml = readFileSync(path.join(repoRoot, "symptoms", symptomFile), "utf8");
+    assert.doesNotMatch(symptomHtml, /<meta\s+name="robots"[^>]*noindex/i, `${symptomFile} should be indexable`);
+    assert.match(
+      sitemap,
+      new RegExp(`<loc>https://hizakozou\\.jp/symptoms/${escapeRegExp(symptomFile)}</loc>`),
+      `${symptomFile} should be present in sitemap.xml`
+    );
+  }
+});
+
+test("all symptom detail pages include a compact page contents navigation", () => {
+  const symptomDetailFiles = readdirSync(path.join(repoRoot, "symptoms"))
+    .filter((name) => name.endsWith(".html") && name !== "index.html");
+
+  for (const symptomFile of symptomDetailFiles) {
+    const symptomHtml = readFileSync(path.join(repoRoot, "symptoms", symptomFile), "utf8");
+    const toc = symptomHtml.match(/<!-- SYMPTOM_PAGE_TOC_START -->([\s\S]*?)<!-- SYMPTOM_PAGE_TOC_END -->/)?.[1] ?? "";
+    assert.match(toc, /<nav class="symptom-page-toc"/, `${symptomFile} should include the page contents nav`);
+    assert.match(toc, /aria-label="ページの内容"/);
+    assert.ok((toc.match(/class="symptom-page-toc__link"/g) ?? []).length >= 5, `${symptomFile} should link to key sections`);
+    assert.ok(toc.indexOf("なぜ起こる") < toc.indexOf("医療機関"), `${symptomFile} should present content in reading order`);
+  }
+});
+
+test("symptom discovery styles are shared instead of duplicated inline", () => {
+  const sharedCssPath = path.join(repoRoot, "symptoms", "site-discovery.css");
+  assert.equal(existsSync(sharedCssPath), true, "site-discovery.css should exist");
+  const sharedCss = readFileSync(sharedCssPath, "utf8");
+  assert.match(sharedCss, /\.symptom-page-toc/);
+  assert.match(sharedCss, /\.related-articles-slider/);
+  assert.match(sharedCss, /\.related-symptoms/);
+
+  const symptomDetailFiles = readdirSync(path.join(repoRoot, "symptoms"))
+    .filter((name) => name.endsWith(".html") && name !== "index.html");
+  for (const symptomFile of symptomDetailFiles) {
+    const symptomHtml = readFileSync(path.join(repoRoot, "symptoms", symptomFile), "utf8");
+    assert.match(symptomHtml, /<link rel="stylesheet" href="site-discovery\.css">/);
+    assert.doesNotMatch(symptomHtml, /BLOG_RELATED_ARTICLES_STYLES_START/);
+    assert.doesNotMatch(symptomHtml, /\.related-articles-slider\{padding:/);
+  }
+});
+
+test("all symptom detail pages include reviewed safety guidance and public references", () => {
+  const symptomDetailFiles = readdirSync(path.join(repoRoot, "symptoms"))
+    .filter((name) => name.endsWith(".html") && name !== "index.html");
+
+  assert.equal(symptomDetailFiles.length, 24);
+  for (const symptomFile of symptomDetailFiles) {
+    const symptomHtml = readFileSync(path.join(repoRoot, "symptoms", symptomFile), "utf8");
+    const guidance = symptomHtml.match(
+      /<!-- SYMPTOM_TRUST_GUIDANCE_START -->([\s\S]*?)<!-- SYMPTOM_TRUST_GUIDANCE_END -->/
+    )?.[1] ?? "";
+
+    assert.match(guidance, /執筆・内容確認/, `${symptomFile} should identify the reviewer`);
+    assert.match(guidance, /川上卓哉/, `${symptomFile} should name the reviewer`);
+    assert.match(guidance, /柔道整復師（国家資格）/, `${symptomFile} should show the qualification`);
+    assert.match(guidance, /2026年6月23日/, `${symptomFile} should show the reviewed date`);
+    assert.match(guidance, /早急に医療機関へ/, `${symptomFile} should show urgent guidance`);
+    assert.match(guidance, /早めに医療機関へ/, `${symptomFile} should show prompt guidance`);
+    assert.match(guidance, /整体での相談を検討できる状態/, `${symptomFile} should explain the clinic boundary`);
+    assert.match(guidance, /参考情報/, `${symptomFile} should include public references`);
+    assert.match(guidance, /一般的な情報提供であり、診断を目的とするものではありません/);
+    assert.match(guidance, /href="\.\.\/staff\.html"/);
+    assert.match(symptomHtml, /"dateModified": "2026-06-23"/);
+    assert.match(symptomHtml, /"name": "川上卓哉"/);
+  }
+});
+
+test("symptom patient voices retain their content and show the requested individual-results note", () => {
+  const symptomDetailFiles = readdirSync(path.join(repoRoot, "symptoms"))
+    .filter((name) => name.endsWith(".html") && name !== "index.html");
+  let pagesWithVoices = 0;
+
+  for (const symptomFile of symptomDetailFiles) {
+    const symptomHtml = readFileSync(path.join(repoRoot, "symptoms", symptomFile), "utf8");
+    const voices = symptomHtml.match(
+      /<!-- SYMPTOM_PATIENT_VOICES_START -->([\s\S]*?)<!-- SYMPTOM_PATIENT_VOICES_END -->/
+    )?.[1] ?? "";
+    if (!voices) continue;
+    pagesWithVoices += 1;
+    assert.match(voices, /class="symptom-voice-card"/);
+    assert.match(voices, /※効果には個人差があります/);
+  }
+
+  assert.ok(pagesWithVoices >= 5, "the existing symptom-specific voice sections should remain");
+});
+
+test("symptom pages remove audited fixed-frequency and strong outcome assertions", () => {
+  const symptomDetailFiles = readdirSync(path.join(repoRoot, "symptoms"))
+    .filter((name) => name.endsWith(".html") && name !== "index.html");
+  const combined = symptomDetailFiles
+    .map((name) => readFileSync(path.join(repoRoot, "symptoms", name), "utf8"))
+    .join("\n");
+
+  assert.doesNotMatch(combined, /最初の1〜2ヶ月は週1〜2回/);
+  assert.doesNotMatch(combined, /週1〜2回を1〜2ヶ月/);
+  assert.doesNotMatch(combined, /アンバランスを解消し手術回避を目指します/);
+  assert.doesNotMatch(combined, /神経の通り道を広げます/);
+  assert.doesNotMatch(combined, /顎関節症の根本原因となる/);
+  assert.doesNotMatch(combined, /再発しにくい体づくりをサポートします/);
+});
+
+test("the six major symptom pages explain distinct roles without replacing their education sections", () => {
+  const majorPages = new Map([
+    ["lower-back-pain.html", "腰の重さ・動き始め・長時間同じ姿勢"],
+    ["sciatica.html", "お尻から脚へ広がる痛みやしびれ"],
+    ["spinal-stenosis.html", "歩行で増える脚の症状"],
+    ["lumbar-disc-herniation.html", "検査で言われた診断名と現在の症状"],
+    ["hip-osteoarthritis.html", "足の付け根やお尻の痛み"],
+    ["knee-osteoarthritis.html", "歩き始めや階段での膝の痛み"]
+  ]);
+  const leads = [];
+
+  for (const [fileName, expectedFocus] of majorPages) {
+    const symptomHtml = readFileSync(path.join(repoRoot, "symptoms", fileName), "utf8");
+    const guide = symptomHtml.match(/<section class="symptom-major-guide"[\s\S]*?<\/section>/)?.[0] ?? "";
+    assert.match(guide, /data-major-symptom-guide/, `${fileName} should include its positioning guide`);
+    assert.match(guide, new RegExp(escapeRegExp(expectedFocus)), `${fileName} should explain its distinct focus`);
+    assert.match(symptomHtml, /_EDUCATION_START -->/, `${fileName} should preserve its page-owned education section`);
+    leads.push(stripHtmlTags(guide).replace(/\s+/g, " ").trim());
+  }
+
+  assert.equal(new Set(leads).size, majorPages.size, "major-page positioning guides should not be duplicated");
+});
+
+test("symptom directory offers location, movement, and diagnosis entry modes with a no-js location fallback", () => {
+  assert.match(symptomDirectoryHtml, /role="tablist"/);
+  assert.match(symptomDirectoryHtml, /data-directory-mode="location"/);
+  assert.match(symptomDirectoryHtml, /data-directory-mode="movement"/);
+  assert.match(symptomDirectoryHtml, /data-directory-mode="diagnosis"/);
+  assert.match(symptomDirectoryHtml, /aria-selected="true"[^>]*data-directory-mode="location"/);
+  assert.match(symptomDirectoryHtml, /data-directory-panel="location"/);
+  assert.match(symptomDirectoryHtml, /data-directory-panel="movement"/);
+  assert.match(symptomDirectoryHtml, /data-directory-panel="diagnosis"/);
+  assert.match(symptomDirectoryHtml, /朝の一歩目が痛い/);
+  assert.match(symptomDirectoryHtml, /長く歩くと脚がしびれる/);
+  assert.match(symptomDirectoryHtml, /病院で言われた名前から探す/);
+  assert.doesNotMatch(symptomDirectoryHtml, /data-directory-panel="location"[^>]*hidden/);
+
+  for (const href of symptomDirectoryHtml.matchAll(/class="symptom-directory__link" href="([^"]+\.html)"/g)) {
+    assert.equal(existsSync(path.join(repoRoot, "symptoms", href[1])), true, `directory target should exist: ${href[1]}`);
+  }
+});
+
+test("tracking runtime records symptom exploration without creating ad conversions", () => {
+  const explorationEvents = [
+    "symptom_directory_mode_select",
+    "symptom_directory_link_click",
+    "symptom_toc_click",
+    "related_symptom_click",
+    "related_article_click",
+    "medical_reference_click",
+    "staff_profile_click"
+  ];
+
+  assert.match(trackingJs, /window\.hkTrackEvent/);
+  for (const eventName of explorationEvents) {
+    assert.match(trackingJs, new RegExp(escapeRegExp(eventName)));
+  }
+  assert.match(trackingJs, /directory_mode/);
+  assert.match(trackingJs, /target_symptom_slug/);
+  const explorationHelper = trackingJs.match(/window\.hkTrackEvent[\s\S]*?\n  };/)?.[0] ?? "";
+  assert.doesNotMatch(explorationHelper, /"conversion"|send_to|buildSendTo/);
+});
+
+test("symptom page 28-day evaluation template records the baseline and comparison metrics", () => {
+  assert.equal(existsSync(symptomEvaluationPath), true, "the 28-day evaluation template should exist");
+  assert.match(symptomEvaluation, /2026年6月23日/);
+  assert.match(symptomEvaluation, /Search Console/);
+  assert.match(symptomEvaluation, /GA4/);
+  assert.match(symptomEvaluation, /直前28日/);
+  assert.match(symptomEvaluation, /公開後28日/);
+  for (const slug of [
+    "lower-back-pain",
+    "sciatica",
+    "spinal-stenosis",
+    "lumbar-disc-herniation",
+    "hip-osteoarthritis",
+    "knee-osteoarthritis"
+  ]) {
+    assert.match(symptomEvaluation, new RegExp(escapeRegExp(slug)));
+  }
+});
+
+test("large patient voice sheets use optimized WebP previews while keeping original links", () => {
+  const optimizedVoiceImages = [
+    ["patient-voice-yo-knee-optimized.webp", "patient-voice-yo-knee.png"],
+    ["patient-voice-ym-hip-optimized.webp", "patient-voice-ym-hip.png"]
+  ];
+
+  for (const [optimizedImage, originalImage] of optimizedVoiceImages) {
+    const optimizedPath = path.join(repoRoot, "image", optimizedImage);
+    assert.equal(existsSync(optimizedPath), true, `${optimizedImage} should exist`);
+    assert.ok(statSync(optimizedPath).size < 350 * 1024, `${optimizedImage} should stay below 350 KB`);
+    assert.match(voicesHtml, new RegExp(`src="image/${escapeRegExp(optimizedImage)}"`));
+    assert.match(voicesHtml, new RegExp(`href="image/${escapeRegExp(originalImage)}"`));
+  }
+
+  const kneeHtml = readFileSync(path.join(repoRoot, "symptoms", "knee-osteoarthritis.html"), "utf8");
+  const hipHtml = readFileSync(path.join(repoRoot, "symptoms", "hip-osteoarthritis.html"), "utf8");
+  assert.match(kneeHtml, /src="\.\.\/image\/patient-voice-yo-knee-optimized\.webp"/);
+  assert.match(kneeHtml, /href="\.\.\/image\/patient-voice-yo-knee\.png"/);
+  assert.match(hipHtml, /src="\.\.\/image\/patient-voice-ym-hip-optimized\.webp"/);
+  assert.match(hipHtml, /href="\.\.\/image\/patient-voice-ym-hip\.png"/);
+});
+
+test("cervical and elbow metadata avoids outcome and cause assertions", () => {
+  const cervicalHtml = readFileSync(path.join(repoRoot, "symptoms", "cervical-spondylosis.html"), "utf8");
+  const elbowHtml = readFileSync(path.join(repoRoot, "symptoms", "elbow-tendinopathy.html"), "utf8");
+  const cervicalHead = cervicalHtml.match(/<head>[\s\S]*?<\/head>/)?.[0] ?? "";
+  const elbowHead = elbowHtml.match(/<head>[\s\S]*?<\/head>/)?.[0] ?? "";
+
+  assert.doesNotMatch(cervicalHead, /動作改善の流れを改善します/);
+  assert.match(cervicalHead, /首・肩・胸郭の動きや姿勢を確認し、負担を減らす方法をご提案します/);
+  assert.doesNotMatch(elbowHead, /家事が原因の方|上肢全体を改善します/);
+  assert.match(elbowHead, /仕事や家事で負担が重なる肘だけでなく、肩・胸郭・手首の動きも確認します/);
 });
 
 test("thanks page exists as a noindex conversion completion page", () => {
@@ -1025,15 +1283,22 @@ test("LP image infrastructure uses unified WebP paths", () => {
   }
 });
 
-test("LP exposes LocalBusiness, MedicalClinic, and FAQPage structured data", () => {
+test("LP exposes LocalBusiness with founder and omits inapplicable rich-result schema", () => {
   const localBusinessBlocks = getJsonLdBlocks("LocalBusiness");
   const medicalClinicBlocks = getJsonLdBlocks("MedicalClinic");
   const faqBlocks = getJsonLdBlocks("FAQPage");
 
   assert.equal(localBusinessBlocks.length, 1, "LP should include one LocalBusiness schema block");
-  assert.equal(medicalClinicBlocks.length, 1, "LP should include one MedicalClinic schema block");
-  assert.equal(faqBlocks.length, 1, "LP should include one FAQPage schema block");
+  assert.equal(medicalClinicBlocks.length, 0, "LP should not describe the clinic as a MedicalClinic");
+  assert.equal(faqBlocks.length, 0, "LP should not keep FAQPage rich-result markup");
+  assert.deepEqual(localBusinessBlocks[0].founder, {
+    "@type": "Person",
+    name: "川上卓哉",
+    jobTitle: "柔道整復師",
+    url: "https://hizakozou.jp/staff.html"
+  });
   assert.equal(localBusinessBlocks[0].hasMap.includes("output=embed"), true, "map URL should be embeddable");
+  assert.match(html, /<section id="faq"[\s\S]*?<h2[^>]*>よくある質問<\/h2>/);
 });
 
 test("LP metadata broadens SEO target from female knee pain to chronic pain", () => {
@@ -1380,8 +1645,8 @@ test("LP mobile hero title and fixed CTA stay compact on narrow screens", () => 
   assert.match(html, /font-size:\s*clamp\(1\.42rem,\s*6vw,\s*3\.6rem\)\s*!important;/);
   assert.doesNotMatch(html, /font-size:\s*clamp\(2rem,\s*8\.6vw,\s*4rem\)/);
   assert.match(html, /<span class="mobile-fixed-cta__label">LINEで空き状況を確認<\/span>/);
-  assert.doesNotMatch(getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js"'), /tel:0471143274/);
-  assert.doesNotMatch(getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js"'), /LINEで予約する/);
+  assert.doesNotMatch(getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js'), /tel:0471143274/);
+  assert.doesNotMatch(getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js'), /LINEで予約する/);
 });
 
 test("LP hero first-visit guide matches the flyer-style first-visit CTA", () => {
@@ -1421,7 +1686,7 @@ test("LP hero first-visit guide matches the flyer-style first-visit CTA", () => 
 
 test("LP Step 2 uses Japanese labels, removes the comparison section, and keeps a single mobile LINE CTA", () => {
   const approach = getSectionSlice('id="msm-method"', 'id="clinic-reasons"');
-  const fixedCta = getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js"');
+  const fixedCta = getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js');
 
   assert.doesNotMatch(html, /CLINICAL VIEW|HIZAKOZOU METHOD|FIRST VISIT/);
   assert.match(approach, /STEP\s*<strong>0?1<\/strong>/);
@@ -1909,6 +2174,7 @@ test("all symptom pages use the transplanted top-page header and mobile hamburge
   assert.match(headerCss, /\.site-nav__dropdown\s*\{[^}]*top:\s*100%/s);
   assert.doesNotMatch(headerCss, /symptom-taskbar/);
   assert.match(headerCss, /\.site-mobile-nav\.hidden\s*\{/);
+  assert.match(headerCss, /@media\s*\(max-width:\s*1079px\)/, "the mobile header should activate before the desktop columns overflow");
   assert.match(headerCss, /\.site-header \+ \.site-header__lower \+ main \.breadcrumb/);
   assert.match(headerJs, /Copied from \.\.\/scripts\/main\.js header and page-top behavior/);
   assert.match(headerJs, /menuBtn\.addEventListener\('click'/);
@@ -2070,14 +2336,14 @@ test("symptom treatment flow uses body-neutral image descriptions", () => {
   }
 });
 
-test("symptom pages keep the deliberate noindex set and remove fixed visit promises", () => {
+test("symptom pages are indexable and remove fixed visit promises", () => {
   const symptomDir = path.join(repoRoot, "symptoms");
   const detailPages = readdirSync(symptomDir).filter((name) => name.endsWith(".html") && name !== "index.html");
   const noindexPages = detailPages
     .filter((fileName) => /<meta name="robots" content="noindex,follow">/.test(readFileSync(path.join(symptomDir, fileName), "utf8")))
     .sort();
 
-  assert.deepEqual(noindexPages, ["frozen-shoulder.html", "shoulder-stiffness.html", "tmj.html"]);
+  assert.deepEqual(noindexPages, []);
 
   for (const fileName of ["cervical-spondylosis.html", "plantar-fasciitis.html"]) {
     const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
@@ -2136,10 +2402,10 @@ test("symptom related cards show an absolute arrow affordance without extra CTA 
   const symptomDir = path.join(repoRoot, "symptoms");
   const arrowPattern = /<span class="related-symptom-card__arrow" aria-hidden="true">›<\/span>/g;
 
-  assert.match(buildBlogScript, /\.related-symptom-card\{[^}]*position:relative[^}]*padding:1rem 3\.25rem 1rem 1rem/);
-  assert.match(buildBlogScript, /\.related-symptom-card__arrow\{[^}]*position:absolute[^}]*right:1rem[^}]*top:50%/);
-  assert.match(buildBlogScript, /\.related-symptom-card:hover \.related-symptom-card__arrow,/);
-  assert.match(buildBlogScript, /@media\(max-width:640px\)\{\.related-symptoms\{[\s\S]*\.related-symptom-card__arrow\{right:\.85rem;width:30px;height:30px;font-size:20px\}\}/);
+  assert.match(siteDiscoveryCss, /\.related-symptom-card\{[^}]*position:relative[^}]*padding:1rem 3\.25rem 1rem 1rem/);
+  assert.match(siteDiscoveryCss, /\.related-symptom-card__arrow\{[^}]*position:absolute[^}]*right:1rem[^}]*top:50%/);
+  assert.match(siteDiscoveryCss, /\.related-symptom-card:hover \.related-symptom-card__arrow,/);
+  assert.match(siteDiscoveryCss, /@media\(max-width:640px\)\{\.related-symptoms\{[\s\S]*\.related-symptom-card__arrow\{right:\.85rem;width:30px;height:30px;font-size:20px\}\}/);
 
   for (const fileName of readdirSync(symptomDir).filter((name) => name.endsWith(".html"))) {
     if (fileName === "index.html") continue;
@@ -2451,13 +2717,13 @@ test("lower back education redesign stays inside the requested page range", () =
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(lowerBackHtml.slice(bodyStart, redesignStart)),
-    "2196532254e97f793857cf5bb25bf9e38f3cd2491793493d00cba1f2a31601b0",
+    "74b16ca75b168023ec685b221d5263df623f1ee78fd2cc83a13e2146c3baae27",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(lowerBackHtml.slice(voicesStart)),
-    "b56e8dcd0a731b9b63c07693a714cec306aba73e4d133e23f3c018ecfe397224",
-    "patient voices onward must match the approved related-navigation baseline"
+    "372604a3ec0b6228fe5a677a23eeb7c1c2bd3d2c03f974e2797c975acbea3e5b",
+    "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
 
@@ -2513,20 +2779,20 @@ test("lower back education CSS is scoped and switches diagrams to mobile timelin
 test("shoulder stiffness education redesign preserves the existing page boundaries", () => {
   const bodyStart = shoulderStiffnessHtml.indexOf("<body");
   const redesignStart = shoulderStiffnessHtml.indexOf("<!-- SHOULDER_STIFFNESS_EDUCATION_START -->");
-  const voicesStart = shoulderStiffnessHtml.indexOf("    <!-- SYMPTOM_PATIENT_VOICES_START -->");
+  const voicesStart = shoulderStiffnessHtml.indexOf("<!-- SYMPTOM_PATIENT_VOICES_START -->");
 
   assert.ok(bodyStart > -1);
   assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(shoulderStiffnessHtml.slice(bodyStart, redesignStart)),
-    "9e11ee82d7860c05f1519b669771e546197fbfb899d8b3d156406f08e383d833",
+    "ed39b01f2001485785319a9db4063e0dbc6232ca68215c8774d5123476d6996b",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(shoulderStiffnessHtml.slice(voicesStart)),
-    "508e85b0e63c33435956e66726054be43793239ab04b08c02f7141c5d9f3700a",
-    "patient voices onward must remain unchanged"
+    "95f066d42dc534b571da4c0d1b060e83fd3b8bc8a5b5ecebd688ad50222efa2c",
+    "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
 
@@ -2582,20 +2848,20 @@ test("shoulder stiffness education CSS is scoped and responsive", () => {
 test("plantar fasciitis education redesign preserves the existing page boundaries", () => {
   const bodyStart = plantarFasciitisHtml.indexOf("<body");
   const redesignStart = plantarFasciitisHtml.indexOf("<!-- PLANTAR_FASCIITIS_EDUCATION_START -->");
-  const flowStart = plantarFasciitisHtml.indexOf('    <section id="flow"');
+  const flowStart = plantarFasciitisHtml.search(/<section\b[^>]*\bid="flow"/);
 
   assert.ok(bodyStart > -1);
   assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(plantarFasciitisHtml.slice(bodyStart, redesignStart)),
-    "cb9ebf9a3b7a876252f6cd5361cbda7424ef341a79594b67d4e941359fe2700f",
+    "2e97d4d35cc4f6cce054fb589f498f6ab385a0edb86ee1929d40fe86b00b5e5f",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(plantarFasciitisHtml.slice(flowStart)),
-    "8e2dfeb99c338a30acd82f88ece54c48490964cd87b9ab1903b7521a7229afec",
-    "treatment flow onward must remain unchanged"
+    "f9adaa57148c86dda747a8595a683c8520cf3f8d312484d260f0dc997841fe22",
+    "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
 
@@ -2651,20 +2917,20 @@ test("plantar fasciitis education CSS is scoped and responsive", () => {
 test("scoliosis education redesign preserves the existing page boundaries", () => {
   const bodyStart = scoliosisHtml.indexOf("<body");
   const redesignStart = scoliosisHtml.indexOf("<!-- SCOLIOSIS_EDUCATION_START -->");
-  const flowStart = scoliosisHtml.indexOf('    <section id="flow"');
+  const flowStart = scoliosisHtml.search(/<section\b[^>]*\bid="flow"/);
 
   assert.ok(bodyStart > -1);
   assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(scoliosisHtml.slice(bodyStart, redesignStart)),
-    "d78ffd8454845f7eed9df74637897b64d75e256c0849673bc51e06282c49e03f",
+    "9448b0cc83f610eccc4be44a72646ef3e2d7d7dcc9f01ff43d3ff7d2591f687c",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(scoliosisHtml.slice(flowStart)),
-    "5f4193c5651ecbde0887a818ec4e3203a11356acb5e815be96b8680266873f25",
-    "treatment flow onward must remain unchanged"
+    "75fef198bf54c50364ef119ed7826202269026190c74c02f940cd5b15ee4cc30",
+    "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
 
@@ -2720,20 +2986,20 @@ test("scoliosis education CSS is scoped and responsive", () => {
 test("TMJ education redesign preserves the existing page boundaries", () => {
   const bodyStart = tmjHtml.indexOf("<body");
   const redesignStart = tmjHtml.indexOf("<!-- TMJ_EDUCATION_START -->");
-  const flowStart = tmjHtml.indexOf('    <section id="flow"');
+  const flowStart = tmjHtml.search(/<section\b[^>]*\bid="flow"/);
 
   assert.ok(bodyStart > -1);
   assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(tmjHtml.slice(bodyStart, redesignStart)),
-    "38e9128f4207e9849d306d09043f6bc45865292d01e909e185e94430f249c542",
+    "19af97c67f5a9acb9dd071da3ed170ea699a787c9b496cdc449540add38ab458",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(tmjHtml.slice(flowStart)),
-    "c4b4887c782b7b32906475992bc7215268605803a6ccf5d00c6517a2001a5e14",
-    "treatment flow onward must remain unchanged"
+    "9ae3a6ad53610e837e238aa2342772842d7c7b016b530762618094eaa3844977",
+    "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
 
@@ -2790,20 +3056,20 @@ test("TMJ education CSS is scoped and responsive", () => {
 test("frozen shoulder education redesign preserves the existing page boundaries", () => {
   const bodyStart = frozenShoulderHtml.indexOf("<body");
   const redesignStart = frozenShoulderHtml.indexOf("<!-- FROZEN_SHOULDER_EDUCATION_START -->");
-  const flowStart = frozenShoulderHtml.indexOf('    <section id="flow"');
+  const flowStart = frozenShoulderHtml.search(/<section\b[^>]*\bid="flow"/);
 
   assert.ok(bodyStart > -1);
   assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(frozenShoulderHtml.slice(bodyStart, redesignStart)),
-    "2f987e3f6c3d85e9e925e68d077671f7f630c2effa0a1e950b637c5d2de5bc1f",
+    "3c68b26fc3cb6e8e96a394f04ab8f988fb32c94909f57e9f92409fcceab888f8",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(frozenShoulderHtml.slice(flowStart)),
-    "9438df3ec341a5856af83c3f26b143a75551e1886e80ab24045ddd18a95ecd20",
-    "treatment flow onward must remain unchanged"
+    "c466b1ab262a139668d99185469bf1bf6d026758f54c19eac1897619f20c2bae",
+    "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
 
@@ -2903,20 +3169,20 @@ test("cervical spondylosis education CSS is scoped and responsive", () => {
 test("thoracic outlet education redesign preserves the existing page boundaries", () => {
   const bodyStart = thoracicOutletHtml.indexOf("<body");
   const redesignStart = thoracicOutletHtml.indexOf("<!-- THORACIC_OUTLET_EDUCATION_START -->");
-  const flowStart = thoracicOutletHtml.indexOf('    <section id="flow"');
+  const flowStart = thoracicOutletHtml.search(/<section\b[^>]*\bid="flow"/);
 
   assert.ok(bodyStart > -1);
   assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(thoracicOutletHtml.slice(bodyStart, redesignStart)),
-    "01421e1e5bb7ac0ebd69b487467a4caea6ee9166f70e5828abe6bc0f719b188b",
+    "e6b1bcfcd6179a35ad7dfc477916bf2f776f5b99745d1bd02f1e5f443a1400f6",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(thoracicOutletHtml.slice(flowStart)),
-    "99f100d69b6a073598d50e02ae583805e040322024877b535e26d69db839b2bf",
-    "treatment flow onward must remain unchanged"
+    "6cc70f593d0afd9cb840ff2d51e5ff4f38d27104c5cae62f9a7dc97114ae8ca3",
+    "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
 
@@ -3014,7 +3280,7 @@ for (const config of upperLimbEducationPages) {
   test(`${config.file} uses the patient-friendly upper-limb education sequence`, () => {
     const sectionPattern = new RegExp(`<!-- ${config.marker}_EDUCATION_START -->[\\s\\S]*?<!-- ${config.marker}_EDUCATION_END -->`);
     const section = config.html.match(sectionPattern)?.[0] ?? "";
-    const flowStart = config.html.indexOf('    <section id="flow"');
+    const flowStart = config.html.search(/<section\b[^>]*\bid="flow"/);
     const redesignStart = config.html.indexOf(`<!-- ${config.marker}_EDUCATION_START -->`);
 
     assert.ok(section, `${config.file} should include a scoped education block`);
@@ -3077,13 +3343,13 @@ test("sciatica education redesign stays inside the matching lower-back page rang
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(sciaticaHtml.slice(bodyStart, redesignStart)),
-    "893276bc45e3e24a9049a2d452a983fc823dc6ae89fb59a9b5903da086cbebf9",
+    "75307cbbf11686df473775e51992afded32a38e6cf062258854f9d96bae76c5c",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(sciaticaHtml.slice(voicesStart)),
-    "1527f8d1fd4ae7bd54f7d37991388744f96bb079a7d255a7d6a13a3d4e600fe6",
-    "patient voices onward must match the approved related-navigation baseline"
+    "32bba60e472fd6dba6647a6af8c4293b6bba752b3893dc69b59b6472d6513e0d",
+    "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
 
@@ -3139,20 +3405,20 @@ test("sciatica education CSS is scoped and matches the lower-back responsive str
 test("spinal stenosis education redesign preserves the existing page boundaries", () => {
   const bodyStart = spinalStenosisHtml.indexOf("<body");
   const redesignStart = spinalStenosisHtml.indexOf("<!-- SPINAL_STENOSIS_EDUCATION_START -->");
-  const flowStart = spinalStenosisHtml.indexOf('    <section id="flow"');
+  const flowStart = spinalStenosisHtml.search(/<section\b[^>]*\bid="flow"/);
 
   assert.ok(bodyStart > -1);
   assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(spinalStenosisHtml.slice(bodyStart, redesignStart)),
-    "4f6f0732c34321165381b1b89682ba78f15c25bbcf56b45554c300eb1c25455b",
+    "a2b39fdcd7e377b17ab477ca6180ff663c31c0dbb5eb1bb5042766c541c3d276",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(spinalStenosisHtml.slice(flowStart)),
-    "af28a85b506b5381e103a2422810c7aafd21991794ff23e0c11a891777ab653e",
-    "treatment flow onward must match the approved related-navigation baseline"
+    "c9c4e2c7cf4521996cb0420c8f085e1b65e0e87148322a0fda78b29ec71c9ae0",
+    "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
 
@@ -3208,20 +3474,20 @@ test("spinal stenosis education CSS is scoped and responsive", () => {
 test("knee pain education redesign preserves the existing page boundaries", () => {
   const bodyStart = kneeOsteoarthritisHtml.indexOf("<body");
   const redesignStart = kneeOsteoarthritisHtml.indexOf("<!-- KNEE_PAIN_EDUCATION_START -->");
-  const voicesStart = kneeOsteoarthritisHtml.indexOf("    <!-- SYMPTOM_PATIENT_VOICES_START -->");
+  const voicesStart = kneeOsteoarthritisHtml.indexOf("<!-- SYMPTOM_PATIENT_VOICES_START -->");
 
   assert.ok(bodyStart > -1);
   assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(bodyStart, redesignStart)),
-    "5cfa3c54e2f9e6f1b7460c2b794daae0caab8c0ff56c9955b96cdec469f1a1f8",
+    "4698aeed1accbf33a809e931a4f5abdc37476d500102c2d4162449bd9b0bbcb5",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(voicesStart)),
-    "0bac5e59dca78d2199e00825d11cff309947d3d7650f1ac3dcf2dcf028472fb9",
-    "patient voices onward must match the approved related-navigation baseline"
+    "fe63c57cf26e5b5fd9256d6cb5e1580b88f78396b6d2ae982af5d93a3741a754",
+    "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
 
@@ -3277,20 +3543,20 @@ test("knee pain education CSS is scoped and responsive", () => {
 test("hip pain education redesign preserves the existing page boundaries", () => {
   const bodyStart = hipOsteoarthritisHtml.indexOf("<body");
   const redesignStart = hipOsteoarthritisHtml.indexOf("<!-- HIP_PAIN_EDUCATION_START -->");
-  const voicesStart = hipOsteoarthritisHtml.indexOf("    <!-- SYMPTOM_PATIENT_VOICES_START -->");
+  const voicesStart = hipOsteoarthritisHtml.indexOf("<!-- SYMPTOM_PATIENT_VOICES_START -->");
 
   assert.ok(bodyStart > -1);
   assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(hipOsteoarthritisHtml.slice(bodyStart, redesignStart)),
-    "949590cc3b63bc39b51f23dfafb96f484bbde7f2bb4db7c069f7a8b34c06580f",
+    "9282432c2ed120c2c49331670d91348b9b5c23b5d386f53bdcfd8afcd147c473",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(hipOsteoarthritisHtml.slice(voicesStart)),
-    "f0f6b2ee68bb53822050786e9f22c6ed543146740b4077d05ea7108ec1443085",
-    "patient voices onward must match the approved related-navigation baseline"
+    "93d2bc71646b6f92f26cb423e4a954eaba752544e3e6071012ce8b8aba77b46a",
+    "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
 
@@ -3346,20 +3612,20 @@ test("hip pain education CSS is scoped and responsive", () => {
 test("disc herniation education redesign preserves the existing page boundaries", () => {
   const bodyStart = lumbarDiscHerniationHtml.indexOf("<body");
   const redesignStart = lumbarDiscHerniationHtml.indexOf("<!-- DISC_HERNIATION_EDUCATION_START -->");
-  const flowStart = lumbarDiscHerniationHtml.indexOf('    <section id="flow"');
+  const flowStart = lumbarDiscHerniationHtml.search(/<section\b[^>]*\bid="flow"/);
 
   assert.ok(bodyStart > -1);
   assert.ok(redesignStart > bodyStart, "the redesigned content should start after the existing upper page");
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(bodyStart, redesignStart)),
-    "bd1a34eb6ee146bfc3012e02d311a84b0cca292fa684f5001bba2a4518dfeeaa",
+    "1a6519f0d722d0f93f06d1684c1ae4cee040423873c55bdff0ac8d96016cd251",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(flowStart)),
-    "5e55e0cd9fd29167e8384bd7c3426a192c009019a422964c4ff07067ae1a3859",
-    "treatment flow onward must match the approved related-navigation baseline"
+    "2a22cef9debe5b2c411af09f6cc0ed07cae77cf6a8d14b06c90c49a4ad5ed9ef",
+    "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
 
@@ -3668,12 +3934,89 @@ test("LP keeps price section after the patient voice list when the gallery is re
   assert.doesNotMatch(html, /href="blog\/posts\/walking-start-knee-pain-cause\/"/);
 });
 
-test("LP removes the knee symptom finder section", () => {
+test("LP keeps the retired knee-only symptom finder removed", () => {
   assert.doesNotMatch(html, /id="knee-type-nav"/);
-  assert.doesNotMatch(html, /症状から探す/);
   assert.doesNotMatch(html, /膝の痛み・不調を探す/);
   assert.doesNotMatch(html, /症状の出方や場所から、あなたに合った情報ページをすぐに見つけられます。/);
   assert.doesNotMatch(html, /id="symptoms"/);
+});
+
+test("TOP hero remains byte-for-byte unchanged", () => {
+  const heroStart = html.indexOf('<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">');
+  const heroEnd = html.indexOf('<section class="hero-safe-band', heroStart);
+
+  assert.ok(heroStart > -1);
+  assert.ok(heroEnd > heroStart);
+  assert.equal(
+    sha256(html.slice(heroStart, heroEnd)),
+    "bdc7d3ccea1fcd9069668bac02714ceef308cd30dfec2bbc79187a7c1e39e0e9"
+  );
+});
+
+test("TOP routes visitors to the six major symptoms before troubles", () => {
+  const guide = html.match(/<!-- TOP_SYMPTOM_GUIDE_START -->[\s\S]*?<!-- TOP_SYMPTOM_GUIDE_END -->/)?.[0] ?? "";
+  const links = [
+    "symptoms/lower-back-pain.html",
+    "symptoms/sciatica.html",
+    "symptoms/spinal-stenosis.html",
+    "symptoms/lumbar-disc-herniation.html",
+    "symptoms/hip-osteoarthritis.html",
+    "symptoms/knee-osteoarthritis.html",
+    "symptoms/index.html"
+  ];
+
+  assert.ok(guide, "TOP symptom guide should exist");
+  for (const href of links) {
+    assert.match(guide, new RegExp(`href="${escapeRegExp(href)}"`));
+  }
+  assert.equal((guide.match(/data-top-symptom-link/g) ?? []).length, 6);
+  assert.ok(html.indexOf("TOP_SYMPTOM_GUIDE_START") < html.indexOf('id="troubles"'));
+});
+
+test("TOP includes concise medical guidance", () => {
+  const guide = html.match(/<!-- TOP_SYMPTOM_GUIDE_START -->[\s\S]*?<!-- TOP_SYMPTOM_GUIDE_END -->/)?.[0] ?? "";
+
+  assert.match(guide, /急に力が入りにくくなった/);
+  assert.match(guide, /排尿・排便に異常がある/);
+  assert.match(guide, /事故や転倒後から強い痛みが続く/);
+  assert.match(guide, /発熱や強い体調不良を伴う/);
+  assert.match(guide, /data-top-medical-guidance/);
+});
+
+test("TOP uses responsive routing styles and avoids the 1024px header overflow", () => {
+  assert.match(mainCss, /@media\s*\(max-width:\s*1079px\)\s*{[\s\S]*?\.site-header__inner--upper/);
+  assert.match(mainCss, /\.top-symptom-guide__grid\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(mainCss, /@media\s*\(max-width:\s*1079px\)\s*{[\s\S]*?\.top-symptom-guide__grid\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(mainCss, /@media\s*\(max-width:\s*767px\)\s*{[\s\S]*?\.top-symptom-guide__grid\s*{[^}]*grid-template-columns:\s*1fr/);
+  assert.match(mainCss, /\.top-symptom-guide__card\s*{[^}]*min-height:\s*72px/);
+  assert.match(mainCss, /\.top-symptom-guide__all\s*{[^}]*min-height:\s*44px/);
+});
+
+test("TOP uses a lightweight icon runtime and lazy-loads the offscreen voice banner", () => {
+  assert.equal(existsSync(topIconsPath), true, "top-icons.js should exist");
+  assert.match(html, /<script src="scripts\/top-icons\.js" defer><\/script>/);
+  assert.doesNotMatch(html, /<script src="scripts\/vendor\/lucide\.min\.js" defer><\/script>/);
+  assert.match(html, /<img src="image\/voice-result-banner\.webp"[^>]+loading="lazy"/);
+  assert.match(html, /<img src="image\/hero-pc\.webp"[^>]+loading="eager"[^>]+fetchpriority="high"/);
+  assert.ok(Buffer.byteLength(topIconsJs) < 20 * 1024, "TOP icon runtime should stay below 20KB");
+  for (const icon of ["map-pin", "calendar-check-2", "user-check", "phone-call", "message-circle", "phone", "user-round", "check-circle-2", "leaf", "send", "x", "alert-circle", "loader-2"]) {
+    assert.match(topIconsJs, new RegExp(`"${escapeRegExp(icon)}"`));
+  }
+});
+
+test("TOP tracking records symptom exploration, guidance visibility, and contact intent", () => {
+  for (const eventName of [
+    "top_symptom_link_click",
+    "top_all_symptoms_click",
+    "top_medical_guidance_view",
+    "top_contact_form_start",
+    "top_contact_form_submit"
+  ]) {
+    assert.match(`${trackingJs}\n${mainJs}`, new RegExp(escapeRegExp(eventName)));
+  }
+  assert.match(trackingJs, /data-top-symptom-link/);
+  assert.match(trackingJs, /data-top-all-symptoms/);
+  assert.match(mainJs, /IntersectionObserver/);
 });
 
 test("LP splits CTA roles between mid-page consultation and final reservation", () => {
@@ -3780,7 +4123,7 @@ test("LP renders Google review slider from provided real review data", () => {
   assert.match(mainJs, /setupGoogleReviewScroller\(\)/);
 });
 
-test("LP FAQ keeps six lightweight reservation questions and links to the detail page", () => {
+test("LP FAQ keeps five visible reservation questions without FAQ rich-result schema", () => {
   const expectedQuestions = [
     "初回はどのくらい時間がかかりますか？",
     "痛い施術ですか？",
@@ -3818,19 +4161,7 @@ test("LP FAQ keeps six lightweight reservation questions and links to the detail
   assert.match(mainCss, /#faq \.lp-faq-item\s*\{[\s\S]*padding:\s*0\.9rem 0/);
   assert.match(mainCss, /@media \(max-width:\s*640px\)\s*\{[\s\S]*#faq \.lp-faq-item\s*\{[\s\S]*padding:\s*0\.78rem 0/);
 
-  const faqSchema = getJsonLdBlocks("FAQPage")[0];
-
-  assert.ok(faqSchema, "FAQ schema should exist");
-  assert.deepEqual(
-    faqSchema.mainEntity.map((entry) => entry.name),
-    expectedQuestions,
-    "FAQ schema should stay aligned with the rendered FAQ questions"
-  );
-  assert.deepEqual(
-    faqSchema.mainEntity.map((entry) => entry.acceptedAnswer.text),
-    expectedAnswers,
-    "FAQ schema answers should stay aligned with the rendered FAQ answers"
-  );
+  assert.equal(getJsonLdBlocks("FAQPage").length, 0, "FAQ rich-result schema should stay omitted");
   assert.doesNotMatch(faqSection, /予約はLINEでできますか？|公式LINEからご予約いただけます|変形性膝関節症と言われても受けられますか？|健康保険は使えますか？|どんな服装で行けばいいですか？|回数券を無理にすすめられることはありますか？|無理なご提案や押し売りはしません。|予約のキャンセル・変更はできますか？/);
   assert.match(html, /LINEからご希望日時を送ってください。空き状況を確認して、こちらから返信いたします。/);
 });
@@ -3950,7 +4281,7 @@ test("FAQ and access detail pages exist with SEO, detail links, and LINE reserva
 
   assert.match(symptomsIndexHtml, /<title>症状別ページ｜整体院ひざこぞう<\/title>/);
   assert.match(symptomsIndexHtml, /<h1 id="page-title">症状別ページ<\/h1>/);
-  assert.match(symptomsIndexHtml, /気になる場所から症状を探す/);
+  assert.match(symptomsIndexHtml, /自分に近い探し方を選んでください/);
   assert.match(symptomsIndexHtml, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/symptoms\/">/);
     for (const groupTitle of [
       "腰・お尻・脚",
@@ -3993,10 +4324,10 @@ test("FAQ and access detail pages exist with SEO, detail links, and LINE reserva
       assert.equal(existsSync(path.join(repoRoot, "symptoms", href)), true, `${href} should exist`);
     }
     for (const offAxis of ["frozen-shoulder.html", "shoulder-stiffness.html", "tmj.html"]) {
-      assert.match(readFileSync(path.join(repoRoot, "symptoms", offAxis), "utf8"), /<meta name="robots" content="noindex,follow">/);
+      assert.doesNotMatch(readFileSync(path.join(repoRoot, "symptoms", offAxis), "utf8"), /<meta name="robots" content="noindex,follow">/);
     }
     const directoryLinks = [...symptomsIndexHtml.matchAll(/class="symptom-directory__link" href="([^"]+)"/g)].map((match) => match[1]);
-    assert.equal(directoryLinks.length, 24);
+    assert.ok(directoryLinks.length > 24, "the three entry modes may repeat relevant destinations");
     assert.equal(new Set(directoryLinks).size, 24);
   });
 

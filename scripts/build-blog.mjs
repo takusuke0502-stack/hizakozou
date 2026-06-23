@@ -1,6 +1,13 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  individualizedVisitFrequency,
+  symptomDirectoryDiagnosisItems,
+  symptomDirectoryMovementItems,
+  symptomMetadataDescriptions,
+  symptomTrustGuidance
+} from "./symptom-page-guidance.mjs";
 
 const rootDir = process.cwd();
 const dataPath = path.join(rootDir, "data", "blog-posts.json");
@@ -13,11 +20,7 @@ const FOOT_WAIST_FOOTER_SYMPTOMS =
   "腰痛／ぎっくり腰／坐骨神経痛／脊柱管狭窄症／椎間板ヘルニア／股関節痛／変形性股関節症／膝の痛み／変形性膝関節症／足首・足裏の不調";
 const FOOTER_CLINIC_LABEL = "柏市の足腰専門整体院 整体院ひざこぞう";
 const FOOTER_CLINIC_DESCRIPTION = "千葉県柏市｜腰痛・坐骨神経痛・股関節痛・膝痛など足腰の慢性痛相談";
-const NOINDEX_SYMPTOM_FILES = new Set([
-  "shoulder-stiffness.html",
-  "frozen-shoulder.html",
-  "tmj.html"
-]);
+const NOINDEX_SYMPTOM_FILES = new Set();
 const BLOG_INDEX_HIDDEN_CATEGORIES = new Set(["neck-shoulder-hand"]);
 const NOINDEX_POST_CATEGORIES = new Set(["neck-shoulder-hand"]);
 
@@ -301,6 +304,8 @@ const patientVoices = [
     change: "施術後は身体が軽くなり、痛みのポイントを丁寧に見てもらえる安心感がありました。",
     comment: "誠実で信頼できる先生です。日々勉強されている姿勢にも安心できます。",
     image: "../image/patient-voice-kk-anonymized.webp",
+    imageWidth: 1086,
+    imageHeight: 1448,
     alt: "K.K様の写真付き直筆アンケート。坐骨神経痛、膝の痛み、腰の痛みなどで来院されたお声",
     symptomKeys: ["knee-osteoarthritis", "lower-back-pain", "sciatica"]
   },
@@ -310,6 +315,8 @@ const patientVoices = [
     change: "施術とセルフトレーニングを続けることで、歩くつらさや刺すような膝の痛みが軽くなりました。",
     comment: "穏やかで相談しやすい先生なので、身体の悩みを気軽に話せました。",
     image: "../image/patient-voice-kt.webp",
+    imageWidth: 1086,
+    imageHeight: 1448,
     alt: "K.T様の写真付き直筆アンケート。腰痛と膝痛のお悩みで来院されたお声",
     symptomKeys: ["knee-osteoarthritis", "lower-back-pain"]
   },
@@ -318,7 +325,10 @@ const patientVoices = [
     concern: "整形外科に通っても続く膝関節痛",
     change: "自宅でのストレッチと週1回の施術を続ける中で、階段の昇り降りや歩行が楽になったと感じられました。",
     comment: "痛み止めや注射に抵抗がある方も、まずは身体の状態を相談してみてください。",
-    image: "../image/patient-voice-yo-knee.png",
+    image: "../image/patient-voice-yo-knee-optimized.webp",
+    originalImage: "../image/patient-voice-yo-knee.png",
+    imageWidth: 760,
+    imageHeight: 1013,
     alt: "Y.Oさん 膝痛・膝関節痛で来院された患者様の声",
     symptomKeys: ["knee-osteoarthritis"]
   },
@@ -328,6 +338,8 @@ const patientVoices = [
     change: "施術と自宅でできるストレッチに取り組むことで、身体の動きが軽くなってきました。",
     comment: "丁寧に説明しながら進めてくれるので、不安がやわらぎ、安心して通えました。",
     image: "../image/patient-voice-yn.webp",
+    imageWidth: 1103,
+    imageHeight: 1426,
     alt: "Y.N様の直筆アンケート。腰痛、肩こり、腹部から股関節まわりの痛みで来院されたお声",
     symptomKeys: ["lower-back-pain", "shoulder-stiffness", "hip-osteoarthritis"]
   },
@@ -336,7 +348,10 @@ const patientVoices = [
     concern: "そけい部・前大腿部付近の痛み、膝痛、足裏の痛み",
     change: "施術後は鋭い痛みがやわらぎ、身体が軽くなったと感じられました。",
     comment: "筋肉の使い方のバランスが痛みに関わることもあり、一度相談してみることをすすめられています。",
-    image: "../image/patient-voice-ym-hip.png",
+    image: "../image/patient-voice-ym-hip-optimized.webp",
+    originalImage: "../image/patient-voice-ym-hip.png",
+    imageWidth: 760,
+    imageHeight: 1099,
     alt: "Y.Mさん そけい部・前大腿部付近の痛みで来院された患者様の声",
     symptomKeys: ["hip-osteoarthritis"]
   },
@@ -346,120 +361,14 @@ const patientVoices = [
     change: "腰・足・首肩の状態を整えることで、日常のつらさが軽くなりました。",
     comment: "原因がわからない痛みや疲れを感じたら、自分の身体と向き合うことが大事だと思いました。",
     image: "../image/patient-voice-numajiri.webp",
+    imageWidth: 1055,
+    imageHeight: 1491,
     alt: "N.H様の写真付き直筆アンケート。ねんざによる全身的な痛みで来院されたお声",
     symptomKeys: ["lower-back-pain", "shoulder-stiffness"]
   }
 ];
 
-const relatedArticlesStyles = `
-/* BLOG_RELATED_ARTICLES_STYLES_START */
-.related-articles-slider{padding:3rem 0;background:linear-gradient(180deg,#fffaf3 0%,#fff 100%);border-top:1px solid #eadfce;overflow:hidden}
-.related-articles-slider__inner{position:relative}
-.related-articles-slider__header{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:1.25rem}
-.related-articles-slider__title{position:relative;margin:0;padding-left:.85rem;font-size:1.35rem;font-weight:900;line-height:1.45;color:#17324d}
-.related-articles-slider__title::before{content:'';position:absolute;left:0;top:.18em;width:4px;height:1.65em;border-radius:999px;background:linear-gradient(180deg,#167044,#f2a65a)}
-.related-articles-slider__all{display:inline-flex;align-items:center;gap:.25rem;min-height:44px;padding:.25rem .15rem;font-size:13px;font-weight:900;color:#167044;white-space:nowrap;text-decoration:none}
-.related-articles-slider__all:hover,.related-articles-slider__all:focus-visible{text-decoration:underline;text-underline-offset:4px;outline:2px solid rgba(22,112,68,.25);outline-offset:4px;border-radius:6px}
-.related-articles-slider__viewport{position:relative;max-width:100%;overflow:hidden}
-.related-articles-slider__track{--related-card-size:clamp(260px,31%,320px);display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scroll-padding-inline:2.75rem;padding:.25rem 2.75rem 1rem;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab;touch-action:pan-x pan-y}
-.related-articles-slider__track::-webkit-scrollbar{display:none}
-.related-articles-slider__track::after{content:'';flex:0 0 max(0px,calc(100% - var(--related-card-size)))}
-.related-articles-slider__track.is-dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
-.related-articles-slider__track:focus-visible{outline:3px solid rgba(22,112,68,.28);outline-offset:4px;border-radius:14px}
-.related-articles-slider__card{flex:0 0 var(--related-card-size);display:flex;flex-direction:column;min-height:312px;background:#fff;border:1px solid #e2ded6;border-radius:12px;overflow:hidden;box-shadow:0 8px 22px rgba(23,50,77,.08);scroll-snap-align:start;text-decoration:none;color:inherit;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
-.related-articles-slider__card:hover,.related-articles-slider__card:focus-visible{transform:translateY(-3px);border-color:#f2a65a;box-shadow:0 14px 28px rgba(23,50,77,.12);outline:none}
-.related-articles-slider__thumb{display:block;aspect-ratio:16/9;background:#f5f0e8;overflow:hidden}
-.related-articles-slider__thumb img{width:100%;height:100%;object-fit:cover;transition:transform .25s ease}
-.related-articles-slider__card:hover .related-articles-slider__thumb img,.related-articles-slider__card:focus-visible .related-articles-slider__thumb img{transform:scale(1.035)}
-.related-articles-slider__body{display:flex;flex-direction:column;gap:.55rem;padding:.9rem .95rem 1rem;min-height:0}
-.related-articles-slider__meta{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
-.related-articles-slider__category{display:inline-flex;align-items:center;border-radius:999px;background:#eef7f0;color:#167044;font-size:11px;font-weight:900;line-height:1;padding:.32rem .55rem;max-width:56%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.related-articles-slider__date{font-size:11px;font-weight:700;color:#7b8794;white-space:nowrap}
-.related-articles-slider__card-title{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:.94rem;font-weight:900;line-height:1.58;color:#17324d}
-.related-articles-slider__arrow{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:44px;height:44px;border:1px solid #e2ded6;border-radius:999px;background:rgba(255,255,255,.96);box-shadow:0 8px 18px rgba(23,50,77,.14);color:#167044;cursor:pointer;transform:translateY(-55%);transition:background .2s ease,border-color .2s ease,box-shadow .2s ease,opacity .2s ease}
-.related-articles-slider__arrow:hover,.related-articles-slider__arrow:focus-visible{background:#fff7ec;border-color:#f2a65a;box-shadow:0 10px 22px rgba(23,50,77,.18);outline:2px solid rgba(242,166,90,.35);outline-offset:3px}
-.related-articles-slider__arrow[disabled]{opacity:0;pointer-events:none}
-.related-articles-slider__arrow--prev{left:.35rem}
-.related-articles-slider__arrow--next{right:.35rem}
-.related-articles-slider__footer{display:grid;gap:.7rem;justify-items:center;margin-top:.25rem}
-.related-articles-slider__dots{display:flex;align-items:center;justify-content:center;gap:.48rem;min-height:20px}
-.related-articles-slider__dot{width:8px;height:8px;border:0;border-radius:999px;background:#d8d8d8;cursor:pointer;padding:0;transition:width .2s ease,background .2s ease}
-.related-articles-slider__dot[aria-current="true"]{width:18px;background:#167044}
-.related-articles-slider__dot:focus-visible{outline:2px solid rgba(22,112,68,.35);outline-offset:4px}
-.related-articles-slider__hint{display:none;align-items:center;gap:.45rem;margin:0;font-size:12px;font-weight:900;color:#65758a;line-height:1.4}
-.related-articles-slider__hint svg{width:16px;height:16px;color:#f2a65a;flex:0 0 auto}
-@media(min-width:1200px){.related-articles-slider__track{--related-card-size:calc((100% - 36px)/3)}}
-@media(min-width:768px) and (max-width:1199px){.related-articles-slider__track{--related-card-size:calc((100% - 18px)/2)}}
-@media(max-width:767px){.related-articles-slider{padding:2.35rem 0}.related-articles-slider__header{align-items:flex-start;margin-bottom:.85rem}.related-articles-slider__title{font-size:1.08rem;line-height:1.55}.related-articles-slider__all{font-size:12px;min-height:38px}.related-articles-slider__viewport{margin-right:-1rem}.related-articles-slider__track{--related-card-size:min(82vw,330px);gap:13px;padding:.2rem 1rem .85rem .05rem;scroll-padding-inline:.05rem}.related-articles-slider__card{min-height:268px;border-radius:11px}.related-articles-slider__body{padding:.75rem .8rem .85rem;gap:.45rem}.related-articles-slider__category{font-size:10px;padding:.28rem .5rem}.related-articles-slider__date{font-size:10px}.related-articles-slider__card-title{font-size:.86rem;line-height:1.55;-webkit-line-clamp:3}.related-articles-slider__arrow{display:none}.related-articles-slider__hint{display:inline-flex}.related-articles-slider__dot{width:7px;height:7px}.related-articles-slider__dot[aria-current="true"]{width:16px}}
-@media(max-width:420px){.related-articles-slider__header{display:grid;gap:.4rem}.related-articles-slider__all{justify-self:start}.related-articles-slider__track{--related-card-size:83vw}}
-@media(prefers-reduced-motion:reduce){.related-articles-slider__track{scroll-behavior:auto}.related-articles-slider__card,.related-articles-slider__thumb img,.related-articles-slider__dot,.related-articles-slider__arrow{transition:none}}
-.related-articles{padding:3.25rem 1rem;background:#f8fbff;border-top:1px solid #dbeafe}
-.related-articles__eyebrow{text-align:center;font-size:13px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin-bottom:.75rem}
-.related-articles__title{text-align:center;font-size:1.5rem;font-weight:900;color:#1e3a8a;margin-bottom:.75rem}
-.related-articles__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
-.related-articles__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-.related-article-card{display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #dbeafe;border-radius:8px;padding:1.25rem;text-decoration:none;box-shadow:0 2px 10px rgba(37,99,235,.06);transition:transform .2s,border-color .2s,box-shadow .2s}
-.related-article-card:hover,.related-article-card:focus-visible{transform:translateY(-2px);border-color:#93c5fd;box-shadow:0 10px 20px rgba(37,99,235,.12);outline:none}
-.related-article-card__meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
-.related-article-card__pill{display:inline-flex;align-items:center;border-radius:9999px;background:#eff6ff;color:#2563eb;font-size:11px;font-weight:900;padding:.25rem .625rem}
-.related-article-card__time{font-size:11px;font-weight:700;color:#64748b}
-.related-article-card__title{font-size:1rem;font-weight:900;color:#1e3a8a;line-height:1.5}
-.related-article-card__desc{font-size:13px;font-weight:700;color:#475569;line-height:1.8}
-.related-article-card__link{display:inline-flex;align-items:center;gap:.35rem;font-size:13px;font-weight:900;color:#2563eb}
-.related-symptoms{padding:3.25rem 1rem;background:#fff;border-top:1px solid #dfe4dc}
-.related-symptoms__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#356b2f;letter-spacing:.1em;margin:0 0 .7rem}
-.related-symptoms__title{text-align:center;font-size:1.45rem;font-weight:900;color:#223b2d;line-height:1.55;margin:0 0 .75rem}
-.related-symptoms__lead{text-align:center;font-size:14px;font-weight:700;color:#59635d;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
-.related-symptoms__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem}
-.related-symptom-card{position:relative;display:flex;flex-direction:column;gap:.55rem;min-height:118px;background:#fff;border:1px solid #dfe4dc;border-radius:8px;padding:1rem 3.25rem 1rem 1rem;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
-.related-symptom-card:hover,.related-symptom-card:focus-visible{transform:translateY(-2px);background:#fafcf8;border-color:#9bb596;box-shadow:0 8px 18px rgba(35,77,36,.09);outline:3px solid rgba(53,107,47,.16);outline-offset:2px}
-.related-symptom-card__label{font-size:1rem;font-weight:900;color:#234d24;line-height:1.5}
-.related-symptom-card__description{font-size:13px;font-weight:700;color:#59635d;line-height:1.75}
-.related-symptom-card__arrow{position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#f6f9f3;border:1px solid #cbd8c6;color:#356b2f;font-size:22px;font-weight:900;line-height:1;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
-.related-symptom-card:hover .related-symptom-card__arrow,.related-symptom-card:focus-visible .related-symptom-card__arrow{background:#356b2f;border-color:#356b2f;color:#fff;transform:translateY(-50%) translateX(2px)}
-.related-symptoms__all{display:flex;justify-content:center;margin-top:1.35rem}
-.related-symptoms__all-link{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:44px;border-bottom:1px solid #8aa384;color:#234d24;font-size:14px;font-weight:900;text-decoration:none}
-.related-symptoms__all-link:hover,.related-symptoms__all-link:focus-visible{color:#356b2f;border-color:#356b2f;outline:3px solid rgba(53,107,47,.16);outline-offset:5px}
-@media(max-width:640px){.related-symptoms{padding:2.75rem 1rem}.related-symptoms__grid{grid-template-columns:1fr}.related-symptom-card{min-height:104px;padding-right:3rem}.related-symptom-card__arrow{right:.85rem;width:30px;height:30px;font-size:20px}}
-.symptom-mid-cta{padding:2.75rem 1rem;background:#fff;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
-.symptom-mid-cta__inner{display:grid;gap:1.25rem;align-items:center;background:#f8fbff;border:1px solid #bfdbfe;border-radius:8px;padding:1.5rem}
-.symptom-mid-cta__eyebrow{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
-.symptom-mid-cta__title{font-size:1.25rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .5rem}
-.symptom-mid-cta__text{font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0}
-.symptom-mid-cta__actions{display:flex;flex-wrap:wrap;gap:.75rem}
-.symptom-mid-cta__btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border-radius:8px;padding:.85rem 1.15rem;font-size:14px;font-weight:900;text-decoration:none;transition:transform .2s,background .2s,border-color .2s}
-.symptom-mid-cta__btn--line{background:#06C755;color:#fff}
-.symptom-mid-cta__btn--tel{background:#fff;color:#1e3a8a;border:1px solid #bfdbfe}
-.symptom-mid-cta__btn:hover,.symptom-mid-cta__btn:focus-visible{transform:translateY(-1px);outline:2px solid #93c5fd;outline-offset:3px}
-.symptom-voices{padding:3.25rem 1rem;background:#f8fafc;border-top:1px solid #e2e8f0}
-.symptom-voices__eyebrow{text-align:center;font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.1em;margin:0 0 .7rem}
-.symptom-voices__title{text-align:center;font-size:1.45rem;font-weight:900;color:#1e3a8a;line-height:1.55;margin:0 0 .75rem}
-.symptom-voices__lead{text-align:center;font-size:14px;font-weight:700;color:#475569;line-height:1.9;margin:0 auto 2rem;max-width:42rem}
-.symptom-voices__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),600px));justify-content:center;gap:2rem}
-.symptom-voice-card{background:#fff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;box-shadow:0 16px 36px rgba(15,23,42,.09)}
-.symptom-voice-card__image-link{display:block;background:#f1f5f9}
-.symptom-voice-card__image{display:block;width:100%;height:auto}
-.symptom-voice-card__body{padding:1.25rem}
-.symptom-voice-card__label{font-size:11px;font-weight:900;color:#2563eb;letter-spacing:.08em;margin:0 0 .5rem}
-.symptom-voice-card__rows{display:grid;gap:.75rem;margin:.85rem 0 0}
-.symptom-voice-card__row{display:grid;gap:.3rem;border-top:1px solid #e2e8f0;padding-top:.75rem}
-.symptom-voice-card__key{font-size:12px;font-weight:900;color:#2563eb;letter-spacing:.08em}
-.symptom-voice-card__value{font-size:14px;font-weight:700;color:#334155;line-height:1.8}
-.symptom-voices__note{font-size:11px;font-weight:700;color:#64748b;line-height:1.8;text-align:right;margin:1rem 0 0}
-.symptom-footer{background:#0f172a;color:#cbd5e1;padding:3rem 1rem 2rem;text-align:center}
-.symptom-footer__inner{max-width:860px;margin:0 auto}
-.symptom-footer__logo{display:inline-block;background:#fff;border-radius:8px;padding:.7rem 1.35rem;margin-bottom:.8rem}
-.symptom-footer__logo span{font-size:1.2rem;font-weight:900;color:#1e293b}
-.symptom-footer__tagline{font-size:14px;font-weight:700;line-height:1.8;margin:0 0 1.4rem}
-.symptom-footer__links{display:flex;flex-wrap:wrap;justify-content:center;gap:.65rem 1rem;list-style:none;margin:0 0 1.4rem;padding:0}
-.symptom-footer__links a{font-size:13px;font-weight:700;color:#94a3b8;text-decoration:none;transition:color .2s}
-.symptom-footer__links a:hover,.symptom-footer__links a:focus-visible{color:#60a5fa;outline:none;text-decoration:underline;text-underline-offset:4px}
-.symptom-footer__note{font-size:10px;color:#64748b;font-weight:700;line-height:2;margin:0}
-@media(min-width:768px){.related-articles__title{font-size:1.75rem}}
-@media(min-width:768px){.symptom-mid-cta__inner{grid-template-columns:minmax(0,1fr) auto;padding:1.75rem 2rem}.symptom-mid-cta__title{font-size:1.45rem}}
-@media(max-width:640px){.symptom-mid-cta__actions{flex-direction:column}.symptom-mid-cta__btn{width:100%}.symptom-voices__grid{gap:1rem}.symptom-voice-card__body{padding:1rem}.symptom-voices__note{text-align:left}}
-/* BLOG_RELATED_ARTICLES_STYLES_END */
-`.trim();
+
 
 const relatedArticleSliderScript = `
   <!-- RELATED_ARTICLES_SLIDER_SCRIPT_START -->
@@ -729,9 +638,14 @@ async function updateSymptomPages(site, posts) {
     html = upsertRelatedStyles(html);
     html = upsertDetailedSymptomContent(html, config);
     html = upsertSymptomPatientVoices(html, config);
+    html = upsertSymptomTrustGuidance(html, config);
+    html = upsertSymptomReviewerStructuredData(html);
+    html = normalizeSymptomSafetyCopy(html, fileName);
     html = upsertSymptomMidCta(html, site);
     if (NOINDEX_SYMPTOM_FILES.has(fileName)) {
       html = ensureNoindexFollow(html);
+    } else {
+      html = removeNoindexFollow(html);
     }
 
     const relatedPostLimit = isRelatedArticleSliderPage(fileName) ? 5 : 4;
@@ -739,6 +653,7 @@ async function updateSymptomPages(site, posts) {
     const sectionHtml = matchedPosts.length ? buildRelatedArticlesSection(site, config, matchedPosts) : "";
     html = replaceRelatedSection(html, sectionHtml);
     html = upsertRelatedArticleSliderScript(html, config);
+    html = upsertSymptomPageToc(html);
     html = normalizeSymptomPageDesign(html, site, config);
 
     await fs.writeFile(fullPath, cleanGeneratedText(html), "utf8");
@@ -764,7 +679,18 @@ const symptomsDirectoryStyles = `
     .symptom-directory__heading h2 { position: relative; margin: 0 0 18px; padding-bottom: 15px; color: #223b2d; font-size: clamp(1.65rem, 3vw, 2.2rem); line-height: 1.45; letter-spacing: 0; }
     .symptom-directory__heading h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 46px; height: 3px; background: #356b2f; }
     .symptom-directory__heading p { margin: 0; color: #59635d; font-size: .98rem; font-weight: 700; line-height: 1.85; }
+    .symptom-directory__modes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0 0 clamp(34px, 5vw, 52px); }
+    .symptom-directory__mode { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: center; min-height: 58px; padding: 10px 14px; border: 1px solid #cbd8c6; border-radius: 8px; background: #fff; color: #365047; font: inherit; font-size: .9rem; font-weight: 900; line-height: 1.45; text-align: left; cursor: pointer; }
+    .symptom-directory__mode-number { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #aebfa8; border-radius: 50%; color: #356b2f; font-size: .78rem; }
+    .symptom-directory__mode[aria-selected="true"] { border-color: #356b2f; background: #f2f7ef; color: #234d24; box-shadow: inset 0 -3px 0 #356b2f; }
+    .symptom-directory__mode[aria-selected="true"] .symptom-directory__mode-number { border-color: #356b2f; background: #356b2f; color: #fff; }
+    .symptom-directory__mode:hover, .symptom-directory__mode:focus-visible { outline: 3px solid rgba(53,107,47,.16); outline-offset: 2px; }
+    .symptom-directory__panel[hidden] { display: none; }
+    .symptom-directory__panel-heading { margin: 0 0 22px; padding-left: 14px; border-left: 4px solid #d58b40; }
+    .symptom-directory__panel-heading h3 { margin: 0; color: #223b2d; font-size: clamp(1.25rem, 2.4vw, 1.6rem); line-height: 1.5; }
+    .symptom-directory__panel-heading p { margin: .4rem 0 0; color: #69736c; font-size: .86rem; font-weight: 700; line-height: 1.7; }
     .symptom-directory__groups { columns: 2; column-gap: clamp(44px, 6vw, 72px); }
+    .symptom-directory__quick-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; border-top: 1px solid #e5e9e2; }
     .symptom-directory__group { display: inline-block; width: 100%; min-width: 0; margin-bottom: 34px; padding: 34px 0 6px; border-top: 1px solid #dfe4dc; break-inside: avoid; }
     .symptom-directory__group-header { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: start; margin-bottom: 19px; }
     .symptom-directory__group-icon { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid #aebfa8; border-radius: 50%; color: #356b2f; }
@@ -783,7 +709,10 @@ const symptomsDirectoryStyles = `
       .symptom-directory-hero { padding-top: 30px; padding-bottom: 52px; }
       .symptom-directory-hero__actions { display: grid; }
       .symptom-directory-hero__button { width: 100%; }
+      .symptom-directory__modes { grid-template-columns: 1fr; gap: 8px; }
+      .symptom-directory__mode { min-height: 52px; }
       .symptom-directory__groups { columns: 1; }
+      .symptom-directory__quick-links { grid-template-columns: 1fr; }
       .symptom-directory__group { margin-bottom: 24px; padding-top: 30px; }
       .symptom-directory__group-header { gap: 12px; }
       .symptom-directory__link { min-height: 72px; }
@@ -802,6 +731,7 @@ async function updateSymptomsDirectoryPage() {
   html = html.replace(/<style>[\s\S]*?<\/style>/, `<style>${symptomsDirectoryStyles}\n  </style>`);
   html = html.replace(/<main class="page">[\s\S]*?<\/main>/, buildSymptomsDirectoryMain());
   html = normalizeSymptomsDirectoryLinkLabel(html);
+  html = upsertSymptomsDirectoryScript(html);
 
   await fs.writeFile(directoryPath, cleanGeneratedText(html), "utf8");
 }
@@ -819,7 +749,7 @@ function buildSymptomsDirectoryMain() {
     .map((group) => {
       const links = group.items
         .map((item) => `
-            <a class="symptom-directory__link" href="${escapeHtml(item.href)}">
+            <a class="symptom-directory__link" href="${escapeHtml(item.href)}" data-tracking-content-group="symptom-directory">
               <span class="symptom-directory__link-title">${escapeHtml(item.label)}</span>
               <span class="symptom-directory__link-description">${escapeHtml(item.description)}</span>
               <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
@@ -840,6 +770,8 @@ ${links}
         </section>`;
     })
     .join("");
+  const movementLinks = buildSymptomsDirectoryLinkList(symptomDirectoryMovementItems);
+  const diagnosisLinks = buildSymptomsDirectoryLinkList(symptomDirectoryDiagnosisItems);
 
   return `<main class="page">
     <span id="top" class="page-top-anchor" aria-hidden="true"></span>
@@ -855,14 +787,110 @@ ${links}
 
     <section class="symptom-directory" aria-labelledby="symptom-directory-title">
       <div class="symptom-directory__heading">
-        <h2 id="symptom-directory-title">気になる場所から症状を探す</h2>
-        <p>同じ場所の痛みでも状態には個人差があります。近い内容が複数ある場合は、あわせてご確認ください。</p>
+        <h2 id="symptom-directory-title">自分に近い探し方を選んでください</h2>
+        <p>病名が分からなくても大丈夫です。痛む場所、つらい動作、医療機関で言われた名前のいずれかから探せます。</p>
       </div>
-      <div class="symptom-directory__groups">
+      <div class="symptom-directory__modes" role="tablist" aria-label="症状ページの探し方">
+        <button type="button" id="directory-tab-location" class="symptom-directory__mode" role="tab" aria-selected="true" data-directory-mode="location" aria-controls="directory-panel-location" tabindex="0">
+          <span class="symptom-directory__mode-number" aria-hidden="true">1</span>
+          <span>痛む場所から探す</span>
+        </button>
+        <button type="button" id="directory-tab-movement" class="symptom-directory__mode" role="tab" aria-selected="false" data-directory-mode="movement" aria-controls="directory-panel-movement" tabindex="-1">
+          <span class="symptom-directory__mode-number" aria-hidden="true">2</span>
+          <span>つらい動作から探す</span>
+        </button>
+        <button type="button" id="directory-tab-diagnosis" class="symptom-directory__mode" role="tab" aria-selected="false" data-directory-mode="diagnosis" aria-controls="directory-panel-diagnosis" tabindex="-1">
+          <span class="symptom-directory__mode-number" aria-hidden="true">3</span>
+          <span>病院で言われた名前から探す</span>
+        </button>
+      </div>
+      <div id="directory-panel-location" class="symptom-directory__panel" role="tabpanel" aria-labelledby="directory-tab-location" data-directory-panel="location">
+        <div class="symptom-directory__panel-heading">
+          <h3>痛む場所から探す</h3>
+          <p>同じ場所の痛みでも状態には個人差があります。近い内容が複数ある場合は、あわせてご確認ください。</p>
+        </div>
+        <div class="symptom-directory__groups">
 ${groups}
+        </div>
+      </div>
+      <div id="directory-panel-movement" class="symptom-directory__panel" role="tabpanel" aria-labelledby="directory-tab-movement" data-directory-panel="movement" hidden>
+        <div class="symptom-directory__panel-heading">
+          <h3>つらい動作から探す</h3>
+          <p>日常生活で困っている場面に近い項目を選んでください。</p>
+        </div>
+        <div class="symptom-directory__quick-links">
+${movementLinks}
+        </div>
+      </div>
+      <div id="directory-panel-diagnosis" class="symptom-directory__panel" role="tabpanel" aria-labelledby="directory-tab-diagnosis" data-directory-panel="diagnosis" hidden>
+        <div class="symptom-directory__panel-heading">
+          <h3>病院で言われた名前から探す</h3>
+          <p>医療機関で伝えられた診断名に近いページからご確認ください。</p>
+        </div>
+        <div class="symptom-directory__quick-links">
+${diagnosisLinks}
+        </div>
       </div>
     </section>
   </main>`;
+}
+
+function buildSymptomsDirectoryLinkList(items) {
+  return items.map((item) => `
+          <a class="symptom-directory__link" href="${escapeHtml(item.href)}" data-tracking-content-group="symptom-directory">
+            <span class="symptom-directory__link-title">${escapeHtml(item.label)}</span>
+            <span class="symptom-directory__link-description">${escapeHtml(item.description)}</span>
+            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
+          </a>`).join("");
+}
+
+function upsertSymptomsDirectoryScript(html) {
+  const startMarker = "<!-- SYMPTOM_DIRECTORY_SCRIPT_START -->";
+  const endMarker = "<!-- SYMPTOM_DIRECTORY_SCRIPT_END -->";
+  const script = `${startMarker}
+  <script>
+    (() => {
+      const root = document.querySelector('.symptom-directory');
+      if (!root) return;
+      const tabs = Array.from(root.querySelectorAll('[data-directory-mode]'));
+      const panels = Array.from(root.querySelectorAll('[data-directory-panel]'));
+      if (!tabs.length || !panels.length) return;
+      root.classList.add('is-enhanced');
+
+      const activate = (nextTab, focus = false) => {
+        const mode = nextTab.dataset.directoryMode;
+        tabs.forEach((tab) => {
+          const selected = tab === nextTab;
+          tab.setAttribute('aria-selected', String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+        });
+        panels.forEach((panel) => {
+          panel.hidden = panel.dataset.directoryPanel !== mode;
+        });
+        if (focus) nextTab.focus();
+      };
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activate(tab));
+        tab.addEventListener('keydown', (event) => {
+          let nextIndex = index;
+          if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+          if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+          if (event.key === 'Home') nextIndex = 0;
+          if (event.key === 'End') nextIndex = tabs.length - 1;
+          if (nextIndex === index && !['Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          activate(tabs[nextIndex], true);
+        });
+      });
+    })();
+  </script>
+  ${endMarker}`;
+
+  if (html.includes(startMarker) && html.includes(endMarker)) {
+    return html.replace(new RegExp(`${escapeRegExp(startMarker)}[\\s\\S]*?${escapeRegExp(endMarker)}`), script);
+  }
+  return html.replace("</body>", `${script}\n</body>`);
 }
 
 function normalizeSymptomsDirectoryLinkLabel(html) {
@@ -1144,17 +1172,64 @@ function ensureNoindexFollow(html) {
   return html.replace(/(<meta name="viewport"[^>]*>\s*)/i, '$1\n  <meta name="robots" content="noindex,follow">');
 }
 
+function removeNoindexFollow(html) {
+  return html.replace(/\s*<meta\s+name="robots"\s+content="noindex,follow"\s*>\s*/i, "\n");
+}
+
 export function upsertRelatedStyles(html) {
+  const sharedStylesheet = '<link rel="stylesheet" href="site-discovery.css">';
+  let nextHtml = html;
+
   if (html.includes("BLOG_RELATED_ARTICLES_STYLES_START")) {
     const relatedStylesPattern = /\/\* BLOG_RELATED_ARTICLES_STYLES_START \*\/[\s\S]*?\/\* BLOG_RELATED_ARTICLES_STYLES_END \*\//;
     const currentRelatedStyles = html.match(relatedStylesPattern)?.[0] ?? "";
     const educationStyles = currentRelatedStyles.match(/\/\* [A-Z0-9_]+_EDUCATION_STYLES_START \*\/[\s\S]*?\/\* [A-Z0-9_]+_EDUCATION_STYLES_END \*\//g) ?? [];
-    const replacement = educationStyles.length
-      ? `${relatedArticlesStyles}\n${educationStyles.join("\n")}`
-      : relatedArticlesStyles;
-    return html.replace(relatedStylesPattern, replacement);
+    nextHtml = html.replace(relatedStylesPattern, educationStyles.join("\n"));
   }
-  return html.replace("</style>", `\n    ${relatedArticlesStyles}\n  </style>`);
+
+  if (!nextHtml.includes(sharedStylesheet)) {
+    nextHtml = nextHtml.replace("</head>", `  ${sharedStylesheet}\n</head>`);
+  }
+  return nextHtml;
+}
+
+function upsertSymptomPageToc(html) {
+  const startMarker = "<!-- SYMPTOM_PAGE_TOC_START -->";
+  const endMarker = "<!-- SYMPTOM_PAGE_TOC_END -->";
+  const existingPattern = new RegExp(`${escapeRegExp(startMarker)}[\\s\\S]*?${escapeRegExp(endMarker)}\\s*`);
+  let nextHtml = html.replace(existingPattern, "");
+  const educationMarker = nextHtml.match(/<!-- [A-Z0-9_]+_EDUCATION_START -->/)?.[0];
+  if (!educationMarker) return nextHtml;
+
+  const educationStart = nextHtml.indexOf(educationMarker);
+  const educationHtml = nextHtml.slice(educationStart);
+  const headings = [...educationHtml.matchAll(/<h2\b[^>]*\bid="([^"]+)"[^>]*>([\s\S]*?)<\/h2>/gi)]
+    .map((match) => ({
+      id: match[1],
+      text: match[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim()
+    }));
+  const preferredSuffixes = ["cause-title", "factors-title", "medical-title", "assessment-title", "approach-title"];
+  const items = preferredSuffixes
+    .map((suffix) => headings.find((heading) => heading.id.endsWith(suffix)))
+    .filter(Boolean);
+  if (items.length < 5) return nextHtml;
+
+  const links = items
+    .map((item) => `<li><a class="symptom-page-toc__link" href="#${escapeHtml(item.id)}">${escapeHtml(item.text)}</a></li>`)
+    .join("\n          ");
+  const tocHtml = `${startMarker}
+    <nav class="symptom-page-toc" aria-label="ページの内容">
+      <div class="container max-w-4xl symptom-page-toc__inner">
+        <p class="symptom-page-toc__heading">このページで分かること</p>
+        <ol class="symptom-page-toc__list">
+          ${links}
+        </ol>
+      </div>
+    </nav>
+${endMarker}
+
+`;
+  return nextHtml.replace(educationMarker, `${tocHtml}${educationMarker}`);
 }
 
 function upsertRelatedArticleSliderScript(html, config = {}) {
@@ -1213,8 +1288,8 @@ function buildSymptomPatientVoicesSection(config = {}) {
 
   const cards = voices.map((voice) => `
           <article class="symptom-voice-card">
-            <a class="symptom-voice-card__image-link" href="${escapeHtml(voice.image)}" target="_blank" rel="noopener noreferrer">
-              <img class="symptom-voice-card__image" src="${escapeHtml(voice.image)}" alt="${escapeHtml(voice.alt)}" loading="lazy" decoding="async">
+            <a class="symptom-voice-card__image-link" href="${escapeHtml(voice.originalImage || voice.image)}" target="_blank" rel="noopener noreferrer">
+              <img class="symptom-voice-card__image" src="${escapeHtml(voice.image)}" alt="${escapeHtml(voice.alt)}" loading="lazy" decoding="async" width="${voice.imageWidth}" height="${voice.imageHeight}">
             </a>
             <div class="symptom-voice-card__body">
               <p class="symptom-voice-card__label">${escapeHtml(voice.name)}</p>
@@ -1243,9 +1318,173 @@ function buildSymptomPatientVoicesSection(config = {}) {
         <div class="symptom-voices__grid">
 ${cards}
         </div>
-        <p class="symptom-voices__note">※掲載しているお声は掲載許可をいただいた方のものです。個人の感想であり、成果を保証するものではありません。</p>
+        <p class="symptom-voices__note">※効果には個人差があります。掲載しているお声は掲載許可をいただいた方の個人の感想であり、成果を保証するものではありません。</p>
       </div>
     </section>`;
+}
+
+function upsertSymptomTrustGuidance(html, config = {}) {
+  const startMarker = "<!-- SYMPTOM_TRUST_GUIDANCE_START -->";
+  const endMarker = "<!-- SYMPTOM_TRUST_GUIDANCE_END -->";
+  const guidance = symptomTrustGuidance[config.fileName];
+  if (!guidance) return html;
+
+  const wrapped = `${startMarker}
+${buildSymptomTrustGuidance(config, guidance)}
+${endMarker}
+
+`;
+  if (html.includes(startMarker) && html.includes(endMarker)) {
+    return html.replace(new RegExp(`${escapeRegExp(startMarker)}[\\s\\S]*?${escapeRegExp(endMarker)}\\s*`), wrapped);
+  }
+
+  if (html.includes("<!-- SYMPTOM_PATIENT_VOICES_START -->")) {
+    return html.replace("<!-- SYMPTOM_PATIENT_VOICES_START -->", `${wrapped}<!-- SYMPTOM_PATIENT_VOICES_START -->`);
+  }
+  if (/<section\b[^>]*\bid="flow"[^>]*>/.test(html)) {
+    return html.replace(/<section\b[^>]*\bid="flow"[^>]*>/, (match) => `${wrapped}${match}`);
+  }
+  if (/<section\b[^>]*class="[^"]*\bfaq\b[^"]*"[^>]*>/.test(html)) {
+    return html.replace(/<section\b[^>]*class="[^"]*\bfaq\b[^"]*"[^>]*>/, (match) => `${wrapped}${match}`);
+  }
+  return html;
+}
+
+function buildSymptomTrustGuidance(config, guidance) {
+  const majorGuide = guidance.majorGuide
+    ? `<section class="symptom-major-guide" data-major-symptom-guide="${escapeHtml(config.symptomKey)}" aria-labelledby="${escapeHtml(config.symptomKey)}-major-guide-title">
+          <p class="symptom-major-guide__eyebrow">このページの役割</p>
+          <h2 id="${escapeHtml(config.symptomKey)}-major-guide-title">${escapeHtml(guidance.majorGuide.title)}</h2>
+          <p>${escapeHtml(guidance.majorGuide.lead)}</p>
+          <ul>
+${guidance.majorGuide.boundaries.map((item) => `            <li>${escapeHtml(item)}</li>`).join("\n")}
+          </ul>
+        </section>`
+    : "";
+  const guidanceColumns = [
+    {
+      modifier: "urgent",
+      icon: "triangle-alert",
+      title: "早急に医療機関へ",
+      lead: "次のような場合は、整体の予約より医療機関への相談を優先してください。",
+      items: guidance.urgent
+    },
+    {
+      modifier: "prompt",
+      icon: "stethoscope",
+      title: "早めに医療機関へ",
+      lead: "緊急ではなくても、早めの検査や診察が大切な状態があります。",
+      items: guidance.prompt
+    },
+    {
+      modifier: "consult",
+      icon: "clipboard-check",
+      title: "整体での相談を検討できる状態",
+      lead: "医療機関との役割を分けながら、次のような相談に対応します。",
+      items: guidance.consult
+    }
+  ].map((column) => `
+          <section class="symptom-trust__level symptom-trust__level--${column.modifier}">
+            <div class="symptom-trust__level-heading">
+              <span class="symptom-trust__level-icon" aria-hidden="true"><i data-lucide="${column.icon}"></i></span>
+              <div>
+                <h3>${column.title}</h3>
+                <p>${column.lead}</p>
+              </div>
+            </div>
+            <ul>
+${column.items.map((item) => `              <li>${escapeHtml(item)}</li>`).join("\n")}
+            </ul>
+          </section>`).join("");
+  const references = guidance.references.map((reference) => `
+              <li>
+                <a class="symptom-trust__reference" data-tracking-content-group="medical-reference" href="${escapeHtml(reference.url)}" target="_blank" rel="noopener noreferrer">
+                  ${escapeHtml(reference.label)} <span aria-hidden="true">↗</span>
+                </a>
+              </li>`).join("");
+
+  return `<section class="symptom-trust" aria-labelledby="${escapeHtml(config.symptomKey)}-trust-title">
+      <div class="container max-w-4xl symptom-trust__inner">
+        ${majorGuide}
+        <div class="symptom-trust__heading">
+          <p class="symptom-trust__eyebrow">MEDICAL GUIDANCE</p>
+          <h2 id="${escapeHtml(config.symptomKey)}-trust-title">受診の目安と、このページの確認情報</h2>
+          <p>症状の出方には個人差があります。迷う場合や症状が強い場合は、まず医療機関へご相談ください。</p>
+        </div>
+        <div class="symptom-trust__levels">
+${guidanceColumns}
+        </div>
+        <div class="symptom-trust__review">
+          <div class="symptom-trust__reviewer">
+            <p class="symptom-trust__review-label">執筆・内容確認</p>
+            <p class="symptom-trust__review-name">川上卓哉 <span>柔道整復師（国家資格）／施術歴14年</span></p>
+            <p class="symptom-trust__review-date">内容確認日：2026年6月23日</p>
+            <a class="symptom-trust__reviewer-link" data-tracking-content-group="reviewer-profile" href="../staff.html">代表の経歴・資格を見る <span aria-hidden="true">›</span></a>
+          </div>
+          <div class="symptom-trust__references">
+            <p class="symptom-trust__review-label">参考情報</p>
+            <ul>
+${references}
+            </ul>
+          </div>
+        </div>
+        <p class="symptom-trust__disclaimer">このページは一般的な情報提供であり、診断を目的とするものではありません。症状や状態は一人ひとり異なるため、必要に応じて医療機関へご相談ください。</p>
+      </div>
+    </section>`;
+}
+
+function upsertSymptomReviewerStructuredData(html) {
+  const startMarker = "<!-- SYMPTOM_REVIEWER_SCHEMA_START -->";
+  const endMarker = "<!-- SYMPTOM_REVIEWER_SCHEMA_END -->";
+  const schema = `${startMarker}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "author": {
+      "@type": "Person",
+      "name": "川上卓哉",
+      "jobTitle": "柔道整復師",
+      "url": "https://hizakozou.jp/staff.html"
+    },
+    "reviewedBy": {
+      "@type": "Person",
+      "name": "川上卓哉",
+      "jobTitle": "柔道整復師"
+    },
+    "dateModified": "2026-06-23"
+  }
+  </script>
+  ${endMarker}`;
+
+  if (html.includes(startMarker) && html.includes(endMarker)) {
+    return html.replace(new RegExp(`${escapeRegExp(startMarker)}[\\s\\S]*?${escapeRegExp(endMarker)}`), schema);
+  }
+  return html.replace("</head>", `${schema}\n</head>`);
+}
+
+function normalizeSymptomSafetyCopy(html, fileName) {
+  let output = html;
+  const description = symptomMetadataDescriptions[fileName];
+  if (description) {
+    output = output.replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${escapeHtml(description)}">`);
+    output = output.replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${escapeHtml(description)}">`);
+    output = output.replace(/<meta name="twitter:description" content="[^"]*">/, `<meta name="twitter:description" content="${escapeHtml(description)}">`);
+  }
+
+  const fixedFrequencyPatterns = [
+    /最初の1〜2ヶ月は週1〜2回程度をおすすめしています。炎症が落ち着いてきたら2週に1回、月1回と間隔を空けていきます。「自分でケアできる」状態を目指しますので、通い続けなければいけないということはありません。/g,
+    /慢性的な肩こりの場合、まずは週1〜2回を1〜2ヶ月続けていただき、姿勢と体の使い方を定着させていきます。セルフケアをしっかり実践される方は早い段階で効果を実感されることが多いです。/g
+  ];
+  for (const pattern of fixedFrequencyPatterns) {
+    output = output.replace(pattern, individualizedVisitFrequency);
+  }
+
+  return output
+    .replace(/アンバランスを解消し手術回避を目指します。/g, "筋肉の働き方や日常動作を確認し、医療機関と相談しながら負担の軽減を目指します。")
+    .replace(/神経の通り道を広げます。/g, "首・肩・胸郭・腕の動きと、神経周辺へ負担が集まりやすい場面を確認します。")
+    .replace(/顎関節症の根本原因となる/g, "顎の負担に関係することがある")
+    .replace(/再発しにくい体づくりをサポートします。/g, "腰へ負担が集中しにくい身体の使い方を一緒に確認します。");
 }
 
 function replaceRelatedSection(html, sectionHtml) {
@@ -1537,15 +1776,27 @@ ${cards}
   `.trim();
 }
 
+const relatedArticleImageDimensions = new Map([
+  ["../image/hip-osteoarthritis-symptom.webp", [1600, 1600]],
+  ["../image/lower-back-symptom.webp", [1200, 675]],
+  ["../image/sciatica-symptom.webp", [1600, 1600]],
+  ["../image/medical-interview.webp", [800, 600]],
+  ["../image/hip-massage-scene.webp", [1600, 1600]]
+]);
+
 function buildRelatedArticlesSliderSection(config, posts) {
   const title = `${config.label}でお悩みの方におすすめの記事`;
   const cards = posts.map((post) => {
     const dateValue = post.updatedDate || post.date;
     const thumbSrc = toSymptomPageAssetPath(post.eyecatch);
+    const [thumbWidth, thumbHeight] = relatedArticleImageDimensions.get(thumbSrc) || [];
+    const sizeAttributes = thumbWidth && thumbHeight
+      ? ` width="${thumbWidth}" height="${thumbHeight}"`
+      : "";
     return `
             <a class="related-articles-slider__card" href="../blog/posts/${escapeHtml(post.slug)}/" role="listitem">
               <span class="related-articles-slider__thumb">
-                <img src="${escapeHtml(thumbSrc)}" alt="${escapeHtml(post.title)}のイメージ" loading="lazy" decoding="async">
+                <img src="${escapeHtml(thumbSrc)}" alt="${escapeHtml(post.title)}のイメージ" loading="lazy" decoding="async"${sizeAttributes}>
               </span>
               <span class="related-articles-slider__body">
                 <span class="related-articles-slider__meta">

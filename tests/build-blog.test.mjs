@@ -66,29 +66,27 @@ const posts = [
   }
 ];
 
-test("upsertRelatedStyles preserves education styles stored beside the generated related styles", async () => {
+test("upsertRelatedStyles preserves education styles and links the shared discovery stylesheet", async () => {
   const buildBlogModule = await import("../scripts/build-blog.mjs");
   assert.equal(typeof buildBlogModule.upsertRelatedStyles, "function");
 
   const educationStyles = `/* SAMPLE_EDUCATION_STYLES_START */
 .sample-education{color:#234d24}
 /* SAMPLE_EDUCATION_STYLES_END */`;
-  const input = `<style>
+  const input = `<head><style>
 /* BLOG_RELATED_ARTICLES_STYLES_START */
 .old-related{color:red}
 ${educationStyles}
 /* BLOG_RELATED_ARTICLES_STYLES_END */
-</style>`;
+</style></head>`;
 
   const output = buildBlogModule.upsertRelatedStyles(input);
 
   assert.equal((output.match(/SAMPLE_EDUCATION_STYLES_START/g) ?? []).length, 1);
-  assert.match(output, /\.related-articles-slider\{/);
+  assert.match(output, /<link rel="stylesheet" href="site-discovery\.css">/);
+  assert.doesNotMatch(output, /\.related-articles-slider\{/);
+  assert.doesNotMatch(output, /BLOG_RELATED_ARTICLES_STYLES_START/);
   assert.match(output, /\.sample-education\{color:#234d24\}/);
-  assert.ok(
-    output.indexOf("BLOG_RELATED_ARTICLES_STYLES_END") < output.indexOf("SAMPLE_EDUCATION_STYLES_START"),
-    "page-owned education styles should be moved outside the generated related-style marker"
-  );
 });
 
 test("blog index starts with compact search filters and article lists", () => {
@@ -160,7 +158,7 @@ test("sciatica root-cause column is published and linked from the blog index", (
   assert.doesNotMatch(source, /必ず改善|完全に解放|100%戻る|一生根本改善することはない/);
 
   assert.match(indexHtml, /href="posts\/sciatica-root-cause\/"/);
-  assert.match(postHtml, /<h1>【健康コラム】お尻から太ももの裏がビリビリ…湿布を貼っても変わらない坐骨神経痛の根本原因と足腰専門整体が明かす真実<\/h1>/);
+  assert.match(postHtml, /<h1>【健康コラム】お尻から太ももの裏がビリビリ…坐骨神経痛で確認したい腰・股関節・身体の使い方<\/h1>/);
   assert.match(postHtml, /お尻から太ももの裏のビリビリした痛みやしびれでお悩みの方へ。柏市あけぼのの整体院ひざこぞうが/);
   assert.match(postHtml, /典型的な症状チェックリスト/);
   assert.match(postHtml, /店舗情報・アクセス/);
@@ -571,9 +569,9 @@ test("sitemap lists only canonical indexable URLs", () => {
   assert.ok(locs.includes("https://hizakozou.jp/blog/posts/knee-pain-daily-care/"));
   assert.ok(locs.includes("https://hizakozou.jp/symptoms/lower-back-pain.html"));
   assert.ok(locs.includes("https://hizakozou.jp/symptoms/sciatica.html"));
-  assert.equal(locs.includes("https://hizakozou.jp/symptoms/shoulder-stiffness.html"), false);
-  assert.equal(locs.includes("https://hizakozou.jp/symptoms/frozen-shoulder.html"), false);
-  assert.equal(locs.includes("https://hizakozou.jp/symptoms/tmj.html"), false);
+  assert.equal(locs.includes("https://hizakozou.jp/symptoms/shoulder-stiffness.html"), true);
+  assert.equal(locs.includes("https://hizakozou.jp/symptoms/frozen-shoulder.html"), true);
+  assert.equal(locs.includes("https://hizakozou.jp/symptoms/tmj.html"), true);
   assert.equal(locs.some((loc) => loc.endsWith("/index.html") || loc.endsWith("/blog.html")), false);
   assert.equal(new Set(locs).size, locs.length);
 });
