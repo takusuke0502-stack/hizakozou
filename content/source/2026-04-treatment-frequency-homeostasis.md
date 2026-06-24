@@ -3,11 +3,11 @@ title: 通院頻度はどう決める？膝痛を整えるペースの考え方
 slug: treatment-frequency-homeostasis
 date: 2026-04-08
 description: 柏市で膝痛の通院頻度に迷う方へ。痛みの強さ、歩き始めや階段での不安、生活ペースをふまえ、無理のない通い方と運動療法の考え方を整理します。
-category: 運動療法
+category: 受診目安・通院
 region: 柏市
 tags: 通院頻度,ホメオスタシス,運動療法,体づくり,卒業
 symptoms: 変形性膝関節症,腰痛
-heroImage: /image/medical-interview.webp
+heroImage: /image/consultation-scene.webp
 draft: false
 ---
 「どのくらいのペースで通えばいいですか？」

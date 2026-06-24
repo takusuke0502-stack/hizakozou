@@ -7,7 +7,7 @@ category: 運動療法
 region: 柏市
 tags: こむら返り,筋痙攣,ストレッチ,セルフケア
 symptoms: 変形性膝関節症,腰痛,足底筋膜炎
-heroImage: /image/treatment-scene.webp
+heroImage: /image/イラスト/腰・神経/腹筋群と体幹を支える筋肉.webp
 draft: false
 ---
 夜中に突然、足がつって目が覚めた経験はありませんか？あるいはスポーツの最中に、ふくらはぎや太ももがギュッと硬直して動けなくなってしまったこと。

@@ -3,7 +3,7 @@ title: 意外と大事な足の指の筋肉「虫様筋」──膝痛・腰痛�
 slug: lumbricals-knee-low-back-pain-relation
 date: 2026-04-03
 description: 足の指の小さな筋肉「虫様筋」が、なぜ膝痛や腰痛と関係するのかを解説します。足裏アーチ、地面からの反力、歩き方、体幹の安定まで、整体院ひざこぞうが土台から整える視点をわかりやすくお伝えします。
-category: 膝痛
+category: 足・歩き方
 region: 柏市
 tags: 膝痛,腰痛,足の指,虫様筋,運動療法
 symptoms: 変形性膝関節症,足首の硬さ,腰痛,足底腱膜炎

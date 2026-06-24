@@ -27,8 +27,10 @@ const site = {
 };
 
 const categories = new Map([
-  ["knee-pain", { slug: "knee-pain", name: "膝痛", description: "膝の痛みで相談の多いテーマです。" }],
-  ["exercise-therapy", { slug: "exercise-therapy", name: "運動療法", description: "無理のない動きづくりを扱います。" }]
+  ["knee-pain", { slug: "knee-pain", name: "膝の痛み", description: "膝の痛みで相談の多いテーマです。" }],
+  ["lower-back-pain", { slug: "lower-back-pain", name: "腰の痛み", description: "腰の痛みと足腰のつながりを扱います。" }],
+  ["foot-walking", { slug: "foot-walking", name: "足・歩き方", description: "足裏や歩き方を扱います。" }],
+  ["exercise-therapy", { slug: "exercise-therapy", name: "運動療法・セルフケア", description: "無理のない動きづくりを扱います。" }]
 ]);
 
 const posts = [
@@ -95,7 +97,10 @@ test("blog index starts with compact search filters and article lists", () => {
   assert.match(html, /column-search-panel/);
   assert.match(html, /placeholder="キーワードを入力"/);
   assert.match(html, /column-filter/);
-  assert.match(html, /ストレッチ/);
+  assert.match(html, /目的から探す/);
+  assert.match(html, /#category-lower-back-pain">腰の痛み/);
+  assert.match(html, /#category-foot-walking">足・歩き方/);
+  assert.match(html, /#category-exercise-therapy">セルフケア/);
   assert.match(html, /症状や部位から探す/);
   assert.match(html, /blog-card-grid/);
   assert.match(html, /article-list-item--card/);
@@ -220,11 +225,72 @@ test("buildPostContent converts markdown links in article lead", () => {
     }
   }, []);
 
-  assert.match(
-    html,
-    /<p class="article-lead">詳しくは<a href="\/blog\/posts\/kashiwa-station-knee-pain-guide\/">柏駅周辺で膝痛に悩む方への記事<\/a>も参考にしてください。<\/p>/
-  );
+  assert.match(html, /class="article-readable-lead"/);
+  assert.match(html, /<a href="\/blog\/posts\/kashiwa-station-knee-pain-guide\/">/);
   assert.doesNotMatch(html, /\[柏駅周辺で膝痛に悩む方への記事\]\(/);
+});
+
+test("buildPostContent adds the author review block to normal articles near the article footer", () => {
+  const html = buildPostContent(site, {
+    title: "通常記事の執筆者表示テスト",
+    description: "通常記事にも執筆者情報を表示します。",
+    lead: "通常記事のリード文です。",
+    slug: "normal-author-footer-check",
+    eyecatch: "/image/knee-symptom.webp",
+    date: "2026-04-01",
+    updatedDate: "2026-04-20",
+    category: categories.get("knee-pain"),
+    tags: ["膝痛"],
+    sections: [
+      { heading: "本文見出し", body: ["本文のあとに執筆者情報を置きます。"] }
+    ],
+    faq: [],
+    relatedSymptoms: [],
+    cta: {
+      href: "https://lin.ee/X01F2mP",
+      label: "LINEで相談する",
+      note: "来院前に相談できます。"
+    }
+  }, []);
+
+  assert.match(html, /article-trust-panel/);
+  assert.match(html, /執筆者・確認日/);
+  assert.match(html, /川上卓哉/);
+  assert.match(html, /内容確認日：2026年4月20日/);
+  assert.ok(html.indexOf("本文見出し") < html.indexOf("article-trust-panel"), "author block should appear after article body");
+  assert.doesNotMatch(html, /article-trust-panel__references/);
+});
+
+test("buildPostContent places readable article author review below the article body with references", () => {
+  const html = buildPostContent(site, {
+    title: "読みやすい記事の執筆者表示テスト",
+    description: "読みやすい記事でも執筆者情報は下部に表示します。",
+    lead: "読みやすい記事の導入文です。",
+    slug: "readable-author-footer-check",
+    eyecatch: "/image/knee-symptom-wide.webp",
+    date: "2026-04-01",
+    updatedDate: "2026-04-20",
+    reviewedDate: "2026-06-24",
+    layout: "readable-v2",
+    referencePreset: "chronic-pain",
+    category: categories.get("knee-pain"),
+    tags: ["膝痛"],
+    sections: [
+      { heading: "慢性痛について", body: ["本文を読んだあとに執筆者情報を確認できます。"] }
+    ],
+    faq: [],
+    relatedSymptoms: [],
+    cta: {
+      href: "https://lin.ee/X01F2mP",
+      label: "LINEで相談する",
+      note: "来院前に相談できます。"
+    }
+  }, []);
+
+  assert.ok(html.indexOf("article-readable-overview") < html.indexOf("慢性痛について"), "INDEX should appear before article body");
+  assert.ok(html.indexOf("慢性痛について") < html.indexOf("article-trust-panel"), "author block should appear after readable article body");
+  assert.match(html, /article-trust-panel__references/);
+  assert.match(html, /厚生労働省 慢性疼痛治療ガイドライン/);
 });
 
 test("blog article body links have visible link styling", () => {
@@ -386,12 +452,13 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
 
   const html = buildPostContent({ ...site, name: "整体院ひざこぞう", subtitle: "柏市の整体院", phone: "04-7114-3274" }, post, []);
 
-  assert.match(html, /article-takeaways/);
-  assert.match(html, /article-toc--inline/);
+  assert.match(html, /article-readable-overview/);
+  assert.doesNotMatch(html, /article-takeaways/);
+  assert.doesNotMatch(html, /article-toc--inline/);
   assert.match(html, /article-toc--side/);
   assert.match(html, /href="#section-1"/);
   assert.match(html, /id="section-1"/);
-  assert.match(html, /この記事でわかること/);
+  assert.match(html, /この記事の内容/);
   assert.match(html, /article-mid-cta/);
   assert.match(html, /読んでいて自分も近いと感じたら/);
   assert.match(html, /symptom-card--article/);

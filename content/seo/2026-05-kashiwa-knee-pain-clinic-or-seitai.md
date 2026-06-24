@@ -2,7 +2,7 @@
 - slug: kashiwa-knee-pain-clinic-or-seitai
 - date: 2026-05-04
 - updated: 2026-05-04
-- category: knee-pain
+- category: clinic-guidance
 - region: 柏市
 - status: publish
 - description: 柏市で膝痛があり、整形外科と整体のどちらに相談すべきか迷う方へ。受診を優先したい症状と、整体で確認できる動き方の問題を整理します。

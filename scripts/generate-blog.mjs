@@ -171,11 +171,54 @@ const DEFAULT_RELATED_SYMPTOMS = {
 };
 
 const FAQ_HEADINGS = new Set(["faq", "よくある質問", "よくあるご質問"]);
+const ARTICLE_LAYOUTS = new Set(["readable-v2"]);
 const OFF_AXIS_SYMPTOM_HREFS = new Set([
   "/symptoms/shoulder-stiffness.html",
   "/symptoms/frozen-shoulder.html",
   "/symptoms/tmj.html"
 ]);
+const REQUIRED_BLOG_CATEGORIES = [
+  {
+    slug: "knee-pain",
+    name: "膝の痛み",
+    description: "階段、歩き始め、正座、腫れなど、膝まわりの不調を動作や場所から整理します。"
+  },
+  {
+    slug: "lower-back-pain",
+    name: "腰の痛み",
+    description: "朝の腰の重さ、立ち上がり、膝や股関節とのつながりなどを扱います。"
+  },
+  {
+    slug: "hip-pain",
+    name: "股関節の痛み",
+    description: "歩き始め、寝返り、しゃがみ動作など、股関節まわりの不調を整理します。"
+  },
+  {
+    slug: "foot-walking",
+    name: "足・歩き方",
+    description: "足裏、足指、足首、歩き方など、足元から膝や腰への負担を見直します。"
+  },
+  {
+    slug: "numbness",
+    name: "しびれ",
+    description: "坐骨神経痛や足腰のしびれなど、神経まわりの不安を扱います。"
+  },
+  {
+    slug: "exercise-therapy",
+    name: "運動療法・セルフケア",
+    description: "施術とあわせて、無理なく続けやすい動きづくりやセルフケアをまとめます。"
+  },
+  {
+    slug: "clinic-guidance",
+    name: "受診目安・通院",
+    description: "医療機関へ相談したい目安や、整体の通い方を考えるための記事です。"
+  },
+  {
+    slug: "neck-shoulder-hand",
+    name: "首・肩・腕・手",
+    description: "肩こり、五十肩、手のしびれなど、足腰以外の慢性痛記事をまとめます。"
+  }
+];
 
 await main();
 
@@ -184,6 +227,7 @@ async function main() {
   const blogData = await readJson(dataPath);
   validateBlogData(blogData);
   normalizeSiteConfig(blogData.site);
+  ensureBlogCategories(blogData);
 
   const sourceFiles = await collectSourceFiles(args);
   const symptomLookup = buildSymptomLookup(blogData.posts);
@@ -290,6 +334,9 @@ async function parseSourceFile(filePath, context) {
     region: meta.region || "柏市",
     tags: splitCsv(meta.tags),
     heroImage: meta.heroImage || meta.eyecatch || "",
+    layout: normalizeArticleLayout(meta.layout),
+    reviewedDate: String(meta.reviewedDate || "").trim(),
+    referencePreset: String(meta.referencePreset || "").trim(),
     draft: parseBoolean(meta.draft),
     relatedSymptoms,
     lead: parsedBody.lead,
@@ -330,6 +377,11 @@ function stripQuotes(value) {
     return value.slice(1, -1);
   }
   return value;
+}
+
+function normalizeArticleLayout(value) {
+  const layout = String(value || "").trim();
+  return ARTICLE_LAYOUTS.has(layout) ? layout : "";
 }
 
 function normalizeSourceBody(value) {
@@ -514,12 +566,22 @@ function buildCategoryLookup(categories) {
   lookup.set("腰痛", "lower-back-pain");
   lookup.set("シビレ", "numbness");
   lookup.set("しびれ", "numbness");
-    lookup.set("痺れ", "numbness");
-    lookup.set("股関節痛", "hip-pain");
-    lookup.set("股関節の痛み", "hip-pain");
-    lookup.set("首・肩・手", "neck-shoulder-hand");
-    lookup.set("首肩手", "neck-shoulder-hand");
-    lookup.set("運動療法", "exercise-therapy");
+  lookup.set("痺れ", "numbness");
+  lookup.set("股関節痛", "hip-pain");
+  lookup.set("股関節の痛み", "hip-pain");
+  lookup.set("足・歩き方", "foot-walking");
+  lookup.set("足裏・歩き方", "foot-walking");
+  lookup.set("足裏", "foot-walking");
+  lookup.set("歩き方", "foot-walking");
+  lookup.set("首・肩・手", "neck-shoulder-hand");
+  lookup.set("首・肩・腕・手", "neck-shoulder-hand");
+  lookup.set("首肩手", "neck-shoulder-hand");
+  lookup.set("運動療法", "exercise-therapy");
+  lookup.set("運動療法・セルフケア", "exercise-therapy");
+  lookup.set("セルフケア", "exercise-therapy");
+  lookup.set("受診目安・通院", "clinic-guidance");
+  lookup.set("通院・相談", "clinic-guidance");
+  lookup.set("受診目安", "clinic-guidance");
 
   return lookup;
 }
@@ -533,6 +595,10 @@ function resolveCategory(value, categoryLookup, filePath) {
 }
 
 function toBlogPost(parsed, site, existing = {}) {
+  const layout = parsed.layout || existing.layout || "";
+  const reviewedDate = parsed.reviewedDate || existing.reviewedDate || "";
+  const referencePreset = parsed.referencePreset || existing.referencePreset || "";
+
   return {
     slug: parsed.slug,
     title: parsed.title,
@@ -543,6 +609,9 @@ function toBlogPost(parsed, site, existing = {}) {
     region: parsed.region,
     tags: parsed.tags,
     eyecatch: parsed.heroImage || existing.eyecatch || site.defaultEyecatch,
+    ...(layout ? { layout } : {}),
+    ...(reviewedDate ? { reviewedDate } : {}),
+    ...(referencePreset ? { referencePreset } : {}),
     readingTime: formatReadingTime(parsed),
     relatedSymptoms: parsed.relatedSymptoms,
     lead: parsed.lead || parsed.description,
@@ -734,6 +803,17 @@ function validateBlogData(data) {
   if (!data?.site || !Array.isArray(data?.categories) || !Array.isArray(data?.posts)) {
     throw new Error("data/blog-posts.json must include site, categories, and posts.");
   }
+}
+
+function ensureBlogCategories(blogData) {
+  const existingBySlug = new Map((blogData.categories || []).map((category) => [category.slug, category]));
+  const requiredSlugs = new Set(REQUIRED_BLOG_CATEGORIES.map((category) => category.slug));
+  const orderedRequired = REQUIRED_BLOG_CATEGORIES.map((category) => ({
+    ...existingBySlug.get(category.slug),
+    ...category
+  }));
+  const remainingExisting = (blogData.categories || []).filter((category) => !requiredSlugs.has(category.slug));
+  blogData.categories = [...orderedRequired, ...remainingExisting];
 }
 
 function normalizeSiteConfig(site) {

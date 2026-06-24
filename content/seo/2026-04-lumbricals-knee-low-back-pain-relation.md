@@ -2,7 +2,7 @@
 - slug: lumbricals-knee-low-back-pain-relation
 - date: 2026-04-03
 - updated: 2026-04-03
-- category: knee-pain
+- category: foot-walking
 - region: 柏市
 - status: publish
 - description: 足の指の小さな筋肉「虫様筋」が、なぜ膝痛や腰痛と関係するのかを解説します。足裏アーチ、地面からの反力、歩き方、体幹の安定まで、整体院ひざこぞうが土台から整える視点をわかりやすくお伝えします。

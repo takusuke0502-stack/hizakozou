@@ -2,7 +2,7 @@
 - slug: treatment-frequency-homeostasis
 - date: 2026-04-08
 - updated: 2026-04-08
-- category: exercise-therapy
+- category: clinic-guidance
 - region: 柏市
 - status: publish
 - description: 柏市で膝痛の通院頻度に迷う方へ。痛みの強さ、歩き始めや階段での不安、生活ペースをふまえ、無理のない通い方と運動療法の考え方を整理します。

@@ -23,6 +23,99 @@ const FOOTER_CLINIC_DESCRIPTION = "千葉県柏市｜腰痛・坐骨神経痛・
 const NOINDEX_SYMPTOM_FILES = new Set();
 const BLOG_INDEX_HIDDEN_CATEGORIES = new Set(["neck-shoulder-hand"]);
 const NOINDEX_POST_CATEGORIES = new Set(["neck-shoulder-hand"]);
+const ARTICLE_LAYOUT_READABLE = "readable-v2";
+const ARTICLE_REVIEWER = {
+  name: "川上卓哉",
+  qualification: "柔道整復師（国家資格）／施術歴14年",
+  profileUrl: "/staff.html"
+};
+const ARTICLE_OVERVIEW_PRESETS = {
+  "chronic-pain": {
+    points: [
+      "痛みが長引くと、膝そのものだけでなく歩き方・不安・生活動作も関係しやすくなります。",
+      "階段や歩き始めで不安がある場合は、膝だけでなく股関節・足首・腰の使い方も確認します。",
+      "強い腫れや熱感などがあるときは、整体の前に医療機関で状態を確認することが大切です。"
+    ],
+    medicalHeading: "先に医療機関へ相談したい目安",
+    medicalItems: [
+      "急に痛みが強くなった、または日ごとに悪化している",
+      "膝が大きく腫れている、熱感がある、体重をかけにくい",
+      "転倒や事故のあとから痛みが続いている"
+    ]
+  }
+};
+const ARTICLE_REFERENCE_PRESETS = {
+  "chronic-pain": [
+    {
+      label: "厚生労働省 慢性疼痛対策",
+      url: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/manseitoutsuu/index.html"
+    },
+    {
+      label: "厚生労働省 慢性疼痛治療ガイドライン",
+      url: "https://www.mhlw.go.jp/content/000350363.pdf"
+    },
+    {
+      label: "日本ペインクリニック学会 治療指針・ガイドライン",
+      url: "https://www.jspc.gr.jp/Contents/public/kaiin_guideline.html"
+    }
+  ],
+  "low-back-knee": [
+    {
+      label: "日本整形外科学会 腰痛",
+      url: "https://www.joa.or.jp/public/sick/condition/lumbago.html"
+    },
+    {
+      label: "厚生労働省 腰痛対策",
+      url: "https://www.mhlw.go.jp/new-info/kobetu/roudou/gyousei/anzen/dl/1911-1_2d_0001.pdf"
+    },
+    {
+      label: "日本整形外科学会 変形性膝関節症",
+      url: "https://www.joa.or.jp/public/sick/condition/knee_osteoarthritis.html"
+    }
+  ],
+  "knee-pain": [
+    {
+      label: "日本整形外科学会 変形性膝関節症",
+      url: "https://www.joa.or.jp/public/sick/condition/knee_osteoarthritis.html"
+    },
+    {
+      label: "日本整形外科学会 変形性ひざ関節症の運動療法",
+      url: "https://www.joa.or.jp/public/pdf/knee_osteoarthritis.pdf"
+    },
+    {
+      label: "厚生労働省 変形性ひざ関節症の人を対象にした運動プログラム",
+      url: "https://www.mhlw.go.jp/content/000656473.pdf"
+    }
+  ],
+  "foot-pain": [
+    {
+      label: "日本整形外科学会 足の慢性障害",
+      url: "https://www.joa.or.jp/public/sick/condition/chronic_problem_with_foot.html"
+    },
+    {
+      label: "日本足の外科学会 足底腱膜炎",
+      url: "https://www.jssf.jp/general/download/pamphlet_pla.pdf"
+    },
+    {
+      label: "日本臨床整形外科学会 足底腱膜炎",
+      url: "https://jcoa.gr.jp/%E8%B6%B3%E5%BA%95%E8%85%B1%E8%86%9C%E7%82%8E/"
+    }
+  ],
+  "exercise-therapy": [
+    {
+      label: "日本整形外科学会 腰痛",
+      url: "https://www.joa.or.jp/public/sick/condition/lumbago.html"
+    },
+    {
+      label: "日本整形外科学会 変形性ひざ関節症の運動療法",
+      url: "https://www.joa.or.jp/public/pdf/knee_osteoarthritis.pdf"
+    },
+    {
+      label: "厚生労働省 慢性疼痛治療ガイドライン",
+      url: "https://www.mhlw.go.jp/content/000350363.pdf"
+    }
+  ]
+};
 
 const symptomDirectoryGroups = [
   {
@@ -189,14 +282,14 @@ const symptomConfigs = {
     symptomKey: "ankle-stiffness-knee-pain",
     label: "足首の硬さと膝痛",
     keywords: ["足首", "足首の硬さ", "足裏", "歩き方", "膝痛", "膝"],
-    categoryHints: ["knee-pain", "exercise-therapy"],
+    categoryHints: ["foot-walking", "knee-pain", "exercise-therapy"],
     pinnedSlugs: ["lumbricals-knee-low-back-pain-relation", "plantar-fasciitis-arch-walking"]
   },
   "lower-back-pain.html": {
     symptomKey: "lower-back-pain",
     label: "腰痛",
     keywords: ["腰痛", "腰", "立ち上がり", "歩行不安"],
-    categoryHints: ["lower-back-pain", "exercise-therapy", "knee-pain"],
+    categoryHints: ["lower-back-pain", "hip-pain", "foot-walking", "exercise-therapy", "knee-pain"],
     pinnedSlugs: [
       "low-back-pain-hip-stiffness-relation",
       "morning-low-back-pain-causes-multifidus",
@@ -233,7 +326,7 @@ const symptomConfigs = {
     symptomKey: "hip-osteoarthritis",
     label: "変形性股関節症",
     keywords: ["変形性股関節症", "股関節", "歩きづらい", "膝をかばう"],
-    categoryHints: ["hip-pain", "lower-back-pain", "exercise-therapy", "knee-pain"]
+    categoryHints: ["hip-pain", "lower-back-pain", "foot-walking", "exercise-therapy", "knee-pain"]
   },
   "shoulder-stiffness.html": {
     symptomKey: "shoulder-stiffness",
@@ -279,7 +372,7 @@ const symptomConfigs = {
     symptomKey: "plantar-fasciitis",
     label: "足底筋膜炎",
     keywords: ["足底筋膜炎", "足裏", "歩行", "慢性痛"],
-    categoryHints: ["exercise-therapy", "knee-pain"]
+    categoryHints: ["foot-walking", "exercise-therapy", "knee-pain"]
   },
   "tmj.html": {
     symptomKey: "tmj",
@@ -598,7 +691,15 @@ export async function replaceDirectoryAtomically(targetDir, populateDirectory) {
       await fs.rename(targetDir, backupDir);
       backupCreated = true;
     } catch (error) {
-      if (error?.code !== "ENOENT") throw error;
+      if (error?.code === "ENOENT") {
+        // Continue and move the staging directory into place below.
+      } else if (isRenameBlocked(error)) {
+        await syncDirectoryContents(stagingDir, targetDir);
+        await fs.rm(stagingDir, { recursive: true, force: true });
+        return;
+      } else {
+        throw error;
+      }
     }
 
     try {
@@ -622,6 +723,38 @@ export async function replaceDirectoryAtomically(targetDir, populateDirectory) {
   } catch (error) {
     await fs.rm(stagingDir, { recursive: true, force: true }).catch(() => {});
     throw error;
+  }
+}
+
+function isRenameBlocked(error) {
+  return ["EACCES", "EBUSY", "EPERM"].includes(error?.code);
+}
+
+async function syncDirectoryContents(sourceDir, targetDir) {
+  await fs.mkdir(targetDir, { recursive: true });
+
+  const sourceEntries = await fs.readdir(sourceDir, { withFileTypes: true });
+  const sourceNames = new Set(sourceEntries.map((entry) => entry.name));
+  const targetEntries = await fs.readdir(targetDir, { withFileTypes: true }).catch((error) => {
+    if (error?.code === "ENOENT") return [];
+    throw error;
+  });
+
+  await Promise.all(
+    targetEntries
+      .filter((entry) => !sourceNames.has(entry.name))
+      .map((entry) => fs.rm(path.join(targetDir, entry.name), { recursive: true, force: true }))
+  );
+
+  for (const entry of sourceEntries) {
+    const sourcePath = path.join(sourceDir, entry.name);
+    const targetPath = path.join(targetDir, entry.name);
+
+    if (entry.isDirectory()) {
+      await syncDirectoryContents(sourcePath, targetPath);
+    } else {
+      await fs.copyFile(sourcePath, targetPath);
+    }
   }
 }
 
@@ -1848,6 +1981,14 @@ function validateBlogData(data) {
   }
 }
 
+function normalizeArticleLayoutForRendering(post) {
+  return post.layout || ARTICLE_LAYOUT_READABLE;
+}
+
+function isReadableArticle(post) {
+  return normalizeArticleLayoutForRendering(post) === ARTICLE_LAYOUT_READABLE;
+}
+
 function normalizePost(post, site, categoryMap) {
   const category = categoryMap.get(post.category);
   if (!category) {
@@ -1859,6 +2000,9 @@ function normalizePost(post, site, categoryMap) {
     category,
     updatedDate: post.updatedDate || post.date,
     eyecatch: post.eyecatch || site.defaultEyecatch,
+    layout: normalizeArticleLayoutForRendering(post),
+    reviewedDate: post.reviewedDate || post.updatedDate || post.date,
+    referencePreset: post.referencePreset || "",
     tags: Array.isArray(post.tags) ? post.tags : [],
     sections: enrichSections(Array.isArray(post.sections) ? post.sections : []),
     faq: Array.isArray(post.faq) ? post.faq : [],
@@ -2056,10 +2200,12 @@ export function buildIndexContent(site, posts, categoryMap) {
             <button class="column-search__button" type="submit" aria-label="検索する">⌕</button>
           </form>
           <details class="column-filter">
-            <summary>ストレッチ<span aria-hidden="true">＋</span></summary>
+            <summary>目的から探す<span aria-hidden="true">＋</span></summary>
             <div class="column-filter__body">
-              <a class="column-filter__link" href="#category-exercise-therapy">運動療法</a>
-              <a class="column-filter__link" href="#category-knee-pain">膝のセルフケア</a>
+              <a class="column-filter__link" href="#category-knee-pain">膝の痛み</a>
+              <a class="column-filter__link" href="#category-lower-back-pain">腰の痛み</a>
+              <a class="column-filter__link" href="#category-foot-walking">足・歩き方</a>
+              <a class="column-filter__link" href="#category-exercise-therapy">セルフケア</a>
             </div>
           </details>
           <details class="column-filter">
@@ -2105,6 +2251,7 @@ export function buildPostContent(site, post, relatedPosts) {
     ...section,
     id: `section-${index + 1}`
   }));
+  const isReadableLayout = isReadableArticle(post);
   const renderedSections = articleSections.map((section) => renderSection(section));
   const midCtaIndex = Math.min(2, renderedSections.length);
   const sectionsHtml = [
@@ -2112,9 +2259,12 @@ export function buildPostContent(site, post, relatedPosts) {
     buildArticleMidCta(site, post),
     ...renderedSections.slice(midCtaIndex)
   ].join("");
-  const tocHtml = buildArticleToc(articleSections, "inline");
+  const tocHtml = isReadableLayout ? "" : buildArticleToc(articleSections, "inline");
   const sideTocHtml = buildArticleToc(articleSections, "side");
-  const takeawaysHtml = buildArticleTakeaways(post);
+  const takeawaysHtml = isReadableLayout ? "" : buildArticleTakeaways(post);
+  const readableOverviewHtml = isReadableLayout ? buildArticleReadableOverview(post, articleSections) : "";
+  const readableLeadHtml = isReadableLayout ? buildArticleReadableLead(post) : "";
+  const articleTrustHtml = buildArticleTrustPanel(site, post);
   const faqHtml = post.faq.length ? `
     <section class="article-section faq-block faq-section">
       <div class="faq-section__intro">
@@ -2155,7 +2305,10 @@ export function buildPostContent(site, post, relatedPosts) {
     </section>
   ` : "";
 
-  const relatedArticlesHtml = relatedPosts.length ? `
+  const relatedArticlesHtml = relatedPosts.length
+    ? isReadableLayout
+      ? buildReadableRelatedArticlesSection(relatedPosts)
+      : `
     <section class="section-block article-related">
       <div class="shell">
         <div class="section-heading">
@@ -2173,7 +2326,17 @@ export function buildPostContent(site, post, relatedPosts) {
         </div>
       </div>
     </section>
-  ` : "";
+  `
+    : "";
+
+  const heroClass = ["article-card", isReadableLayout ? "article-card--readable" : ""].filter(Boolean).join(" ");
+  const mainClass = ["article-main", isReadableLayout ? "article-main--readable" : ""].filter(Boolean).join(" ");
+  const layoutClass = ["shell", "article-layout", isReadableLayout ? "article-layout--readable" : ""].filter(Boolean).join(" ");
+  const contentClass = ["article-content", "card-surface", "prose-surface", isReadableLayout ? "article-content--readable" : ""].filter(Boolean).join(" ");
+  const heroLeadText = isReadableLayout ? post.description : (post.lead || post.description);
+  const contentLeadHtml = readableLeadHtml ? `\n          ${readableLeadHtml}` : "";
+  const contentIntroHtml = readableOverviewHtml ? `\n          ${readableOverviewHtml}` : "";
+  const contentTrustHtml = articleTrustHtml ? `\n          ${articleTrustHtml}` : "";
 
   return `
     <section class="article-hero-wrap">
@@ -2185,7 +2348,7 @@ export function buildPostContent(site, post, relatedPosts) {
           <span>/</span>
           <span>${escapeHtml(post.title)}</span>
         </nav>
-        <article class="article-card">
+        <article class="${heroClass}">
           <div class="article-card__hero">
             <img src="../../..${post.eyecatch}" alt="${escapeHtml(post.title)}" loading="eager" decoding="async" width="1200" height="630">
           </div>
@@ -2195,20 +2358,20 @@ export function buildPostContent(site, post, relatedPosts) {
               <time class="article-meta__date" datetime="${escapeHtml(post.updatedDate || post.date)}">${escapeHtml(formatJapaneseDate(post.updatedDate || post.date))}</time>
             </div>
             <h1>${escapeHtml(post.title)}</h1>
-            <p class="article-lead">${renderInlineText(post.lead || post.description)}</p>
+            <p class="article-lead">${renderInlineText(heroLeadText)}</p>
             <div class="tag-list">${post.tags.map((tag) => `<span class="tag">#${escapeHtml(tag)}</span>`).join("")}</div>
           </div>
         </article>
       </div>
     </section>
-    <section class="article-main">
-      <div class="shell article-layout">
-        <div class="article-content card-surface prose-surface">
+    <section class="${mainClass}">
+      <div class="${layoutClass}">
+        <div class="${contentClass}">${contentLeadHtml}${contentIntroHtml}
           ${tocHtml}
           ${takeawaysHtml}
           ${sectionsHtml}
           ${faqHtml}
-          ${symptomsHtml}
+          ${symptomsHtml}${contentTrustHtml}
         </div>
         <aside class="article-side">
           ${sideTocHtml}
@@ -2261,6 +2424,118 @@ export function buildPostContent(site, post, relatedPosts) {
     </section>
     ${relatedArticlesHtml}
   `;
+}
+
+function buildArticleReadableLead(post) {
+  if (!post.lead) return "";
+  const paragraphs = String(post.lead)
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
+    .map((paragraph) => `<p>${renderInlineText(paragraph)}</p>`)
+    .join("\n");
+
+  if (!paragraphs) return "";
+
+  return `<section class="article-readable-lead" aria-label="記事の導入">
+${paragraphs}
+          </section>`;
+}
+
+function buildArticleReadableOverview(post, sections) {
+  const preset = ARTICLE_OVERVIEW_PRESETS[post.referencePreset] || {
+    points: sections.slice(0, 3).map((section) => section.heading).filter(Boolean),
+    medicalHeading: "先に確認したいこと",
+    medicalItems: [
+      "急に痛みやしびれが強くなった場合は、医療機関での確認を優先してください。",
+      "不安があるときは、無理に自己判断せず専門家へ相談してください。"
+    ]
+  };
+
+  const points = preset.points
+    .map((item) => `<li>${escapeHtml(item)}</li>`)
+    .join("");
+  const medicalItems = preset.medicalItems
+    .map((item) => `<li>${escapeHtml(item)}</li>`)
+    .join("");
+
+  return `<section class="article-readable-overview" aria-labelledby="article-readable-overview-title">
+            <div class="article-readable-overview__main">
+              <p class="article-readable-overview__label">INDEX</p>
+              <h2 id="article-readable-overview-title">この記事の内容</h2>
+              <ul>
+${points}
+              </ul>
+            </div>
+            <div class="article-readable-overview__medical" aria-labelledby="article-readable-medical-title">
+              <h3 id="article-readable-medical-title">${escapeHtml(preset.medicalHeading)}</h3>
+              <ul>
+${medicalItems}
+              </ul>
+            </div>
+          </section>`;
+}
+
+function buildArticleTrustPanel(site, post) {
+  const references = getArticleReferences(post);
+  const referenceItems = references
+    .map((reference) => `
+              <li>
+                <a href="${escapeHtml(reference.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(reference.label)} <span aria-hidden="true">↗</span></a>
+              </li>`)
+    .join("");
+  const reviewedDate = post.reviewedDate || post.updatedDate || post.date;
+  const panelClass = ["article-trust-panel", referenceItems ? "" : "article-trust-panel--simple"].filter(Boolean).join(" ");
+  const referencesHtml = referenceItems ? `
+            <div class="article-trust-panel__references">
+              <h3>参考情報</h3>
+              <ul>
+${referenceItems}
+              </ul>
+            </div>` : "";
+
+  return `<section class="${panelClass}" aria-labelledby="article-trust-panel-title">
+            <div class="article-trust-panel__review">
+              <p class="eyebrow">Author / Review</p>
+              <h2 id="article-trust-panel-title">執筆者・確認日</h2>
+              <p class="article-trust-panel__name">${escapeHtml(ARTICLE_REVIEWER.name)} <span>${escapeHtml(ARTICLE_REVIEWER.qualification)}</span></p>
+              <p class="article-trust-panel__date">内容確認日：${escapeHtml(formatJapaneseDate(reviewedDate))}</p>
+              <a class="text-link text-link--block" href="${escapeHtml(ARTICLE_REVIEWER.profileUrl)}">代表の経歴・資格を見る</a>
+            </div>${referencesHtml}
+          </section>`;
+}
+
+function buildReadableRelatedArticlesSection(relatedPosts) {
+  return `
+    <section class="section-block article-related article-related--readable">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Related</p>
+          <h2>あわせて読みたい記事</h2>
+        </div>
+        <div class="readable-related-grid">
+          ${relatedPosts.map((item) => `
+            <a class="readable-related-card" href="../${item.slug}/">
+              <span class="readable-related-card__thumb">
+                <img src="../../..${item.eyecatch}" alt="${escapeHtml(item.title)}" loading="lazy" decoding="async" width="640" height="640">
+              </span>
+              <span class="readable-related-card__body">
+                <span class="readable-related-card__meta">
+                  <span>${escapeHtml(item.category.name)}</span>
+                  <time datetime="${escapeHtml(item.updatedDate || item.date)}">${escapeHtml(formatDotDate(item.updatedDate || item.date))}</time>
+                </span>
+                <strong>${escapeHtml(item.title)}</strong>
+              </span>
+            </a>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function getArticleReferences(post) {
+  return ARTICLE_REFERENCE_PRESETS[post.referencePreset] || [];
 }
 
 function buildArticleToc(sections, variant = "inline") {
@@ -2371,6 +2646,8 @@ export function renderBody(block) {
 }
 
 function buildArticleSchema(site, post) {
+  const references = getArticleReferences(post);
+  const hasReadableReview = isReadableArticle(post);
   return `<script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -2385,6 +2662,15 @@ function buildArticleSchema(site, post) {
       ...(Array.isArray(post.tags) ? post.tags : [])
     ].filter(Boolean),
     author: { "@type": "Organization", name: site.author },
+    ...(hasReadableReview ? {
+      reviewedBy: {
+        "@type": "Person",
+        name: ARTICLE_REVIEWER.name,
+        jobTitle: ARTICLE_REVIEWER.qualification,
+        url: absoluteUrl(site.url, ARTICLE_REVIEWER.profileUrl)
+      },
+      citation: references.map((reference) => reference.url)
+    } : {}),
     publisher: {
       "@type": "Organization",
       "@id": absoluteUrl(site.url, "#medicalbusiness"),

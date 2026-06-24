@@ -7,7 +7,7 @@ category: 運動療法
 region: 柏市
 tags: ストレッチ,柔軟性,運動療法,セルフケア
 symptoms: 変形性膝関節症,腰痛,肩こり
-heroImage: /image/treatment-scene.webp
+heroImage: /image/treatment-stretch.webp
 draft: false
 ---
 「毎日ストレッチしているのに、全然柔らかくならない…」

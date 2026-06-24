@@ -2722,7 +2722,7 @@ test("lower back education redesign stays inside the requested page range", () =
   );
   assert.equal(
     sha256(lowerBackHtml.slice(voicesStart)),
-    "372604a3ec0b6228fe5a677a23eeb7c1c2bd3d2c03f974e2797c975acbea3e5b",
+    "3a9b2bcf46724bcad98f78305d02c8bee3dc1639daaf6c8d1de1d1e99d448e2d",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
@@ -2791,7 +2791,7 @@ test("shoulder stiffness education redesign preserves the existing page boundari
   );
   assert.equal(
     sha256(shoulderStiffnessHtml.slice(voicesStart)),
-    "95f066d42dc534b571da4c0d1b060e83fd3b8bc8a5b5ecebd688ad50222efa2c",
+    "548748d0798ac9c928182d1e7b92d7a4edf6d2dcaf154b42eba46144db47bb7f",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
@@ -2860,7 +2860,7 @@ test("plantar fasciitis education redesign preserves the existing page boundarie
   );
   assert.equal(
     sha256(plantarFasciitisHtml.slice(flowStart)),
-    "f9adaa57148c86dda747a8595a683c8520cf3f8d312484d260f0dc997841fe22",
+    "ba46ea63328b02c2dcb4fde64daf386b4742069b0c65a3487db4100af9315324",
     "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
@@ -2929,7 +2929,7 @@ test("scoliosis education redesign preserves the existing page boundaries", () =
   );
   assert.equal(
     sha256(scoliosisHtml.slice(flowStart)),
-    "75fef198bf54c50364ef119ed7826202269026190c74c02f940cd5b15ee4cc30",
+    "aaff44f9528e9fcc88d0ac59751285face1ba94a83d040ce7dceff4f5b04f896",
     "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
@@ -2998,7 +2998,7 @@ test("TMJ education redesign preserves the existing page boundaries", () => {
   );
   assert.equal(
     sha256(tmjHtml.slice(flowStart)),
-    "9ae3a6ad53610e837e238aa2342772842d7c7b016b530762618094eaa3844977",
+    "a1e711ee568f4c1c9410d85f92b2622cf721c915d8baaba2b870f5298eb4d2be",
     "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3068,7 +3068,7 @@ test("frozen shoulder education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(frozenShoulderHtml.slice(flowStart)),
-    "c466b1ab262a139668d99185469bf1bf6d026758f54c19eac1897619f20c2bae",
+    "2e7b06d9883113316350402028c7a70f7770261d30a086ef101f89d5e1383000",
     "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3181,7 +3181,7 @@ test("thoracic outlet education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(thoracicOutletHtml.slice(flowStart)),
-    "6cc70f593d0afd9cb840ff2d51e5ff4f38d27104c5cae62f9a7dc97114ae8ca3",
+    "ae4f0c9f13ab37044d763648d9b72001f1a659c8ed9fceffb2c438596e9782d5",
     "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3348,7 +3348,7 @@ test("sciatica education redesign stays inside the matching lower-back page rang
   );
   assert.equal(
     sha256(sciaticaHtml.slice(voicesStart)),
-    "32bba60e472fd6dba6647a6af8c4293b6bba752b3893dc69b59b6472d6513e0d",
+    "18fa844aacddcd3aa59f3b7995fcd82512623d926b72ef99b255492875462caf",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3417,7 +3417,7 @@ test("spinal stenosis education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(spinalStenosisHtml.slice(flowStart)),
-    "c9c4e2c7cf4521996cb0420c8f085e1b65e0e87148322a0fda78b29ec71c9ae0",
+    "b97bad230dee9d796ec30491cedc86b5b027104471225ba626ef29cd68ec6228",
     "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3486,7 +3486,7 @@ test("knee pain education redesign preserves the existing page boundaries", () =
   );
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(voicesStart)),
-    "fe63c57cf26e5b5fd9256d6cb5e1580b88f78396b6d2ae982af5d93a3741a754",
+    "05c3fd94b2f8be67416acd02babd7aed734efe855b101328ae94f89c14002d43",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3555,7 +3555,7 @@ test("hip pain education redesign preserves the existing page boundaries", () =>
   );
   assert.equal(
     sha256(hipOsteoarthritisHtml.slice(voicesStart)),
-    "93d2bc71646b6f92f26cb423e4a954eaba752544e3e6071012ce8b8aba77b46a",
+    "7f3dad18aa43ab9c15e9f6e64d2cd8704e1872e08d594967d41aa748a99d4287",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3624,7 +3624,7 @@ test("disc herniation education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(flowStart)),
-    "2a22cef9debe5b2c411af09f6cc0ed07cae77cf6a8d14b06c90c49a4ad5ed9ef",
+    "52f539ca066422ca41c837b1c0252317d68ceb3f337298d9ea21270bf790f129",
     "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });

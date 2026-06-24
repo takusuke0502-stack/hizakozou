@@ -1,7 +1,7 @@
 # 「ずっと痛い」は普通じゃない。長引く膝痛と慢性痛の見方
 - slug: chronic-pain-why-it-lasts
 - date: 2026-04-13
-- updated: 2026-04-13
+- updated: 2026-06-24
 - category: exercise-therapy
 - region: 柏市
 - status: publish

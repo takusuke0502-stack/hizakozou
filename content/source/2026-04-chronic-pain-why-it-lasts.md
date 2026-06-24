@@ -2,12 +2,16 @@
 title: 「ずっと痛い」は普通じゃない。長引く膝痛と慢性痛の見方
 slug: chronic-pain-why-it-lasts
 date: 2026-04-13
+updatedDate: 2026-06-24
 description: 柏市で長引く膝痛に悩む方へ。歩き始め、階段、長く歩くとつらい痛みが慢性化する背景と、膝だけでなく歩き方や身体の使い方まで見る考え方を整理します。
 category: 運動療法
 region: 柏市
 tags: 慢性痛,膝痛,腰痛,運動療法
 symptoms: 変形性膝関節症,腰痛,坐骨神経痛,肩こり
-heroImage: /image/medical-interview.webp
+heroImage: /image/knee-symptom-wide.webp
+layout: readable-v2
+reviewedDate: 2026-06-24
+referencePreset: chronic-pain
 draft: false
 ---
 「病院で大きな異常はないと言われたのに、膝の痛みが続く」「最初は階段だけだったのに、最近は歩き始めも気になる」「長く歩くと膝の内側が重くなる」
