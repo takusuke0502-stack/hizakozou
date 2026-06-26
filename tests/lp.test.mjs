@@ -12,6 +12,7 @@ const mainJs = readFileSync(new URL("../scripts/main.js", import.meta.url), "utf
 const mainCss = readFileSync(new URL("../styles/main.css", import.meta.url), "utf8");
 const buildBlogScript = readFileSync(new URL("../scripts/build-blog.mjs", import.meta.url), "utf8");
 const siteDiscoveryCss = readFileSync(new URL("../symptoms/site-discovery.css", import.meta.url), "utf8");
+const sitePricingCss = readFileSync(new URL("../symptoms/site-pricing.css", import.meta.url), "utf8");
 const generateBlogScript = readFileSync(new URL("../scripts/generate-blog.mjs", import.meta.url), "utf8");
 const lowerBackHtml = readFileSync(new URL("../symptoms/lower-back-pain.html", import.meta.url), "utf8");
 const sciaticaHtml = readFileSync(new URL("../symptoms/sciatica.html", import.meta.url), "utf8");
@@ -895,6 +896,23 @@ test("LP mobile pricing layout prevents the first-visit label from overlapping t
   assert.match(mainCss, /@media\s*\(max-width:\s*480px\)\s*{[\s\S]*\.hk-pricing-offer\s*{[\s\S]*grid-template-columns:\s*1fr;[\s\S]*gap:\s*10px;/);
   assert.match(mainCss, /@media\s*\(max-width:\s*480px\)\s*{[\s\S]*\.hk-pricing-labels\s*{[\s\S]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/);
   assert.match(mainCss, /@media\s*\(max-width:\s*480px\)\s*{[\s\S]*\.hk-pricing-price__num\s*{[\s\S]*font-size:\s*clamp\(3\.6rem,\s*19vw,\s*4\.8rem\);/);
+});
+
+test("LP pricing section uses the calmer green and orange LP palette", () => {
+  for (const css of [mainCss, sitePricingCss]) {
+    assert.match(css, /\.hk-pricing-card\s*{[\s\S]*border:\s*1px solid #d8e6d7;[\s\S]*border-radius:\s*18px;[\s\S]*box-shadow:\s*0 18px 36px rgba\(23,\s*79,\s*63,\s*0\.10\);/);
+    assert.match(css, /\.hk-pricing-rule\s*{[\s\S]*background:\s*linear-gradient\(90deg,\s*rgba\(23,\s*79,\s*63,\s*0\),\s*#174f3f,\s*rgba\(244,\s*194,\s*122,\s*0\.82\),\s*rgba\(23,\s*79,\s*63,\s*0\)\);/);
+    assert.match(css, /\.hk-pricing-quote\s*{[\s\S]*color:\s*#174f3f;/);
+    assert.match(css, /\.hk-pricing-normal\s*{[\s\S]*border-top:\s*1px solid #d8e6d7;[\s\S]*border-bottom:\s*1px solid #d8e6d7;/);
+    assert.match(css, /\.hk-pricing-normal strong\s*{[\s\S]*color:\s*#c65f26;/);
+    assert.match(css, /\.hk-pricing-labels span\s*{[\s\S]*border-radius:\s*999px;[\s\S]*background:\s*#174f3f;/);
+    assert.match(css, /\.hk-pricing-price\s*{[\s\S]*color:\s*#c65f26;/);
+    assert.match(css, /\.hk-pricing-deadline\s*{[\s\S]*border:\s*1px solid rgba\(198,\s*95,\s*38,\s*0\.34\);[\s\S]*background:\s*#fff8ef;/);
+    assert.match(css, /\.hk-pricing-feature\s*{[\s\S]*background:\s*linear-gradient\(135deg,\s*#174f3f 0%,\s*#2f6f3e 100%\);/);
+    assert.match(css, /\.hk-pricing-line\s*{[\s\S]*padding:\s*13px 16px;[\s\S]*background:\s*linear-gradient\(135deg,\s*#198754 0%,\s*#0f6f43 100%\);/);
+    assert.doesNotMatch(css, /background:\s*#d71920;/);
+    assert.doesNotMatch(css, /border:\s*2px solid #17120e;/);
+  }
 });
 
 test("sitewide Google tracking scripts load from the head on every HTML page", () => {
