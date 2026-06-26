@@ -2854,6 +2854,24 @@ strong,
 .article-layout--readable .article-side {
   position: sticky;
   top: 88px;
+  max-height: calc(100vh - 104px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 6px;
+  scrollbar-gutter: stable;
+}
+
+.article-layout--readable .article-side::-webkit-scrollbar {
+  width: 6px;
+}
+
+.article-layout--readable .article-side::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(95, 143, 78, 0.32);
+}
+
+.article-layout--readable .article-side::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .article-layout--readable .side-card {
@@ -3026,6 +3044,107 @@ strong,
   color: #31433b;
   font-size: 1.03rem;
   line-height: 2.02;
+}
+
+.article-clinic-access__lead {
+  margin: 0 0 18px;
+  color: #31433b;
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.article-clinic-access__panel {
+  display: grid;
+  gap: 18px;
+  padding: 22px 0 0;
+  border-top: 1px solid #d8e6d7;
+}
+
+.article-clinic-access__grid {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.article-clinic-access__row {
+  display: grid;
+  grid-template-columns: 8.5em minmax(0, 1fr);
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid #edf2e8;
+}
+
+.article-clinic-access__row dt,
+.article-clinic-access__row dd {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.article-clinic-access__row dt {
+  color: #174f3f;
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.article-clinic-access__row dd {
+  color: #1f2f2a;
+  font-weight: 700;
+}
+
+.article-clinic-access__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.article-clinic-access__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 16px;
+  border: 1px solid #cbd9c5;
+  border-radius: 8px;
+  color: #174f3f;
+  background: #fff;
+  font-size: 0.92rem;
+  font-weight: 900;
+  line-height: 1.4;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.article-clinic-access__button:hover,
+.article-clinic-access__button:focus-visible {
+  border-color: #8aa872;
+  background: #f6fbf4;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.article-clinic-access__button--primary {
+  color: #fff;
+  border-color: #174f3f;
+  background: #174f3f;
+}
+
+.article-clinic-access__button--primary:hover,
+.article-clinic-access__button--primary:focus-visible {
+  color: #fff;
+  background: #113b30;
+}
+
+.article-clinic-access__button--line {
+  color: #fff;
+  border-color: var(--line-green);
+  background: var(--line-green);
+}
+
+.article-clinic-access__button--line:hover,
+.article-clinic-access__button--line:focus-visible {
+  color: #fff;
+  background: var(--line-green-strong);
 }
 
 .article-content--readable .article-mid-cta,
@@ -3241,6 +3360,9 @@ strong,
 
   .article-layout--readable .article-side {
     position: static;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
   }
 }
 
@@ -3314,6 +3436,21 @@ strong,
   .article-content--readable .article-section li {
     font-size: 0.98rem;
     line-height: 1.95;
+  }
+
+  .article-clinic-access__row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 12px 0;
+  }
+
+  .article-clinic-access__actions {
+    display: grid;
+  }
+
+  .article-clinic-access__button {
+    width: 100%;
+    min-height: 48px;
   }
 
   .readable-related-grid {

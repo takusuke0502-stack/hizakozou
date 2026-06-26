@@ -2597,6 +2597,10 @@ function buildArticleMidCta(site, post) {
 }
 
 function renderSection(section) {
+  if (isClinicAccessSection(section)) {
+    return renderClinicAccessSection(section);
+  }
+
   const heading = section.heading
     ? `<h2${section.id ? ` id="${escapeHtml(section.id)}"` : ""}>${escapeHtml(section.heading)}</h2>`
     : "";
@@ -2612,6 +2616,47 @@ function renderSection(section) {
     : "";
 
   return `<section class="${classNames}">${heading}${body}${subsections}</section>`;
+}
+
+function isClinicAccessSection(section) {
+  const heading = String(section.heading || "");
+  return heading.includes("店舗情報") && heading.includes("アクセス");
+}
+
+function renderClinicAccessSection(section) {
+  const heading = section.heading
+    ? `<h2${section.id ? ` id="${escapeHtml(section.id)}"` : ""}>${escapeHtml(section.heading)}</h2>`
+    : "";
+  const classNames = ["article-section", "article-clinic-access", section.className, section.boxType].filter(Boolean).join(" ");
+  const rows = [
+    ["店舗名", "整体院ひざこぞう"],
+    ["住所", "千葉県柏市あけぼの4-4-3 BoaSorte柏305"],
+    ["アクセス", "JR常磐線・東武アーバンパークライン「柏駅」西口より徒歩約8分"],
+    ["目印", "あけぼの通り沿い、近隣コインパーキングあり"],
+    ["営業時間", "9:00〜19:00"],
+    ["受付", "完全予約制"],
+    ["定休日", "日曜"],
+    ["予約方法", "電話または公式LINEからご連絡ください"]
+  ];
+  const rowsHtml = rows.map(([label, value]) => `
+              <div class="article-clinic-access__row">
+                <dt>${escapeHtml(label)}</dt>
+                <dd>${renderInlineText(value)}</dd>
+              </div>`).join("");
+
+  return `<section class="${classNames}">${heading}
+            <p class="article-clinic-access__lead">来院前に場所や予約方法を確認しやすいよう、店舗情報をまとめています。</p>
+            <div class="article-clinic-access__panel">
+              <dl class="article-clinic-access__grid">
+${rowsHtml}
+              </dl>
+              <div class="article-clinic-access__actions" aria-label="店舗情報の確認リンク">
+                <a class="article-clinic-access__button article-clinic-access__button--primary" href="/access.html">詳しいアクセスを見る</a>
+                <a class="article-clinic-access__button" href="tel:0471143274">電話で確認する</a>
+                <a class="article-clinic-access__button article-clinic-access__button--line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで相談する</a>
+              </div>
+            </div>
+          </section>`;
 }
 
 export function renderBody(block) {

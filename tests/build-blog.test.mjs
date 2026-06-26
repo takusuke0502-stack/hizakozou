@@ -471,6 +471,50 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
   assert.doesNotMatch(html, /<summary>/);
 });
 
+test("buildPostContent renders clinic access as a scannable info block", () => {
+  const post = {
+    title: "坐骨神経痛の見方",
+    description: "坐骨神経痛で確認したいことを整理します。",
+    date: "2026-06-24",
+    lead: "来院前に確認したい内容です。",
+    slug: "sciatica-root-cause",
+    eyecatch: "/image/medical-interview.webp",
+    tags: ["坐骨神経痛"],
+    category: categories.get("lower-back-pain"),
+    sections: [
+      {
+        heading: "6. 店舗情報・アクセス",
+        body: [
+          "店舗名：",
+          "整体院ひざこぞう",
+          "住所：",
+          "千葉県柏市あけぼの4-4-3 BoaSorte柏305",
+          "アクセス：",
+          "JR常磐線・東武アーバンパークライン「柏駅」西口より徒歩8分"
+        ]
+      }
+    ],
+    faq: [],
+    relatedSymptoms: [],
+    cta: {
+      href: "https://lin.ee/X01F2mP",
+      label: "LINEで相談する",
+      note: "来院前に相談できます。"
+    }
+  };
+
+  const html = buildPostContent({ ...site, phone: "04-7114-3274" }, post, []);
+
+  assert.match(html, /article-clinic-access/);
+  assert.match(html, /article-clinic-access__grid/);
+  assert.match(html, /<dt>店舗名<\/dt>\s*<dd>整体院ひざこぞう<\/dd>/);
+  assert.match(html, /<dt>住所<\/dt>\s*<dd>千葉県柏市あけぼの4-4-3 BoaSorte柏305<\/dd>/);
+  assert.match(html, /href="\/access\.html"/);
+  assert.match(html, /href="tel:0471143274"/);
+  assert.match(html, /href="https:\/\/lin\.ee\/X01F2mP"/);
+  assert.doesNotMatch(html, /<p>店舗名：<\/p>\s*<p>整体院ひざこぞう<\/p>/);
+});
+
 test("generated blog articles emit breadcrumb structured data", () => {
   const html = readFileSync(new URL("../blog/posts/walking-start-knee-pain-cause/index.html", import.meta.url), "utf8");
   const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
@@ -536,6 +580,13 @@ test("blog CSS places the desktop side rail on the left and resets on mobile", (
   assert.match(css, /\.article-content\s*{[^}]*grid-column:\s*2;[^}]*min-width:\s*0;/s);
   assert.match(css, /\.article-side\s*{[^}]*grid-column:\s*1;[^}]*grid-row:\s*1;/s);
   assert.match(css, /@media \(max-width:\s*1024px\)\s*{[\s\S]*?\.article-content,\s*\.article-side\s*{[^}]*grid-column:\s*auto;[^}]*grid-row:\s*auto;/s);
+});
+
+test("blog CSS keeps the readable article side rail scrollable within the viewport", () => {
+  const css = readFileSync(new URL("../blog/assets/blog.css", import.meta.url), "utf8");
+
+  assert.match(css, /\.article-layout--readable \.article-side\s*{[^}]*position:\s*sticky;[^}]*top:\s*88px;[^}]*max-height:\s*calc\(100vh - 104px\);[^}]*overflow-y:\s*auto;[^}]*overscroll-behavior:\s*contain;/s);
+  assert.match(css, /@media \(max-width:\s*1024px\)\s*{[\s\S]*?\.article-layout--readable \.article-side\s*{[^}]*position:\s*static;[^}]*max-height:\s*none;[^}]*overflow:\s*visible;/s);
 });
 
 test("blog CSS styles FAQ as a static Q and A block", () => {

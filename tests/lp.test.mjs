@@ -511,25 +511,27 @@ test("LP adds a readable six-reason clinic strengths section", () => {
 });
 
 test("LP clinic strengths CSS keeps the reference-like vertical layout responsive", () => {
-  assert.match(mainCss, /\.clinic-reasons\s*{[\s\S]*padding:\s*50px 16px 66px;[\s\S]*background:\s*#fbf5ed;/);
+  assert.match(mainCss, /\.clinic-reasons\s*{[\s\S]*padding:\s*56px 16px 72px;[\s\S]*background:\s*#f6fbf4;/);
   assert.match(mainCss, /\.clinic-reasons__inner\s*{[\s\S]*max-width:\s*640px;[\s\S]*margin:\s*0 auto;/);
-  assert.match(mainCss, /\.clinic-reasons__header\s*{[\s\S]*margin:\s*0 calc\(50% - 50vw\) 42px;[\s\S]*background:\s*#bd927f;[\s\S]*text-align:\s*center;/);
+  assert.match(mainCss, /\.clinic-reasons__header\s*{[\s\S]*margin:\s*0 calc\(50% - 50vw\) 42px;[\s\S]*background:\s*linear-gradient\(135deg,\s*#174f3f 0%,\s*#2f6f3e 100%\);[\s\S]*border-top:\s*1px solid #d8e6d7;[\s\S]*border-bottom:\s*1px solid #d8e6d7;[\s\S]*text-align:\s*center;/);
   assert.match(mainCss, /\.clinic-reasons__eyebrow\s*{[\s\S]*display:\s*none;/);
   assert.match(mainCss, /\.clinic-reasons__header h2\s*{[\s\S]*max-width:\s*360px;[\s\S]*font-size:\s*clamp\(1\.55rem,\s*3\.6vw,\s*2\.05rem\);[\s\S]*line-height:\s*1\.42;/);
-  assert.match(mainCss, /\.clinic-reasons__header h2 span\s*{[\s\S]*color:\s*#ffe45c;[\s\S]*font-size:\s*1\.28em;/);
+  assert.match(mainCss, /\.clinic-reasons__header h2 span\s*{[\s\S]*color:\s*#f4c27a;[\s\S]*font-size:\s*1\.28em;/);
   assert.match(mainCss, /\.clinic-reasons__list\s*{[\s\S]*display:\s*grid;[\s\S]*gap:\s*50px;/);
   assert.match(mainCss, /\.clinic-reason-card\s*{[\s\S]*max-width:\s*520px;[\s\S]*text-align:\s*center;/);
-  assert.match(mainCss, /\.clinic-reason-card__label\s*{[\s\S]*width:\s*min\(320px,\s*82%\);[\s\S]*border-radius:\s*0;[\s\S]*background:\s*#bd927f;/);
+  assert.match(mainCss, /\.clinic-reason-card__label\s*{[\s\S]*width:\s*min\(320px,\s*82%\);[\s\S]*border-radius:\s*999px;[\s\S]*background:\s*#174f3f;[\s\S]*box-shadow:\s*0 10px 22px rgba\(23,\s*79,\s*63,\s*0\.12\);/);
   assert.match(mainCss, /\.clinic-reason-card__body\s*{[\s\S]*padding:\s*0;[\s\S]*background:\s*transparent;[\s\S]*box-shadow:\s*none;/);
   assert.match(mainCss, /\.clinic-reason-card__lead\s*{[\s\S]*font-size:\s*0\.9rem;[\s\S]*line-height:\s*1\.7;/);
   assert.match(mainCss, /\.clinic-reason-card__text p\s*{[\s\S]*font-size:\s*1rem;[\s\S]*font-weight:\s*500;[\s\S]*line-height:\s*1\.9;/);
   assert.match(mainCss, /\.clinic-reason-card__text p \+ p\s*{[\s\S]*margin-top:\s*1\.25rem;/);
-  assert.match(mainCss, /\.feature-emphasis\s*{[\s\S]*color:\s*#9a4f36;[\s\S]*font-weight:\s*700;/);
-  assert.match(mainCss, /\.feature-marker\s*{[\s\S]*background:\s*linear-gradient\([\s\S]*rgba\(218,\s*154,\s*105,\s*0\.32\)[\s\S]*box-decoration-break:\s*clone;/);
+  assert.match(mainCss, /\.feature-emphasis\s*{[\s\S]*color:\s*#174f3f;[\s\S]*font-weight:\s*700;/);
+  assert.match(mainCss, /\.feature-marker\s*{[\s\S]*background:\s*linear-gradient\([\s\S]*rgba\(244,\s*194,\s*122,\s*0\.38\)[\s\S]*box-decoration-break:\s*clone;/);
   assert.match(mainCss, /\.feature-bold\s*{[\s\S]*font-weight:\s*700;/);
   assert.match(mainCss, /\.clinic-reason-card__image-frame\s*{[\s\S]*width:\s*min\(100%,\s*300px\);[\s\S]*margin:\s*20px auto 0;/);
   assert.match(mainCss, /\.clinic-reason-card__image\s*{[\s\S]*width:\s*100%;[\s\S]*max-height:\s*260px;[\s\S]*object-fit:\s*contain;/);
-  assert.match(mainCss, /@media\s*\(max-width:\s*640px\)\s*{[\s\S]*\.clinic-reasons\s*{[\s\S]*padding:\s*46px 14px 56px;[\s\S]*\.clinic-reason-card__label\s*{[\s\S]*width:\s*min\(320px,\s*86%\);[\s\S]*\.clinic-reason-card__image-frame\s*{[\s\S]*width:\s*min\(78vw,\s*280px\);/);
+  assert.match(mainCss, /@media\s*\(max-width:\s*640px\)\s*{[\s\S]*\.clinic-reasons\s*{[\s\S]*padding:\s*48px 14px 60px;[\s\S]*\.clinic-reason-card__label\s*{[\s\S]*width:\s*min\(320px,\s*86%\);[\s\S]*\.clinic-reason-card__image-frame\s*{[\s\S]*width:\s*min\(78vw,\s*280px\);/);
+  assert.doesNotMatch(mainCss, /\.clinic-reasons__header\s*{[\s\S]*background:\s*#bd927f;/);
+  assert.doesNotMatch(mainCss, /\.clinic-reason-card__label\s*{[\s\S]*background:\s*#bd927f;/);
 });
 
 test("LP uses large readable Gothic headings for older visitors", () => {
