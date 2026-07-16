@@ -1830,7 +1830,7 @@ test("knee osteoarthritis page is a diagnosis-specific reservation LP", () => {
     "病院と併用しながら相談できます",
     "当院は医療機関ではありません",
     "膝や歩き方のお悩みでご相談いただいた方の声",
-    "初回の流れ",
+    "当院での施術の流れ",
     "初回限定",
     "1,980"
   ];
@@ -1871,7 +1871,7 @@ test("knee osteoarthritis page is a diagnosis-specific reservation LP", () => {
   }
 });
 
-test("major symptom pages reuse the exact top-page pricing section", () => {
+test("major symptom pages use approved pricing sections", () => {
   const topPricingStart = html.indexOf('<section id="price" class="hk-pricing-section"');
   const topPricingEnd = html.indexOf("</section>", topPricingStart) + "</section>".length;
   const normalizeLineEndings = (value) => value.replace(/\r\n/g, "\n").trim();
@@ -1886,6 +1886,13 @@ test("major symptom pages reuse the exact top-page pricing section", () => {
     "symptoms/hip-osteoarthritis.html",
     "symptoms/lumbar-disc-herniation.html"
   ];
+  const initialOnlyPricingPages = new Set([
+    "symptoms/sciatica.html",
+    "symptoms/knee-osteoarthritis.html",
+    "symptoms/lower-back-pain.html",
+    "symptoms/spinal-stenosis.html",
+    "symptoms/lumbar-disc-herniation.html"
+  ]);
 
   assert.ok(topPricingStart > -1, "top page pricing section should exist");
   assert.match(symptomPricingCss, /\.hk-pricing-section\s*{/);
@@ -1900,14 +1907,20 @@ test("major symptom pages reuse the exact top-page pricing section", () => {
     const priceEnd = pageHtml.indexOf("</section>", priceStart) + "</section>".length;
     const priceSection = normalizeLineEndings(pageHtml.slice(priceStart, priceEnd));
 
-    assert.equal(priceMatches.length, 1, `${page} should have exactly one copied pricing section`);
-    assert.equal(priceSection, topPricingSection, `${page} should copy the top-page pricing HTML exactly`);
+    assert.equal(priceMatches.length, 1, `${page} should have exactly one pricing section`);
     assert.match(pageHtml, /<link rel="stylesheet" href="site-pricing\.css">/, `${page} should load the shared pricing CSS`);
     assert.doesNotMatch(pageHtml, /<section class="lp-pricing">/, `${page} should not keep the old lp-pricing block`);
     assert.match(priceSection, /href="tel:0471143274" class="hk-pricing-call"/, `${page} should keep the top-page phone link`);
     assert.match(priceSection, /href="https:\/\/lin\.ee\/X01F2mP" target="_blank" rel="noopener noreferrer" class="hk-pricing-line"/, `${page} should keep the top-page LINE link`);
-    assert.match(priceSection, /data-deadline/, `${page} should keep the deadline hook`);
-    assert.match(priceSection, /data-remaining/, `${page} should keep the remaining-slots hook`);
+    if (initialOnlyPricingPages.has(page)) {
+      assert.match(priceSection, /初回カウンセリング＋全身整体コース/, `${page} should explain the first-visit course`);
+      assert.match(priceSection, /1,980/, `${page} should show the first-visit price`);
+      assert.doesNotMatch(priceSection, /通常施術費|10,000円|全額返金保証|data-deadline|data-remaining|回数券/, `${page} should not show regular fees, scarcity, or ticket copy`);
+    } else {
+      assert.equal(priceSection, topPricingSection, `${page} should copy the top-page pricing HTML exactly`);
+      assert.match(priceSection, /data-deadline/, `${page} should keep the deadline hook`);
+      assert.match(priceSection, /data-remaining/, `${page} should keep the remaining-slots hook`);
+    }
   }
 });
 
@@ -2742,7 +2755,7 @@ test("lower back education redesign stays inside the requested page range", () =
   );
   assert.equal(
     sha256(lowerBackHtml.slice(voicesStart)),
-    "3a9b2bcf46724bcad98f78305d02c8bee3dc1639daaf6c8d1de1d1e99d448e2d",
+    "b3ea8ff431e8ca13045eebacb0b81600afe702676fbe2d5d1c2082b57db6a7f5",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3363,12 +3376,12 @@ test("sciatica education redesign stays inside the matching lower-back page rang
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(sciaticaHtml.slice(bodyStart, redesignStart)),
-    "75307cbbf11686df473775e51992afded32a38e6cf062258854f9d96bae76c5c",
+    "4045c763ff86d9062b9cba7cb724a05c0829c3c4a9329572f9ab2734540a467a",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(sciaticaHtml.slice(voicesStart)),
-    "18fa844aacddcd3aa59f3b7995fcd82512623d926b72ef99b255492875462caf",
+    "2c06b90349fabdcb77daaba188a5a9017f4e183f9185f13b4ad7a644c260f7ba",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3437,7 +3450,7 @@ test("spinal stenosis education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(spinalStenosisHtml.slice(flowStart)),
-    "b97bad230dee9d796ec30491cedc86b5b027104471225ba626ef29cd68ec6228",
+    "b7f53375a13903daa864dc3ca7123284757289c2d942c31fad0e242ec54cf4ac",
     "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3506,7 +3519,7 @@ test("knee pain education redesign preserves the existing page boundaries", () =
   );
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(voicesStart)),
-    "05c3fd94b2f8be67416acd02babd7aed734efe855b101328ae94f89c14002d43",
+    "3706e6dc164ee09f78406fb4a3016eb198251c4623edf6e60101276c93ac8533",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3644,7 +3657,7 @@ test("disc herniation education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(flowStart)),
-    "52f539ca066422ca41c837b1c0252317d68ceb3f337298d9ea21270bf790f129",
+    "89cf7545eec162c0ae4345f70e4365f3ff7de4a92cd88230aac35cd537555382",
     "treatment flow onward must match the approved trust-and-safety baseline"
   );
 });

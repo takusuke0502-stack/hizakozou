@@ -781,6 +781,14 @@
 
 
 /* SPINAL_STENOSIS_EDUCATION_STYLES_START */
+.stenosis-first-view{padding:clamp(42px,6vw,68px) 0;background:#fff;border-top:1px solid #dfe4dc;border-bottom:1px solid #dfe4dc;color:#252a27}
+.stenosis-first-view__card{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:clamp(28px,5vw,52px);align-items:start}
+.stenosis-first-view__eyebrow{margin:0 0 10px;color:#356b2f;font-size:.82rem;font-weight:900;letter-spacing:.08em}
+.stenosis-first-view__title{margin:0;color:#252a27;font-size:clamp(1.45rem,3vw,2.15rem);font-weight:900;line-height:1.55;letter-spacing:0}
+.stenosis-first-view__lead{margin:18px 0 0;color:#59635d;font-size:1rem;font-weight:700;line-height:1.95}
+.stenosis-first-view__badges{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.stenosis-first-view__badges li{display:flex;align-items:flex-start;gap:10px;border:1px solid #dfe4dc;border-radius:12px;background:#faf7f0;padding:13px 14px;color:#3c453f;font-size:.92rem;font-weight:800;line-height:1.6}
+.stenosis-first-view__badges li::before{content:"";width:9px;height:9px;margin-top:.56em;border:2px solid #356b2f;border-radius:50%;flex:0 0 auto}
 .stenosis-education{--stenosis-green:#356b2f;--stenosis-green-dark:#234d24;--stenosis-green-soft:#eef5e9;--stenosis-cream:#faf7f0;--stenosis-cream-deep:#f4efe5;--stenosis-text:#252a27;--stenosis-muted:#59635d;--stenosis-border:#dfe4dc;background:#fff;color:var(--stenosis-text)}
 .stenosis-education-section{padding:clamp(72px,8vw,104px) 0;border-top:1px solid var(--stenosis-border)}
 .stenosis-education-section--white{background:#fff}
@@ -807,6 +815,10 @@
 .stenosis-factor__icon svg{width:23px;height:23px;stroke-width:1.7}
 .stenosis-factor h3{margin:0 0 12px;color:var(--stenosis-text);font-size:1.1rem;font-weight:900;line-height:1.55}
 .stenosis-factor p{margin:0;color:var(--stenosis-muted);font-size:.94rem;font-weight:700;line-height:1.85}
+.stenosis-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--stenosis-border);border-left:1px solid var(--stenosis-border)}
+.stenosis-detail-card{min-width:0;border-right:1px solid var(--stenosis-border);border-bottom:1px solid var(--stenosis-border);padding:clamp(28px,4vw,42px)}
+.stenosis-detail-card h3{margin:0 0 12px;color:var(--stenosis-text);font-size:1.1rem;font-weight:900;line-height:1.55}
+.stenosis-detail-card p{margin:0;color:var(--stenosis-muted);font-size:.94rem;font-weight:700;line-height:1.85}
 .stenosis-symptom-flow{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(32px,4vw,54px);align-items:start;margin-top:8px}
 .stenosis-symptom-flow::before{content:"";position:absolute;top:27px;left:7%;right:7%;height:1px;background:#b7c7b1}
 .stenosis-symptom-flow__step{position:relative;z-index:1;text-align:center}
@@ -867,6 +879,14 @@
 .stenosis-frequency h2{margin:0 0 12px;color:var(--stenosis-text);font-size:1.35rem;font-weight:900;line-height:1.5}
 .stenosis-frequency p{margin:0;color:var(--stenosis-muted);font-size:.94rem;font-weight:700;line-height:1.85}
 .stenosis-frequency p+p{margin-top:6px}
+.stenosis-director-message{padding:clamp(72px,8vw,96px) 0;background:#fff;border-top:1px solid #dfe4dc;color:#252a27}
+.stenosis-director-message__card{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(28px,5vw,54px);align-items:start;border:1px solid #dfe4dc;border-radius:18px;background:linear-gradient(135deg,#fff,#faf7f0);padding:clamp(28px,5vw,46px)}
+.stenosis-director-message__label{margin:0 0 10px;color:#356b2f;font-size:.82rem;font-weight:900;letter-spacing:.08em}
+.stenosis-director-message h2{margin:0;color:#252a27;font-size:clamp(1.45rem,3vw,2rem);font-weight:900;line-height:1.55}
+.stenosis-director-message__name{margin:18px 0 0;color:#59635d;font-size:.92rem;font-weight:900;line-height:1.7}
+.stenosis-director-message__content{color:#59635d;font-size:1rem;font-weight:700;line-height:1.95}
+.stenosis-director-message__content p{margin:0}
+.stenosis-director-message__content p+p{margin-top:1.05rem}
 .symptom-voices{padding-top:clamp(72px,8vw,96px);padding-bottom:clamp(72px,8vw,96px);background:#fff;border-top:1px solid var(--stenosis-border)}
 .symptom-voices__eyebrow{color:var(--stenosis-green);letter-spacing:.08em}
 .symptom-voices__title{position:relative;color:var(--stenosis-text);padding-bottom:15px}
@@ -887,6 +907,11 @@
 .related-articles-slider__dot[aria-current="true"]{background:var(--stenosis-green)}
 .hk-pricing-section,#access{border-top:1px solid var(--stenosis-border)}
 @media(max-width:767px){
+  .stenosis-first-view{padding:38px 0}
+  .stenosis-first-view__card{grid-template-columns:1fr;gap:24px}
+  .stenosis-first-view__title{font-size:clamp(1.35rem,7vw,1.75rem)}
+  .stenosis-first-view__lead{font-size:.95rem;line-height:1.85}
+  .stenosis-first-view__badges li{font-size:.9rem}
   .stenosis-education-section{padding:68px 0}
   .stenosis-education-section--frequency{padding-top:42px;padding-bottom:72px}
   .stenosis-section-title{margin-bottom:30px;padding-bottom:15px;font-size:clamp(1.5rem,7vw,1.85rem);line-height:1.5}
@@ -902,6 +927,10 @@
   .stenosis-factor__icon{width:44px;height:44px}
   .stenosis-factor h3{font-size:1.04rem}
   .stenosis-factor p{font-size:.93rem}
+  .stenosis-detail-grid{grid-template-columns:1fr;border-left:0}
+  .stenosis-detail-card{border-right:0;padding:26px 4px}
+  .stenosis-detail-card h3{font-size:1.04rem}
+  .stenosis-detail-card p{font-size:.93rem}
   .stenosis-symptom-flow{grid-template-columns:1fr;gap:0;margin-left:5px;padding-left:46px}
   .stenosis-symptom-flow::before{top:26px;bottom:26px;left:27px;right:auto;width:1px;height:auto}
   .stenosis-symptom-flow__step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;min-height:92px;text-align:left}
@@ -938,6 +967,9 @@
   .stenosis-consult-cta__link{width:100%;min-height:52px}
   .stenosis-frequency{grid-template-columns:1fr;gap:16px;padding:26px 0}
   .stenosis-frequency h2{font-size:1.25rem}
+  .stenosis-director-message{padding:72px 0}
+  .stenosis-director-message__card{grid-template-columns:1fr;padding:24px 18px}
+  .stenosis-director-message__content{font-size:.95rem;line-height:1.85}
   .symptom-voices,.faq,.related-articles-slider{padding-top:72px;padding-bottom:72px}
   .symptom-voices{padding-left:16px;padding-right:16px}
   .symptom-voices__grid{gap:18px}
@@ -1208,6 +1240,22 @@
 <!-- SYMPTOM_PAGE_TOC_END -->
 
 <!-- SPINAL_STENOSIS_EDUCATION_START -->
+    <section class="stenosis-first-view" aria-label="脊柱管狭窄症ページの概要">
+      <div class="container max-w-4xl stenosis-first-view__card">
+        <div>
+          <p class="stenosis-first-view__eyebrow">柏市・柏駅周辺で脊柱管狭窄症に伴う足腰の悩みがある方へ</p>
+          <h2 class="stenosis-first-view__title">歩くと足腰がつらい、休むと少し楽になる。その不安で外出を控えていませんか？</h2>
+          <p class="stenosis-first-view__lead">整体院ひざこぞうでは、腰だけを見るのではなく、立ち方、歩き方、股関節や足腰の動き、身体を支える力まで確認します。整体と運動療法を組み合わせながら、買い物や散歩、旅行、家族との外出を楽しみやすい身体づくりを支えます。</p>
+        </div>
+        <ul class="stenosis-first-view__badges" aria-label="整体院ひざこぞうの安心材料">
+          <li>足腰の痛み・しびれ、歩行の不安に重点を置いた整体院</li>
+          <li>柔道整復師の国家資格保有者が、最初から最後まで一貫して対応</li>
+          <li>施術歴15年、これまでに約2万件の施術に携わってきました</li>
+          <li>完全予約制・柏駅西口徒歩8分。初回は約90分かけて確認します</li>
+        </ul>
+      </div>
+    </section>
+
     <div class="stenosis-education">
       <section class="stenosis-education-section stenosis-education-section--white" aria-labelledby="stenosis-cause-title">
         <div class="container max-w-4xl">
@@ -1327,7 +1375,7 @@
               <span class="stenosis-medical-note__icon" aria-hidden="true"><i data-lucide="stethoscope"></i></span>
               <div>
                 <h2 id="stenosis-medical-title">このような症状がある場合は、まず医療機関へご相談ください</h2>
-                <p>腰や脚の症状の中には、医療機関での検査や治療が優先されるものもあります。以下のような症状がある場合は、整体を受ける前に整形外科などの医療機関へご相談ください。</p>
+                <p>腰や脚の症状の中には、医療機関での検査や確認が優先されるものもあります。以下のような症状がある場合は、整体を受ける前に整形外科などの医療機関へご相談ください。</p>
               </div>
             </div>
             <ul class="stenosis-medical-note__list">
@@ -1397,6 +1445,35 @@
         </div>
       </section>
 
+      <section class="stenosis-education-section stenosis-education-section--white" aria-labelledby="stenosis-features-title">
+        <div class="container max-w-4xl">
+          <h2 id="stenosis-features-title" class="stenosis-section-title">整体院ひざこぞうが、脊柱管狭窄症に伴う足腰の悩みへの施術で大切にしていること</h2>
+          <p class="stenosis-section-lead">同じ脊柱管狭窄症という診断名でも、歩ける距離、つらくなる姿勢、生活で困っている場面は人によって違います。病名を決めつけるのではなく、現在の身体の特徴と生活上の目標を一緒に整理します。</p>
+          <div class="stenosis-detail-grid">
+            <article class="stenosis-detail-card">
+              <h3>初回約90分かけて話と身体の状態を確認</h3>
+              <p>症状だけでなく、歩ける距離、休む姿勢、これまでの経過、病院で説明された内容、再開したい生活まで確認します。身体の状態と施術方針を説明し、納得いただいたうえで進めます。</p>
+            </article>
+            <article class="stenosis-detail-card">
+              <h3>腰だけでなく歩行や立ち座りを確認</h3>
+              <p>止まった姿勢だけで判断せず、立つ、歩く、座る、前かがみ、階段、症状が出る動作を確認します。歩行時の不安や日常生活の困りごとを施術計画に反映します。</p>
+            </article>
+            <article class="stenosis-detail-card">
+              <h3>動かしやすさ、支える力、実際の動作を順番に確認</h3>
+              <p>股関節や足腰の動き、足腰や体幹で身体を支える力、歩行や立ち座りなどの動作を順番に見ます。専門用語に頼らず、身体の状態を分かりやすく共有します。</p>
+            </article>
+            <article class="stenosis-detail-card">
+              <h3>整体と運動療法を組み合わせる</h3>
+              <p>手技だけで終わらせず、状態に合った運動や歩き方の練習を組み合わせます。難しすぎる運動を一律に行うのではなく、できる範囲から日常で使える身体づくりを目指します。</p>
+            </article>
+            <article class="stenosis-detail-card">
+              <h3>自宅で取り組めるセルフケアを伝える</h3>
+              <p>通院だけに依存せず、ご自身でも身体を管理しやすくなることを大切にしています。症状や体力に合わせて、無理なく続けられる内容を提案します。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="stenosis-consult-section" aria-labelledby="stenosis-consult-title">
         <div class="container max-w-4xl">
           <div class="stenosis-consult-cta">
@@ -1425,6 +1502,59 @@
           </div>
         </div>
       </section>
+
+      <section class="stenosis-education-section stenosis-education-section--white" aria-labelledby="stenosis-caution-title">
+        <div class="container max-w-4xl">
+          <h2 id="stenosis-caution-title" class="stenosis-section-title">脊柱管狭窄症に伴う足腰の悩みがあるときに注意したいこと</h2>
+          <div class="stenosis-detail-grid">
+            <article class="stenosis-detail-card">
+              <h3>痛みを我慢して強く揉む</h3>
+              <p>一時的に楽に感じることがあっても、強い刺激が合わない場合があります。感覚の変化やしびれがあるときは、身体の反応を確認しながら進めることが大切です。</p>
+            </article>
+            <article class="stenosis-detail-card">
+              <h3>症状が強くなる運動を無理に続ける</h3>
+              <p>歩くことは大切ですが、痛みやしびれが強まるほど無理に続ける必要はありません。距離、休み方、姿勢を調整しながら、できる範囲を見つけていきます。</p>
+            </article>
+            <article class="stenosis-detail-card">
+              <h3>インターネットの体操を状態確認なしで繰り返す</h3>
+              <p>坐骨神経痛 ストレッチや脊柱管狭窄症の体操として紹介されている方法でも、全員に合うとは限りません。症状が増える場合は中止してください。</p>
+            </article>
+            <article class="stenosis-detail-card">
+              <h3>医師の指示なく薬を中止する</h3>
+              <p>薬を飲んでいる場合は、自己判断で中止せず、医師や薬剤師の指示を優先してください。整体院では薬の要否を判断しません。</p>
+            </article>
+            <article class="stenosis-detail-card">
+              <h3>症状が急に変化しているのに放置する</h3>
+              <p>脚の力が入りにくい、排尿や排便の異常がある、症状が急に広がる場合は、整体よりも医療機関への相談を優先してください。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="stenosis-education-section stenosis-education-section--cream" aria-labelledby="stenosis-selfcare-title">
+        <div class="container max-w-4xl">
+          <h2 id="stenosis-selfcare-title" class="stenosis-section-title">自宅でできる対策</h2>
+          <p class="stenosis-section-lead">脊柱管狭窄症に伴う足腰の悩みでは、症状の出方や体力によって適した運動が異なります。ここでは無理なく始めるための考え方を紹介します。</p>
+          <div class="stenosis-detail-grid">
+            <article class="stenosis-detail-card">
+              <h3>歩く距離を小さく区切る</h3>
+              <p>長く歩き続けるより、症状が強くなる前に休むほうが合う場合があります。無理のない距離から始め、休憩を挟みながら活動量を保ちましょう。</p>
+            </article>
+            <article class="stenosis-detail-card">
+              <h3>長時間同じ姿勢を避ける</h3>
+              <p>座りっぱなし、立ちっぱなしが続くと足腰がつらくなることがあります。短い時間で姿勢を変えたり、楽な休み方を確認したりすることが大切です。</p>
+            </article>
+            <article class="stenosis-detail-card">
+              <h3>強く伸ばしたり反動をつけたりしない</h3>
+              <p>ストレッチや体操で強い痛み、しびれ、違和感が増える場合は中止してください。医師から運動制限を受けている場合は、その指示を優先します。</p>
+            </article>
+            <article class="stenosis-detail-card">
+              <h3>自分に合う内容を確認する</h3>
+              <p>他の人に合った方法が、そのまま自分に合うとは限りません。歩くと足が痛い、ふくらはぎのしびれが出るなど、実際の反応に合わせて内容を調整しましょう。</p>
+            </article>
+          </div>
+        </div>
+      </section>
     </div>
 <!-- SPINAL_STENOSIS_EDUCATION_END -->
 
@@ -1437,7 +1567,7 @@
           <p>歩行で増える脚の症状や、休むと変化するつらさを中心に、医療機関での検査と整体で確認する日常動作の役割を分けて説明します。</p>
           <ul>
             <li>脊柱管の状態を整体で診断したり、狭窄そのものを解消すると表現したりはしません。</li>
-            <li>医療機関での治療と併用しながら、歩行や立ち姿勢の負担軽減を目指します。</li>
+            <li>医療機関での診療方針と併用しながら、歩行や立ち姿勢の負担軽減を目指します。</li>
           </ul>
         </section>
         <div class="symptom-trust__heading">
@@ -1493,7 +1623,7 @@
         <div class="symptom-trust__review">
           <div class="symptom-trust__reviewer">
             <p class="symptom-trust__review-label">執筆・内容確認</p>
-            <p class="symptom-trust__review-name">川上卓哉 <span>柔道整復師（国家資格）／施術歴14年</span></p>
+            <p class="symptom-trust__review-name">川上卓哉 <span>柔道整復師（国家資格）／施術歴15年／累計施術約2万件</span></p>
             <p class="symptom-trust__review-date">内容確認日：2026年6月23日</p>
             <a class="symptom-trust__reviewer-link" data-tracking-content-group="reviewer-profile" href="../staff.html">代表の経歴・資格を見る <span aria-hidden="true">›</span></a>
           </div>
@@ -1788,45 +1918,41 @@
         <div class="hk-pricing-rule" aria-hidden="true"></div>
 
         <div class="hk-pricing-copy">
-          <p class="hk-pricing-quote">「先生に出会えて良かった。」<br>「もっと早く来ていれば良かった」と</p>
-          <p class="hk-pricing-copy__line">多くの方から感謝の声を頂いています。まずは一度試してください。</p>
-          <p class="hk-pricing-copy__line">足腰のつらさを一緒に整理し、動きやすい身体づくりをサポートします。</p>
-        </div>
-
-        <div class="hk-pricing-normal">
-          <span>通常施術費</span>
-          <strong>10,000円</strong><small>(税込)</small>
-          <span>のところ</span>
+          <p class="hk-pricing-quote">初回カウンセリング＋全身整体コース</p>
+          <p class="hk-pricing-copy__line">カウンセリング・状態確認込み。まずは相談だけでも大丈夫です。</p>
+          <p class="hk-pricing-copy__line">足腰のつらさを一緒に整理し、歩きやすい身体づくりをサポートします。</p>
         </div>
 
         <div class="hk-pricing-offer" aria-labelledby="hk-pricing-title">
-          <div class="hk-pricing-labels" aria-label="初回限定 特別価格">
+          <div class="hk-pricing-labels" aria-label="初回限定 ご案内">
             <span>初回限定</span>
-            <span>特別価格</span>
+            <span>ご案内</span>
           </div>
           <h2 id="hk-pricing-title" class="hk-pricing-price">
             <span class="hk-pricing-price__num">1,980</span><span class="hk-pricing-price__yen">円</span><span class="hk-pricing-price__tax">(税込)</span>
           </h2>
         </div>
 
-        <div class="hk-pricing-deadline">
-          <p><span data-deadline>近日中</span>まで</p>
-          <p><span data-total="6">6</span>名様限定割引</p>
-          <p class="hk-pricing-remaining" data-remaining>残り2名様</p>
-        </div>
-
-        <div class="hk-pricing-features" aria-label="初回で確認すること">
+        <div class="hk-pricing-features" aria-label="初回に含まれる内容">
           <div class="hk-pricing-feature">
-            <strong>初回施術費</strong>
-            <span>全額返金保証</span>
+            <strong>カウンセリング</strong>
+            <span>お悩みを丁寧に確認</span>
           </div>
           <div class="hk-pricing-feature">
-            <strong>痛みの原因を</strong>
-            <span>徹底解明</span>
+            <strong>姿勢・歩き方</strong>
+            <span>動き方を確認</span>
           </div>
           <div class="hk-pricing-feature">
-            <strong>動き全体を</strong>
-            <span>プロが解析</span>
+            <strong>負担が集まる動き</strong>
+            <span>分かりやすく説明</span>
+          </div>
+          <div class="hk-pricing-feature">
+            <strong>全身整体</strong>
+            <span>状態に合わせて実施</span>
+          </div>
+          <div class="hk-pricing-feature">
+            <strong>セルフケア</strong>
+            <span>ご自宅での対策を提案</span>
           </div>
         </div>
 
@@ -1982,6 +2108,23 @@
     </section>
 
 
+
+    <section class="stenosis-director-message" aria-labelledby="stenosis-director-title">
+      <div class="container max-w-4xl">
+        <div class="stenosis-director-message__card">
+          <div>
+            <p class="stenosis-director-message__label">MESSAGE</p>
+            <h2 id="stenosis-director-title">最後に院長から</h2>
+            <p class="stenosis-director-message__name">整体院ひざこぞう　川上卓哉</p>
+          </div>
+          <div class="stenosis-director-message__content">
+            <p>脊柱管狭窄症に伴う足腰の不安は、歩く距離や外出の予定にまで影響することがあります。歩くとつらい、休むと少し楽になる、また歩くと不安になる。その繰り返しで、買い物や散歩、旅行を控えている方も少なくありません。</p>
+            <p>年齢や診断名だけを理由に、やりたいことを諦めてほしくありません。ただし、一回で変化を保証する施術ではありませんし、医師から説明された内容を大切にしながら、一定期間の取り組みが必要な場合もあります。</p>
+            <p>整体院ひざこぞうでは、できることと、できないことを誠実にお伝えしながら、一方的に施術を押しつけないことを大切にしています。痛みの軽減だけでなく、もう一度安心して出かけられる状態を、一緒に考えていきましょう。</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <div class="back">
       <a href="../" class="back__link">

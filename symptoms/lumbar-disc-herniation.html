@@ -780,6 +780,14 @@
 
 
   /* DISC_HERNIATION_EDUCATION_STYLES_START */
+.disc-first-view{padding:clamp(42px,6vw,68px) 0;background:#fff;border-top:1px solid #dfe4dc;border-bottom:1px solid #dfe4dc;color:#252a27}
+.disc-first-view__card{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:clamp(28px,5vw,52px);align-items:start}
+.disc-first-view__eyebrow{margin:0 0 10px;color:#356b2f;font-size:.82rem;font-weight:900;letter-spacing:.08em}
+.disc-first-view__title{margin:0;color:#252a27;font-size:clamp(1.45rem,3vw,2.15rem);font-weight:900;line-height:1.55;letter-spacing:0}
+.disc-first-view__lead{margin:18px 0 0;color:#59635d;font-size:1rem;font-weight:700;line-height:1.95}
+.disc-first-view__badges{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.disc-first-view__badges li{display:flex;align-items:flex-start;gap:10px;border:1px solid #dfe4dc;border-radius:12px;background:#faf7f0;padding:13px 14px;color:#3c453f;font-size:.92rem;font-weight:800;line-height:1.6}
+.disc-first-view__badges li::before{content:"";width:9px;height:9px;margin-top:.56em;border:2px solid #356b2f;border-radius:50%;flex:0 0 auto}
 .disc-education{--disc-green:#356b2f;--disc-green-dark:#234d24;--disc-green-soft:#eef5e9;--disc-cream:#faf7f0;--disc-text:#252a27;--disc-muted:#59635d;--disc-border:#dfe4dc;background:#fff;color:var(--disc-text)}
 .disc-education-section{padding:clamp(72px,8vw,104px) 0;border-top:1px solid var(--disc-border)}
 .disc-education-section--white{background:#fff}
@@ -804,6 +812,10 @@
 .disc-factor__icon svg{width:23px;height:23px;stroke-width:1.7}
 .disc-factor h3{margin:0 0 12px;color:var(--disc-text);font-size:1.1rem;font-weight:900;line-height:1.55}
 .disc-factor p{margin:0;color:var(--disc-muted);font-size:.94rem;font-weight:700;line-height:1.85}
+.disc-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--disc-border);border-left:1px solid var(--disc-border)}
+.disc-detail-card{min-width:0;border-right:1px solid var(--disc-border);border-bottom:1px solid var(--disc-border);padding:clamp(28px,4vw,42px)}
+.disc-detail-card h3{margin:0 0 12px;color:var(--disc-text);font-size:1.1rem;font-weight:900;line-height:1.55}
+.disc-detail-card p{margin:0;color:var(--disc-muted);font-size:.94rem;font-weight:700;line-height:1.85}
 .disc-symptom-flow{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(32px,4vw,54px);align-items:start;margin-top:8px}
 .disc-symptom-flow::before{content:"";position:absolute;top:27px;left:7%;right:7%;height:1px;background:#b7c7b1}
 .disc-symptom-flow__step{position:relative;z-index:1;text-align:center}
@@ -858,13 +870,27 @@
 .disc-frequency__icon svg{width:23px;height:23px;stroke-width:1.7}
 .disc-frequency h2{margin:0 0 12px;color:var(--disc-text);font-size:1.35rem;font-weight:900;line-height:1.5}
 .disc-frequency p{margin:0;color:var(--disc-muted);font-size:.94rem;font-weight:700;line-height:1.85}.disc-frequency p+p{margin-top:6px}
+.disc-director-message{padding:clamp(72px,8vw,96px) 0;background:#fff;border-top:1px solid #dfe4dc;color:#252a27}
+.disc-director-message__card{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(28px,5vw,54px);align-items:start;border:1px solid #dfe4dc;border-radius:18px;background:linear-gradient(135deg,#fff,#faf7f0);padding:clamp(28px,5vw,46px)}
+.disc-director-message__label{margin:0 0 10px;color:#356b2f;font-size:.82rem;font-weight:900;letter-spacing:.08em}
+.disc-director-message h2{margin:0;color:#252a27;font-size:clamp(1.45rem,3vw,2rem);font-weight:900;line-height:1.55}
+.disc-director-message__name{margin:18px 0 0;color:#59635d;font-size:.92rem;font-weight:900;line-height:1.7}
+.disc-director-message__content{color:#59635d;font-size:1rem;font-weight:700;line-height:1.95}
+.disc-director-message__content p{margin:0}
+.disc-director-message__content p+p{margin-top:1.05rem}
 .disc-education~.symptom-voices{padding-top:clamp(72px,8vw,96px);padding-bottom:clamp(72px,8vw,96px);background:#fff;border-top:1px solid var(--disc-border)}
 @media(max-width:767px){
+  .disc-first-view{padding:38px 0}
+  .disc-first-view__card{grid-template-columns:1fr;gap:24px}
+  .disc-first-view__title{font-size:clamp(1.35rem,7vw,1.75rem)}
+  .disc-first-view__lead{font-size:.95rem;line-height:1.85}
+  .disc-first-view__badges li{font-size:.9rem}
   .disc-education-section{padding:68px 0}.disc-education-section--frequency{padding-top:42px;padding-bottom:72px}
   .disc-section-title{margin-bottom:30px;padding-bottom:15px;font-size:clamp(1.5rem,7vw,1.85rem);line-height:1.5}.disc-section-title::after{width:44px}
   .disc-section-lead{margin:-8px 0 34px;font-size:.96rem;line-height:1.85}.disc-copy{font-size:.96rem;line-height:1.85}.disc-copy--accent{padding-left:18px}
   .disc-cause-layout{grid-template-columns:1fr;gap:30px}.disc-cause-visual{padding:10px}
   .disc-factor-grid{grid-template-columns:1fr;border-left:0}.disc-factor{border-right:0;padding:26px 4px}.disc-factor__top{margin-bottom:14px}.disc-factor__icon{width:44px;height:44px}
+  .disc-detail-grid{grid-template-columns:1fr;border-left:0}.disc-detail-card{border-right:0;padding:26px 4px}.disc-detail-card h3{font-size:1.04rem}.disc-detail-card p{font-size:.93rem}
   .disc-symptom-flow{grid-template-columns:1fr;gap:0;margin-left:5px;padding-left:46px}.disc-symptom-flow::before{top:26px;bottom:26px;left:27px;right:auto;width:1px;height:auto}
   .disc-symptom-flow__step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;min-height:92px;text-align:left}.disc-symptom-flow__number{width:54px;height:54px;margin:0 0 0 -46px}.disc-symptom-flow__arrow{display:none}.disc-pc-only{display:none}.disc-flow-note{margin-top:26px;text-align:left}
   .disc-relief-layout{grid-template-columns:1fr;gap:36px}.disc-cycle{grid-template-columns:1fr;gap:0;border-top:1px solid var(--disc-border)}
@@ -876,6 +902,7 @@
   .disc-approach-step__icon{grid-column:1;grid-row:1/5;width:60px;height:60px;margin:0 0 0 -48px;background:var(--disc-cream)}.disc-approach-step__label,.disc-approach-step h3,.disc-approach-step>p:last-child{grid-column:2}.disc-approach-steps__arrow{display:none}
   .disc-consult-section{padding-bottom:72px}.disc-consult-cta{grid-template-columns:1fr;gap:22px;padding:24px 18px}.disc-consult-cta__link{width:100%;min-height:52px}
   .disc-frequency{grid-template-columns:1fr;gap:16px;padding:26px 0}
+  .disc-director-message{padding:72px 0}.disc-director-message__card{grid-template-columns:1fr;padding:24px 18px}.disc-director-message__content{font-size:.95rem;line-height:1.85}
 }
 @media(min-width:768px) and (max-width:1024px){
   .disc-cause-layout,.disc-assessment-layout{grid-template-columns:minmax(0,1fr) minmax(300px,.9fr);gap:40px}
@@ -1139,6 +1166,22 @@
 <!-- SYMPTOM_PAGE_TOC_END -->
 
 <!-- DISC_HERNIATION_EDUCATION_START -->
+    <section class="disc-first-view" aria-label="椎間板ヘルニアページの概要">
+      <div class="container max-w-4xl disc-first-view__card">
+        <div>
+          <p class="disc-first-view__eyebrow">柏市・柏駅周辺で椎間板ヘルニアに伴う腰や足の痛み・しびれがある方へ</p>
+          <h2 class="disc-first-view__title">腰からお尻、足にかけての痛みやしびれで、仕事や外出に不安を感じていませんか？</h2>
+          <p class="disc-first-view__lead">整体院ひざこぞうでは、腰だけを見るのではなく、股関節や足腰の動き、姿勢、歩き方、身体を支える力まで確認します。整体と運動療法を組み合わせながら、座る・立つ・歩く動作を少しずつ使いやすくしていくことを目指します。</p>
+        </div>
+        <ul class="disc-first-view__badges" aria-label="整体院ひざこぞうの安心材料">
+          <li>足腰の痛み・しびれに重点を置いた整体院</li>
+          <li>柔道整復師の国家資格保有者が、最初から最後まで一貫して対応</li>
+          <li>施術歴15年、これまでに約2万件の施術に携わってきました</li>
+          <li>完全予約制・柏駅西口徒歩8分。初回は約90分かけて確認します</li>
+        </ul>
+      </div>
+    </section>
+
     <div class="disc-education">
       <section class="disc-education-section disc-education-section--white" aria-labelledby="disc-cause-title">
         <div class="container max-w-4xl">
@@ -1234,7 +1277,7 @@
               <span class="disc-medical-note__icon" aria-hidden="true"><i data-lucide="stethoscope"></i></span>
               <div>
                 <h2 id="disc-medical-title">このような症状がある場合は、まず医療機関へご相談ください</h2>
-                <p>腰や脚の症状の中には、医療機関での検査や治療が優先されるものもあります。以下のような症状がある場合は、整体を受ける前に整形外科などの医療機関へご相談ください。</p>
+                <p>腰や脚の症状の中には、医療機関での検査や確認が優先されるものもあります。以下のような症状がある場合は、整体を受ける前に整形外科などの医療機関へご相談ください。</p>
               </div>
             </div>
             <ul class="disc-medical-note__list">
@@ -1296,6 +1339,35 @@
         </div>
       </section>
 
+      <section class="disc-education-section disc-education-section--white" aria-labelledby="disc-features-title">
+        <div class="container max-w-4xl">
+          <h2 id="disc-features-title" class="disc-section-title">整体院ひざこぞうが、椎間板ヘルニアに伴う症状への施術で大切にしていること</h2>
+          <p class="disc-section-lead">同じ椎間板ヘルニアという診断名でも、痛みやしびれが出る姿勢、生活で困っている場面は人によって違います。画像や症状名だけで判断せず、身体の状態と日常動作を丁寧に確認します。</p>
+          <div class="disc-detail-grid">
+            <article class="disc-detail-card">
+              <h3>初回約90分かけて話と身体の状態を確認</h3>
+              <p>いつから症状があるのか、どの姿勢でつらいのか、病院で説明された内容、仕事や家事で困っていること、良くなったら再開したいことまで確認します。</p>
+            </article>
+            <article class="disc-detail-card">
+              <h3>腰だけでなく実際の動作を確認</h3>
+              <p>立つ、歩く、座る、前かがみ、寝返り、症状が出る動作を確認します。長く座ると痛い、運転が不安など、生活場面での困りごとを大切にします。</p>
+            </article>
+            <article class="disc-detail-card">
+              <h3>動かしやすさ、支える力、実際の動作を順番に確認</h3>
+              <p>股関節や足腰の動き、足腰や体幹で身体を支える力、歩行や立ち上がりなどの動作を順番に見ます。専門用語だけで説明せず、状態を分かりやすく共有します。</p>
+            </article>
+            <article class="disc-detail-card">
+              <h3>整体と運動療法を組み合わせる</h3>
+              <p>手技だけで終わらせず、状態に合った運動や日常動作の練習を組み合わせます。難しすぎる運動を一律に課さず、できる範囲から進めます。</p>
+            </article>
+            <article class="disc-detail-card">
+              <h3>自宅で取り組めるセルフケアを伝える</h3>
+              <p>通院だけに依存せず、ご自身でも身体を管理しやすくなることを目指します。症状に合わせて、無理なく続けられる内容を提案します。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="disc-consult-section" aria-labelledby="disc-consult-title">
         <div class="container max-w-4xl"><div class="disc-consult-cta">
           <div><h2 id="disc-consult-title">どの程度動いてよいか分からない方へ</h2><p>痛みやしびれが出る動作、病院で言われたことなどをLINEで送っていただければ、来院前のご相談も可能です。</p></div>
@@ -1308,6 +1380,59 @@
           <span class="disc-frequency__icon" aria-hidden="true"><i data-lucide="calendar-days"></i></span>
           <div><h2 id="disc-frequency-title">通院頻度について</h2><p>通院頻度は、痛みやしびれの強さ、期間、生活環境、目指す状態によって異なります。</p><p>初回に身体の状態を確認したうえで、必要な頻度と期間の目安をご説明します。</p><p>無理に通院を勧めることはありませんので、ご希望や生活状況も含めてご相談ください。</p></div>
         </div></div>
+      </section>
+
+      <section class="disc-education-section disc-education-section--white" aria-labelledby="disc-caution-title">
+        <div class="container max-w-4xl">
+          <h2 id="disc-caution-title" class="disc-section-title">椎間板ヘルニアに伴う症状があるときに注意したいこと</h2>
+          <div class="disc-detail-grid">
+            <article class="disc-detail-card">
+              <h3>痛みを我慢して強く揉む</h3>
+              <p>一時的に楽に感じることがあっても、強い刺激が合わない場合があります。しびれや感覚の違和感があるときは、身体の反応を確認しながら進めることが大切です。</p>
+            </article>
+            <article class="disc-detail-card">
+              <h3>症状が強くなる運動を無理に続ける</h3>
+              <p>椎間板ヘルニア 運動として紹介される内容でも、状態によって合う・合わないがあります。痛みや足のしびれが強くなる場合は中止してください。</p>
+            </article>
+            <article class="disc-detail-card">
+              <h3>インターネットの体操を状態確認なしで繰り返す</h3>
+              <p>坐骨神経痛 ストレッチや腰痛体操が役立つ方もいますが、誰にでも同じように合うとは限りません。自分の症状の出方を確認することが先です。</p>
+            </article>
+            <article class="disc-detail-card">
+              <h3>医師の指示なく薬を中止する</h3>
+              <p>薬を飲んでいる場合は、自己判断で中止せず、医師や薬剤師の指示を優先してください。整体院では薬の要否を判断しません。</p>
+            </article>
+            <article class="disc-detail-card">
+              <h3>症状が急に変化しているのに放置する</h3>
+              <p>脚の力が入りにくい、排尿や排便の異常がある、両脚へ急に症状が広がる場合は、整体よりも医療機関への相談を優先してください。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="disc-education-section disc-education-section--cream" aria-labelledby="disc-selfcare-title">
+        <div class="container max-w-4xl">
+          <h2 id="disc-selfcare-title" class="disc-section-title">自宅でできる対策</h2>
+          <p class="disc-section-lead">椎間板ヘルニアに伴う腰や足の症状では、原因や状態によって適切な運動が異なります。強い痛みやしびれが増える場合は中止し、医師から運動制限を受けている場合は指示を優先してください。</p>
+          <div class="disc-detail-grid">
+            <article class="disc-detail-card">
+              <h3>同じ姿勢を長く続けすぎない</h3>
+              <p>長時間の座位や運転でつらくなる場合は、短い休憩や姿勢の変更を挟みます。無理のない範囲で、症状が増えにくい姿勢を探していきます。</p>
+            </article>
+            <article class="disc-detail-card">
+              <h3>反動をつけて強く伸ばさない</h3>
+              <p>お尻や太ももの痛みを感じると強く伸ばしたくなりますが、反動をつけたストレッチが合わない場合もあります。違和感が増えるときは控えましょう。</p>
+            </article>
+            <article class="disc-detail-card">
+              <h3>軽い動きから始める</h3>
+              <p>長期間まったく動かない状態が続くと、筋力や活動量が落ちることがあります。痛みが強くない範囲で、立ち上がりや短い歩行などから始めます。</p>
+            </article>
+            <article class="disc-detail-card">
+              <h3>自分に合う内容を専門家に確認する</h3>
+              <p>他の人に効果があった方法を、そのまま自分に当てはめる必要はありません。症状の出方や生活環境に合わせて調整することが大切です。</p>
+            </article>
+          </div>
+        </div>
       </section>
     </div>
 <!-- DISC_HERNIATION_EDUCATION_END -->
@@ -1377,7 +1502,7 @@
         <div class="symptom-trust__review">
           <div class="symptom-trust__reviewer">
             <p class="symptom-trust__review-label">執筆・内容確認</p>
-            <p class="symptom-trust__review-name">川上卓哉 <span>柔道整復師（国家資格）／施術歴14年</span></p>
+            <p class="symptom-trust__review-name">川上卓哉 <span>柔道整復師（国家資格）／施術歴15年／累計施術約2万件</span></p>
             <p class="symptom-trust__review-date">内容確認日：2026年6月23日</p>
             <a class="symptom-trust__reviewer-link" data-tracking-content-group="reviewer-profile" href="../staff.html">代表の経歴・資格を見る <span aria-hidden="true">›</span></a>
           </div>
@@ -1672,45 +1797,41 @@
         <div class="hk-pricing-rule" aria-hidden="true"></div>
 
         <div class="hk-pricing-copy">
-          <p class="hk-pricing-quote">「先生に出会えて良かった。」<br>「もっと早く来ていれば良かった」と</p>
-          <p class="hk-pricing-copy__line">多くの方から感謝の声を頂いています。まずは一度試してください。</p>
-          <p class="hk-pricing-copy__line">足腰のつらさを一緒に整理し、動きやすい身体づくりをサポートします。</p>
-        </div>
-
-        <div class="hk-pricing-normal">
-          <span>通常施術費</span>
-          <strong>10,000円</strong><small>(税込)</small>
-          <span>のところ</span>
+          <p class="hk-pricing-quote">初回カウンセリング＋全身整体コース</p>
+          <p class="hk-pricing-copy__line">カウンセリング・状態確認込み。まずは相談だけでも大丈夫です。</p>
+          <p class="hk-pricing-copy__line">腰や足のつらさを一緒に整理し、動きやすい身体づくりをサポートします。</p>
         </div>
 
         <div class="hk-pricing-offer" aria-labelledby="hk-pricing-title">
-          <div class="hk-pricing-labels" aria-label="初回限定 特別価格">
+          <div class="hk-pricing-labels" aria-label="初回限定 ご案内">
             <span>初回限定</span>
-            <span>特別価格</span>
+            <span>ご案内</span>
           </div>
           <h2 id="hk-pricing-title" class="hk-pricing-price">
             <span class="hk-pricing-price__num">1,980</span><span class="hk-pricing-price__yen">円</span><span class="hk-pricing-price__tax">(税込)</span>
           </h2>
         </div>
 
-        <div class="hk-pricing-deadline">
-          <p><span data-deadline>近日中</span>まで</p>
-          <p><span data-total="6">6</span>名様限定割引</p>
-          <p class="hk-pricing-remaining" data-remaining>残り2名様</p>
-        </div>
-
-        <div class="hk-pricing-features" aria-label="初回で確認すること">
+        <div class="hk-pricing-features" aria-label="初回に含まれる内容">
           <div class="hk-pricing-feature">
-            <strong>初回施術費</strong>
-            <span>全額返金保証</span>
+            <strong>カウンセリング</strong>
+            <span>お悩みを丁寧に確認</span>
           </div>
           <div class="hk-pricing-feature">
-            <strong>痛みの原因を</strong>
-            <span>徹底解明</span>
+            <strong>姿勢・歩き方</strong>
+            <span>動き方を確認</span>
           </div>
           <div class="hk-pricing-feature">
-            <strong>動き全体を</strong>
-            <span>プロが解析</span>
+            <strong>負担が集まる動き</strong>
+            <span>分かりやすく説明</span>
+          </div>
+          <div class="hk-pricing-feature">
+            <strong>全身整体</strong>
+            <span>状態に合わせて実施</span>
+          </div>
+          <div class="hk-pricing-feature">
+            <strong>セルフケア</strong>
+            <span>ご自宅での対策を提案</span>
           </div>
         </div>
 
@@ -1866,6 +1987,23 @@
     </section>
 
 
+
+    <section class="disc-director-message" aria-labelledby="disc-director-title">
+      <div class="container max-w-4xl">
+        <div class="disc-director-message__card">
+          <div>
+            <p class="disc-director-message__label">MESSAGE</p>
+            <h2 id="disc-director-title">最後に院長から</h2>
+            <p class="disc-director-message__name">整体院ひざこぞう　川上卓哉</p>
+          </div>
+          <div class="disc-director-message__content">
+            <p>椎間板ヘルニアに伴う腰や足の痛み・しびれは、本人にしか分からないつらさがあります。長く座る、立ち上がる、歩く、寝返りをする。普段なら意識しない動きが不安になると、仕事や外出にも影響してしまいます。</p>
+            <p>年齢や症状の期間だけを理由に、やりたいことを諦めてほしくありません。ただし、一回で変化を保証する施術ではありませんし、状態によっては医療機関との併用や一定期間の取り組みが必要な場合もあります。</p>
+            <p>整体院ひざこぞうでは、できることと、できないことを誠実にお伝えしながら、一方的に施術を押しつけないことを大切にしています。痛みの軽減だけでなく、もう一度安心して動ける状態を、一緒に考えていきましょう。</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <div class="back">
       <a href="../" class="back__link">
