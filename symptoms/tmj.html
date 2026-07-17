@@ -465,6 +465,7 @@
   }
   </script>
   <!-- SYMPTOM_REVIEWER_SCHEMA_END -->
+  <link rel="stylesheet" href="site-cycle-flow.css">
 </head>
 <body>
   <header id="header" class="site-header">
@@ -739,16 +740,17 @@
               <p><strong>マウスピースは歯を守るために大切ですが、それだけで全身の緊張や日中の癖が変わるとは限りません。</strong></p>
               <p>歯科での確認と必要なケアを受けながら、首・肩・呼吸・食事中の使い方を合わせて見直すことが大切です。</p>
             </div>
-            <div class="tmj-cycle" aria-label="あごへの負担が続く流れの一例">
-              <div class="tmj-cycle__item"><i data-lucide="circle-dot" aria-hidden="true"></i><span>食いしばりや片側噛みが続く</span></div>
-              <span class="tmj-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
-              <div class="tmj-cycle__item"><i data-lucide="activity" aria-hidden="true"></i><span>首・肩・あごが緊張する</span></div>
-              <span class="tmj-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
-              <div class="tmj-cycle__item"><i data-lucide="triangle-alert" aria-hidden="true"></i><span>痛みや開けにくさを感じる</span></div>
-              <span class="tmj-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
-              <div class="tmj-cycle__item"><i data-lucide="shield-alert" aria-hidden="true"></i><span>口を動かさないよう力が入る</span></div>
-              <span class="tmj-cycle__arrow" aria-hidden="true"><i data-lucide="rotate-cw"></i></span>
-              <div class="tmj-cycle__item tmj-cycle__item--last"><i data-lucide="refresh-cw" aria-hidden="true"></i><span>さらにあごへ負担が集まる</span></div>
+            <div class="tmj-cycle symptom-cycle" role="list" aria-label="あごへの負担が続く流れの一例">
+              <div class="tmj-cycle__item symptom-cycle__item" role="listitem"><i data-lucide="circle-dot" aria-hidden="true"></i><span>食いしばりや片側噛みが続く</span></div>
+              <span class="tmj-cycle__arrow symptom-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-down"></i></span>
+              <div class="tmj-cycle__item symptom-cycle__item" role="listitem"><i data-lucide="activity" aria-hidden="true"></i><span>首・肩・あごが緊張する</span></div>
+              <span class="tmj-cycle__arrow symptom-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-down"></i></span>
+              <div class="tmj-cycle__item symptom-cycle__item" role="listitem"><i data-lucide="triangle-alert" aria-hidden="true"></i><span>痛みや開けにくさを感じる</span></div>
+              <span class="tmj-cycle__arrow symptom-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-down"></i></span>
+              <div class="tmj-cycle__item symptom-cycle__item" role="listitem"><i data-lucide="shield-alert" aria-hidden="true"></i><span>口を動かさないよう力が入る</span></div>
+              <span class="tmj-cycle__arrow symptom-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-down"></i></span>
+              <div class="tmj-cycle__item symptom-cycle__item" role="listitem"><i data-lucide="refresh-cw" aria-hidden="true"></i><span>さらにあごへ負担が集まる</span></div>
+            <p class="symptom-cycle__loop-note"><i data-lucide="rotate-cw" aria-hidden="true"></i><span>?????????????????????????????</span></p>
             </div>
           </div>
         </div>

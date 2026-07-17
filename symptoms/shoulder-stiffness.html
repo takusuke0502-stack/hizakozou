@@ -509,6 +509,7 @@
   }
   </script>
   <!-- SYMPTOM_REVIEWER_SCHEMA_END -->
+  <link rel="stylesheet" href="site-cycle-flow.css">
 </head>
 <body>
   <header id="header" class="site-header">
@@ -807,16 +808,17 @@
               <p><strong>大切なのは、肩を緩めることだけではありません。</strong></p>
               <p>首・背中・肩甲骨の動きや身体を支える働き、座る・腕を上げる・物を持つといった動作まで確認することです。</p>
             </div>
-            <div class="shoulder-cycle" aria-label="肩こりの悪循環の一例">
-              <div class="shoulder-cycle__item"><i data-lucide="monitor" aria-hidden="true"></i><span>姿勢や作業で負担がかかる</span></div>
-              <span class="shoulder-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
-              <div class="shoulder-cycle__item"><i data-lucide="activity" aria-hidden="true"></i><span>首・肩が緊張する</span></div>
-              <span class="shoulder-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
-              <div class="shoulder-cycle__item"><i data-lucide="triangle-alert" aria-hidden="true"></i><span>重さや張りを感じる</span></div>
-              <span class="shoulder-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
-              <div class="shoulder-cycle__item"><i data-lucide="person-standing" aria-hidden="true"></i><span>力を入れて身体を固める</span></div>
-              <span class="shoulder-cycle__arrow" aria-hidden="true"><i data-lucide="rotate-cw"></i></span>
-              <div class="shoulder-cycle__item shoulder-cycle__item--last"><i data-lucide="refresh-cw" aria-hidden="true"></i><span>さらに首・肩へ負担が集まる</span></div>
+            <div class="shoulder-cycle symptom-cycle" role="list" aria-label="肩こりの悪循環の一例">
+              <div class="shoulder-cycle__item symptom-cycle__item" role="listitem"><i data-lucide="monitor" aria-hidden="true"></i><span>姿勢や作業で負担がかかる</span></div>
+              <span class="shoulder-cycle__arrow symptom-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-down"></i></span>
+              <div class="shoulder-cycle__item symptom-cycle__item" role="listitem"><i data-lucide="activity" aria-hidden="true"></i><span>首・肩が緊張する</span></div>
+              <span class="shoulder-cycle__arrow symptom-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-down"></i></span>
+              <div class="shoulder-cycle__item symptom-cycle__item" role="listitem"><i data-lucide="triangle-alert" aria-hidden="true"></i><span>重さや張りを感じる</span></div>
+              <span class="shoulder-cycle__arrow symptom-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-down"></i></span>
+              <div class="shoulder-cycle__item symptom-cycle__item" role="listitem"><i data-lucide="person-standing" aria-hidden="true"></i><span>力を入れて身体を固める</span></div>
+              <span class="shoulder-cycle__arrow symptom-cycle__arrow" aria-hidden="true"><i data-lucide="arrow-down"></i></span>
+              <div class="shoulder-cycle__item symptom-cycle__item" role="listitem"><i data-lucide="refresh-cw" aria-hidden="true"></i><span>さらに首・肩へ負担が集まる</span></div>
+            <p class="symptom-cycle__loop-note"><i data-lucide="rotate-cw" aria-hidden="true"></i><span>?????????????????????????????</span></p>
             </div>
           </div>
         </div>

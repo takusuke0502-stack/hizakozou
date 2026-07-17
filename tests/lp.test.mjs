@@ -2132,6 +2132,34 @@ test("all symptom detail pages use the lower-back troubles-check design", () => 
   }
 });
 
+test("all symptom detail pages use the readable numbered cycle flow", () => {
+  const symptomDir = path.join(repoRoot, "symptoms");
+  const detailPages = readdirSync(symptomDir)
+    .filter((name) => name.endsWith(".html") && name !== "index.html")
+    .sort();
+  const cycleCss = readFileSync(path.join(symptomDir, "site-cycle-flow.css"), "utf8");
+
+  assert.equal(detailPages.length, 24, "the complete symptom detail page set should be covered");
+  assert.match(cycleCss, /\.symptom-cycle\.symptom-cycle\s*\{[\s\S]*grid-template-columns:\s*minmax\(0, 1fr\);/);
+  assert.match(cycleCss, /counter-reset:\s*symptom-cycle-step;/);
+  assert.match(cycleCss, /\.symptom-cycle \.symptom-cycle__item::before\s*\{[\s\S]*counter\(symptom-cycle-step\)/);
+  assert.match(cycleCss, /\.symptom-cycle \.symptom-cycle__arrow svg\s*\{[\s\S]*transform:\s*none;/);
+  assert.match(cycleCss, /@media \(max-width:\s*767px\)/);
+
+  for (const fileName of detailPages) {
+    const pageHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
+    const itemMatches = pageHtml.match(/class="[^"]*\bsymptom-cycle__item\b[^"]*" role="listitem"/g) ?? [];
+    const arrowMatches = pageHtml.match(/class="[^"]*\bsymptom-cycle__arrow\b[^"]*"/g) ?? [];
+    const noteMatches = pageHtml.match(/class="[^"]*\bsymptom-cycle__loop-note\b[^"]*"/g) ?? [];
+
+    assert.match(pageHtml, /<link rel="stylesheet" href="site-cycle-flow\.css">/, `${fileName} should load the shared cycle styles`);
+    assert.match(pageHtml, /class="[^"]*\bsymptom-cycle\b[^"]*" role="list" aria-label="[^"]+"/, `${fileName} should expose the cycle as a list`);
+    assert.equal(itemMatches.length, 5, `${fileName} should show five numbered cycle steps`);
+    assert.equal(arrowMatches.length, 4, `${fileName} should show four downward connectors`);
+    assert.equal(noteMatches.length, 1, `${fileName} should explain that the flow may repeat`);
+  }
+});
+
 test("symptom pages avoid strong medical guarantee wording", () => {
   const symptomDir = path.join(repoRoot, "symptoms");
   const strongPatterns = [
