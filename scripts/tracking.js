@@ -11,6 +11,7 @@
     ...(config.conversionLabels || {})
   };
   const hasGoogleTag = Boolean(ga4MeasurementId || googleAdsConversionId);
+  const sentArticleEvents = new Set();
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag() {
@@ -192,6 +193,159 @@
     );
   }
 
+  function getArticleSlug() {
+    const match = window.location.pathname.match(/\/blog\/posts\/([^/]+)\/?$/);
+    return match ? decodeURIComponent(match[1]) : "";
+  }
+
+  function getArticleCategory() {
+    return (document.querySelector(".article-card .article-meta .pill")?.textContent || "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function getArticleDeviceType() {
+    return window.matchMedia?.("(max-width: 767px)").matches ? "smartphone" : "pc";
+  }
+
+  function getArticleTargetSlug(href) {
+    try {
+      const url = new URL(href, window.location.href);
+      const blogMatch = url.pathname.match(/\/blog\/posts\/([^/]+)\/?$/);
+      if (blogMatch) return decodeURIComponent(blogMatch[1]);
+
+      const symptomMatch = url.pathname.match(/\/symptoms\/([^/]+?)(?:\.html)?\/?$/);
+      if (symptomMatch) return decodeURIComponent(symptomMatch[1]);
+
+      if (url.hash) return decodeURIComponent(url.hash.slice(1));
+
+      const pathName = url.pathname.replace(/\/+$/, "").split("/").pop() || "";
+      return decodeURIComponent(pathName.replace(/\.html$/, ""));
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function getArticleLinkPosition(link) {
+    if (link.closest("[data-article-toc]")) return "toc";
+    if (link.closest(".article-trust-panel")) return "staff_profile";
+    if (link.closest(".article-related")) return "related_articles";
+    if (link.closest(".article-mid-cta")) return "article_mid_cta";
+    if (link.closest(".article-side")) return "article_side";
+    if (link.closest(".pricing-cta")) return "article_end_cta";
+    if (link.closest(".article-readable-lead")) return "article_lead";
+    if (link.closest(".article-readable-overview")) return "article_overview";
+    if (link.closest(".faq-block")) return "article_faq";
+    if (link.closest(".article-section--symptoms")) return "related_symptoms";
+    if (link.closest(".article-content")) return "article_body";
+    return getCtaLocation(link) || "article_page";
+  }
+
+  function isInternalArticleLink(href) {
+    try {
+      const url = new URL(href, window.location.href);
+      return ["http:", "https:", "file:"].includes(url.protocol) && url.origin === window.location.origin;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function buildArticleEventParams(options = {}) {
+    return {
+      article_slug: getArticleSlug(),
+      article_category: getArticleCategory(),
+      target_slug: options.targetSlug || getArticleSlug(),
+      link_position: options.linkPosition || "article_page",
+      device_type: getArticleDeviceType(),
+      link_url: options.linkUrl,
+      link_text: options.linkText,
+      scroll_percent: options.scrollPercent,
+      content_group: "blog_article"
+    };
+  }
+
+  function trackArticleEventOnce(eventName, options = {}) {
+    if (!getArticleSlug() || sentArticleEvents.has(eventName)) return false;
+
+    const sent = window.hkTrackEvent(eventName, buildArticleEventParams(options));
+    if (sent) sentArticleEvents.add(eventName);
+    return sent;
+  }
+
+  function trackArticleLink(link, href, text) {
+    if (!getArticleSlug()) return;
+
+    const commonOptions = {
+      targetSlug: getArticleTargetSlug(href),
+      linkPosition: getArticleLinkPosition(link),
+      linkUrl: href,
+      linkText: text
+    };
+
+    if (isLineLink(href, text) && link.closest(".article-content, .article-side, .pricing-cta")) {
+      trackArticleEventOnce("article_line_click", commonOptions);
+      return;
+    }
+
+    if (link.closest("[data-article-toc]")) {
+      trackArticleEventOnce("article_toc_click", commonOptions);
+      return;
+    }
+
+    if (link.closest(".article-trust-panel") && /\/staff(?:\.html)?\/?(?:[?#].*)?$/.test(href)) {
+      trackArticleEventOnce("article_staff_profile_click", commonOptions);
+      return;
+    }
+
+    if (link.closest(".article-related")) {
+      trackArticleEventOnce("article_related_click", commonOptions);
+      return;
+    }
+
+    if (link.closest(".article-content") && isInternalArticleLink(href)) {
+      trackArticleEventOnce("article_internal_link_click", commonOptions);
+    }
+  }
+
+  function initializeArticleTracking() {
+    if (!getArticleSlug() || !document.body.classList.contains("article-page")) return;
+
+    trackArticleEventOnce("article_view", { linkPosition: "page_load" });
+
+    const article = document.querySelector(".article-content");
+    if (!article) return;
+
+    let frame = 0;
+    const measureReadDepth = () => {
+      frame = 0;
+      const rect = article.getBoundingClientRect();
+      const articleTop = rect.top + window.scrollY;
+      const articleHeight = Math.max(rect.height, article.scrollHeight, 1);
+      const viewedHeight = window.scrollY + window.innerHeight - articleTop;
+      const progress = Math.max(0, Math.min(1, viewedHeight / articleHeight));
+
+      if (progress >= 0.5) {
+        trackArticleEventOnce("article_scroll_50", {
+          linkPosition: "article_body",
+          scrollPercent: 50
+        });
+      }
+      if (progress >= 0.9) {
+        trackArticleEventOnce("article_scroll_90", {
+          linkPosition: "article_body",
+          scrollPercent: 90
+        });
+      }
+    };
+    const requestReadDepthMeasure = () => {
+      if (!frame) frame = window.requestAnimationFrame(measureReadDepth);
+    };
+
+    window.addEventListener("scroll", requestReadDepthMeasure, { passive: true });
+    window.addEventListener("resize", requestReadDepthMeasure);
+    measureReadDepth();
+  }
+
   function getTargetSymptomSlug(href) {
     const match = href.match(/(?:^|\/)([^/?#]+?)(?:\.html)?(?:[?#].*)?$/);
     if (!match) return "";
@@ -236,6 +390,8 @@
       const text = (link.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
       const ctaLocation = getCtaLocation(link);
 
+      trackArticleLink(link, href, text);
+
       if (href.toLowerCase().startsWith("tel:")) {
         window.hkTrackConversion("phone", { linkUrl: href, linkText: text, ctaLocation });
         return;
@@ -260,6 +416,8 @@
     },
     { capture: true }
   );
+
+  initializeArticleTracking();
 
   if (/\/thanks(?:\.html)?$/.test(window.location.pathname.replace(/\/+$/, ""))) {
     window.hkTrackConversion("thanks");

@@ -961,6 +961,41 @@ test("tracking runtime wires GA4 page views and Google Ads conversion events", (
   assert.match(trackingJs, /getCtaLocation/);
 });
 
+test("blog article tracking records Phase 3 engagement once per page view", () => {
+  const articleEvents = [
+    "article_view",
+    "article_scroll_50",
+    "article_scroll_90",
+    "article_toc_click",
+    "article_internal_link_click",
+    "article_related_click",
+    "article_staff_profile_click",
+    "article_line_click"
+  ];
+
+  for (const eventName of articleEvents) {
+    assert.match(trackingJs, new RegExp(escapeRegExp(eventName)), `${eventName} should be wired`);
+  }
+
+  assert.match(trackingJs, /const sentArticleEvents = new Set\(\)/);
+  assert.match(trackingJs, /sentArticleEvents\.has\(eventName\)/);
+  assert.match(trackingJs, /sentArticleEvents\.add\(eventName\)/);
+  assert.match(trackingJs, /article_slug:/);
+  assert.match(trackingJs, /article_category:/);
+  assert.match(trackingJs, /target_slug:/);
+  assert.match(trackingJs, /link_position:/);
+  assert.match(trackingJs, /device_type:/);
+  assert.match(trackingJs, /scroll_percent:/);
+  assert.match(trackingJs, /getArticleDeviceType/);
+  assert.match(trackingJs, /"smartphone" : "pc"/);
+  assert.match(trackingJs, /progress >= 0\.5/);
+  assert.match(trackingJs, /progress >= 0\.9/);
+  assert.match(trackingJs, /link\.closest\("\[data-article-toc\]"\)/);
+  assert.match(trackingJs, /link\.closest\("\.article-trust-panel"\)/);
+  assert.match(trackingJs, /link\.closest\("\.article-related"\)/);
+  assert.match(trackingJs, /link\.closest\("\.article-content"\) && isInternalArticleLink\(href\)/);
+});
+
 test("symptom detail pages use one accessible H1 and omit retired FAQPage schema", () => {
   const symptomDir = path.join(repoRoot, "symptoms");
   const detailPages = readdirSync(symptomDir).filter((name) => name.endsWith(".html") && name !== "index.html");
