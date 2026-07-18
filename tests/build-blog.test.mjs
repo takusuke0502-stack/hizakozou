@@ -43,6 +43,8 @@ const posts = [
     description: "肩こりと呼吸を整理します。",
     date: "2026-04-18",
     eyecatch: "/image/medical-interview.webp",
+    tags: ["肩こり"],
+    relatedSymptoms: [{ href: "/symptoms/shoulder-stiffness.html", label: "肩こり" }],
     category: categories.get("exercise-therapy")
   },
   {
@@ -94,34 +96,37 @@ ${educationStyles}
   assert.match(output, /\.sample-education\{color:#234d24\}/);
 });
 
-test("blog index starts with compact search filters and article lists", () => {
+test("blog index uses one filterable article list without duplicated category cards", () => {
   const html = buildIndexContent(site, posts, categories);
 
-  assert.match(html, /column-search-panel/);
-  assert.match(html, /placeholder="キーワードを入力"/);
-  assert.match(html, /column-filter/);
-  assert.match(html, /目的から探す/);
-  assert.match(html, /#category-lower-back-pain">腰の痛み/);
-  assert.match(html, /#category-foot-walking">足・歩き方/);
-  assert.match(html, /#category-exercise-therapy">セルフケア/);
-  assert.match(html, /症状や部位から探す/);
+  assert.match(html, /data-blog-filter-form/);
+  assert.match(html, /placeholder="例：坐骨神経痛、歩くと痛い"/);
+  assert.match(html, /data-blog-category/);
+  assert.match(html, /<option value="lower-back-pain">腰の痛み<\/option>/);
+  assert.match(html, /<option value="foot-walking">足・歩き方<\/option>/);
+  assert.match(html, /data-blog-symptom/);
+  assert.match(html, /<option value="\/symptoms\/shoulder-stiffness\.html">肩こり<\/option>/);
+  assert.match(html, /data-blog-search/);
+  assert.match(html, /data-blog-result-count/);
   assert.match(html, /blog-card-grid/);
   assert.match(html, /article-list-item--card/);
   assert.match(html, /blog-index-sequence/);
   assert.match(html, /article-list-item__date/);
+  assert.match(html, /すべての記事/);
   assert.doesNotMatch(html, /hero-block/);
   assert.doesNotMatch(html, /hero-actions/);
+  assert.doesNotMatch(html, /column-filter/);
+  assert.doesNotMatch(html, /category-sections/);
+  assert.equal((html.match(/posts\/shoulder-stiffness-posture-breathing\//g) ?? []).length, 1);
   assert.doesNotMatch(html, /膝痛専門 お役立ち情報一覧/);
   assert.doesNotMatch(html, /まず読む3本/);
   assert.doesNotMatch(html, /category-section--recommended/);
 
-  const recentIndex = html.indexOf("新着記事");
   const searchIndex = html.indexOf("column-search-panel");
-  const categoryIndex = html.indexOf("category-sections");
+  const articleIndex = html.indexOf("すべての記事");
   assert.ok(searchIndex > -1, "search panel should exist");
-  assert.ok(recentIndex > -1, "recent heading should exist");
-  assert.ok(searchIndex < recentIndex, "search panel should appear before article lists");
-  assert.ok(recentIndex < categoryIndex, "recent posts should appear before category sections");
+  assert.ok(articleIndex > -1, "article heading should exist");
+  assert.ok(searchIndex < articleIndex, "search panel should appear before the article list");
 });
 
 test("blog index uses the same taskbar links as the LP", () => {
@@ -318,7 +323,7 @@ test("renderBody converts a Markdown image into a responsive figure", () => {
   assert.ok(html.indexOf("article-body-figure") < html.indexOf("画像の後の文章です"));
 });
 
-test("readable-v3 keeps the readable flow and adds its own layout hooks", () => {
+test("readable-v3 adds a mobile disclosure TOC and text-only related articles", () => {
   const html = buildPostContent(site, {
     title: "読みやすい新レイアウト",
     description: "スマートフォンとPCで読みやすい記事です。",
@@ -336,13 +341,19 @@ test("readable-v3 keeps the readable flow and adds its own layout hooks", () => 
     relatedSymptoms: [],
     parentSymptom: "/symptoms/knee-osteoarthritis.html",
     cta: { href: "https://lin.ee/X01F2mP", label: "LINEで相談する", note: "相談できます。" }
-  }, []);
+  }, [posts[1], posts[2]]);
 
   assert.match(html, /article-layout--readable-v3/);
   assert.match(html, /article-content--readable-v3/);
+  assert.match(html, /<details class="article-toc article-toc--disclosure">/);
+  assert.match(html, /<nav aria-label="この記事の目次" data-article-toc>/);
+  assert.match(html, /data-toc-link/);
   assert.match(html, /readable-v3-check-hero-480\.webp 480w/);
   assert.match(html, /alt="椅子に座って身体の状態を確認する様子"/);
   assert.match(html, /href="\/symptoms\/knee-osteoarthritis\.html">関連する症状案内を見る/);
+  assert.match(html, /readable-related-text-list/);
+  assert.match(html, /膝は治らないと思っていませんか？/);
+  assert.doesNotMatch(html, /readable-related-card__thumb/);
 });
 
 test("selectBlogRelatedPosts prioritizes frontmatter slugs and rejects missing slugs", () => {
@@ -738,6 +749,32 @@ test("blog CSS keeps the readable article side rail scrollable within the viewpo
 
   assert.match(css, /\.article-layout--readable \.article-side\s*{[^}]*position:\s*sticky;[^}]*top:\s*88px;[^}]*max-height:\s*calc\(100vh - 104px\);[^}]*overflow-y:\s*auto;[^}]*overscroll-behavior:\s*contain;/s);
   assert.match(css, /@media \(max-width:\s*1024px\)\s*{[\s\S]*?\.article-layout--readable \.article-side\s*{[^}]*position:\s*static;[^}]*max-height:\s*none;[^}]*overflow:\s*visible;/s);
+});
+
+test("Phase 2 CSS provides separate readable-v3 desktop and mobile reading layouts", () => {
+  const css = readFileSync(new URL("../blog/assets/blog.css", import.meta.url), "utf8");
+
+  assert.match(css, /BLOG_PHASE2_START/);
+  assert.match(css, /\.article-layout--readable-v3\s*\{[^}]*grid-template-columns:\s*240px minmax\(0,\s*720px\);[^}]*gap:\s*48px;[^}]*max-width:\s*1080px;/s);
+  assert.match(css, /\.article-card--readable-v3 \.article-card__body\s*\{[^}]*position:\s*static;/s);
+  assert.match(css, /\.article-toc--disclosure\s*\{[^}]*display:\s*none;/s);
+  assert.match(css, /@media \(max-width:\s*1023px\)\s*\{[\s\S]*?\.article-layout--readable-v3 \.article-side\s*\{[^}]*display:\s*none;/s);
+  assert.match(css, /@media \(max-width:\s*767px\)\s*\{[\s\S]*?\.article-content--readable-v3 p,[\s\S]*?font-size:\s*1\.0625rem;[^}]*line-height:\s*1\.9;/s);
+  assert.match(css, /\.article-content--readable-v3 \.caution-box[\s\S]*?border-left:\s*4px solid #c88b5a;/s);
+  assert.match(css, /\.readable-related-text-list\s*\{/);
+  assert.match(css, /\.category-section--all \.article-list-item--card,[\s\S]*?box-shadow:\s*none;/s);
+});
+
+test("Phase 2 templates include article TOC tracking and index filters", () => {
+  const postTemplate = readFileSync(new URL("../templates/blog-post-template.html", import.meta.url), "utf8");
+  const indexTemplate = readFileSync(new URL("../templates/blog-index-template.html", import.meta.url), "utf8");
+
+  assert.match(postTemplate, /\[data-article-toc\] a\[href\^="#"\]/);
+  assert.match(postTemplate, /aria-current', 'location'/);
+  assert.match(indexTemplate, /\[data-blog-filter-form\]/);
+  assert.match(indexTemplate, /matchesCategory/);
+  assert.match(indexTemplate, /matchesSymptom/);
+  assert.match(indexTemplate, /visibleCount/);
 });
 
 test("blog CSS styles FAQ as a static Q and A block", () => {

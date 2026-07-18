@@ -198,49 +198,49 @@
           </section>
         </div>
         <aside class="article-side">
-          <nav class="article-toc article-toc--side" aria-label="記事の目次">
+          <nav class="article-toc article-toc--side" aria-label="記事の目次" data-article-toc>
             <p class="eyebrow">Contents</p>
             <h2>記事の目次</h2>
             <ol>
 
             <li>
-              <a href="#section-1">
+              <a href="#section-1" data-toc-link>
                 <span class="article-toc__number">01</span>
                 <span>はじめに：その「諦め」は、本当に正しいですか</span>
               </a>
             </li>
             <li>
-              <a href="#section-2">
+              <a href="#section-2" data-toc-link>
                 <span class="article-toc__number">02</span>
                 <span>「治らない」と言われる理由は、大きく3つあります</span>
               </a>
             </li>
             <li>
-              <a href="#section-3">
+              <a href="#section-3" data-toc-link>
                 <span class="article-toc__number">03</span>
                 <span>では、何が変わると「楽になる」のか</span>
               </a>
             </li>
             <li>
-              <a href="#section-4">
+              <a href="#section-4" data-toc-link>
                 <span class="article-toc__number">04</span>
                 <span>「動くのが怖い」という気持ち自体が、痛みを長引かせる</span>
               </a>
             </li>
             <li>
-              <a href="#section-5">
+              <a href="#section-5" data-toc-link>
                 <span class="article-toc__number">05</span>
                 <span>「変わる人」と「変わらない人」の違いは何か</span>
               </a>
             </li>
             <li>
-              <a href="#section-6">
+              <a href="#section-6" data-toc-link>
                 <span class="article-toc__number">06</span>
                 <span>実際に変わった方のお声</span>
               </a>
             </li>
             <li>
-              <a href="#section-7">
+              <a href="#section-7" data-toc-link>
                 <span class="article-toc__number">07</span>
                 <span>最後に：「諦め」は症状ではなく、情報不足から来ることが多い</span>
               </a>
@@ -355,6 +355,34 @@
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') setMenuState(false);
       });
+
+      const tocLinks = Array.from(document.querySelectorAll('[data-article-toc] a[href^="#"]'));
+      const headings = [...new Set(tocLinks
+        .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
+        .filter(Boolean))];
+      let tocFrame = 0;
+      const updateCurrentToc = () => {
+        tocFrame = 0;
+        if (!headings.length) return;
+        const threshold = Math.min(180, window.innerHeight * 0.3);
+        let current = headings[0];
+        for (const heading of headings) {
+          if (heading.getBoundingClientRect().top <= threshold) current = heading;
+        }
+        tocLinks.forEach((link) => {
+          if (link.hash === `#${current.id}`) {
+            link.setAttribute('aria-current', 'location');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+      };
+      const requestTocUpdate = () => {
+        if (!tocFrame) tocFrame = window.requestAnimationFrame(updateCurrentToc);
+      };
+      window.addEventListener('scroll', requestTocUpdate, { passive: true });
+      window.addEventListener('resize', requestTocUpdate);
+      updateCurrentToc();
     })();
   </script>
 </body>

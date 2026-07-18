@@ -194,49 +194,49 @@
           </section>
         </div>
         <aside class="article-side">
-          <nav class="article-toc article-toc--side" aria-label="記事の目次">
+          <nav class="article-toc article-toc--side" aria-label="記事の目次" data-article-toc>
             <p class="eyebrow">Contents</p>
             <h2>記事の目次</h2>
             <ol>
 
             <li>
-              <a href="#section-1">
+              <a href="#section-1" data-toc-link>
                 <span class="article-toc__number">01</span>
                 <span>ひざこぞう式整体は3つのステップで体を見ていきます</span>
               </a>
             </li>
             <li>
-              <a href="#section-2">
+              <a href="#section-2" data-toc-link>
                 <span class="article-toc__number">02</span>
                 <span>こんな方に知っておいていただきたい考え方です</span>
               </a>
             </li>
             <li>
-              <a href="#section-3">
+              <a href="#section-3" data-toc-link>
                 <span class="article-toc__number">03</span>
                 <span>1. 緩める：まず動きやすい状態をつくる</span>
               </a>
             </li>
             <li>
-              <a href="#section-4">
+              <a href="#section-4" data-toc-link>
                 <span class="article-toc__number">04</span>
                 <span>2. 鍛える：必要な筋肉を目覚めさせる</span>
               </a>
             </li>
             <li>
-              <a href="#section-5">
+              <a href="#section-5" data-toc-link>
                 <span class="article-toc__number">05</span>
                 <span>3. 動作改善：日常の使い方へつなげる</span>
               </a>
             </li>
             <li>
-              <a href="#section-6">
+              <a href="#section-6" data-toc-link>
                 <span class="article-toc__number">06</span>
                 <span>原因と結果の両方に向き合います</span>
               </a>
             </li>
             <li>
-              <a href="#section-7">
+              <a href="#section-7" data-toc-link>
                 <span class="article-toc__number">07</span>
                 <span>膝痛・腰痛・坐骨神経痛にもつながる考え方です</span>
               </a>
@@ -351,6 +351,34 @@
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') setMenuState(false);
       });
+
+      const tocLinks = Array.from(document.querySelectorAll('[data-article-toc] a[href^="#"]'));
+      const headings = [...new Set(tocLinks
+        .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
+        .filter(Boolean))];
+      let tocFrame = 0;
+      const updateCurrentToc = () => {
+        tocFrame = 0;
+        if (!headings.length) return;
+        const threshold = Math.min(180, window.innerHeight * 0.3);
+        let current = headings[0];
+        for (const heading of headings) {
+          if (heading.getBoundingClientRect().top <= threshold) current = heading;
+        }
+        tocLinks.forEach((link) => {
+          if (link.hash === `#${current.id}`) {
+            link.setAttribute('aria-current', 'location');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+      };
+      const requestTocUpdate = () => {
+        if (!tocFrame) tocFrame = window.requestAnimationFrame(updateCurrentToc);
+      };
+      window.addEventListener('scroll', requestTocUpdate, { passive: true });
+      window.addEventListener('resize', requestTocUpdate);
+      updateCurrentToc();
     })();
   </script>
 </body>

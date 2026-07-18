@@ -2167,12 +2167,33 @@ function buildPostSeo(site, post) {
 
 export function buildIndexContent(site, posts, categoryMap) {
   const categories = [...categoryMap.values()].filter((category) => !BLOG_INDEX_HIDDEN_CATEGORIES.has(category.slug));
-  const recentPosts = posts.slice(0, 8);
-  const renderListItem = (post) => `
+  const categorySlugs = new Set(categories.map((category) => category.slug));
+  const visiblePosts = posts.filter((post) => categorySlugs.has(post.category.slug));
+  const symptomMap = new Map();
+  for (const post of visiblePosts) {
+    for (const symptom of Array.isArray(post.relatedSymptoms) ? post.relatedSymptoms : []) {
+      if (symptom.href && symptom.label && !symptomMap.has(symptom.href)) {
+        symptomMap.set(symptom.href, symptom.label);
+      }
+    }
+  }
+  const symptomOptions = [...symptomMap.entries()].sort((left, right) => left[1].localeCompare(right[1], "ja"));
+  const renderListItem = (post) => {
+    const relatedSymptoms = Array.isArray(post.relatedSymptoms) ? post.relatedSymptoms : [];
+    const symptomValues = relatedSymptoms.map((item) => item.href).filter(Boolean);
+    const searchText = [
+      post.title,
+      post.description,
+      post.category.name,
+      ...(Array.isArray(post.tags) ? post.tags : []),
+      ...relatedSymptoms.map((item) => item.label)
+    ].filter(Boolean).join(" ");
+
+    return `
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/${post.slug}/">
+      <a class="article-list-item__link" href="posts/${post.slug}/" data-blog-card data-category="${escapeHtml(post.category.slug)}" data-symptoms="${escapeHtml(symptomValues.join(" "))}" data-search="${escapeHtml(searchText)}">
         <div class="article-list-item__thumb">
-          <img src="..${post.eyecatch}" alt="${escapeHtml(post.title)}" loading="lazy" decoding="async" width="320" height="220">
+          <img src="..${post.eyecatch}" alt="${escapeHtml(post.heroAlt || post.title)}" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -2188,27 +2209,15 @@ export function buildIndexContent(site, posts, categoryMap) {
       </a>
     </article>
   `;
+  };
 
-  const recentList = recentPosts.map(renderListItem).join("");
-  const categoryLinks = categories.map((category) => `
-    <a class="column-filter__link" href="#category-${escapeHtml(category.slug)}">${escapeHtml(category.name)}</a>
+  const categoryOptions = categories.map((category) => `
+    <option value="${escapeHtml(category.slug)}">${escapeHtml(category.name)}</option>
   `).join("");
-  const categorySections = categories.map((category) => `
-    <section class="category-section category-section--list" id="category-${escapeHtml(category.slug)}">
-      <div class="category-section__header category-section__header--list">
-        <div>
-          <p class="eyebrow">Category</p>
-          <h3>${escapeHtml(category.name)}</h3>
-        </div>
-        <p class="category-section__description">${escapeHtml(category.description)}</p>
-      </div>
-      <div class="article-list blog-card-grid">
-        ${posts
-          .filter((post) => post.category.slug === category.slug)
-          .map(renderListItem).join("")}
-      </div>
-    </section>
+  const symptomSelectOptions = symptomOptions.map(([href, label]) => `
+    <option value="${escapeHtml(href)}">${escapeHtml(label)}</option>
   `).join("");
+  const articleList = visiblePosts.map(renderListItem).join("");
 
   return `
     <section class="section-block blog-column-index">
@@ -2218,40 +2227,42 @@ export function buildIndexContent(site, posts, categoryMap) {
           <h1>足腰・慢性痛の読みもの</h1>
           <p>腰痛、坐骨神経痛、股関節痛、膝の痛みなど、足腰の不調でお悩みの方へ。来院前に知っておきたい身体の見方やセルフケアの考え方を、整体院ひざこぞうがわかりやすく整理します。</p>
         </div>
-        <div class="column-search-panel" aria-label="コラム検索">
-          <form class="column-search" role="search" action="./" method="get">
-            <label class="sr-only" for="column-search-keyword">キーワードを入力</label>
-            <input id="column-search-keyword" class="column-search__input" type="search" name="q" placeholder="キーワードを入力">
-            <button class="column-search__button" type="submit" aria-label="検索する">⌕</button>
-          </form>
-          <details class="column-filter">
-            <summary>目的から探す<span aria-hidden="true">＋</span></summary>
-            <div class="column-filter__body">
-              <a class="column-filter__link" href="#category-knee-pain">膝の痛み</a>
-              <a class="column-filter__link" href="#category-lower-back-pain">腰の痛み</a>
-              <a class="column-filter__link" href="#category-foot-walking">足・歩き方</a>
-              <a class="column-filter__link" href="#category-exercise-therapy">セルフケア</a>
-            </div>
-          </details>
-          <details class="column-filter">
-            <summary>症状や部位から探す<span aria-hidden="true">＋</span></summary>
-            <div class="column-filter__body">
-              ${categoryLinks}
-            </div>
-          </details>
-        </div>
-        <div class="blog-index-sequence">
-          <section class="category-section category-section--list category-section--recent">
-          <div class="category-section__header category-section__header--list">
-            <div>
-              <p class="eyebrow">Recent</p>
-              <h3>新着記事</h3>
-            </div>
-            <p class="category-section__description">まずは最近追加した記事から確認したい方のために、新しい順でまとめています。</p>
+        <form class="column-search-panel blog-index-controls" role="search" data-blog-filter-form>
+          <div class="column-search">
+            <label class="sr-only" for="column-search-keyword">記事をキーワードで検索</label>
+            <input id="column-search-keyword" class="column-search__input" type="search" name="q" placeholder="例：坐骨神経痛、歩くと痛い" autocomplete="off" data-blog-search>
+            <button class="column-search__button" type="submit">検索</button>
           </div>
-          <div class="article-list blog-card-grid">${recentList}</div>
+          <div class="blog-index-controls__filters">
+            <label class="blog-index-select">
+              <span>カテゴリー</span>
+              <select data-blog-category>
+                <option value="">すべて</option>${categoryOptions}
+              </select>
+            </label>
+            <label class="blog-index-select">
+              <span>症状・部位</span>
+              <select data-blog-symptom>
+                <option value="">すべて</option>${symptomSelectOptions}
+              </select>
+            </label>
+            <button class="blog-index-controls__reset" type="reset" data-blog-filter-reset>条件をクリア</button>
+          </div>
+        </form>
+        <div class="blog-index-sequence">
+          <section class="category-section category-section--list category-section--all" aria-labelledby="all-articles-title">
+            <div class="category-section__header category-section__header--list">
+              <div>
+                <p class="eyebrow">Articles</p>
+                <h2 id="all-articles-title">すべての記事</h2>
+              </div>
+              <p class="blog-index-result" role="status" aria-live="polite"><span data-blog-result-count>${visiblePosts.length}</span>件の記事を表示しています</p>
+            </div>
+            <div class="article-list blog-card-grid" data-blog-card-list>
+              ${articleList}
+            </div>
+            <p class="blog-index-empty" hidden data-blog-empty>条件に合う記事がありません。検索語や絞り込み条件を変えてお試しください。</p>
           </section>
-          <div class="category-sections">${categorySections}</div>
         </div>
       </div>
     </section>
@@ -2285,7 +2296,11 @@ export function buildPostContent(site, post, relatedPosts) {
     buildArticleMidCta(site, post),
     ...renderedSections.slice(midCtaIndex)
   ].join("");
-  const tocHtml = isReadableLayout ? "" : buildArticleToc(articleSections, "inline");
+  const tocHtml = isReadableV3
+    ? buildArticleToc(articleSections, "disclosure")
+    : isReadableLayout
+      ? ""
+      : buildArticleToc(articleSections, "inline");
   const sideTocHtml = buildArticleToc(articleSections, "side");
   const takeawaysHtml = isReadableLayout ? "" : buildArticleTakeaways(post);
   const readableOverviewHtml = isReadableLayout ? buildArticleReadableOverview(post, articleSections) : "";
@@ -2333,7 +2348,7 @@ export function buildPostContent(site, post, relatedPosts) {
 
   const relatedArticlesHtml = relatedPosts.length
     ? isReadableLayout
-      ? buildReadableRelatedArticlesSection(relatedPosts)
+      ? buildReadableRelatedArticlesSection(relatedPosts, { textOnly: isReadableV3 })
       : `
     <section class="section-block article-related">
       <div class="shell">
@@ -2535,7 +2550,31 @@ ${referenceItems}
           </section>`;
 }
 
-function buildReadableRelatedArticlesSection(relatedPosts) {
+function buildReadableRelatedArticlesSection(relatedPosts, { textOnly = false } = {}) {
+  if (textOnly) {
+    return `
+    <section class="section-block article-related article-related--readable article-related--text">
+      <div class="shell article-related__inner">
+        <div class="section-heading">
+          <p class="eyebrow">Related</p>
+          <h2>関連記事</h2>
+        </div>
+        <ul class="readable-related-text-list">
+          ${relatedPosts.map((item) => `
+            <li>
+              <a href="../${item.slug}/">
+                <span class="readable-related-text-list__category">${escapeHtml(item.category.name)}</span>
+                <strong>${escapeHtml(item.title)}</strong>
+                <span class="readable-related-text-list__arrow" aria-hidden="true">›</span>
+              </a>
+            </li>
+          `).join("")}
+        </ul>
+      </div>
+    </section>
+  `;
+  }
+
   return `
     <section class="section-block article-related article-related--readable">
       <div class="shell">
@@ -2573,7 +2612,7 @@ function buildArticleToc(sections, variant = "inline") {
     .filter((section) => section.heading && section.id)
     .map((section, index) => `
             <li>
-              <a href="#${escapeHtml(section.id)}">
+              <a href="#${escapeHtml(section.id)}" data-toc-link>
                 <span class="article-toc__number">${String(index + 1).padStart(2, "0")}</span>
                 <span>${escapeHtml(section.heading)}</span>
               </a>
@@ -2582,10 +2621,25 @@ function buildArticleToc(sections, variant = "inline") {
 
   if (!items) return "";
 
+  if (variant === "disclosure") {
+    return `<details class="article-toc article-toc--disclosure">
+            <summary>
+              <span>この記事の目次</span>
+              <span class="article-toc__state article-toc__state--closed" aria-hidden="true">開く</span>
+              <span class="article-toc__state article-toc__state--open" aria-hidden="true">閉じる</span>
+            </summary>
+            <nav aria-label="この記事の目次" data-article-toc>
+              <ol>
+${items}
+              </ol>
+            </nav>
+          </details>`;
+  }
+
   const className = variant === "side" ? "article-toc article-toc--side" : "article-toc article-toc--inline";
   const label = variant === "side" ? "記事の目次" : "この記事の目次";
 
-  return `<nav class="${className}" aria-label="${label}">
+  return `<nav class="${className}" aria-label="${label}" data-article-toc>
             <p class="eyebrow">Contents</p>
             <h2>${label}</h2>
             <ol>

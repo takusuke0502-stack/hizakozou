@@ -71,6 +71,34 @@
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') setMenuState(false);
       });
+
+      const tocLinks = Array.from(document.querySelectorAll('[data-article-toc] a[href^="#"]'));
+      const headings = [...new Set(tocLinks
+        .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
+        .filter(Boolean))];
+      let tocFrame = 0;
+      const updateCurrentToc = () => {
+        tocFrame = 0;
+        if (!headings.length) return;
+        const threshold = Math.min(180, window.innerHeight * 0.3);
+        let current = headings[0];
+        for (const heading of headings) {
+          if (heading.getBoundingClientRect().top <= threshold) current = heading;
+        }
+        tocLinks.forEach((link) => {
+          if (link.hash === `#${current.id}`) {
+            link.setAttribute('aria-current', 'location');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+      };
+      const requestTocUpdate = () => {
+        if (!tocFrame) tocFrame = window.requestAnimationFrame(updateCurrentToc);
+      };
+      window.addEventListener('scroll', requestTocUpdate, { passive: true });
+      window.addEventListener('resize', requestTocUpdate);
+      updateCurrentToc();
     })();
   </script>
 </body>

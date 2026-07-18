@@ -62,56 +62,95 @@
           <h1>足腰・慢性痛の読みもの</h1>
           <p>腰痛、坐骨神経痛、股関節痛、膝の痛みなど、足腰の不調でお悩みの方へ。来院前に知っておきたい身体の見方やセルフケアの考え方を、整体院ひざこぞうがわかりやすく整理します。</p>
         </div>
-        <div class="column-search-panel" aria-label="コラム検索">
-          <form class="column-search" role="search" action="./" method="get">
-            <label class="sr-only" for="column-search-keyword">キーワードを入力</label>
-            <input id="column-search-keyword" class="column-search__input" type="search" name="q" placeholder="キーワードを入力">
-            <button class="column-search__button" type="submit" aria-label="検索する">⌕</button>
-          </form>
-          <details class="column-filter">
-            <summary>目的から探す<span aria-hidden="true">＋</span></summary>
-            <div class="column-filter__body">
-              <a class="column-filter__link" href="#category-knee-pain">膝の痛み</a>
-              <a class="column-filter__link" href="#category-lower-back-pain">腰の痛み</a>
-              <a class="column-filter__link" href="#category-foot-walking">足・歩き方</a>
-              <a class="column-filter__link" href="#category-exercise-therapy">セルフケア</a>
-            </div>
-          </details>
-          <details class="column-filter">
-            <summary>症状や部位から探す<span aria-hidden="true">＋</span></summary>
-            <div class="column-filter__body">
-
-    <a class="column-filter__link" href="#category-knee-pain">膝の痛み</a>
-
-    <a class="column-filter__link" href="#category-lower-back-pain">腰の痛み</a>
-
-    <a class="column-filter__link" href="#category-hip-pain">股関節の痛み</a>
-
-    <a class="column-filter__link" href="#category-foot-walking">足・歩き方</a>
-
-    <a class="column-filter__link" href="#category-numbness">しびれ</a>
-
-    <a class="column-filter__link" href="#category-exercise-therapy">運動療法・セルフケア</a>
-
-    <a class="column-filter__link" href="#category-clinic-guidance">受診目安・通院</a>
-
-            </div>
-          </details>
-        </div>
-        <div class="blog-index-sequence">
-          <section class="category-section category-section--list category-section--recent">
-          <div class="category-section__header category-section__header--list">
-            <div>
-              <p class="eyebrow">Recent</p>
-              <h3>新着記事</h3>
-            </div>
-            <p class="category-section__description">まずは最近追加した記事から確認したい方のために、新しい順でまとめています。</p>
+        <form class="column-search-panel blog-index-controls" role="search" data-blog-filter-form>
+          <div class="column-search">
+            <label class="sr-only" for="column-search-keyword">記事をキーワードで検索</label>
+            <input id="column-search-keyword" class="column-search__input" type="search" name="q" placeholder="例：坐骨神経痛、歩くと痛い" autocomplete="off" data-blog-search>
+            <button class="column-search__button" type="submit">検索</button>
           </div>
-          <div class="article-list blog-card-grid">
+          <div class="blog-index-controls__filters">
+            <label class="blog-index-select">
+              <span>カテゴリー</span>
+              <select data-blog-category>
+                <option value="">すべて</option>
+    <option value="knee-pain">膝の痛み</option>
+
+    <option value="lower-back-pain">腰の痛み</option>
+
+    <option value="hip-pain">股関節の痛み</option>
+
+    <option value="foot-walking">足・歩き方</option>
+
+    <option value="numbness">しびれ</option>
+
+    <option value="exercise-therapy">運動療法・セルフケア</option>
+
+    <option value="clinic-guidance">受診目安・通院</option>
+
+              </select>
+            </label>
+            <label class="blog-index-select">
+              <span>症状・部位</span>
+              <select data-blog-symptom>
+                <option value="">すべて</option>
+    <option value="/symptoms/bowlegs-knee-pain.html">O脚・膝のゆがみ</option>
+
+    <option value="/symptoms/thoracic-outlet.html">胸郭出口症候群</option>
+
+    <option value="/symptoms/cervical-spondylosis.html">頚椎症</option>
+
+    <option value="/symptoms/">肩こり</option>
+
+    <option value="/symptoms/lower-back-pain.html">腰痛</option>
+
+    <option value="/symptoms/sciatica.html">坐骨神経痛</option>
+
+    <option value="/symptoms/carpal-tunnel.html">手根管症候群</option>
+
+    <option value="/symptoms/spinal-stenosis.html">脊柱管狭窄症</option>
+
+    <option value="/symptoms/ankle-stiffness-knee-pain.html">足首の硬さと膝痛</option>
+
+    <option value="/symptoms/plantar-fasciitis.html">足底筋膜炎</option>
+
+    <option value="/symptoms/meniscus-knee-pain.html">半月板損傷・膝の引っかかり</option>
+
+    <option value="/symptoms/knee-hyperextension.html">反張膝・膝が伸びすぎる</option>
+
+    <option value="/symptoms/knee-effusion.html">膝に水がたまる</option>
+
+    <option value="/symptoms/knee-lateral-pain.html">膝の外側の痛み</option>
+
+    <option value="/symptoms/knee-front-pain.html">膝の前側の痛み</option>
+
+    <option value="/symptoms/pes-anserine-bursitis.html">膝の内側の痛み</option>
+
+    <option value="/symptoms/knee-posterior-pain.html">膝の裏側の痛み</option>
+
+    <option value="/symptoms/hip-osteoarthritis.html">変形性股関節症</option>
+
+    <option value="/symptoms/knee-osteoarthritis.html">変形性膝関節症</option>
+
+              </select>
+            </label>
+            <button class="blog-index-controls__reset" type="reset" data-blog-filter-reset>条件をクリア</button>
+          </div>
+        </form>
+        <div class="blog-index-sequence">
+          <section class="category-section category-section--list category-section--all" aria-labelledby="all-articles-title">
+            <div class="category-section__header category-section__header--list">
+              <div>
+                <p class="eyebrow">Articles</p>
+                <h2 id="all-articles-title">すべての記事</h2>
+              </div>
+              <p class="blog-index-result" role="status" aria-live="polite"><span data-blog-result-count>40</span>件の記事を表示しています</p>
+            </div>
+            <div class="article-list blog-card-grid" data-blog-card-list>
+
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/sciatica-root-cause/">
+      <a class="article-list-item__link" href="posts/sciatica-root-cause/" data-blog-card data-category="numbness" data-symptoms="/symptoms/sciatica.html /symptoms/spinal-stenosis.html /symptoms/lower-back-pain.html" data-search="【健康コラム】お尻から太ももの裏がビリビリ…坐骨神経痛で確認したい腰・股関節・身体の使い方 お尻から太ももの裏のビリビリした痛みやしびれでお悩みの方へ。柏市あけぼのの整体院ひざこぞうが、坐骨神経痛が湿布やマッサージだけでは変わりにくい理由と、足腰専門整体の考え方を解説します。 しびれ 坐骨神経痛 足腰のしびれ 梨状筋 大腰筋 柏市 整体 坐骨神経痛 脊柱管狭窄症 腰痛">
         <div class="article-list-item__thumb">
-          <img src="../image/sciatica-symptom.webp" alt="【健康コラム】お尻から太ももの裏がビリビリ…坐骨神経痛で確認したい腰・股関節・身体の使い方" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/sciatica-symptom.webp" alt="【健康コラム】お尻から太ももの裏がビリビリ…坐骨神経痛で確認したい腰・股関節・身体の使い方" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -128,9 +167,9 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/knee-osteoarthritis-before-surgery-walking/">
+      <a class="article-list-item__link" href="posts/knee-osteoarthritis-before-surgery-walking/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/knee-effusion.html /symptoms/lower-back-pain.html /symptoms/hip-osteoarthritis.html" data-search="変形性膝関節症と言われた方へ｜手術前に見直したい歩き方 変形性膝関節症と言われて手術や将来が不安な方へ。膝だけでなく歩き方、股関節、足首の使い方から見直すポイントを柏市の整体院が整理します。 膝の痛み 変形性膝関節症 膝痛 歩き方 手術 柏市 整体 変形性膝関節症 膝に水がたまる 腰痛 変形性股関節症">
         <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-wide.webp" alt="変形性膝関節症と言われた方へ｜手術前に見直したい歩き方" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/knee-symptom-wide.webp" alt="変形性膝関節症と言われた方へ｜手術前に見直したい歩き方" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -147,9 +186,9 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/knee-medial-pain-difference/">
+      <a class="article-list-item__link" href="posts/knee-medial-pain-difference/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/pes-anserine-bursitis.html /symptoms/knee-osteoarthritis.html /symptoms/knee-effusion.html /symptoms/bowlegs-knee-pain.html /symptoms/meniscus-knee-pain.html" data-search="膝の内側が痛い原因は？鵞足炎・変形性膝関節症・神経痛の違い 膝の内側が痛い方へ。鵞足炎、変形性膝関節症、伏在神経の痛みなど、似ている症状の違いと相談の目安を柏市の整体院が整理します。 膝の痛み 膝の内側の痛み 鵞足炎 変形性膝関節症 伏在神経 柏市 膝の内側の痛み 変形性膝関節症 膝に水がたまる O脚・膝のゆがみ 半月板損傷・膝の引っかかり">
         <div class="article-list-item__thumb">
-          <img src="../image/knee-pain.webp" alt="膝の内側が痛い原因は？鵞足炎・変形性膝関節症・神経痛の違い" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/knee-pain.webp" alt="膝の内側が痛い原因は？鵞足炎・変形性膝関節症・神経痛の違い" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -166,9 +205,9 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/knee-effusion-walking-guide/">
+      <a class="article-list-item__link" href="posts/knee-effusion-walking-guide/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-effusion.html /symptoms/knee-osteoarthritis.html /symptoms/knee-posterior-pain.html" data-search="膝に水がたまるとき、歩いていい？運動量と受診目安を整体師が解説 膝に水がたまるときに歩いていいか迷う方へ。運動を控えたいサイン、再開の目安、整体で見る膝への負担を柏市の整体院が整理します。 膝の痛み 膝に水がたまる 膝痛 関節水腫 歩いていい 受診目安 膝に水がたまる 変形性膝関節症 膝の裏側の痛み">
         <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-close.webp" alt="膝に水がたまるとき、歩いていい？運動量と受診目安を整体師が解説" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/knee-symptom-close.webp" alt="膝に水がたまるとき、歩いていい？運動量と受診目安を整体師が解説" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -185,9 +224,9 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/kashiwa-station-knee-pain-guide/">
+      <a class="article-list-item__link" href="posts/kashiwa-station-knee-pain-guide/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/pes-anserine-bursitis.html /symptoms/knee-effusion.html /symptoms/knee-posterior-pain.html" data-search="柏駅周辺で膝痛に悩む方へ｜階段・歩き始め・正座がつらい原因 柏駅周辺で膝痛に悩む方へ。階段、歩き始め、正座、しゃがみ動作で痛む理由と、整体院ひざこぞうで確認するポイントを整理します。 膝の痛み 柏駅 柏市 膝痛 階段 歩き始め 正座 変形性膝関節症 膝の内側の痛み 膝に水がたまる 膝の裏側の痛み">
         <div class="article-list-item__thumb">
-          <img src="../image/kashiwa-seitai-hizakozou-main.webp" alt="柏駅周辺で膝痛に悩む方へ｜階段・歩き始め・正座がつらい原因" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/kashiwa-seitai-hizakozou-main.webp" alt="柏駅周辺で膝痛に悩む方へ｜階段・歩き始め・正座がつらい原因" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -204,9 +243,9 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/kashiwa-knee-pain-clinic-or-seitai/">
+      <a class="article-list-item__link" href="posts/kashiwa-knee-pain-clinic-or-seitai/" data-blog-card data-category="clinic-guidance" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/knee-effusion.html /symptoms/pes-anserine-bursitis.html /symptoms/knee-posterior-pain.html" data-search="柏市で膝が痛いとき、整形外科と整体はどちらに行くべき？ 柏市で膝痛があり、整形外科と整体のどちらに相談すべきか迷う方へ。受診を優先したい症状と、整体で確認できる動き方の問題を整理します。 受診目安・通院 膝痛 柏市 整形外科 整体 受診目安 変形性膝関節症 膝に水がたまる 膝の内側の痛み 膝の裏側の痛み">
         <div class="article-list-item__thumb">
-          <img src="../image/medical-interview.webp" alt="柏市で膝が痛いとき、整形外科と整体はどちらに行くべき？" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/medical-interview.webp" alt="柏市で膝が痛いとき、整形外科と整体はどちらに行くべき？" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -223,9 +262,9 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/hip-pain-while-walking/">
+      <a class="article-list-item__link" href="posts/hip-pain-while-walking/" data-blog-card data-category="hip-pain" data-symptoms="/symptoms/hip-osteoarthritis.html /symptoms/lower-back-pain.html /symptoms/knee-osteoarthritis.html" data-search="歩くと股関節が痛いときに見直したい歩幅と体重移動 歩行時に股関節が痛む方へ。歩幅、体重移動、骨盤の揺れ、膝や腰への負担との関係を柏市の整体院ひざこぞうが解説します。 股関節の痛み 股関節痛 歩行時痛 歩幅 体重移動 骨盤 変形性股関節症 腰痛 変形性膝関節症">
         <div class="article-list-item__thumb">
-          <img src="../image/hip-osteoarthritis-symptom.webp" alt="歩くと股関節が痛いときに見直したい歩幅と体重移動" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/hip-osteoarthritis-symptom.webp" alt="歩くと股関節が痛いときに見直したい歩幅と体重移動" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -242,465 +281,9 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/hip-pain-weight-bearing/">
+      <a class="article-list-item__link" href="posts/hip-pain-weight-bearing/" data-blog-card data-category="hip-pain" data-symptoms="/symptoms/hip-osteoarthritis.html /symptoms/lower-back-pain.html /symptoms/knee-osteoarthritis.html" data-search="足をつくと股関節が痛い原因は？荷重と骨盤の使い方を整体師が解説 足をついた瞬間に股関節がズキッと痛む方へ。荷重、骨盤、股関節まわりの筋肉の使い方を柏市の整体院ひざこぞうが解説します。 股関節の痛み 股関節痛 足をつくと痛い 荷重 骨盤 歩き方 変形性股関節症 腰痛 変形性膝関節症">
         <div class="article-list-item__thumb">
-          <img src="../image/hip-osteoarthritis-symptom.webp" alt="足をつくと股関節が痛い原因は？荷重と骨盤の使い方を整体師が解説" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">股関節の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">足をつくと股関節が痛い原因は？荷重と骨盤の使い方を整体師が解説</h3>
-          <p class="article-list-item__excerpt">足をついた瞬間に股関節がズキッと痛む方へ。荷重、骨盤、股関節まわりの筋肉の使い方を柏市の整体院ひざこぞうが解説します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-19">2026.4.19</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-  </div>
-          </section>
-          <div class="category-sections">
-    <section class="category-section category-section--list" id="category-knee-pain">
-      <div class="category-section__header category-section__header--list">
-        <div>
-          <p class="eyebrow">Category</p>
-          <h3>膝の痛み</h3>
-        </div>
-        <p class="category-section__description">階段、歩き始め、正座、腫れなど、膝まわりの不調を動作や場所から整理します。</p>
-      </div>
-      <div class="article-list blog-card-grid">
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/knee-osteoarthritis-before-surgery-walking/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-wide.webp" alt="変形性膝関節症と言われた方へ｜手術前に見直したい歩き方" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">変形性膝関節症と言われた方へ｜手術前に見直したい歩き方</h3>
-          <p class="article-list-item__excerpt">変形性膝関節症と言われて手術や将来が不安な方へ。膝だけでなく歩き方、股関節、足首の使い方から見直すポイントを柏市の整体院が整理します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-05-04">2026.5.4</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/knee-medial-pain-difference/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-pain.webp" alt="膝の内側が痛い原因は？鵞足炎・変形性膝関節症・神経痛の違い" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">膝の内側が痛い原因は？鵞足炎・変形性膝関節症・神経痛の違い</h3>
-          <p class="article-list-item__excerpt">膝の内側が痛い方へ。鵞足炎、変形性膝関節症、伏在神経の痛みなど、似ている症状の違いと相談の目安を柏市の整体院が整理します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-05-04">2026.5.4</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/knee-effusion-walking-guide/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-close.webp" alt="膝に水がたまるとき、歩いていい？運動量と受診目安を整体師が解説" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">膝に水がたまるとき、歩いていい？運動量と受診目安を整体師が解説</h3>
-          <p class="article-list-item__excerpt">膝に水がたまるときに歩いていいか迷う方へ。運動を控えたいサイン、再開の目安、整体で見る膝への負担を柏市の整体院が整理します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-05-04">2026.5.4</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/kashiwa-station-knee-pain-guide/">
-        <div class="article-list-item__thumb">
-          <img src="../image/kashiwa-seitai-hizakozou-main.webp" alt="柏駅周辺で膝痛に悩む方へ｜階段・歩き始め・正座がつらい原因" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">柏駅周辺で膝痛に悩む方へ｜階段・歩き始め・正座がつらい原因</h3>
-          <p class="article-list-item__excerpt">柏駅周辺で膝痛に悩む方へ。階段、歩き始め、正座、しゃがみ動作で痛む理由と、整体院ひざこぞうで確認するポイントを整理します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-05-04">2026.5.4</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/knee-back-pain-baker-cyst-hamstring/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-wide.webp" alt="膝の裏側が痛い・張る原因は？ベーカー嚢腫とハムストリングの負担を整体師が解説" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">膝の裏側が痛い・張る原因は？ベーカー嚢腫とハムストリングの負担を整体師が解説</h3>
-          <p class="article-list-item__excerpt">膝の裏側の痛みや張りで不安な方へ。ベーカー嚢腫、ハムストリング腱、膝関節の腫れ、歩き方のクセなど、考えられる原因と受診目安を柏市の整体院ひざこぞうが解説します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-18">2026.4.18</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/knee-effusion-water-in-knee/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-close.webp" alt="膝に水が溜まる原因と対処法——整体院ひざこぞうが解説" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">膝に水が溜まる原因と対処法——整体院ひざこぞうが解説</h3>
-          <p class="article-list-item__excerpt">「膝に水が溜まっていると言われた」という方へ。水が溜まるメカニズムと抜いた後の対応、整体でできることを柏の整体院ひざこぞうが分かりやすく解説します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-12">2026.4.12</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/it-band-syndrome-lateral-knee/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-wide.webp" alt="膝の外側が痛む腸脛靭帯症候群とは？原因・特徴・整体でのアプローチ" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">膝の外側が痛む腸脛靭帯症候群とは？原因・特徴・整体でのアプローチ</h3>
-          <p class="article-list-item__excerpt">膝の外側が痛む腸脛靭帯症候群（ITB症候群）は、ランナーに限らず日常生活でも起こる症状です。柏の整体院ひざこぞうが原因・特徴・日常でできることを解説します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-12">2026.4.12</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/pes-anserine-bursitis/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-pain.webp" alt="柏市で膝の内側が痛い方へ｜鵞足炎と整体で見るポイント" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">柏市で膝の内側が痛い方へ｜鵞足炎と整体で見るポイント</h3>
-          <p class="article-list-item__excerpt">柏市で膝の内側が痛い、鵞足炎が気になる方へ。痛む場所だけでなく股関節・骨盤・足元の使い方まで、整体院ひざこぞうの見方を整理します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-08">2026.4.8</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/knee-medial-pain-saphenous-nerve/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-pain.webp" alt="膝の内側の痛みと伏在神経の関係｜神経由来の痛みという視点から考える" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">膝の内側の痛みと伏在神経の関係｜神経由来の痛みという視点から考える</h3>
-          <p class="article-list-item__excerpt">膝の内側の痛みには「伏在神経（ふくざいしんけい）」が関わっていることがあります。鵞足炎や変形性膝関節症とは異なる神経由来の痛みについて、柏の整体院ひざこぞうが解説します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-08">2026.4.8</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/walking-start-knee-pain-cause/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-wide.webp" alt="柏市で歩き始めに膝が痛い方へ｜立ち上がりでつらい膝痛の見方" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">柏市で歩き始めに膝が痛い方へ｜立ち上がりでつらい膝痛の見方</h3>
-          <p class="article-list-item__excerpt">柏市で歩き始めや立ち上がりの膝痛が気になる方へ。変形性膝関節症だけでなく、足首・股関節・歩き方まで含めて整体院ひざこぞうが整理します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-20">2026.4.20</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/swayback-posture-knee-pain/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-wide.webp" alt="柏市で歩くと膝が痛い方へ｜立ち方・姿勢と膝痛の関係" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">柏市で歩くと膝が痛い方へ｜立ち方・姿勢と膝痛の関係</h3>
-          <p class="article-list-item__excerpt">柏市で歩くと膝が痛い、立ち方や姿勢が気になる方へ。スウェイバック姿勢が膝に負担をかける理由と、骨盤・股関節・足元まで確認する整体院ひざこぞうの見方を整理します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/seven-checkpoints-for-knee-pain-improvement/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-wide.webp" alt="膝痛の施術で確認している7つのポイント" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">膝痛の施術で確認している7つのポイント</h3>
-          <p class="article-list-item__excerpt">膝を揉むだけでは変わらないと感じている方へ。整体院ひざこぞうが施術で確認している7つの視点を、足の指、足首、股関節、膝のねじれ、緩める・鍛える・動作改善の関係まで含めて解説します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/lower-leg-external-rotation-knee-pain/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-close.webp" alt="膝のねじれが痛みの正体？下腿外旋症候群を整えて「一歩目」を軽くする方法" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">膝のねじれが痛みの正体？下腿外旋症候群を整えて「一歩目」を軽くする方法</h3>
-          <p class="article-list-item__excerpt">階段や歩き始めの膝の痛みに悩む方へ。膝が外側にねじれてしまう「下腿外旋症候群」の原因と、それが膝痛を招く仕組みを詳しく解説します。骨の形だけでなく、股関節や足首の動き、身体の内側…</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/knee-pain-not-healing-honest-answer/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-wide.webp" alt="「膝は治らない」と思っていませんか？　柏市の柔道整復師が正直に答えます" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">「膝は治らない」と思っていませんか？　柏市の柔道整復師が正直に答えます</h3>
-          <p class="article-list-item__excerpt">膝は治らないと諦めている方へ。画像所見と痛みの違い、膝以外の負担、筋トレと運動療法の違いを踏まえて、膝の状態がなぜ変わる可能性があるのかを柏市の整体院ひざこぞうが誠実に解説します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/knee-pain-stairs-guide/">
-        <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom.webp" alt="階段で膝が痛い原因は？下りでつらい膝痛の見方" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">階段で膝が痛い原因は？下りでつらい膝痛の見方</h3>
-          <p class="article-list-item__excerpt">階段の下りで膝が痛い、上り下りが不安な方へ。膝だけでなく股関節・足首・歩き方まで含めて、柏市の整体院ひざこぞうが確認ポイントを整理します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-20">2026.4.20</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/knee-walking/">
-        <div class="article-list-item__thumb">
-          <img src="../image/hiza2.webp" alt="歩くと膝が気になるときに、最初に見直したいこと" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">歩くと膝が気になるときに、最初に見直したいこと</h3>
-          <p class="article-list-item__excerpt">歩くと膝が痛い、重い、不安な方へ。歩数の増やし方、休み方、股関節や足首の見方を柏市の整体院ひざこぞうが整理します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-06-24">2026.6.24</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/knee-pain-daily-care/">
-        <div class="article-list-item__thumb">
-          <img src="../image/hiza.webp" alt="柏市でしゃがむ・正座で膝が痛い方へ｜立ち上がりまで日常動作を見直す" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">膝の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">柏市でしゃがむ・正座で膝が痛い方へ｜立ち上がりまで日常動作を見直す</h3>
-          <p class="article-list-item__excerpt">柏市でしゃがむ・正座で膝が痛い、立ち上がりで膝がつらい方へ。日常動作で膝に負担が集まる理由と相談目安を整理します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-03-29">2026.3.29</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-      </div>
-    </section>
-
-    <section class="category-section category-section--list" id="category-lower-back-pain">
-      <div class="category-section__header category-section__header--list">
-        <div>
-          <p class="eyebrow">Category</p>
-          <h3>腰の痛み</h3>
-        </div>
-        <p class="category-section__description">朝の腰の重さ、立ち上がり、膝や股関節とのつながりなどを扱います。</p>
-      </div>
-      <div class="article-list blog-card-grid">
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/morning-low-back-pain-causes-multifidus/">
-        <div class="article-list-item__thumb">
-          <img src="../image/lower-back-symptom.webp" alt="朝起きると腰が痛いのはなぜ？原因分析と負担を減らす3ステップ｜柏市の整体院ひざこぞう" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">腰の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">朝起きると腰が痛いのはなぜ？原因分析と負担を減らす3ステップ｜柏市の整体院ひざこぞう</h3>
-          <p class="article-list-item__excerpt">朝一番の腰痛でお悩みの方へ。病院の検査で異常がなくても痛む理由には、背骨の深層筋「多裂筋」の機能低下や脳の過敏なセンサーが関わっていることがあります。柏市の整体院ひざこぞうが、施…</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/low-back-pain-hip-stiffness-relation/">
-        <div class="article-list-item__thumb">
-          <img src="../image/hip-osteoarthritis-symptom.webp" alt="腰痛の原因は腰にない？股関節の硬さと負担を減らす3ステップ｜柏市の整体院ひざこぞう" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">腰の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">腰痛の原因は腰にない？股関節の硬さと負担を減らす3ステップ｜柏市の整体院ひざこぞう</h3>
-          <p class="article-list-item__excerpt">腰痛で腰を揉んでも変わりにくい方へ。腰は「被害者」であり、原因は股関節の可動域制限にあることがあります。股関節と腰椎の役割分担や大腰筋の重要性をふまえて、整体院ひざこぞうが施術と…</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/lower-back-pain-and-knee-link/">
-        <div class="article-list-item__thumb">
-          <img src="../image/lower-back-symptom.webp" alt="膝をかばって腰までつらいときの見方" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">腰の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">膝をかばって腰までつらいときの見方</h3>
-          <p class="article-list-item__excerpt">膝の痛みをかばううちに腰まで重くなる方へ。歩き方、体重の乗せ方、股関節や足首との関係を整体院ひざこぞうが整理します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-06-24">2026.6.24</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-      </div>
-    </section>
-
-    <section class="category-section category-section--list" id="category-hip-pain">
-      <div class="category-section__header category-section__header--list">
-        <div>
-          <p class="eyebrow">Category</p>
-          <h3>股関節の痛み</h3>
-        </div>
-        <p class="category-section__description">歩き始め、寝返り、しゃがみ動作など、股関節まわりの不調を整理します。</p>
-      </div>
-      <div class="article-list blog-card-grid">
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/hip-pain-while-walking/">
-        <div class="article-list-item__thumb">
-          <img src="../image/hip-osteoarthritis-symptom.webp" alt="歩くと股関節が痛いときに見直したい歩幅と体重移動" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">股関節の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">歩くと股関節が痛いときに見直したい歩幅と体重移動</h3>
-          <p class="article-list-item__excerpt">歩行時に股関節が痛む方へ。歩幅、体重移動、骨盤の揺れ、膝や腰への負担との関係を柏市の整体院ひざこぞうが解説します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-19">2026.4.19</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/hip-pain-weight-bearing/">
-        <div class="article-list-item__thumb">
-          <img src="../image/hip-osteoarthritis-symptom.webp" alt="足をつくと股関節が痛い原因は？荷重と骨盤の使い方を整体師が解説" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/hip-osteoarthritis-symptom.webp" alt="足をつくと股関節が痛い原因は？荷重と骨盤の使い方を整体師が解説" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -717,9 +300,9 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/hip-pain-turning-in-bed/">
+      <a class="article-list-item__link" href="posts/hip-pain-turning-in-bed/" data-blog-card data-category="hip-pain" data-symptoms="/symptoms/hip-osteoarthritis.html /symptoms/lower-back-pain.html /symptoms/sciatica.html" data-search="寝返りで股関節が痛い原因は？夜間痛と体の防御反応を考える 寝返りで股関節が痛い、夜にズキッとして眠りが浅い方へ。寝姿勢、筋肉の防御反応、股関節の負担を柏市の整体院ひざこぞうが解説します。 股関節の痛み 股関節痛 寝返り 夜間痛 寝姿勢 骨盤 変形性股関節症 腰痛 坐骨神経痛">
         <div class="article-list-item__thumb">
-          <img src="../image/hip-osteoarthritis-symptom.webp" alt="寝返りで股関節が痛い原因は？夜間痛と体の防御反応を考える" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/hip-osteoarthritis-symptom.webp" alt="寝返りで股関節が痛い原因は？夜間痛と体の防御反応を考える" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -736,9 +319,9 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/hip-pain-squatting/">
+      <a class="article-list-item__link" href="posts/hip-pain-squatting/" data-blog-card data-category="hip-pain" data-symptoms="/symptoms/hip-osteoarthritis.html /symptoms/lower-back-pain.html /symptoms/knee-osteoarthritis.html" data-search="柏市でしゃがむと股関節が痛い方へ｜股関節の硬さと膝痛の関係 柏市でしゃがむと股関節が痛い、股関節の硬さと膝痛の関係が気になる方へ。膝・骨盤・足首まで含めた見方を整体院ひざこぞうが整理します。 股関節の痛み 股関節痛 しゃがむと痛い 股関節のつまり 骨盤 膝痛 変形性股関節症 腰痛 変形性膝関節症">
         <div class="article-list-item__thumb">
-          <img src="../image/hip-osteoarthritis-symptom.webp" alt="柏市でしゃがむと股関節が痛い方へ｜股関節の硬さと膝痛の関係" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/hip-osteoarthritis-symptom.webp" alt="柏市でしゃがむと股関節が痛い方へ｜股関節の硬さと膝痛の関係" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -755,41 +338,9 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/hip-stiffness-knee-low-back-pain-relation/">
+      <a class="article-list-item__link" href="posts/plantar-fasciitis-arch-walking/" data-blog-card data-category="foot-walking" data-symptoms="/symptoms/plantar-fasciitis.html /symptoms/ankle-stiffness-knee-pain.html /symptoms/knee-osteoarthritis.html /symptoms/lower-back-pain.html" data-search="足底筋膜炎でかかとが痛いときに見直したい足裏アーチと歩き方 足底筋膜炎やかかとの痛みで朝の一歩目がつらい方へ。足裏アーチ、足指、ふくらはぎ、膝や股関節との関係を解説します。 足・歩き方 足底筋膜炎 かかとの痛み 足裏 足指 歩き方 足底筋膜炎 足首の硬さと膝痛 変形性膝関節症 腰痛">
         <div class="article-list-item__thumb">
-          <img src="../image/hip-osteoarthritis-symptom.webp" alt="股関節が硬いと膝や腰までつらくなる？体の連動から考える慢性痛の正体" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">股関節の痛み</span>
-          </div>
-          <h3 class="article-list-item__title">股関節が硬いと膝や腰までつらくなる？体の連動から考える慢性痛の正体</h3>
-          <p class="article-list-item__excerpt">階段の上り下りや歩き始めの膝痛、慢性的な腰痛にお悩みの方へ。実はその不調、股関節の硬さが原因かもしれません。身体の各関節が役割を分担する仕組みや、大腰筋の重要性を詳しく解説。整体…</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-      </div>
-    </section>
-
-    <section class="category-section category-section--list" id="category-foot-walking">
-      <div class="category-section__header category-section__header--list">
-        <div>
-          <p class="eyebrow">Category</p>
-          <h3>足・歩き方</h3>
-        </div>
-        <p class="category-section__description">足裏、足指、足首、歩き方など、足元から膝や腰への負担を見直します。</p>
-      </div>
-      <div class="article-list blog-card-grid">
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/plantar-fasciitis-arch-walking/">
-        <div class="article-list-item__thumb">
-          <img src="../image/イラスト/足・手・その他/足底筋膜炎によるかかとの痛み.webp" alt="足底筋膜炎でかかとが痛いときに見直したい足裏アーチと歩き方" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/イラスト/足・手・その他/足底筋膜炎によるかかとの痛み.webp" alt="足底筋膜炎でかかとが痛いときに見直したい足裏アーチと歩き方" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -806,149 +357,28 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/lumbricals-knee-low-back-pain-relation/">
+      <a class="article-list-item__link" href="posts/knee-back-pain-baker-cyst-hamstring/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-posterior-pain.html /symptoms/knee-effusion.html /symptoms/knee-osteoarthritis.html" data-search="膝の裏側が痛い・張る原因は？ベーカー嚢腫とハムストリングの負担を整体師が解説 膝の裏側の痛みや張りで不安な方へ。ベーカー嚢腫、ハムストリング腱、膝関節の腫れ、歩き方のクセなど、考えられる原因と受診目安を柏市の整体院ひざこぞうが解説します。 膝の痛み 膝痛 膝の裏側の痛み ベーカー嚢腫 ハムストリング 関節水腫 膝の裏側の痛み 膝に水がたまる 変形性膝関節症">
         <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-wide.webp" alt="意外と大事な足の指の筋肉「虫様筋」──膝痛・腰痛と深い関係があります" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/knee-symptom-wide.webp" alt="膝の裏側が痛い・張る原因は？ベーカー嚢腫とハムストリングの負担を整体師が解説" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
-            <span class="article-list-item__category">足・歩き方</span>
+            <span class="article-list-item__category">膝の痛み</span>
           </div>
-          <h3 class="article-list-item__title">意外と大事な足の指の筋肉「虫様筋」──膝痛・腰痛と深い関係があります</h3>
-          <p class="article-list-item__excerpt">足の指の小さな筋肉「虫様筋」が、なぜ膝痛や腰痛と関係するのかを解説します。足裏アーチ、地面からの反力、歩き方、体幹の安定まで、整体院ひざこぞうが土台から整える視点をわかりやすくお…</p>
+          <h3 class="article-list-item__title">膝の裏側が痛い・張る原因は？ベーカー嚢腫とハムストリングの負担を整体師が解説</h3>
+          <p class="article-list-item__excerpt">膝の裏側の痛みや張りで不安な方へ。ベーカー嚢腫、ハムストリング腱、膝関節の腫れ、歩き方のクセなど、考えられる原因と受診目安を柏市の整体院ひざこぞうが解説します。</p>
         </div>
         <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-      </div>
-    </section>
-
-    <section class="category-section category-section--list" id="category-numbness">
-      <div class="category-section__header category-section__header--list">
-        <div>
-          <p class="eyebrow">Category</p>
-          <h3>しびれ</h3>
-        </div>
-        <p class="category-section__description">坐骨神経痛や足腰のしびれなど、神経まわりの不安を扱います。</p>
-      </div>
-      <div class="article-list blog-card-grid">
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/sciatica-root-cause/">
-        <div class="article-list-item__thumb">
-          <img src="../image/sciatica-symptom.webp" alt="【健康コラム】お尻から太ももの裏がビリビリ…坐骨神経痛で確認したい腰・股関節・身体の使い方" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">しびれ</span>
-          </div>
-          <h3 class="article-list-item__title">【健康コラム】お尻から太ももの裏がビリビリ…坐骨神経痛で確認したい腰・股関節・身体の使い方</h3>
-          <p class="article-list-item__excerpt">お尻から太ももの裏のビリビリした痛みやしびれでお悩みの方へ。柏市あけぼのの整体院ひざこぞうが、坐骨神経痛が湿布やマッサージだけでは変わりにくい理由と、足腰専門整体の考え方を解説し…</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-06-11">2026.6.11</time>
+          <time class="article-list-item__date" datetime="2026-04-18">2026.4.18</time>
           <span class="article-list-item__arrow" aria-hidden="true">›</span>
         </div>
       </a>
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/leg-numbness-causes-lower-back-knee/">
+      <a class="article-list-item__link" href="posts/stretch-not-working-tips/" data-blog-card data-category="exercise-therapy" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/lower-back-pain.html /symptoms/" data-search="ストレッチしているのに体が柔らかくならない理由とは？効果を出す3つのコツ 毎日ストレッチしているのに体が柔らかくならない方へ。呼吸、30秒キープ、動的ストレッチの使い分けなど、整体師の視点で効果を出す3つのコツを解説します。 運動療法・セルフケア ストレッチ 柔軟性 運動療法 セルフケア 変形性膝関節症 腰痛 肩こり">
         <div class="article-list-item__thumb">
-          <img src="../image/lower-back-symptom.webp" alt="足のしびれ、その原因は腰や膝にあるかもしれません" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">しびれ</span>
-          </div>
-          <h3 class="article-list-item__title">足のしびれ、その原因は腰や膝にあるかもしれません</h3>
-          <p class="article-list-item__excerpt">足のしびれが気になる方へ。坐骨神経痛、脊柱管狭窄症、膝まわりの筋肉バランスなど、整体でアプローチできる可能性がある原因を柏の整体院ひざこぞうが解説します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-13">2026.4.13</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/hand-numbness-causes-treatment/">
-        <div class="article-list-item__thumb">
-          <img src="../image/treatment-scene.webp" alt="手のしびれ、放っておいていいの？整体で改善できる原因と対処法を解説" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">しびれ</span>
-          </div>
-          <h3 class="article-list-item__title">手のしびれ、放っておいていいの？整体で改善できる原因と対処法を解説</h3>
-          <p class="article-list-item__excerpt">手のしびれが気になる方へ。頸椎のゆがみ、胸郭出口症候群、肘部管症候群・手根管症候群など、整体でアプローチできる可能性がある原因と対処法を柏の整体院ひざこぞうが解説します。</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-13">2026.4.13</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/spinal-stenosis-exercise-before-surgery/">
-        <div class="article-list-item__thumb">
-          <img src="../image/medical-interview.webp" alt="「手術しかない」と言われる前に——脊柱管狭窄症・ヘルニアの痛みとしびれに運動療法が役立つ理由" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">しびれ</span>
-          </div>
-          <h3 class="article-list-item__title">「手術しかない」と言われる前に——脊柱管狭窄症・ヘルニアの痛みとしびれに運動療法が役立つ理由</h3>
-          <p class="article-list-item__excerpt">脊柱管狭窄症やヘルニアと診断されても、すぐに手術という選択肢を選ばなくていい理由があります。腰痛と足のしびれの原因の違い、ヘルニアの自然吸収、世界標準の運動療法まで、柏市の整体院…</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-09">2026.4.9</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/sciatica-piriformis-relation/">
-        <div class="article-list-item__thumb">
-          <img src="../image/sciatica-symptom.webp" alt="坐骨神経痛と梨状筋の意外な関係｜お尻のしびれを「動き」から整える方法" loading="lazy" decoding="async" width="320" height="220">
-        </div>
-        <div class="article-list-item__body">
-          <div class="article-list-item__meta">
-            <span class="article-list-item__category">しびれ</span>
-          </div>
-          <h3 class="article-list-item__title">坐骨神経痛と梨状筋の意外な関係｜お尻のしびれを「動き」から整える方法</h3>
-          <p class="article-list-item__excerpt">お尻から足にかけてのしびれや痛みに悩む方へ。坐骨神経痛の原因として注目される梨状筋の役割を、身体の仕組みから丁寧に解説します。画像診断の結果だけに捉われず、姿勢や動きの癖を整える…</p>
-        </div>
-        <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
-          <span class="article-list-item__arrow" aria-hidden="true">›</span>
-        </div>
-      </a>
-    </article>
-
-      </div>
-    </section>
-
-    <section class="category-section category-section--list" id="category-exercise-therapy">
-      <div class="category-section__header category-section__header--list">
-        <div>
-          <p class="eyebrow">Category</p>
-          <h3>運動療法・セルフケア</h3>
-        </div>
-        <p class="category-section__description">施術とあわせて、無理なく続けやすい動きづくりやセルフケアをまとめます。</p>
-      </div>
-      <div class="article-list blog-card-grid">
-
-    <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/stretch-not-working-tips/">
-        <div class="article-list-item__thumb">
-          <img src="../image/treatment-stretch.webp" alt="ストレッチしているのに体が柔らかくならない理由とは？効果を出す3つのコツ" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/treatment-stretch.webp" alt="ストレッチしているのに体が柔らかくならない理由とは？効果を出す3つのコツ" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -965,9 +395,9 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/muscle-cramps-causes-and-relief/">
+      <a class="article-list-item__link" href="posts/muscle-cramps-causes-and-relief/" data-blog-card data-category="exercise-therapy" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/lower-back-pain.html /symptoms/plantar-fasciitis.html" data-search="寝ているときや運動中に突然…！筋肉が攣る原因と、今すぐできる対策 夜中のこむら返りや運動中の筋肉の攣りで困っている方へ。水分・電解質不足、疲労、冷え、柔軟性低下など主な原因と、今すぐできる対策をわかりやすく解説します。 運動療法・セルフケア こむら返り 筋痙攣 ストレッチ セルフケア 変形性膝関節症 腰痛 足底筋膜炎">
         <div class="article-list-item__thumb">
-          <img src="../image/イラスト/腰・神経/腹筋群と体幹を支える筋肉.webp" alt="寝ているときや運動中に突然…！筋肉が攣る原因と、今すぐできる対策" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/イラスト/腰・神経/腹筋群と体幹を支える筋肉.webp" alt="寝ているときや運動中に突然…！筋肉が攣る原因と、今すぐできる対策" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -984,9 +414,47 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/chronic-pain-why-it-lasts/">
+      <a class="article-list-item__link" href="posts/leg-numbness-causes-lower-back-knee/" data-blog-card data-category="numbness" data-symptoms="/symptoms/sciatica.html /symptoms/spinal-stenosis.html /symptoms/knee-osteoarthritis.html /symptoms/lower-back-pain.html" data-search="足のしびれ、その原因は腰や膝にあるかもしれません 足のしびれが気になる方へ。坐骨神経痛、脊柱管狭窄症、膝まわりの筋肉バランスなど、整体でアプローチできる可能性がある原因を柏の整体院ひざこぞうが解説します。 しびれ 足のしびれ 坐骨神経痛 脊柱管狭窄症 膝痛 坐骨神経痛 脊柱管狭窄症 変形性膝関節症 腰痛">
         <div class="article-list-item__thumb">
-          <img src="../image/knee-symptom-wide.webp" alt="「ずっと痛い」は普通じゃない。長引く膝痛と慢性痛の見方" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/lower-back-symptom.webp" alt="足のしびれ、その原因は腰や膝にあるかもしれません" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">しびれ</span>
+          </div>
+          <h3 class="article-list-item__title">足のしびれ、その原因は腰や膝にあるかもしれません</h3>
+          <p class="article-list-item__excerpt">足のしびれが気になる方へ。坐骨神経痛、脊柱管狭窄症、膝まわりの筋肉バランスなど、整体でアプローチできる可能性がある原因を柏の整体院ひざこぞうが解説します。</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-13">2026.4.13</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/hand-numbness-causes-treatment/" data-blog-card data-category="numbness" data-symptoms="/symptoms/cervical-spondylosis.html /symptoms/thoracic-outlet.html /symptoms/carpal-tunnel.html /symptoms/" data-search="手のしびれ、放っておいていいの？整体で改善できる原因と対処法を解説 手のしびれが気になる方へ。頸椎のゆがみ、胸郭出口症候群、肘部管症候群・手根管症候群など、整体でアプローチできる可能性がある原因と対処法を柏の整体院ひざこぞうが解説します。 しびれ 手のしびれ 頚椎症 胸郭出口症候群 手根管症候群 頚椎症 胸郭出口症候群 手根管症候群 肩こり">
+        <div class="article-list-item__thumb">
+          <img src="../image/treatment-scene.webp" alt="手のしびれ、放っておいていいの？整体で改善できる原因と対処法を解説" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">しびれ</span>
+          </div>
+          <h3 class="article-list-item__title">手のしびれ、放っておいていいの？整体で改善できる原因と対処法を解説</h3>
+          <p class="article-list-item__excerpt">手のしびれが気になる方へ。頸椎のゆがみ、胸郭出口症候群、肘部管症候群・手根管症候群など、整体でアプローチできる可能性がある原因と対処法を柏の整体院ひざこぞうが解説します。</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-13">2026.4.13</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/chronic-pain-why-it-lasts/" data-blog-card data-category="exercise-therapy" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/lower-back-pain.html /symptoms/sciatica.html /symptoms/" data-search="「ずっと痛い」は普通じゃない。長引く膝痛と慢性痛の見方 柏市で長引く膝痛に悩む方へ。歩き始め、階段、長く歩くとつらい痛みが慢性化する背景と、膝だけでなく歩き方や身体の使い方まで見る考え方を整理します。 運動療法・セルフケア 慢性痛 膝痛 腰痛 運動療法 変形性膝関節症 腰痛 坐骨神経痛 肩こり">
+        <div class="article-list-item__thumb">
+          <img src="../image/knee-symptom-wide.webp" alt="「ずっと痛い」は普通じゃない。長引く膝痛と慢性痛の見方" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -1003,9 +471,161 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/strength-training-vs-exercise-therapy/">
+      <a class="article-list-item__link" href="posts/knee-effusion-water-in-knee/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/knee-effusion.html" data-search="膝に水が溜まる原因と対処法——整体院ひざこぞうが解説 「膝に水が溜まっていると言われた」という方へ。水が溜まるメカニズムと抜いた後の対応、整体でできることを柏の整体院ひざこぞうが分かりやすく解説します。 膝の痛み 膝痛 膝に水が溜まる 関節水腫 変形性膝関節症 変形性膝関節症 膝に水がたまる">
         <div class="article-list-item__thumb">
-          <img src="../image/hizakozou-3step-pc.webp" alt="「筋トレ」と「運動療法」は何が違うのか？脳科学から見た本当の身体の使い方" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/knee-symptom-close.webp" alt="膝に水が溜まる原因と対処法——整体院ひざこぞうが解説" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">膝の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">膝に水が溜まる原因と対処法——整体院ひざこぞうが解説</h3>
+          <p class="article-list-item__excerpt">「膝に水が溜まっていると言われた」という方へ。水が溜まるメカニズムと抜いた後の対応、整体でできることを柏の整体院ひざこぞうが分かりやすく解説します。</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-12">2026.4.12</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/it-band-syndrome-lateral-knee/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/knee-lateral-pain.html" data-search="膝の外側が痛む腸脛靭帯症候群とは？原因・特徴・整体でのアプローチ 膝の外側が痛む腸脛靭帯症候群（ITB症候群）は、ランナーに限らず日常生活でも起こる症状です。柏の整体院ひざこぞうが原因・特徴・日常でできることを解説します。 膝の痛み 膝痛 膝の外側の痛み 腸脛靭帯 ランナー膝 変形性膝関節症 膝の外側の痛み">
+        <div class="article-list-item__thumb">
+          <img src="../image/knee-symptom-wide.webp" alt="膝の外側が痛む腸脛靭帯症候群とは？原因・特徴・整体でのアプローチ" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">膝の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">膝の外側が痛む腸脛靭帯症候群とは？原因・特徴・整体でのアプローチ</h3>
+          <p class="article-list-item__excerpt">膝の外側が痛む腸脛靭帯症候群（ITB症候群）は、ランナーに限らず日常生活でも起こる症状です。柏の整体院ひざこぞうが原因・特徴・日常でできることを解説します。</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-12">2026.4.12</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/spinal-stenosis-exercise-before-surgery/" data-blog-card data-category="numbness" data-symptoms="/symptoms/spinal-stenosis.html /symptoms/lower-back-pain.html /symptoms/sciatica.html" data-search="「手術しかない」と言われる前に——脊柱管狭窄症・ヘルニアの痛みとしびれに運動療法が役立つ理由 脊柱管狭窄症やヘルニアと診断されても、すぐに手術という選択肢を選ばなくていい理由があります。腰痛と足のしびれの原因の違い、ヘルニアの自然吸収、世界標準の運動療法まで、柏市の整体院が分かりやすく解説します。 しびれ 脊柱管狭窄症 椎間板ヘルニア 運動療法 腰痛 足のしびれ 手術 脊柱管狭窄症 腰痛 坐骨神経痛">
+        <div class="article-list-item__thumb">
+          <img src="../image/medical-interview.webp" alt="「手術しかない」と言われる前に——脊柱管狭窄症・ヘルニアの痛みとしびれに運動療法が役立つ理由" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">しびれ</span>
+          </div>
+          <h3 class="article-list-item__title">「手術しかない」と言われる前に——脊柱管狭窄症・ヘルニアの痛みとしびれに運動療法が役立つ理由</h3>
+          <p class="article-list-item__excerpt">脊柱管狭窄症やヘルニアと診断されても、すぐに手術という選択肢を選ばなくていい理由があります。腰痛と足のしびれの原因の違い、ヘルニアの自然吸収、世界標準の運動療法まで、柏市の整体院…</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-09">2026.4.9</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/treatment-frequency-homeostasis/" data-blog-card data-category="clinic-guidance" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/lower-back-pain.html" data-search="通院頻度はどう決める？膝痛を整えるペースの考え方 柏市で膝痛の通院頻度に迷う方へ。痛みの強さ、歩き始めや階段での不安、生活ペースをふまえ、無理のない通い方と運動療法の考え方を整理します。 受診目安・通院 通院頻度 ホメオスタシス 運動療法 体づくり 卒業 変形性膝関節症 腰痛">
+        <div class="article-list-item__thumb">
+          <img src="../image/consultation-scene.webp" alt="通院頻度はどう決める？膝痛を整えるペースの考え方" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">受診目安・通院</span>
+          </div>
+          <h3 class="article-list-item__title">通院頻度はどう決める？膝痛を整えるペースの考え方</h3>
+          <p class="article-list-item__excerpt">柏市で膝痛の通院頻度に迷う方へ。痛みの強さ、歩き始めや階段での不安、生活ペースをふまえ、無理のない通い方と運動療法の考え方を整理します。</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-08">2026.4.8</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/pes-anserine-bursitis/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/pes-anserine-bursitis.html /symptoms/knee-osteoarthritis.html" data-search="柏市で膝の内側が痛い方へ｜鵞足炎と整体で見るポイント 柏市で膝の内側が痛い、鵞足炎が気になる方へ。痛む場所だけでなく股関節・骨盤・足元の使い方まで、整体院ひざこぞうの見方を整理します。 膝の痛み 膝痛 鵞足炎 膝の内側の痛み 膝の内側の痛み 変形性膝関節症">
+        <div class="article-list-item__thumb">
+          <img src="../image/knee-pain.webp" alt="柏市で膝の内側が痛い方へ｜鵞足炎と整体で見るポイント" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">膝の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">柏市で膝の内側が痛い方へ｜鵞足炎と整体で見るポイント</h3>
+          <p class="article-list-item__excerpt">柏市で膝の内側が痛い、鵞足炎が気になる方へ。痛む場所だけでなく股関節・骨盤・足元の使い方まで、整体院ひざこぞうの見方を整理します。</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-08">2026.4.8</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/knee-medial-pain-saphenous-nerve/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/pes-anserine-bursitis.html /symptoms/bowlegs-knee-pain.html /symptoms/bowlegs-knee-pain.html" data-search="膝の内側の痛みと伏在神経の関係｜神経由来の痛みという視点から考える 膝の内側の痛みには「伏在神経（ふくざいしんけい）」が関わっていることがあります。鵞足炎や変形性膝関節症とは異なる神経由来の痛みについて、柏の整体院ひざこぞうが解説します。 膝の痛み 膝痛 膝の内側の痛み 伏在神経 神経痛 変形性膝関節症 膝の内側の痛み O脚・膝のゆがみ O脚・膝のゆがみ">
+        <div class="article-list-item__thumb">
+          <img src="../image/knee-pain.webp" alt="膝の内側の痛みと伏在神経の関係｜神経由来の痛みという視点から考える" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">膝の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">膝の内側の痛みと伏在神経の関係｜神経由来の痛みという視点から考える</h3>
+          <p class="article-list-item__excerpt">膝の内側の痛みには「伏在神経（ふくざいしんけい）」が関わっていることがあります。鵞足炎や変形性膝関節症とは異なる神経由来の痛みについて、柏の整体院ひざこぞうが解説します。</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-08">2026.4.8</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/walking-start-knee-pain-cause/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/knee-effusion.html /symptoms/pes-anserine-bursitis.html /symptoms/knee-posterior-pain.html /symptoms/lower-back-pain.html" data-search="柏市で歩き始めに膝が痛い方へ｜立ち上がりでつらい膝痛の見方 柏市で歩き始めや立ち上がりの膝痛が気になる方へ。変形性膝関節症だけでなく、足首・股関節・歩き方まで含めて整体院ひざこぞうが整理します。 膝の痛み 膝痛 歩き始め 立ち上がり痛 初動痛 変形性膝関節症 柏市 整体 変形性膝関節症 膝に水がたまる 膝の内側の痛み 膝の裏側の痛み 腰痛">
+        <div class="article-list-item__thumb">
+          <img src="../image/knee-symptom-wide.webp" alt="柏市で歩き始めに膝が痛い方へ｜立ち上がりでつらい膝痛の見方" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">膝の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">柏市で歩き始めに膝が痛い方へ｜立ち上がりでつらい膝痛の見方</h3>
+          <p class="article-list-item__excerpt">柏市で歩き始めや立ち上がりの膝痛が気になる方へ。変形性膝関節症だけでなく、足首・股関節・歩き方まで含めて整体院ひざこぞうが整理します。</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-20">2026.4.20</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/swayback-posture-knee-pain/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/knee-effusion.html /symptoms/knee-lateral-pain.html /symptoms/knee-hyperextension.html /symptoms/bowlegs-knee-pain.html /symptoms/lower-back-pain.html" data-search="柏市で歩くと膝が痛い方へ｜立ち方・姿勢と膝痛の関係 柏市で歩くと膝が痛い、立ち方や姿勢が気になる方へ。スウェイバック姿勢が膝に負担をかける理由と、骨盤・股関節・足元まで確認する整体院ひざこぞうの見方を整理します。 膝の痛み 膝痛 スウェイバック 反張膝 姿勢 柏市 整体 変形性膝関節症 膝に水がたまる 膝の外側の痛み 反張膝・膝が伸びすぎる O脚・膝のゆがみ 腰痛">
+        <div class="article-list-item__thumb">
+          <img src="../image/knee-symptom-wide.webp" alt="柏市で歩くと膝が痛い方へ｜立ち方・姿勢と膝痛の関係" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">膝の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">柏市で歩くと膝が痛い方へ｜立ち方・姿勢と膝痛の関係</h3>
+          <p class="article-list-item__excerpt">柏市で歩くと膝が痛い、立ち方や姿勢が気になる方へ。スウェイバック姿勢が膝に負担をかける理由と、骨盤・股関節・足元まで確認する整体院ひざこぞうの見方を整理します。</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/strength-training-vs-exercise-therapy/" data-blog-card data-category="exercise-therapy" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/lower-back-pain.html /symptoms/hip-osteoarthritis.html" data-search="「筋トレ」と「運動療法」は何が違うのか？脳科学から見た本当の身体の使い方 筋トレを頑張っているのに膝痛や腰痛が変わらない方へ。筋トレが筋肉というハードウェアを鍛えるのに対し、運動療法は脳が身体を使うソフトウェアを整える考え方です。多裂筋や中臀筋、感覚入力の視点から、整体院ひざこぞうが施術と運動療法の違いをやさしく解説します。 運動療法・セルフケア 筋トレ 運動療法 膝痛 腰痛 脳科学 変形性膝関節症 腰痛 変形性股関節症">
+        <div class="article-list-item__thumb">
+          <img src="../image/hizakozou-3step-pc.webp" alt="「筋トレ」と「運動療法」は何が違うのか？脳科学から見た本当の身体の使い方" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -1022,9 +642,199 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/hizakozou-method-guide/">
+      <a class="article-list-item__link" href="posts/seven-checkpoints-for-knee-pain-improvement/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/pes-anserine-bursitis.html /symptoms/hip-osteoarthritis.html" data-search="膝痛の施術で確認している7つのポイント 膝を揉むだけでは変わらないと感じている方へ。整体院ひざこぞうが施術で確認している7つの視点を、足の指、足首、股関節、膝のねじれ、緩める・鍛える・動作改善の関係まで含めて解説します。 膝の痛み 膝痛 運動療法 ひざこぞう式整体 歩き方 柏市 変形性膝関節症 膝の内側の痛み 変形性股関節症">
         <div class="article-list-item__thumb">
-          <img src="../image/hip-massage-scene.webp" alt="ひざこぞう式整体とは？緩める・鍛える・動作改善の3ステップ" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/knee-symptom-wide.webp" alt="膝痛の施術で確認している7つのポイント" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">膝の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">膝痛の施術で確認している7つのポイント</h3>
+          <p class="article-list-item__excerpt">膝を揉むだけでは変わらないと感じている方へ。整体院ひざこぞうが施術で確認している7つの視点を、足の指、足首、股関節、膝のねじれ、緩める・鍛える・動作改善の関係まで含めて解説します。</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/sciatica-piriformis-relation/" data-blog-card data-category="numbness" data-symptoms="/symptoms/sciatica.html /symptoms/spinal-stenosis.html /symptoms/lower-back-pain.html" data-search="坐骨神経痛と梨状筋の意外な関係｜お尻のしびれを「動き」から整える方法 お尻から足にかけてのしびれや痛みに悩む方へ。坐骨神経痛の原因として注目される梨状筋の役割を、身体の仕組みから丁寧に解説します。画像診断の結果だけに捉われず、姿勢や動きの癖を整えることで、再発しにくい体づくりを目指す考え方をまとめました。 しびれ 坐骨神経痛 梨状筋 しびれ 動きの癖 柏市 整体 坐骨神経痛 脊柱管狭窄症 腰痛">
+        <div class="article-list-item__thumb">
+          <img src="../image/sciatica-symptom.webp" alt="坐骨神経痛と梨状筋の意外な関係｜お尻のしびれを「動き」から整える方法" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">しびれ</span>
+          </div>
+          <h3 class="article-list-item__title">坐骨神経痛と梨状筋の意外な関係｜お尻のしびれを「動き」から整える方法</h3>
+          <p class="article-list-item__excerpt">お尻から足にかけてのしびれや痛みに悩む方へ。坐骨神経痛の原因として注目される梨状筋の役割を、身体の仕組みから丁寧に解説します。画像診断の結果だけに捉われず、姿勢や動きの癖を整える…</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/morning-low-back-pain-causes-multifidus/" data-blog-card data-category="lower-back-pain" data-symptoms="/symptoms/lower-back-pain.html /symptoms/sciatica.html /symptoms/hip-osteoarthritis.html" data-search="朝起きると腰が痛いのはなぜ？原因分析と負担を減らす3ステップ｜柏市の整体院ひざこぞう 朝一番の腰痛でお悩みの方へ。病院の検査で異常がなくても痛む理由には、背骨の深層筋「多裂筋」の機能低下や脳の過敏なセンサーが関わっていることがあります。柏市の整体院ひざこぞうが、施術と運動療法で朝の動き出しを整える考え方を解説します。 腰の痛み 朝の腰痛 腰痛 多裂筋 運動療法 柏市 整体 腰痛 坐骨神経痛 変形性股関節症">
+        <div class="article-list-item__thumb">
+          <img src="../image/lower-back-symptom.webp" alt="朝起きると腰が痛いのはなぜ？原因分析と負担を減らす3ステップ｜柏市の整体院ひざこぞう" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">腰の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">朝起きると腰が痛いのはなぜ？原因分析と負担を減らす3ステップ｜柏市の整体院ひざこぞう</h3>
+          <p class="article-list-item__excerpt">朝一番の腰痛でお悩みの方へ。病院の検査で異常がなくても痛む理由には、背骨の深層筋「多裂筋」の機能低下や脳の過敏なセンサーが関わっていることがあります。柏市の整体院ひざこぞうが、施…</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/lumbricals-knee-low-back-pain-relation/" data-blog-card data-category="foot-walking" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/ankle-stiffness-knee-pain.html /symptoms/lower-back-pain.html /symptoms/plantar-fasciitis.html" data-search="意外と大事な足の指の筋肉「虫様筋」──膝痛・腰痛と深い関係があります 足の指の小さな筋肉「虫様筋」が、なぜ膝痛や腰痛と関係するのかを解説します。足裏アーチ、地面からの反力、歩き方、体幹の安定まで、整体院ひざこぞうが土台から整える視点をわかりやすくお伝えします。 足・歩き方 膝痛 腰痛 足の指 虫様筋 運動療法 変形性膝関節症 足首の硬さと膝痛 腰痛 足底腱膜炎">
+        <div class="article-list-item__thumb">
+          <img src="../image/knee-symptom-wide.webp" alt="意外と大事な足の指の筋肉「虫様筋」──膝痛・腰痛と深い関係があります" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">足・歩き方</span>
+          </div>
+          <h3 class="article-list-item__title">意外と大事な足の指の筋肉「虫様筋」──膝痛・腰痛と深い関係があります</h3>
+          <p class="article-list-item__excerpt">足の指の小さな筋肉「虫様筋」が、なぜ膝痛や腰痛と関係するのかを解説します。足裏アーチ、地面からの反力、歩き方、体幹の安定まで、整体院ひざこぞうが土台から整える視点をわかりやすくお…</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/lower-leg-external-rotation-knee-pain/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/pes-anserine-bursitis.html /symptoms/bowlegs-knee-pain.html /symptoms/bowlegs-knee-pain.html /symptoms/hip-osteoarthritis.html" data-search="膝のねじれが痛みの正体？下腿外旋症候群を整えて「一歩目」を軽くする方法 階段や歩き始めの膝の痛みに悩む方へ。膝が外側にねじれてしまう「下腿外旋症候群」の原因と、それが膝痛を招く仕組みを詳しく解説します。骨の形だけでなく、股関節や足首の動き、身体の内側の筋肉に着目した根本ケアで、旅行や散歩を再び楽しめる体を目指しましょう。 膝の痛み 膝痛 下腿外旋 歩き始めの痛み Joint by Joint Theory DFL 変形性膝関節症 膝の内側の痛み O脚・膝のゆがみ O脚・膝のゆがみ 股関節の痛み">
+        <div class="article-list-item__thumb">
+          <img src="../image/knee-symptom-close.webp" alt="膝のねじれが痛みの正体？下腿外旋症候群を整えて「一歩目」を軽くする方法" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">膝の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">膝のねじれが痛みの正体？下腿外旋症候群を整えて「一歩目」を軽くする方法</h3>
+          <p class="article-list-item__excerpt">階段や歩き始めの膝の痛みに悩む方へ。膝が外側にねじれてしまう「下腿外旋症候群」の原因と、それが膝痛を招く仕組みを詳しく解説します。骨の形だけでなく、股関節や足首の動き、身体の内側…</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/low-back-pain-hip-stiffness-relation/" data-blog-card data-category="lower-back-pain" data-symptoms="/symptoms/lower-back-pain.html /symptoms/hip-osteoarthritis.html /symptoms/sciatica.html" data-search="腰痛の原因は腰にない？股関節の硬さと負担を減らす3ステップ｜柏市の整体院ひざこぞう 腰痛で腰を揉んでも変わりにくい方へ。腰は「被害者」であり、原因は股関節の可動域制限にあることがあります。股関節と腰椎の役割分担や大腰筋の重要性をふまえて、整体院ひざこぞうが施術と運動療法で整える考え方を解説します。 腰の痛み 腰痛 股関節 大腰筋 運動療法 柏市 整体 腰痛 変形性股関節症 坐骨神経痛">
+        <div class="article-list-item__thumb">
+          <img src="../image/hip-osteoarthritis-symptom.webp" alt="腰痛の原因は腰にない？股関節の硬さと負担を減らす3ステップ｜柏市の整体院ひざこぞう" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">腰の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">腰痛の原因は腰にない？股関節の硬さと負担を減らす3ステップ｜柏市の整体院ひざこぞう</h3>
+          <p class="article-list-item__excerpt">腰痛で腰を揉んでも変わりにくい方へ。腰は「被害者」であり、原因は股関節の可動域制限にあることがあります。股関節と腰椎の役割分担や大腰筋の重要性をふまえて、整体院ひざこぞうが施術と…</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/knee-pain-not-healing-honest-answer/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/knee-effusion.html /symptoms/hip-osteoarthritis.html" data-search="「膝は治らない」と思っていませんか？　柏市の柔道整復師が正直に答えます 膝は治らないと諦めている方へ。画像所見と痛みの違い、膝以外の負担、筋トレと運動療法の違いを踏まえて、膝の状態がなぜ変わる可能性があるのかを柏市の整体院ひざこぞうが誠実に解説します。 膝の痛み 膝痛 変形性膝関節症 運動療法 ひざこぞう式整体 柏市 変形性膝関節症 膝に水がたまる 変形性股関節症">
+        <div class="article-list-item__thumb">
+          <img src="../image/knee-symptom-wide.webp" alt="「膝は治らない」と思っていませんか？　柏市の柔道整復師が正直に答えます" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">膝の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">「膝は治らない」と思っていませんか？　柏市の柔道整復師が正直に答えます</h3>
+          <p class="article-list-item__excerpt">膝は治らないと諦めている方へ。画像所見と痛みの違い、膝以外の負担、筋トレと運動療法の違いを踏まえて、膝の状態がなぜ変わる可能性があるのかを柏市の整体院ひざこぞうが誠実に解説します。</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/hip-stiffness-knee-low-back-pain-relation/" data-blog-card data-category="hip-pain" data-symptoms="/symptoms/hip-osteoarthritis.html /symptoms/lower-back-pain.html /symptoms/knee-osteoarthritis.html" data-search="股関節が硬いと膝や腰までつらくなる？体の連動から考える慢性痛の正体 階段の上り下りや歩き始めの膝痛、慢性的な腰痛にお悩みの方へ。実はその不調、股関節の硬さが原因かもしれません。身体の各関節が役割を分担する仕組みや、大腰筋の重要性を詳しく解説。整体院ひざこぞうが、施術と運動療法であなたの動ける喜びをサポートします。 股関節の痛み 股関節 膝痛 腰痛 Joint by Joint Theory 大腰筋 変形性股関節症 腰痛 変形性膝関節症">
+        <div class="article-list-item__thumb">
+          <img src="../image/hip-osteoarthritis-symptom.webp" alt="股関節が硬いと膝や腰までつらくなる？体の連動から考える慢性痛の正体" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">股関節の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">股関節が硬いと膝や腰までつらくなる？体の連動から考える慢性痛の正体</h3>
+          <p class="article-list-item__excerpt">階段の上り下りや歩き始めの膝痛、慢性的な腰痛にお悩みの方へ。実はその不調、股関節の硬さが原因かもしれません。身体の各関節が役割を分担する仕組みや、大腰筋の重要性を詳しく解説。整体…</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-03">2026.4.3</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/lower-back-pain-and-knee-link/" data-blog-card data-category="lower-back-pain" data-symptoms="/symptoms/lower-back-pain.html /symptoms/sciatica.html /symptoms/hip-osteoarthritis.html /symptoms/ankle-stiffness-knee-pain.html" data-search="膝をかばって腰までつらいときの見方 膝の痛みをかばううちに腰まで重くなる方へ。歩き方、体重の乗せ方、股関節や足首との関係を整体院ひざこぞうが整理します。 腰の痛み 腰痛 膝痛 姿勢 歩行不安 腰痛 坐骨神経痛 変形性股関節症 足首の硬さと膝痛">
+        <div class="article-list-item__thumb">
+          <img src="../image/lower-back-symptom.webp" alt="膝をかばって腰までつらいときの見方" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">腰の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">膝をかばって腰までつらいときの見方</h3>
+          <p class="article-list-item__excerpt">膝の痛みをかばううちに腰まで重くなる方へ。歩き方、体重の乗せ方、股関節や足首との関係を整体院ひざこぞうが整理します。</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-06-24">2026.6.24</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/knee-pain-stairs-guide/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/knee-effusion.html /symptoms/pes-anserine-bursitis.html /symptoms/knee-lateral-pain.html /symptoms/knee-posterior-pain.html /symptoms/knee-front-pain.html /symptoms/meniscus-knee-pain.html" data-search="階段で膝が痛い原因は？下りでつらい膝痛の見方 階段の下りで膝が痛い、上り下りが不安な方へ。膝だけでなく股関節・足首・歩き方まで含めて、柏市の整体院ひざこぞうが確認ポイントを整理します。 膝の痛み 膝痛 階段 階段 下り 変形性膝関節症 歩き方 柏市 変形性膝関節症 膝に水がたまる 膝の内側の痛み 膝の外側の痛み 膝の裏側の痛み 膝の前側の痛み 半月板損傷・膝の引っかかり">
+        <div class="article-list-item__thumb">
+          <img src="../image/knee-symptom.webp" alt="階段で膝が痛い原因は？下りでつらい膝痛の見方" loading="lazy" decoding="async" width="480" height="300">
+        </div>
+        <div class="article-list-item__body">
+          <div class="article-list-item__meta">
+            <span class="article-list-item__category">膝の痛み</span>
+          </div>
+          <h3 class="article-list-item__title">階段で膝が痛い原因は？下りでつらい膝痛の見方</h3>
+          <p class="article-list-item__excerpt">階段の下りで膝が痛い、上り下りが不安な方へ。膝だけでなく股関節・足首・歩き方まで含めて、柏市の整体院ひざこぞうが確認ポイントを整理します。</p>
+        </div>
+        <div class="article-list-item__side">
+          <time class="article-list-item__date" datetime="2026-04-20">2026.4.20</time>
+          <span class="article-list-item__arrow" aria-hidden="true">›</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="article-list-item article-list-item--card">
+      <a class="article-list-item__link" href="posts/hizakozou-method-guide/" data-blog-card data-category="exercise-therapy" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/lower-back-pain.html /symptoms/sciatica.html" data-search="ひざこぞう式整体とは？緩める・鍛える・動作改善の3ステップ ひざこぞう式整体の3ステップを、膝痛や歩きにくさに悩む方へ向けてやさしく解説します。緩める・鍛える・動作改善の順番で、痛みの原因と結果の両方に向き合う考え方です。 運動療法・セルフケア ひざこぞう式整体 運動療法 膝痛 腰痛 坐骨神経痛 変形性膝関節症 腰痛 坐骨神経痛">
+        <div class="article-list-item__thumb">
+          <img src="../image/hip-massage-scene.webp" alt="ひざこぞう式整体とは？緩める・鍛える・動作改善の3ステップ" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -1041,9 +851,9 @@
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/exercise-therapy-first-step/">
+      <a class="article-list-item__link" href="posts/exercise-therapy-first-step/" data-blog-card data-category="exercise-therapy" data-symptoms="/symptoms/sciatica.html /symptoms/lower-back-pain.html /symptoms/knee-osteoarthritis.html /symptoms/plantar-fasciitis.html" data-search="運動療法が苦手な方へ伝えたい最初の一歩 運動療法が不安な方へ。膝痛や腰痛がある方でも始めやすい、痛みを増やさない動き方とセルフケアの考え方を解説します。 運動療法・セルフケア 運動療法 膝痛 坐骨神経痛 セルフケア 坐骨神経痛 腰痛 変形性膝関節症 足底筋膜炎">
         <div class="article-list-item__thumb">
-          <img src="../image/treatment-stretch.webp" alt="運動療法が苦手な方へ伝えたい最初の一歩" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/treatment-stretch.webp" alt="運動療法が苦手な方へ伝えたい最初の一歩" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
@@ -1059,60 +869,47 @@
       </a>
     </article>
 
-      </div>
-    </section>
-
-    <section class="category-section category-section--list" id="category-clinic-guidance">
-      <div class="category-section__header category-section__header--list">
-        <div>
-          <p class="eyebrow">Category</p>
-          <h3>受診目安・通院</h3>
-        </div>
-        <p class="category-section__description">医療機関へ相談したい目安や、整体の通い方を考えるための記事です。</p>
-      </div>
-      <div class="article-list blog-card-grid">
-
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/kashiwa-knee-pain-clinic-or-seitai/">
+      <a class="article-list-item__link" href="posts/knee-walking/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/ankle-stiffness-knee-pain.html /symptoms/knee-front-pain.html /symptoms/lower-back-pain.html /symptoms/sciatica.html" data-search="歩くと膝が気になるときに、最初に見直したいこと 歩くと膝が痛い、重い、不安な方へ。歩数の増やし方、休み方、股関節や足首の見方を柏市の整体院ひざこぞうが整理します。 膝の痛み 膝痛 歩行 慢性痛 変形性膝関節症 足首の硬さと膝痛 膝の前側の痛み 腰痛 坐骨神経痛">
         <div class="article-list-item__thumb">
-          <img src="../image/medical-interview.webp" alt="柏市で膝が痛いとき、整形外科と整体はどちらに行くべき？" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/hiza2.webp" alt="歩くと膝が気になるときに、最初に見直したいこと" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
-            <span class="article-list-item__category">受診目安・通院</span>
+            <span class="article-list-item__category">膝の痛み</span>
           </div>
-          <h3 class="article-list-item__title">柏市で膝が痛いとき、整形外科と整体はどちらに行くべき？</h3>
-          <p class="article-list-item__excerpt">柏市で膝痛があり、整形外科と整体のどちらに相談すべきか迷う方へ。受診を優先したい症状と、整体で確認できる動き方の問題を整理します。</p>
+          <h3 class="article-list-item__title">歩くと膝が気になるときに、最初に見直したいこと</h3>
+          <p class="article-list-item__excerpt">歩くと膝が痛い、重い、不安な方へ。歩数の増やし方、休み方、股関節や足首の見方を柏市の整体院ひざこぞうが整理します。</p>
         </div>
         <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-05-04">2026.5.4</time>
+          <time class="article-list-item__date" datetime="2026-06-24">2026.6.24</time>
           <span class="article-list-item__arrow" aria-hidden="true">›</span>
         </div>
       </a>
     </article>
 
     <article class="article-list-item article-list-item--card">
-      <a class="article-list-item__link" href="posts/treatment-frequency-homeostasis/">
+      <a class="article-list-item__link" href="posts/knee-pain-daily-care/" data-blog-card data-category="knee-pain" data-symptoms="/symptoms/knee-osteoarthritis.html /symptoms/knee-front-pain.html /symptoms/meniscus-knee-pain.html /symptoms/bowlegs-knee-pain.html /symptoms/ankle-stiffness-knee-pain.html /symptoms/pes-anserine-bursitis.html /symptoms/lower-back-pain.html /symptoms/sciatica.html" data-search="柏市でしゃがむ・正座で膝が痛い方へ｜立ち上がりまで日常動作を見直す 柏市でしゃがむ・正座で膝が痛い、立ち上がりで膝がつらい方へ。日常動作で膝に負担が集まる理由と相談目安を整理します。 膝の痛み 膝痛 慢性痛 セルフケア しゃがむと膝が痛い 正座 立ち上がり 変形性膝関節症 膝の前側の痛み 半月板損傷・膝の引っかかり O脚・膝のゆがみ 足首の硬さと膝痛 膝の内側の痛み 腰痛 坐骨神経痛">
         <div class="article-list-item__thumb">
-          <img src="../image/consultation-scene.webp" alt="通院頻度はどう決める？膝痛を整えるペースの考え方" loading="lazy" decoding="async" width="320" height="220">
+          <img src="../image/hiza.webp" alt="柏市でしゃがむ・正座で膝が痛い方へ｜立ち上がりまで日常動作を見直す" loading="lazy" decoding="async" width="480" height="300">
         </div>
         <div class="article-list-item__body">
           <div class="article-list-item__meta">
-            <span class="article-list-item__category">受診目安・通院</span>
+            <span class="article-list-item__category">膝の痛み</span>
           </div>
-          <h3 class="article-list-item__title">通院頻度はどう決める？膝痛を整えるペースの考え方</h3>
-          <p class="article-list-item__excerpt">柏市で膝痛の通院頻度に迷う方へ。痛みの強さ、歩き始めや階段での不安、生活ペースをふまえ、無理のない通い方と運動療法の考え方を整理します。</p>
+          <h3 class="article-list-item__title">柏市でしゃがむ・正座で膝が痛い方へ｜立ち上がりまで日常動作を見直す</h3>
+          <p class="article-list-item__excerpt">柏市でしゃがむ・正座で膝が痛い、立ち上がりで膝がつらい方へ。日常動作で膝に負担が集まる理由と相談目安を整理します。</p>
         </div>
         <div class="article-list-item__side">
-          <time class="article-list-item__date" datetime="2026-04-08">2026.4.8</time>
+          <time class="article-list-item__date" datetime="2026-03-29">2026.3.29</time>
           <span class="article-list-item__arrow" aria-hidden="true">›</span>
         </div>
       </a>
     </article>
 
-      </div>
-    </section>
-  </div>
+            </div>
+            <p class="blog-index-empty" hidden data-blog-empty>条件に合う記事がありません。検索語や絞り込み条件を変えてお試しください。</p>
+          </section>
         </div>
       </div>
     </section>
@@ -1159,6 +956,45 @@
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') setMenuState(false);
       });
+
+      const filterForm = document.querySelector('[data-blog-filter-form]');
+      const searchInput = filterForm?.querySelector('[data-blog-search]');
+      const categorySelect = filterForm?.querySelector('[data-blog-category]');
+      const symptomSelect = filterForm?.querySelector('[data-blog-symptom]');
+      const cards = Array.from(document.querySelectorAll('[data-blog-card]'));
+      const resultCount = document.querySelector('[data-blog-result-count]');
+      const emptyMessage = document.querySelector('[data-blog-empty]');
+      const normalizeText = (value) => String(value || '').normalize('NFKC').toLocaleLowerCase('ja').replace(/\s+/g, '');
+      const applyFilters = () => {
+        const query = normalizeText(searchInput?.value);
+        const category = categorySelect?.value || '';
+        const symptom = symptomSelect?.value || '';
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const matchesQuery = !query || normalizeText(card.dataset.search).includes(query);
+          const matchesCategory = !category || card.dataset.category === category;
+          const matchesSymptom = !symptom || String(card.dataset.symptoms || '').split(/\s+/).includes(symptom);
+          const article = card.closest('.article-list-item');
+          const visible = matchesQuery && matchesCategory && matchesSymptom;
+          if (article) article.hidden = !visible;
+          if (visible) visibleCount += 1;
+        });
+
+        if (resultCount) resultCount.textContent = String(visibleCount);
+        if (emptyMessage) emptyMessage.hidden = visibleCount !== 0;
+      };
+
+      const initialQuery = new URLSearchParams(window.location.search).get('q');
+      if (initialQuery && searchInput) searchInput.value = initialQuery;
+      filterForm?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        applyFilters();
+      });
+      filterForm?.addEventListener('input', applyFilters);
+      filterForm?.addEventListener('change', applyFilters);
+      filterForm?.addEventListener('reset', () => queueMicrotask(applyFilters));
+      applyFilters();
     })();
   </script>
 </body>

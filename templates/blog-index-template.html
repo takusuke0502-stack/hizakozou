@@ -71,6 +71,45 @@
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') setMenuState(false);
       });
+
+      const filterForm = document.querySelector('[data-blog-filter-form]');
+      const searchInput = filterForm?.querySelector('[data-blog-search]');
+      const categorySelect = filterForm?.querySelector('[data-blog-category]');
+      const symptomSelect = filterForm?.querySelector('[data-blog-symptom]');
+      const cards = Array.from(document.querySelectorAll('[data-blog-card]'));
+      const resultCount = document.querySelector('[data-blog-result-count]');
+      const emptyMessage = document.querySelector('[data-blog-empty]');
+      const normalizeText = (value) => String(value || '').normalize('NFKC').toLocaleLowerCase('ja').replace(/\s+/g, '');
+      const applyFilters = () => {
+        const query = normalizeText(searchInput?.value);
+        const category = categorySelect?.value || '';
+        const symptom = symptomSelect?.value || '';
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const matchesQuery = !query || normalizeText(card.dataset.search).includes(query);
+          const matchesCategory = !category || card.dataset.category === category;
+          const matchesSymptom = !symptom || String(card.dataset.symptoms || '').split(/\s+/).includes(symptom);
+          const article = card.closest('.article-list-item');
+          const visible = matchesQuery && matchesCategory && matchesSymptom;
+          if (article) article.hidden = !visible;
+          if (visible) visibleCount += 1;
+        });
+
+        if (resultCount) resultCount.textContent = String(visibleCount);
+        if (emptyMessage) emptyMessage.hidden = visibleCount !== 0;
+      };
+
+      const initialQuery = new URLSearchParams(window.location.search).get('q');
+      if (initialQuery && searchInput) searchInput.value = initialQuery;
+      filterForm?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        applyFilters();
+      });
+      filterForm?.addEventListener('input', applyFilters);
+      filterForm?.addEventListener('change', applyFilters);
+      filterForm?.addEventListener('reset', () => queueMicrotask(applyFilters));
+      applyFilters();
     })();
   </script>
 </body>

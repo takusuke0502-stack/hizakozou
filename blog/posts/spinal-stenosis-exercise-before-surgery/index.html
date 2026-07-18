@@ -223,37 +223,37 @@
           </section>
         </div>
         <aside class="article-side">
-          <nav class="article-toc article-toc--side" aria-label="記事の目次">
+          <nav class="article-toc article-toc--side" aria-label="記事の目次" data-article-toc>
             <p class="eyebrow">Contents</p>
             <h2>記事の目次</h2>
             <ol>
 
             <li>
-              <a href="#section-1">
+              <a href="#section-1" data-toc-link>
                 <span class="article-toc__number">01</span>
                 <span>第1章：「脊柱管狭窄症」と「ヘルニア」は全く別ものではない</span>
               </a>
             </li>
             <li>
-              <a href="#section-2">
+              <a href="#section-2" data-toc-link>
                 <span class="article-toc__number">02</span>
                 <span>第2章：「腰の痛み」と「足のしびれ」、実は原因が違うかもしれない</span>
               </a>
             </li>
             <li>
-              <a href="#section-3">
+              <a href="#section-3" data-toc-link>
                 <span class="article-toc__number">03</span>
                 <span>第3章：手術の前にやるべきは「運動療法」</span>
               </a>
             </li>
             <li>
-              <a href="#section-4">
+              <a href="#section-4" data-toc-link>
                 <span class="article-toc__number">04</span>
                 <span>第4章：当院のアプローチ——施術×運動療法で「再発しない体」へ</span>
               </a>
             </li>
             <li>
-              <a href="#section-5">
+              <a href="#section-5" data-toc-link>
                 <span class="article-toc__number">05</span>
                 <span>まとめ：諦めずに、まず「動かすこと」から始めよう</span>
               </a>
@@ -368,6 +368,34 @@
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') setMenuState(false);
       });
+
+      const tocLinks = Array.from(document.querySelectorAll('[data-article-toc] a[href^="#"]'));
+      const headings = [...new Set(tocLinks
+        .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
+        .filter(Boolean))];
+      let tocFrame = 0;
+      const updateCurrentToc = () => {
+        tocFrame = 0;
+        if (!headings.length) return;
+        const threshold = Math.min(180, window.innerHeight * 0.3);
+        let current = headings[0];
+        for (const heading of headings) {
+          if (heading.getBoundingClientRect().top <= threshold) current = heading;
+        }
+        tocLinks.forEach((link) => {
+          if (link.hash === `#${current.id}`) {
+            link.setAttribute('aria-current', 'location');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+      };
+      const requestTocUpdate = () => {
+        if (!tocFrame) tocFrame = window.requestAnimationFrame(updateCurrentToc);
+      };
+      window.addEventListener('scroll', requestTocUpdate, { passive: true });
+      window.addEventListener('resize', requestTocUpdate);
+      updateCurrentToc();
     })();
   </script>
 </body>
