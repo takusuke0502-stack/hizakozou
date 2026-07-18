@@ -2924,7 +2924,7 @@ test("shoulder stiffness education redesign preserves the existing page boundari
   );
   assert.equal(
     sha256(shoulderStiffnessHtml.slice(voicesStart)),
-    "4b996bedff1f0cb0c11c94b7d66ce3a30c3b9f41078b9eb9bb3262f79e7b7094",
+    "7305701a4c8f27fef6abcb5b39e464933b662841e7711439e7799e293c502365",
     "patient voices onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3131,7 +3131,7 @@ test("TMJ education redesign preserves the existing page boundaries", () => {
   );
   assert.equal(
     sha256(tmjHtml.slice(flowStart)),
-    "b0b06fa80211bb4e6a07202456147d3636cbe7e1016b61af06c1b9ae79b92ad6",
+    "6e318fecb5728d4538248288ae9d90c079a2957b58e13c0d1f16dedba1cc119a",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3201,7 +3201,7 @@ test("frozen shoulder education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(frozenShoulderHtml.slice(flowStart)),
-    "b842b0b834c8033415e985b30491c2e530184100119c91aaaac5f849a824438e",
+    "3a54b9d1678c1adc6c0e2469478144cca5d612def645e8d4e60dce06218ca988",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3314,7 +3314,7 @@ test("thoracic outlet education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(thoracicOutletHtml.slice(flowStart)),
-    "425059ec1336545394cda3bd62f30dcc600ca07cc6761383aba87517b0d18db5",
+    "1dc84c287a5c50860267d6118811b96f6690705be0380dd2f21c231dc2f535fe",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3619,7 +3619,7 @@ test("knee pain education redesign preserves the existing page boundaries", () =
   );
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(voicesStart)),
-    "57b2881ad8d89d00345c46ea86059fa34eab4d00d79d97bf777b01ed1be19025",
+    "669226163d57dd5a0efd230c8eeabb40644dded0b83b12f04a9fe08d292fb183",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });

@@ -389,6 +389,50 @@ test("Phase 4 pilot migrates the five readable articles with internal and relate
   }
 });
 
+test("Phase 4 expands the eight short articles with reviewed sources and contextual links", () => {
+  const shortArticleSources = [
+    ["2026-04-elbow-pain-grip-shoulder.md", "elbow-pain-grip-shoulder", "elbow-pain", "日本整形外科学会 テニス肘"],
+    ["2026-04-tmj-neck-posture-relation.md", "tmj-neck-posture-relation", "tmj", "日本顎関節学会 顎関節症とは"],
+    ["2026-04-frozen-shoulder-safe-movement.md", "frozen-shoulder-safe-movement", "frozen-shoulder", "日本整形外科学会 五十肩"],
+    ["2026-04-shoulder-stiffness-posture-breathing.md", "shoulder-stiffness-posture-breathing", "shoulder-stiffness", "日本整形外科学会 肩こり"],
+    ["2026-05-kashiwa-station-knee-pain-guide.md", "kashiwa-station-knee-pain-guide", "knee-pain", "日本整形外科学会 変形性膝関節症"],
+    ["2026-05-knee-medial-pain-difference.md", "knee-medial-pain-difference", "knee-pain", "日本整形外科学会 変形性膝関節症"],
+    ["2026-05-knee-effusion-walking-guide.md", "knee-effusion-walking-guide", "knee-pain", "日本整形外科学会 変形性膝関節症"],
+    ["2026-05-knee-osteoarthritis-before-surgery-walking.md", "knee-osteoarthritis-before-surgery-walking", "knee-pain", "日本整形外科学会 変形性膝関節症"]
+  ];
+
+  for (const [sourceName, slug, referencePreset, referenceLabel] of shortArticleSources) {
+    const source = readFileSync(new URL(`../content/source/${sourceName}`, import.meta.url), "utf8");
+    const body = source.replace(/^---[\s\S]*?---\s*/, "");
+    const plainBody = body
+      .replace(/^#{1,6}\s+/gm, "")
+      .replace(/\[([^\]]+)\]\([^\)]+\)/g, "$1")
+      .replace(/[\s`*_>#-]/g, "");
+    const relatedSlugs = source.match(/^relatedSlugs:\s*(.+)$/m)?.[1]
+      .split(",")
+      .map((value) => value.trim())
+      .filter(Boolean) ?? [];
+    const internalLinks = body.match(/\[[^\]]+\]\(\/(?:blog\/posts|symptoms)\//g) ?? [];
+    const generated = readFileSync(new URL(`../blog/posts/${slug}/index.html`, import.meta.url), "utf8");
+    const generatedBody = generated.match(/<div class="article-content[\s\S]*?<aside class="article-side">/)?.[0] ?? "";
+    const publishedInternalLinks = generatedBody.match(/href="\/(?:blog\/posts|symptoms)\//g) ?? [];
+
+    assert.match(source, /^layout: readable-v3$/m, `${slug} should use readable-v3`);
+    assert.match(source, /^updatedDate: 2026-07-18$/m, `${slug} should expose the revision date`);
+    assert.match(source, /^reviewedDate: 2026-07-18$/m, `${slug} should expose the review date`);
+    assert.match(source, new RegExp(`^referencePreset: ${referencePreset}$`, "m"));
+    assert.ok(plainBody.length >= 1500 && plainBody.length <= 3000, `${slug} should meet the article length target`);
+    assert.ok(relatedSlugs.length >= 3, `${slug} should explicitly select three related articles`);
+    assert.ok(internalLinks.length >= 2, `${slug} should include contextual internal links`);
+    assert.ok(publishedInternalLinks.length >= 2, `${slug} should publish its contextual internal links`);
+    assert.match(generated, /article-content--readable-v3/, `${slug} should render the Phase 4 layout`);
+    assert.match(generated, /article-toc--disclosure/, `${slug} should render the mobile disclosure TOC`);
+    assert.match(generated, /readable-related-text-list/, `${slug} should use compact related links`);
+    assert.match(generated, /article-trust-panel__references/, `${slug} should publish reviewed references`);
+    assert.ok(generated.includes(referenceLabel), `${slug} should publish its matching public reference`);
+  }
+});
+
 test("selectBlogRelatedPosts prioritizes frontmatter slugs and rejects missing slugs", () => {
   const category = categories.get("knee-pain");
   const current = { slug: "current", category, relatedSlugs: ["third", "first"] };

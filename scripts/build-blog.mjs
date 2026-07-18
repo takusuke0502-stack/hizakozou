@@ -48,6 +48,46 @@ const ARTICLE_OVERVIEW_PRESETS = {
   }
 };
 const ARTICLE_REFERENCE_PRESETS = {
+  "elbow-pain": [
+    {
+      label: "日本整形外科学会 テニス肘（上腕骨外側上顆炎）",
+      url: "https://www.joa.or.jp/public/sick/condition/lateral_epicondylitis.html"
+    },
+    {
+      label: "日本整形外科学会 肘関節の症状一覧",
+      url: "https://www.joa.or.jp/public/sick/body/elbow.html"
+    }
+  ],
+  "tmj": [
+    {
+      label: "日本顎関節学会 顎関節症とは",
+      url: "https://kokuhoken.net/jstmj/general/about_tmd.html"
+    },
+    {
+      label: "日本顎関節学会 一般の方へ",
+      url: "https://kokuhoken.net/jstmj/"
+    }
+  ],
+  "frozen-shoulder": [
+    {
+      label: "日本整形外科学会 五十肩（肩関節周囲炎）",
+      url: "https://www.joa.or.jp/public/sick/condition/frozen_shoulder.html"
+    },
+    {
+      label: "日本整形外科学会 肩腱板断裂",
+      url: "https://www.joa.or.jp/public/sick/condition/rotator_cuff_tear.html"
+    }
+  ],
+  "shoulder-stiffness": [
+    {
+      label: "日本整形外科学会 肩こり",
+      url: "https://www.joa.or.jp/public/sick/condition/stiffed_neck.html"
+    },
+    {
+      label: "日本整形外科学会 頚椎症性神経根症",
+      url: "https://www.joa.or.jp/public/sick/condition/cervical_radiculopathy.html"
+    }
+  ],
   "chronic-pain": [
     {
       label: "厚生労働省 慢性疼痛対策",
