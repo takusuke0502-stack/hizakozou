@@ -468,6 +468,42 @@ test("lateral femoral cutaneous nerve article publishes reviewed copy and respon
   }
 });
 
+test("femoral neuralgia article separates weakness red flags and publishes approved images", () => {
+  const slug = "femoral-neuralgia";
+  const source = readFileSync(new URL("../content/source/2026-07-femoral-neuralgia.md", import.meta.url), "utf8");
+  const body = source.replace(/^---[\s\S]*?---\s*/, "");
+  const plainBody = body
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/!\[([^\]]*)\]\([^\)]+\)/g, "$1")
+    .replace(/\[([^\]]+)\]\([^\)]+\)/g, "$1")
+    .replace(/[\s`*_>#-]/g, "");
+  const bodyImages = body.match(/^!\[[^\]]+\]\([^\)]+\)$/gm) ?? [];
+  const internalLinks = body.match(/\[[^\]]+\]\(\/(?:blog\/posts|symptoms)\//g) ?? [];
+  const generated = readFileSync(new URL(`../blog/posts/${slug}/index.html`, import.meta.url), "utf8");
+
+  assert.match(source, /^layout: readable-v3$/m);
+  assert.match(source, /^referencePreset: femoral-neuralgia$/m);
+  assert.ok(plainBody.length >= 1500 && plainBody.length <= 3000, "article should stay within the requested length");
+  assert.equal(bodyImages.length, 2, "article should place the approved symptom and self-care images");
+  assert.ok(internalLinks.length >= 3, "article should include contextual internal links");
+  assert.doesNotMatch(body, /治療|治る|根本解決|必ず良くなる|絶対に改善/);
+  assert.doesNotMatch(source, /femoral-neuralgia-causes\.png|femoral-neuralgia-causes-1200\.webp/);
+  assert.match(generated, /article-content--readable-v3/);
+  assert.match(generated, /femoral-neuralgia-hero-480\.webp 480w/);
+  assert.equal((generated.match(/class="article-body-figure"/g) ?? []).length, 2);
+  assert.match(generated, /femoral-neuralgia-self-care-768\.webp 768w/);
+  assert.match(generated, /MedlinePlus 大腿神経機能不全/);
+  assert.match(generated, /Cleveland Clinic Femoral Nerve/);
+  assert.match(generated, /MedlinePlus 筋電図・神経伝導検査/);
+  assert.match(generated, /href="\/staff\.html"/);
+
+  for (const name of ["hero", "symptom-area", "self-care"]) {
+    for (const width of [480, 768, 1200]) {
+      assert.doesNotThrow(() => readFileSync(new URL(`../image/blog/${slug}/${slug}-${name}-${width}.webp`, import.meta.url)));
+    }
+  }
+});
+
 test("selectBlogRelatedPosts prioritizes frontmatter slugs and rejects missing slugs", () => {
   const category = categories.get("knee-pain");
   const current = { slug: "current", category, relatedSlugs: ["third", "first"] };

@@ -1,4 +1,19 @@
 {
+  "/image/blog/femoral-neuralgia/femoral-neuralgia-hero-1200.webp": {
+    "width": 1200,
+    "height": 800,
+    "srcset": "/image/blog/femoral-neuralgia/femoral-neuralgia-hero-480.webp 480w, /image/blog/femoral-neuralgia/femoral-neuralgia-hero-768.webp 768w, /image/blog/femoral-neuralgia/femoral-neuralgia-hero-1200.webp 1200w"
+  },
+  "/image/blog/femoral-neuralgia/femoral-neuralgia-self-care-1200.webp": {
+    "width": 1200,
+    "height": 800,
+    "srcset": "/image/blog/femoral-neuralgia/femoral-neuralgia-self-care-480.webp 480w, /image/blog/femoral-neuralgia/femoral-neuralgia-self-care-768.webp 768w, /image/blog/femoral-neuralgia/femoral-neuralgia-self-care-1200.webp 1200w"
+  },
+  "/image/blog/femoral-neuralgia/femoral-neuralgia-symptom-area-1200.webp": {
+    "width": 1200,
+    "height": 800,
+    "srcset": "/image/blog/femoral-neuralgia/femoral-neuralgia-symptom-area-480.webp 480w, /image/blog/femoral-neuralgia/femoral-neuralgia-symptom-area-768.webp 768w, /image/blog/femoral-neuralgia/femoral-neuralgia-symptom-area-1200.webp 1200w"
+  },
   "/image/blog/lateral-thigh-pain-lateral-femoral-cutaneous-nerve/lateral-thigh-pain-lateral-femoral-cutaneous-nerve-compression-causes-1200.webp": {
     "width": 1200,
     "height": 800,

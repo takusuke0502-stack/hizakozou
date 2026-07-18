@@ -171,6 +171,20 @@ const ARTICLE_REFERENCE_PRESETS = {
       label: "Johns Hopkins Medicine Meralgia Paresthetica",
       url: "https://www.hopkinsmedicine.org/health/conditions-and-diseases/meralgia-paresthetica"
     }
+  ],
+  "femoral-neuralgia": [
+    {
+      label: "MedlinePlus 大腿神経機能不全",
+      url: "https://medlineplus.gov/ency/article/000687.htm"
+    },
+    {
+      label: "Cleveland Clinic Femoral Nerve",
+      url: "https://my.clevelandclinic.org/health/body/21786-femoral-nerve"
+    },
+    {
+      label: "MedlinePlus 筋電図・神経伝導検査",
+      url: "https://medlineplus.gov/lab-tests/electromyography-emg-and-nerve-conduction-studies/"
+    }
   ]
 };
 
@@ -1988,7 +2002,8 @@ const relatedArticleImageDimensions = new Map([
   ["../image/sciatica-symptom.webp", [1600, 1600]],
   ["../image/medical-interview.webp", [800, 600]],
   ["../image/hip-massage-scene.webp", [1600, 1600]],
-  ["../image/blog/lateral-thigh-pain-lateral-femoral-cutaneous-nerve/lateral-thigh-pain-lateral-femoral-cutaneous-nerve-hero-1200.webp", [1200, 800]]
+  ["../image/blog/lateral-thigh-pain-lateral-femoral-cutaneous-nerve/lateral-thigh-pain-lateral-femoral-cutaneous-nerve-hero-1200.webp", [1200, 800]],
+  ["../image/blog/femoral-neuralgia/femoral-neuralgia-hero-1200.webp", [1200, 800]]
 ]);
 
 function buildRelatedArticlesSliderSection(config, posts) {
