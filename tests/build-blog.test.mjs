@@ -9,9 +9,12 @@ import {
   buildIndexContent,
   buildPostContent,
   normalizeSymptomPageDesign,
+  parseMarkdownImage,
   renderBody,
-  replaceDirectoryAtomically
+  replaceDirectoryAtomically,
+  selectBlogRelatedPosts
 } from "../scripts/build-blog.mjs";
+import { normalizeArticleLayout, parseSourceFile } from "../scripts/generate-blog.mjs";
 
 const site = {
   name: "整体院ひざこぞう",
@@ -289,6 +292,124 @@ test("buildPostContent uses the current first-visit facts without regular pricin
   assert.match(html, /初回料金/);
   assert.match(html, /1,980<small>円（税込）<\/small>/);
   assert.doesNotMatch(html, /通常料金|10,000円|2回目以降|回数券/);
+});
+
+test("renderBody converts a Markdown image into a responsive figure", () => {
+  const html = renderBody({
+    body: [
+      "画像の前の文章です。",
+      '![椅子から立ち上がるときの足の位置](/image/blog/sample/sample-movement-check-1200.webp "立ち上がりでは足の位置も確認します")',
+      "画像の後の文章です。"
+    ]
+  });
+
+  assert.deepEqual(parseMarkdownImage('![説明](/image/blog/sample/sample-hero-1200.webp "短い説明")'), {
+    alt: "説明",
+    src: "/image/blog/sample/sample-hero-1200.webp",
+    caption: "短い説明"
+  });
+  assert.match(html, /<figure class="article-body-figure">/);
+  assert.match(html, /<picture>/);
+  assert.match(html, /sample-movement-check-480\.webp 480w, \/image\/blog\/sample\/sample-movement-check-768\.webp 768w, \/image\/blog\/sample\/sample-movement-check-1200\.webp 1200w/);
+  assert.match(html, /alt="椅子から立ち上がるときの足の位置"/);
+  assert.match(html, /loading="lazy"/);
+  assert.match(html, /<figcaption>立ち上がりでは足の位置も確認します<\/figcaption>/);
+  assert.ok(html.indexOf("画像の前の文章です") < html.indexOf("article-body-figure"));
+  assert.ok(html.indexOf("article-body-figure") < html.indexOf("画像の後の文章です"));
+});
+
+test("readable-v3 keeps the readable flow and adds its own layout hooks", () => {
+  const html = buildPostContent(site, {
+    title: "読みやすい新レイアウト",
+    description: "スマートフォンとPCで読みやすい記事です。",
+    lead: "導入文です。",
+    slug: "readable-v3-check",
+    eyecatch: "/image/blog/readable-v3-check/readable-v3-check-hero-1200.webp",
+    heroAlt: "椅子に座って身体の状態を確認する様子",
+    date: "2026-07-18",
+    updatedDate: "2026-07-18",
+    layout: "readable-v3",
+    category: categories.get("knee-pain"),
+    tags: ["膝痛"],
+    sections: [{ heading: "本文", body: ["本文です。"] }],
+    faq: [],
+    relatedSymptoms: [],
+    parentSymptom: "/symptoms/knee-osteoarthritis.html",
+    cta: { href: "https://lin.ee/X01F2mP", label: "LINEで相談する", note: "相談できます。" }
+  }, []);
+
+  assert.match(html, /article-layout--readable-v3/);
+  assert.match(html, /article-content--readable-v3/);
+  assert.match(html, /readable-v3-check-hero-480\.webp 480w/);
+  assert.match(html, /alt="椅子に座って身体の状態を確認する様子"/);
+  assert.match(html, /href="\/symptoms\/knee-osteoarthritis\.html">関連する症状案内を見る/);
+});
+
+test("selectBlogRelatedPosts prioritizes frontmatter slugs and rejects missing slugs", () => {
+  const category = categories.get("knee-pain");
+  const current = { slug: "current", category, relatedSlugs: ["third", "first"] };
+  const candidates = [
+    current,
+    { slug: "first", category },
+    { slug: "second", category },
+    { slug: "third", category }
+  ];
+
+  assert.deepEqual(selectBlogRelatedPosts(current, candidates, 3).map((post) => post.slug), ["third", "first", "second"]);
+  assert.throws(
+    () => selectBlogRelatedPosts({ ...current, relatedSlugs: ["missing"] }, candidates),
+    /Unknown relatedSlugs for current: missing/
+  );
+});
+
+test("source frontmatter accepts Phase 1 metadata", async () => {
+  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "hizakozou-source-"));
+  const sourcePath = path.join(tempDir, "phase-1.md");
+  await fs.writeFile(sourcePath, `---
+title: Phase 1原稿
+slug: phase-1-source
+date: 2026-07-01
+updated: 2026-07-18
+description: Phase 1のfrontmatterを確認する原稿です。
+category: 膝痛
+region: 柏市
+tags: 膝痛,歩き方
+symptoms: 変形性膝関節症
+heroImage: /image/blog/phase-1-source/phase-1-source-hero-1200.webp
+heroAlt: 歩き方を確認する様子
+author: 川上卓哉
+reviewer: 川上卓哉
+reviewedDate: 2026-07-18
+parentSymptom: /symptoms/knee-osteoarthritis.html
+relatedSlugs: first-article,second-article
+searchIntent: 階段で膝が痛い理由を知りたい
+layout: readable-v3
+draft: true
+---
+
+導入文です。
+
+## 本文
+
+本文です。
+`, "utf8");
+
+  const parsed = await parseSourceFile(sourcePath, {
+    categoryLookup: new Map([["膝痛", "knee-pain"]]),
+    symptomLookup: new Map([["変形性膝関節症", {
+      label: "変形性膝関節症",
+      href: "/symptoms/knee-osteoarthritis.html",
+      description: "膝の症状ページです。"
+    }]])
+  });
+
+  assert.equal(parsed.updatedDate, "2026-07-18");
+  assert.equal(parsed.heroAlt, "歩き方を確認する様子");
+  assert.equal(parsed.layout, "readable-v3");
+  assert.equal(parsed.parentSymptom, "/symptoms/knee-osteoarthritis.html");
+  assert.deepEqual(parsed.relatedSlugs, ["first-article", "second-article"]);
+  assert.equal(parsed.searchIntent, "階段で膝が痛い理由を知りたい");
+  assert.equal(normalizeArticleLayout("unknown-layout"), "");
 });
 
 test("buildPostContent places readable article author review below the article body with references", () => {
@@ -681,9 +802,9 @@ test("generated blog pages use canonical root links instead of index.html", () =
   }
 
   assert.match(blogIndexHtml, /href="\/#access"/);
-  assert.match(blogIndexHtml, /href="\/#knee-type-nav"/);
+  assert.match(blogIndexHtml, /href="\/symptoms\/"/);
   assert.match(dailyCareHtml, /<a href="\/">トップ<\/a>/);
-  assert.match(dailyCareHtml, /href="\/#knee-type-nav"/);
+  assert.match(dailyCareHtml, /href="\/symptoms\/"/);
 });
 
 test("knee-pain-daily-care article is indexable and aligned with squatting and seiza intent", () => {

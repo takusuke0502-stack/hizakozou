@@ -6,6 +6,11 @@
     "build:blog": "node scripts/build-blog.mjs",
     "generate:blog": "node scripts/generate-blog.mjs --all",
     "generate:blog:source": "node scripts/generate-blog.mjs",
-    "test": "node tests/build-blog.test.mjs && node tests/lp.test.mjs"
+    "prepare:blog-images": "node scripts/prepare-blog-images.mjs",
+    "check:blog-links": "node scripts/check-blog-links.mjs",
+    "test": "node tests/build-blog.test.mjs && node tests/lp.test.mjs && node tests/blog-links.test.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.3"
   }
 }

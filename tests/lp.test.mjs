@@ -2815,12 +2815,12 @@ test("lower back education redesign stays inside the requested page range", () =
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(lowerBackHtml.slice(bodyStart, redesignStart)),
-    "e11e5743b8dec6c5d530bf7ffd002b4f58786551e289413f4c65e7525dc4ef52",
+    "82321d9063c8fa75bdd25688004672ce363f47cc924b4caa43349da35852e3a6",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(lowerBackHtml.slice(voicesStart)),
-    "7060009c6ad70996c0d6ca42c8a8462715e7b7d6dcdd01b0a85ee9f5134822b2",
+    "9d1ca177f4f429e8ebf5c768b29fd9ccdb2af9885fc1501d35805796c54f79d6",
     "patient voices onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -2884,12 +2884,12 @@ test("shoulder stiffness education redesign preserves the existing page boundari
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(shoulderStiffnessHtml.slice(bodyStart, redesignStart)),
-    "ff99c93266874fa39f1a660aa4f45f5e06e48ce3aea2e89251e89116b8d9232b",
+    "cefc302424476fc192e0963f74634960adc0792d5a9a72341ed7209b7feb81a7",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(shoulderStiffnessHtml.slice(voicesStart)),
-    "2df536fa2d95bed0abc750f44c7c9d5d478827166af294c1e8881d10f3e64cc7",
+    "4b996bedff1f0cb0c11c94b7d66ce3a30c3b9f41078b9eb9bb3262f79e7b7094",
     "patient voices onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -2953,12 +2953,12 @@ test("plantar fasciitis education redesign preserves the existing page boundarie
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(plantarFasciitisHtml.slice(bodyStart, redesignStart)),
-    "878d62e4f26d4db4774af95a1657710be7f2ea47a786b0b3676bec530c6bdfba",
+    "7b8974398461ce9a2ad9de03873aaf711ae4b60cd81231a62c244c739ace7d2d",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(plantarFasciitisHtml.slice(flowStart)),
-    "bff23e1047c1818d34dc8abd0b9f03c7cfb4e38061510db600b4d95680fe6e5b",
+    "34aab06ab7ea50ae6584f8eb72207343b6e6759df3c1bde022ba4067fe913664",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3022,12 +3022,12 @@ test("scoliosis education redesign preserves the existing page boundaries", () =
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(scoliosisHtml.slice(bodyStart, redesignStart)),
-    "11c04e3cf0194c0c37af56c512823184e077ca45373b48273f5d726eac6024be",
+    "a0138a80e2790403faebefb3c9527676fd1bb23567f09183869d6c06dca93618",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(scoliosisHtml.slice(flowStart)),
-    "918850208cd51ba402a76aa83371f77fc96f862bdecab61ce0ad82c83fc310e6",
+    "247a2adf3bc2b822b76b485e7600a9470fd9bd704b0884674549d94206617690",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3091,12 +3091,12 @@ test("TMJ education redesign preserves the existing page boundaries", () => {
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(tmjHtml.slice(bodyStart, redesignStart)),
-    "7cfbe2cc1c4b7338175621ecf3e02eb8b1a4f0ec26824ed6bc91dd2d4f871b7f",
+    "8057da1baf5fffd59980c4b053e50874e833fdae9b4c7dd6ea8cc34edb879ed7",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(tmjHtml.slice(flowStart)),
-    "1bfac7d726c87e51bb21f8569b67a3ba7fa07b480bd78cc312b6b43c4e398576",
+    "b0b06fa80211bb4e6a07202456147d3636cbe7e1016b61af06c1b9ae79b92ad6",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3161,12 +3161,12 @@ test("frozen shoulder education redesign preserves the existing page boundaries"
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(frozenShoulderHtml.slice(bodyStart, redesignStart)),
-    "8f808471a1993635643fcd30e000dbdf65fbb81f7629208900707577d19f0bfa",
+    "9e07bbde7ce3d49ca126282f8b0c63ddd600703404a68ac97117ffa401248f85",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(frozenShoulderHtml.slice(flowStart)),
-    "4b3b2a11f3fe218d9d8ed42f2c257a016e0fb118919634ee227a7cd7687a4cd9",
+    "b842b0b834c8033415e985b30491c2e530184100119c91aaaac5f849a824438e",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3274,12 +3274,12 @@ test("thoracic outlet education redesign preserves the existing page boundaries"
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(thoracicOutletHtml.slice(bodyStart, redesignStart)),
-    "e0d389e0dac5901844875897ed1787868c68619db472d43ca39ed3479ed63739",
+    "36573d9d1082580510977f1ed385f86fbb7efec5b7f8f17d0d44debd9d37ea8d",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(thoracicOutletHtml.slice(flowStart)),
-    "38fb3a596a56a1c882d347e36550dfd59f73cae43a585b7cf277172fb076abb4",
+    "425059ec1336545394cda3bd62f30dcc600ca07cc6761383aba87517b0d18db5",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3441,12 +3441,12 @@ test("sciatica education redesign stays inside the matching lower-back page rang
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(sciaticaHtml.slice(bodyStart, redesignStart)),
-    "9581808d018dbe5ac81662f77e654605a1a6ecebd0d6c97bf923b832ea0d48f7",
+    "436324c303caf4111dbf97c1c4f87c02ee8ff061af21984a6aa3d559686a7b6f",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(sciaticaHtml.slice(voicesStart)),
-    "8e536db55dc957229ef0050416cfedd4459db7c007f6844cd1e3dfdfd0758751",
+    "eea682d0b0ea98ee643c42fa59a9787f1e908ed435ec32466fd6446816f79aad",
     "patient voices onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -3510,12 +3510,12 @@ test("spinal stenosis education redesign preserves the existing page boundaries"
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(spinalStenosisHtml.slice(bodyStart, redesignStart)),
-    "e624cbd943e64324474d47fbc26da31042338a81d802d8705f5f665412c9e17a",
+    "898189c7e6cbaf578ab60442e4772f156d5b895f46e34f52338fed61db46fbfc",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(spinalStenosisHtml.slice(flowStart)),
-    "90a233e2329062a7de8f237eb8cdb9f868f8215dcb6c932c7a26d91d9cb808ac",
+    "545092c109640b032bd05458e798e87250f3de631e1da954927928bdaa830ff6",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -3579,12 +3579,12 @@ test("knee pain education redesign preserves the existing page boundaries", () =
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(bodyStart, redesignStart)),
-    "4698aeed1accbf33a809e931a4f5abdc37476d500102c2d4162449bd9b0bbcb5",
+    "95bb67bc4791623c8638d221517888c148ec861b4e8640ea380d9a169ce00af9",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(voicesStart)),
-    "3706e6dc164ee09f78406fb4a3016eb198251c4623edf6e60101276c93ac8533",
+    "57b2881ad8d89d00345c46ea86059fa34eab4d00d79d97bf777b01ed1be19025",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3648,12 +3648,12 @@ test("hip pain education redesign preserves the existing page boundaries", () =>
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(hipOsteoarthritisHtml.slice(bodyStart, redesignStart)),
-    "9282432c2ed120c2c49331670d91348b9b5c23b5d386f53bdcfd8afcd147c473",
+    "721525c7e36360899217585d58da3c205d139f316134ee55b220c479ddf254fb",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(hipOsteoarthritisHtml.slice(voicesStart)),
-    "905957c802b7d144e6b44ce5b0eb0715c5facf0a18a8af4625a5c1c2b681b27e",
+    "6f170e04cddb4e31deda6bf63ba114dce3fe0253029ca31876426bbc573d3c53",
     "patient voices onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3717,12 +3717,12 @@ test("disc herniation education redesign preserves the existing page boundaries"
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(bodyStart, redesignStart)),
-    "6de7b57bec65b11a2979ef64b2953efcd235141cdbec1f28245cc42544726887",
+    "93f162d38f4b5922622c924f158dea72c46dc00a234947e7320aba98980b5c99",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(flowStart)),
-    "ff42fc23bb142b6ab2a2e3b6e421ac26a29aa14dcbd3075c35422295ae229e00",
+    "0fe86b555e274e40c7ed58bdfad7498ca87097dce677aa522af6f988484405da",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });

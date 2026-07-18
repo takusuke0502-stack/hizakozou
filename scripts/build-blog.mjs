@@ -8,6 +8,7 @@ import {
   symptomMetadataDescriptions,
   symptomTrustGuidance
 } from "./symptom-page-guidance.mjs";
+import { buildPractitionerQualification, CLINIC_FACTS } from "./clinic-facts.mjs";
 
 const rootDir = process.cwd();
 const dataPath = path.join(rootDir, "data", "blog-posts.json");
@@ -24,16 +25,13 @@ const NOINDEX_SYMPTOM_FILES = new Set();
 const BLOG_INDEX_HIDDEN_CATEGORIES = new Set(["neck-shoulder-hand"]);
 const NOINDEX_POST_CATEGORIES = new Set(["neck-shoulder-hand"]);
 const ARTICLE_LAYOUT_READABLE = "readable-v2";
+const ARTICLE_LAYOUT_READABLES = new Set(["readable-v2", "readable-v3"]);
 const ARTICLE_REVIEWER = {
-  name: "川上卓哉",
-  qualification: "柔道整復師（国家資格）／施術歴15年／累計施術約2万件",
-  profileUrl: "/staff.html"
+  name: CLINIC_FACTS.practitioner.name,
+  qualification: buildPractitionerQualification(),
+  profileUrl: CLINIC_FACTS.profileUrl
 };
-const FIRST_VISIT = {
-  title: "初回のご案内",
-  duration: "約90分（カウンセリング・状態確認・施術・今後のご説明）",
-  price: "1,980"
-};
+const FIRST_VISIT = CLINIC_FACTS.firstVisit;
 const ARTICLE_OVERVIEW_PRESETS = {
   "chronic-pain": {
     points: [
@@ -648,7 +646,7 @@ export async function buildBlog() {
     for (const post of posts) {
       const postDir = path.join(stagingDir, post.slug);
       await fs.mkdir(postDir, { recursive: true });
-      const relatedPosts = posts.filter((item) => item.slug !== post.slug && item.category.slug === post.category.slug).slice(0, 2);
+      const relatedPosts = selectBlogRelatedPosts(post, posts);
       const postHtml = renderTemplate(postTemplate, {
         SEO_HEAD: buildPostSeo(blogData.site, post),
         CSS_PATH: "../../assets/blog.css",
@@ -676,6 +674,22 @@ export async function buildBlog() {
   await updateSitemap(blogData.site, posts);
 
   console.log(`Generated ${posts.length} static blog post(s), updated symptom related articles, and regenerated sitemap.xml.`);
+}
+
+export function selectBlogRelatedPosts(post, posts, limit = 2) {
+  const candidates = posts.filter((item) => item.slug !== post.slug);
+  const bySlug = new Map(candidates.map((item) => [item.slug, item]));
+  const requestedSlugs = Array.isArray(post.relatedSlugs) ? [...new Set(post.relatedSlugs.filter(Boolean))] : [];
+  const missingSlugs = requestedSlugs.filter((slug) => !bySlug.has(slug));
+  if (missingSlugs.length) {
+    throw new Error(`Unknown relatedSlugs for ${post.slug}: ${missingSlugs.join(", ")}`);
+  }
+
+  const selected = requestedSlugs.map((slug) => bySlug.get(slug));
+  const selectedSlugs = new Set(requestedSlugs);
+  const sameCategory = candidates.filter((item) => item.category.slug === post.category.slug && !selectedSlugs.has(item.slug));
+
+  return [...selected, ...sameCategory].slice(0, Math.max(1, limit));
 }
 
 export async function replaceDirectoryAtomically(targetDir, populateDirectory) {
@@ -1991,7 +2005,7 @@ function normalizeArticleLayoutForRendering(post) {
 }
 
 function isReadableArticle(post) {
-  return normalizeArticleLayoutForRendering(post) === ARTICLE_LAYOUT_READABLE;
+  return ARTICLE_LAYOUT_READABLES.has(normalizeArticleLayoutForRendering(post));
 }
 
 function normalizePost(post, site, categoryMap) {
@@ -2005,9 +2019,15 @@ function normalizePost(post, site, categoryMap) {
     category,
     updatedDate: post.updatedDate || post.date,
     eyecatch: post.eyecatch || site.defaultEyecatch,
+    heroAlt: post.heroAlt || post.title,
     layout: normalizeArticleLayoutForRendering(post),
+    author: post.author || "",
+    reviewer: post.reviewer || ARTICLE_REVIEWER.name,
     reviewedDate: post.reviewedDate || post.updatedDate || post.date,
     referencePreset: post.referencePreset || "",
+    parentSymptom: post.parentSymptom || "",
+    relatedSlugs: Array.isArray(post.relatedSlugs) ? post.relatedSlugs : [],
+    searchIntent: post.searchIntent || "",
     tags: Array.isArray(post.tags) ? post.tags : [],
     sections: enrichSections(Array.isArray(post.sections) ? post.sections : []),
     faq: Array.isArray(post.faq) ? post.faq : [],
@@ -2257,6 +2277,7 @@ export function buildPostContent(site, post, relatedPosts) {
     id: `section-${index + 1}`
   }));
   const isReadableLayout = isReadableArticle(post);
+  const isReadableV3 = post.layout === "readable-v3";
   const renderedSections = articleSections.map((section) => renderSection(section));
   const midCtaIndex = Math.min(2, renderedSections.length);
   const sectionsHtml = [
@@ -2334,10 +2355,10 @@ export function buildPostContent(site, post, relatedPosts) {
   `
     : "";
 
-  const heroClass = ["article-card", isReadableLayout ? "article-card--readable" : ""].filter(Boolean).join(" ");
-  const mainClass = ["article-main", isReadableLayout ? "article-main--readable" : ""].filter(Boolean).join(" ");
-  const layoutClass = ["shell", "article-layout", isReadableLayout ? "article-layout--readable" : ""].filter(Boolean).join(" ");
-  const contentClass = ["article-content", "card-surface", "prose-surface", isReadableLayout ? "article-content--readable" : ""].filter(Boolean).join(" ");
+  const heroClass = ["article-card", isReadableLayout ? "article-card--readable" : "", isReadableV3 ? "article-card--readable-v3" : ""].filter(Boolean).join(" ");
+  const mainClass = ["article-main", isReadableLayout ? "article-main--readable" : "", isReadableV3 ? "article-main--readable-v3" : ""].filter(Boolean).join(" ");
+  const layoutClass = ["shell", "article-layout", isReadableLayout ? "article-layout--readable" : "", isReadableV3 ? "article-layout--readable-v3" : ""].filter(Boolean).join(" ");
+  const contentClass = ["article-content", "card-surface", "prose-surface", isReadableLayout ? "article-content--readable" : "", isReadableV3 ? "article-content--readable-v3" : ""].filter(Boolean).join(" ");
   const heroLeadText = isReadableLayout ? post.description : (post.lead || post.description);
   const contentLeadHtml = readableLeadHtml ? `\n          ${readableLeadHtml}` : "";
   const contentIntroHtml = readableOverviewHtml ? `\n          ${readableOverviewHtml}` : "";
@@ -2355,7 +2376,15 @@ export function buildPostContent(site, post, relatedPosts) {
         </nav>
         <article class="${heroClass}">
           <div class="article-card__hero">
-            <img src="../../..${post.eyecatch}" alt="${escapeHtml(post.title)}" loading="eager" decoding="async" width="1200" height="630">
+            ${renderResponsivePicture({
+              src: post.eyecatch,
+              alt: post.heroAlt || post.title,
+              loading: "eager",
+              width: 1200,
+              height: 630,
+              fetchPriority: "high",
+              fallbackPrefix: "../../.."
+            })}
           </div>
           <div class="article-card__body article-card__body--post">
             <div class="article-meta">
@@ -2390,7 +2419,8 @@ export function buildPostContent(site, post, relatedPosts) {
           <div class="side-card">
             <p class="side-card__eyebrow">一覧へ</p>
             <a class="text-link text-link--block" href="../../">ブログ一覧に戻る</a>
-            <a class="text-link text-link--block" href="/#symptoms">症状ページを見る</a>
+            ${post.parentSymptom ? `<a class="text-link text-link--block" href="${escapeHtml(post.parentSymptom)}">関連する症状案内を見る</a>` : ""}
+            <a class="text-link text-link--block" href="/symptoms/">症状ページを見る</a>
           </div>
         </aside>
       </div>
@@ -2428,7 +2458,10 @@ function buildArticleReadableLead(post) {
     .split(/\n{2,}/)
     .map((paragraph) => paragraph.trim())
     .filter(Boolean)
-    .map((paragraph) => `<p>${renderInlineText(paragraph)}</p>`)
+    .map((paragraph) => {
+      const image = parseMarkdownImage(paragraph);
+      return image ? renderArticleImage(image) : `<p>${renderInlineText(paragraph)}</p>`;
+    })
     .join("\n");
 
   if (!paragraphs) return "";
@@ -2481,6 +2514,7 @@ function buildArticleTrustPanel(site, post) {
               </li>`)
     .join("");
   const reviewedDate = post.reviewedDate || post.updatedDate || post.date;
+  const reviewerName = post.reviewer || ARTICLE_REVIEWER.name;
   const panelClass = ["article-trust-panel", referenceItems ? "" : "article-trust-panel--simple"].filter(Boolean).join(" ");
   const referencesHtml = referenceItems ? `
             <div class="article-trust-panel__references">
@@ -2494,7 +2528,7 @@ ${referenceItems}
             <div class="article-trust-panel__review">
               <p class="eyebrow">Author / Review</p>
               <h2 id="article-trust-panel-title">執筆者・確認日</h2>
-              <p class="article-trust-panel__name">${escapeHtml(ARTICLE_REVIEWER.name)} <span>${escapeHtml(ARTICLE_REVIEWER.qualification)}</span></p>
+              <p class="article-trust-panel__name">${escapeHtml(reviewerName)} <span>${escapeHtml(ARTICLE_REVIEWER.qualification)}</span></p>
               <p class="article-trust-panel__date">内容確認日：${escapeHtml(formatJapaneseDate(reviewedDate))}</p>
               <a class="text-link text-link--block" href="${escapeHtml(ARTICLE_REVIEWER.profileUrl)}">代表の経歴・資格を見る</a>
             </div>${referencesHtml}
@@ -2625,13 +2659,13 @@ function renderClinicAccessSection(section) {
     : "";
   const classNames = ["article-section", "article-clinic-access", section.className, section.boxType].filter(Boolean).join(" ");
   const rows = [
-    ["店舗名", "整体院ひざこぞう"],
-    ["住所", "千葉県柏市あけぼの4-4-3 BoaSorte柏305"],
-    ["アクセス", "JR常磐線・東武アーバンパークライン「柏駅」西口より徒歩約8分"],
+    ["店舗名", CLINIC_FACTS.clinicName],
+    ["住所", CLINIC_FACTS.address],
+    ["アクセス", CLINIC_FACTS.access],
     ["目印", "あけぼの通り沿い、近隣コインパーキングあり"],
-    ["営業時間", "9:00〜19:00"],
-    ["受付", "完全予約制"],
-    ["定休日", "日曜"],
+    ["営業時間", CLINIC_FACTS.businessHours],
+    ["受付", CLINIC_FACTS.appointment],
+    ["定休日", CLINIC_FACTS.closedDay],
     ["予約方法", "電話または公式LINEからご連絡ください"]
   ];
   const rowsHtml = rows.map(([label, value]) => `
@@ -2648,8 +2682,8 @@ ${rowsHtml}
               </dl>
               <div class="article-clinic-access__actions" aria-label="店舗情報の確認リンク">
                 <a class="article-clinic-access__button article-clinic-access__button--primary" href="/access.html">詳しいアクセスを見る</a>
-                <a class="article-clinic-access__button" href="tel:0471143274">電話で確認する</a>
-                <a class="article-clinic-access__button article-clinic-access__button--line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで相談する</a>
+                <a class="article-clinic-access__button" href="${escapeHtml(CLINIC_FACTS.phoneHref)}">電話で確認する</a>
+                <a class="article-clinic-access__button article-clinic-access__button--line" href="${escapeHtml(CLINIC_FACTS.lineUrl)}" target="_blank" rel="noopener noreferrer">LINEで相談する</a>
               </div>
             </div>
           </section>`;
@@ -2673,6 +2707,12 @@ export function renderBody(block) {
   };
 
   for (const item of items) {
+    const image = parseMarkdownImage(item);
+    if (image) {
+      flushBullets();
+      chunks.push(renderArticleImage(image));
+      continue;
+    }
     const bulletMatch = String(item).match(/^[-*]\s+(.+)$/);
     if (bulletMatch) {
       bulletItems.push(bulletMatch[1].trim());
@@ -2684,6 +2724,39 @@ export function renderBody(block) {
   flushBullets();
 
   return chunks.join("");
+}
+
+export function parseMarkdownImage(value) {
+  const match = String(value || "").trim().match(/^!\[([^\]]*)\]\((\S+?)(?:\s+["']([^"']*)["'])?\)$/);
+  if (!match) return null;
+  return {
+    alt: match[1].trim(),
+    src: match[2].trim(),
+    caption: String(match[3] || "").trim()
+  };
+}
+
+function renderArticleImage(image) {
+  const caption = image.caption ? `<figcaption>${escapeHtml(image.caption)}</figcaption>` : "";
+  return `<figure class="article-body-figure">
+            ${renderResponsivePicture({ src: image.src, alt: image.alt, loading: "lazy", width: 1200, height: 800 })}
+            ${caption}
+          </figure>`;
+}
+
+function renderResponsivePicture({ src, alt, loading, width, height, fetchPriority = "", fallbackPrefix = "" }) {
+  const safeAlt = escapeHtml(alt);
+  const responsiveMatch = String(src).match(/^(.*)-1200\.webp$/i);
+  const safeSrc = escapeHtml(responsiveMatch ? src : `${fallbackPrefix}${src}`);
+  const img = `<img src="${safeSrc}" alt="${safeAlt}" loading="${escapeHtml(loading)}" decoding="async" width="${width}" height="${height}"${responsiveMatch && fetchPriority ? ` fetchpriority="${escapeHtml(fetchPriority)}"` : ""}>`;
+  if (!responsiveMatch) return img;
+
+  const base = responsiveMatch[1];
+  const srcset = [480, 768, 1200].map((size) => `${base}-${size}.webp ${size}w`).join(", ");
+  return `<picture>
+              <source type="image/webp" srcset="${escapeHtml(srcset)}" sizes="(max-width: 767px) calc(100vw - 40px), 720px">
+              ${img}
+            </picture>`;
 }
 
 function buildArticleSchema(site, post) {
@@ -2702,11 +2775,13 @@ function buildArticleSchema(site, post) {
       post.category?.name,
       ...(Array.isArray(post.tags) ? post.tags : [])
     ].filter(Boolean),
-    author: { "@type": "Organization", name: site.author },
+    author: post.author
+      ? { "@type": "Person", name: post.author, url: absoluteUrl(site.url, ARTICLE_REVIEWER.profileUrl) }
+      : { "@type": "Organization", name: site.author },
     ...(hasReadableReview ? {
       reviewedBy: {
         "@type": "Person",
-        name: ARTICLE_REVIEWER.name,
+        name: post.reviewer || ARTICLE_REVIEWER.name,
         jobTitle: ARTICLE_REVIEWER.qualification,
         url: absoluteUrl(site.url, ARTICLE_REVIEWER.profileUrl)
       },

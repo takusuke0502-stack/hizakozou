@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const rootDir = process.cwd();
 const sourceDir = path.join(rootDir, "content", "source");
@@ -171,7 +172,7 @@ const DEFAULT_RELATED_SYMPTOMS = {
 };
 
 const FAQ_HEADINGS = new Set(["faq", "よくある質問", "よくあるご質問"]);
-const ARTICLE_LAYOUTS = new Set(["readable-v2"]);
+const ARTICLE_LAYOUTS = new Set(["readable-v2", "readable-v3"]);
 const OFF_AXIS_SYMPTOM_HREFS = new Set([
   "/symptoms/shoulder-stiffness.html",
   "/symptoms/frozen-shoulder.html",
@@ -220,7 +221,10 @@ const REQUIRED_BLOG_CATEGORIES = [
   }
 ];
 
-await main();
+const isCliRun = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (isCliRun) {
+  await main();
+}
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
@@ -313,7 +317,7 @@ async function collectSourceFiles(args) {
     .sort((left, right) => left.localeCompare(right, "ja"));
 }
 
-async function parseSourceFile(filePath, context) {
+export async function parseSourceFile(filePath, context) {
   const raw = await fs.readFile(filePath, "utf8");
   const { frontmatter, body } = splitFrontmatter(raw, filePath);
   const meta = parseFrontmatter(frontmatter, filePath);
@@ -328,14 +332,20 @@ async function parseSourceFile(filePath, context) {
     replaceSlug: String(meta.replaceSlug || "").trim(),
     title: required(meta.title, "title", filePath),
     date: required(meta.date, "date", filePath),
-    updatedDate: meta.updatedDate || meta.date,
+    updatedDate: meta.updated || meta.updatedDate || meta.date,
     description: required(meta.description, "description", filePath),
     category: resolveCategory(meta.category, context.categoryLookup, filePath),
     region: meta.region || "柏市",
     tags: splitCsv(meta.tags),
     heroImage: meta.heroImage || meta.eyecatch || "",
+    heroAlt: String(meta.heroAlt || "").trim(),
     layout: normalizeArticleLayout(meta.layout),
+    author: String(meta.author || "").trim(),
+    reviewer: String(meta.reviewer || "").trim(),
     reviewedDate: String(meta.reviewedDate || "").trim(),
+    parentSymptom: String(meta.parentSymptom || "").trim(),
+    relatedSlugs: splitCsv(meta.relatedSlugs),
+    searchIntent: String(meta.searchIntent || "").trim(),
     referencePreset: String(meta.referencePreset || "").trim(),
     draft: parseBoolean(meta.draft),
     relatedSymptoms,
@@ -379,7 +389,7 @@ function stripQuotes(value) {
   return value;
 }
 
-function normalizeArticleLayout(value) {
+export function normalizeArticleLayout(value) {
   const layout = String(value || "").trim();
   return ARTICLE_LAYOUTS.has(layout) ? layout : "";
 }
@@ -530,7 +540,7 @@ function isAllowedRelatedSymptom(item) {
 function createFallbackSymptom(label) {
   return {
     label,
-    href: "/#symptoms",
+    href: "/symptoms/",
     description: "関連する症状ページはご相談時にご案内しています。"
   };
 }
@@ -541,7 +551,7 @@ function buildSymptomLookup(posts) {
   for (const post of posts) {
     for (const symptom of post.relatedSymptoms || []) {
       if (!symptom?.label || !symptom?.href) continue;
-      if (lookup.has(symptom.label) || symptom.href === "/index.html#symptoms" || symptom.href === "/#symptoms") continue;
+      if (lookup.has(symptom.label) || symptom.href === "/index.html#symptoms" || symptom.href === "/#symptoms" || symptom.href === "/symptoms/") continue;
       lookup.set(symptom.label, {
         label: symptom.label,
         href: symptom.href,
@@ -594,10 +604,18 @@ function resolveCategory(value, categoryLookup, filePath) {
   return slug;
 }
 
-function toBlogPost(parsed, site, existing = {}) {
+export function toBlogPost(parsed, site, existing = {}) {
   const layout = parsed.layout || existing.layout || "";
   const reviewedDate = parsed.reviewedDate || existing.reviewedDate || "";
   const referencePreset = parsed.referencePreset || existing.referencePreset || "";
+  const heroAlt = parsed.heroAlt || existing.heroAlt || parsed.title;
+  const author = parsed.author || existing.author || "";
+  const reviewer = parsed.reviewer || existing.reviewer || "";
+  const parentSymptom = parsed.parentSymptom || existing.parentSymptom || "";
+  const relatedSlugs = Array.isArray(parsed.relatedSlugs) && parsed.relatedSlugs.length
+    ? parsed.relatedSlugs
+    : (existing.relatedSlugs || []);
+  const searchIntent = parsed.searchIntent || existing.searchIntent || "";
 
   return {
     slug: parsed.slug,
@@ -609,8 +627,14 @@ function toBlogPost(parsed, site, existing = {}) {
     region: parsed.region,
     tags: parsed.tags,
     eyecatch: parsed.heroImage || existing.eyecatch || site.defaultEyecatch,
+    heroAlt,
     ...(layout ? { layout } : {}),
+    ...(author ? { author } : {}),
+    ...(reviewer ? { reviewer } : {}),
     ...(reviewedDate ? { reviewedDate } : {}),
+    ...(parentSymptom ? { parentSymptom } : {}),
+    ...(relatedSlugs.length ? { relatedSlugs: [...new Set(relatedSlugs)].filter((slug) => slug !== parsed.slug) } : {}),
+    ...(searchIntent ? { searchIntent } : {}),
     ...(referencePreset ? { referencePreset } : {}),
     readingTime: formatReadingTime(parsed),
     relatedSymptoms: parsed.relatedSymptoms,
