@@ -480,24 +480,27 @@ test("femoral neuralgia article separates weakness red flags and publishes appro
   const bodyImages = body.match(/^!\[[^\]]+\]\([^\)]+\)$/gm) ?? [];
   const internalLinks = body.match(/\[[^\]]+\]\(\/(?:blog\/posts|symptoms)\//g) ?? [];
   const generated = readFileSync(new URL(`../blog/posts/${slug}/index.html`, import.meta.url), "utf8");
+  const imageManifest = readFileSync(new URL("../image/blog/image-manifest.json", import.meta.url), "utf8");
 
   assert.match(source, /^layout: readable-v3$/m);
   assert.match(source, /^referencePreset: femoral-neuralgia$/m);
   assert.ok(plainBody.length >= 1500 && plainBody.length <= 3000, "article should stay within the requested length");
-  assert.equal(bodyImages.length, 2, "article should place the approved symptom and self-care images");
+  assert.equal(bodyImages.length, 1, "article should place the approved symptom image without a self-care exercise");
   assert.ok(internalLinks.length >= 3, "article should include contextual internal links");
   assert.doesNotMatch(body, /治療|治る|根本解決|必ず良くなる|絶対に改善/);
-  assert.doesNotMatch(source, /femoral-neuralgia-causes\.png|femoral-neuralgia-causes-1200\.webp/);
+  assert.doesNotMatch(source, /femoral-neuralgia-causes\.png|femoral-neuralgia-causes-1200\.webp|femoral-neuralgia-self-care/);
   assert.match(generated, /article-content--readable-v3/);
   assert.match(generated, /femoral-neuralgia-hero-480\.webp 480w/);
-  assert.equal((generated.match(/class="article-body-figure"/g) ?? []).length, 2);
-  assert.match(generated, /femoral-neuralgia-self-care-768\.webp 768w/);
+  assert.equal((generated.match(/class="article-body-figure"/g) ?? []).length, 1);
+  assert.match(generated, /自宅で行うのは、セルフケアよりセルフチェック/);
+  assert.doesNotMatch(generated, /femoral-neuralgia-self-care/);
+  assert.doesNotMatch(imageManifest, /femoral-neuralgia-self-care/);
   assert.match(generated, /MedlinePlus 大腿神経機能不全/);
   assert.match(generated, /Cleveland Clinic Femoral Nerve/);
   assert.match(generated, /MedlinePlus 筋電図・神経伝導検査/);
   assert.match(generated, /href="\/staff\.html"/);
 
-  for (const name of ["hero", "symptom-area", "self-care"]) {
+  for (const name of ["hero", "symptom-area"]) {
     for (const width of [480, 768, 1200]) {
       assert.doesNotThrow(() => readFileSync(new URL(`../image/blog/${slug}/${slug}-${name}-${width}.webp`, import.meta.url)));
     }
