@@ -4108,6 +4108,10 @@ strong,
     line-height: 1.9;
   }
 
+  .article-content--readable-v3 .article-readable-lead p {
+    font-size: 1.0625rem;
+  }
+
   .article-content--readable-v3 .article-section + .article-section {
     margin-top: 56px;
   }

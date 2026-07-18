@@ -9,7 +9,8 @@ region: 柏市
 tags: 運動療法,膝痛,坐骨神経痛,セルフケア
 symptoms: 坐骨神経痛,腰痛,変形性膝関節症,足底筋膜炎
 heroImage: /image/treatment-stretch.webp
-layout: readable-v2
+layout: readable-v3
+relatedSlugs: strength-training-vs-exercise-therapy,chronic-pain-why-it-lasts,plantar-fasciitis-arch-walking
 reviewedDate: 2026-06-24
 referencePreset: exercise-therapy
 draft: false
@@ -19,9 +20,11 @@ draft: false
 
 運動療法は、頑張ることよりも、今の身体に合う動きを見つけることが大切です。
 
-整体院ひざこぞうでは、膝痛や腰痛、坐骨神経痛などで不安がある方にも、いきなり負荷の高い運動をすすめるのではなく、痛みが増えにくい小さな動きから確認します。
-
 ## 運動療法は鍛えることだけではありません
+
+整体院ひざこぞうでは、膝痛や腰痛で運動が不安な方にも対応しています。坐骨神経痛などの状態も確認し、負荷の高い運動ではなく小さな動きから始めます。
+
+筋力をつける運動との違いを知りたい方は、[筋トレと運動療法の違いを整理した記事](/blog/posts/strength-training-vs-exercise-therapy/)も参考にしてください。痛みが長く続き、動くこと自体が不安になっている方には、[慢性痛と身体の使い方の記事](/blog/posts/chronic-pain-why-it-lasts/)も用意しています。
 
 運動療法と聞くと、スクワットや筋トレのようなきつい運動を想像する方もいます。
 
@@ -54,6 +57,8 @@ draft: false
 - 立ち上がる前にお尻へ軽く力を入れる
 
 小さな動きでも、身体に「動いても大丈夫」という経験を積むことが大切です。
+
+足裏やかかとの痛みで体重を乗せにくい方は、[足底筋膜炎と歩き方の記事](/blog/posts/plantar-fasciitis-arch-walking/)もあわせて確認してください。痛む場所によって、最初に選ぶ動きは変わります。
 
 ## 自己流で増やしすぎないための目安
 

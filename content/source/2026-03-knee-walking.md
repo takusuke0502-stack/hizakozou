@@ -9,7 +9,8 @@ region: 柏市
 tags: 膝痛,歩行,慢性痛
 symptoms: 変形性膝関節症,足首の硬さ,膝の前側の痛み,腰痛,坐骨神経痛
 heroImage: /image/hiza2.webp
-layout: readable-v2
+layout: readable-v3
+relatedSlugs: walking-start-knee-pain-cause,knee-pain-stairs-guide,lower-back-pain-and-knee-link
 reviewedDate: 2026-06-24
 referencePreset: knee-pain
 draft: false
@@ -19,9 +20,9 @@ draft: false
 
 実際には、たくさん歩くか、まったく歩かないかの二択ではなく、今の状態に合わせて歩く量や休み方を調整することが大切です。
 
-整体院ひざこぞうでは、膝の痛みのご相談では、痛みの場所だけでなく、歩くスピードや疲れてきたときの身体の使い方、腰や股関節への負担も含めて確認しています。
-
 ## こんなお悩みはありませんか
+
+整体院ひざこぞうでは、膝の痛む場所だけを見ません。歩く速さや疲れたときの身体の使い方、腰や股関節への負担も確認します。
 
 - 歩き始めに膝がこわばる
 - 長く歩くとだんだん重くなる
@@ -30,6 +31,8 @@ draft: false
 - かばって歩いていたら腰までつらくなってきた
 
 こうした変化があるときは、膝そのものの状態に加えて、歩き方の癖や全身のバランスが関係していることもあります。
+
+歩き始めの数歩が特につらい方は、[歩き始めに膝が痛いときの記事](/blog/posts/walking-start-knee-pain-cause/)もあわせてご覧ください。膝をかばううちに腰まで重くなった方は、[膝と腰を一緒に見る考え方](/blog/posts/lower-back-pain-and-knee-link/)で負担のつながりを整理できます。
 
 ## 歩数より先に見たい「痛みの出方」
 
@@ -96,6 +99,8 @@ draft: false
 - 発熱や強い体調不良を伴っている
 
 当院でも、整体だけで進めない方がよいと判断した場合は、無理に施術をおすすめせず、医療機関での検査をご案内しています。
+
+歩き始めのこわばりや階段での痛みが続く場合は、[変形性膝関節症の相談ページ](/symptoms/knee-osteoarthritis.html)も状態を整理する目安としてご確認ください。
 
 ## 当院で確認すること
 

@@ -9,7 +9,8 @@ region: 柏市
 tags: 腰痛,膝痛,姿勢,歩行不安
 symptoms: 腰痛,坐骨神経痛,変形性股関節症,足首の硬さ
 heroImage: /image/lower-back-symptom.webp
-layout: readable-v2
+layout: readable-v3
+relatedSlugs: knee-walking,hip-stiffness-knee-low-back-pain-relation,low-back-pain-hip-stiffness-relation
 reviewedDate: 2026-06-24
 referencePreset: low-back-knee
 draft: false
@@ -19,9 +20,11 @@ draft: false
 
 痛い場所が増えたように見えても、膝と腰が別々に悪くなったとは限りません。膝をかばう歩き方が続くことで、腰やお尻、股関節まわりが代わりに頑張り続けている場合があります。
 
-柏市の整体院ひざこぞうでは、膝痛と腰痛を別々に見るのではなく、立ち上がり、歩き始め、階段、長く歩いた後の変化まで確認します。
-
 ## 膝をかばうと腰までつらくなりやすい理由
+
+柏市の整体院ひざこぞうでは、膝痛と腰痛を別々に見ません。立ち上がりや歩き始めに加え、階段や長く歩いた後の変化まで確認します。
+
+歩く量や休み方から整理したい方は、[歩くと膝が気になるときの記事](/blog/posts/knee-walking/)も参考にしてください。腰の重さが主な悩みの場合は、[柏市の腰痛相談ページ](/symptoms/lower-back-pain.html)で医療機関を優先したい状態や当院の確認方法をまとめています。
 
 膝が痛いと、無意識に痛い側へ体重を乗せないようにしたり、歩幅を小さくしたりします。
 

@@ -356,6 +356,39 @@ test("readable-v3 adds a mobile disclosure TOC and text-only related articles", 
   assert.doesNotMatch(html, /readable-related-card__thumb/);
 });
 
+test("Phase 4 pilot migrates the five readable articles with internal and related links", () => {
+  const pilotSources = [
+    ["2026-03-lower-back-pain-and-knee-link.md", "lower-back-pain-and-knee-link"],
+    ["2026-03-knee-walking.md", "knee-walking"],
+    ["2026-03-exercise-therapy-first-step.md", "exercise-therapy-first-step"],
+    ["2026-04-chronic-pain-why-it-lasts.md", "chronic-pain-why-it-lasts"],
+    ["2026-04-plantar-fasciitis-arch-walking.md", "plantar-fasciitis-arch-walking"]
+  ];
+
+  for (const [sourceName, slug] of pilotSources) {
+    const source = readFileSync(new URL(`../content/source/${sourceName}`, import.meta.url), "utf8");
+    const body = source.replace(/^---[\s\S]*?---\s*/, "");
+    const relatedSlugs = source.match(/^relatedSlugs:\s*(.+)$/m)?.[1]
+      .split(",")
+      .map((value) => value.trim())
+      .filter(Boolean) ?? [];
+    const internalLinks = body.match(/\[[^\]]+\]\(\/(?:blog\/posts|symptoms)\//g) ?? [];
+    const generated = readFileSync(new URL(`../blog/posts/${slug}/index.html`, import.meta.url), "utf8");
+    const generatedBody = generated.match(/<div class="article-content[\s\S]*?<aside class="article-side">/)?.[0] ?? "";
+    const publishedInternalLinks = generatedBody.match(/href="\/(?:blog\/posts|symptoms)\//g) ?? [];
+
+    assert.match(source, /^layout: readable-v3$/m, `${slug} should use readable-v3`);
+    assert.ok(body.length >= 1500, `${slug} should keep a useful article length`);
+    assert.ok(relatedSlugs.length >= 2, `${slug} should explicitly select at least two related articles`);
+    assert.ok(internalLinks.length >= 2, `${slug} should include contextual internal links`);
+    assert.ok(publishedInternalLinks.length >= 2, `${slug} should publish its contextual internal links`);
+    assert.match(generated, /article-content--readable-v3/, `${slug} should render the Phase 4 layout`);
+    assert.match(generated, /article-toc--disclosure/, `${slug} should render the mobile disclosure TOC`);
+    assert.match(generated, /readable-related-text-list/, `${slug} should use compact related links`);
+    assert.match(generated, /article-trust-panel/, `${slug} should retain author and reference information`);
+  }
+});
+
 test("selectBlogRelatedPosts prioritizes frontmatter slugs and rejects missing slugs", () => {
   const category = categories.get("knee-pain");
   const current = { slug: "current", category, relatedSlugs: ["third", "first"] };
@@ -760,6 +793,7 @@ test("Phase 2 CSS provides separate readable-v3 desktop and mobile reading layou
   assert.match(css, /\.article-toc--disclosure\s*\{[^}]*display:\s*none;/s);
   assert.match(css, /@media \(max-width:\s*1023px\)\s*\{[\s\S]*?\.article-layout--readable-v3 \.article-side\s*\{[^}]*display:\s*none;/s);
   assert.match(css, /@media \(max-width:\s*767px\)\s*\{[\s\S]*?\.article-content--readable-v3 p,[\s\S]*?font-size:\s*1\.0625rem;[^}]*line-height:\s*1\.9;/s);
+  assert.match(css, /\.article-content--readable-v3 \.article-readable-lead p\s*\{[^}]*font-size:\s*1\.0625rem;/s);
   assert.match(css, /\.article-content--readable-v3 \.caution-box[\s\S]*?border-left:\s*4px solid #c88b5a;/s);
   assert.match(css, /\.readable-related-text-list\s*\{/);
   assert.match(css, /\.category-section--all \.article-list-item--card,[\s\S]*?box-shadow:\s*none;/s);
