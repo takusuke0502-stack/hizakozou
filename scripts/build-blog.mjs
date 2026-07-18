@@ -157,6 +157,20 @@ const ARTICLE_REFERENCE_PRESETS = {
       label: "厚生労働省 慢性疼痛治療ガイドライン",
       url: "https://www.mhlw.go.jp/content/000350363.pdf"
     }
+  ],
+  "lateral-femoral-cutaneous-nerve": [
+    {
+      label: "米国国立神経疾患・脳卒中研究所（NINDS）末梢神経障害",
+      url: "https://www.ninds.nih.gov/health-information/disorders/peripheral-neuropathy"
+    },
+    {
+      label: "米国整形外科学会（AAOS）Meralgia Paresthetica",
+      url: "https://orthoinfo.aaos.org/en/diseases--conditions/burning-thigh-pain-meralgia-paresthetica/"
+    },
+    {
+      label: "Johns Hopkins Medicine Meralgia Paresthetica",
+      url: "https://www.hopkinsmedicine.org/health/conditions-and-diseases/meralgia-paresthetica"
+    }
   ]
 };
 
@@ -1973,7 +1987,8 @@ const relatedArticleImageDimensions = new Map([
   ["../image/lower-back-symptom.webp", [1200, 675]],
   ["../image/sciatica-symptom.webp", [1600, 1600]],
   ["../image/medical-interview.webp", [800, 600]],
-  ["../image/hip-massage-scene.webp", [1600, 1600]]
+  ["../image/hip-massage-scene.webp", [1600, 1600]],
+  ["../image/blog/lateral-thigh-pain-lateral-femoral-cutaneous-nerve/lateral-thigh-pain-lateral-femoral-cutaneous-nerve-hero-1200.webp", [1200, 800]]
 ]);
 
 function buildRelatedArticlesSliderSection(config, posts) {

@@ -3481,7 +3481,7 @@ test("sciatica education redesign stays inside the matching lower-back page rang
   );
   assert.equal(
     sha256(sciaticaHtml.slice(voicesStart)),
-    "eea682d0b0ea98ee643c42fa59a9787f1e908ed435ec32466fd6446816f79aad",
+    "637f3f610d2bbee145793754e1466e179b19979dc2e1744defe76dbe9ef6cdbe",
     "patient voices onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
