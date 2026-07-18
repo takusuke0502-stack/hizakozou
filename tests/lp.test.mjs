@@ -431,7 +431,7 @@ test("LP adds a readable six-reason clinic strengths section", () => {
     ],
     [
       "特徴2",
-      "接骨院や整体院で「施術歴14年」の院長が、最初から最後まで責任担当",
+      "接骨院や整体院で「施術歴15年」の院長が、最初から最後まで責任担当",
       "国家資格保持者によるマンツーマン施術。<br>途中で担当が変わる不安はありません",
       "image/qualification-judotherapist-license.webp",
       "柔道整復師免許証"
@@ -4498,6 +4498,7 @@ test("staff profile page uses transplanted chrome and editable staff sections", 
   for (const label of ["名前：", "出身：", "資格・修了：", "施術歴：", "大切にしていること：", "好きなこと：", "得意なアドバイス内容：", "健康習慣："]) {
     assert.match(staffHtml, new RegExp(`<dt>${escapeRegExp(label)}<\\/dt>`), `staff page should include profile row ${label}`);
   }
+  assert.match(staffHtml, /<dt>施術歴：<\/dt>\s*<dd>15年<\/dd>/);
   assert.match(staffHtml, /<section class="staff-profile-simple staff-section" aria-labelledby="staff-profile-title">/);
   assert.match(staffHtml, /class="staff-profile-layout"/);
   assert.match(staffHtml, /class="staff-profile-photo"/);

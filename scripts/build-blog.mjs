@@ -26,8 +26,13 @@ const NOINDEX_POST_CATEGORIES = new Set(["neck-shoulder-hand"]);
 const ARTICLE_LAYOUT_READABLE = "readable-v2";
 const ARTICLE_REVIEWER = {
   name: "川上卓哉",
-  qualification: "柔道整復師（国家資格）／施術歴14年",
+  qualification: "柔道整復師（国家資格）／施術歴15年／累計施術約2万件",
   profileUrl: "/staff.html"
+};
+const FIRST_VISIT = {
+  title: "初回のご案内",
+  duration: "約90分（カウンセリング・状態確認・施術・今後のご説明）",
+  price: "1,980"
 };
 const ARTICLE_OVERVIEW_PRESETS = {
   "chronic-pain": {
@@ -1550,7 +1555,7 @@ ${guidanceColumns}
         <div class="symptom-trust__review">
           <div class="symptom-trust__reviewer">
             <p class="symptom-trust__review-label">執筆・内容確認</p>
-            <p class="symptom-trust__review-name">川上卓哉 <span>柔道整復師（国家資格）／施術歴14年</span></p>
+            <p class="symptom-trust__review-name">${escapeHtml(ARTICLE_REVIEWER.name)} <span>${escapeHtml(ARTICLE_REVIEWER.qualification)}</span></p>
             <p class="symptom-trust__review-date">内容確認日：2026年6月23日</p>
             <a class="symptom-trust__reviewer-link" data-tracking-content-group="reviewer-profile" href="../staff.html">代表の経歴・資格を見る <span aria-hidden="true">›</span></a>
           </div>
@@ -2394,26 +2399,17 @@ export function buildPostContent(site, post, relatedPosts) {
       <div class="shell">
         <div class="pricing-cta__card">
           <p class="pricing-cta__badge">LINEからのご相談・ご予約受付中</p>
-          <h2 class="pricing-cta__title">初回 カウンセリング＋全身整体</h2>
-          <p class="pricing-cta__duration">約60分（カウンセリング・状態確認・施術）</p>
+          <h2 class="pricing-cta__title">${escapeHtml(FIRST_VISIT.title)}</h2>
+          <p class="pricing-cta__duration">${escapeHtml(FIRST_VISIT.duration)}</p>
           <div class="pricing-cta__price-box">
             <div class="pricing-cta__price-row">
-              <div class="pricing-cta__before">
-                <span class="pricing-cta__before-label">通常料金</span>
-                <span class="pricing-cta__before-price">10,000円</span>
-              </div>
-              <span class="pricing-cta__arrow" aria-hidden="true">→</span>
               <div class="pricing-cta__after">
-                <span class="pricing-cta__after-label">初回特別価格</span>
-                <span class="pricing-cta__after-price">1,980<small>円（税込）</small></span>
+                <span class="pricing-cta__after-label">初回料金</span>
+                <span class="pricing-cta__after-price">${escapeHtml(FIRST_VISIT.price)}<small>円（税込）</small></span>
               </div>
             </div>
           </div>
-          <div class="pricing-cta__note-box">
-            <p class="pricing-cta__note-title">2回目以降の料金について</p>
-            <p class="pricing-cta__note-text">2回目以降は1回 10,000円（税込）です。継続される方向けのプランは、初回カウンセリング時にお体の状態を確認したうえでご案内いたします。</p>
-          </div>
-          <p class="pricing-cta__reassurance">初回はカウンセリングと状態確認を含めて、無理のない内容で進めます。</p>
+          <p class="pricing-cta__reassurance">身体の状態を確認し、施術方針を説明したうえで進めます。</p>
           <p class="pricing-cta__sub">まず相談してみたいという方も、LINEから気軽にご連絡ください。</p>
           <div class="pricing-cta__actions">
             <a class="button button--primary" href="${escapeHtml(post.cta.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(post.cta.label)}</a>

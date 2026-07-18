@@ -256,9 +256,39 @@ test("buildPostContent adds the author review block to normal articles near the 
   assert.match(html, /article-trust-panel/);
   assert.match(html, /執筆者・確認日/);
   assert.match(html, /川上卓哉/);
+  assert.match(html, /柔道整復師（国家資格）／施術歴15年／累計施術約2万件/);
   assert.match(html, /内容確認日：2026年4月20日/);
+  assert.match(html, /href="\/staff\.html">代表の経歴・資格を見る<\/a>/);
   assert.ok(html.indexOf("本文見出し") < html.indexOf("article-trust-panel"), "author block should appear after article body");
   assert.doesNotMatch(html, /article-trust-panel__references/);
+});
+
+test("buildPostContent uses the current first-visit facts without regular pricing", () => {
+  const html = buildPostContent(site, {
+    title: "初回案内の表示テスト",
+    description: "初回案内の事実情報を確認します。",
+    lead: "初回案内のリード文です。",
+    slug: "first-visit-facts-check",
+    eyecatch: "/image/knee-symptom.webp",
+    date: "2026-07-18",
+    updatedDate: "2026-07-18",
+    category: categories.get("knee-pain"),
+    tags: ["膝痛"],
+    sections: [],
+    faq: [],
+    relatedSymptoms: [],
+    cta: {
+      href: "https://lin.ee/X01F2mP",
+      label: "LINEで相談する",
+      note: "来院前に相談できます。"
+    }
+  }, []);
+
+  assert.match(html, /初回のご案内/);
+  assert.match(html, /約90分（カウンセリング・状態確認・施術・今後のご説明）/);
+  assert.match(html, /初回料金/);
+  assert.match(html, /1,980<small>円（税込）<\/small>/);
+  assert.doesNotMatch(html, /通常料金|10,000円|2回目以降|回数券/);
 });
 
 test("buildPostContent places readable article author review below the article body with references", () => {
