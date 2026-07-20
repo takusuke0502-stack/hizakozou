@@ -185,6 +185,146 @@ const ARTICLE_REFERENCE_PRESETS = {
       label: "MedlinePlus 筋電図・神経伝導検査",
       url: "https://medlineplus.gov/lab-tests/electromyography-emg-and-nerve-conduction-studies/"
     }
+  ],
+  "common-peroneal-nerve": [
+    {
+      label: "日本整形外科学会 腓骨神経麻痺",
+      url: "https://www.joa.or.jp/public/sick/condition/peroneal_nerve_palsy.html"
+    },
+    {
+      label: "日本整形外科学会 しびれ（病気によるもの）",
+      url: "https://www.joa.or.jp/public/sick/condition/paralysis.html"
+    },
+    {
+      label: "Cleveland Clinic Peroneal Nerve Injury",
+      url: "https://my.clevelandclinic.org/health/diseases/24263-peroneal-nerve-injury"
+    }
+  ],
+  "lumbar-spinal-stenosis": [
+    {
+      label: "日本整形外科学会 腰部脊柱管狭窄症",
+      url: "https://www.joa.or.jp/public/sick/condition/lumbar_spinal_stenosis.html"
+    },
+    {
+      label: "日本整形外科学会 整形外科シリーズ8 腰部脊柱管狭窄症",
+      url: "https://www.joa.or.jp/public/publication/pdf/joa_008.pdf"
+    },
+    {
+      label: "日本整形外科学会 腰痛",
+      url: "https://www.joa.or.jp/public/sick/condition/lumbago.html"
+    }
+  ],
+  "sciatica": [
+    {
+      label: "日本整形外科学会 整形外科シリーズ29 坐骨神経痛",
+      url: "https://www.joa.or.jp/public/pdf/joa_029.pdf"
+    },
+    {
+      label: "日本整形外科学会 腰椎椎間板ヘルニア",
+      url: "https://www.joa.or.jp/public/sick/condition/lumbar_disc_herniation.html"
+    },
+    {
+      label: "日本整形外科学会 変形性股関節症",
+      url: "https://www.joa.or.jp/public/sick/condition/hip_osteoarthritis.html"
+    }
+  ],
+  "knee-osteoarthritis": [
+    {
+      label: "日本整形外科学会 変形性膝関節症",
+      url: "https://www.joa.or.jp/public/sick/condition/knee_osteoarthritis.html"
+    },
+    {
+      label: "日本整形外科学会 変形性ひざ関節症の運動療法",
+      url: "https://www.joa.or.jp/public/pdf/knee_osteoarthritis.pdf"
+    },
+    {
+      label: "日本整形外科学会 変形性膝関節症診療ガイドライン",
+      url: "https://www.joa.or.jp/topics/2023/files/guideline.pdf"
+    }
+  ],
+  "hip-osteoarthritis": [
+    {
+      label: "日本整形外科学会 変形性股関節症",
+      url: "https://www.joa.or.jp/public/sick/condition/hip_osteoarthritis.html"
+    },
+    {
+      label: "日本整形外科学会 変形性股関節症診療ガイドライン",
+      url: "https://www.joa.or.jp/topics/2023/files/osteoarthritis_treatment/guideline.pdf"
+    },
+    {
+      label: "日本整形外科学会 変形性関節症",
+      url: "https://www.joa.or.jp/public/sick/condition/osteoarthritis.html"
+    }
+  ],
+  "lumbar-disc-herniation": [
+    {
+      label: "日本整形外科学会 腰椎椎間板ヘルニア",
+      url: "https://www.joa.or.jp/public/sick/condition/lumbar_disc_herniation.html"
+    },
+    {
+      label: "日本整形外科学会 整形外科シリーズ2 腰椎椎間板ヘルニア",
+      url: "https://www.joa.or.jp/public/sick/pdf/MO0007DKA.pdf"
+    },
+    {
+      label: "日本整形外科学会 腰痛",
+      url: "https://www.joa.or.jp/public/sick/condition/lumbago.html"
+    }
+  ],
+  "tarsal-tunnel": [
+    {
+      label: "日本脊髄外科学会 足根管症候群",
+      url: "https://www.nsj-official.jp/general/diseasename/06_limbs/sokkonkan.html"
+    },
+    {
+      label: "Cleveland Clinic Tarsal Tunnel Syndrome",
+      url: "https://my.clevelandclinic.org/health/diseases/22200-tarsal-tunnel-syndrome"
+    },
+    {
+      label: "Cleveland Clinic Tibial Nerve",
+      url: "https://my.clevelandclinic.org/health/body/21962-tibial-nerve"
+    }
+  ],
+  "plantar-fasciitis": [
+    {
+      label: "日本整形外科学会 足の慢性障害",
+      url: "https://www.joa.or.jp/public/sick/condition/chronic_problem_with_foot.html"
+    },
+    {
+      label: "日本足の外科学会 足底腱膜炎",
+      url: "https://www.jssf.jp/medical/download/pamphlet_sokuteiken_dr.pdf"
+    },
+    {
+      label: "Berkshire Healthcare NHS Foundation Trust Plantar Heel Pain",
+      url: "https://www.berkshirehealthcare.nhs.uk/advice/plantar-heel-pain"
+    }
+  ],
+  "gluteus-medius": [
+    {
+      label: "Cleveland Clinic Gluteal Muscles",
+      url: "https://my.clevelandclinic.org/health/body/gluteal-muscles-glutes"
+    },
+    {
+      label: "Cleveland Clinic Gluteal Tendinopathy",
+      url: "https://my.clevelandclinic.org/health/diseases/22960-gluteal-tendinopathy"
+    },
+    {
+      label: "日本整形外科学会 股関節の症状一覧",
+      url: "https://www.joa.or.jp/public/sick/body/articulatio_coxae.html"
+    }
+  ],
+  "iliopsoas": [
+    {
+      label: "Cleveland Clinic Psoas Muscle",
+      url: "https://my.clevelandclinic.org/health/body/psoas-muscle"
+    },
+    {
+      label: "Cleveland Clinic Psoas Syndrome",
+      url: "https://my.clevelandclinic.org/health/diseases/15721-psoas-syndrome"
+    },
+    {
+      label: "日本整形外科学会 変形性股関節症",
+      url: "https://www.joa.or.jp/public/sick/condition/hip_osteoarthritis.html"
+    }
   ]
 };
 
