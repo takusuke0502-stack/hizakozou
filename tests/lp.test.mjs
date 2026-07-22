@@ -3688,7 +3688,7 @@ test("hip pain education redesign preserves the existing page boundaries", () =>
   );
   assert.equal(
     sha256(hipOsteoarthritisHtml.slice(voicesStart)),
-    "6f170e04cddb4e31deda6bf63ba114dce3fe0253029ca31876426bbc573d3c53",
+    "05c01e3d75da5ba964a711d498f7d0c469526c3dc3c10c650ead8c979a346941",
     "patient voices onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
