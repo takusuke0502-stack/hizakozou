@@ -3550,7 +3550,7 @@ test("spinal stenosis education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(spinalStenosisHtml.slice(flowStart)),
-    "545092c109640b032bd05458e798e87250f3de631e1da954927928bdaa830ff6",
+    "8484ee29b004c9be286f5cb48e46842394cc13f82a1238715652ac724fed57cf",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });

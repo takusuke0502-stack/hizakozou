@@ -2143,6 +2143,7 @@ const relatedArticleImageDimensions = new Map([
   ["../image/medical-interview.webp", [800, 600]],
   ["../image/hip-massage-scene.webp", [1600, 1600]],
   ["../image/blog/iliopsoas-anterior-hip-stiffness/iliopsoas-anterior-hip-stiffness-hero-1200.webp", [1200, 800]],
+  ["../image/blog/lumbar-spinal-stenosis-walking/lumbar-spinal-stenosis-walking-hero-1200.webp", [1200, 800]],
   ["../image/blog/lateral-thigh-pain-lateral-femoral-cutaneous-nerve/lateral-thigh-pain-lateral-femoral-cutaneous-nerve-hero-1200.webp", [1200, 800]],
   ["../image/blog/femoral-neuralgia/femoral-neuralgia-hero-1200.webp", [1200, 800]]
 ]);
