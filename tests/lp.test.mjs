@@ -236,7 +236,12 @@ test("LP troubles section uses a compact checklist without changing CTAs", () =>
   assert.match(troubles, /class="troubles-check__list"/);
   assert.equal((troubles.match(/<li>/g) || []).length, 8);
   assert.equal((troubles.match(/<strong>/g) || []).length, 9);
-  assert.doesNotMatch(troubles, /<img\b/);
+  assert.match(troubles, /class="troubles-check__movement"/);
+  assert.match(troubles, /同じ「歩くとつらい」でも、身体の支え方は一人ひとり異なります/);
+  assert.match(troubles, /srcset="image\/blog\/gluteus-medius-pelvic-stability\/gluteus-medius-pelvic-stability-factors-480\.webp"/);
+  assert.match(troubles, /srcset="image\/blog\/gluteus-medius-pelvic-stability\/gluteus-medius-pelvic-stability-factors-768\.webp"/);
+  assert.match(troubles, /src="image\/blog\/gluteus-medius-pelvic-stability\/gluteus-medius-pelvic-stability-factors-1200\.webp"[^>]+width="1200" height="800"/);
+  assert.match(troubles, /図だけで症状の理由を判断するものではありません。/);
   assert.doesNotMatch(troubles, /alt="足腰の痛みやしびれに悩む方"/);
   assert.doesNotMatch(troubles, /歩き始めや立ち上がりで、膝にズキッとした痛みが出る/);
   assert.doesNotMatch(troubles, /膝をかばって歩いているうちに/);
@@ -248,6 +253,8 @@ test("LP troubles section uses a compact checklist without changing CTAs", () =>
   assert.match(mainCss, /\.troubles-check__list li::before\s*{[\s\S]*border:\s*2px solid #222;/);
   assert.match(mainCss, /\.troubles-check__list li::after\s*{[\s\S]*border-left:\s*4px solid #e3342f;[\s\S]*border-bottom:\s*4px solid #e3342f;/);
   assert.match(mainCss, /\.troubles-check__list strong\s*{[\s\S]*color:\s*#c53632;[\s\S]*font-weight:\s*900;/);
+  assert.match(mainCss, /\.troubles-check__movement\s*{[\s\S]*grid-template-columns:\s*minmax\(0,\s*0\.82fr\) minmax\(0,\s*1\.18fr\);/);
+  assert.match(mainCss, /@media \(max-width:\s*767px\)\s*{[\s\S]*\.troubles-check__movement\s*{[\s\S]*grid-template-columns:\s*1fr;/);
 });
 
 test("LP adds a diagram-backed three-reason block before the MSM method", () => {
@@ -4097,12 +4104,25 @@ test("TOP routes visitors to the six major symptoms before troubles", () => {
     "symptoms/knee-osteoarthritis.html",
     "symptoms/index.html"
   ];
+  const thumbnailSources = [
+    "image/lower-back-symptom-480.webp",
+    "image/blog/sciatica-buttock-leg/sciatica-buttock-leg-hero-480.webp",
+    "image/blog/lumbar-spinal-stenosis-walking/lumbar-spinal-stenosis-walking-hero-480.webp",
+    "image/blog/lumbar-disc-herniation-leg-symptoms/lumbar-disc-herniation-leg-symptoms-hero-480.webp",
+    "image/blog/hip-osteoarthritis-groin-pain/hip-osteoarthritis-groin-pain-hero-480.webp",
+    "image/blog/knee-osteoarthritis-daily-movement/knee-osteoarthritis-daily-movement-hero-480.webp"
+  ];
 
   assert.ok(guide, "TOP symptom guide should exist");
   for (const href of links) {
     assert.match(guide, new RegExp(`href="${escapeRegExp(href)}"`));
   }
+  for (const src of thumbnailSources) {
+    assert.match(guide, new RegExp(`<img\\b(?=[^>]*\\bsrc="${escapeRegExp(src)}")(?=[^>]*\\balt="")(?=[^>]*\\bloading="lazy")[^>]*>`));
+  }
   assert.equal((guide.match(/data-top-symptom-link/g) ?? []).length, 6);
+  assert.equal((guide.match(/class="top-symptom-guide__thumb"/g) ?? []).length, 6);
+  assert.doesNotMatch(guide, /class="top-symptom-guide__number"/);
   assert.ok(html.indexOf("TOP_SYMPTOM_GUIDE_START") < html.indexOf('id="troubles"'));
 });
 
@@ -4121,7 +4141,9 @@ test("TOP uses responsive routing styles and avoids the 1024px header overflow",
   assert.match(mainCss, /\.top-symptom-guide__grid\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(mainCss, /@media\s*\(max-width:\s*1079px\)\s*{[\s\S]*?\.top-symptom-guide__grid\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(mainCss, /@media\s*\(max-width:\s*767px\)\s*{[\s\S]*?\.top-symptom-guide__grid\s*{[^}]*grid-template-columns:\s*1fr/);
-  assert.match(mainCss, /\.top-symptom-guide__card\s*{[^}]*min-height:\s*72px/);
+  assert.match(mainCss, /\.top-symptom-guide__card\s*{[^}]*min-height:\s*82px/);
+  assert.match(mainCss, /\.top-symptom-guide__thumb img\s*{[^}]*object-fit:\s*cover;[^}]*object-position:\s*76% center;[^}]*transform:\s*scale\(1\.62\);/);
+  assert.match(mainCss, /@media\s*\(max-width:\s*767px\)\s*{[\s\S]*?\.top-symptom-guide__thumb\s*{[^}]*width:\s*56px;[^}]*height:\s*48px;/);
   assert.match(mainCss, /\.top-symptom-guide__all\s*{[^}]*min-height:\s*44px/);
 });
 

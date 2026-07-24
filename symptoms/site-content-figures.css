@@ -1,0 +1,56 @@
+.symptom-context-figure {
+  margin: clamp(28px, 5vw, 44px) 0 0;
+}
+
+.symptom-context-figure__link,
+.symptom-context-figure__link picture,
+.symptom-context-figure__link img {
+  display: block;
+  width: 100%;
+}
+
+.symptom-context-figure__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.symptom-context-figure__link img {
+  height: auto;
+  border: 1px solid #dfe4dc;
+  background: #fffdf8;
+}
+
+.symptom-context-figure__zoom {
+  display: none;
+}
+
+.symptom-context-figure figcaption {
+  margin-top: 12px;
+  color: #4f5c56;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.9;
+}
+
+@media (max-width: 767px) {
+  .symptom-context-figure {
+    margin-top: 28px;
+  }
+
+  .symptom-context-figure__zoom {
+    display: inline-block;
+    margin-top: 9px;
+    color: #2d6048;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .symptom-context-figure figcaption {
+    margin-top: 10px;
+    font-size: 0.88rem;
+    line-height: 1.85;
+  }
+}
