@@ -1,8 +1,8 @@
 ---
 title: 歩くと身体が左右に揺れる｜中殿筋と骨盤の支え方
 slug: gluteus-medius-pelvic-stability
-date: 2026-08-01
-updatedDate: 2026-07-19
+date: 2026-07-24
+updatedDate: 2026-07-24
 description: 歩くと身体が左右へ揺れる、片脚へ体重を移しにくい方へ。中殿筋の位置と役割、筋力だけで説明できない理由、転倒を避けながら日常動作を観察する方法を説明します。
 category: 股関節の痛み
 region: 柏市
@@ -12,12 +12,12 @@ heroImage: /image/blog/gluteus-medius-pelvic-stability/gluteus-medius-pelvic-sta
 heroAlt: 歩くと身体が左右に揺れることを気にする女性のイラスト
 author: 川上卓哉
 reviewer: 川上卓哉
-reviewedDate: 2026-07-19
+reviewedDate: 2026-07-24
 relatedSlugs: hip-pain-while-walking,hip-pain-weight-bearing,hip-stiffness-knee-low-back-pain-relation
 searchIntent: 歩行中の身体の揺れと中殿筋や骨盤の支え方の関係を知りたい
 layout: readable-v3
 referencePreset: gluteus-medius
-draft: true
+draft: false
 ---
 
 歩いている姿を見た家族から「左右に揺れている」と言われた。片脚へ体重を移すと不安定で、手すりを探してしまう。長く歩くと、股関節の外側が疲れる。
