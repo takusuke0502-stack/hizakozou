@@ -1,11 +1,11 @@
 const REFERENCES = {
   orthopaedics: {
     label: "日本整形外科学会「症状・病気をしらべる」",
-    url: "https://www.joa.or.jp/public/sick/"
+    url: "https://www.joa.or.jp/public/sick/index.html"
   },
   spine: {
     label: "日本脊椎脊髄病学会「一般の皆さまへ」",
-    url: "https://www.jssr.gr.jp/medical/"
+    url: "https://ssl.jssr.gr.jp/general/"
   },
   hand: {
     label: "日本手外科学会「一般の皆さまへ」",

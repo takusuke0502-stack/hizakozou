@@ -13,6 +13,7 @@ const mainCss = readFileSync(new URL("../styles/main.css", import.meta.url), "ut
 const buildBlogScript = readFileSync(new URL("../scripts/build-blog.mjs", import.meta.url), "utf8");
 const siteDiscoveryCss = readFileSync(new URL("../symptoms/site-discovery.css", import.meta.url), "utf8");
 const sitePricingCss = readFileSync(new URL("../symptoms/site-pricing.css", import.meta.url), "utf8");
+const symptomPerformanceLinkPattern = /<link rel="stylesheet" href="site-performance\.css\?v=20260726">/;
 const generateBlogScript = readFileSync(new URL("../scripts/generate-blog.mjs", import.meta.url), "utf8");
 const lowerBackHtml = readFileSync(new URL("../symptoms/lower-back-pain.html", import.meta.url), "utf8");
 const sciaticaHtml = readFileSync(new URL("../symptoms/sciatica.html", import.meta.url), "utf8");
@@ -543,7 +544,7 @@ test("LP clinic strengths CSS keeps the reference-like vertical layout responsiv
 });
 
 test("LP uses large readable Gothic headings for older visitors", () => {
-  assert.match(html, /family=BIZ\+UDPGothic:wght@400;700&display=swap/);
+  assert.doesNotMatch(html, /fonts\.googleapis\.com|fonts\.gstatic\.com/);
   assert.doesNotMatch(html, /Noto\+Serif\+JP/);
   assert.match(mainCss, /--font-readable:\s*"BIZ UDPGothic", "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;/);
   assert.match(mainCss, /body\s*{[^}]*font-family:\s*var\(--font-readable\);/);
@@ -952,6 +953,10 @@ test("tracking config is ready for GA4 and the live Google Ads ID", () => {
 test("tracking runtime wires GA4 page views and Google Ads conversion events", () => {
   assert.equal(existsSync(trackingJsPath), true, "tracking.js should exist");
   assert.match(trackingJs, /googletagmanager\.com\/gtag\/js/);
+  assert.match(trackingJs, /function scheduleGoogleTagScript\(tagId\)/);
+  assert.match(trackingJs, /window\.addEventListener\("load", loadWhenIdle, \{ once: true \}\)/);
+  assert.match(trackingJs, /window\.requestIdleCallback\(loadScript, \{ timeout: 2000 \}\)/);
+  assert.doesNotMatch(trackingJs, /if \(hasGoogleTag\) \{\s*appendGoogleTagScript/);
   assert.match(trackingJs, /gtag\("config", ga4MeasurementId/);
   assert.match(trackingJs, /gtag\("config", googleAdsConversionId/);
   assert.match(trackingJs, /line_consult_click/);
@@ -1015,7 +1020,7 @@ test("symptom detail pages use one accessible H1 and omit retired FAQPage schema
   }
 });
 
-test("major image-hero symptom pages use lightweight desktop sources without changing mobile heroes", () => {
+test("major image-hero symptom pages use lightweight responsive sources", () => {
   const heroPages = [
     ["lower-back-pain.html", "腰痛・ぎっくり腰", "腰痛・ギックリ腰"],
     ["sciatica.html", "坐骨神経痛", "坐骨神経痛"],
@@ -1031,7 +1036,10 @@ test("major image-hero symptom pages use lightweight desktop sources without cha
 
     assert.match(symptomHtml, new RegExp(`<h1 class="symptom-image-hero__sr-title">${escapeRegExp(heading)}<\\/h1>`));
     assert.match(symptomHtml, new RegExp(`<source media="\\(min-width: 768px\\)" srcset="\\.\\.\\/image\\/symptom-hero\\/${escapeRegExp(assetBase)}-optimized\\.webp">`));
-    assert.match(symptomHtml, new RegExp(`<source media="\\(max-width: 767px\\)" srcset="\\.\\.\\/image\\/symptom-hero\\/${escapeRegExp(assetBase)}-sp\\.webp">`));
+    assert.match(
+      symptomHtml,
+      new RegExp(`<source media="\\(max-width: 767px\\)" srcset="\\.\\.\\/image\\/symptom-hero\\/${escapeRegExp(assetBase)}-sp-480\\.webp 480w, \\.\\.\\/image\\/symptom-hero\\/${escapeRegExp(assetBase)}-sp-768\\.webp 768w, \\.\\.\\/image\\/symptom-hero\\/${escapeRegExp(assetBase)}-sp\\.webp \\d+w" sizes="100vw"`)
+    );
     assert.equal(existsSync(optimizedAsset), true, `${assetBase} should have an optimized desktop asset`);
     assert.ok(statSync(optimizedAsset).size < 450 * 1024, `${assetBase} optimized asset should stay below 450KB`);
   }
@@ -1108,7 +1116,7 @@ test("symptom discovery styles are shared instead of duplicated inline", () => {
     .filter((name) => name.endsWith(".html") && name !== "index.html");
   for (const symptomFile of symptomDetailFiles) {
     const symptomHtml = readFileSync(path.join(repoRoot, "symptoms", symptomFile), "utf8");
-    assert.match(symptomHtml, /<link rel="stylesheet" href="site-discovery\.css">/);
+    assert.match(symptomHtml, symptomPerformanceLinkPattern);
     assert.doesNotMatch(symptomHtml, /BLOG_RELATED_ARTICLES_STYLES_START/);
     assert.doesNotMatch(symptomHtml, /\.related-articles-slider\{padding:/);
   }
@@ -1890,7 +1898,7 @@ test("knee osteoarthritis page is a diagnosis-specific reservation LP", () => {
   assert.match(kneeHtml, /<title>柏市で変形性膝関節症の整体相談｜歩き始め・階段の膝痛｜整体院ひざこぞう<\/title>/);
   assert.match(kneeHtml, new RegExp(`<meta name="description" content="${escapeRegExp(expectedDescription)}">`));
   assert.equal((kneeHtml.match(/<h1\b/g) ?? []).length, 1, "knee osteoarthritis LP should expose one accessible H1");
-  assert.match(kneeHtml, /<section class="symptom-image-hero">\s*<h1 class="symptom-image-hero__sr-title">膝痛・変形性膝関節症<\/h1>\s*<picture>\s*<source media="\(min-width: 768px\)" srcset="\.\.\/image\/symptom-hero\/変形性膝関節症-optimized\.webp">\s*<source media="\(max-width: 767px\)" srcset="\.\.\/image\/symptom-hero\/変形性膝関節症-sp\.webp">\s*<img\s+src="\.\.\/image\/symptom-hero\/変形性膝関節症\.webp"\s+alt="変形性膝関節症でお悩みの方へ"[\s\S]*?class="symptom-image-hero__image"[\s\S]*?fetchpriority="high"[\s\S]*?decoding="async"[\s\S]*?>\s*<\/picture>\s*<\/section>/);
+  assert.match(kneeHtml, /<section class="symptom-image-hero">\s*<h1 class="symptom-image-hero__sr-title">膝痛・変形性膝関節症<\/h1>\s*<picture>\s*<source media="\(min-width: 768px\)" srcset="\.\.\/image\/symptom-hero\/変形性膝関節症-optimized\.webp">\s*<source media="\(max-width: 767px\)" srcset="\.\.\/image\/symptom-hero\/変形性膝関節症-sp-480\.webp 480w, \.\.\/image\/symptom-hero\/変形性膝関節症-sp-768\.webp 768w, \.\.\/image\/symptom-hero\/変形性膝関節症-sp\.webp 1023w" sizes="100vw" width="1023" height="1537">\s*<img\s+src="\.\.\/image\/symptom-hero\/変形性膝関節症\.webp"\s+alt="変形性膝関節症でお悩みの方へ"[\s\S]*?class="symptom-image-hero__image"[\s\S]*?fetchpriority="high"[\s\S]*?decoding="async"[\s\S]*?>\s*<\/picture>\s*<\/section>/);
   assert.doesNotMatch(kneeHtml, /<section class="hero">/);
 
   for (const copy of requiredCopy) {
@@ -1987,7 +1995,7 @@ test("major symptom pages use approved pricing sections", () => {
     const priceSection = normalizeLineEndings(pageHtml.slice(priceStart, priceEnd));
 
     assert.equal(priceMatches.length, 1, `${page} should have exactly one pricing section`);
-    assert.match(pageHtml, /<link rel="stylesheet" href="site-pricing\.css">/, `${page} should load the shared pricing CSS`);
+    assert.match(pageHtml, symptomPerformanceLinkPattern, `${page} should load the shared CSS bundle containing pricing styles`);
     assert.doesNotMatch(pageHtml, /<section class="lp-pricing">/, `${page} should not keep the old lp-pricing block`);
     assert.match(priceSection, /href="tel:0471143274" class="hk-pricing-call"/, `${page} should keep the top-page phone link`);
     assert.match(priceSection, /href="https:\/\/lin\.ee\/X01F2mP" target="_blank" rel="noopener noreferrer" class="hk-pricing-line"/, `${page} should keep the top-page LINE link`);
@@ -2118,11 +2126,16 @@ test("major symptom pages replace concerns with top-page troubles-check layout",
     const section = pageHtml.slice(troublesIndex, sectionEnd);
     const resolvedHeroImage = path.join(repoRoot, path.dirname(page), heroSrc);
     const resolvedHeroMobileImage = path.join(repoRoot, path.dirname(page), heroMobileSrc);
+    const responsiveHeroBase = heroMobileSrc.replace(/\.webp$/, "");
 
     assert.ok(heroIndex > -1 && heroIndex < troublesIndex && troublesIndex < flowIndex, `${page} should keep image hero, troubles, flow order`);
     assert.doesNotMatch(pageHtml, /<section class="hero">/, `${page} should remove the old blue hero section`);
     assert.match(pageHtml, new RegExp(`<img\\s+src="${escapeRegExp(heroSrc)}"\\s+alt="${escapeRegExp(heroAlt)}"[\\s\\S]*?width="1600"[\\s\\S]*?height="900"[\\s\\S]*?class="symptom-image-hero__image"[\\s\\S]*?fetchpriority="high"[\\s\\S]*?decoding="async"`), `${page} should use the requested hero image`);
-    assert.match(pageHtml, new RegExp(`<source\\s+media="\\(max-width: 767px\\)"\\s+srcset="${escapeRegExp(heroMobileSrc)}"`), `${page} should use the requested mobile hero image`);
+    assert.match(
+      pageHtml,
+      new RegExp(`<source\\s+media="\\(max-width: 767px\\)"\\s+srcset="${escapeRegExp(responsiveHeroBase)}-480\\.webp 480w, ${escapeRegExp(responsiveHeroBase)}-768\\.webp 768w, ${escapeRegExp(heroMobileSrc)} \\d+w"`),
+      `${page} should use responsive variants of the requested mobile hero image`
+    );
     assert.match(pageHtml, /\.symptom-image-hero\s*{[\s\S]*width:\s*100%;[\s\S]*background-color:\s*#faf7f1/);
     assert.match(pageHtml, /\.symptom-image-hero picture,\.symptom-image-hero__image\s*{[\s\S]*width:\s*100%;[\s\S]*height:\s*auto;[\s\S]*object-fit:\s*contain/);
     assert.match(pageHtml, /@media\s*\(max-width:\s*767px\)\s*{[\s\S]*\.symptom-image-hero\s*{[\s\S]*margin-left:\s*0/);
@@ -2194,7 +2207,7 @@ test("all symptom detail pages use the readable numbered cycle flow", () => {
     const arrowMatches = pageHtml.match(/class="[^"]*\bsymptom-cycle__arrow\b[^"]*"/g) ?? [];
     const noteMatches = pageHtml.match(/class="[^"]*\bsymptom-cycle__loop-note\b[^"]*"/g) ?? [];
 
-    assert.match(pageHtml, /<link rel="stylesheet" href="site-cycle-flow\.css">/, `${fileName} should load the shared cycle styles`);
+    assert.match(pageHtml, symptomPerformanceLinkPattern, `${fileName} should load the shared bundle containing cycle styles`);
     assert.match(pageHtml, /class="[^"]*\bsymptom-cycle\b[^"]*" role="list" aria-label="[^"]+"/, `${fileName} should expose the cycle as a list`);
     assert.equal(itemMatches.length, 5, `${fileName} should show five numbered cycle steps`);
     assert.equal(arrowMatches.length, 4, `${fileName} should show four downward connectors`);
@@ -2233,9 +2246,109 @@ test("symptom pages self-host lucide instead of loading it from a third-party CD
     assert.doesNotMatch(symptomHtml, /https:\/\/unpkg\.com\/lucide/i, `${fileName} should not load lucide from unpkg`);
     assert.match(
       symptomHtml,
-      /<script src="\.\.\/scripts\/vendor\/lucide\.min\.js"><\/script>/,
-      `${fileName} should use the self-hosted lucide bundle`
+      /<script src="\.\.\/scripts\/vendor\/lucide\.min\.js" defer><\/script>/,
+      `${fileName} should defer the self-hosted lucide bundle`
     );
+    assert.match(symptomHtml, /<script src="site-header\.js" defer><\/script>/, `${fileName} should defer shared header behavior`);
+    assert.doesNotMatch(symptomHtml, /<script>\s*lucide\.createIcons\(\);\s*<\/script>/, `${fileName} should let the deferred header initialize icons`);
+  }
+});
+
+test("symptom detail pages use system font fallbacks without Google Font requests", () => {
+  const symptomDir = path.join(repoRoot, "symptoms");
+  const symptomCss = readFileSync(path.join(symptomDir, "symptoms.css"), "utf8");
+
+  for (const fileName of readdirSync(symptomDir).filter((name) => name.endsWith(".html") && name !== "index.html")) {
+    const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
+
+    assert.doesNotMatch(symptomHtml, /fonts\.googleapis\.com/, `${fileName} should not request Google Font CSS`);
+    assert.doesNotMatch(symptomHtml, /fonts\.gstatic\.com/, `${fileName} should not preconnect to Google Fonts`);
+  }
+  assert.match(symptomCss, /font-family:[^;}]*sans-serif/, "shared symptom CSS should retain a sans-serif fallback");
+});
+
+test("symptom pages use one generated shared stylesheet bundle", () => {
+  const symptomDir = path.join(repoRoot, "symptoms");
+  const symptomPages = readdirSync(symptomDir).filter((name) => name.endsWith(".html"));
+  const sharedStylesheets = [
+    "site-pricing.css",
+    "site-content-figures.css",
+    "site-consultation-sections.css",
+    "site-header.css",
+    "site-footer.css",
+    "site-flow.css",
+    "site-faq.css",
+    "site-discovery.css",
+    "site-cycle-flow.css"
+  ];
+  const bundlePath = path.join(symptomDir, "site-performance.css");
+
+  assert.equal(existsSync(bundlePath), true, "generated symptom stylesheet bundle should exist");
+  const bundleCss = readFileSync(bundlePath, "utf8");
+  for (const stylesheet of sharedStylesheets) {
+    assert.match(bundleCss, new RegExp(`/\\* ${escapeRegExp(stylesheet)} \\*/`), `${stylesheet} should be included in the bundle`);
+  }
+
+  for (const fileName of symptomPages) {
+    const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
+    assert.equal(
+      (symptomHtml.match(/<link rel="stylesheet" href="site-performance\.css\?v=20260726">/g) || []).length,
+      1,
+      `${fileName} should load one generated stylesheet bundle`
+    );
+    for (const stylesheet of sharedStylesheets) {
+      assert.doesNotMatch(
+        symptomHtml,
+        new RegExp(`<link rel="stylesheet" href="${escapeRegExp(stylesheet)}(?:\\?v=\\d+)?">`),
+        `${fileName} should not load ${stylesheet} separately`
+      );
+    }
+  }
+});
+
+test("mobile symptom hero images expose responsive local variants", () => {
+  const heroDir = path.join(repoRoot, "image", "symptom-hero");
+  const sourceNames = readdirSync(heroDir).filter((name) => name.endsWith("-sp.webp"));
+
+  assert.equal(sourceNames.length, 6, "expected six original mobile symptom hero images");
+  for (const sourceName of sourceNames) {
+    const baseName = sourceName.replace(/-sp\.webp$/, "");
+    assert.equal(existsSync(path.join(heroDir, `${baseName}-sp-480.webp`)), true);
+    assert.equal(existsSync(path.join(heroDir, `${baseName}-sp-768.webp`)), true);
+  }
+
+  const responsivePages = readdirSync(path.join(repoRoot, "symptoms"))
+    .filter((name) => name.endsWith(".html"))
+    .map((name) => readFileSync(path.join(repoRoot, "symptoms", name), "utf8"))
+    .filter((pageHtml) => /-sp-480\.webp 480w/.test(pageHtml));
+  assert.equal(responsivePages.length, 6, "each original mobile hero should be used by one responsive symptom page");
+  for (const pageHtml of responsivePages) {
+    assert.match(pageHtml, /-sp-480\.webp 480w,[^"]*-sp-768\.webp 768w,[^"]*-sp\.webp \d+w/);
+    assert.match(pageHtml, /sizes="100vw" width="\d+" height="\d+">/);
+  }
+});
+
+test("generated blog and symptom pages expose complete social metadata", () => {
+  const blogPages = [
+    path.join(repoRoot, "blog", "index.html"),
+    ...readdirSync(path.join(repoRoot, "blog", "posts")).map((slug) => path.join(repoRoot, "blog", "posts", slug, "index.html"))
+  ].filter((filePath) => existsSync(filePath));
+  const symptomPages = readdirSync(path.join(repoRoot, "symptoms"))
+    .filter((name) => name.endsWith(".html"))
+    .map((name) => path.join(repoRoot, "symptoms", name));
+
+  for (const filePath of [...blogPages, ...symptomPages]) {
+    const pageHtml = readFileSync(filePath, "utf8");
+    const relativePath = toRepoPath(filePath);
+    assert.match(pageHtml, /<meta property="og:site_name" content="[^"]+">/, `${relativePath} should identify the site`);
+    assert.match(pageHtml, /<meta property="og:title" content="[^"]+">/, `${relativePath} should expose an Open Graph title`);
+    assert.match(pageHtml, /<meta property="og:description" content="[^"]+">/, `${relativePath} should expose an Open Graph description`);
+    assert.match(pageHtml, /<meta property="og:url" content="https:\/\/hizakozou\.jp\/[^"]*">/, `${relativePath} should expose an absolute Open Graph URL`);
+    assert.match(pageHtml, /<meta property="og:image" content="https:\/\/hizakozou\.jp\/[^"]+">/, `${relativePath} should expose an absolute social image`);
+    assert.match(pageHtml, /<meta name="twitter:card" content="summary_large_image">/, `${relativePath} should use a large Twitter card`);
+    assert.match(pageHtml, /<meta name="twitter:title" content="[^"]+">/, `${relativePath} should expose a Twitter title`);
+    assert.match(pageHtml, /<meta name="twitter:description" content="[^"]+">/, `${relativePath} should expose a Twitter description`);
+    assert.match(pageHtml, /<meta name="twitter:image" content="https:\/\/hizakozou\.jp\/[^"]+">/, `${relativePath} should expose an absolute Twitter image`);
   }
 });
 
@@ -2277,8 +2390,8 @@ test("all symptom pages use the transplanted top-page header and mobile hamburge
     assert.match(headerBlock, /<nav class="site-nav" aria-label="メインナビゲーション">/, `${fileName} should include desktop nav`);
     assert.match(headerBlock, /id="menuBtn" class="site-menu-toggle"/, `${fileName} should include the top-page hamburger button`);
     assert.match(headerBlock, /<nav class="site-mobile-nav hidden" id="mobileNav"/, `${fileName} should include mobile nav`);
-    assert.match(symptomHtml, /<link rel="stylesheet" href="site-header\.css">/, `${fileName} should include copied top-page header styles`);
-    assert.match(symptomHtml, /<script src="site-header\.js"><\/script>/, `${fileName} should include header behavior`);
+    assert.match(symptomHtml, symptomPerformanceLinkPattern, `${fileName} should include bundled top-page header styles`);
+    assert.match(symptomHtml, /<script src="site-header\.js" defer><\/script>/, `${fileName} should include deferred header behavior`);
     assert.match(headerBlock, /aria-controls="site-about-menu"/, `${fileName} should expose the about dropdown`);
     assert.match(headerBlock, /<span class="site-nav__jp">当院について<\/span>/, `${fileName} should rename feature nav to about`);
     assert.match(headerBlock, /<span class="site-nav__en">ABOUT<\/span>/, `${fileName} should use the about nav label`);
@@ -2346,7 +2459,7 @@ test("all symptom pages use the transplanted top-page footer and scroll-to-top b
       : "";
 
     assert.ok(footerBlock, `${fileName} should include the top-page footer`);
-    assert.match(symptomHtml, /<link rel="stylesheet" href="site-footer\.css">/, `${fileName} should include copied top-page footer styles`);
+    assert.match(symptomHtml, symptomPerformanceLinkPattern, `${fileName} should include bundled top-page footer styles`);
     assert.match(symptomHtml, /<span id="top" class="page-top-anchor" aria-hidden="true"><\/span>/, `${fileName} should expose a page top anchor`);
     assert.match(symptomHtml, /<button type="button" class="page-top-button" aria-label="ページ上部へ戻る">/, `${fileName} should include the top-page scroll button`);
     assert.match(symptomHtml, /<span aria-hidden="true">↑<\/span>\s*TOP/, `${fileName} should show the same TOP button label`);
@@ -2391,7 +2504,7 @@ test("symptom pages replace the visual guide cards with the top-page flow slider
     const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
     assert.doesNotMatch(symptomHtml, /ご相談から施術までの(?:<br>)?イメージ/, `${fileName} should remove the old visual guide heading`);
     assert.doesNotMatch(symptomHtml, /<section class="visual-guide">/, `${fileName} should remove the old visual guide section`);
-    assert.match(symptomHtml, /<link rel="stylesheet" href="site-flow\.css">/, `${fileName} should include copied top-page flow styles`);
+    assert.match(symptomHtml, symptomPerformanceLinkPattern, `${fileName} should include bundled top-page flow styles`);
 
     const flowStart = symptomHtml.indexOf('<section id="flow" class="flow-slider"');
     if (flowStart < 0) continue;
@@ -2508,7 +2621,7 @@ test("symptom pages reuse the top-page static FAQ design", () => {
 
   for (const fileName of symptomPages) {
     const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
-    assert.match(symptomHtml, /<link rel="stylesheet" href="site-faq\.css">/, `${fileName} should include copied top-page FAQ styles`);
+    assert.match(symptomHtml, symptomPerformanceLinkPattern, `${fileName} should include bundled top-page FAQ styles`);
 
     const faqStart = symptomHtml.indexOf('<section class="faq" id="faq">');
     assert.ok(faqStart > -1, `${fileName} should include the FAQ section`);
@@ -2857,12 +2970,12 @@ test("lower back education redesign stays inside the requested page range", () =
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(lowerBackHtml.slice(bodyStart, redesignStart)),
-    "b56408536bd41b64b89a27ce26f0456cc75982b05b96d26600ed3a465f2f883d",
+    "83677a29b4e029c61f852651f8ef16e3fb3895c8e8abaae8cd125e36f463b714",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(lowerBackHtml.slice(voicesStart)),
-    "43962d66d875350228df7ef72141dde8313efde7b5731b9b425f97bc3e9a6f33",
+    "a9b089976b180d2bc01859cf5eeea3e99d988c74dbc3b7d9abad9c7ee381051e",
     "patient voices onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -2931,7 +3044,7 @@ test("shoulder stiffness education redesign preserves the existing page boundari
   );
   assert.equal(
     sha256(shoulderStiffnessHtml.slice(voicesStart)),
-    "d6f5da587c15bec19f232b67295e229529abb5cf3ee8f4cdd9abd362b23feca6",
+    "df0609c891069ec9119b170d9b950853b52e9a41f19790ab994641ea3341c574",
     "patient voices onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3000,7 +3113,7 @@ test("plantar fasciitis education redesign preserves the existing page boundarie
   );
   assert.equal(
     sha256(plantarFasciitisHtml.slice(flowStart)),
-    "2b3ba8d5e29ea98ed97843ce3ddb190fe5c53b6965e139033cc4769339fb9a64",
+    "b03d0be305b9aa3cf7a521b67f33741c3bf60e827eed7ba7b0f0841f711e18f6",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3069,7 +3182,7 @@ test("scoliosis education redesign preserves the existing page boundaries", () =
   );
   assert.equal(
     sha256(scoliosisHtml.slice(flowStart)),
-    "8d0e47aa37eae0ed8237bfc1b75a4f22a0c7d1afd909560fbe5eb917f834e050",
+    "068d753c32728781cecbd12e7dd8bba364894b125d77be281472247eb4833a17",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3138,7 +3251,7 @@ test("TMJ education redesign preserves the existing page boundaries", () => {
   );
   assert.equal(
     sha256(tmjHtml.slice(flowStart)),
-    "fc64d427eacda9da3d4c374f48c4b67b5e623e768810ce6ca0865936bb00aaec",
+    "31e2dc097c9676d64d5ed60839d72a255bdd0973793ef357f0f380fbdcbbb6cd",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3208,7 +3321,7 @@ test("frozen shoulder education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(frozenShoulderHtml.slice(flowStart)),
-    "b377b01b852b260eee6104e5e77555607ccbf1c933f6a31fc3e79fa5f51a1d58",
+    "d6db894384d27025b09123992ebc153af06e129530d3c9fd13a14dcce9379117",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3321,7 +3434,7 @@ test("thoracic outlet education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(thoracicOutletHtml.slice(flowStart)),
-    "618f9f9855ea49cf7ca9aa5ff4b8c3d00ff278ce8f591cd46ef2880098f896d8",
+    "fe104e4795b38ee26ce4cc20a716f2bdcbdb83bae64d046c868afd78ec90202c",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3483,12 +3596,12 @@ test("sciatica education redesign stays inside the matching lower-back page rang
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(sciaticaHtml.slice(bodyStart, redesignStart)),
-    "37ba1463e42008fdd7eb6570a9eaf360ff5d15608b231639874471c75bd9eb04",
+    "8951be798429b7dd56f6c63ba8d124580d50f6526d88d814ddeec5c829785082",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(sciaticaHtml.slice(voicesStart)),
-    "277e9f863891a985b34ec6298fdf6fa5dc07125c7f2d31b42081811b5702340e",
+    "e52e214e4cca3773bb5dbc0e58709a93e620c4e1ded1125c010cf43c05a06e7e",
     "patient voices onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -3552,12 +3665,12 @@ test("spinal stenosis education redesign preserves the existing page boundaries"
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(spinalStenosisHtml.slice(bodyStart, redesignStart)),
-    "bfc08fec4fdf06cf600adcbafbb099a2145eb5e62f30c6356df9f34edb202d49",
+    "2d91712f1ea2a2ba9a72381d53b87eaa46da82d0fff3b94b486db7544e709a15",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(spinalStenosisHtml.slice(flowStart)),
-    "2479e66ba82a9a27df6319c246ce6fa7b03ab4c9101bb9010e487dd93d2f0237",
+    "4457f81f70483ec34013429a78b469e43befd91fb6865e9e21db765d726bb277",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -3621,12 +3734,12 @@ test("knee pain education redesign preserves the existing page boundaries", () =
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(bodyStart, redesignStart)),
-    "386d71fb507deec4c0905f844d84d7ce184013aad1440dcbc3388dbaf5ac9aa6",
+    "0ff0a4c1d2ee3499fd47799f18280a9e87f5188688a25844c885d6d5b36bac55",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(voicesStart)),
-    "3de741cde6e88766b56bb7c80644e431412012643f681ac7d5ee89c63fbc57f4",
+    "bf09065021868e818a345c0125ca39d10a7c96d92c150dbc2d01889fe36e4847",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3690,12 +3803,12 @@ test("hip pain education redesign preserves the existing page boundaries", () =>
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(hipOsteoarthritisHtml.slice(bodyStart, redesignStart)),
-    "d725b60d147190f4274c36756294edb1078d2e957e8234aa03889305cd83275b",
+    "3f2d59b43552d092450bc253351b70c464c4834475caa8603198ba93f95fff63",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(hipOsteoarthritisHtml.slice(voicesStart)),
-    "80b7a35583410902a84e8c15121a374cec9f7af321a77813fd7bd6c4dbad3a94",
+    "a76dd038dd7f21d2739b06f9d9ed40232a48f593e7b4a9b4f10325c1b790262e",
     "patient voices onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3759,12 +3872,12 @@ test("disc herniation education redesign preserves the existing page boundaries"
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(bodyStart, redesignStart)),
-    "8872c24b4a466c58972ed1acb1c763283cc463f16b940e9b84d325e981034176",
+    "ed78052c8b98c991341c18d77099da651d701953278f7821cb04910ac70cb656",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(flowStart)),
-    "6ef7ab1b9b0b8495ba15e80f23c71382202dde2fab85081744622133ca105f15",
+    "707dd66571616b1e8544a42aa2968fca92b7920883751945ced395d8145aa01b",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
