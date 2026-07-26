@@ -28,8 +28,25 @@
     document.head.appendChild(script);
   }
 
+  function scheduleGoogleTagScript(tagId) {
+    const loadScript = () => appendGoogleTagScript(tagId);
+    const loadWhenIdle = () => {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(loadScript, { timeout: 2000 });
+        return;
+      }
+      window.setTimeout(loadScript, 0);
+    };
+
+    if (document.readyState === "complete") {
+      loadWhenIdle();
+      return;
+    }
+    window.addEventListener("load", loadWhenIdle, { once: true });
+  }
+
   if (hasGoogleTag) {
-    appendGoogleTagScript(ga4MeasurementId || googleAdsConversionId);
+    scheduleGoogleTagScript(ga4MeasurementId || googleAdsConversionId);
     window.gtag("js", new Date());
 
     if (ga4MeasurementId) {

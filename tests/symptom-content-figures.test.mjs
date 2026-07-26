@@ -71,7 +71,7 @@ for (const page of pages) {
     );
     assert.match(section, /loading="lazy" decoding="async" width="1200" height="800"/);
     assert.match(section, /target="_blank" rel="noopener"/);
-    assert.match(html, /href="site-content-figures\.css"/);
+    assert.match(html, /href="site-performance\.css\?v=20260726"/);
   });
 }
 
