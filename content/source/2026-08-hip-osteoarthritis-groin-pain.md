@@ -1,8 +1,8 @@
 ---
 title: 脚の付け根が痛む｜変形性股関節症で気づきやすい生活の変化
 slug: hip-osteoarthritis-groin-pain
-date: 2026-08-06
-updatedDate: 2026-07-19
+date: 2026-07-27
+updatedDate: 2026-07-27
 description: 歩き始めや靴下の着脱で脚の付け根が痛む方へ。変形性股関節症でみられる生活上の変化、膝や腰にも症状が出る場合、受診目安と無理のない記録方法を柏市の整体院が説明します。
 category: 股関節の痛み
 region: 柏市
@@ -12,12 +12,12 @@ heroImage: /image/blog/hip-osteoarthritis-groin-pain/hip-osteoarthritis-groin-pa
 heroAlt: 歩き始めに脚の付け根の痛みを感じる女性のイラスト
 author: 川上卓哉
 reviewer: 川上卓哉
-reviewedDate: 2026-07-19
+reviewedDate: 2026-07-27
 relatedSlugs: hip-pain-while-walking,hip-pain-weight-bearing,hip-pain-squatting
 searchIntent: 脚の付け根の痛みと変形性股関節症の関係、生活で確認したい変化を知りたい
 layout: readable-v3
 referencePreset: hip-osteoarthritis
-draft: true
+draft: false
 ---
 
 歩き始めに脚の付け根が痛む。靴下を履くとき、膝を胸へ近づけにくい。車から降りるときに股関節が固まったように感じる。

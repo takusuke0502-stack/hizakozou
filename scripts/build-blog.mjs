@@ -325,6 +325,110 @@ const ARTICLE_REFERENCE_PRESETS = {
       label: "日本整形外科学会 変形性股関節症",
       url: "https://www.joa.or.jp/public/sick/condition/hip_osteoarthritis.html"
     }
+  ],
+  "morning-low-back-stiffness": [
+    {
+      label: "University Hospitals Coventry and Warwickshire NHS Trust Back pain self-care",
+      url: "https://www.uhcw.nhs.uk/self-care/back/"
+    },
+    {
+      label: "NHS Ankylosing spondylitis - Symptoms",
+      url: "https://www.nhs.uk/conditions/ankylosing-spondylitis/symptoms/"
+    },
+    {
+      label: "Mayo Clinic Back pain - Symptoms and causes",
+      url: "https://www.mayoclinic.org/diseases-conditions/back-pain/symptoms-causes/syc-20369906"
+    }
+  ],
+  "sacroiliac-joint": [
+    {
+      label: "Tyneside Integrated Musculoskeletal Services Sacroiliac joint pain",
+      url: "https://www.tims.nhs.uk/wp-content/uploads/2024/08/tims-sacroiliac-joint-pain.pdf"
+    },
+    {
+      label: "日本整形外科学会 腰痛",
+      url: "https://www.joa.or.jp/public/sick/condition/lumbago.html"
+    }
+  ],
+  "piriformis-deep-buttock": [
+    {
+      label: "Cleveland Clinic Piriformis Syndrome",
+      url: "https://my.clevelandclinic.org/health/diseases/23495-piriformis-syndrome"
+    },
+    {
+      label: "日本整形外科学会 坐骨神経痛",
+      url: "https://www.joa.or.jp/public/pdf/joa_029.pdf"
+    }
+  ],
+  "greater-trochanteric-pain": [
+    {
+      label: "Royal National Orthopaedic Hospital Gluteal tendinopathy",
+      url: "https://www.rnoh.nhs.uk/patients-and-visitors/patient-information-guides/patients-guide-gluteal-tendinopathy"
+    },
+    {
+      label: "日本整形外科学会 股関節の症状",
+      url: "https://www.joa.or.jp/public/sick/body/articulatio_coxae.html"
+    }
+  ],
+  "patellofemoral-pain": [
+    {
+      label: "AAOS OrthoInfo Patellofemoral Pain Syndrome",
+      url: "https://www.orthoinfo.org/diseases--conditions/patellofemoral-pain-syndrome/"
+    },
+    {
+      label: "日本整形外科学会 変形性膝関節症",
+      url: "https://www.joa.or.jp/public/sick/condition/knee_osteoarthritis.html"
+    }
+  ],
+  "pes-anserine": [
+    {
+      label: "Cleveland Clinic Pes Anserine Bursitis",
+      url: "https://my.clevelandclinic.org/health/diseases/pes-anserine-bursitis"
+    },
+    {
+      label: "AAOS OrthoInfo Pes Anserine Bursitis",
+      url: "https://orthoinfo.aaos.org/en/diseases--conditions/pes-anserine-knee-tendon-bursitis"
+    }
+  ],
+  "bakers-cyst": [
+    {
+      label: "AAOS OrthoInfo Baker's Cyst",
+      url: "https://www.orthoinfo.org/diseases--conditions/bakers-cyst-popliteal-cyst/"
+    },
+    {
+      label: "NHS Baker's cyst",
+      url: "https://www.nhs.uk/conditions/bakers-cyst/"
+    }
+  ],
+  "achilles-tendon": [
+    {
+      label: "AAOS OrthoInfo Achilles Tendinitis",
+      url: "https://www.orthoinfo.org/diseases--conditions/achilles-tendinitis/"
+    },
+    {
+      label: "AAOS OrthoInfo Achilles Tendon Rupture",
+      url: "https://orthoinfo.aaos.org/en/diseases--conditions/achilles-tendon-rupture-tear"
+    }
+  ],
+  "mortons-neuroma": [
+    {
+      label: "AAOS OrthoInfo Morton's Neuroma",
+      url: "https://www.orthoinfo.org/diseases--conditions/mortons-neuroma"
+    },
+    {
+      label: "NHS Morton's neuroma",
+      url: "https://www.nhs.uk/conditions/mortons-neuroma/"
+    }
+  ],
+  "nocturnal-calf-cramps": [
+    {
+      label: "NHS Leg cramps",
+      url: "https://www.nhs.uk/conditions/leg-cramps/"
+    },
+    {
+      label: "Mayo Clinic Night leg cramps",
+      url: "https://www.mayoclinic.org/symptoms/night-leg-cramps/basics/causes/sym-20050813"
+    }
   ]
 };
 
@@ -2296,7 +2400,20 @@ const relatedArticleImageDimensions = new Map([
   ["../image/blog/iliopsoas-anterior-hip-stiffness/iliopsoas-anterior-hip-stiffness-hero-1200.webp", [1200, 800]],
   ["../image/blog/lumbar-spinal-stenosis-walking/lumbar-spinal-stenosis-walking-hero-1200.webp", [1200, 800]],
   ["../image/blog/lateral-thigh-pain-lateral-femoral-cutaneous-nerve/lateral-thigh-pain-lateral-femoral-cutaneous-nerve-hero-1200.webp", [1200, 800]],
-  ["../image/blog/femoral-neuralgia/femoral-neuralgia-hero-1200.webp", [1200, 800]]
+  ["../image/blog/femoral-neuralgia/femoral-neuralgia-hero-1200.webp", [1200, 800]],
+  ["../image/blog/hip-osteoarthritis-groin-pain/hip-osteoarthritis-groin-pain-hero-1200.webp", [1200, 800]],
+  ["../image/blog/lumbar-disc-herniation-leg-symptoms/lumbar-disc-herniation-leg-symptoms-hero-1200.webp", [1200, 800]],
+  ["../image/blog/sciatica-buttock-leg/sciatica-buttock-leg-hero-1200.webp", [1200, 800]],
+  ["../image/blog/morning-low-back-stiffness/morning-low-back-stiffness-hero-1200.webp", [1200, 800]],
+  ["../image/blog/sacroiliac-joint-buttock-pain/sacroiliac-joint-buttock-pain-hero-1200.webp", [1200, 800]],
+  ["../image/blog/piriformis-deep-buttock-pain/piriformis-deep-buttock-pain-hero-1200.webp", [1200, 800]],
+  ["../image/blog/greater-trochanteric-pain-side-hip/greater-trochanteric-pain-side-hip-hero-1200.webp", [1200, 800]],
+  ["../image/blog/patellofemoral-anterior-knee-pain/patellofemoral-anterior-knee-pain-hero-1200.webp", [1200, 800]],
+  ["../image/blog/pes-anserine-medial-knee-pain/pes-anserine-medial-knee-pain-hero-1200.webp", [1200, 800]],
+  ["../image/blog/bakers-cyst-posterior-knee-fullness/bakers-cyst-posterior-knee-fullness-hero-1200.webp", [1200, 800]],
+  ["../image/blog/achilles-tendon-heel-back-pain/achilles-tendon-heel-back-pain-hero-1200.webp", [1200, 800]],
+  ["../image/blog/mortons-neuroma-forefoot-numbness/mortons-neuroma-forefoot-numbness-hero-1200.webp", [1200, 800]],
+  ["../image/blog/nocturnal-calf-cramps/nocturnal-calf-cramps-hero-1200.webp", [1200, 800]]
 ]);
 
 function buildRelatedArticlesSliderSection(config, posts) {
