@@ -2701,18 +2701,59 @@ test("major symptom pages use the swipeable related article slider", () => {
   }
 });
 
-test("lower back related article slider prioritizes the intended waist and nerve articles", () => {
-  const html = readFileSync(path.join(repoRoot, "symptoms", "lower-back-pain.html"), "utf8");
-  const section = html.match(/<!-- BLOG_RELATED_ARTICLES_START -->[\s\S]*?<!-- BLOG_RELATED_ARTICLES_END -->/)?.[0] ?? "";
-  const hrefs = [...section.matchAll(/class="related-articles-slider__card" href="([^"]+)"/g)].map((match) => match[1]);
+test("major symptom pages prioritize the curated diagnosis and movement articles", () => {
+  const expectations = [
+    ["lower-back-pain.html", [
+      "morning-low-back-pain-causes-multifidus",
+      "low-back-pain-hip-stiffness-relation",
+      "lumbar-disc-herniation-leg-symptoms",
+      "lumbar-spinal-stenosis-walking",
+      "sciatica-root-cause"
+    ]],
+    ["sciatica.html", [
+      "sciatica-root-cause",
+      "lumbar-disc-herniation-leg-symptoms",
+      "lumbar-spinal-stenosis-walking",
+      "leg-numbness-causes-lower-back-knee",
+      "sciatica-piriformis-relation"
+    ]],
+    ["spinal-stenosis.html", [
+      "lumbar-spinal-stenosis-walking",
+      "spinal-stenosis-exercise-before-surgery",
+      "leg-numbness-causes-lower-back-knee",
+      "lumbar-disc-herniation-leg-symptoms",
+      "sciatica-root-cause"
+    ]],
+    ["lumbar-disc-herniation.html", [
+      "lumbar-disc-herniation-leg-symptoms",
+      "sciatica-root-cause",
+      "leg-numbness-causes-lower-back-knee",
+      "spinal-stenosis-exercise-before-surgery",
+      "lumbar-spinal-stenosis-walking"
+    ]],
+    ["hip-osteoarthritis.html", [
+      "hip-osteoarthritis-groin-pain",
+      "iliopsoas-anterior-hip-stiffness",
+      "gluteus-medius-pelvic-stability",
+      "hip-pain-while-walking",
+      "hip-pain-weight-bearing"
+    ]],
+    ["knee-osteoarthritis.html", [
+      "knee-osteoarthritis-daily-movement",
+      "knee-osteoarthritis-before-surgery-walking",
+      "knee-effusion-walking-guide",
+      "knee-pain-stairs-guide"
+    ]]
+  ];
 
-  assert.deepEqual(hrefs.slice(0, 5), [
-    "../blog/posts/low-back-pain-hip-stiffness-relation/",
-    "../blog/posts/morning-low-back-pain-causes-multifidus/",
-    "../blog/posts/lower-back-pain-and-knee-link/",
-    "../blog/posts/sciatica-piriformis-relation/",
-    "../blog/posts/spinal-stenosis-exercise-before-surgery/"
-  ]);
+  for (const [fileName, expectedSlugs] of expectations) {
+    const html = readFileSync(path.join(repoRoot, "symptoms", fileName), "utf8");
+    const section = html.match(/<!-- BLOG_RELATED_ARTICLES_START -->[\s\S]*?<!-- BLOG_RELATED_ARTICLES_END -->/)?.[0] ?? "";
+    const slugs = [...section.matchAll(/class="(?:related-articles-slider__card|related-article-card)" href="\.\.\/blog\/posts\/([^/]+)\//g)]
+      .map((match) => match[1]);
+
+    assert.deepEqual(slugs, expectedSlugs, `${fileName} should show its curated related articles`);
+  }
 });
 
 test("upper-limb symptom pages pin directly relevant articles before broad fallbacks", () => {
@@ -2975,7 +3016,7 @@ test("lower back education redesign stays inside the requested page range", () =
   );
   assert.equal(
     sha256(lowerBackHtml.slice(voicesStart)),
-    "a9b089976b180d2bc01859cf5eeea3e99d988c74dbc3b7d9abad9c7ee381051e",
+    "f4aa97e0adf34653f02cd1e4fb7bb40df37a9545b3274b815628dcaf8cc40d19",
     "patient voices onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -3601,7 +3642,7 @@ test("sciatica education redesign stays inside the matching lower-back page rang
   );
   assert.equal(
     sha256(sciaticaHtml.slice(voicesStart)),
-    "ab83f35e86aa6b407e6bd0ed682bef62dcb5b8cc044075bb5c5d66c412d802eb",
+    "9b8e6d75aa454a9ec21d60723133bc7a31c0fbd1da070e9b48e52eee3dd10bd0",
     "patient voices onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -3670,7 +3711,7 @@ test("spinal stenosis education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(spinalStenosisHtml.slice(flowStart)),
-    "4457f81f70483ec34013429a78b469e43befd91fb6865e9e21db765d726bb277",
+    "1447e19b4542ef4a395c637da6b0d0940ef6a83b6f71dba70cc508c2c22ae70e",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -3739,7 +3780,7 @@ test("knee pain education redesign preserves the existing page boundaries", () =
   );
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(voicesStart)),
-    "bf09065021868e818a345c0125ca39d10a7c96d92c150dbc2d01889fe36e4847",
+    "1e7b0e2421204a7cfd7ad8d49be60b2b5086d514a1f3bee2b8663351572c232d",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3808,7 +3849,7 @@ test("hip pain education redesign preserves the existing page boundaries", () =>
   );
   assert.equal(
     sha256(hipOsteoarthritisHtml.slice(voicesStart)),
-    "5625efe57d708f8c6549d787520401d37a32c53e89138b1b2213c5cb053a4393",
+    "eca15063d59da30750da00e0955af76f5a4f74bf490cccf0de8cd159f732ae19",
     "patient voices onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3877,7 +3918,7 @@ test("disc herniation education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(flowStart)),
-    "01e5574963cd3e20c3bffed7377e728e2a3b388d6d6dbba31339e5553d8701e6",
+    "1de0ab728f2c69eb8e1c58a6b9e8fa4c2da70d1d1730357d1738c2be5b5a0e40",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });

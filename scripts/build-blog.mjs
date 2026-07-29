@@ -537,7 +537,12 @@ const symptomConfigs = {
     label: "変形性膝関節症",
     keywords: ["変形性膝関節症", "膝痛", "階段", "歩き始め", "膝"],
     categoryHints: ["knee-pain", "exercise-therapy"],
-    pinnedSlugs: ["walking-start-knee-pain-cause", "knee-pain-daily-care"]
+    pinnedSlugs: [
+      "knee-osteoarthritis-daily-movement",
+      "knee-osteoarthritis-before-surgery-walking",
+      "knee-effusion-walking-guide",
+      "knee-pain-stairs-guide"
+    ]
   },
   "knee-effusion.html": {
     symptomKey: "knee-effusion",
@@ -606,30 +611,51 @@ const symptomConfigs = {
     keywords: ["腰痛", "腰", "立ち上がり", "歩行不安"],
     categoryHints: ["lower-back-pain", "hip-pain", "foot-walking", "exercise-therapy", "knee-pain"],
     pinnedSlugs: [
-      "low-back-pain-hip-stiffness-relation",
       "morning-low-back-pain-causes-multifidus",
-      "lower-back-pain-and-knee-link",
-      "sciatica-piriformis-relation",
-      "spinal-stenosis-exercise-before-surgery"
+      "low-back-pain-hip-stiffness-relation",
+      "lumbar-disc-herniation-leg-symptoms",
+      "lumbar-spinal-stenosis-walking",
+      "sciatica-root-cause"
     ]
   },
   "sciatica.html": {
     symptomKey: "sciatica",
     label: "坐骨神経痛",
     keywords: ["坐骨神経痛", "お尻", "脚のしびれ", "しびれ"],
-    categoryHints: ["numbness", "lower-back-pain", "exercise-therapy"]
+    categoryHints: ["numbness", "lower-back-pain", "exercise-therapy"],
+    pinnedSlugs: [
+      "sciatica-root-cause",
+      "lumbar-disc-herniation-leg-symptoms",
+      "lumbar-spinal-stenosis-walking",
+      "leg-numbness-causes-lower-back-knee",
+      "sciatica-piriformis-relation"
+    ]
   },
   "spinal-stenosis.html": {
     symptomKey: "spinal-stenosis",
     label: "脊柱管狭窄症",
     keywords: ["脊柱管狭窄症", "椎間板ヘルニア", "間欠性跛行", "腰", "脚のしびれ"],
-    categoryHints: ["numbness", "lower-back-pain", "exercise-therapy"]
+    categoryHints: ["numbness", "lower-back-pain", "exercise-therapy"],
+    pinnedSlugs: [
+      "lumbar-spinal-stenosis-walking",
+      "spinal-stenosis-exercise-before-surgery",
+      "leg-numbness-causes-lower-back-knee",
+      "lumbar-disc-herniation-leg-symptoms",
+      "sciatica-root-cause"
+    ]
   },
   "lumbar-disc-herniation.html": {
     symptomKey: "lumbar-disc-herniation",
     label: "腰椎椎間板ヘルニア",
     keywords: ["腰椎椎間板ヘルニア", "椎間板ヘルニア", "腰", "脚のしびれ", "坐骨神経痛"],
-    categoryHints: ["numbness", "lower-back-pain", "exercise-therapy"]
+    categoryHints: ["numbness", "lower-back-pain", "exercise-therapy"],
+    pinnedSlugs: [
+      "lumbar-disc-herniation-leg-symptoms",
+      "sciatica-root-cause",
+      "leg-numbness-causes-lower-back-knee",
+      "spinal-stenosis-exercise-before-surgery",
+      "lumbar-spinal-stenosis-walking"
+    ]
   },
   "scoliosis.html": {
     symptomKey: "scoliosis",
@@ -642,7 +668,14 @@ const symptomConfigs = {
     symptomKey: "hip-osteoarthritis",
     label: "変形性股関節症",
     keywords: ["変形性股関節症", "股関節", "歩きづらい", "膝をかばう"],
-    categoryHints: ["hip-pain", "lower-back-pain", "foot-walking", "exercise-therapy", "knee-pain"]
+    categoryHints: ["hip-pain", "lower-back-pain", "foot-walking", "exercise-therapy", "knee-pain"],
+    pinnedSlugs: [
+      "hip-osteoarthritis-groin-pain",
+      "iliopsoas-anterior-hip-stiffness",
+      "gluteus-medius-pelvic-stability",
+      "hip-pain-while-walking",
+      "hip-pain-weight-bearing"
+    ]
   },
   "shoulder-stiffness.html": {
     symptomKey: "shoulder-stiffness",
@@ -2404,6 +2437,7 @@ const relatedArticleImageDimensions = new Map([
   ["../image/blog/lateral-thigh-pain-lateral-femoral-cutaneous-nerve/lateral-thigh-pain-lateral-femoral-cutaneous-nerve-hero-1200.webp", [1200, 800]],
   ["../image/blog/femoral-neuralgia/femoral-neuralgia-hero-1200.webp", [1200, 800]],
   ["../image/blog/hip-osteoarthritis-groin-pain/hip-osteoarthritis-groin-pain-hero-1200.webp", [1200, 800]],
+  ["../image/blog/gluteus-medius-pelvic-stability/gluteus-medius-pelvic-stability-hero-1200.webp", [1200, 800]],
   ["../image/blog/lumbar-disc-herniation-leg-symptoms/lumbar-disc-herniation-leg-symptoms-hero-1200.webp", [1200, 800]],
   ["../image/blog/sciatica-buttock-leg/sciatica-buttock-leg-hero-1200.webp", [1200, 800]],
   ["../image/blog/morning-low-back-stiffness/morning-low-back-stiffness-hero-1200.webp", [1200, 800]],
