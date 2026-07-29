@@ -1,10 +1,10 @@
 # 前かがみで脚まで響く｜腰椎椎間板ヘルニアで受診を急ぎたい変化
 - slug: lumbar-disc-herniation-leg-symptoms
-- date: 2026-08-08
-- updated: 2026-07-19
+- date: 2026-07-29
+- updated: 2026-07-29
 - category: lower-back-pain
 - region: 柏市
-- status: draft
+- status: publish
 - description: 前かがみや長時間の座位で腰から脚へ痛み・しびれが広がる方へ。腰椎椎間板ヘルニアの基本、画像だけで判断できない理由、筋力や排尿・排便の受診目安を説明します。
 - tags: 腰椎椎間板ヘルニア / 脚のしびれ / 前かがみで痛い / 腰痛 / 神経根
 - symptoms: 腰椎椎間板ヘルニア / 坐骨神経痛

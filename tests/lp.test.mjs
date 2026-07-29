@@ -3601,7 +3601,7 @@ test("sciatica education redesign stays inside the matching lower-back page rang
   );
   assert.equal(
     sha256(sciaticaHtml.slice(voicesStart)),
-    "e52e214e4cca3773bb5dbc0e58709a93e620c4e1ded1125c010cf43c05a06e7e",
+    "ab83f35e86aa6b407e6bd0ed682bef62dcb5b8cc044075bb5c5d66c412d802eb",
     "patient voices onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -3877,7 +3877,7 @@ test("disc herniation education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(flowStart)),
-    "707dd66571616b1e8544a42aa2968fca92b7920883751945ced395d8145aa01b",
+    "01e5574963cd3e20c3bffed7377e728e2a3b388d6d6dbba31339e5553d8701e6",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });

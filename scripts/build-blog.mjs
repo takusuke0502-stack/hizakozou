@@ -635,7 +635,8 @@ const symptomConfigs = {
     symptomKey: "scoliosis",
     label: "側弯症",
     keywords: ["側弯症", "脊柱側弯症", "背骨", "姿勢", "腰", "背中"],
-    categoryHints: ["lower-back-pain", "exercise-therapy", "neck-shoulder-hand"]
+    categoryHints: ["lower-back-pain", "exercise-therapy", "neck-shoulder-hand"],
+    excludedSlugs: ["lumbar-disc-herniation-leg-symptoms"]
   },
   "hip-osteoarthritis.html": {
     symptomKey: "hip-osteoarthritis",
@@ -2282,12 +2283,13 @@ function buildSymptomFooter(site = {}) {
 
 function selectRelatedPosts(config, posts) {
   const pinnedSlugs = Array.isArray(config.pinnedSlugs) ? config.pinnedSlugs : [];
+  const excludedSlugs = new Set(Array.isArray(config.excludedSlugs) ? config.excludedSlugs : []);
   const postsBySlug = new Map(posts.map((post) => [post.slug, post]));
   const pinnedPosts = pinnedSlugs.map((slug) => postsBySlug.get(slug)).filter(Boolean);
   const pinnedSet = new Set(pinnedPosts.map((post) => post.slug));
 
   const scoredPosts = posts
-    .filter((post) => !pinnedSet.has(post.slug))
+    .filter((post) => !pinnedSet.has(post.slug) && !excludedSlugs.has(post.slug))
     .map((post) => ({ post, score: scorePostForSymptom(post, config) }))
     .filter((entry) => entry.score > 0)
     .sort((a, b) => b.score - a.score || b.post.date.localeCompare(a.post.date))

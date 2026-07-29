@@ -1,8 +1,8 @@
 ---
 title: 前かがみで脚まで響く｜腰椎椎間板ヘルニアで受診を急ぎたい変化
 slug: lumbar-disc-herniation-leg-symptoms
-date: 2026-08-08
-updatedDate: 2026-07-19
+date: 2026-07-29
+updatedDate: 2026-07-29
 description: 前かがみや長時間の座位で腰から脚へ痛み・しびれが広がる方へ。腰椎椎間板ヘルニアの基本、画像だけで判断できない理由、筋力や排尿・排便の受診目安を説明します。
 category: 腰の痛み
 region: 柏市
@@ -12,12 +12,12 @@ heroImage: /image/blog/lumbar-disc-herniation-leg-symptoms/lumbar-disc-herniatio
 heroAlt: 前かがみのあと腰から脚に痛みを感じる男性のイラスト
 author: 川上卓哉
 reviewer: 川上卓哉
-reviewedDate: 2026-07-19
+reviewedDate: 2026-07-29
 relatedSlugs: sciatica-root-cause,leg-numbness-causes-lower-back-knee,spinal-stenosis-exercise-before-surgery
 searchIntent: 腰椎椎間板ヘルニアで脚に出る症状と急いで受診したい変化を知りたい
 layout: readable-v3
 referencePreset: lumbar-disc-herniation
-draft: true
+draft: false
 ---
 
 床の物を持ち上げたあと、腰だけでなく脚まで痛む。座っているとお尻やふくらはぎがしびれる。咳やくしゃみで脚へ響くように感じる。
