@@ -2742,7 +2742,7 @@ test("major symptom pages prioritize the curated diagnosis and movement articles
       "knee-osteoarthritis-daily-movement",
       "knee-osteoarthritis-before-surgery-walking",
       "knee-effusion-walking-guide",
-      "knee-pain-stairs-guide"
+      "patellofemoral-anterior-knee-pain"
     ]]
   ];
 
@@ -3780,7 +3780,7 @@ test("knee pain education redesign preserves the existing page boundaries", () =
   );
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(voicesStart)),
-    "1e7b0e2421204a7cfd7ad8d49be60b2b5086d514a1f3bee2b8663351572c232d",
+    "882873e120cb9b4e4e3474b679792f72952071c6220a0af9a5ea65a884eba8ed",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });

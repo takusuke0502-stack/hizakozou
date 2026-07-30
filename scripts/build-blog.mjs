@@ -541,7 +541,7 @@ const symptomConfigs = {
       "knee-osteoarthritis-daily-movement",
       "knee-osteoarthritis-before-surgery-walking",
       "knee-effusion-walking-guide",
-      "knee-pain-stairs-guide"
+      "patellofemoral-anterior-knee-pain"
     ]
   },
   "knee-effusion.html": {
