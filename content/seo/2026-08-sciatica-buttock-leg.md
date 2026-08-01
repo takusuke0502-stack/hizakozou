@@ -1,10 +1,10 @@
 # お尻から脚へ痛み・しびれが広がる｜坐骨神経痛で記録したい生活場面
 - slug: sciatica-buttock-leg
-- date: 2026-08-11
-- updated: 2026-07-19
+- date: 2026-08-01
+- updated: 2026-08-01
 - category: numbness
 - region: 柏市
-- status: draft
+- status: publish
 - description: お尻から太もも、ふくらはぎへ広がる痛みやしびれでお困りの方へ。坐骨神経痛という言葉の意味、原因を一つに決められない理由、受診目安と生活場面の記録方法を説明します。
 - tags: 坐骨神経痛 / お尻の痛み / 足のしびれ / 長く座ると痛い / 歩くと足が痛い
 - symptoms: 坐骨神経痛 / 腰痛

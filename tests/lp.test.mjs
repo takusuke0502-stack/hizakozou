@@ -2711,11 +2711,11 @@ test("major symptom pages prioritize the curated diagnosis and movement articles
       "sciatica-root-cause"
     ]],
     ["sciatica.html", [
+      "sciatica-buttock-leg",
       "sciatica-root-cause",
       "lumbar-disc-herniation-leg-symptoms",
       "lumbar-spinal-stenosis-walking",
-      "leg-numbness-causes-lower-back-knee",
-      "sciatica-piriformis-relation"
+      "leg-numbness-causes-lower-back-knee"
     ]],
     ["spinal-stenosis.html", [
       "lumbar-spinal-stenosis-walking",
@@ -3642,7 +3642,7 @@ test("sciatica education redesign stays inside the matching lower-back page rang
   );
   assert.equal(
     sha256(sciaticaHtml.slice(voicesStart)),
-    "9b8e6d75aa454a9ec21d60723133bc7a31c0fbd1da070e9b48e52eee3dd10bd0",
+    "0caddcc3415f29d27ae9d9781bb99b389eb18baf65f1d6aa4f41836bcad64aa8",
     "patient voices onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });

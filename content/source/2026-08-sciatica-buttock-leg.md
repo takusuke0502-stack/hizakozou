@@ -1,8 +1,8 @@
 ---
 title: お尻から脚へ痛み・しびれが広がる｜坐骨神経痛で記録したい生活場面
 slug: sciatica-buttock-leg
-date: 2026-08-11
-updatedDate: 2026-07-19
+date: 2026-08-01
+updatedDate: 2026-08-01
 description: お尻から太もも、ふくらはぎへ広がる痛みやしびれでお困りの方へ。坐骨神経痛という言葉の意味、原因を一つに決められない理由、受診目安と生活場面の記録方法を説明します。
 category: しびれ
 region: 柏市
@@ -12,12 +12,12 @@ heroImage: /image/blog/sciatica-buttock-leg/sciatica-buttock-leg-hero-1200.webp
 heroAlt: お尻から脚にかけて痛みやしびれを感じる女性のイラスト
 author: 川上卓哉
 reviewer: 川上卓哉
-reviewedDate: 2026-07-19
+reviewedDate: 2026-08-01
 relatedSlugs: sciatica-root-cause,sciatica-piriformis-relation,leg-numbness-causes-lower-back-knee
 searchIntent: お尻から脚へ広がる痛みやしびれと坐骨神経痛の関係、受診目安を知りたい
 layout: readable-v3
 referencePreset: sciatica
-draft: true
+draft: false
 ---
 
 椅子から立つと、お尻から太ももの裏へ痛みが走る。電車で座っていると、ふくらはぎまでしびれてくる。歩く日は平気でも、車の運転が続くとつらい。

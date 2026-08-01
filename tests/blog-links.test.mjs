@@ -8,7 +8,7 @@ import { checkBlogLinks } from "../scripts/check-blog-links.mjs";
 
 test("checked-in blog pages have resolvable local links and images", async () => {
   const result = await checkBlogLinks({ rootDir: process.cwd() });
-  assert.equal(result.pages, 57);
+  assert.equal(result.pages, 58);
   assert.ok(result.checked > 100);
 });
 

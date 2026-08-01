@@ -624,11 +624,11 @@ const symptomConfigs = {
     keywords: ["坐骨神経痛", "お尻", "脚のしびれ", "しびれ"],
     categoryHints: ["numbness", "lower-back-pain", "exercise-therapy"],
     pinnedSlugs: [
+      "sciatica-buttock-leg",
       "sciatica-root-cause",
       "lumbar-disc-herniation-leg-symptoms",
       "lumbar-spinal-stenosis-walking",
-      "leg-numbness-causes-lower-back-knee",
-      "sciatica-piriformis-relation"
+      "leg-numbness-causes-lower-back-knee"
     ]
   },
   "spinal-stenosis.html": {
