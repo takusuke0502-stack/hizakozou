@@ -549,7 +549,12 @@ const symptomConfigs = {
     label: "膝に水がたまる",
     keywords: ["膝に水がたまる", "膝の腫れ", "膝痛", "膝"],
     categoryHints: ["knee-pain", "exercise-therapy"],
-    pinnedSlugs: ["knee-pain-daily-care"]
+    pinnedSlugs: [
+      "bakers-cyst-posterior-knee-fullness",
+      "knee-effusion-water-in-knee",
+      "knee-effusion-walking-guide",
+      "knee-pain-daily-care"
+    ]
   },
   "knee-lateral-pain.html": {
     symptomKey: "knee-lateral-pain",
@@ -561,7 +566,13 @@ const symptomConfigs = {
     symptomKey: "knee-posterior-pain",
     label: "膝の裏側の痛み",
     keywords: ["膝の裏側", "膝裏", "ベーカー嚢腫", "ハムストリング", "膝痛", "歩行", "膝"],
-    categoryHints: ["knee-pain", "exercise-therapy"]
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: [
+      "bakers-cyst-posterior-knee-fullness",
+      "knee-back-pain-baker-cyst-hamstring",
+      "knee-effusion-water-in-knee",
+      "knee-effusion-walking-guide"
+    ]
   },
   "pes-anserine-bursitis.html": {
     symptomKey: "pes-anserine-bursitis",

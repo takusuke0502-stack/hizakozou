@@ -1,8 +1,8 @@
 ---
 title: 膝裏が張る・腫れる｜ベーカー嚢腫で受診したい変化
 slug: bakers-cyst-posterior-knee-fullness
-date: 2026-08-27
-updatedDate: 2026-07-27
+date: 2026-08-02
+updatedDate: 2026-08-02
 description: 膝の裏に張りやふくらみがあり、曲げ伸ばしにくい方へ。ベーカー嚢腫の仕組み、膝関節との関係、ふくらはぎが急に腫れたときの受診目安を説明します。
 category: 膝の痛み
 region: 柏市
@@ -12,17 +12,17 @@ heroImage: /image/blog/bakers-cyst-posterior-knee-fullness/bakers-cyst-posterior
 heroAlt: 膝を曲げたときに膝裏の張りとふくらみを気にする女性のイラスト
 author: 川上卓哉
 reviewer: 川上卓哉
-reviewedDate: 2026-07-27
+reviewedDate: 2026-08-02
 relatedSlugs: knee-back-pain-baker-cyst-hamstring,knee-effusion-water-in-knee,knee-effusion-walking-guide
 searchIntent: 膝裏の張りや腫れとベーカー嚢腫の関係、緊急の受診目安を知りたい
 layout: readable-v3
 referencePreset: bakers-cyst
-draft: true
+draft: false
 ---
 
 膝の裏が張り、深く曲げにくい。立ったときに膝裏がふくらんで見える。そんな変化で気づくことがあるのがベーカー嚢腫です。
 
-ベーカー嚢腫自体は良性の袋状のふくらみですが、膝関節の中で起きている変化と関係することがあります。ふくらみだけを揉んで小さくしようとせず、まず膝全体の状態を確認します。
+ベーカー嚢腫は関節液がたまった袋状のふくらみで、膝関節の中で起きている変化と関係することがあります。ふくらみだけを揉んで小さくしようとせず、まず膝全体の状態を確認します。
 
 ## ベーカー嚢腫は関節液がたまった袋です
 
@@ -36,7 +36,7 @@ draft: true
 
 膝裏だけでなく、膝全体が腫れていないか、曲げ伸ばしで引っかかりがないか、歩行量が増えたあとに張りが強くなるかを見ます。
 
-変形性膝関節症など関節内の問題が関係する場合、嚢腫だけでなく元の膝の状態を診察することが大切です。
+変形性膝関節症など関節内の問題が関係する場合は、嚢腫だけでなく膝の状態も医療機関で確認してもらいます。
 
 ![膝の腫れ、曲げ伸ばし、歩行後の張りを振り返る図](/image/blog/bakers-cyst-posterior-knee-fullness/bakers-cyst-posterior-knee-fullness-factors-1200.webp "膝全体の状態を振り返る図です。膝裏を強く押したり深く曲げたりしないでください。")
 
@@ -54,7 +54,7 @@ draft: true
 
 息苦しさや胸痛がある場合は救急受診を検討してください。
 
-## 自宅では大きさを測り続けない
+## 自宅では、強く触らず変化を記録します
 
 膝裏を強く押したり、何度も深く曲げたりすると症状が増す場合があります。見た目と生活上の変化を記録します。
 

@@ -2743,6 +2743,18 @@ test("major symptom pages prioritize the curated diagnosis and movement articles
       "knee-osteoarthritis-before-surgery-walking",
       "knee-effusion-walking-guide",
       "patellofemoral-anterior-knee-pain"
+    ]],
+    ["knee-effusion.html", [
+      "bakers-cyst-posterior-knee-fullness",
+      "knee-effusion-water-in-knee",
+      "knee-effusion-walking-guide",
+      "knee-pain-daily-care"
+    ]],
+    ["knee-posterior-pain.html", [
+      "bakers-cyst-posterior-knee-fullness",
+      "knee-back-pain-baker-cyst-hamstring",
+      "knee-effusion-water-in-knee",
+      "knee-effusion-walking-guide"
     ]]
   ];
 
