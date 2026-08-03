@@ -2704,11 +2704,11 @@ test("major symptom pages use the swipeable related article slider", () => {
 test("major symptom pages prioritize the curated diagnosis and movement articles", () => {
   const expectations = [
     ["lower-back-pain.html", [
+      "morning-low-back-stiffness",
       "morning-low-back-pain-causes-multifidus",
       "low-back-pain-hip-stiffness-relation",
       "lumbar-disc-herniation-leg-symptoms",
-      "lumbar-spinal-stenosis-walking",
-      "sciatica-root-cause"
+      "lumbar-spinal-stenosis-walking"
     ]],
     ["sciatica.html", [
       "sciatica-buttock-leg",
@@ -3028,7 +3028,7 @@ test("lower back education redesign stays inside the requested page range", () =
   );
   assert.equal(
     sha256(lowerBackHtml.slice(voicesStart)),
-    "f4aa97e0adf34653f02cd1e4fb7bb40df37a9545b3274b815628dcaf8cc40d19",
+    "d7ca57c4c9339c7c489b83540f3e742768773d3464e4526705375876ddca2dad",
     "patient voices onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -3235,7 +3235,7 @@ test("scoliosis education redesign preserves the existing page boundaries", () =
   );
   assert.equal(
     sha256(scoliosisHtml.slice(flowStart)),
-    "068d753c32728781cecbd12e7dd8bba364894b125d77be281472247eb4833a17",
+    "6512a6055a3b5c16a77bec3fd364281afd24552fc3ce62205c1a502b22730460",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });

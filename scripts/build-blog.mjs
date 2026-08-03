@@ -622,11 +622,11 @@ const symptomConfigs = {
     keywords: ["腰痛", "腰", "立ち上がり", "歩行不安"],
     categoryHints: ["lower-back-pain", "hip-pain", "foot-walking", "exercise-therapy", "knee-pain"],
     pinnedSlugs: [
+      "morning-low-back-stiffness",
       "morning-low-back-pain-causes-multifidus",
       "low-back-pain-hip-stiffness-relation",
       "lumbar-disc-herniation-leg-symptoms",
-      "lumbar-spinal-stenosis-walking",
-      "sciatica-root-cause"
+      "lumbar-spinal-stenosis-walking"
     ]
   },
   "sciatica.html": {
