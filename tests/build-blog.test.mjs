@@ -1038,4 +1038,5 @@ test("blog data site anchors use the canonical home URL", () => {
   const data = JSON.parse(readFileSync(new URL("../data/blog-posts.json", import.meta.url), "utf8"));
 
   assert.equal(data.site.contactAnchor, "/#contact");
+  assert.equal(data.site.defaultEyecatch, "/image/knee-symptom-wide.webp");
 });

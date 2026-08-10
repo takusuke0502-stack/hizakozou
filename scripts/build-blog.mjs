@@ -2458,6 +2458,15 @@ ${cards}
 }
 
 const relatedArticleImageDimensions = new Map([
+  ["../image/hizakozou-3step-pc.webp", [1536, 1024]],
+  ["../image/イラスト/膝/歩行中に膝の痛みを感じる女性.webp", [800, 1146]],
+  ["../image/hand-symptom.webp", [1200, 675]],
+  ["../image/spinal-stenosis-diagram.webp", [1200, 1200]],
+  ["../image/イラスト/腰・神経/椅子で骨盤を動かす姿勢改善運動.webp", [800, 603]],
+  ["../image/ago.webp", [1200, 675]],
+  ["../image/initial-visit-what-we-do.webp", [1536, 1024]],
+  ["../image/knee-symptom-close.webp", [1600, 1600]],
+  ["../image/knee-symptom-wide.webp", [1600, 1067]],
   ["../image/hip-osteoarthritis-symptom.webp", [1600, 1600]],
   ["../image/lower-back-symptom.webp", [1200, 675]],
   ["../image/sciatica-symptom.webp", [1600, 1600]],

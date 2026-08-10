@@ -7,7 +7,7 @@ category: シビレ
 region: 柏市
 tags: 手のしびれ,頚椎症,胸郭出口症候群,手根管症候群
 symptoms: 頚椎症,胸郭出口症候群,手根管症候群,肩こり
-heroImage: /image/treatment-scene.webp
+heroImage: /image/hand-symptom.webp
 draft: false
 ---
 朝起きたら手がしびれていた。パソコン作業をしていると指先がじんじんしてくる。首を動かすと腕にビリッとした感覚が走る——そんな経験、ありませんか？

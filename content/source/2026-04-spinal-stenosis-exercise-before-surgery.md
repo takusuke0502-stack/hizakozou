@@ -7,7 +7,7 @@ category: シビレ
 region: 柏市
 tags: 脊柱管狭窄症,椎間板ヘルニア,運動療法,腰痛,足のしびれ,手術
 symptoms: 脊柱管狭窄症,腰痛,坐骨神経痛
-heroImage: /image/medical-interview.webp
+heroImage: /image/spinal-stenosis-diagram.webp
 draft: false
 ---
 「脊柱管狭窄症と言われました。もう手術するしかないんでしょうか……」

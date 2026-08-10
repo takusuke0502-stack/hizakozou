@@ -7,7 +7,7 @@ category: 運動療法
 region: 柏市
 tags: ひざこぞう式整体,運動療法,膝痛,腰痛,坐骨神経痛
 symptoms: 変形性膝関節症,腰痛,坐骨神経痛
-heroImage: /image/hip-massage-scene.webp
+heroImage: /image/hizakozou-3step-pc.webp
 draft: false
 ---
 

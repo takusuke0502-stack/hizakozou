@@ -5,7 +5,7 @@
     "url": "https://hizakozou.jp",
     "blogTitle": "足腰・慢性痛の読みもの",
     "blogDescription": "腰痛、坐骨神経痛、股関節痛、膝の痛みなど、足腰の不調でお悩みの方へ。来院前に知っておきたい身体の見方やセルフケアの考え方を、整体院ひざこぞうがわかりやすく整理します。",
-    "defaultEyecatch": "/image/medical-interview.webp",
+    "defaultEyecatch": "/image/knee-symptom-wide.webp",
     "ogImage": "/ogp.webp",
     "author": "整体院ひざこぞう",
     "publisherName": "整体院ひざこぞう",
@@ -3495,8 +3495,8 @@
         "歩き始め",
         "正座"
       ],
-      "eyecatch": "/image/kashiwa-seitai-hizakozou-main.webp",
-      "heroAlt": "柏市の整体院ひざこぞう院内で話を伺う様子",
+      "eyecatch": "/image/knee-symptom-wide.webp",
+      "heroAlt": "歩くときの膝の痛みに悩んでいる様子",
       "layout": "readable-v3",
       "author": "川上卓哉",
       "reviewer": "川上卓哉",
@@ -3648,7 +3648,7 @@
         "整体",
         "受診目安"
       ],
-      "eyecatch": "/image/medical-interview.webp",
+      "eyecatch": "/image/knee-symptom-close.webp",
       "heroAlt": "柏市で膝が痛いとき、整形外科と整体はどちらに行くべき？",
       "readingTime": "約4分",
       "relatedSymptoms": [
@@ -4258,8 +4258,8 @@
         "姿勢",
         "胸郭"
       ],
-      "eyecatch": "/image/medical-interview.webp",
-      "heroAlt": "問診で身体の状態を確認している様子",
+      "eyecatch": "/image/ago.webp",
+      "heroAlt": "あごの周辺に痛みを感じている様子",
       "layout": "readable-v3",
       "author": "川上卓哉",
       "reviewer": "川上卓哉",
@@ -5145,7 +5145,7 @@
         "運動療法",
         "セルフケア"
       ],
-      "eyecatch": "/image/treatment-stretch.webp",
+      "eyecatch": "/image/イラスト/腰・神経/椅子で骨盤を動かす姿勢改善運動.webp",
       "heroAlt": "ストレッチしているのに体が柔らかくならない理由とは？効果を出す3つのコツ",
       "readingTime": "約6分",
       "relatedSymptoms": [
@@ -5681,7 +5681,7 @@
         "胸郭出口症候群",
         "手根管症候群"
       ],
-      "eyecatch": "/image/treatment-scene.webp",
+      "eyecatch": "/image/hand-symptom.webp",
       "heroAlt": "手のしびれ、放っておいていいの？整体で改善できる原因と対処法を解説",
       "readingTime": "約5分",
       "relatedSymptoms": [
@@ -6391,7 +6391,7 @@
         "足のしびれ",
         "手術"
       ],
-      "eyecatch": "/image/medical-interview.webp",
+      "eyecatch": "/image/spinal-stenosis-diagram.webp",
       "heroAlt": "「手術しかない」と言われる前に——脊柱管狭窄症・ヘルニアの痛みとしびれに運動療法が役立つ理由",
       "readingTime": "約6分",
       "relatedSymptoms": [
@@ -6546,7 +6546,7 @@
         "体づくり",
         "卒業"
       ],
-      "eyecatch": "/image/consultation-scene.webp",
+      "eyecatch": "/image/initial-visit-what-we-do.webp",
       "heroAlt": "通院頻度はどう決める？膝痛を整えるペースの考え方",
       "readingTime": "約6分",
       "relatedSymptoms": [
@@ -9020,7 +9020,7 @@
         "腰痛",
         "坐骨神経痛"
       ],
-      "eyecatch": "/image/hip-massage-scene.webp",
+      "eyecatch": "/image/hizakozou-3step-pc.webp",
       "heroAlt": "ひざこぞう式整体とは？緩める・鍛える・動作改善の3ステップ",
       "readingTime": "約4分",
       "relatedSymptoms": [
@@ -9138,7 +9138,7 @@
         "坐骨神経痛",
         "セルフケア"
       ],
-      "eyecatch": "/image/treatment-stretch.webp",
+      "eyecatch": "/image/イラスト/膝/歩行中に膝の痛みを感じる女性.webp",
       "heroAlt": "運動療法が苦手な方へ伝えたい最初の一歩",
       "layout": "readable-v3",
       "reviewedDate": "2026-06-24",

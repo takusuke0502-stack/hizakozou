@@ -7,7 +7,7 @@ category: 受診目安・通院
 region: 柏市
 tags: 通院頻度,ホメオスタシス,運動療法,体づくり,卒業
 symptoms: 変形性膝関節症,腰痛
-heroImage: /image/consultation-scene.webp
+heroImage: /image/initial-visit-what-we-do.webp
 draft: false
 ---
 「どのくらいのペースで通えばいいですか？」

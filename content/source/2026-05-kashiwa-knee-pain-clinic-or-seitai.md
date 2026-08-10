@@ -7,7 +7,7 @@ category: 受診目安・通院
 region: 柏市
 tags: 膝痛,柏市,整形外科,整体,受診目安
 symptoms: 変形性膝関節症,膝に水がたまる,鵞足炎,膝の裏側の痛み
-heroImage: /image/medical-interview.webp
+heroImage: /image/knee-symptom-close.webp
 draft: false
 ---
 

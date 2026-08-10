@@ -8,8 +8,8 @@ category: 首・肩・手
 region: 柏市
 tags: 顎関節症,あごの痛み,首こり,姿勢,胸郭
 symptoms: 顎関節症,肩こり,頚椎症
-heroImage: /image/medical-interview.webp
-heroAlt: 問診で身体の状態を確認している様子
+heroImage: /image/ago.webp
+heroAlt: あごの周辺に痛みを感じている様子
 author: 川上卓哉
 reviewer: 川上卓哉
 reviewedDate: 2026-07-18

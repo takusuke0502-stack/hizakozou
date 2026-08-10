@@ -8,8 +8,8 @@ category: 膝痛
 region: 柏市
 tags: 柏駅,柏市,膝痛,階段,歩き始め,正座
 symptoms: 変形性膝関節症,鵞足炎,膝に水がたまる,膝の裏側の痛み
-heroImage: /image/kashiwa-seitai-hizakozou-main.webp
-heroAlt: 柏市の整体院ひざこぞう院内で話を伺う様子
+heroImage: /image/knee-symptom-wide.webp
+heroAlt: 歩くときの膝の痛みに悩んでいる様子
 author: 川上卓哉
 reviewer: 川上卓哉
 reviewedDate: 2026-07-18

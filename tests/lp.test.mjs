@@ -3723,7 +3723,7 @@ test("spinal stenosis education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(spinalStenosisHtml.slice(flowStart)),
-    "1447e19b4542ef4a395c637da6b0d0940ef6a83b6f71dba70cc508c2c22ae70e",
+    "168e350f9072fac7583b5e5318e2afbdaddd36b76a1f82860686b45777dae852",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -3930,7 +3930,7 @@ test("disc herniation education redesign preserves the existing page boundaries"
   );
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(flowStart)),
-    "1de0ab728f2c69eb8e1c58a6b9e8fa4c2da70d1d1730357d1738c2be5b5a0e40",
+    "7fb04cf398e4994c9a402e184bacd41968e4a3e1a4332f0d28bf1f618bdbcf35",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });

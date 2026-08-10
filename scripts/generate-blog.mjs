@@ -845,6 +845,9 @@ function normalizeSiteConfig(site) {
   if (site.contactAnchor === "/index.html#contact") {
     site.contactAnchor = "/#contact";
   }
+  if (!site.defaultEyecatch || site.defaultEyecatch === "/image/medical-interview.webp") {
+    site.defaultEyecatch = "/image/knee-symptom-wide.webp";
+  }
 }
 
 function required(value, fieldName, filePath) {

@@ -8,7 +8,7 @@ category: 運動療法・セルフケア
 region: 柏市
 tags: 運動療法,膝痛,坐骨神経痛,セルフケア
 symptoms: 坐骨神経痛,腰痛,変形性膝関節症,足底筋膜炎
-heroImage: /image/treatment-stretch.webp
+heroImage: /image/イラスト/膝/歩行中に膝の痛みを感じる女性.webp
 layout: readable-v3
 relatedSlugs: strength-training-vs-exercise-therapy,chronic-pain-why-it-lasts,plantar-fasciitis-arch-walking
 reviewedDate: 2026-06-24
