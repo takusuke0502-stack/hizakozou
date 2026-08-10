@@ -41,6 +41,50 @@ const pages = [
   },
 ];
 
+const selfCheckPages = [
+  {
+    file: "lower-back-pain.html",
+    cautionId: "lb-caution-title",
+    gridClass: "lb-detail-grid",
+    image:
+      "morning-low-back-stiffness/morning-low-back-stiffness-self-check",
+  },
+  {
+    file: "sciatica.html",
+    cautionId: "sciatica-caution-title",
+    gridClass: "sciatica-detail-grid",
+    image: "sciatica-buttock-leg/sciatica-buttock-leg-self-check",
+  },
+  {
+    file: "spinal-stenosis.html",
+    cautionId: "stenosis-caution-title",
+    gridClass: "stenosis-detail-grid",
+    image:
+      "lumbar-spinal-stenosis-walking/lumbar-spinal-stenosis-walking-self-check",
+  },
+  {
+    file: "knee-posterior-pain.html",
+    cautionId: "posterior-caution-title",
+    gridClass: "symptom-refresh-detail-grid",
+    image:
+      "bakers-cyst-posterior-knee-fullness/bakers-cyst-posterior-knee-fullness-self-check",
+  },
+  {
+    file: "knee-front-pain.html",
+    cautionId: "frontknee-caution-title",
+    gridClass: "symptom-refresh-detail-grid",
+    image:
+      "patellofemoral-anterior-knee-pain/patellofemoral-anterior-knee-pain-self-check",
+  },
+  {
+    file: "pes-anserine-bursitis.html",
+    cautionId: "medial-caution-title",
+    gridClass: "symptom-refresh-detail-grid",
+    image:
+      "pes-anserine-medial-knee-pain/pes-anserine-medial-knee-pain-self-check",
+  },
+];
+
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -72,6 +116,39 @@ for (const page of pages) {
     assert.match(section, /loading="lazy" decoding="async" width="1200" height="800"/);
     assert.match(section, /target="_blank" rel="noopener"/);
     assert.match(html, /href="site-performance\.css\?v=20260726"/);
+  });
+}
+
+for (const page of selfCheckPages) {
+  test(`${page.file} shows a responsive self-check figure before its caution list`, () => {
+    const html = readFileSync(
+      new URL(`../symptoms/${page.file}`, import.meta.url),
+      "utf8",
+    );
+    const sectionStart = html.indexOf(`aria-labelledby="${page.cautionId}"`);
+    const sectionEnd = html.indexOf("</section>", sectionStart);
+    const section = html.slice(sectionStart, sectionEnd);
+    const imagePath = `../image/blog/${page.image}`;
+
+    assert.ok(sectionStart > -1, "caution section should exist");
+    assert.ok(section.includes('class="symptom-context-figure"'));
+    assert.ok(
+      section.indexOf('class="symptom-context-figure"') <
+        section.indexOf(`class="${page.gridClass}"`),
+      "self-check figure should appear before the caution list",
+    );
+    assert.match(
+      section,
+      new RegExp(
+        `srcset="${escapeRegExp(imagePath)}-480\\.webp"[\\s\\S]*srcset="${escapeRegExp(imagePath)}-768\\.webp"[\\s\\S]*src="${escapeRegExp(imagePath)}-1200\\.webp"`,
+      ),
+    );
+    assert.match(
+      section,
+      /loading="lazy" decoding="async" width="1200" height="800"/,
+    );
+    assert.match(section, /<figcaption>[^<]+<\/figcaption>/);
+    assert.match(section, /target="_blank" rel="noopener"/);
   });
 }
 

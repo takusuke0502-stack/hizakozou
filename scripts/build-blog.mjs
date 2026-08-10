@@ -346,8 +346,12 @@ const ARTICLE_REFERENCE_PRESETS = {
       url: "https://www.tims.nhs.uk/wp-content/uploads/2024/08/tims-sacroiliac-joint-pain.pdf"
     },
     {
-      label: "日本整形外科学会 腰痛",
-      url: "https://www.joa.or.jp/public/sick/condition/lumbago.html"
+      label: "American Family Physician Sacroiliac Joint Dysfunction: Diagnosis and Treatment",
+      url: "https://www.aafp.org/pubs/afp/issues/2022/0300/p239.html"
+    },
+    {
+      label: "日本整形外科学会 強直性脊椎炎",
+      url: "https://www.joa.or.jp/public/sick/condition/ankylosing_spondylitis.html"
     }
   ],
   "piriformis-deep-buttock": [
@@ -358,6 +362,10 @@ const ARTICLE_REFERENCE_PRESETS = {
     {
       label: "日本整形外科学会 坐骨神経痛",
       url: "https://www.joa.or.jp/public/pdf/joa_029.pdf"
+    },
+    {
+      label: "NHS Sciatica",
+      url: "https://www.nhs.uk/conditions/sciatica/"
     }
   ],
   "greater-trochanteric-pain": [
@@ -368,6 +376,10 @@ const ARTICLE_REFERENCE_PRESETS = {
     {
       label: "日本整形外科学会 股関節の症状",
       url: "https://www.joa.or.jp/public/sick/body/articulatio_coxae.html"
+    },
+    {
+      label: "NHS Hip pain in adults",
+      url: "https://www.nhs.uk/conditions/hip-pain/"
     }
   ],
   "patellofemoral-pain": [
@@ -388,6 +400,14 @@ const ARTICLE_REFERENCE_PRESETS = {
     {
       label: "AAOS OrthoInfo Pes Anserine Bursitis",
       url: "https://orthoinfo.aaos.org/en/diseases--conditions/pes-anserine-knee-tendon-bursitis"
+    },
+    {
+      label: "日本整形外科学会 変形性膝関節症",
+      url: "https://www.joa.or.jp/public/sick/condition/knee_osteoarthritis.html"
+    },
+    {
+      label: "NHS Knee pain",
+      url: "https://www.nhs.uk/conditions/knee-pain/"
     }
   ],
   "bakers-cyst": [
