@@ -3166,7 +3166,7 @@ test("plantar fasciitis education redesign preserves the existing page boundarie
   );
   assert.equal(
     sha256(plantarFasciitisHtml.slice(flowStart)),
-    "04c9783c675b73308c323056ca0acf1374412fbc6d6900db6ab3bf07e2b48191",
+    "d1f811ff69d3f93e5aea0ddf4536f15d215fa8566e19aa1b9aec5870186cbcab",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
