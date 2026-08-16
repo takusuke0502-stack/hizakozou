@@ -39,6 +39,11 @@
     "height": 800,
     "srcset": "/image/blog/bakers-cyst-posterior-knee-fullness/bakers-cyst-posterior-knee-fullness-self-check-480.webp 480w, /image/blog/bakers-cyst-posterior-knee-fullness/bakers-cyst-posterior-knee-fullness-self-check-768.webp 768w, /image/blog/bakers-cyst-posterior-knee-fullness/bakers-cyst-posterior-knee-fullness-self-check-1200.webp 1200w"
   },
+  "/image/blog/cane-wrist-elbow-shoulder/cane-wrist-elbow-shoulder-hero-1200.webp": {
+    "width": 1200,
+    "height": 800,
+    "srcset": "/image/blog/cane-wrist-elbow-shoulder/cane-wrist-elbow-shoulder-hero-480.webp 480w, /image/blog/cane-wrist-elbow-shoulder/cane-wrist-elbow-shoulder-hero-768.webp 768w, /image/blog/cane-wrist-elbow-shoulder/cane-wrist-elbow-shoulder-hero-1200.webp 1200w"
+  },
   "/image/blog/common-peroneal-nerve-numbness/common-peroneal-nerve-numbness-anatomy-1200.webp": {
     "width": 1200,
     "height": 900,
@@ -368,6 +373,16 @@
     "width": 1200,
     "height": 800,
     "srcset": "/image/blog/plantar-fasciitis-first-step-pain/plantar-fasciitis-first-step-pain-self-check-480.webp 480w, /image/blog/plantar-fasciitis-first-step-pain/plantar-fasciitis-first-step-pain-self-check-768.webp 768w, /image/blog/plantar-fasciitis-first-step-pain/plantar-fasciitis-first-step-pain-self-check-1200.webp 1200w"
+  },
+  "/image/blog/protective-gait-neck-shoulder/protective-gait-neck-shoulder-hero-1200.webp": {
+    "width": 1200,
+    "height": 800,
+    "srcset": "/image/blog/protective-gait-neck-shoulder/protective-gait-neck-shoulder-hero-480.webp 480w, /image/blog/protective-gait-neck-shoulder/protective-gait-neck-shoulder-hero-768.webp 768w, /image/blog/protective-gait-neck-shoulder/protective-gait-neck-shoulder-hero-1200.webp 1200w"
+  },
+  "/image/blog/protein-leg-strength-older-adults/protein-leg-strength-older-adults-hero-1200.webp": {
+    "width": 1200,
+    "height": 800,
+    "srcset": "/image/blog/protein-leg-strength-older-adults/protein-leg-strength-older-adults-hero-480.webp 480w, /image/blog/protein-leg-strength-older-adults/protein-leg-strength-older-adults-hero-768.webp 768w, /image/blog/protein-leg-strength-older-adults/protein-leg-strength-older-adults-hero-1200.webp 1200w"
   },
   "/image/blog/sacroiliac-joint-buttock-pain/sacroiliac-joint-buttock-pain-anatomy-1200.webp": {
     "width": 1200,
