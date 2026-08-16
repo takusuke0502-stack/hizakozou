@@ -446,6 +446,10 @@ const ARTICLE_REFERENCE_PRESETS = {
       url: "https://www.nhs.uk/conditions/leg-cramps/"
     },
     {
+      label: "NHS Deep vein thrombosis (DVT)",
+      url: "https://www.nhs.uk/conditions/deep-vein-thrombosis-dvt/"
+    },
+    {
       label: "Mayo Clinic Night leg cramps",
       url: "https://www.mayoclinic.org/symptoms/night-leg-cramps/basics/causes/sym-20050813"
     }
