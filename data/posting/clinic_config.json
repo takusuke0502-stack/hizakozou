@@ -1,0 +1,12 @@
+{
+  "clinic_id": "hizakozou_kashiwa",
+  "clinic_name": "整体院ひざこぞう",
+  "city": "柏市",
+  "base_area": "あけぼの4丁目",
+  "distance": {
+    "clinic_lat": null,
+    "clinic_lng": null,
+    "method": "centroid_haversine_or_existing_map_logic",
+    "note": "既存ダッシュボードに緯度経度があればそちらを正とする。なければCodexで設定項目として追加し、外部API必須にはしない。"
+  }
+}

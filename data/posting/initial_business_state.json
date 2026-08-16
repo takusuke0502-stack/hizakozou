@@ -1,0 +1,23 @@
+{
+  "as_of": "2026-08-17",
+  "flyers": [
+    {
+      "id": "legacy_flyer",
+      "name": "旧デザイン",
+      "ordered_count": null,
+      "remaining_count_known": 4000,
+      "inquiries_so_far_known": 2,
+      "status": "distribution_in_progress",
+      "note": "総印刷枚数・総配布枚数は既存ダッシュボードの実績を優先して統合する。"
+    },
+    {
+      "id": "new_flyer_202608",
+      "name": "新デザイン",
+      "ordered_count": 10000,
+      "remaining_count_known": 10000,
+      "inquiries_so_far_known": 0,
+      "status": "ordered_not_started",
+      "note": "新規注文分。配布開始後は地域×日付×デザインで記録する。"
+    }
+  ]
+}

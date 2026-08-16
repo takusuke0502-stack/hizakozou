@@ -1,0 +1,60 @@
+{
+  "version": "2026-08-17",
+  "notes": [
+    "人口統計スコアは配布前の事前評価。距離・実績が入ったら最終スコアを別計算する。",
+    "欠損項目は0点にせず、利用可能ウェイトを再正規化する。",
+    "反響率は最低配布枚数未満では強く評価しすぎない。"
+  ],
+  "demographic_score": {
+    "target_50_79_per_100_households_percentile": 0.3,
+    "age_50_79_share_percentile": 0.2,
+    "age_50_79_count_percentile": 0.3,
+    "households_percentile": 0.2
+  },
+  "knee_target_score": {
+    "age_60_79_share_percentile": 0.35,
+    "age_60_79_count_percentile": 0.4,
+    "households_percentile": 0.25
+  },
+  "final_posting_score": {
+    "demographic_or_knee_score": 0.4,
+    "distance": 0.25,
+    "response_performance": 0.2,
+    "continuation_or_revenue": 0.1,
+    "distribution_headroom": 0.05,
+    "renormalize_missing_weights": true,
+    "minimum_distributed_for_full_response_weight": 1000
+  },
+  "priority_thresholds": {
+    "S": 80,
+    "A": 65,
+    "B": 50,
+    "C": 0
+  },
+  "distance_score_default": [
+    {
+      "max_km": 1.0,
+      "score": 100
+    },
+    {
+      "max_km": 2.0,
+      "score": 90
+    },
+    {
+      "max_km": 3.0,
+      "score": 75
+    },
+    {
+      "max_km": 4.0,
+      "score": 55
+    },
+    {
+      "max_km": 5.0,
+      "score": 35
+    },
+    {
+      "max_km": null,
+      "score": 15
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "kashiwa_age_5y",
+    "name": "柏市 住民基本台帳人口（大字町丁・年齢5歳階級・男女別）",
+    "url": "https://www.city.kashiwa.lg.jp/somukanzai/shiseijoho/jouhoukoukai/opendate/population.html",
+    "frequency": "4月・10月",
+    "snapshot": "2026-03-31",
+    "role": "年代構成"
+  },
+  {
+    "id": "kashiwa_population_households",
+    "name": "柏市 住民基本台帳人口（大字町丁別・男女・世帯数）",
+    "url": "https://www.city.kashiwa.lg.jp/somukanzai/shiseijoho/toukei/jinko/daichooaza.html",
+    "frequency": "毎月",
+    "snapshot": "2026-07-31",
+    "role": "最新人口・世帯数"
+  },
+  {
+    "id": "geoshape_kashiwa_optional",
+    "name": "国勢調査町丁・字等別境界データセット（柏市）",
+    "url": "https://geoshape.ex.nii.ac.jp/ka/resource/12217.html",
+    "frequency": "国勢調査等に依存",
+    "snapshot": "2020 census boundary dataset",
+    "role": "将来の町丁目境界・中心点候補（柏市公式人口マスターとは名称/区画差を検証してから使用）"
+  }
+]

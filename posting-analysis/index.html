@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>ポスティング分析｜整体院ひざこぞう</title>
+  <meta name="description" content="柏市の町丁目別年代構成とチラシ配布・問い合わせ実績をまとめて確認する内部運用向けダッシュボードです。">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="/scripts/tracking-config.js?v=20260624" defer></script>
+  <script src="/scripts/tracking.js?v=20260624" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="app-header__eyebrow">整体院ひざこぞう・内部運用</p>
+      <h1>ポスティング分析</h1>
+      <p class="app-header__lead">柏市318町丁目の年代構成と、配布後の反響を一つの画面で確認します。</p>
+    </div>
+    <div class="app-header__actions" aria-label="データ操作">
+      <button type="button" class="button button--subtle" id="export-button">バックアップ</button>
+      <label class="button button--subtle" for="import-file">復元</label>
+      <input id="import-file" type="file" accept="application/json,.json" hidden>
+    </div>
+  </header>
+
+  <main class="dashboard" id="dashboard" aria-busy="true">
+    <section class="status-strip" aria-label="データ基準日">
+      <div><span>年代構成</span><strong id="age-snapshot">読み込み中</strong></div>
+      <div><span>人口・世帯</span><strong id="population-snapshot">読み込み中</strong></div>
+      <div><span>距離</span><strong>未登録でも利用可能</strong></div>
+      <p id="data-note">地域マスターを読み込んでいます。</p>
+    </section>
+
+    <div id="load-error" class="notice notice--error" hidden role="alert"></div>
+
+    <section class="section" aria-labelledby="overview-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-heading__eyebrow">OVERVIEW</p>
+          <h2 id="overview-title">配布判断の要点</h2>
+        </div>
+        <p>保存した配布・問い合わせ実績を自動集計します。</p>
+      </div>
+      <div class="kpi-grid" id="kpi-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="section section--recommendations" aria-labelledby="recommendations-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-heading__eyebrow">NEXT AREA</p>
+          <h2 id="recommendations-title">次に配る候補</h2>
+        </div>
+        <p>人口構成・配布余地・登録済み実績から最大5地域を表示します。</p>
+      </div>
+      <ol class="recommendation-list" id="recommendation-list"></ol>
+    </section>
+
+    <section class="section" aria-labelledby="flyer-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-heading__eyebrow">FLYER</p>
+          <h2 id="flyer-title">チラシデザイン別実績</h2>
+        </div>
+        <button type="button" class="text-button" id="toggle-flyer-form" aria-expanded="false">デザインを追加</button>
+      </div>
+      <div class="table-scroll table-scroll--compact">
+        <table class="data-table data-table--compact">
+          <thead><tr><th>デザイン</th><th>状態</th><th>注文</th><th>配布</th><th>問い合わせ</th><th>1,000枚あたり</th><th>売上</th></tr></thead>
+          <tbody id="flyer-summary-body"></tbody>
+        </table>
+      </div>
+      <form id="flyer-form" class="inline-form" hidden>
+        <label>名称<input name="name" required maxlength="40" placeholder="例：秋の膝痛チラシ"></label>
+        <label>開始日<input name="start_date" type="date"></label>
+        <label>注文枚数<input name="ordered_count" type="number" min="0" step="1"></label>
+        <label>状態
+          <select name="status"><option value="draft">準備中</option><option value="distribution_in_progress">配布中</option><option value="completed">完了</option></select>
+        </label>
+        <button class="button button--primary" type="submit">追加する</button>
+      </form>
+    </section>
+
+    <section class="section" aria-labelledby="ranking-title">
+      <div class="section-heading section-heading--filters">
+        <div>
+          <p class="section-heading__eyebrow">REGION RANKING</p>
+          <h2 id="ranking-title">地域ランキング</h2>
+        </div>
+        <p><strong id="result-count">0</strong>地域を表示</p>
+      </div>
+
+      <form id="filter-form" class="filters" aria-label="地域の絞り込み">
+        <label class="filters__wide">地域名
+          <input type="search" name="search" placeholder="町名・丁目で検索" autocomplete="off">
+        </label>
+        <label>優先度
+          <select name="priority"><option value="">すべて</option><option>S</option><option>A</option><option>B</option><option>C</option></select>
+        </label>
+        <label>年代指標
+          <select name="age_metric">
+            <option value="age_60_79">60〜79歳</option><option value="age_50_79">50〜79歳</option><option value="age_65plus">65歳以上</option>
+            <option value="age_40s">40代</option><option value="age_50s">50代</option><option value="age_60s">60代</option><option value="age_70s">70代</option><option value="age_80plus">80代以上</option>
+          </select>
+        </label>
+        <label>年代表示
+          <select name="age_mode"><option value="pct">割合</option><option value="count">人数</option></select>
+        </label>
+        <label>年代の下限<input name="min_age" type="number" min="0" step="0.1" placeholder="指定なし"></label>
+        <label>世帯数の下限<input name="min_households" type="number" min="0" step="1" placeholder="指定なし"></label>
+        <label>50〜79歳／100世帯<input name="min_density" type="number" min="0" step="0.1" placeholder="指定なし"></label>
+        <label>距離上限（km）<input name="max_distance" type="number" min="0" step="0.1" placeholder="指定なし"></label>
+        <label>配布状況
+          <select name="distribution_status"><option value="">すべて</option><option value="unposted">未配布</option><option value="posted">配布済み</option></select>
+        </label>
+        <label>配布枚数上限<input name="max_distributed" type="number" min="0" step="1" placeholder="指定なし"></label>
+        <label>問い合わせ
+          <select name="inquiry_status"><option value="">すべて</option><option value="yes">あり</option><option value="no">なし</option></select>
+        </label>
+        <label>チラシ
+          <select name="flyer_design_id" id="filter-flyer"><option value="">すべて</option></select>
+        </label>
+        <label>並び順
+          <select name="sort">
+            <option value="final_score">最終スコア</option><option value="knee_target_score">膝痛ターゲット</option><option value="demographic_score">人口統計</option>
+            <option value="households_latest">世帯数</option><option value="selected_age">選択年代</option><option value="target_density">100世帯あたり</option>
+            <option value="response_rate">反響率</option><option value="distributed">配布枚数</option>
+          </select>
+        </label>
+        <button type="button" class="button button--subtle filters__reset" id="reset-filters">条件をリセット</button>
+      </form>
+
+      <div class="table-scroll">
+        <table class="data-table data-table--regions">
+          <thead>
+            <tr>
+              <th>優先度</th><th>地域</th><th>最終</th><th>膝痛</th><th>人口統計</th><th>世帯</th><th id="selected-age-heading">60〜79歳</th>
+              <th>50代</th><th>60代</th><th>70代</th><th>80代以上</th><th>50〜79／100世帯</th><th>距離</th><th>配布</th><th>問合せ</th><th>反響率</th><th>継続</th><th>売上</th>
+            </tr>
+          </thead>
+          <tbody id="region-table-body"></tbody>
+        </table>
+      </div>
+      <p id="empty-state" class="empty-state" hidden>条件に一致する地域がありません。</p>
+    </section>
+
+    <section class="section section--method" aria-labelledby="method-title">
+      <div class="section-heading"><div><p class="section-heading__eyebrow">METHOD</p><h2 id="method-title">スコアの考え方</h2></div></div>
+      <div class="method-grid">
+        <p><strong>人口統計・膝痛ターゲット 40%</strong><span>主に60〜79歳の人数・割合と世帯数を評価します。</span></p>
+        <p><strong>距離 25%</strong><span>距離が未登録の地域では採点から除外します。</span></p>
+        <p><strong>反響実績 20%</strong><span>1,000枚未満は配布枚数に応じてウェイトを弱めます。</span></p>
+        <p><strong>継続・売上 10%</strong><span>問い合わせがない地域では採点から除外します。</span></p>
+        <p><strong>配布余地 5%</strong><span>世帯数に対して配り過ぎていない地域を評価します。</span></p>
+      </div>
+      <p class="method-note">欠損値は0点にせず、利用できる項目のウェイトだけで100点換算します。反響実績は5件／1,000枚を満点の目安としています。</p>
+    </section>
+
+    <footer class="dashboard-footer">
+      <p>公開サイトのナビゲーションには表示しない内部運用ページです。ブラウザ保存データは、この端末・このブラウザにのみ保存されます。</p>
+      <ul id="source-list"></ul>
+    </footer>
+  </main>
+
+  <dialog id="region-dialog" class="region-dialog">
+    <div class="region-dialog__header">
+      <div><p id="dialog-code"></p><h2 id="dialog-title">地域詳細</h2></div>
+      <button type="button" class="dialog-close" id="dialog-close" aria-label="閉じる">×</button>
+    </div>
+    <div id="dialog-content"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
