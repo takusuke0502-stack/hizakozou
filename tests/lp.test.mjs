@@ -448,8 +448,8 @@ test("LP adds a readable six-reason clinic strengths section", () => {
       "特徴3",
       "整形外科学会も推奨する運動療法「MSMメソッド」を導入",
       "バキバキしない！医学的根拠に基づいたアプローチで<br>痛みを根本から見直します",
-      "image/flow-movement-assessment-768.webp",
-      "関節や動きを確認しながら運動療法を行う様子"
+      "image/clinic-leg-treatment-hp.webp",
+      "脚の動きを確認しながら運動療法を行う様子"
     ],
     [
       "特徴4",
@@ -462,8 +462,8 @@ test("LP adds a readable six-reason clinic strengths section", () => {
       "特徴5",
       "セルフケアを習得し、ご自身でカラダを改善できる「卒業」を目指します",
       "動画をまねするだけでは分からない、<br>あなたの身体に合ったセルフケアを個別に指導",
-      "image/treatment-stretch-768.webp",
-      "自宅で続けやすいセルフケアを説明する様子"
+      "image/clinic-treatment-web.webp",
+      "膝の動かし方を一緒に確認している様子"
     ],
     [
       "特徴6",
@@ -577,8 +577,8 @@ test("LP replaces the treatment flow with an accessible 6-step photo slider afte
     [
       "身体の状態チェック",
       "膝だけでなく、股関節・足首・姿勢・歩き方も確認し、どこに負担が集まりやすいかを見ていきます。",
-      "image/flow-movement-assessment-768.webp",
-      "股関節や膝の動きを確認している様子"
+      "image/clinic-posture-check-web.webp",
+      "立った姿勢と身体のバランスを確認している様子"
     ],
     [
       "状態説明、施術方針の説明",
@@ -1383,8 +1383,8 @@ test("LP metadata broadens SEO target from female knee pain to chronic pain", ()
   assert.match(html, new RegExp(`<meta name="twitter:description" content="${escapeRegExp(broadenedMetaDescription)}">`));
   assert.equal(localBusinessBlocks[0].description, localBusinessDescription);
   assert.doesNotMatch(getSectionSlice("<head>", "</head>"), /お悩みの女性へ/);
-  assert.match(hero, /それは慣れたのではなく、諦めているだけかもしれない。/);
-  assert.match(hero, /もう一度、自分の体と向き合う時間をつくりませんか。/);
+  assert.match(hero, /柏市で足腰の痛み・しびれにお悩みの方へ/);
+  assert.match(hero, /もう一度、[\s\S]*安心して歩ける毎日を。/);
 });
 
 test("LP and symptom patient voices include approved assets and symptom-only additions", () => {
@@ -1779,10 +1779,8 @@ test("LP Step 3 adds conversion copy, review proof, flyer-style price CTA, and t
   const price = getSectionSlice('id="price"', 'id="faq"');
   const contact = getSectionSlice('id="contact"', 'id="lightbox"');
 
-  assert.match(hero, /痛みに慣れようとしている[\s\S]*自分に、/);
-  assert.match(hero, /気づいていますか。/);
-  assert.match(hero, /それは慣れたのではなく、諦めているだけかもしれない。/);
-  assert.match(hero, /もう一度、自分の体と向き合う時間をつくりませんか。/);
+  assert.match(hero, /柏市で足腰の痛み・しびれにお悩みの方へ/);
+  assert.match(hero, /もう一度、[\s\S]*安心して歩ける毎日を。/);
   assert.doesNotMatch(hero, /また旅行に行けた。孫と公園を歩けた。/);
   assert.match(price, /「先生に出会えて良かった。」<br>「もっと早く来ていれば良かった」と/);
   assert.match(price, /<p class="hk-pricing-copy__line">多くの方から感謝の声を頂いています。まずは一度試してください。<\/p>/);
@@ -4184,10 +4182,8 @@ test("LP keeps the knee-pain specialty axis and presents the updated three-step 
   assert.match(html, new RegExp(`<title>${escapeRegExp(siteTitle)}<\\/title>`));
   assert.match(html, new RegExp(`<meta name="description" content="${metaDescription}">`));
   assert.match(html, new RegExp(escapeRegExp(siteTitle)));
-  assert.match(hero, /痛みに慣れようとしている[\s\S]*自分に、/);
-  assert.match(hero, /気づいていますか。/);
-  assert.match(hero, /それは慣れたのではなく、諦めているだけかもしれない。/);
-  assert.match(hero, /もう一度、自分の体と向き合う時間をつくりませんか。/);
+  assert.match(hero, /柏市で足腰の痛み・しびれにお悩みの方へ/);
+  assert.match(hero, /もう一度、[\s\S]*安心して歩ける毎日を。/);
   assert.match(html, /膝の痛みは、痛む場所だけを見ても分からないことがあります/);
   assert.match(html, /膝だけを揉んで終わるのではなく/);
   assert.match(html, /痛みがぶり返す「3つの原因」/);
@@ -4247,7 +4243,7 @@ test("LP keeps the retired knee-only symptom finder removed", () => {
   assert.doesNotMatch(html, /id="symptoms"/);
 });
 
-test("TOP hero remains byte-for-byte unchanged", () => {
+test("TOP hero keeps its original structure with the updated copy", () => {
   const heroStart = html.indexOf('<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">');
   const heroEnd = html.indexOf('<section class="hero-safe-band', heroStart);
 
@@ -4255,7 +4251,7 @@ test("TOP hero remains byte-for-byte unchanged", () => {
   assert.ok(heroEnd > heroStart);
   assert.equal(
     sha256(html.slice(heroStart, heroEnd)),
-    "bdc7d3ccea1fcd9069668bac02714ceef308cd30dfec2bbc79187a7c1e39e0e9"
+    "18ec56527cb8115b9a77933f3fc5c9a620a79c7eadffdfede9b484de45f4d43e"
   );
 });
 
