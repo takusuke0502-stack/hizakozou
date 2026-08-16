@@ -453,6 +453,146 @@ const ARTICLE_REFERENCE_PRESETS = {
       label: "Mayo Clinic Night leg cramps",
       url: "https://www.mayoclinic.org/symptoms/night-leg-cramps/basics/causes/sym-20050813"
     }
+  ],
+  "gait-upper-body": [
+    {
+      label: "日本整形外科学会 肩こり",
+      url: "https://www.joa.or.jp/public/sick/condition/stiffed_neck.html"
+    },
+    {
+      label: "PubMed 高齢者の腕振りと歩行中の体幹安定性",
+      url: "https://pubmed.ncbi.nlm.nih.gov/25022593/"
+    },
+    {
+      label: "日本整形外科学会 変形性膝関節症",
+      url: "https://www.joa.or.jp/public/sick/condition/knee_osteoarthritis.html"
+    }
+  ],
+  "cane-use": [
+    {
+      label: "東京都福祉局 福ナビ 杖の選び方",
+      url: "https://www.fukunavi.or.jp/fukunavi/kiki/tsue/tsue_02.html"
+    },
+    {
+      label: "MSDマニュアル 正しい杖の高さ",
+      url: "https://www.msdmanuals.com/ja-jp/professional/multimedia/image/%E6%AD%A3%E3%81%97%E3%81%84%E6%9D%96%E3%81%AE%E9%AB%98%E3%81%95"
+    },
+    {
+      label: "日本整形外科学会 肩こり",
+      url: "https://www.joa.or.jp/public/sick/condition/stiffed_neck.html"
+    }
+  ],
+  "body-tilt-gait": [
+    {
+      label: "PubMed 股関節外転筋と歩行中の体幹・骨盤運動",
+      url: "https://pubmed.ncbi.nlm.nih.gov/23396196/"
+    },
+    {
+      label: "日本整形外科学会 変形性股関節症",
+      url: "https://www.joa.or.jp/public/sick/condition/hip_osteoarthritis.html"
+    },
+    {
+      label: "日本整形外科学会 脊柱側弯症",
+      url: "https://www.joa.or.jp/public/sick/condition/scoliosis.html"
+    }
+  ],
+  "ankle-posture": [
+    {
+      label: "日本整形外科学会 足の慢性障害",
+      url: "https://www.joa.or.jp/public/sick/condition/chronic_problem_with_foot.html"
+    },
+    {
+      label: "日本整形外科学会 肩こり",
+      url: "https://www.joa.or.jp/public/sick/condition/stiffed_neck.html"
+    },
+    {
+      label: "PubMed 腕振りと歩行中の体幹安定性",
+      url: "https://pubmed.ncbi.nlm.nih.gov/25022593/"
+    }
+  ],
+  "arm-swing-gait": [
+    {
+      label: "PubMed 腕振りが歩行安定性へ与える影響",
+      url: "https://pubmed.ncbi.nlm.nih.gov/21075935/"
+    },
+    {
+      label: "PubMed 高齢者の腕振りと体幹安定性",
+      url: "https://pubmed.ncbi.nlm.nih.gov/25022593/"
+    },
+    {
+      label: "PubMed 腕振りと腰椎・股関節への力",
+      url: "https://pubmed.ncbi.nlm.nih.gov/28941955/"
+    }
+  ],
+  "protein-older-adults": [
+    {
+      label: "厚生労働省 日本人の食事摂取基準（2025年版）",
+      url: "https://www.mhlw.go.jp/stf/newpage_44138.html"
+    },
+    {
+      label: "厚生労働省 e-ヘルスネット 高齢者の低栄養予防",
+      url: "https://kennet.mhlw.go.jp/information/information/food/e-02-014.html"
+    },
+    {
+      label: "日本整形外科学会 ロコモONLINE 食生活でロコモ対策",
+      url: "https://locomo-joa.jp/check/food"
+    }
+  ],
+  "appetite-undernutrition": [
+    {
+      label: "国立長寿医療研究センター 高齢者の食欲低下",
+      url: "https://www.ncgg.go.jp/hospital/navi/33.html"
+    },
+    {
+      label: "国立長寿医療研究センター 低栄養を回避する",
+      url: "https://www.ncgg.go.jp/ri/advice/36.html"
+    },
+    {
+      label: "国立長寿医療研究センター バランスのよい食事とは",
+      url: "https://www.ncgg.go.jp/hospital/navi/66.html"
+    }
+  ],
+  "bone-nutrition": [
+    {
+      label: "厚生労働省 e-ヘルスネット 骨粗鬆症予防の食生活",
+      url: "https://kennet.mhlw.go.jp/information/information/food/e-02-007.html"
+    },
+    {
+      label: "厚生労働省 e-ヘルスネット カルシウム",
+      url: "https://kennet.mhlw.go.jp/information/information/dictionary/food/ye-042.html"
+    },
+    {
+      label: "厚生労働省 日本人の食事摂取基準（2025年版）",
+      url: "https://www.mhlw.go.jp/stf/newpage_44138.html"
+    }
+  ],
+  "magnesium-cramps": [
+    {
+      label: "Cochrane 筋痙攣に対するマグネシウム",
+      url: "https://www.cochrane.org/ja/evidence/CD009402_magnesium-muscle-cramps"
+    },
+    {
+      label: "NIH Office of Dietary Supplements Magnesium Fact Sheet",
+      url: "https://ods.od.nih.gov/factsheets/Magnesium-Consumer/"
+    },
+    {
+      label: "厚生労働省 日本人の食事摂取基準（2025年版）",
+      url: "https://www.mhlw.go.jp/stf/newpage_44138.html"
+    }
+  ],
+  "knee-weight-nutrition": [
+    {
+      label: "日本整形外科学会 変形性膝関節症",
+      url: "https://www.joa.or.jp/public/sick/condition/knee_osteoarthritis.html"
+    },
+    {
+      label: "日本整形外科学会 変形性膝関節症診療ガイドライン",
+      url: "https://www.joa.or.jp/topics/2023/files/guideline.pdf"
+    },
+    {
+      label: "国立長寿医療研究センター 低栄養を回避する",
+      url: "https://www.ncgg.go.jp/ri/advice/36.html"
+    }
   ]
 };
 

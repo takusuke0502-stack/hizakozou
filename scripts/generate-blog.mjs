@@ -218,6 +218,11 @@ const REQUIRED_BLOG_CATEGORIES = [
     slug: "neck-shoulder-hand",
     name: "首・肩・腕・手",
     description: "肩こり、五十肩、手のしびれなど、足腰以外の慢性痛記事をまとめます。"
+  },
+  {
+    slug: "food-nutrition",
+    name: "食事・栄養",
+    description: "足腰の筋力や骨の健康を考えるうえで知っておきたい、日々の食事と栄養の基本をまとめます。"
   }
 ];
 
@@ -592,6 +597,9 @@ function buildCategoryLookup(categories) {
   lookup.set("受診目安・通院", "clinic-guidance");
   lookup.set("通院・相談", "clinic-guidance");
   lookup.set("受診目安", "clinic-guidance");
+  lookup.set("食事・栄養", "food-nutrition");
+  lookup.set("栄養", "food-nutrition");
+  lookup.set("食事", "food-nutrition");
 
   return lookup;
 }
