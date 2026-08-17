@@ -2,7 +2,7 @@
 
 ## Comparison
 
-- Reference: `C:/Users/takus/AppData/Local/Temp/codex-clipboard-1a782640-1a71-4ae2-b79c-6fef1cd16ab2.png`
+- Reference: local temporary screenshot (not stored in the repository)
 - Existing reference page: `symptoms/lower-back-pain.html`
 - Representative implementation: `symptoms/frozen-shoulder.html`
 - Additional mobile checks: `symptoms/plantar-fasciitis.html`, `symptoms/carpal-tunnel.html`
