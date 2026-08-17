@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Use [AGENTS.md](/C:/Users/takus/Downloads/hizakozou-main/AGENTS.md) as the detailed source of truth for the blog workflow.
+Use [AGENTS.md](AGENTS.md) as the detailed source of truth for the blog workflow.
 
 ## Quick Rules
 
@@ -11,5 +11,5 @@ Use [AGENTS.md](/C:/Users/takus/Downloads/hizakozou-main/AGENTS.md) as the detai
 
 ## See Also
 
-- Main workflow and markdown contract: [AGENTS.md](/C:/Users/takus/Downloads/hizakozou-main/AGENTS.md)
-- Blog output notes: [blog/README.md](/C:/Users/takus/Downloads/hizakozou-main/blog/README.md)
+- Main workflow and markdown contract: [AGENTS.md](AGENTS.md)
+- Blog output notes: [blog/README.md](blog/README.md)

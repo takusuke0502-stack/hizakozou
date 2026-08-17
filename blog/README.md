@@ -16,7 +16,7 @@ Related generated files also live at the repo root or in sibling folders:
 
 ## Authoring Flow
 
-Use [AGENTS.md](/C:/Users/takus/Downloads/hizakozou-main/AGENTS.md) for the full workflow. The short version is:
+Use [AGENTS.md](../AGENTS.md) for the full workflow. The short version is:
 
 1. Edit `content/source/*.md`
 2. Run `npm run generate:blog` or `npm run generate:blog:source -- --source content/source/YYYY-MM-slug.md`
