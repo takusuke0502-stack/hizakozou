@@ -1,2 +1,32 @@
 node_modules/
 .playwright-cli/
+.gitnexus/
+.claude/
+.agents/
+.codex/
+.superpowers/
+.preview/
+output/
+tmp/
+coverage/
+*.log
+
+# Local environment files. Keep examples in Git.
+.env
+.env.local
+.env.*.local
+
+# Private keys and service credentials.
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+service-account*.json
+
+# Generated source archives are not needed for development.
+/content/source/*.zip
+
+# OS/editor files.
+.DS_Store
+Thumbs.db
