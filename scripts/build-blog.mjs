@@ -621,7 +621,7 @@ const symptomDirectoryGroups = [
     title: "膝",
     description: "痛む場所や動作、腫れ・引っかかりなどから近いページを探せます。",
     items: [
-      { href: "knee-osteoarthritis.html", label: "変形性膝関節症", description: "歩き始めや階段で膝痛が続く方へ。" },
+      { href: "knee-osteoarthritis.html", label: "変形性膝関節症", description: "医療機関で変形性膝関節症と言われた方へ。" },
       { href: "knee-effusion.html", label: "膝に水がたまる・腫れる", description: "膝の腫れや重さが気になる方へ。" },
       { href: "pes-anserine-bursitis.html", label: "膝の内側の痛み", description: "膝の内側やや下の痛みが気になる方へ。" },
       { href: "knee-lateral-pain.html", label: "膝の外側の痛み", description: "歩くと膝の外側が張る、痛む方へ。" },
@@ -673,18 +673,19 @@ const relatedSymptomFiles = {
   "sciatica.html": ["lower-back-pain.html", "lumbar-disc-herniation.html", "spinal-stenosis.html", "hip-osteoarthritis.html"],
   "spinal-stenosis.html": ["lower-back-pain.html", "sciatica.html", "lumbar-disc-herniation.html"],
   "lumbar-disc-herniation.html": ["lower-back-pain.html", "sciatica.html", "spinal-stenosis.html"],
-  "hip-osteoarthritis.html": ["lower-back-pain.html", "sciatica.html", "knee-osteoarthritis.html", "plantar-fasciitis.html"],
-  "knee-osteoarthritis.html": ["knee-effusion.html", "pes-anserine-bursitis.html", "knee-front-pain.html", "hip-osteoarthritis.html"],
-  "knee-effusion.html": ["knee-osteoarthritis.html", "pes-anserine-bursitis.html", "knee-front-pain.html", "knee-posterior-pain.html"],
-  "pes-anserine-bursitis.html": ["knee-osteoarthritis.html", "knee-front-pain.html", "bowlegs-knee-pain.html", "ankle-stiffness-knee-pain.html"],
-  "knee-lateral-pain.html": ["knee-osteoarthritis.html", "meniscus-knee-pain.html", "ankle-stiffness-knee-pain.html", "hip-osteoarthritis.html"],
-  "knee-posterior-pain.html": ["knee-osteoarthritis.html", "meniscus-knee-pain.html", "knee-effusion.html", "hip-osteoarthritis.html"],
-  "knee-front-pain.html": ["knee-osteoarthritis.html", "meniscus-knee-pain.html", "ankle-stiffness-knee-pain.html", "hip-osteoarthritis.html"],
-  "meniscus-knee-pain.html": ["knee-osteoarthritis.html", "knee-front-pain.html", "knee-lateral-pain.html", "knee-posterior-pain.html"],
-  "bowlegs-knee-pain.html": ["knee-osteoarthritis.html", "pes-anserine-bursitis.html", "ankle-stiffness-knee-pain.html", "hip-osteoarthritis.html"],
-  "knee-hyperextension.html": ["knee-osteoarthritis.html", "knee-posterior-pain.html", "ankle-stiffness-knee-pain.html", "hip-osteoarthritis.html"],
-  "ankle-stiffness-knee-pain.html": ["knee-osteoarthritis.html", "knee-front-pain.html", "plantar-fasciitis.html", "bowlegs-knee-pain.html"],
-  "plantar-fasciitis.html": ["ankle-stiffness-knee-pain.html", "knee-osteoarthritis.html", "hip-osteoarthritis.html", "lower-back-pain.html"],
+  "hip-osteoarthritis.html": ["lower-back-pain.html", "sciatica.html", "knee-pain.html", "plantar-fasciitis.html"],
+  "knee-pain.html": ["knee-osteoarthritis.html", "knee-effusion.html", "pes-anserine-bursitis.html", "knee-front-pain.html"],
+  "knee-osteoarthritis.html": ["knee-pain.html", "knee-effusion.html", "pes-anserine-bursitis.html", "knee-front-pain.html"],
+  "knee-effusion.html": ["knee-pain.html", "knee-osteoarthritis.html", "pes-anserine-bursitis.html", "knee-posterior-pain.html"],
+  "pes-anserine-bursitis.html": ["knee-pain.html", "knee-osteoarthritis.html", "knee-front-pain.html", "bowlegs-knee-pain.html"],
+  "knee-lateral-pain.html": ["knee-pain.html", "knee-osteoarthritis.html", "meniscus-knee-pain.html", "ankle-stiffness-knee-pain.html"],
+  "knee-posterior-pain.html": ["knee-pain.html", "knee-osteoarthritis.html", "meniscus-knee-pain.html", "knee-effusion.html"],
+  "knee-front-pain.html": ["knee-pain.html", "knee-osteoarthritis.html", "meniscus-knee-pain.html", "ankle-stiffness-knee-pain.html"],
+  "meniscus-knee-pain.html": ["knee-pain.html", "knee-osteoarthritis.html", "knee-front-pain.html", "knee-lateral-pain.html"],
+  "bowlegs-knee-pain.html": ["knee-pain.html", "knee-osteoarthritis.html", "pes-anserine-bursitis.html", "ankle-stiffness-knee-pain.html"],
+  "knee-hyperextension.html": ["knee-pain.html", "knee-osteoarthritis.html", "knee-posterior-pain.html", "ankle-stiffness-knee-pain.html"],
+  "ankle-stiffness-knee-pain.html": ["knee-pain.html", "knee-osteoarthritis.html", "knee-front-pain.html", "plantar-fasciitis.html"],
+  "plantar-fasciitis.html": ["ankle-stiffness-knee-pain.html", "knee-pain.html", "hip-osteoarthritis.html", "lower-back-pain.html"],
   "shoulder-stiffness.html": ["frozen-shoulder.html", "cervical-spondylosis.html", "thoracic-outlet.html", "tmj.html"],
   "frozen-shoulder.html": ["shoulder-stiffness.html", "cervical-spondylosis.html", "thoracic-outlet.html"],
   "cervical-spondylosis.html": ["shoulder-stiffness.html", "thoracic-outlet.html", "carpal-tunnel.html", "frozen-shoulder.html"],
@@ -696,6 +697,18 @@ const relatedSymptomFiles = {
 };
 
 const symptomConfigs = {
+  "knee-pain.html": {
+    symptomKey: "knee-pain",
+    label: "膝の痛み",
+    keywords: ["膝の痛み", "膝痛", "歩くと膝が痛い", "階段", "立ち上がり", "膝"],
+    categoryHints: ["knee-pain", "exercise-therapy"],
+    pinnedSlugs: [
+      "kashiwa-knee-pain-clinic-or-seitai",
+      "knee-pain-stairs-guide",
+      "walking-start-knee-pain-cause",
+      "knee-medial-pain-difference"
+    ]
+  },
   "knee-osteoarthritis.html": {
     symptomKey: "knee-osteoarthritis",
     label: "変形性膝関節症",
@@ -2368,9 +2381,102 @@ function buildSymptomMidCta(site) {
 
 export function normalizeSymptomPageDesign(html, site = {}, config = {}) {
   let output = upsertRelatedSymptomsNavigation(html, config);
+  output = normalizeSymptomTreatmentFlow(output, config);
+  output = normalizeSymptomKneeNavigation(output);
   output = normalizeSymptomsDirectoryLinkLabel(output);
   output = replaceSymptomFooter(output, site);
   return output;
+}
+
+const symptomFlowCopy = {
+  "carpal-tunnel.html": {
+    consultation: "手指のしびれや夜間のつらさ、細かな作業のしにくさなど、どの場面で手に不安が出るのかを伺います。",
+    assessment: "手首だけでなく、肘・肩・首の動きや姿勢も確認し、手へ負担が集まりやすい使い方を見ていきます。",
+    treatment: "身体の反応を確かめながら手首・腕・肩まわりへ施術を行い、手を使う動作につながる運動も取り入れます。"
+  },
+  "cervical-spondylosis.html": {
+    consultation: "首を向く、腕を上げる、長く座るなど、どの場面で首の痛みや腕のしびれが気になるのかを伺います。",
+    assessment: "首だけでなく、肩甲骨・胸郭・腕の動きと姿勢も確認し、首へ負担が集まりやすい動作を見ていきます。",
+    treatment: "身体の反応を確かめながら首・肩・背中まわりへ施術を行い、日常の姿勢や腕の動きにつながる運動も取り入れます。"
+  },
+  "elbow-tendinopathy.html": {
+    consultation: "物を持つ、タオルを絞る、パソコンを使うなど、どの場面で肘がつらいのかを伺います。",
+    assessment: "肘だけでなく、手首・肩・肩甲骨の動きや握り方も確認し、肘へ負担が集まりやすい使い方を見ていきます。",
+    treatment: "身体の反応を確かめながら肘・前腕・肩まわりへ施術を行い、物を持つ動作につながる運動も取り入れます。"
+  },
+  "frozen-shoulder.html": {
+    consultation: "腕を上げる、着替える、髪を洗う、寝返りをするなど、どの場面で肩がつらいのかを伺います。",
+    assessment: "肩だけでなく、肩甲骨・胸郭・首・肘の動きも確認し、腕を上げにくくしている可能性のある動作を見ていきます。",
+    treatment: "身体の反応を確かめながら肩・肩甲骨・胸郭まわりへ施術を行い、腕を使う動作につながる運動も取り入れます。"
+  },
+  "hip-osteoarthritis.html": {
+    consultation: "歩き始め、立ち上がり、靴下の着脱など、どの場面で股関節や足の付け根がつらいのかを伺います。",
+    assessment: "股関節だけでなく、腰・膝・足首・姿勢・歩き方も確認し、どこに負担が集まりやすいかを見ていきます。",
+    treatment: "身体の反応を確かめながら股関節や足腰へ施術を行い、立つ・歩くなどの動作につながる運動も取り入れます。"
+  },
+  "lower-back-pain.html": {
+    consultation: "起き上がる、立ち上がる、長く座る、荷物を持つなど、どの場面で腰がつらいのかを伺います。",
+    assessment: "腰だけでなく、股関節・胸郭・体幹の支え方や姿勢も確認し、腰へ負担が集まりやすい動作を見ていきます。",
+    treatment: "身体の反応を確かめながら腰・お尻・股関節まわりへ施術を行い、起き上がりや立ち上がりにつながる運動も取り入れます。"
+  },
+  "lumbar-disc-herniation.html": {
+    consultation: "前かがみ、長く座る、立ち上がる、歩くなど、どの場面で腰の痛みや足のしびれが気になるのかを伺います。",
+    assessment: "腰だけでなく、お尻・股関節・足の動きと姿勢も確認し、症状に影響する可能性のある動作を見ていきます。",
+    treatment: "身体の状態を確かめながら腰・お尻・足まわりへ施術を行い、日常動作につながる運動も無理のない範囲で取り入れます。"
+  },
+  "plantar-fasciitis.html": {
+    consultation: "朝の一歩目、長く立つ、歩く、靴を替えたときなど、どの場面で足裏やかかとがつらいのかを伺います。",
+    assessment: "足裏だけでなく、足首・ふくらはぎ・膝・股関節の動きと歩き方も確認し、足元へ負担が集まりやすい動作を見ていきます。",
+    treatment: "身体の反応を確かめながら足裏・足首・ふくらはぎへ施術を行い、立つ・歩く動作につながる運動も取り入れます。"
+  },
+  "scoliosis.html": {
+    consultation: "立つ、座る、歩く、家事をするなど、どの場面で背中のつらさや左右差が気になるのかを伺います。",
+    assessment: "背骨の形だけでなく、肩・胸郭・骨盤・股関節の動きと姿勢も確認し、負担が集まりやすい動作を見ていきます。",
+    treatment: "身体の反応を確かめながら背中・肩・骨盤まわりへ施術を行い、姿勢や日常動作につながる運動も取り入れます。"
+  },
+  "shoulder-stiffness.html": {
+    consultation: "デスクワーク、家事、車の運転、睡眠など、どの場面で首や肩の重さが気になるのかを伺います。",
+    assessment: "首や肩だけでなく、肩甲骨・胸郭・腕の動きと姿勢も確認し、力が入り続ける場面を見ていきます。",
+    treatment: "身体の反応を確かめながら首・肩・背中まわりへ施術を行い、肩甲骨や腕を動かす運動も取り入れます。"
+  },
+  "spinal-stenosis.html": {
+    consultation: "歩ける距離、立っていられる時間、休むとどう変わるかなど、腰や脚がつらくなる場面を伺います。",
+    assessment: "腰だけでなく、股関節・足首・身体を支える力や歩き方も確認し、症状に影響する可能性のある動作を見ていきます。",
+    treatment: "身体の状態を確かめながら腰・お尻・足まわりへ施術を行い、立つ・歩く動作につながる運動も無理のない範囲で取り入れます。"
+  },
+  "thoracic-outlet.html": {
+    consultation: "腕を上げる、荷物を持つ、長く座るなど、どの場面で首肩から腕のしびれやだるさが気になるのかを伺います。",
+    assessment: "首や肩だけでなく、胸郭・肩甲骨・腕の動きと姿勢も確認し、腕へ負担が集まりやすい動作を見ていきます。",
+    treatment: "身体の反応を確かめながら首・肩・胸郭まわりへ施術を行い、腕を使う動作につながる運動も取り入れます。"
+  },
+  "tmj.html": {
+    consultation: "口を開ける、食事をする、あくびをするなど、どの場面であごが痛む、動かしにくいと感じるのかを伺います。",
+    assessment: "あごだけでなく、首・肩・胸郭の動きと姿勢も確認し、あご周辺へ力が入りやすい場面を見ていきます。",
+    treatment: "身体の反応を確かめながらあご周辺・首・肩へ施術を行い、口の開閉や姿勢に関わる動きも確認します。"
+  }
+};
+
+function normalizeSymptomTreatmentFlow(html, config = {}) {
+  const copy = symptomFlowCopy[config.fileName];
+  if (!copy) return html;
+
+  const flowPattern = /<section id="flow" class="flow-slider"[\s\S]*?(?=<section class="faq" id="faq">)/;
+  return html.replace(flowPattern, (flowHtml) => {
+    let paragraphIndex = 0;
+    return flowHtml.replace(/<p class="flow-slide__text">[\s\S]*?<\/p>/g, (paragraph) => {
+      const replacements = [null, copy.consultation, copy.assessment, null, copy.treatment, null];
+      const replacement = replacements[paragraphIndex++];
+      return replacement ? `<p class="flow-slide__text">${escapeHtml(replacement)}</p>` : paragraph;
+    });
+  });
+}
+
+function normalizeSymptomKneeNavigation(html) {
+  return html
+    .replaceAll('href="./knee-pain.html" class="site-nav__dropdown-link">膝痛</a>', 'href="./knee-osteoarthritis.html" class="site-nav__dropdown-link">変形性膝関節症</a>')
+    .replaceAll('href="./knee-pain.html" class="site-mobile-nav__subitem">膝痛</a>', 'href="./knee-osteoarthritis.html" class="site-mobile-nav__subitem">変形性膝関節症</a>')
+    .replaceAll('href="./knee-osteoarthritis.html" class="site-nav__dropdown-link">膝痛</a>', 'href="./knee-osteoarthritis.html" class="site-nav__dropdown-link">変形性膝関節症</a>')
+    .replaceAll('href="./knee-osteoarthritis.html" class="site-mobile-nav__subitem">膝痛</a>', 'href="./knee-osteoarthritis.html" class="site-mobile-nav__subitem">変形性膝関節症</a>');
 }
 
 function upsertRelatedSymptomsNavigation(html, config = {}) {

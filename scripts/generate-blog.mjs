@@ -9,6 +9,16 @@ const meoDir = path.join(rootDir, "content", "meo");
 const dataPath = path.join(rootDir, "data", "blog-posts.json");
 
 const DEFAULT_RELATED_SYMPTOMS = {
+  "膝の痛み": {
+    label: "膝の痛み",
+    href: "/symptoms/knee-pain.html",
+    description: "痛む場所や動作から近い相談ページを探したい方へ。"
+  },
+  "膝痛": {
+    label: "膝の痛み",
+    href: "/symptoms/knee-pain.html",
+    description: "痛む場所や動作から近い相談ページを探したい方へ。"
+  },
   "変形性膝関節症": {
     label: "変形性膝関節症",
     href: "/symptoms/knee-osteoarthritis.html",

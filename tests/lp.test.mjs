@@ -18,6 +18,7 @@ const generateBlogScript = readFileSync(new URL("../scripts/generate-blog.mjs", 
 const lowerBackHtml = readFileSync(new URL("../symptoms/lower-back-pain.html", import.meta.url), "utf8");
 const sciaticaHtml = readFileSync(new URL("../symptoms/sciatica.html", import.meta.url), "utf8");
 const spinalStenosisHtml = readFileSync(new URL("../symptoms/spinal-stenosis.html", import.meta.url), "utf8");
+const kneePainHtml = readFileSync(new URL("../symptoms/knee-pain.html", import.meta.url), "utf8");
 const kneeOsteoarthritisHtml = readFileSync(new URL("../symptoms/knee-osteoarthritis.html", import.meta.url), "utf8");
 const hipOsteoarthritisHtml = readFileSync(new URL("../symptoms/hip-osteoarthritis.html", import.meta.url), "utf8");
 const lumbarDiscHerniationHtml = readFileSync(new URL("../symptoms/lumbar-disc-herniation.html", import.meta.url), "utf8");
@@ -752,7 +753,7 @@ test("desktop header groups access/contact and exposes keyboard-friendly real dr
     ["symptoms/spinal-stenosis.html", "脊柱管狭窄症"],
     ["symptoms/lumbar-disc-herniation.html", "椎間板ヘルニア"],
     ["symptoms/hip-osteoarthritis.html", "股関節痛"],
-    ["symptoms/knee-osteoarthritis.html", "膝痛"],
+    ["symptoms/knee-osteoarthritis.html", "変形性膝関節症"],
     ["symptoms/index.html", "すべての症状を見る"]
   ];
   const removedKneeHeaderLinks = [
@@ -825,8 +826,8 @@ test("desktop header groups access/contact and exposes keyboard-friendly real dr
   }
   assert.doesNotMatch(desktopNav, /脊柱菅/);
   assert.doesNotMatch(mobileNav, /脊柱菅/);
-  assert.doesNotMatch(desktopNav, /変形性膝関節症|膝の内側の痛み|膝に水がたまる|半月板の違和感|膝の前側の痛み|膝の裏側の痛み|膝の外側の痛み/);
-  assert.doesNotMatch(mobileNav, /変形性膝関節症|膝の内側の痛み|膝に水がたまる|半月板の違和感|膝の前側の痛み|膝の裏側の痛み|膝の外側の痛み/);
+  assert.doesNotMatch(desktopNav, /膝の内側の痛み|膝に水がたまる|半月板の違和感|膝の前側の痛み|膝の裏側の痛み|膝の外側の痛み/);
+  assert.doesNotMatch(mobileNav, /膝の内側の痛み|膝に水がたまる|半月板の違和感|膝の前側の痛み|膝の裏側の痛み|膝の外側の痛み/);
 
   assert.doesNotMatch(mobileNav, /site-nav__dropdown/);
   assert.match(mobileNav, /site-mobile-nav__group/);
@@ -1012,7 +1013,7 @@ test("symptom detail pages use one accessible H1 and omit retired FAQPage schema
   const symptomDir = path.join(repoRoot, "symptoms");
   const detailPages = readdirSync(symptomDir).filter((name) => name.endsWith(".html") && name !== "index.html");
 
-  assert.equal(detailPages.length, 24);
+  assert.equal(detailPages.length, 25);
   for (const fileName of detailPages) {
     const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
     assert.equal((symptomHtml.match(/<h1\b/g) ?? []).length, 1, `${fileName} should expose exactly one H1`);
@@ -1027,7 +1028,7 @@ test("major image-hero symptom pages use lightweight responsive sources", () => 
     ["spinal-stenosis.html", "脊柱管狭窄症", "脊柱菅狭窄症"],
     ["lumbar-disc-herniation.html", "腰椎椎間板ヘルニア", "椎間板ヘルニア"],
     ["hip-osteoarthritis.html", "股関節痛・変形性股関節症", "変形性股関節症"],
-    ["knee-osteoarthritis.html", "膝痛・変形性膝関節症", "変形性膝関節症"]
+    ["knee-osteoarthritis.html", "柏市で変形性膝関節症と言われた方へ", "変形性膝関節症"]
   ];
 
   for (const [fileName, heading, assetBase] of heroPages) {
@@ -1126,7 +1127,7 @@ test("all symptom detail pages include reviewed safety guidance and public refer
   const symptomDetailFiles = readdirSync(path.join(repoRoot, "symptoms"))
     .filter((name) => name.endsWith(".html") && name !== "index.html");
 
-  assert.equal(symptomDetailFiles.length, 24);
+  assert.equal(symptomDetailFiles.length, 25);
   for (const symptomFile of symptomDetailFiles) {
     const symptomHtml = readFileSync(path.join(repoRoot, "symptoms", symptomFile), "utf8");
     const guidance = symptomHtml.match(
@@ -1136,7 +1137,8 @@ test("all symptom detail pages include reviewed safety guidance and public refer
     assert.match(guidance, /執筆・内容確認/, `${symptomFile} should identify the reviewer`);
     assert.match(guidance, /川上卓哉/, `${symptomFile} should name the reviewer`);
     assert.match(guidance, /柔道整復師（国家資格）/, `${symptomFile} should show the qualification`);
-    assert.match(guidance, /2026年6月23日/, `${symptomFile} should show the reviewed date`);
+    const expectedReviewDate = symptomFile === "knee-pain.html" ? /2026年8月21日/ : /2026年6月23日/;
+    assert.match(guidance, expectedReviewDate, `${symptomFile} should show the reviewed date`);
     assert.match(guidance, /早急に医療機関へ/, `${symptomFile} should show urgent guidance`);
     assert.match(guidance, /早めに医療機関へ/, `${symptomFile} should show prompt guidance`);
     assert.match(guidance, /整体での相談を検討できる状態/, `${symptomFile} should explain the clinic boundary`);
@@ -1383,8 +1385,8 @@ test("LP metadata broadens SEO target from female knee pain to chronic pain", ()
   assert.match(html, new RegExp(`<meta name="twitter:description" content="${escapeRegExp(broadenedMetaDescription)}">`));
   assert.equal(localBusinessBlocks[0].description, localBusinessDescription);
   assert.doesNotMatch(getSectionSlice("<head>", "</head>"), /お悩みの女性へ/);
-  assert.match(hero, /柏市で足腰の痛み・しびれにお悩みの方へ/);
-  assert.match(hero, /もう一度、[\s\S]*安心して歩ける毎日を。/);
+  assert.match(hero, /膝の痛み・腰痛・坐骨神経痛など、[\s\S]*歩く・立つ・階段でつらい足腰のお悩みに対応/);
+  assert.doesNotMatch(hero, /もう一度、[\s\S]*安心して歩ける毎日を。/);
 });
 
 test("LP and symptom patient voices include approved assets and symptom-only additions", () => {
@@ -1544,7 +1546,7 @@ test("voices and FAQ pages use the shared top-page header and footer chrome", ()
     ["symptoms/spinal-stenosis.html", "脊柱管狭窄症"],
     ["symptoms/lumbar-disc-herniation.html", "椎間板ヘルニア"],
     ["symptoms/hip-osteoarthritis.html", "股関節痛"],
-    ["symptoms/knee-osteoarthritis.html", "膝痛"],
+    ["symptoms/knee-osteoarthritis.html", "変形性膝関節症"],
     ["symptoms/index.html", "すべての症状を見る"],
     ["index.html#flow", "施術の流れ"],
     ["index.html#price", "料金"],
@@ -1779,8 +1781,8 @@ test("LP Step 3 adds conversion copy, review proof, flyer-style price CTA, and t
   const price = getSectionSlice('id="price"', 'id="faq"');
   const contact = getSectionSlice('id="contact"', 'id="lightbox"');
 
-  assert.match(hero, /柏市で足腰の痛み・しびれにお悩みの方へ/);
-  assert.match(hero, /もう一度、[\s\S]*安心して歩ける毎日を。/);
+  assert.match(hero, /膝の痛み・腰痛・坐骨神経痛など、[\s\S]*歩く・立つ・階段でつらい足腰のお悩みに対応/);
+  assert.doesNotMatch(hero, /もう一度、[\s\S]*安心して歩ける毎日を。/);
   assert.doesNotMatch(hero, /また旅行に行けた。孫と公園を歩けた。/);
   assert.match(price, /「先生に出会えて良かった。」<br>「もっと早く来ていれば良かった」と/);
   assert.match(price, /<p class="hk-pricing-copy__line">多くの方から感謝の声を頂いています。まずは一度試してください。<\/p>/);
@@ -1896,7 +1898,7 @@ test("knee osteoarthritis page is a diagnosis-specific reservation LP", () => {
   assert.match(kneeHtml, /<title>柏市で変形性膝関節症の整体相談｜歩き始め・階段の膝痛｜整体院ひざこぞう<\/title>/);
   assert.match(kneeHtml, new RegExp(`<meta name="description" content="${escapeRegExp(expectedDescription)}">`));
   assert.equal((kneeHtml.match(/<h1\b/g) ?? []).length, 1, "knee osteoarthritis LP should expose one accessible H1");
-  assert.match(kneeHtml, /<section class="symptom-image-hero">\s*<h1 class="symptom-image-hero__sr-title">膝痛・変形性膝関節症<\/h1>\s*<picture>\s*<source media="\(min-width: 768px\)" srcset="\.\.\/image\/symptom-hero\/変形性膝関節症-optimized\.webp">\s*<source media="\(max-width: 767px\)" srcset="\.\.\/image\/symptom-hero\/変形性膝関節症-sp-480\.webp 480w, \.\.\/image\/symptom-hero\/変形性膝関節症-sp-768\.webp 768w, \.\.\/image\/symptom-hero\/変形性膝関節症-sp\.webp 1023w" sizes="100vw" width="1023" height="1537">\s*<img\s+src="\.\.\/image\/symptom-hero\/変形性膝関節症\.webp"\s+alt="変形性膝関節症でお悩みの方へ"[\s\S]*?class="symptom-image-hero__image"[\s\S]*?fetchpriority="high"[\s\S]*?decoding="async"[\s\S]*?>\s*<\/picture>\s*<\/section>/);
+  assert.match(kneeHtml, /<section class="symptom-image-hero">\s*<h1 class="symptom-image-hero__sr-title">柏市で変形性膝関節症と言われた方へ<\/h1>\s*<picture>\s*<source media="\(min-width: 768px\)" srcset="\.\.\/image\/symptom-hero\/変形性膝関節症-optimized\.webp">\s*<source media="\(max-width: 767px\)" srcset="\.\.\/image\/symptom-hero\/変形性膝関節症-sp-480\.webp 480w, \.\.\/image\/symptom-hero\/変形性膝関節症-sp-768\.webp 768w, \.\.\/image\/symptom-hero\/変形性膝関節症-sp\.webp 1023w" sizes="100vw" width="1023" height="1537">\s*<img\s+src="\.\.\/image\/symptom-hero\/変形性膝関節症\.webp"\s+alt="変形性膝関節症でお悩みの方へ"[\s\S]*?class="symptom-image-hero__image"[\s\S]*?fetchpriority="high"[\s\S]*?decoding="async"[\s\S]*?>\s*<\/picture>\s*<\/section>/);
   assert.doesNotMatch(kneeHtml, /<section class="hero">/);
 
   for (const copy of requiredCopy) {
@@ -2155,14 +2157,15 @@ test("major symptom pages replace concerns with top-page troubles-check layout",
   }
 });
 
-test("all symptom detail pages use the lower-back troubles-check design", () => {
+test("symptom detail pages use the troubles-check design while the knee classification hub starts with navigation", () => {
   const detailPages = readdirSync(path.join(repoRoot, "symptoms"))
     .filter((name) => name.endsWith(".html") && name !== "index.html")
     .sort();
 
-  assert.equal(detailPages.length, 24, "the complete symptom detail page set should be covered");
+  assert.equal(detailPages.length, 25, "the complete symptom detail page set should be covered");
+  assert.doesNotMatch(kneePainHtml, /<section id="troubles"/, "the knee classification hub should avoid a redundant concerns checklist");
 
-  for (const fileName of detailPages) {
+  for (const fileName of detailPages.filter((name) => name !== "knee-pain.html")) {
     const page = `symptoms/${fileName}`;
     const pageHtml = readPageIfExists(page);
     const troublesMatches = pageHtml.match(/<section id="troubles" class="troubles-check">/g) ?? [];
@@ -2192,7 +2195,7 @@ test("all symptom detail pages use the readable numbered cycle flow", () => {
     .sort();
   const cycleCss = readFileSync(path.join(symptomDir, "site-cycle-flow.css"), "utf8");
 
-  assert.equal(detailPages.length, 24, "the complete symptom detail page set should be covered");
+  assert.equal(detailPages.length, 25, "the complete symptom detail page set should be covered");
   assert.match(cycleCss, /\.symptom-cycle\.symptom-cycle\s*\{[\s\S]*grid-template-columns:\s*minmax\(0, 1fr\);/);
   assert.match(cycleCss, /counter-reset:\s*symptom-cycle-step;/);
   assert.match(cycleCss, /\.symptom-cycle \.symptom-cycle__item::before\s*\{[\s\S]*counter\(symptom-cycle-step\)/);
@@ -2250,6 +2253,31 @@ test("symptom pages self-host lucide instead of loading it from a third-party CD
     assert.match(symptomHtml, /<script src="site-header\.js" defer><\/script>/, `${fileName} should defer shared header behavior`);
     assert.doesNotMatch(symptomHtml, /<script>\s*lucide\.createIcons\(\);\s*<\/script>/, `${fileName} should let the deferred header initialize icons`);
   }
+});
+
+test("general knee pain page is the hub while osteoarthritis stays diagnosis-specific", () => {
+  assert.match(kneePainHtml, /<title>柏市で膝の痛みを整体相談｜歩く・階段・立ち上がりの膝痛｜整体院ひざこぞう<\/title>/);
+  assert.match(kneePainHtml, /<link rel="canonical" href="https:\/\/hizakozou\.jp\/symptoms\/knee-pain\.html">/);
+  assert.match(kneePainHtml, /<h1 class="hero__title">柏市で膝の痛みにお悩みの方へ<\/h1>/);
+  assert.match(kneePainHtml, /class="frontknee-factor__cta">詳しく見る/);
+  assert.doesNotMatch(kneePainHtml, /class="frontknee-factor__icon"/);
+
+  for (const href of [
+    "knee-osteoarthritis.html",
+    "pes-anserine-bursitis.html",
+    "knee-lateral-pain.html",
+    "knee-front-pain.html",
+    "knee-posterior-pain.html",
+    "knee-effusion.html",
+    "meniscus-knee-pain.html"
+  ]) {
+    assert.match(kneePainHtml, new RegExp(`href="${escapeRegExp(href)}"`), `knee pain hub should link to ${href}`);
+  }
+
+  assert.match(kneeOsteoarthritisHtml, /<h1 class="symptom-image-hero__sr-title">柏市で変形性膝関節症と言われた方へ<\/h1>/);
+  assert.doesNotMatch(kneeOsteoarthritisHtml, /<h1[^>]*>膝痛・変形性膝関節症<\/h1>/);
+  assert.match(html, /href="symptoms\/knee-osteoarthritis\.html"[^>]*>変形性膝関節症<\/a>/);
+  assert.doesNotMatch(symptomDirectoryHtml, /膝の痛み（分類別）/);
 });
 
 test("symptom detail pages use system font fallbacks without Google Font requests", () => {
@@ -2371,7 +2399,7 @@ test("all symptom pages use the transplanted top-page header and mobile hamburge
     ["spinal-stenosis.html", "脊柱管狭窄症"],
     ["lumbar-disc-herniation.html", "椎間板ヘルニア"],
     ["hip-osteoarthritis.html", "股関節痛"],
-    ["knee-osteoarthritis.html", "膝痛"],
+    ["knee-osteoarthritis.html", "変形性膝関節症"],
     ["index.html", "すべての症状を見る"]
   ];
 
@@ -2524,7 +2552,7 @@ test("symptom pages replace the visual guide cards with the top-page flow slider
     }
   }
 
-  assert.equal(pagesWithFlow.length, 24, "all symptom detail pages should receive the flow slider");
+  assert.equal(pagesWithFlow.length, 25, "all symptom detail pages should receive the flow slider");
 
   const flowCss = readFileSync(path.join(symptomDir, "site-flow.css"), "utf8");
   const headerJs = readFileSync(path.join(symptomDir, "site-header.js"), "utf8");
@@ -2550,6 +2578,55 @@ test("symptom pages replace the visual guide cards with the top-page flow slider
   assert.match(headerJs, /event\.key === 'ArrowLeft'/);
   assert.match(headerJs, /event\.key === 'ArrowRight'/);
   assert.match(headerJs, /setupFlowSlider\(\);/);
+});
+
+test("non-knee symptom flows do not retain knee-page template copy", () => {
+  const symptomDir = path.join(repoRoot, "symptoms");
+  const kneePages = new Set([
+    "ankle-stiffness-knee-pain.html",
+    "bowlegs-knee-pain.html",
+    "knee-effusion.html",
+    "knee-front-pain.html",
+    "knee-hyperextension.html",
+    "knee-lateral-pain.html",
+    "knee-osteoarthritis.html",
+    "knee-pain.html",
+    "knee-posterior-pain.html",
+    "meniscus-knee-pain.html",
+    "pes-anserine-bursitis.html"
+  ]);
+  const nonKneePages = readdirSync(symptomDir)
+    .filter((name) => name.endsWith(".html") && name !== "index.html" && !kneePages.has(name));
+  const retiredKneeCopy = [
+    "日常のどの場面で膝が不安なのか",
+    "膝だけでなく、股関節・足首・姿勢・歩き方"
+  ];
+  const upperBodyPages = new Set([
+    "carpal-tunnel.html",
+    "cervical-spondylosis.html",
+    "elbow-tendinopathy.html",
+    "frozen-shoulder.html",
+    "shoulder-stiffness.html",
+    "thoracic-outlet.html",
+    "tmj.html"
+  ]);
+
+  for (const fileName of nonKneePages) {
+    const pageHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
+    const flowStart = pageHtml.indexOf('<section id="flow" class="flow-slider"');
+    const flowEnd = pageHtml.indexOf('<section class="faq" id="faq">', flowStart);
+    const flowBlock = pageHtml.slice(flowStart, flowEnd);
+
+    for (const copy of retiredKneeCopy) {
+      assert.doesNotMatch(flowBlock, new RegExp(escapeRegExp(copy)), `${fileName} should not retain knee-specific flow copy`);
+    }
+    if (upperBodyPages.has(fileName)) {
+      assert.doesNotMatch(flowBlock, /歩き始め|階段|買い物|膝だけでなく/, `${fileName} should use upper-body-specific flow copy`);
+    }
+  }
+
+  assert.match(shoulderStiffnessHtml, /デスクワーク、家事、車の運転、睡眠/);
+  assert.match(shoulderStiffnessHtml, /肩甲骨・胸郭・腕の動きと姿勢/);
 });
 
 test("symptom pages place the treatment flow directly above the FAQ", () => {
@@ -2637,7 +2714,7 @@ test("symptom pages reuse the top-page static FAQ design", () => {
     assert.doesNotMatch(faqBlock, /<details|<summary|faq__q-text|faq__a-text|chevron/, `${fileName} should remove the old accordion FAQ markup`);
   }
 
-  assert.equal(pagesWithFaq.length, 24, "all symptom detail pages should receive the copied top-page FAQ design");
+  assert.equal(pagesWithFaq.length, 25, "all symptom detail pages should receive the copied top-page FAQ design");
 
   const faqCss = readFileSync(path.join(symptomDir, "site-faq.css"), "utf8");
   assert.match(faqCss, /Copied from the top-page FAQ design/);
@@ -3021,12 +3098,12 @@ test("lower back education redesign stays inside the requested page range", () =
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(lowerBackHtml.slice(bodyStart, redesignStart)),
-    "83677a29b4e029c61f852651f8ef16e3fb3895c8e8abaae8cd125e36f463b714",
+    "cc8c04c92c83106c0708ca44e47ca2e079b20a21fa5deb42621f0a4063e3bea4",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(lowerBackHtml.slice(voicesStart)),
-    "d7ca57c4c9339c7c489b83540f3e742768773d3464e4526705375876ddca2dad",
+    "8870363b1c335c8d99a65b9e3e6357113d61cad3846370f3929f900f506dd94e",
     "patient voices onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -3090,12 +3167,12 @@ test("shoulder stiffness education redesign preserves the existing page boundari
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(shoulderStiffnessHtml.slice(bodyStart, redesignStart)),
-    "62fd465457130aaa45bb2b01712133e1477b8481a2826dd1411aee2f17c2082f",
+    "6ff9d5a59f1df5f2ee88645a08b6d6949a4226e219d92132d45a864ae53d72fa",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(shoulderStiffnessHtml.slice(voicesStart)),
-    "df0609c891069ec9119b170d9b950853b52e9a41f19790ab994641ea3341c574",
+    "596ea7a5dd55e241ce45e57d84dd9c8991e698638a8dc734b0c5f102ccdec4c3",
     "patient voices onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3159,12 +3236,12 @@ test("plantar fasciitis education redesign preserves the existing page boundarie
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(plantarFasciitisHtml.slice(bodyStart, redesignStart)),
-    "27c17f302f766227d7dc998f90b876aba9f3213c52a309d1cfd5ec848effa80e",
+    "ee0995b42859bba191adcb54dac181f61e4ed5fc98b93ee6a6448c1b5e16ed74",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(plantarFasciitisHtml.slice(flowStart)),
-    "d1f811ff69d3f93e5aea0ddf4536f15d215fa8566e19aa1b9aec5870186cbcab",
+    "545f5eb342d7d2fd636c976693e741318f3a90c8b776c748c586963f626b4355",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3228,12 +3305,12 @@ test("scoliosis education redesign preserves the existing page boundaries", () =
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(scoliosisHtml.slice(bodyStart, redesignStart)),
-    "f4a305334565706dbc887eadc069f778aa73c9790b1d2dfacc22617e67d035c9",
+    "c083c2025d628c3129429621b04dcf2091051e03ca5ab2d05b558e5f26276064",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(scoliosisHtml.slice(flowStart)),
-    "1a3e7cab81d40a282322062268c71849e36fa157871bd7787e257ed095fef40d",
+    "af84f17fe17dfd79ca2b2e3e7e78f2db796fdcce2c0f6b0b865199b028c73299",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3297,12 +3374,12 @@ test("TMJ education redesign preserves the existing page boundaries", () => {
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(tmjHtml.slice(bodyStart, redesignStart)),
-    "6fc856578d37b3a2fb85225e00759061422d49e16fff0be57a71f3e5f93bf7fc",
+    "66f3cb48b595e66f4d7a8ddaaf55e1de02ea66ab2c22364ce02a0d60c038d479",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(tmjHtml.slice(flowStart)),
-    "31e2dc097c9676d64d5ed60839d72a255bdd0973793ef357f0f380fbdcbbb6cd",
+    "d929ed652cb46f641a4e243b4655e1889f07003f1adabb4749062d51ccd8298e",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3367,12 +3444,12 @@ test("frozen shoulder education redesign preserves the existing page boundaries"
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(frozenShoulderHtml.slice(bodyStart, redesignStart)),
-    "8fb68ed835adadbf8a2db6861146a1ead52b08c31a0dc76b86de0fca14f196fd",
+    "a71011fdd3640537d2b1a10a4f31bf95702e313f3f8b1382a28aaa2dad03d108",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(frozenShoulderHtml.slice(flowStart)),
-    "d6db894384d27025b09123992ebc153af06e129530d3c9fd13a14dcce9379117",
+    "59ba8bad2e4701b17103d059bd8939964ad83d444238e5ee0ff29902ecbc0ce5",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3480,12 +3557,12 @@ test("thoracic outlet education redesign preserves the existing page boundaries"
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(thoracicOutletHtml.slice(bodyStart, redesignStart)),
-    "65f580ed42c490c50782d131664d78dc110e6a60268d3e817719955806b7ecd9",
+    "a7fa4c8040538a144c559d27e48ed90587c30bc49cb57275e94cea49bff3baa5",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(thoracicOutletHtml.slice(flowStart)),
-    "fe104e4795b38ee26ce4cc20a716f2bdcbdb83bae64d046c868afd78ec90202c",
+    "cdd881dda6cd223ff7dd91e2d72ae017015f79142bee900e674868ff0662a827",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3647,7 +3724,7 @@ test("sciatica education redesign stays inside the matching lower-back page rang
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(sciaticaHtml.slice(bodyStart, redesignStart)),
-    "8951be798429b7dd56f6c63ba8d124580d50f6526d88d814ddeec5c829785082",
+    "ab14fbe122e68b18e9e0b0d56b2ace5db2ced1ac601b4655606a7ca73637b938",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
@@ -3716,12 +3793,12 @@ test("spinal stenosis education redesign preserves the existing page boundaries"
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(spinalStenosisHtml.slice(bodyStart, redesignStart)),
-    "2d91712f1ea2a2ba9a72381d53b87eaa46da82d0fff3b94b486db7544e709a15",
+    "1ae1cc90fde5cd860776e4a733464db3cdf11388c9830feebdfaeffb2606dd50",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(spinalStenosisHtml.slice(flowStart)),
-    "168e350f9072fac7583b5e5318e2afbdaddd36b76a1f82860686b45777dae852",
+    "a6c788c02f7ba213602dcf48e49d1c380f6ba631785c23e9ff1a71a6102a5e8e",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -3785,12 +3862,12 @@ test("knee pain education redesign preserves the existing page boundaries", () =
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(bodyStart, redesignStart)),
-    "0ff0a4c1d2ee3499fd47799f18280a9e87f5188688a25844c885d6d5b36bac55",
+    "867965c8d04d132a7649ea8a044e19de9b1eabbad7e15081611fbf4fade02f0f",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(kneeOsteoarthritisHtml.slice(voicesStart)),
-    "882873e120cb9b4e4e3474b679792f72952071c6220a0af9a5ea65a884eba8ed",
+    "cd7bb3a83f97b122db2ea9b64fe41ecf29554ca43be12d65178419fce1c011f4",
     "patient voices onward must match the approved trust-and-safety baseline"
   );
 });
@@ -3854,12 +3931,12 @@ test("hip pain education redesign preserves the existing page boundaries", () =>
   assert.ok(voicesStart > redesignStart, "patient voices should remain after the redesigned content");
   assert.equal(
     sha256(hipOsteoarthritisHtml.slice(bodyStart, redesignStart)),
-    "3f2d59b43552d092450bc253351b70c464c4834475caa8603198ba93f95fff63",
+    "851b4dcca665f0a072e73e80a90a3002126eeec7cbf46a919a50873ba5d64876",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(hipOsteoarthritisHtml.slice(voicesStart)),
-    "eca15063d59da30750da00e0955af76f5a4f74bf490cccf0de8cd159f732ae19",
+    "fe9a4f07a9229554b5f8d4392d34b696da68fb65b345fbff45046f584de3b567",
     "patient voices onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3923,12 +4000,12 @@ test("disc herniation education redesign preserves the existing page boundaries"
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(bodyStart, redesignStart)),
-    "ed78052c8b98c991341c18d77099da651d701953278f7821cb04910ac70cb656",
+    "68e4867f77c7914c637f02c7c9534379f8ba9111ea95d6e7b7f12e85d6a2d418",
     "header, hero, and concerns markup must match the approved navigation baseline"
   );
   assert.equal(
     sha256(lumbarDiscHerniationHtml.slice(flowStart)),
-    "7fb04cf398e4994c9a402e184bacd41968e4a3e1a4332f0d28bf1f618bdbcf35",
+    "e7fac13f2103646b178c42f634350e54aaef9c3a9e6be2b9e8c9845fc4a99bf5",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated consultation sections"
   );
 });
@@ -4182,8 +4259,8 @@ test("LP keeps the knee-pain specialty axis and presents the updated three-step 
   assert.match(html, new RegExp(`<title>${escapeRegExp(siteTitle)}<\\/title>`));
   assert.match(html, new RegExp(`<meta name="description" content="${metaDescription}">`));
   assert.match(html, new RegExp(escapeRegExp(siteTitle)));
-  assert.match(hero, /柏市で足腰の痛み・しびれにお悩みの方へ/);
-  assert.match(hero, /もう一度、[\s\S]*安心して歩ける毎日を。/);
+  assert.match(hero, /膝の痛み・腰痛・坐骨神経痛など、[\s\S]*歩く・立つ・階段でつらい足腰のお悩みに対応/);
+  assert.doesNotMatch(hero, /もう一度、[\s\S]*安心して歩ける毎日を。/);
   assert.match(html, /膝の痛みは、痛む場所だけを見ても分からないことがあります/);
   assert.match(html, /膝だけを揉んで終わるのではなく/);
   assert.match(html, /痛みがぶり返す「3つの原因」/);
@@ -4246,13 +4323,13 @@ test("LP keeps the retired knee-only symptom finder removed", () => {
 test("TOP hero keeps its original structure with the updated copy", () => {
   const heroStart = html.indexOf('<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">');
   const heroEnd = html.indexOf('<section class="hero-safe-band', heroStart);
+  const hero = html.slice(heroStart, heroEnd);
 
   assert.ok(heroStart > -1);
   assert.ok(heroEnd > heroStart);
-  assert.equal(
-    sha256(html.slice(heroStart, heroEnd)),
-    "18ec56527cb8115b9a77933f3fc5c9a620a79c7eadffdfede9b484de45f4d43e"
-  );
+  assert.match(hero, /<h1 class="max-w-3xl hero-title/);
+  assert.match(hero, /膝の痛み・腰痛・坐骨神経痛など、<br>歩く・立つ・階段でつらい足腰のお悩みに対応/);
+  assert.doesNotMatch(hero, /もう一度、[\s\S]*安心して歩ける毎日を。/);
 });
 
 test("TOP routes visitors to the six major symptoms before troubles", () => {
@@ -4263,7 +4340,7 @@ test("TOP routes visitors to the six major symptoms before troubles", () => {
     "symptoms/spinal-stenosis.html",
     "symptoms/lumbar-disc-herniation.html",
     "symptoms/hip-osteoarthritis.html",
-    "symptoms/knee-osteoarthritis.html",
+    "symptoms/knee-pain.html",
     "symptoms/index.html"
   ];
   const thumbnailSources = [
