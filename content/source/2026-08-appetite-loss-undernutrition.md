@@ -1,8 +1,8 @@
 ---
-title: 食欲が落ちて足腰の力も気になる｜高齢期の低栄養を防ぐ確認
+title: 食欲が落ちて足腰の力も気になる｜高齢期に確認したい低栄養のサイン
 slug: appetite-loss-undernutrition
-date: 2026-08-25
-updatedDate: 2026-08-25
+date: 2026-08-23
+updatedDate: 2026-08-23
 description: 食欲が落ち、体重や足腰の力が気になる方へ。食事量が減った理由、体重の変化、飲み込み、受診を優先したい状態を説明します。
 category: 食事・栄養
 region: 柏市
@@ -12,12 +12,12 @@ heroImage: /image/blog/appetite-loss-undernutrition/appetite-loss-undernutrition
 heroAlt: 少量の食事を前に食欲が出ず体重の変化を気にする高齢女性のイラスト
 author: 川上卓哉
 reviewer: 川上卓哉
-reviewedDate: 2026-08-25
+reviewedDate: 2026-08-23
 relatedSlugs: exercise-therapy-first-step,knee-osteoarthritis-daily-movement,hip-osteoarthritis-groin-pain
 searchIntent: 食欲低下と足腰の筋力低下が重なるときに何を確認すべきか知りたい
 layout: readable-v3
 referencePreset: appetite-undernutrition
-draft: true
+draft: false
 ---
 
 以前と同じ量を用意しても残すようになった。ベルトが緩くなり、立ち上がりにも時間がかかる。年齢のせいだと思っていても、食欲低下が続くときは一度立ち止まって確認します。

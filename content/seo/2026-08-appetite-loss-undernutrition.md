@@ -1,10 +1,10 @@
-# 食欲が落ちて足腰の力も気になる｜高齢期の低栄養を防ぐ確認
+# 食欲が落ちて足腰の力も気になる｜高齢期に確認したい低栄養のサイン
 - slug: appetite-loss-undernutrition
-- date: 2026-08-25
-- updated: 2026-08-25
+- date: 2026-08-23
+- updated: 2026-08-23
 - category: food-nutrition
 - region: 柏市
-- status: draft
+- status: publish
 - description: 食欲が落ち、体重や足腰の力が気になる方へ。食事量が減った理由、体重の変化、飲み込み、受診を優先したい状態を説明します。
 - tags: 食欲低下 / 低栄養 / 体重減少 / 高齢者の食事 / 足腰の筋力
 - symptoms: 変形性膝関節症 / 腰痛
