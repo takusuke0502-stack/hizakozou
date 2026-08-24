@@ -1,8 +1,8 @@
 ---
 title: 歩くと身体が片側へ傾く｜肩の高さと骨盤・体幹を一緒に見る理由
 slug: body-tilt-shoulder-height
-date: 2026-08-27
-updatedDate: 2026-08-27
+date: 2026-08-24
+updatedDate: 2026-08-24
 description: 歩くと身体が片側へ傾き、肩の高さも気になる方へ。見た目だけで原因を決めず、骨盤、股関節、体幹、足元を確認する理由を説明します。
 category: 足・歩き方
 region: 柏市
@@ -12,12 +12,12 @@ heroImage: /image/blog/body-tilt-shoulder-height/body-tilt-shoulder-height-hero-
 heroAlt: 歩くときに身体が片側へ傾き肩の高さに左右差が出る女性のイラスト
 author: 川上卓哉
 reviewer: 川上卓哉
-reviewedDate: 2026-08-27
+reviewedDate: 2026-08-24
 relatedSlugs: gluteus-medius-pelvic-stability,hip-pain-while-walking,hip-osteoarthritis-groin-pain
 searchIntent: 歩くと身体が片側へ傾く理由と肩や骨盤の確認方法を知りたい
 layout: readable-v3
 referencePreset: body-tilt-gait
-draft: true
+draft: false
 ---
 
 家族から「歩くとき、片方へ傾いている」と言われた。鏡を見ると肩の高さも違う。自分ではまっすぐ歩いているつもりなので、どこを見ればよいか分からなくなることがあります。

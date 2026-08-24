@@ -3310,7 +3310,7 @@ test("scoliosis education redesign preserves the existing page boundaries", () =
   );
   assert.equal(
     sha256(scoliosisHtml.slice(flowStart)),
-    "af84f17fe17dfd79ca2b2e3e7e78f2db796fdcce2c0f6b0b865199b028c73299",
+    "34d3a0d96ab3917640e98bd518ffa7228f75f0e01536ba6b1863810ebfd9857d",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });

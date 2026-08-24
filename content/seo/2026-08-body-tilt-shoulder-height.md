@@ -1,10 +1,10 @@
 # 歩くと身体が片側へ傾く｜肩の高さと骨盤・体幹を一緒に見る理由
 - slug: body-tilt-shoulder-height
-- date: 2026-08-27
-- updated: 2026-08-27
+- date: 2026-08-24
+- updated: 2026-08-24
 - category: foot-walking
 - region: 柏市
-- status: draft
+- status: publish
 - description: 歩くと身体が片側へ傾き、肩の高さも気になる方へ。見た目だけで原因を決めず、骨盤、股関節、体幹、足元を確認する理由を説明します。
 - tags: 身体が傾く / 肩の高さ / 歩き方 / 骨盤 / 股関節
 - symptoms: 変形性股関節症 / 側弯症

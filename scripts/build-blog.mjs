@@ -484,8 +484,8 @@ const ARTICLE_REFERENCE_PRESETS = {
   ],
   "body-tilt-gait": [
     {
-      label: "PubMed 股関節外転筋と歩行中の体幹・骨盤運動",
-      url: "https://pubmed.ncbi.nlm.nih.gov/23396196/"
+      label: "PubMed 変形性股関節症の歩行と体幹・骨盤の傾き",
+      url: "https://pubmed.ncbi.nlm.nih.gov/30757914/"
     },
     {
       label: "日本整形外科学会 変形性股関節症",
