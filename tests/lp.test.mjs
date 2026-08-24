@@ -1721,7 +1721,7 @@ test("LP mobile hero title and fixed CTA stay compact on narrow screens", () => 
   assert.doesNotMatch(getSectionSlice('class="fixed bottom-0', '<script src="scripts/main.js'), /LINEで予約する/);
 });
 
-test("LP hero first-visit guide matches the flyer-style first-visit CTA", () => {
+test("LP hero first-visit guide stays compact and uses a mobile disclosure", () => {
   const hero = getSectionSlice(
     '<section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-white overflow-hidden relative hero-fixed hz-hero">',
     '<section id="troubles"'
@@ -1732,28 +1732,33 @@ test("LP hero first-visit guide matches the flyer-style first-visit CTA", () => 
   );
 
   assert.match(hero, /class="hero-safe-band__ribbon"/);
-  assert.match(hero, /初回限定のご案内/);
-  assert.match(hero, /初回カウンセリング＋全身整体コース/);
+  assert.match(hero, /初回のご案内/);
+  assert.match(hero, /初回カウンセリング＋全身整体/);
   assert.match(hero, /<span class="hero-safe-band__first">初回<\/span>/);
   assert.match(hero, /hero-safe-band__normal-label">通常<\/span>[\s\S]*hero-safe-band__normal-price">10,000円<\/span>/);
   assert.match(hero, /1,980<small>円<\/small>/);
-  assert.match(hero, /カウンセリング・状態確認込み/);
-  assert.match(hero, /まずは相談だけでも大丈夫です。/);
-  assert.match(hero, /class="hero-safe-band__included-ribbon"/);
-  for (const item of ["カウンセリング", "姿勢・歩き方の確認", "膝に負担がかかる原因の説明", "全身整体", "セルフケアのご提案"]) {
+  assert.match(hero, /初回は約90分/);
+  assert.match(hero, /<div class="hero-safe-band__included">/);
+  assert.match(hero, /<input class="hero-safe-band__included-toggle" type="checkbox" id="hero-included-toggle">/);
+  assert.match(hero, /<label class="hero-safe-band__included-summary" for="hero-included-toggle">/);
+  assert.match(hero, /初回に含まれる内容を見る/);
+  for (const item of ["カウンセリング", "身体の状態確認", "施術方針の説明", "全身整体", "運動・セルフケアのご提案"]) {
     assert.match(hero, new RegExp(escapeRegExp(item)));
   }
+  assert.doesNotMatch(hero, /膝に負担がかかる原因の説明/);
+  assert.doesNotMatch(hero, /hero-safe-band__note-card/);
   assert.match(hero, /class="hero-safe-band__line"/);
   assert.match(topHeroCta, /LINEで相談・予約する/);
   assert.doesNotMatch(topHeroCta, /LINEで膝痛を相談する/);
   assert.match(hero, /LINEで初回予約する/);
-  assert.match(hero, /無理な勧誘はありません。ご相談だけでも大丈夫です。/);
+  assert.match(hero, /無理な勧誘はありません。[\s\S]*相談だけでも大丈夫です。/);
   assert.doesNotMatch(hero, /class="hero-safe-band__hours"/);
   assert.doesNotMatch(hero, /class="hero-safe-band__info"/);
 
-  assert.match(html, /\.hero-fixed \.hero-safe-band__flyer\s*\{[\s\S]*grid-template-columns:\s*minmax\(0,\s*1\.18fr\)\s*minmax\(320px,\s*0\.82fr\);/);
-  assert.match(html, /\.hero-fixed \.hero-safe-band__ribbon::before,[\s\S]*\.hero-fixed \.hero-safe-band__ribbon::after\s*\{/);
-  assert.match(html, /\.hero-fixed \.hero-safe-band__line\s*\{[\s\S]*background:\s*linear-gradient\(180deg,\s*#ff9f20,\s*#ff5c00\);/);
+  assert.match(html, /\.hero-fixed \.hero-safe-band__flyer\s*\{[\s\S]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s*minmax\(340px,\s*0\.92fr\);/);
+  assert.match(html, /\.hero-fixed \.hero-safe-band__line\s*\{[\s\S]*background:\s*linear-gradient\(180deg,\s*#4b963e,\s*#30772f\);/);
+  assert.match(html, /@media \(max-width:\s*767px\)[\s\S]*\.hero-fixed \.hero-safe-band__included-summary-mobile,[\s\S]*display:\s*inline;/);
+  assert.match(html, /@media \(max-width:\s*767px\)[\s\S]*\.hero-fixed \.hero-safe-band__action\s*\{[\s\S]*grid-template-columns:\s*1fr;/);
 });
 
 test("LP Step 2 uses Japanese labels, removes the comparison section, and keeps a single mobile LINE CTA", () => {

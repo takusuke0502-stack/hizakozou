@@ -204,263 +204,160 @@
 
 
     .hero-fixed .hero-safe-band {
-      position: relative;
       overflow: hidden;
-      border-radius: 28px;
-      border: 1px solid #efe7d7;
-      background:
-        radial-gradient(circle at 8% 8%, rgba(255, 245, 213, 0.95), transparent 28%),
-        linear-gradient(180deg, #fffdf8 0%, #ffffff 55%, #fffaf1 100%);
-      box-shadow: 0 24px 58px rgba(67, 44, 18, 0.12);
-      padding: clamp(24px, 4vw, 44px);
-      color: #3a2418;
+      border: 1px solid #dfe7dc;
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: 0 16px 38px rgba(42, 63, 48, 0.1);
+      color: #26372e;
     }
 
     .hero-fixed .hero-safe-band__flyer {
       display: grid;
-      grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
-      gap: clamp(28px, 4vw, 46px);
-      align-items: center;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.92fr);
+      align-items: stretch;
     }
 
     .hero-fixed .hero-safe-band__left,
-    .hero-fixed .hero-safe-band__right {
+    .hero-fixed .hero-safe-band__included {
       min-width: 0;
+      padding: clamp(24px, 3.2vw, 38px);
     }
 
-    .hero-fixed .hero-safe-band__ribbon,
-    .hero-fixed .hero-safe-band__included-ribbon {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 46px;
-      color: #fff;
-      font-weight: 900;
-      line-height: 1.2;
-      letter-spacing: 0.06em;
+    .hero-fixed .hero-safe-band__left {
+      border-right: 1px solid #e3e8df;
       text-align: center;
-      filter: drop-shadow(0 8px 12px rgba(80, 48, 16, 0.14));
     }
 
     .hero-fixed .hero-safe-band__ribbon {
-      margin-left: 5.5rem;
-      background: linear-gradient(180deg, #ff8c22, #f26100);
-      font-size: clamp(1.05rem, 2.2vw, 1.55rem);
-    }
-
-    .hero-fixed .hero-safe-band__ribbon::before,
-    .hero-fixed .hero-safe-band__ribbon::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      width: 34px;
-      height: 100%;
-      background: inherit;
-    }
-
-    .hero-fixed .hero-safe-band__ribbon::before {
-      left: -24px;
-      clip-path: polygon(0 0, 100% 0, 72% 50%, 100% 100%, 0 100%, 28% 50%);
-    }
-
-    .hero-fixed .hero-safe-band__ribbon::after {
-      right: -24px;
-      clip-path: polygon(0 0, 100% 0, 72% 50%, 100% 100%, 0 100%, 28% 50%);
-      transform: scaleX(-1);
-    }
-
-    .hero-fixed .hero-safe-band__spark {
-      color: #ffe252;
-      font-size: 0.86em;
-      margin-inline: 0.45em;
+      color: #39763a;
+      font-size: clamp(1rem, 1.8vw, 1.3rem);
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: 0.04em;
     }
 
     .hero-fixed .hero-safe-band__title {
-      margin-top: 28px;
-      color: #372016;
-      font-size: clamp(1.75rem, 4vw, 3rem);
+      margin-top: 14px;
+      color: #19251f;
+      font-size: clamp(1.45rem, 2.8vw, 2.25rem);
       font-weight: 900;
-      line-height: 1.25;
+      line-height: 1.35;
       letter-spacing: 0;
     }
 
     .hero-fixed .hero-safe-band__dash {
-      margin: 22px 0 28px;
-      border-top: 2px dashed rgba(255, 111, 0, 0.7);
-    }
-
-    .hero-fixed .hero-safe-band__price-area {
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: clamp(10px, 1.8vw, 22px);
-      padding-top: 42px;
-      margin-bottom: 28px;
+      width: min(100%, 480px);
+      margin: 20px auto 18px;
+      border-top: 1px dashed #d6d7ce;
     }
 
     .hero-fixed .hero-safe-band__normal {
-      display: grid;
-      gap: 8px;
-      justify-items: center;
-      color: #8d8d8d;
-      font-weight: 900;
-      line-height: 1.15;
-      white-space: nowrap;
-    }
-
-    .hero-fixed .hero-safe-band__normal-label {
-      font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+      color: #747b77;
+      font-size: clamp(0.92rem, 1.5vw, 1.1rem);
+      font-weight: 700;
+      line-height: 1.4;
     }
 
     .hero-fixed .hero-safe-band__normal-price {
-      position: relative;
-      display: inline-block;
-      font-size: clamp(1.2rem, 2.5vw, 1.85rem);
+      margin-left: 0.35em;
+      text-decoration: line-through;
+      text-decoration-color: #dc762e;
+      text-decoration-thickness: 2px;
     }
 
-    .hero-fixed .hero-safe-band__normal-price::after {
-      content: "";
-      position: absolute;
-      left: -0.15em;
-      right: -0.15em;
-      top: 52%;
-      height: 3px;
-      background: #ef6c00;
-      transform: rotate(-1deg);
+    .hero-fixed .hero-safe-band__price-area {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 8px;
     }
 
     .hero-fixed .hero-safe-band__first {
-      position: absolute;
-      top: 0;
-      left: clamp(128px, 31%, 180px);
-      border: 2px solid #ff6d1f;
-      border-radius: 999px;
-      padding: 8px 16px;
-      color: #ff6d1f;
-      background: #fff;
-      font-size: clamp(0.95rem, 2.2vw, 1.4rem);
+      color: #e85e0b;
+      font-size: clamp(1rem, 1.7vw, 1.3rem);
       font-weight: 900;
-      line-height: 1;
       white-space: nowrap;
     }
 
     .hero-fixed .hero-safe-band__special {
-      color: #ff6500;
-      font-size: clamp(4.2rem, 8.4vw, 7rem);
+      color: #f06400;
+      font-size: clamp(3.8rem, 7vw, 5.9rem);
       font-weight: 900;
-      line-height: 0.8;
+      line-height: 0.95;
       letter-spacing: 0.01em;
-      text-shadow: 0 4px 0 rgba(255, 229, 205, 0.9);
       white-space: nowrap;
     }
 
     .hero-fixed .hero-safe-band__special small {
-      margin-left: 0.05em;
-      font-size: 0.34em;
-      font-weight: 900;
+      margin-left: 0.08em;
+      font-size: 0.3em;
     }
 
-    .hero-fixed .hero-safe-band__note-card {
-      display: grid;
-      grid-template-columns: 92px minmax(0, 1fr);
-      gap: 22px;
-      align-items: center;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #fff9ed, #fffdf8);
-      box-shadow: inset 0 0 0 1px rgba(235, 214, 184, 0.58);
-      padding: 20px 26px;
-    }
-
-    .hero-fixed .hero-safe-band__heart {
+    .hero-fixed .hero-safe-band__duration {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      width: 76px;
-      height: 76px;
-      border: 3px solid #6faf39;
+      gap: 7px;
+      margin-top: 16px;
+      border: 1px solid #dce5d4;
       border-radius: 999px;
-      color: #75b241;
-      font-size: 2rem;
-      line-height: 1;
-    }
-
-    .hero-fixed .hero-safe-band__note-main {
-      color: #3a2418;
-      font-size: clamp(1.2rem, 2.6vw, 1.75rem);
+      background: #f7f9f2;
+      padding: 7px 16px;
+      color: #39763a;
+      font-size: clamp(0.9rem, 1.4vw, 1.05rem);
       font-weight: 900;
-      line-height: 1.35;
-    }
-
-    .hero-fixed .hero-safe-band__note-sub {
-      display: inline-block;
-      margin-top: 0.35rem;
-      border-bottom: 3px dotted #f7c33f;
-      color: #ff6500;
-      font-size: clamp(1.35rem, 3vw, 2.05rem);
-      font-weight: 900;
-      line-height: 1.25;
+      line-height: 1.2;
     }
 
     .hero-fixed .hero-safe-band__included {
-      position: relative;
-      border-radius: 18px;
-      background:
-        radial-gradient(circle at 18% 6%, rgba(237, 230, 204, 0.72), transparent 34%),
-        linear-gradient(180deg, rgba(255, 253, 244, 0.92), rgba(247, 243, 226, 0.92));
-      padding: 72px clamp(22px, 3vw, 34px) 24px;
-      box-shadow: inset 0 0 0 1px rgba(232, 222, 197, 0.62);
+      background: #fcfdf9;
     }
 
-    .hero-fixed .hero-safe-band__included-ribbon {
+    .hero-fixed .hero-safe-band__included-summary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #39763a;
+      cursor: pointer;
+      font-size: clamp(1.05rem, 1.9vw, 1.35rem);
+      font-weight: 900;
+      line-height: 1.35;
+      list-style: none;
+      text-align: center;
+    }
+
+    .hero-fixed .hero-safe-band__included-toggle {
       position: absolute;
-      top: 0;
-      left: 50%;
-      width: min(74%, 360px);
-      min-height: 52px;
-      background: linear-gradient(180deg, #6cae3f, #3c842a);
-      font-size: clamp(1.05rem, 2.2vw, 1.65rem);
-      transform: translate(-50%, -8%);
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
     }
 
-    .hero-fixed .hero-safe-band__included-ribbon::before,
-    .hero-fixed .hero-safe-band__included-ribbon::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      width: 28px;
-      height: 100%;
-      background: inherit;
-    }
-
-    .hero-fixed .hero-safe-band__included-ribbon::before {
-      left: -22px;
-      clip-path: polygon(0 0, 100% 0, 70% 50%, 100% 100%, 0 100%, 30% 50%);
-    }
-
-    .hero-fixed .hero-safe-band__included-ribbon::after {
-      right: -22px;
-      clip-path: polygon(0 0, 100% 0, 70% 50%, 100% 100%, 0 100%, 30% 50%);
-      transform: scaleX(-1);
+    .hero-fixed .hero-safe-band__included-summary-mobile,
+    .hero-fixed .hero-safe-band__included-chevron {
+      display: none;
     }
 
     .hero-fixed .hero-safe-band__included-list {
       display: grid;
       gap: 0;
+      margin-top: 16px;
     }
 
     .hero-fixed .hero-safe-band__included-list li {
       display: grid;
-      grid-template-columns: 44px minmax(0, 1fr);
-      gap: 18px;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 12px;
       align-items: center;
-      border-bottom: 1px dashed #cbdcae;
-      padding: 16px 0;
-      color: #3a2418;
-      font-size: clamp(1.06rem, 2.2vw, 1.45rem);
-      font-weight: 900;
+      border-bottom: 1px dashed #d9e0d3;
+      padding: 11px 0;
+      color: #26372e;
+      font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+      font-weight: 800;
       line-height: 1.45;
     }
 
@@ -472,193 +369,208 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
+      width: 24px;
+      height: 24px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #a6d058, #6faa31);
+      background: #4b8d3d;
       color: #fff;
-      font-size: 1.35rem;
+      font-size: 0.82rem;
       font-weight: 900;
-      box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.08);
     }
 
-    .hero-fixed .hero-safe-band__divider {
-      position: relative;
-      height: 1px;
-      margin: 36px 0 28px;
-      background: #ded9cf;
-    }
-
-    .hero-fixed .hero-safe-band__divider::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 26px;
-      height: 26px;
-      border-right: 2px solid #ded9cf;
-      border-bottom: 2px solid #ded9cf;
+    .hero-fixed .hero-safe-band__action {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+      gap: clamp(20px, 3vw, 36px);
+      align-items: center;
+      border-top: 1px solid #e3e8df;
       background: #fffdf8;
-      transform: translate(-50%, -8px) rotate(45deg);
+      padding: clamp(18px, 2.4vw, 28px) clamp(24px, 3.2vw, 38px);
     }
 
     .hero-fixed .hero-safe-band__line {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: clamp(16px, 3vw, 34px);
-      width: min(100%, 1040px);
-      min-height: clamp(74px, 9vw, 112px);
-      margin: 0 auto;
-      border-radius: 22px;
-      background: linear-gradient(180deg, #ff9f20, #ff5c00);
+      gap: 14px;
+      min-height: 64px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #4b963e, #30772f);
       color: #fff;
-      font-size: clamp(1.7rem, 5vw, 3.55rem);
+      font-size: clamp(1.15rem, 2.4vw, 1.7rem);
       font-weight: 900;
-      line-height: 1.15;
+      line-height: 1.2;
       text-align: center;
-      box-shadow: 0 12px 0 #e85500, 0 24px 36px rgba(201, 84, 0, 0.22);
-      text-shadow: 0 2px 0 rgba(184, 73, 0, 0.42);
+      box-shadow: 0 8px 18px rgba(51, 119, 47, 0.2);
       transition: transform 0.2s ease, filter 0.2s ease;
     }
 
     .hero-fixed .hero-safe-band__line:hover,
     .hero-fixed .hero-safe-band__line:focus-visible {
-      transform: translateY(2px);
-      filter: brightness(1.02);
+      transform: translateY(-1px);
+      filter: brightness(1.04);
     }
 
     .hero-fixed .hero-safe-band__line-bubble {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: clamp(56px, 8vw, 86px);
-      height: clamp(56px, 8vw, 86px);
+      width: 46px;
+      height: 46px;
       border-radius: 999px;
       background: #fff;
       color: #38a334;
-      font-size: clamp(1.05rem, 2.4vw, 1.55rem);
+      font-size: 0.9rem;
       font-weight: 900;
-      text-shadow: none;
-      position: relative;
       flex: 0 0 auto;
     }
 
-    .hero-fixed .hero-safe-band__line-bubble::after {
-      content: "";
-      position: absolute;
-      right: 7px;
-      bottom: -9px;
-      width: 18px;
-      height: 18px;
-      background: #fff;
-      clip-path: polygon(0 0, 100% 0, 25% 100%);
-      transform: rotate(-18deg);
-    }
-
     .hero-fixed .hero-safe-band__line-arrow {
-      margin-left: 0.2em;
       font-size: 1.15em;
       line-height: 1;
     }
 
     .hero-fixed .hero-safe-band__assurance {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.7rem;
-      margin-top: 28px;
-      color: #3a2418;
-      font-size: clamp(1.05rem, 2.3vw, 1.55rem);
-      font-weight: 900;
-      line-height: 1.5;
-      text-align: center;
-    }
-
-    .hero-fixed .hero-safe-band__assurance-mark {
-      color: #7eb449;
-      font-size: 1.1em;
-    }
-
-    @media (max-width: 960px) {
-      .hero-fixed .hero-safe-band__flyer {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-fixed .hero-safe-band__ribbon {
-        margin-left: 0;
-      }
+      color: #35433b;
+      font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+      font-weight: 700;
+      line-height: 1.7;
+      text-align: left;
     }
 
     @media (max-width: 767px) {
       .hero-fixed .hero-safe-band {
-        border-radius: 22px;
-        padding: 22px 16px;
+        border-radius: 18px;
       }
 
-      .hero-fixed .hero-safe-band__ribbon,
-      .hero-fixed .hero-safe-band__included-ribbon {
-        width: auto;
-        padding-inline: 28px;
-      }
-
-      .hero-fixed .hero-safe-band__title {
-        margin-top: 22px;
-        text-align: center;
-      }
-
-      .hero-fixed .hero-safe-band__price-area {
-        gap: 8px;
-        justify-content: center;
-        padding-top: 34px;
-      }
-
-      .hero-fixed .hero-safe-band__normal {
-        gap: 4px;
-      }
-
-      .hero-fixed .hero-safe-band__first {
-        left: clamp(96px, 34%, 132px);
-        padding: 7px 13px;
-        font-size: 1.05rem;
-      }
-
-      .hero-fixed .hero-safe-band__special {
-        font-size: clamp(3.5rem, 17vw, 4.6rem);
-      }
-
-      .hero-fixed .hero-safe-band__note-card {
+      .hero-fixed .hero-safe-band__flyer {
         grid-template-columns: 1fr;
-        justify-items: center;
-        text-align: center;
-        gap: 12px;
-        padding: 18px;
       }
 
-      .hero-fixed .hero-safe-band__included {
-        padding: 62px 18px 18px;
+      .hero-fixed .hero-safe-band__left {
+        border-right: 0;
+        padding: 20px 16px 16px;
       }
 
-      .hero-fixed .hero-safe-band__included-list li {
-        grid-template-columns: 34px minmax(0, 1fr);
-        gap: 12px;
-        padding: 13px 0;
-      }
-
-      .hero-fixed .hero-safe-band__check {
-        width: 32px;
-        height: 32px;
+      .hero-fixed .hero-safe-band__ribbon {
         font-size: 1rem;
       }
 
+      .hero-fixed .hero-safe-band__title {
+        margin-top: 8px;
+        font-size: clamp(1.15rem, 5.4vw, 1.4rem);
+      }
+
+      .hero-fixed .hero-safe-band__dash {
+        margin: 14px auto 12px;
+      }
+
+      .hero-fixed .hero-safe-band__normal {
+        font-size: 0.9rem;
+      }
+
+      .hero-fixed .hero-safe-band__price-area {
+        gap: 9px;
+        margin-top: 4px;
+      }
+
+      .hero-fixed .hero-safe-band__first {
+        font-size: 1rem;
+      }
+
+      .hero-fixed .hero-safe-band__special {
+        font-size: clamp(3.35rem, 16.5vw, 4.15rem);
+      }
+
+      .hero-fixed .hero-safe-band__duration {
+        margin-top: 11px;
+        padding: 6px 14px;
+        font-size: 0.9rem;
+      }
+
+      .hero-fixed .hero-safe-band__included {
+        border-top: 1px solid #e3e8df;
+        padding: 10px 12px;
+      }
+
+      .hero-fixed .hero-safe-band__included-summary {
+        min-height: 46px;
+        border: 1px solid #dfe5da;
+        border-radius: 10px;
+        background: #fff;
+        color: #26372e;
+        font-size: 0.92rem;
+        cursor: pointer;
+      }
+
+      .hero-fixed .hero-safe-band__included-toggle:focus-visible + .hero-safe-band__included-summary {
+        outline: 3px solid rgba(75, 141, 61, 0.35);
+        outline-offset: 2px;
+      }
+
+      .hero-fixed .hero-safe-band__included-summary-desktop {
+        display: none;
+      }
+
+      .hero-fixed .hero-safe-band__included-summary-mobile,
+      .hero-fixed .hero-safe-band__included-chevron {
+        display: inline;
+      }
+
+      .hero-fixed .hero-safe-band__included-chevron {
+        color: #4b8d3d;
+        transition: transform 0.2s ease;
+      }
+
+      .hero-fixed .hero-safe-band__included-toggle:checked + .hero-safe-band__included-summary .hero-safe-band__included-chevron {
+        transform: rotate(180deg);
+      }
+
+      .hero-fixed .hero-safe-band__included-list {
+        margin-top: 8px;
+        padding-inline: 8px;
+      }
+
+      .hero-fixed .hero-safe-band__included-toggle:not(:checked) ~ .hero-safe-band__included-list {
+        display: none;
+      }
+
+      .hero-fixed .hero-safe-band__included-list li {
+        grid-template-columns: 24px minmax(0, 1fr);
+        gap: 8px;
+        padding: 9px 0;
+        font-size: 0.9rem;
+      }
+
+      .hero-fixed .hero-safe-band__check {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+      }
+
+      .hero-fixed .hero-safe-band__action {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        border-top: 0;
+        padding: 6px 12px 16px;
+      }
+
       .hero-fixed .hero-safe-band__line {
-        gap: 12px;
-        border-radius: 18px;
-        padding: 0 12px;
+        min-height: 56px;
+        border-radius: 12px;
+        font-size: 1.08rem;
+      }
+
+      .hero-fixed .hero-safe-band__line-bubble {
+        width: 38px;
+        height: 38px;
+        font-size: 0.78rem;
       }
 
       .hero-fixed .hero-safe-band__assurance {
-        flex-wrap: wrap;
+        font-size: 0.84rem;
+        line-height: 1.55;
+        text-align: center;
       }
     }
 
@@ -1721,59 +1633,52 @@
             <section class="hero-safe-band mt-2 md:mt-3" aria-label="初回料金と安心情報">
               <div class="hero-safe-band__flyer">
                 <div class="hero-safe-band__left">
-                  <p class="hero-safe-band__ribbon">
-                    <span class="hero-safe-band__spark" aria-hidden="true">ミ</span>
-                    初回限定のご案内
-                    <span class="hero-safe-band__spark" aria-hidden="true">ミ</span>
-                  </p>
-                  <h2 class="hero-safe-band__title">初回カウンセリング＋全身整体コース</h2>
+                  <p class="hero-safe-band__ribbon">初回のご案内</p>
+                  <h2 class="hero-safe-band__title">初回カウンセリング＋全身整体</h2>
                   <div class="hero-safe-band__dash" aria-hidden="true"></div>
 
-                  <div class="hero-safe-band__price-area" aria-label="初回限定価格">
-                    <div class="hero-safe-band__normal">
-                      <span class="hero-safe-band__normal-label">通常</span>
-                      <span class="hero-safe-band__normal-price">10,000円</span>
-                    </div>
+                  <p class="hero-safe-band__normal">
+                    <span class="hero-safe-band__normal-label">通常</span>
+                    <span class="hero-safe-band__normal-price">10,000円</span>
+                  </p>
+                  <div class="hero-safe-band__price-area" aria-label="初回料金1,980円">
                     <span class="hero-safe-band__first">初回</span>
                     <span class="hero-safe-band__special">1,980<small>円</small></span>
                   </div>
-
-                  <div class="hero-safe-band__note-card">
-                    <span class="hero-safe-band__heart" aria-hidden="true">♥</span>
-                    <p>
-                      <span class="hero-safe-band__note-main">カウンセリング・状態確認込み</span>
-                      <span class="hero-safe-band__note-sub">まずは相談だけでも大丈夫です。</span>
-                    </p>
-                  </div>
+                  <p class="hero-safe-band__duration">
+                    <i data-lucide="clock-3" class="h-4 w-4" aria-hidden="true"></i>
+                    初回は約90分
+                  </p>
                 </div>
 
-                <div class="hero-safe-band__right">
-                  <div class="hero-safe-band__included">
-                    <p class="hero-safe-band__included-ribbon">含まれる内容</p>
+                <div class="hero-safe-band__included">
+                  <input class="hero-safe-band__included-toggle" type="checkbox" id="hero-included-toggle">
+                  <label class="hero-safe-band__included-summary" for="hero-included-toggle">
+                    <span class="hero-safe-band__included-summary-desktop">初回に含まれる内容</span>
+                    <span class="hero-safe-band__included-summary-mobile">初回に含まれる内容を見る</span>
+                    <span class="hero-safe-band__included-chevron" aria-hidden="true">⌄</span>
+                  </label>
                     <ul class="hero-safe-band__included-list">
                       <li><span class="hero-safe-band__check" aria-hidden="true">✓</span><span>カウンセリング</span></li>
-                      <li><span class="hero-safe-band__check" aria-hidden="true">✓</span><span>姿勢・歩き方の確認</span></li>
-                      <li><span class="hero-safe-band__check" aria-hidden="true">✓</span><span>膝に負担がかかる原因の説明</span></li>
+                      <li><span class="hero-safe-band__check" aria-hidden="true">✓</span><span>身体の状態確認</span></li>
+                      <li><span class="hero-safe-band__check" aria-hidden="true">✓</span><span>施術方針の説明</span></li>
                       <li><span class="hero-safe-band__check" aria-hidden="true">✓</span><span>全身整体</span></li>
-                      <li><span class="hero-safe-band__check" aria-hidden="true">✓</span><span>セルフケアのご提案</span></li>
+                      <li><span class="hero-safe-band__check" aria-hidden="true">✓</span><span>運動・セルフケアのご提案</span></li>
                     </ul>
-                  </div>
                 </div>
               </div>
 
-              <div class="hero-safe-band__divider" aria-hidden="true"></div>
+              <div class="hero-safe-band__action">
+                <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="hero-safe-band__line">
+                  <span class="hero-safe-band__line-bubble" aria-hidden="true">LINE</span>
+                  <span>LINEで初回予約する</span>
+                  <span class="hero-safe-band__line-arrow" aria-hidden="true">›</span>
+                </a>
 
-              <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="hero-safe-band__line">
-                <span class="hero-safe-band__line-bubble" aria-hidden="true">LINE</span>
-                <span>LINEで初回予約する</span>
-                <span class="hero-safe-band__line-arrow" aria-hidden="true">›</span>
-              </a>
-
-              <p class="hero-safe-band__assurance">
-                <span class="hero-safe-band__assurance-mark" aria-hidden="true">ミ</span>
-                <span>無理な勧誘はありません。ご相談だけでも大丈夫です。</span>
-                <span class="hero-safe-band__assurance-mark" aria-hidden="true">ミ</span>
-              </p>
+                <p class="hero-safe-band__assurance">
+                  無理な勧誘はありません。<br>相談だけでも大丈夫です。
+                </p>
+              </div>
             </section>
 
           </div>
