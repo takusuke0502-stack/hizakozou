@@ -806,6 +806,29 @@
 .lb-detail-card{min-width:0;border-right:1px solid var(--lb-border);border-bottom:1px solid var(--lb-border);padding:clamp(28px,4vw,42px)}
 .lb-detail-card h3{margin:0 0 12px;color:var(--lb-text);font-size:1.1rem;font-weight:900;line-height:1.55}
 .lb-detail-card p{margin:0;color:var(--lb-muted);font-size:.94rem;font-weight:700;line-height:1.85}
+.lb-home-guide{padding-block:64px}
+.lb-home-guide>.container{max-width:1080px}
+.lb-home-guide__heading{max-width:760px;margin:0 auto clamp(38px,5vw,52px);text-align:center}
+.lb-home-guide__title{margin:0;color:var(--lb-text);font-size:clamp(1.7rem,3.4vw,2.55rem);font-weight:900;line-height:1.45;letter-spacing:0}
+.lb-home-guide__mobile-break{display:none}
+.lb-home-guide__lead{margin:16px 0 0;color:var(--lb-muted);font-size:1rem;font-weight:700;line-height:1.85}
+.lb-home-guide__groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--lb-border);border-bottom:1px solid var(--lb-border)}
+.lb-home-guide__group{min-width:0;padding:28px clamp(28px,4vw,42px) 24px}
+.lb-home-guide__group+.lb-home-guide__group{border-left:1px solid var(--lb-border)}
+.lb-home-guide__group-heading{display:flex;align-items:center;gap:14px;margin:0 0 18px;color:var(--lb-green);font-size:clamp(1.15rem,2vw,1.4rem);font-weight:900;line-height:1.45}
+.lb-home-guide__group--caution .lb-home-guide__group-heading{color:#c85f12}
+.lb-home-guide__heading-icon{display:grid;place-items:center;width:44px;height:44px;border:2px solid currentColor;border-radius:50%;flex:0 0 auto}
+.lb-home-guide__heading-icon svg{width:23px;height:23px;stroke-width:2}
+.lb-home-guide__item{display:grid;grid-template-columns:56px minmax(0,1fr);gap:18px;align-items:center;padding:18px 0}
+.lb-home-guide__item+.lb-home-guide__item{border-top:1px solid var(--lb-border)}
+.lb-home-guide__item-icon{display:grid;place-items:center;color:var(--lb-green)}
+.lb-home-guide__group--caution .lb-home-guide__item-icon{color:#c85f12}
+.lb-home-guide__item-icon svg{width:40px;height:40px;stroke-width:1.7}
+.lb-home-guide__item h4{margin:0;color:var(--lb-text);font-size:1.08rem;font-weight:900;line-height:1.55}
+.lb-home-guide__item p{margin:8px 0 0;color:var(--lb-muted);font-size:.96rem;font-weight:700;line-height:1.75}
+.lb-home-guide__footer{display:flex;align-items:center;justify-content:center;gap:10px;min-height:76px;margin-top:34px;border:1px solid #d3ddce;border-radius:4px;background:#fbfcf8;padding:18px 24px;color:var(--lb-green);font-size:.95rem;font-weight:900;line-height:1.7;text-align:center;text-decoration:none;transition:border-color .2s ease,background .2s ease}
+.lb-home-guide__footer:hover,.lb-home-guide__footer:focus-visible{border-color:#9eb497;background:var(--lb-green-soft);outline:3px solid rgba(53,107,47,.18);outline-offset:3px}
+.lb-home-guide__footer svg{width:20px;height:20px;flex:0 0 auto}
 .lb-pain-flow{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(32px,4vw,54px);align-items:start;margin-top:8px}
 .lb-pain-flow::before{content:"";position:absolute;top:27px;left:7%;right:7%;height:1px;background:#b7c7b1}
 .lb-pain-flow__step{position:relative;z-index:1;text-align:center}
@@ -918,6 +941,21 @@
   .lb-detail-card{border-right:0;padding:26px 4px}
   .lb-detail-card h3{font-size:1.04rem}
   .lb-detail-card p{font-size:.93rem}
+  .lb-home-guide__heading{margin-bottom:30px;text-align:left}
+  .lb-home-guide__title{font-size:clamp(1.5rem,7vw,1.85rem);line-height:1.5}
+  .lb-home-guide__mobile-break{display:block}
+  .lb-home-guide__lead{margin-top:12px;font-size:.95rem;line-height:1.8}
+  .lb-home-guide__groups{grid-template-columns:1fr}
+  .lb-home-guide__group{padding:24px 4px}
+  .lb-home-guide__group+.lb-home-guide__group{border-top:1px solid var(--lb-border);border-left:0}
+  .lb-home-guide__group-heading{gap:12px;margin-bottom:8px;font-size:1.15rem}
+  .lb-home-guide__heading-icon{width:38px;height:38px}
+  .lb-home-guide__heading-icon svg{width:20px;height:20px}
+  .lb-home-guide__item{grid-template-columns:42px minmax(0,1fr);gap:13px;padding:18px 0}
+  .lb-home-guide__item-icon svg{width:30px;height:30px}
+  .lb-home-guide__item h4{font-size:1rem}
+  .lb-home-guide__item p{margin-top:6px;font-size:.9rem;line-height:1.7}
+  .lb-home-guide__footer{justify-content:space-between;min-height:0;margin-top:22px;padding:15px 16px;font-size:.9rem;line-height:1.65;text-align:left}
   .lb-pain-flow{grid-template-columns:1fr;gap:0;margin-left:5px;padding-left:46px}
   .lb-pain-flow::before{top:26px;bottom:26px;left:27px;right:auto;width:1px;height:auto}
   .lb-pain-flow__step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;min-height:92px;text-align:left}
@@ -1510,17 +1548,37 @@
         </div>
       </section>
 
-      <section class="lb-education-section lb-education-section--white" aria-labelledby="lb-selfcare-title">
+      <section class="lb-education-section lb-education-section--white lb-home-guide" aria-labelledby="lb-selfcare-title">
         <div class="container max-w-4xl">
-          <h2 id="lb-selfcare-title" class="lb-section-title">自宅でできる対策</h2>
-          <p class="lb-section-lead">自宅でできることは、痛みの出方や身体の状態によって変わります。ここでは、無理なく取り入れやすい考え方を紹介します。</p>
-          <div class="lb-detail-grid">
-            <article class="lb-detail-card"><div class="lb-factor__top"><span class="lb-factor__number">01</span><span class="lb-factor__icon" aria-hidden="true"><i data-lucide="timer-reset"></i></span></div><h3>長時間同じ姿勢を続けない</h3><p>座りっぱなし、立ちっぱなしがつらさにつながる場合があります。無理のない範囲で姿勢を変える時間を作りましょう。</p></article>
-            <article class="lb-detail-card"><div class="lb-factor__top"><span class="lb-factor__number">02</span><span class="lb-factor__icon" aria-hidden="true"><i data-lucide="footprints"></i></span></div><h3>痛みが増えない範囲で歩く</h3><p>長く歩くのが不安な場合は、短い距離から始めます。症状が強くなる場合は距離やペースを調整してください。</p></article>
-            <article class="lb-detail-card"><div class="lb-factor__top"><span class="lb-factor__number">03</span><span class="lb-factor__icon" aria-hidden="true"><i data-lucide="move-horizontal"></i></span></div><h3>無理に伸ばしたり反動をつけたりしない</h3><p>ストレッチを行う場合も、強く伸ばせばよいわけではありません。違和感が強い場合は中止してください。</p></article>
-            <article class="lb-detail-card"><div class="lb-factor__top"><span class="lb-factor__number">04</span><span class="lb-factor__icon" aria-hidden="true"><i data-lucide="stethoscope"></i></span></div><h3>運動制限がある場合は医師の指示を優先</h3><p>医療機関で運動制限や注意点を伝えられている場合は、その内容を優先してください。</p></article>
-            <article class="lb-detail-card"><div class="lb-factor__top"><span class="lb-factor__number">05</span><span class="lb-factor__icon" aria-hidden="true"><i data-lucide="clipboard-check"></i></span></div><h3>自分に合う内容を確認する</h3><p>痛みの出方は人によって異なります。整体院ひざこぞうでは、身体の状態を確認したうえで、できる範囲のセルフケアをお伝えします。</p></article>
+          <header class="lb-home-guide__heading">
+            <h2 id="lb-selfcare-title" class="lb-home-guide__title">自宅でできることと、<br class="lb-home-guide__mobile-break">注意したいこと</h2>
+            <p class="lb-home-guide__lead">その日の症状に合わせ、できる範囲から始めてください。</p>
+          </header>
+          <div class="lb-home-guide__groups">
+            <section class="lb-home-guide__group" aria-labelledby="lb-home-do-title">
+              <h3 id="lb-home-do-title" class="lb-home-guide__group-heading"><span class="lb-home-guide__heading-icon" aria-hidden="true"><i data-lucide="circle-check"></i></span>まずできること</h3>
+              <div class="lb-home-guide__item">
+                <span class="lb-home-guide__item-icon" aria-hidden="true"><i data-lucide="armchair"></i></span>
+                <div><h4>姿勢をときどき変える</h4><p>同じ姿勢が続くと、負担がかかりやすくなります。</p></div>
+              </div>
+              <div class="lb-home-guide__item">
+                <span class="lb-home-guide__item-icon" aria-hidden="true"><i data-lucide="footprints"></i></span>
+                <div><h4>歩けそうな日は短い距離から</h4><p>体調に合わせて、無理のないペースで始めましょう。</p></div>
+              </div>
+            </section>
+            <section class="lb-home-guide__group lb-home-guide__group--caution" aria-labelledby="lb-home-caution-title">
+              <h3 id="lb-home-caution-title" class="lb-home-guide__group-heading"><span class="lb-home-guide__heading-icon" aria-hidden="true"><i data-lucide="circle-alert"></i></span>無理をしないために</h3>
+              <div class="lb-home-guide__item">
+                <span class="lb-home-guide__item-icon" aria-hidden="true"><i data-lucide="move-horizontal"></i></span>
+                <div><h4>強く伸ばしたり、反動をつけたりしない</h4><p>筋肉や関節に余計な負担がかかるおそれがあります。</p></div>
+              </div>
+              <div class="lb-home-guide__item">
+                <span class="lb-home-guide__item-icon" aria-hidden="true"><i data-lucide="stethoscope"></i></span>
+                <div><h4>運動制限がある場合は医師の指示を優先</h4><p>自己判断で行わず、医師の指示に従いましょう。</p></div>
+              </div>
+            </section>
           </div>
+          <a class="lb-home-guide__footer" href="../#contact"><span>何をすると症状が増えるかは人によって異なります。自分に合う方法が分からない場合はご相談ください</span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
         </div>
       </section>
     </div>

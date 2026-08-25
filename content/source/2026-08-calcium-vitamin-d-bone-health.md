@@ -1,8 +1,8 @@
 ---
 title: 骨の健康を考える食事｜カルシウムとビタミンDの基本
 slug: calcium-vitamin-d-bone-health
-date: 2026-08-29
-updatedDate: 2026-08-29
+date: 2026-08-25
+updatedDate: 2026-08-25
 description: 骨の健康が気になる方へ。カルシウムだけに偏らず、ビタミンD、食事全体、運動、骨密度検査を合わせて考える理由を説明します。
 category: 食事・栄養
 region: 柏市
@@ -12,12 +12,12 @@ heroImage: /image/blog/calcium-vitamin-d-bone-health/calcium-vitamin-d-bone-heal
 heroAlt: 小魚や乳製品など骨の健康を考える食材を確認する高齢女性のイラスト
 author: 川上卓哉
 reviewer: 川上卓哉
-reviewedDate: 2026-08-29
+reviewedDate: 2026-08-25
 relatedSlugs: exercise-therapy-first-step,morning-low-back-stiffness,knee-osteoarthritis-daily-movement
 searchIntent: 骨の健康のためにカルシウムとビタミンDを食事でどう考えるか知りたい
 layout: readable-v3
 referencePreset: bone-nutrition
-draft: true
+draft: false
 ---
 
 骨のために牛乳を飲んでいる。カルシウムのサプリも気になる。でも、どのくらい取ればよいのか、ビタミンDも必要なのか分からない。そんな疑問を持つ方は少なくありません。
@@ -31,6 +31,12 @@ draft: true
 食物アレルギー、乳糖不耐症、腎臓病などがある場合は選び方が変わります。個別の量は医師や管理栄養士へご相談ください。
 
 ![カルシウムとビタミンDを含む食品を偏りなく確認するイラスト](/image/blog/calcium-vitamin-d-bone-health/calcium-vitamin-d-bone-health-foods-1200.webp "特定の食品だけに頼らず、普段食べられるものを組み合わせます。")
+
+## 一食で全部そろえなくて大丈夫です
+
+毎回の食事で、すべての栄養をそろえようとすると続けにくくなります。朝はヨーグルト、昼は豆腐、夕食は魚というように、普段食べられるものを一日の中で組み合わせる考え方もあります。
+
+食欲がない日や量を食べにくい日は、無理に品数を増やす必要はありません。食事量の減少が続く、体重が落ちてきたという場合は、栄養の不足だけでなく体調の確認も必要です。かかりつけの医師へ相談してください。
 
 ## ビタミンDはカルシウムの吸収に関わります
 

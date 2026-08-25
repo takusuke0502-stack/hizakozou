@@ -49,3 +49,60 @@ Passed. No P0, P1, or P2 visual issues remain in the unified troubles sections.
 ## Result
 
 Final result: passed. No P0, P1, or P2 issues were found in the redesigned education sections.
+
+---
+
+# Design QA: Lower Back Home Guide
+
+## Comparison
+
+- Source visual truth: `C:\Users\takus\AppData\Local\Temp\codex-clipboard-967f13b8-db2e-4aa6-a5d6-e883bcd1c351.png`
+- Implementation route: `http://127.0.0.1:8765/symptoms/lower-back-pain.html`
+- Final desktop screenshot: `C:\Users\takus\AppData\Local\Temp\lower-back-desktop-section-final-3.png`
+- Final mobile screenshot: `C:\Users\takus\AppData\Local\Temp\lower-back-mobile-section-final-3.png`
+- Final side-by-side comparison: `C:\Users\takus\AppData\Local\Temp\lower-back-design-comparison-final.png`
+- Desktop viewport: 1208 × 776 CSS px at device density 1.
+- Source pixels: 1208 × 776. Implementation component pixels: 1193 × 735 because the browser scrollbar occupies 15 px and the implemented section is shorter than the source canvas. It was normalized to 1208 × 776 with white padding only; content was not stretched.
+- Mobile viewport: 390 × 844 CSS px at device density 1. The content capture is 375 × 1122 px after excluding the browser scrollbar.
+- State: default/resting state, with the consultation link visible and enabled.
+
+## Full-view Comparison Evidence
+
+- The final comparison shows the same hierarchy as the source: centered title and lead, green action column, orange caution column, dividing rules, and a pale consultation strip.
+- Desktop content width, two-column balance, vertical rhythm, and footer placement now closely follow the source while retaining the site's existing font and color tokens.
+- At 390 px the two columns stack in reading order, the title breaks at the intended phrase boundary, and there is no horizontal overflow.
+
+## Focused Region Evidence
+
+- A separate focused crop was not required because the entire source is one component and all headings, body copy, icons, rules, and the footer CTA remain legible at the native 1208 × 776 comparison size.
+- The final mobile component crop was reviewed separately to verify wrapping, spacing, CTA visibility, and responsive stacking.
+
+## Comparison History
+
+### Iteration 1
+
+- [P2] The first implementation used the existing 864 px content width, making the two columns and footer visibly narrower than the source.
+- [P2] The first title and body typography were smaller, and the footer fell below the 776 px comparison frame.
+- Fixes: widened only this component to a 1080 px container, increased the title/body/icon scale, shortened explanatory copy, and tuned group/item padding so the footer remains part of the same visual unit.
+- Post-fix evidence: `C:\Users\takus\AppData\Local\Temp\lower-back-design-comparison-final.png` shows the corrected proportions and no remaining P0, P1, or P2 mismatch.
+
+## Required Fidelity Surfaces
+
+- Fonts and typography: the site's existing Japanese system font stack is retained; weight, size, line height, and hierarchy now match the source closely. Mobile wrapping is intentional and phrase-safe.
+- Spacing and layout rhythm: desktop uses two balanced columns and mobile uses one column. Borders, section gaps, footer spacing, and outer padding were verified visually.
+- Colors and visual tokens: existing dark green, caution orange, muted body text, white background, and pale green footer treatment are preserved with sufficient contrast.
+- Image quality and asset fidelity: this component contains no photography. Icons come from the existing Lucide library and render sharply at both breakpoints; no placeholder, emoji, CSS drawing, or inline handcrafted SVG was introduced.
+- Copy and content: four concise, medically cautious items replace the longer five-card list. Medical restrictions continue to defer to the physician's instructions.
+
+## Interaction and Runtime Checks
+
+- Consultation link resolves to `../#contact`, is visible, and is enabled.
+- Desktop and mobile layouts have no horizontal overflow.
+- Browser console errors: none.
+- Full automated test suite: passed.
+
+## Follow-up Polish
+
+- [P3] The exact icon metaphors differ slightly from the illustration-style source because the implementation intentionally reuses the site's established Lucide icon set.
+
+final result: passed

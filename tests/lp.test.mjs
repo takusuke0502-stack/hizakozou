@@ -3140,6 +3140,12 @@ test("lower back education redesign follows the requested patient-friendly seque
   assert.equal((section.match(/class="lb-pain-flow__step"/g) ?? []).length, 4, "the pain flow should contain four steps");
   assert.equal((section.match(/class="lb-approach-step"/g) ?? []).length, 3, "the clinic approach should contain three steps");
   assert.equal((section.match(/class="lb-medical-note__item"/g) ?? []).length, 6, "the medical referral note should show six warning signs");
+  assert.match(section, /class="[^"]*\blb-home-guide\b[^"]*"/);
+  assert.match(section, /自宅でできることと、\s*<br[^>]*>\s*注意したいこと/);
+  assert.match(section, /まずできること/);
+  assert.match(section, /無理をしないために/);
+  assert.equal((section.match(/class="lb-home-guide__item"/g) ?? []).length, 4, "the home guide should keep four concise action and caution rows");
+  assert.doesNotMatch(section, /<h3>自分に合う内容を確認する<\/h3>/);
   assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで腰痛について相談する/);
   assert.match(section, /src="\.\.\/image\/イラスト\/腰・神経\/骨盤と腰椎のゆがみタイプ\.webp"/);
   assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
@@ -3158,6 +3164,8 @@ test("lower back education CSS is scoped and switches diagrams to mobile timelin
   assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.lb-factor-grid\{grid-template-columns:1fr/);
   assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.lb-pain-flow\{grid-template-columns:1fr/);
   assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.lb-approach-steps\{grid-template-columns:1fr/);
+  assert.match(styles, /\.lb-home-guide__groups\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.lb-home-guide__groups\{grid-template-columns:1fr/);
   assert.match(styles, /\.lb-consult-cta__link\{[^}]*min-height:44px/);
   assert.doesNotMatch(styles, /body\s*\{|html\s*\{|\.site-header|\.mobile-cta\{/);
 });
@@ -4043,7 +4051,11 @@ test("disc herniation education redesign follows the approved patient-friendly s
   assert.equal((section.match(/class="disc-approach-step"/g) ?? []).length, 3, "the clinic approach should contain three steps");
   assert.equal((section.match(/class="disc-medical-note__item"/g) ?? []).length, 6, "the medical referral note should show six warning signs");
   assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで椎間板ヘルニアについて相談する/);
+  assert.match(section, /srcset="\.\.\/image\/イラスト\/腰・神経\/椎間板ヘルニアによる神経圧迫-480\.webp"/);
+  assert.match(section, /srcset="\.\.\/image\/イラスト\/腰・神経\/椎間板ヘルニアによる神経圧迫-768\.webp"/);
   assert.match(section, /src="\.\.\/image\/イラスト\/腰・神経\/椎間板ヘルニアによる神経圧迫\.webp"/);
+  assert.match(section, /alt="正常な椎間板と腰椎椎間板ヘルニアによる神経圧迫、痛みやしびれが出る範囲を比較した図"/);
+  assert.match(section, /width="1200" height="801"/);
   assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
   assert.doesNotMatch(section, /ヘルニアを引っ込める|神経を元に戻す|インナーマッスル|腹横筋|再稼働|手術回避/);
   assert.doesNotMatch(section, /最初の1〜2ヶ月|週1回程度|frequency__phases|frequency__phase/);
