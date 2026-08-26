@@ -1,8 +1,8 @@
 ---
 title: 足首が動かしにくいと前かがみになる？｜立ち姿勢と首・肩の負担
 slug: ankle-stiffness-forward-posture
-date: 2026-09-01
-updatedDate: 2026-09-01
+date: 2026-08-26
+updatedDate: 2026-08-26
 description: 足首が動かしにくく、立つと前かがみになる方へ。足首だけを原因にせず、膝、股関節、体幹、首・肩まで確認する考え方を説明します。
 category: 足・歩き方
 region: 柏市
@@ -12,12 +12,12 @@ heroImage: /image/blog/ankle-stiffness-forward-posture/ankle-stiffness-forward-p
 heroAlt: 足首の動かしにくさと前かがみの立ち姿勢を気にする女性のイラスト
 author: 川上卓哉
 reviewer: 川上卓哉
-reviewedDate: 2026-09-01
+reviewedDate: 2026-08-26
 relatedSlugs: gluteus-medius-pelvic-stability,lumbricals-knee-low-back-pain-relation,shoulder-stiffness-posture-breathing
 searchIntent: 足首の動かしにくさと前かがみや肩の負担の関係を知りたい
 layout: readable-v3
 referencePreset: ankle-posture
-draft: true
+draft: false
 ---
 
 台所に立っていると、だんだん身体が前へ丸くなる。まっすぐ立とうとすると、ふくらはぎや足首が張り、肩まで力が入る。こうした場面では足元から姿勢を確認します。
@@ -49,6 +49,12 @@ draft: true
 - 足首の腫れ、熱感、痛みがないか
 
 長く立つとつらい場合は、痛みを我慢して時間を延ばさないでください。
+
+## 「硬い」と「動かすのが怖い」は分けて考えます
+
+足首が硬いと感じても、関節そのものの動きが少ないとは限りません。腫れや痛みがあり、無意識に体重を反対側へ逃がしていることもあります。
+
+立ったときだけ動かしにくいのか、座っていても同じなのか。左右で違いがあるのか。感じ方と実際の動作を分けて確認すると、無理なストレッチを避けやすくなります。
 
 ## 座って動く範囲と立ったときの動きは別です
 

@@ -498,16 +498,20 @@ const ARTICLE_REFERENCE_PRESETS = {
   ],
   "ankle-posture": [
     {
-      label: "日本整形外科学会 足の慢性障害",
-      url: "https://www.joa.or.jp/public/sick/condition/chronic_problem_with_foot.html"
+      label: "日本整形外科学会 足関節の症状一覧",
+      url: "https://www.joa.or.jp/public/sick/body/ankle.html"
     },
     {
       label: "日本整形外科学会 肩こり",
       url: "https://www.joa.or.jp/public/sick/condition/stiffed_neck.html"
     },
     {
-      label: "PubMed 腕振りと歩行中の体幹安定性",
-      url: "https://pubmed.ncbi.nlm.nih.gov/25022593/"
+      label: "PubMed 足関節の動きの制限と下肢・骨盤の動作",
+      url: "https://pubmed.ncbi.nlm.nih.gov/29991123/"
+    },
+    {
+      label: "NHS 片脚の腫れや息苦しさがある場合の案内",
+      url: "https://www.nhs.uk/conditions/deep-vein-thrombosis-dvt/"
     }
   ],
   "arm-swing-gait": [
