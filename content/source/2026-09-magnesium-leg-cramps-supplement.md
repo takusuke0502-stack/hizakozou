@@ -1,8 +1,8 @@
 ---
 title: こむら返りとマグネシウム｜サプリを飲む前に知りたいこと
 slug: magnesium-leg-cramps-supplement
-date: 2026-09-03
-updatedDate: 2026-09-03
+date: 2026-08-28
+updatedDate: 2026-08-28
 description: 夜中のこむら返りにマグネシウムを考えている方へ。高齢者での研究結果、サプリの注意点、薬や持病を先に確認する理由を説明します。
 category: 食事・栄養
 region: 柏市
@@ -12,12 +12,12 @@ heroImage: /image/blog/magnesium-leg-cramps-supplement/magnesium-leg-cramps-supp
 heroAlt: こむら返り対策としてマグネシウムのサプリを手に取る前に確認する高齢女性のイラスト
 author: 川上卓哉
 reviewer: 川上卓哉
-reviewedDate: 2026-09-03
+reviewedDate: 2026-08-28
 relatedSlugs: nocturnal-calf-cramps,muscle-cramps-causes-and-relief,lumbar-spinal-stenosis-walking
 searchIntent: こむら返りにマグネシウムサプリが役立つかと注意点を知りたい
 layout: readable-v3
 referencePreset: magnesium-cramps
-draft: true
+draft: false
 ---
 
 夜中に足がつると、マグネシウム不足ではないかと考える方がいます。店頭やインターネットには多くの商品があり、すぐ試したくなるかもしれません。
@@ -43,6 +43,12 @@ Cochraneのレビューでは、高齢者に起こる筋けいれんに対し、
 マグネシウムのサプリや薬で、下痢、腹痛、吐き気が出ることがあります。腎臓の働きが低下している方では、体内にたまりやすくなる可能性もあります。
 
 便秘薬や胃薬にマグネシウムが含まれている場合があります。新しい商品を足す前に、処方薬、市販薬、健康食品をまとめて医師や薬剤師へ見せてください。
+
+## 相談するときは袋や箱も持っていく
+
+「マグネシウムのサプリ」と伝えるだけでは、種類や一回量までは分かりません。商品名、成分量、一日に飲む回数が確認できる袋や箱を持参すると話が早くなります。スマートフォンで表示面を撮っておく方法もあります。
+
+飲み始めた日と、こむら返りやお腹の調子がどう変わったかもメモしておきます。体調に変化があれば、自己判断で量を増やさず相談してください。
 
 ## こむら返りの情報を記録します
 

@@ -582,6 +582,10 @@ const ARTICLE_REFERENCE_PRESETS = {
     {
       label: "厚生労働省 日本人の食事摂取基準（2025年版）",
       url: "https://www.mhlw.go.jp/stf/newpage_44138.html"
+    },
+    {
+      label: "NHS 片脚の腫れや息苦しさがある場合の案内",
+      url: "https://www.nhs.uk/conditions/deep-vein-thrombosis-dvt/"
     }
   ],
   "knee-weight-nutrition": [
