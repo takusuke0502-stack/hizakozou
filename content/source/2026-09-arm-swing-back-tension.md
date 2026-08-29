@@ -1,8 +1,8 @@
 ---
 title: 膝や股関節がつらく腕を振りにくいとき｜歩行と背中の張りを確認
 slug: arm-swing-back-tension
-date: 2026-09-05
-updatedDate: 2026-09-05
+date: 2026-08-29
+updatedDate: 2026-08-29
 description: 膝や股関節がつらく、歩くと腕が振れず背中まで張る方へ。腕振りだけを直さず、歩幅、速度、体幹の動きを確認する理由を説明します。
 category: 足・歩き方
 region: 柏市
@@ -12,12 +12,12 @@ heroImage: /image/blog/arm-swing-back-tension/arm-swing-back-tension-hero-1200.w
 heroAlt: 膝を気にしながら腕を小さく振って歩き背中の張りを感じる女性のイラスト
 author: 川上卓哉
 reviewer: 川上卓哉
-reviewedDate: 2026-09-05
+reviewedDate: 2026-08-29
 relatedSlugs: knee-walking,hip-pain-while-walking,gluteus-medius-pelvic-stability
 searchIntent: 膝や股関節が痛く腕を振りにくいときに背中まで張る理由を知りたい
 layout: readable-v3
 referencePreset: arm-swing-gait
-draft: true
+draft: false
 ---
 
 歩くとき、腕が身体の横で止まっている。意識して振ろうとすると、背中や腰が張る。膝や股関節を気にしているうちに、上半身まで固く感じる方がいます。
@@ -30,7 +30,7 @@ draft: true
 
 研究でも腕の動きと体幹の安定性、歩行速度との関係が調べられています。ただし、健康な人や限られた条件での結果を、そのまま痛みの原因へ当てはめることはできません。
 
-![歩幅、腕振り、背中の張りを無理なく確認するイラスト](/image/blog/arm-swing-back-tension/arm-swing-back-tension-check-1200.webp "腕を大きく振る練習ではなく、普段の歩幅と力みを振り返ります。")
+![歩行中の身体の傾きと立った姿勢の左右差を見比べる女性のイラスト](/image/blog/body-tilt-shoulder-height/body-tilt-shoulder-height-hero-1200.webp "腕振りだけでなく、歩幅や身体の傾きも一緒に確認します。")
 
 ## 無理に大きく振る必要はありません
 
@@ -49,6 +49,12 @@ draft: true
 - 休むと落ち着くか、夜も続くか
 
 痛みを再現するために歩き続ける必要はありません。起きた場面を短く残します。
+
+## 歩き始めと疲れてきた後を分けて見ます
+
+家を出た直後は腕が動いていても、歩く距離が長くなると片側だけ小さくなることがあります。反対に、歩き始めは身体がこわばり、しばらくすると自然に動く方もいます。
+
+「いつも振れていない」と決めず、どのくらい歩いた頃に変わるのかを振り返ります。疲れてきたときに痛みやふらつきが増えるなら、確認のために無理をして歩き続けないでください。
 
 ## 荷物を持つ場面も分けて考えます
 

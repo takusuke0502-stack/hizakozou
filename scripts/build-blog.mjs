@@ -526,6 +526,14 @@ const ARTICLE_REFERENCE_PRESETS = {
     {
       label: "PubMed 腕振りと腰椎・股関節への力",
       url: "https://pubmed.ncbi.nlm.nih.gov/28941955/"
+    },
+    {
+      label: "NHS 心臓発作でみられる胸の症状",
+      url: "https://www.nhs.uk/conditions/heart-attack/symptoms/"
+    },
+    {
+      label: "NHS 背中の痛みで受診を急ぐ目安",
+      url: "https://www.nhs.uk/conditions/back-pain/"
     }
   ],
   "protein-older-adults": [
