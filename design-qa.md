@@ -1,3 +1,81 @@
+# Design QA: MEO予約希望・お問い合わせページ
+
+## Comparison
+
+- Source visual truth: `C:/Users/takus/Downloads/Codex 画像 2026年8月30日 20_00_23.png`
+- Browser-rendered implementation: `C:/Users/takus/Downloads/hizakozou-main/tmp/reservation-desktop-v2.png`
+- Mobile implementation: `C:/Users/takus/Downloads/hizakozou-main/tmp/reservation-mobile-v2.png`
+- Updated mobile hero: `C:/Users/takus/Downloads/hizakozou-main/tmp/reservation-mobile-hero-v3.png`
+- Updated mobile hero reference: `C:/Users/takus/AppData/Local/Temp/codex-clipboard-d5392c58-9186-4dd2-af0b-df0cbac0aaf9.png`
+- Full-view comparison: `C:/Users/takus/Downloads/hizakozou-main/tmp/reservation-qa-full-v2.png`
+- Focused hero comparison: `C:/Users/takus/Downloads/hizakozou-main/tmp/reservation-qa-hero-v2.png`
+- Desktop viewport: 1440 × 1000 CSS px, device scale factor 1
+- Mobile viewport: 390 × 844 CSS px, device scale factor 1
+- Source pixels: 866 × 1815
+- Desktop implementation pixels: 1425 × 2101（スクロールバーを除く全ページ）
+- State: 初期表示、および未入力・返信方法・定休日の入力エラー表示
+
+## Full-view comparison evidence
+
+- ヘッダー、生成り色の2カラムヒーロー、緑を主色とした予約導線、確認事項、安心案内、フッターという情報構造を維持した。
+- モックの外部予約システムカードは、実運用に合わせてページ内フォームへ置き換えた。LINEと電話は補助導線としてフォーム横に配置した。
+- 実際の住所、電話番号、受付時間、定休日、初回時間・初回料金へ置き換えた。
+- モックより全ページが長いのは、予約希望日時と連絡先をページ内で入力できるようにしたための意図的な差分である。
+
+## Focused region comparison evidence
+
+- ヒーローを同じ位置・同じ状態で比較し、左側の見出しと安心材料、右側の施術写真という構成、余白、生成り色と緑のバランスを確認した。
+- モック内の人物写真を既存サイトの実写 `image/clinic-leg-treatment-hp.webp` に置き換え、引き伸ばしや不自然な切り抜きがないことを確認した。
+- 見出しは既存サイトと同じ読みやすいゴシック系フォールバックを使用し、スマホで横方向にはみ出さないことを確認した。
+
+## Findings and comparison history
+
+- [P1 resolved] 初期版はフォームを最初から大きく表示し、モックの「3つの予約方法から選ぶ」構成と異なっていた。
+  - Fix: Web・LINE・電話をモックに近い3段の選択カードへ変更し、Webフォームはボタンを押した後に開く構成へ変更した。
+  - Post-fix evidence: `reservation-qa-full-v2.png` で、モックと実装のページ構成・密度・全体の長さが近づいたことを確認した。
+- [P1 resolved] 初期版のヒーロー写真がスマホで画面の大部分を占めていた。
+  - Fix: PCは写真を高さ360px、スマホは220pxに制限し、スマホでも左右の余白と角丸を残した。
+  - Post-fix evidence: `reservation-mobile-v2.png` で、写真の直後に予約方法の見出しが自然に続き、横方向のはみ出しがないことを確認した。
+- [P1 resolved] スマホ版で案内文と写真が縦に積まれ、参考画像よりヒーローが長く見えていた。
+  - Fix: 680px以下では案内を左、写真を右に置くコンパクトな2カラムへ変更し、安心材料も3列に整理した。
+  - Post-fix evidence: `reservation-mobile-hero-v3.png` で、ヒーロー全体237px、写真196px、水平オーバーフローなしを確認した。
+- [P2 resolved] 電話番号が補足文と同じまとまりに見え、電話導線として目立ちにくかった。
+  - Fix: 「受付 9:00〜19:00」を電話番号下から削除し、番号をPC 2.15rem、スマホ 1.82remへ拡大した。
+  - Post-fix evidence: スマホ表示で電話番号の算出サイズ29.12px、表示文言が電話番号のみであることを確認した。
+- [P2 resolved] メール返信を選択してもメールアドレスなしで進める状態だった。
+  - Fix: メール返信選択時はメールアドレスを必須にし、該当欄へフォーカスするよう修正した。
+  - Post-fix evidence: フォームを送信せず、エラーメッセージとフォーカス移動をブラウザで確認した。
+- [P2 resolved] 定休日の日曜日を希望日に選択できた。
+  - Fix: 日曜日を選んだ場合は送信を止め、月曜から土曜を案内するよう修正した。
+  - Post-fix evidence: 2026-09-06を入力し、フォームが送信されずエラーになることを確認した。
+- [P3] モックのイラスト付き相談枠は実在する代表写真へ変更した。ブランドの信頼性を優先した意図的な差分として許容する。
+
+## Required fidelity surfaces
+
+- Fonts and typography: 既存サイトのゴシック系フォント、太さ、行間を踏襲。PC・スマホとも見出しの折り返しに問題なし。
+- Spacing and layout rhythm: PCは2カラム。スマホのヒーローは参考画像に合わせた2カラム、その他は1カラム。水平オーバーフローなし。フォームの入力間隔とタップ領域を確認済み。
+- Colors and visual tokens: モックの深緑、生成り、白、電話のオレンジをCSS変数へ整理。文字コントラストを維持。
+- Image quality and asset fidelity: 既存のWebP実写を原寸比のまま使用。ヒーローと代表写真に不自然な伸縮なし。
+- Copy and content: 「予約確定」ではなく「予約希望」と明示。返信後に確定することを見出し下、送信ボタン下、確認事項に表示。
+
+## Primary interactions tested
+
+- 未入力送信時の必須エラーと先頭項目へのフォーカス
+- メール返信選択時のメールアドレス必須化
+- 日曜日選択時の定休日エラー
+- LINE・電話リンクのURL・電話番号
+- PC／スマホのレスポンシブ表示
+- ブラウザコンソールエラーなし
+- 外部送信先へテストデータは送信していない
+
+## Remaining findings
+
+- P0/P1/P2なし。外部送信の本番確認は、院へテスト通知を送ってよいタイミングで別途実施する。
+
+final result: passed
+
+---
+
 # Design QA: Symptom Troubles Check Unification
 
 ## Comparison
