@@ -1,8 +1,8 @@
 ---
 title: 膝の痛みと体重管理｜食事を減らしすぎないための考え方
 slug: knee-pain-weight-meals
-date: 2026-09-08
-updatedDate: 2026-09-08
+date: 2026-09-01
+updatedDate: 2026-09-01
 description: 膝の痛みで減量を考えている方へ。体形を責めず、急な食事制限や筋力低下を避けながら、食事と活動量を相談する考え方を説明します。
 category: 食事・栄養
 region: 柏市
@@ -12,12 +12,12 @@ heroImage: /image/blog/knee-pain-weight-meals/knee-pain-weight-meals-hero-1200.w
 heroAlt: 膝の痛みがあり食事と体重の記録を無理なく見直す高齢女性のイラスト
 author: 川上卓哉
 reviewer: 川上卓哉
-reviewedDate: 2026-09-08
+reviewedDate: 2026-09-01
 relatedSlugs: knee-osteoarthritis-daily-movement,knee-walking,exercise-therapy-first-step
 searchIntent: 膝が痛いときに食事を減らしすぎず体重管理する方法を知りたい
 layout: readable-v3
 referencePreset: knee-weight-nutrition
-draft: true
+draft: false
 ---
 
 膝が痛いと「体重を落としてください」と言われることがあります。必要性は分かっていても、痛くて歩けないのにどう減らせばよいのか。食事を抜くしかないのかと悩む方もいます。

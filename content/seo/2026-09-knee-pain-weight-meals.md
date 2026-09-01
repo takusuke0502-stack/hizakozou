@@ -1,10 +1,10 @@
 # 膝の痛みと体重管理｜食事を減らしすぎないための考え方
 - slug: knee-pain-weight-meals
-- date: 2026-09-08
-- updated: 2026-09-08
+- date: 2026-09-01
+- updated: 2026-09-01
 - category: food-nutrition
 - region: 柏市
-- status: draft
+- status: publish
 - description: 膝の痛みで減量を考えている方へ。体形を責めず、急な食事制限や筋力低下を避けながら、食事と活動量を相談する考え方を説明します。
 - tags: 膝の痛み / 体重管理 / 食事制限 / 変形性膝関節症 / 低栄養
 - symptoms: 変形性膝関節症 / 膝の前側の痛み
