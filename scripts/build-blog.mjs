@@ -340,6 +340,20 @@ const ARTICLE_REFERENCE_PRESETS = {
       url: "https://www.mayoclinic.org/diseases-conditions/back-pain/symptoms-causes/syc-20369906"
     }
   ],
+  "low-back-sleeping-position": [
+    {
+      label: "日本整形外科学会 腰痛",
+      url: "https://www.joa.or.jp/public/sick/condition/lumbago.html"
+    },
+    {
+      label: "Mayo Clinic 腰への負担を減らす寝姿勢",
+      url: "https://www.mayoclinic.org/diseases-conditions/back-pain/in-depth/sleeping-positions/art-20546852"
+    },
+    {
+      label: "Dudley Group NHS 急性腰痛と睡眠姿勢",
+      url: "https://www.dgft.nhs.uk/pil/acute-low-back-pain/"
+    }
+  ],
   "sacroiliac-joint": [
     {
       label: "Tyneside Integrated Musculoskeletal Services Sacroiliac joint pain",
