@@ -3318,12 +3318,12 @@ test("scoliosis education redesign preserves the existing page boundaries", () =
   assert.ok(flowStart > redesignStart, "the existing treatment flow should remain after the redesigned content");
   assert.equal(
     sha256(scoliosisHtml.slice(bodyStart, redesignStart)),
-    "c083c2025d628c3129429621b04dcf2091051e03ca5ab2d05b558e5f26276064",
+    "ccd8e28a832e78c6fbdc7c286aa599f6029a958ca609022382619afca20a4898",
     "header, hero, and unified troubles markup must remain unchanged"
   );
   assert.equal(
     sha256(scoliosisHtml.slice(flowStart)),
-    "34d3a0d96ab3917640e98bd518ffa7228f75f0e01536ba6b1863810ebfd9857d",
+    "1d616519304c46c3d722c0d85e39cc5631f4e88b80ba20686d56550ef49e20da",
     "treatment flow onward must match the approved trust-and-safety baseline with the updated first-visit pricing and director message"
   );
 });
@@ -3335,11 +3335,10 @@ test("scoliosis education follows the approved patient-friendly sequence", () =>
     "負担の偏りにつながりやすい4つの要因",
     "痛みや張りが起きるまでの流れ",
     "なぜ一部をほぐしても戻ることがあるのか？",
-    "このような症状がある場合は、まず医療機関へご相談ください",
     "当院では背骨の形だけでなく、全身の動きを確認します",
     "整体院ひざこぞうの側弯症へのアプローチ",
-    "自分の身体の左右差をどう考えればよいか分からない方へ",
-    "通院頻度について"
+    "通院頻度について",
+    "自宅でできることと、注意したいこと"
   ];
 
   assert.ok(section, "the scoped scoliosis education block should exist");
@@ -3354,8 +3353,9 @@ test("scoliosis education follows the approved patient-friendly sequence", () =>
   assert.equal((section.match(/class="scoliosis-factor"/g) ?? []).length, 4);
   assert.equal((section.match(/class="scoliosis-symptom-flow__step"/g) ?? []).length, 4);
   assert.equal((section.match(/class="scoliosis-approach-step"/g) ?? []).length, 3);
-  assert.equal((section.match(/class="scoliosis-medical-note__item"/g) ?? []).length, 6);
-  assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで側弯症について相談する/);
+  assert.equal((section.match(/class="scoliosis-home-guide__group\b/g) ?? []).length, 2);
+  assert.equal((section.match(/class="scoliosis-home-guide__list"/g) ?? []).length, 2);
+  assert.doesNotMatch(section, /LINEで側弯症について相談する/);
   assert.match(section, /src="\.\.\/image\/イラスト\/腰・神経\/脊柱側弯の姿勢比較\.webp"/);
   assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
   assert.doesNotMatch(section, /真っすぐにする|矯正|必ず改善|完治|根本治療|インナーマッスル|再稼働|頑張りすぎている筋肉/);
@@ -3373,7 +3373,8 @@ test("scoliosis education CSS is scoped and responsive", () => {
   assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.scoliosis-factor-grid\{grid-template-columns:1fr/);
   assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.scoliosis-symptom-flow\{grid-template-columns:1fr/);
   assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.scoliosis-approach-steps\{grid-template-columns:1fr/);
-  assert.match(styles, /\.scoliosis-consult-cta__link\{[^}]*min-height:44px/);
+  assert.match(styles, /\.scoliosis-home-guide__columns\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(styles, /@media\(max-width:767px\)\{[\s\S]*\.scoliosis-home-guide__columns\{grid-template-columns:1fr/);
   assert.doesNotMatch(styles, /body\s*\{|html\s*\{|\.site-header|\.mobile-cta\{/);
 });
 
