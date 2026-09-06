@@ -2075,9 +2075,22 @@ function upsertSymptomPageToc(html) {
       id: match[1],
       text: match[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim()
     }));
-  const preferredSuffixes = ["cause-title", "factors-title", "medical-title", "assessment-title", "approach-title"];
-  const items = preferredSuffixes
-    .map((suffix) => headings.find((heading) => heading.id.endsWith(suffix)))
+  const selectedHeadings = [
+    headings.find((heading) => heading.id.endsWith("cause-title")),
+    headings.find((heading) => heading.id.endsWith("factors-title")),
+    headings.find((heading) => heading.id.endsWith("medical-title"))
+      || headings.find((heading) => heading.id.endsWith("trust-title")),
+    headings.find((heading) => heading.id.endsWith("assessment-title")),
+    headings.find((heading) => heading.id.endsWith("approach-title"))
+  ];
+  const items = selectedHeadings
+    .map((heading) => {
+      if (!heading) return null;
+      if (heading.id.endsWith("trust-title")) {
+        return { ...heading, text: "医療機関への相談を優先したい症状" };
+      }
+      return heading;
+    })
     .filter(Boolean);
   if (items.length < 5) return nextHtml;
 

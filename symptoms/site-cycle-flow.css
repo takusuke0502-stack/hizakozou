@@ -116,3 +116,291 @@
     font-size: .78rem;
   }
 }
+
+/* DESIGN_REFRESH_2026_START */
+:root {
+  --symptom-ink: #24323a;
+  --symptom-muted: #596a72;
+  --symptom-blue: #1d4ed8;
+  --symptom-blue-soft: #eef4ff;
+  --symptom-green: #1f674f;
+  --symptom-green-soft: #eff7f1;
+  --symptom-red: #b42318;
+  --symptom-red-soft: #fff1f0;
+  --symptom-orange: #c66b35;
+  --symptom-orange-soft: #fff3e8;
+}
+
+/* Choice links stay scannable, but lose the heavy card treatment. */
+.frontknee-factor {
+  border-color: #c6d8cc;
+  border-radius: 8px;
+  background: var(--symptom-green-soft);
+  box-shadow: none;
+}
+
+.frontknee-factor:hover,
+.frontknee-factor:focus-visible {
+  border-color: var(--symptom-green);
+  background: #e5f2e9;
+  box-shadow: 0 5px 14px rgba(31, 103, 79, .09);
+}
+
+.frontknee-factor__number {
+  border-radius: 8px;
+  background: var(--symptom-green);
+}
+
+.frontknee-factor__cta {
+  border-radius: 5px;
+  background: var(--symptom-orange);
+}
+
+.frontknee-section-title::after,
+.symptom-refresh-section__title::after {
+  background: var(--symptom-blue);
+}
+
+.frontknee-approach-step__number,
+.frontknee-approach-step__label {
+  color: var(--symptom-green);
+}
+
+.frontknee-approach-step__icon {
+  border-color: var(--symptom-green);
+  color: var(--symptom-green);
+}
+
+.frontknee-consult-cta {
+  border-color: #f0c6a5;
+  background: var(--symptom-orange-soft);
+}
+
+.frontknee-consult-cta h2 {
+  color: #8d451f;
+}
+
+.frontknee-consult-cta__link {
+  background: var(--symptom-orange);
+}
+
+.frontknee-consult-cta__link:hover,
+.frontknee-consult-cta__link:focus-visible {
+  background: #a95426;
+}
+
+.frontknee-medical-note {
+  border-color: #f0c7c2;
+  border-left: 4px solid var(--symptom-red);
+  background: var(--symptom-red-soft);
+}
+
+.frontknee-medical-note__icon,
+.frontknee-medical-note__item::before {
+  border-color: var(--symptom-red);
+  color: var(--symptom-red);
+}
+
+.frontknee-medical-note__item::before {
+  background: var(--symptom-red);
+}
+
+.symptom-refresh-section__title,
+.symptom-refresh-director-message h2,
+.symptom-trust__heading h2 {
+  color: var(--symptom-ink);
+}
+
+.symptom-refresh-first-view__eyebrow,
+.symptom-refresh-director-message__label,
+.symptom-trust__eyebrow,
+.symptom-trust__review-label {
+  color: var(--symptom-blue);
+}
+
+.symptom-refresh-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: clamp(24px, 4vw, 36px);
+  border: 0;
+}
+
+.symptom-refresh-detail-card {
+  display: grid;
+  grid-template-columns: minmax(150px, .38fr) minmax(0, 1fr);
+  column-gap: 24px;
+  align-items: start;
+  border: 0;
+  border-top: 1px solid #d8e2e2;
+  padding: 20px 4px;
+  background: transparent;
+}
+
+.symptom-refresh-detail-card:last-child {
+  border-bottom: 1px solid #d8e2e2;
+}
+
+.symptom-refresh-detail-card h3 {
+  margin: 0;
+  color: var(--symptom-green);
+  font-size: 1rem;
+}
+
+.symptom-refresh-detail-card p {
+  margin: 0;
+  color: var(--symptom-muted);
+  font-size: .92rem;
+}
+
+.symptom-refresh-detail-card p + p {
+  margin-top: 6px;
+}
+
+.symptom-refresh-detail-card a {
+  color: var(--symptom-blue);
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.symptom-refresh-detail-card a:hover,
+.symptom-refresh-detail-card a:focus-visible {
+  color: #153da6;
+}
+
+.symptom-trust__level {
+  border-top: 3px solid var(--symptom-green);
+}
+
+.symptom-trust__level--urgent {
+  border-top-color: var(--symptom-red);
+  background: var(--symptom-red-soft);
+}
+
+.symptom-trust__level--urgent .symptom-trust__level-icon,
+.symptom-trust__level--urgent h3 {
+  border-color: var(--symptom-red);
+  color: var(--symptom-red);
+}
+
+.symptom-trust__level--prompt {
+  border-top-color: var(--symptom-blue);
+  background: var(--symptom-blue-soft);
+}
+
+.symptom-trust__level--prompt .symptom-trust__level-icon,
+.symptom-trust__level--prompt h3 {
+  border-color: var(--symptom-blue);
+  color: var(--symptom-blue);
+}
+
+.symptom-trust__level--consult {
+  border-top-color: var(--symptom-green);
+  background: var(--symptom-green-soft);
+}
+
+.symptom-trust__level--consult .symptom-trust__level-icon,
+.symptom-trust__level--consult h3 {
+  border-color: var(--symptom-green);
+  color: var(--symptom-green);
+}
+
+.related-symptoms__eyebrow,
+.related-symptoms__title {
+  color: var(--symptom-green);
+}
+
+.related-symptoms__grid,
+.related-articles__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid #d8e2e2;
+}
+
+.related-symptom-card,
+.related-article-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 18px;
+  min-height: 0;
+  border: 0;
+  border-bottom: 1px solid #d8e2e2;
+  border-radius: 0;
+  padding: 17px 4px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.related-symptom-card:hover,
+.related-symptom-card:focus-visible,
+.related-article-card:hover,
+.related-article-card:focus-visible {
+  transform: none;
+  background: #f7faf9;
+  box-shadow: none;
+  outline: 3px solid rgba(31, 103, 79, .14);
+  outline-offset: 2px;
+}
+
+.related-symptom-card__label,
+.related-article-card__title {
+  grid-column: 1;
+  color: var(--symptom-green);
+}
+
+.related-symptom-card__description,
+.related-article-card__desc {
+  grid-column: 1;
+  color: var(--symptom-muted);
+}
+
+.related-symptom-card__arrow {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  position: static;
+  transform: none;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  color: var(--symptom-green);
+}
+
+.related-symptom-card:hover .related-symptom-card__arrow,
+.related-symptom-card:focus-visible .related-symptom-card__arrow {
+  background: transparent;
+  border: 0;
+  color: var(--symptom-green);
+  transform: translateX(2px);
+}
+
+.related-article-card__meta,
+.related-article-card__link {
+  grid-column: 1 / -1;
+}
+
+.related-article-card__pill {
+  border-radius: 4px;
+  background: var(--symptom-blue-soft);
+  color: var(--symptom-blue);
+}
+
+.related-article-card__link {
+  color: var(--symptom-blue);
+}
+
+@media (max-width: 767px) {
+  .symptom-refresh-detail-card {
+    grid-template-columns: 1fr;
+    row-gap: 6px;
+    padding: 16px 2px;
+  }
+
+  .related-symptom-card,
+  .related-article-card {
+    padding: 15px 2px;
+  }
+}
+/* DESIGN_REFRESH_2026_END */
