@@ -1,0 +1,190 @@
+/* Article interiors only, shared by all generated column articles. */
+/* The reference-inspired reading design is shared by all generated column articles. */
+.article-page {
+  --editorial-paper: #f7f5ef;
+  --editorial-ink: #243c35;
+  --editorial-rule: #d9ded5;
+  --readable-blue: #315f66;
+  --readable-blue-soft: #edf3f2;
+  background: var(--editorial-paper);
+  color: #394a43;
+}
+/* Taisho-inspired reading rhythm, adapted to the clinic's own content and assets. */
+.article-page.article-page { background: #f7f7f7; color: #333; --editorial-ink: #153a5e; --readable-blue: #367ba4; font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", Meiryo, sans-serif; }
+.article-page.article-page .article-hero-wrap { background: #f7f7f7; border: 0; padding-bottom: 0; }
+.article-page.article-page .article-card { max-width: 688px; padding: 24px; background: #fff; }
+.article-page.article-page .article-card .article-card__body { padding: 0 0 24px; }
+.article-page.article-page .article-card h1 { max-width: none; margin: 12px 0 20px; padding: 20px; background: #f0f2f4; color: #153a5e; font-size: 28px; line-height: 1.5; font-weight: 700; letter-spacing: 0; }
+.article-page.article-page .article-card .article-lead { color: #555; font-size: 16px; line-height: 1.8; }
+.article-page.article-page .article-card .article-card__hero { border-radius: 0; }
+.article-page.article-page .eyebrow { color: #467c9d; }
+.article-page.article-page .article-main { background: #f7f7f7; border: 0; padding: 0; }
+.article-page.article-page .article-layout { display: block; max-width: 688px; padding: 0; margin-inline: auto; }
+.article-page.article-page .article-content { width: 100%; max-width: none; padding: 24px; background: #fff; border: 0; border-radius: 0; }
+.article-page.article-page .article-content p, .article-page.article-page .article-content li { font-size: 16px; line-height: 1.8; letter-spacing: 0; color: #333; }
+.article-page.article-page .article-content p { margin: 0 0 24px; }
+.article-page.article-page .article-content .article-readable-lead { padding: 0; margin-bottom: 36px; border: 0; }
+.article-page.article-page .article-content .article-readable-overview { padding: 0; margin-bottom: 36px; border: 0; border-radius: 0; background: transparent; }
+.article-page.article-page .article-readable-overview__main { padding: 0; }
+.article-page.article-page .article-readable-overview h2 { color: #333; font-size: 20px; }
+.article-page.article-page .article-readable-overview__main li { border: 0; padding-block: 5px; font-weight: 400; }
+.article-page.article-page .article-readable-overview__main li::before { background: #6eb4db; }
+.article-page.article-page .article-content .article-readable-overview__medical { padding: 20px 0 0; margin-top: 20px; border: 0; border-top: 1px solid #ddd; background: transparent; }
+.article-page.article-page .article-readable-overview__medical h3 { color: #333; font-size: 16px; text-decoration: underline; }
+.article-page.article-page .article-readable-overview__medical li::before { background: #666; }
+.article-page.article-page .article-content .article-section { margin: 58px 0 0; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.article-page.article-page .article-content .article-section > h2 { display: block; padding: 9px 15px; margin: 0 0 18px; border: 0; border-radius: 6px; background: #6eb4db; color: #fff; font-family: inherit; font-size: 24px; font-weight: 700; line-height: 1.4; letter-spacing: 0; }
+.article-page.article-page .article-content .article-section > h2::before, .article-page.article-page .article-content .article-section > h2::after { content: none; display: none; }
+.article-page.article-page .article-content .article-section h3 { padding: 0; margin: 32px 0 8px; border: 0; color: #333; font-size: 16px; line-height: 1.8; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.article-page.article-page .article-content strong, .article-page.article-page .article-content .article-emphasis { color: inherit; text-decoration: underline; text-decoration-color: currentColor; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.article-page.article-page .article-content .article-section:has(> #section-1) strong { font-weight: inherit; text-decoration: none; }
+.article-page.article-page .article-content .article-section > ul { padding: 0 0 0 24px; border: 0; border-radius: 0; background: transparent; }
+.article-page.article-page .article-content .article-section > .check-list { padding: 0; gap: 0; }
+.article-page.article-page .article-content .check-list li { padding: 6px 0 6px 22px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.article-page.article-page .article-content .check-list li::before { top: 17px; left: 3px; width: 6px; height: 6px; background: #333; box-shadow: none; }
+.article-page.article-page .article-content figure { padding: 0; margin: 30px 0; border: 0; border-radius: 0; background: transparent; }
+.article-page.article-page .article-content figure img { border-radius: 0; }
+.article-page.article-page .article-content figcaption { padding: 0; color: #666; font-size: 13px; }
+.article-page.article-page .article-layout .article-toc--side { display: none; }
+.article-page.article-page .article-content .article-toc--disclosure { display: block; margin-block: 32px; border: 0; border-block: 1px solid #ddd; border-radius: 0; background: transparent; }
+.article-page.article-page .article-toc a { color: #367ba4; }
+.article-page.article-page .article-content .faq-section, .article-page.article-page .article-content .faq-block { padding-top: 28px; border-color: #6eb4db; }
+.article-page.article-page .faq-item { padding: 24px 0; margin: 0; border: 0; border-bottom: 1px solid #ddd; border-radius: 0; background: transparent; }
+.article-page.article-page .faq-item__label { background: transparent; color: #367ba4; border-radius: 0; }
+.article-page.article-page .article-content .article-mid-cta { padding: 24px 0; margin-block: 38px; border: 0; border-block: 1px solid #ddd; border-radius: 0; background: transparent; }
+.article-page.article-page .article-content .article-mid-cta__button { background: #367ba4; color: #fff; }
+.article-page.article-page .article-trust-panel { padding: 24px 0; border: 0; border-top: 1px solid #ddd; border-radius: 0; background: transparent; }
+@media (max-width: 760px) {
+  .article-page.article-page .article-card { padding: 16px; }
+  .article-page.article-page .article-hero-wrap > .shell { width: 100%; padding: 0; }
+  .article-page.article-page .article-card h1 { padding: 15px; font-size: 23px; }
+  .article-page.article-page .article-layout { width: 100%; }
+  .article-page.article-page .article-content { padding: 24px 16px; }
+  .article-page.article-page .article-content .article-section { margin-top: 40px; }
+  .article-page.article-page .article-content .article-section > h2 { padding: 7px 12px; font-size: 19px; line-height: 1.4; }
+}
+.article-page .eyebrow { color: #647d6d; font-size: 12px; letter-spacing: .18em; }
+.article-page .article-hero-wrap { background: var(--editorial-paper); padding-bottom: 48px; }
+.article-page .article-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin-inline: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.article-page .article-card .article-card__body { position: static; order: 1; padding: 30px 0 32px; background: transparent; color: var(--editorial-ink); }
+.article-page .article-card h1 { max-width: 850px; color: var(--editorial-ink); font-size: clamp(27px, 3.6vw, 40px); line-height: 1.6; letter-spacing: .025em; text-shadow: none; }
+.article-page .article-card .article-lead { max-width: 760px; color: #56685d; font-size: 16px; line-height: 2; }
+.article-page .article-card .article-card__hero { order: 2; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; }
+.article-page .article-card__hero::after { content: none; }
+.article-page .article-main { background: #fffefa; padding-top: 64px; border-top: 1px solid var(--editorial-rule); }
+.article-page .article-content { background: transparent; box-shadow: none; counter-reset: editorial-section; }
+.article-page .article-content p,
+.article-page .article-content li { line-height: 2.05; letter-spacing: .025em; }
+.article-page .article-content .article-readable-lead { padding: 0 0 36px; margin-bottom: 40px; border-bottom: 1px solid var(--editorial-rule); }
+
+/* A reading brief, with medical guidance separated from the main points. */
+.article-page .article-content .article-readable-overview { max-width: none; margin-bottom: 48px; padding: 0; border: 1px solid #d9e3dd; border-radius: 12px; background: #f1f5f0; overflow: hidden; }
+.article-page .article-readable-overview__main { padding: 28px 32px; }
+.article-page .article-readable-overview__label { color: #5f7b6c; font-size: 11px; letter-spacing: .22em; }
+.article-page .article-readable-overview h2 { color: #2d5040; font-size: 24px; }
+.article-page .article-readable-overview__main li { padding: 12px 0 12px 26px; border-top: 1px solid #dae3d9; font-size: 16px; }
+.article-page .article-readable-overview__main li::before { top: 1.3em; width: 7px; height: 7px; border-radius: 2px; background: #718d68; }
+.article-page .article-content .article-readable-overview__medical { margin: 0; padding: 22px 32px; border: 0; border-top: 1px solid #e9d9cd; background: #faf2eb; }
+.article-page .article-readable-overview__medical h3 { color: #884a35; border: 0; }
+.article-page .article-readable-overview__medical li { color: #614d42; font-size: 14px; font-weight: 500; }
+.article-page .article-readable-overview__medical li::before { background: #a5684c; }
+
+/* Chapter numbers and fine rules give long articles a visible rhythm. */
+.article-page .article-content .article-section { margin: 0 0 64px; counter-increment: editorial-section; }
+.article-page .article-content .article-section > h2 {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  align-items: start;
+  gap: 18px;
+  margin: 0 0 28px;
+  padding: 0 0 22px;
+  border: 0;
+  border-bottom: 1px solid #cbd7ce;
+  border-radius: 0;
+  background: transparent;
+  color: #294638;
+  font-size: clamp(22px, 2.3vw, 27px);
+  line-height: 1.65;
+  scroll-margin-top: 92px;
+}
+.article-page .article-content .article-section > h2::before {
+  content: counter(editorial-section, decimal-leading-zero);
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #7c957e;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.article-page .article-content .article-section > h2::after { content: none; }
+.article-page .article-content .article-section h3 { margin-top: 34px; padding: 3px 0 3px 15px; border-left: 3px solid #9dac86; color: #375c45; font-size: 20px; }
+.article-page .article-content strong,
+.article-page .article-content .article-emphasis { color: #31574e; text-decoration: underline; text-decoration-color: #d5e3c6; text-decoration-thickness: .3em; text-underline-offset: -.08em; text-decoration-skip-ink: none; }
+.article-page .article-content .article-section > ul { padding: 22px 28px 22px 44px; border-block: 1px solid #dfe6da; background: #f5f7f1; border-radius: 0; }
+.article-page .article-content .article-section li::marker { color: #6f8a61; }
+.article-page .article-content figure { margin: 36px 0; padding: 14px; border: 1px solid #e4e4d9; border-radius: 12px; background: #f8f7f1; }
+.article-page .article-content figure img { border-radius: 6px; }
+.article-page .article-content figcaption { margin-top: 14px; color: #667362; font-size: 13px; text-align: left; line-height: 1.8; }
+
+.article-page .article-content .point-box,
+.article-page .article-content .note-box { padding: 26px; margin-block: 32px; border: 1px solid #d9e4d5; border-left: 4px solid #789367; border-radius: 0 10px 10px 0; background: #f3f6ee; box-shadow: none; }
+.article-page .article-content .caution-box { padding: 26px; margin-block: 32px; border: 1px solid #ecd8d2; border-left: 4px solid #b4644d; border-radius: 0 10px 10px 0; background: #fff4ef; box-shadow: none; }
+.article-page .article-content .caution-box h2 { color: #8b4033; }
+.article-page .article-content .simple-table { border-radius: 8px; border-color: #d6dfd2; }
+.article-page .article-content .simple-table th { background: #edf2e8; color: #344e3a; }
+.article-page .article-content .simple-table td { background: #fffefa; }
+
+/* Supporting information stays quieter than the article. */
+.article-page .article-layout .article-toc--side { padding: 20px 0 20px 18px; border: 0; border-left: 1px solid #cdd8c7; border-radius: 0; background: transparent; box-shadow: none; }
+.article-page .article-toc--side h2 { font-size: 18px; color: #3a5742; }
+.article-page .article-toc--side a { font-size: 13px; line-height: 1.8; }
+.article-page .article-toc a[aria-current="location"] { color: #31533b; background: #eaf0e2; box-shadow: inset 3px 0 0 #789164; }
+.article-page .article-toc__number { color: #728767; font-variant-numeric: tabular-nums; }
+.article-page .article-content .article-toc--disclosure { border: 1px solid #d6dfcc; border-radius: 8px; background: #f7f8f2; }
+.article-page .article-toc--disclosure summary { padding: 16px 20px; }
+.article-page .article-content .faq-section,
+.article-page .article-content .faq-block { margin-block: 56px; padding-top: 28px; border-top: 2px solid #c8d5bf; background: transparent; }
+.article-page .faq-item { padding: 26px 0; border: 0; border-bottom: 1px solid #dde4d6; border-radius: 0; box-shadow: none; background: transparent; }
+.article-page .faq-item__question .faq-item__label { color: #456346; background: #edf2e7; border-radius: 50%; }
+.article-page .faq-item__answer .faq-item__label { color: #946344; background: #f7eee3; border-radius: 50%; }
+.article-page .article-content .article-mid-cta { padding: 28px; border: 1px solid #e5d4bf; border-radius: 10px; background: #f7f0e5; box-shadow: none; }
+.article-page .article-content .article-mid-cta__button { border-radius: 6px; background: #8b6141; box-shadow: none; }
+.article-page .article-trust-panel { padding: 28px; border: 1px solid #e1e5da; border-radius: 10px; background: #f5f6ef; }
+.article-page .article-trust-panel h2 { font-size: 21px; }
+.article-page .article-trust-panel p,
+.article-page .article-trust-panel li { font-size: 14px; }
+.article-page .site-footer { background: #e9ede4; border-top: 1px solid #d2dccc; }
+
+@media (max-width: 760px) {
+  .article-page .article-card .article-card__body { padding-block: 18px 26px; }
+  .article-page .article-hero-wrap { padding-bottom: 28px; }
+  .article-page .article-main { padding-top: 32px; }
+  .article-page .article-content .article-section { margin-bottom: 48px; }
+  .article-page .article-content .article-section > h2 { grid-template-columns: 38px minmax(0, 1fr); gap: 12px; font-size: 22px; padding-bottom: 18px; margin-bottom: 24px; }
+  .article-page .article-content .article-section > h2::before { font-size: 32px; }
+  .article-page .article-readable-overview__main,
+  .article-page .article-content .article-readable-overview__medical { padding: 22px 20px; }
+  .article-page .article-readable-overview h2 { font-size: 22px; }
+  .article-page .article-content .point-box,
+  .article-page .article-content .note-box,
+  .article-page .article-content .caution-box,
+  .article-page .article-content .article-mid-cta,
+  .article-page .article-trust-panel { padding: 20px; }
+  .article-page .article-content figure { padding: 8px; margin-block: 28px; }
+  .article-page .article-content figcaption { padding: 0 6px 6px; }
+}
