@@ -1,0 +1,171 @@
+/* Single-page trial. Do not load on other symptom pages.
+   Photo slots in lower-back-pain.html: consultation (16:9), assessment (16:9 crop).
+   Keep the original photo files; replacement photography can use sibling assets. */
+.lb-editorial {
+  --lb-ink: #365846;
+  --lb-paper: #faf9f5;
+  --lb-soft: #eef2e9;
+  --lb-rule: #d9dfd8;
+  --lb-text: #333b36;
+  --blue-900: #365846;
+  --blue-800: #365846;
+  --blue-600: #476b56;
+  --blue-50: #f3f5ef;
+  --blue-100: #e6ece3;
+  --blue-200: #ccd7cb;
+  background: #fff;
+  color: var(--lb-text);
+  font-family: 'Yu Gothic', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: .015em;
+  padding-bottom: 78px;
+}
+.lb-editorial :is(a, button, summary, input, textarea):focus-visible {
+  outline: 3px solid #5d7d63;
+  outline-offset: 4px;
+}
+.lb-editorial :is(section, aside, h2, h3)[id] { scroll-margin-top: 90px; }
+.lb-editorial .lb-editorial-inner { width: min(100% - 44px, 760px); margin-inline: auto; }
+.lb-editorial .breadcrumb { padding: 12px 0 20px; background: #fff; }
+.lb-editorial .breadcrumb .container { width: min(100% - 44px, 760px); padding: 0; }
+.lb-editorial .breadcrumb__nav { font-size: 11px; font-weight: 400; color: #718075; gap: 7px; }
+
+/* A compact version of the existing functional header, not a second header. */
+.lb-editorial .site-header { border-top: 0; border-bottom: 0; box-shadow: none; background: #fff; }
+.lb-editorial .site-header__upper { background: #fff; }
+.lb-editorial .site-brand { gap: 10px; color: var(--lb-ink); }
+.lb-editorial .site-brand__mark { padding: 0; border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+.lb-editorial .site-brand__name { color: var(--lb-ink); font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif; font-weight: 600; }
+.lb-editorial .site-menu-toggle { color: var(--lb-ink); box-shadow: none; border: 0; background: transparent; }
+.lb-editorial .site-header__lower { box-shadow: none; }
+
+.lb-editorial-hero { padding-bottom: 16px; background: #fff; }
+.lb-editorial-hero__category {
+  display: inline-block; padding: 3px 14px; border-radius: 30px;
+  color: var(--lb-ink); background: var(--lb-soft); font-size: 13px;
+}
+.lb-editorial-hero h1 {
+  margin: 10px 0 4px; color: #28372e;
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', 'MS PMincho', serif;
+  font-size: clamp(20px, 6.7vw, 44px); line-height: 1.4; font-weight: 600; letter-spacing: 0;
+}
+.lb-editorial-hero h1 span { color: var(--lb-ink); }
+.lb-editorial-hero__lead { color: #697168; margin-bottom: 12px; font-size: 15px; letter-spacing: .06em; }
+.lb-editorial-hero__photo { margin: 0; }
+.lb-editorial-hero__photo img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.lb-editorial-hero figcaption,
+.lb-editorial-steps figcaption { font-size: 13px; line-height: 1.75; color: #606860; margin-top: 6px; }
+
+.lb-editorial-process { background: #fff; }
+.lb-editorial-process__heading { padding: 10px 18px; background: var(--lb-soft); text-align: center; }
+.lb-editorial-process__heading h2 { color: var(--lb-ink); font-size: 19px; font-weight: 700; line-height: 1.6; }
+.lb-editorial-steps { list-style: none; padding: 0; }
+.lb-editorial-steps > li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 12px; padding: 17px 0; border-bottom: 1px solid var(--lb-rule); }
+.lb-editorial-steps > li:last-child { border-bottom: 0; padding-bottom: 24px; }
+.lb-editorial-steps__number { display: grid; place-items: center; width: 28px; height: 28px; margin-top: 1px; border-radius: 50%; background: #64806c; color: #fff; font-size: 16px; font-weight: 500; }
+.lb-editorial-steps h3 { color: var(--lb-ink); font-size: 18px; font-weight: 700; line-height: 1.65; margin: 0 0 5px; }
+.lb-editorial-steps p { font-size: 14px; line-height: 1.75; }
+.lb-editorial-steps__photo { margin: 10px 0 0; }
+.lb-editorial-steps__photo img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: center top; }
+.lb-editorial-medical { background: var(--lb-paper); padding: 22px 0; }
+.lb-editorial-medical h2 { font-size: 17px; line-height: 1.6; padding-left: 12px; border-left: 3px solid var(--lb-ink); margin: 0 0 10px; color: var(--lb-ink); }
+.lb-editorial-medical p { font-size: 14px; line-height: 1.8; }
+.lb-editorial-medical a { display: inline-block; padding: 9px 0 0; color: var(--lb-ink); text-decoration: underline; text-underline-offset: 4px; font-size: 13px; }
+.lb-editorial-jump { display: flex; flex-wrap: wrap; gap: 0 24px; padding: 22px 0; }
+.lb-editorial-jump a { display: inline-flex; min-height: 44px; align-items: center; font-size: 14px; color: var(--lb-ink); text-decoration: underline; text-underline-offset: 5px; }
+
+/* The existing in-depth material and consultation functions remain below the new introduction. */
+.lb-editorial .symptom-page-toc { border-block: 1px solid var(--lb-rule); background: #fff; }
+.lb-editorial .symptom-page-toc__link { border-radius: 0; box-shadow: none; background: transparent; font-weight: 400; }
+.lb-editorial .lb-first-view { background: var(--lb-paper); padding: 36px 0; }
+.lb-editorial .lb-first-view__card { border: 0; border-radius: 0; box-shadow: none; background: none; padding-block: 0; }
+.lb-editorial .lb-first-view__title { font-size: 23px; line-height: 1.6; font-weight: 600; color: var(--lb-ink); }
+.lb-editorial .lb-first-view__lead { font-size: 16px; font-weight: 400; }
+.lb-editorial .lb-first-view__badges { gap: 0; }
+.lb-editorial .lb-first-view__badges li { border: 0; border-bottom: 1px solid var(--lb-rule); border-radius: 0; background: none; padding: 10px 0; font-weight: 400; }
+.lb-editorial .lb-education-section { background: #fff; padding: 44px 0; border-top: 1px solid #e9ece6; }
+.lb-editorial .lb-education-section:nth-child(even) { background: var(--lb-paper); }
+.lb-editorial .lb-section-title { color: var(--lb-ink); font-size: clamp(21px, 4vw, 28px); font-weight: 700; line-height: 1.55; text-align: left; padding: 0 0 0 14px; border-left: 3px solid var(--lb-ink); margin-bottom: 24px; }
+.lb-editorial .lb-section-title::after { content: none; }
+.lb-editorial :is(.lb-copy, .lb-factor p, .lb-detail-card p, .lb-approach-step p, .lb-check-list li, .lb-frequency-card__body p) { font-size: 16px; font-weight: 400; color: var(--lb-text); line-height: 1.9; }
+.lb-editorial :is(.lb-factor, .lb-detail-card, .lb-approach-step, .lb-massage-box, .lb-frequency-card, .lb-medical-note, .lb-assessment__media) { border-radius: 0; box-shadow: none; border: 0; background: transparent; }
+.lb-editorial :is(.lb-factor, .lb-detail-card, .lb-approach-step) { padding: 22px 0; border-top: 1px solid var(--lb-rule); }
+.lb-editorial :is(.lb-factor-grid, .lb-detail-grid, .lb-approach-steps) { gap: 10px 30px; }
+.lb-editorial :is(.lb-factor__top, .lb-approach-step__number) { display: none; }
+.lb-editorial :is(.lb-factor h3, .lb-detail-card h3, .lb-approach-step h3) { color: var(--lb-ink); font-size: 19px; line-height: 1.6; }
+.lb-editorial .lb-medical-note { padding: 0; }
+.lb-editorial .lb-medical-note__item { border-radius: 0; box-shadow: none; background: transparent; border: 0; border-bottom: 1px solid var(--lb-rule); }
+.lb-editorial .lb-check-list li { background: transparent; border: 0; border-radius: 0; box-shadow: none; padding-inline: 0; }
+.lb-editorial .lb-consult-section { background: var(--lb-soft); }
+.lb-editorial .lb-consult-cta { border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+.lb-editorial .lb-consult-cta__link { background: var(--lb-ink); box-shadow: none; }
+.lb-editorial .faq { background: #fff; border-top: 1px solid var(--lb-rule); }
+.lb-editorial .faq__list { gap: 0; }
+.lb-editorial .faq details { border: 0; border-bottom: 1px solid var(--lb-rule); border-radius: 0; background: transparent; }
+.lb-editorial .faq summary { padding-inline: 0; }
+.lb-editorial .faq details[open] > summary { background: transparent; border-radius: 0; }
+.lb-editorial .faq__q-text { font-weight: 600; }
+.lb-editorial .faq__a { padding-inline: 0; border: 0; }
+.lb-editorial .faq__a-text { font-size: 16px; font-weight: 400; }
+.lb-editorial .faq .section-title { color: var(--lb-ink); }
+
+.lb-editorial .mobile-cta { display: flex; z-index: 1100; padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); gap: 8px; box-shadow: none; border-top: 1px solid var(--lb-rule); }
+.lb-editorial .mobile-cta__btn { min-height: 46px; padding: 9px 10px; border-radius: 6px; box-shadow: none; font-weight: 600; }
+.lb-editorial .mobile-cta__btn--tel { color: var(--lb-ink); border: 1px solid #64806c; background: #fff; }
+.lb-editorial .mobile-cta__btn--line { background: var(--lb-ink); color: #fff; border: 1px solid var(--lb-ink); }
+.lb-editorial .mobile-cta__sub { display: none; }
+.lb-editorial .mobile-cta__btn > div { font-size: 16px !important; white-space: nowrap; gap: 6px !important; }
+.lb-editorial .mobile-cta__btn svg { flex-shrink: 0; width: 18px !important; height: 18px !important; }
+.lb-editorial .mobile-cta__btn:hover { background: #edf2e9; color: var(--lb-ink); }
+.lb-editorial .mobile-cta__btn--line:hover { background: #234331; color: #fff; }
+.lb-editorial .page-top-button { bottom: 86px; width: 42px; height: 42px; right: 12px; font-size: 10px; background: var(--lb-ink); box-shadow: none; }
+
+@media (max-width: 767px) {
+  .lb-editorial .site-header { position: sticky; top: 0; z-index: 1102; }
+  .lb-editorial .site-header__inner--upper { min-height: 58px; padding: 6px 0; gap: 10px; grid-template-columns: minmax(0,1fr) auto; }
+  .lb-editorial .site-brand__mark { width: 44px; height: 44px; flex-basis: 44px; }
+  .lb-editorial .site-brand__name { font-size: clamp(17px, 4.8vw, 21px); white-space: nowrap; }
+  .lb-editorial :is(.site-brand__eyebrow, .site-brand__note, .site-header-badges, .site-header-contact) { display: none; }
+  .lb-editorial .site-menu-toggle { min-width: 44px; min-height: 44px; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+  .lb-editorial .site-menu-toggle__text { font-size: 9px; }
+  .lb-editorial .site-header__lower { border: 0; padding: 0; }
+  .lb-editorial .site-header + .site-header__lower + main .breadcrumb { padding: 0 0 12px; }
+  .lb-editorial-hero__category { font-size: 12px; padding: 1px 12px; }
+  .lb-editorial .site-header__lower > .site-header__inner { padding: 0; }
+  .lb-editorial .site-mobile-nav:not(.hidden) { top: 66px; max-height: calc(100dvh - 140px); overflow-y: auto; }
+  .lb-editorial .container { padding-inline: 22px; }
+}
+@media (max-width: 360px) {
+  .lb-editorial-process__heading h2 { font-size: 16px; }
+  .lb-editorial .mobile-cta__btn > div { font-size: 15px !important; }
+}
+@media (min-width: 768px) and (max-width: 1079px) {
+  .lb-editorial .site-header { position: sticky; top: 0; z-index: 1102; }
+  .lb-editorial .site-mobile-nav:not(.hidden) { top: 86px; max-height: calc(100dvh - 110px); }
+}
+@media (min-width: 768px) {
+  .lb-editorial { padding-bottom: 0; }
+  .lb-editorial .breadcrumb { padding: 20px 0 30px; }
+  .lb-editorial-hero__lead { font-size: 19px; margin-bottom: 28px; }
+  .lb-editorial-hero__photo img { max-height: 428px; }
+  .lb-editorial-hero figcaption, .lb-editorial-steps figcaption { font-size: 15px; }
+  .lb-editorial-process__heading h2 { font-size: 26px; }
+  .lb-editorial-process__heading { padding: 24px; }
+  .lb-editorial-steps > li { grid-template-columns: 36px minmax(0,1fr); gap: 20px; padding-block: 24px; }
+  .lb-editorial-steps__number { width: 36px; height: 36px; font-size: 20px; }
+  .lb-editorial-steps h3 { font-size: 24px; }
+  .lb-editorial-steps p { font-size: 17px; }
+  .lb-editorial-steps__photo { max-width: 620px; }
+  .lb-editorial-medical { padding: 32px 0; }
+  .lb-editorial-medical h2 { font-size: 23px; }
+  .lb-editorial-medical p { font-size: 16px; }
+  .lb-editorial .mobile-cta { display: none; }
+  .lb-editorial .mobile-cta__btn > div { font-size: 16px !important; }
+  .lb-editorial .page-top-button { bottom: 100px; right: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(.lb-editorial) { scroll-behavior: auto; }
+  .lb-editorial *, .lb-editorial *::before, .lb-editorial *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
+}

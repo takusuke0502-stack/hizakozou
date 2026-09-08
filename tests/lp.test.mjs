@@ -2410,7 +2410,7 @@ test("all symptom pages use the transplanted top-page header and mobile hamburge
 
   for (const fileName of symptomPages) {
     const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
-    const bodyOpen = symptomHtml.indexOf("<body>");
+    const bodyOpen = symptomHtml.search(/<body\b/);
     const mainOpen = symptomHtml.indexOf("  <main", bodyOpen);
     const headerBlock = symptomHtml.slice(bodyOpen, mainOpen);
 
