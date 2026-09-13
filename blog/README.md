@@ -22,4 +22,4 @@ Use [AGENTS.md](../AGENTS.md) for the full workflow. The short version is:
 2. Run `npm run generate:blog` or `npm run generate:blog:source -- --source content/source/YYYY-MM-slug.md`
 3. Review the generated diff in this directory and related outputs
 
-Do not hand-edit files in `blog/` unless you are changing the generator or shared blog styling itself.
+Do not hand-edit generated files in `blog/`. Change the source, template, generator, or shared stylesheet as appropriate, then regenerate affected output.

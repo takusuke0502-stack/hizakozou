@@ -1,6 +1,21 @@
-# Blog Ops Guide
+# Project Guide
 
 This repository is a static site for `https://hizakozou.jp`.
+
+## Scope and Completion
+
+- Check the current diff before editing; preserve existing work and keep unrelated changes out of commits, including when they share a file with your changes.
+- Follow the user's current target and accepted design decisions. A request for proposals ends with proposals; an implementation request includes applying the change, checking the result, and fixing regressions caused by it. Do not pause after the first implementation just to ask whether to verify it.
+- Publish when authorized by the current request or established session context. `1記事プッシュ` explicitly authorizes the workflow below; an ordinary preview or instruction-file review does not itself request a push.
+- For page design, favor readability, cleanliness, and trust for patients and families. Preserve accepted images and sections outside the requested area. Verify that a photo matches the adjacent explanation; inspect candidate images rather than choosing by filename alone.
+- Read task-specific guidance only when relevant: article authoring uses the contract below; readability refresh uses [the refresh guide](docs/symptom-column-refresh-prompt.md); code dependency work uses the GitNexus section. Historical task details are evidence, not standing instructions.
+
+## Verification
+
+- Choose checks by what changed. Instruction-only edits need reference/consistency checks and a diff review; they do not require blog regeneration or site tests.
+- Blog content or generator changes require generation and review of all resulting outputs, even with the single-source command. Use `npm run check:blog-links` for blog-link validation; `npm test` covers blog generation, LP structure, symptom figures, and blog links.
+- For layout changes, inspect the affected page at mobile, tablet, and desktop widths; check overflow, image readability, and affected menu/CTA behavior. Shared CSS or template changes also need representative affected pages checked.
+- Rerun affected checks after a fix. Expand testing when the change scope or a failure warrants it. Report checks actually performed and unresolved limitations; do not equate a passing structural test with a visual check.
 
 ## Source Of Truth
 
@@ -33,7 +48,7 @@ replaceSlug: old-url-slug
    - All source files: `npm run generate:blog`
    - One source file: `npm run generate:blog:source -- --source content/source/YYYY-MM-slug.md`
 4. Review the generated diff.
-5. Commit and push the branch.
+5. When publication is authorized, commit the selected changes and required generated outputs, then push the branch.
 
 ## Markdown Rules
 
@@ -68,58 +83,39 @@ replaceSlug: old-url-slug
 - GitHub Actions workflow: `.github/workflows/generate-blog-content.yml`
 - Default branch: `main`
 
+## Daily Readability Refresh Trigger
+
+When the user says `1記事プッシュ`, treat it as an explicit request to select, improve, verify, commit, and push exactly one symptom page or column article. Follow `docs/symptom-column-refresh-prompt.md`.
+
+- Do not modify the top page as part of this trigger.
+- Prefer unfinished or high-density symptom pages before already-refreshed pages, unless the user names a target.
+- A column article must be edited through `content/source/*.md` and regenerated through the required blog workflow above.
+- Keep unrelated staged or uncommitted changes out of the commit.
+- The word `プッシュ` authorizes committing the selected item and its required generated files, then pushing the current branch after verification.
+
 ## Claude Code Integrations
 
-| Name | Workflow | Trigger | Purpose |
-|------|----------|---------|---------|
-| superpowers:claude | `.github/workflows/claude.yml` | `@claude` mention in issue/PR | General-purpose coding with full tool access |
-| Codereview | `.github/workflows/claude-code-review.yml` | PR opened/updated | Automatic Japanese code review |
-| frontenddesign | `.github/workflows/claude-frontend-design.yml` | `@claude` + design keywords | Frontend/CSS/HTML assistance |
-| conrext | `.claude/settings.json` | Session start | Context7 MCP for library docs; `npm install` hook |
-
-All workflows require the `ANTHROPIC_API_KEY` repository secret to be set.
+Workflow definitions in `.github/workflows/claude*.yml` and hooks in `.claude/settings.json` are authoritative for integration behavior. Read them when changing the integration; do not assume a session-start hook exists from an old summary.
 
 <!-- gitnexus:start -->
-# GitNexus — Code Intelligence
+## GitNexus — Code Dependencies
 
-This project is indexed by GitNexus as **hizakozou** (2028 symbols, 2466 relationships, 29 execution flows). Use the GitNexus MCP tools to understand code, assess impact, and navigate safely.
+Repository name: `hizakozou`. Obtain current index status from the tool or `gitnexus://repo/hizakozou/context`; do not rely on hard-coded symbol counts.
 
-> Index stale? Run `node .gitnexus/run.cjs analyze` from the project root — it auto-selects an available runner. No `.gitnexus/run.cjs` yet? `npx gitnexus analyze` (npm 11 crash → `npm i -g gitnexus`; #1939).
+- Before modifying a function, class, or method, run `impact({target: "symbolName", direction: "upstream"})`. Report direct dependents, affected processes, and risk; warn before proceeding on HIGH or CRITICAL findings. Dependencies are possible impact, not proof of breakage.
+- Before committing, run `detect_changes()` with a scope matching the commit (normally `staged`). For a branch regression review use `detect_changes({scope: "compare", base_ref: "main"})`. Inspect the actual diff too: graph results do not cover all HTML, CSS, content, or dynamic references.
+- For unfamiliar execution flows use `query({search_query: "concept"})`, then `context({name: "symbolName"})` when callers/callees are needed. For known text, Markdown, image references, or selectors, use targeted file reads/search instead of building a repository map.
+- If tools are unavailable, the index is stale, or a symbol is missing, disclose that limit and use source references, the diff, and relevant checks for a bounded change. Missing graph results do not mean no impact. Resolve any remaining material uncertainty before changing a shared runtime path.
+- Do not rebuild the index for a prose-only edit. For an index task, use the existing runner if present; see [CLI guidance](.claude/skills/gitnexus/gitnexus-cli/SKILL.md). Review instruction-file changes produced by re-indexing.
+- For symbol renames, use GitNexus `rename` with a dry run when available and inspect its edits; do not use blind find-and-replace.
 
-## Always Do
+Read only the relevant skill:
 
-- **MUST run impact analysis before editing any symbol.** Before modifying a function, class, or method, run `impact({target: "symbolName", direction: "upstream"})` and report the blast radius (direct callers, affected processes, risk level) to the user.
-- **MUST run `detect_changes()` before committing** to verify your changes only affect expected symbols and execution flows. For regression review, compare against the default branch: `detect_changes({scope: "compare", base_ref: "main"})`.
-- **MUST warn the user** if impact analysis returns HIGH or CRITICAL risk before proceeding with edits.
-- When exploring unfamiliar code, use `query({search_query: "concept"})` to find execution flows instead of grepping. It returns process-grouped results ranked by relevance.
-- When you need full context on a specific symbol — callers, callees, which execution flows it participates in — use `context({name: "symbolName"})`.
-- For security review, `explain({target: "fileOrSymbol"})` lists taint findings (source→sink flows; needs `analyze --pdg`).
-
-## Never Do
-
-- NEVER edit a function, class, or method without first running `impact` on it.
-- NEVER ignore HIGH or CRITICAL risk warnings from impact analysis.
-- NEVER rename symbols with find-and-replace — use `rename` which understands the call graph.
-- NEVER commit changes without running `detect_changes()` to check affected scope.
-
-## Resources
-
-| Resource | Use for |
-|----------|---------|
-| `gitnexus://repo/hizakozou/context` | Codebase overview, check index freshness |
-| `gitnexus://repo/hizakozou/clusters` | All functional areas |
-| `gitnexus://repo/hizakozou/processes` | All execution flows |
-| `gitnexus://repo/hizakozou/process/{name}` | Step-by-step execution trace |
-
-## CLI
-
-| Task | Read this skill file |
-|------|---------------------|
-| Understand architecture / "How does X work?" | `.claude/skills/gitnexus/gitnexus-exploring/SKILL.md` |
-| Blast radius / "What breaks if I change X?" | `.claude/skills/gitnexus/gitnexus-impact-analysis/SKILL.md` |
-| Trace bugs / "Why is X failing?" | `.claude/skills/gitnexus/gitnexus-debugging/SKILL.md` |
-| Rename / extract / split / refactor | `.claude/skills/gitnexus/gitnexus-refactoring/SKILL.md` |
-| Tools, resources, schema reference | `.claude/skills/gitnexus/gitnexus-guide/SKILL.md` |
-| Index, status, clean, wiki CLI commands | `.claude/skills/gitnexus/gitnexus-cli/SKILL.md` |
-
+| Task | Skill |
+|------|-------|
+| Understand an execution flow | [.claude/skills/gitnexus/gitnexus-exploring/SKILL.md](.claude/skills/gitnexus/gitnexus-exploring/SKILL.md) |
+| Assess dependency impact | [.claude/skills/gitnexus/gitnexus-impact-analysis/SKILL.md](.claude/skills/gitnexus/gitnexus-impact-analysis/SKILL.md) |
+| Trace a runtime bug | [.claude/skills/gitnexus/gitnexus-debugging/SKILL.md](.claude/skills/gitnexus/gitnexus-debugging/SKILL.md) |
+| Rename or restructure code | [.claude/skills/gitnexus/gitnexus-refactoring/SKILL.md](.claude/skills/gitnexus/gitnexus-refactoring/SKILL.md) |
+| Tool/schema reference | [.claude/skills/gitnexus/gitnexus-guide/SKILL.md](.claude/skills/gitnexus/gitnexus-guide/SKILL.md) |
 <!-- gitnexus:end -->
