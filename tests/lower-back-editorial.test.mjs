@@ -41,7 +41,7 @@ test('the original eight concerns lead into retained visit steps and medical gui
   assert.ok(positions.every(position => position >= 0));
   assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
   assert.match(steps, /data-photo-slot="assessment"/);
-  assert.match(steps, /src="\.\.\/image\/flow-movement-assessment-768\.webp"[^>]*width="768" height="576"/);
+  assert.match(steps, /src="\.\.\/image\/photo-hip-assessment-768\.webp"[^>]*width="768" height="512"/);
   const medical = html.match(/<aside class="lb-editorial-medical"[\s\S]*?<\/aside>/)?.[0] ?? '';
   assert.match(medical, /足の脱力や排尿・排便の異常/);
   assert.match(medical, /先に医療機関へご相談ください/);
@@ -49,7 +49,7 @@ test('the original eight concerns lead into retained visit steps and medical gui
 });
 
 test('photos, unique fragment targets, detailed information and real contact routes remain available', () => {
-  for (const asset of ['flow-plan-consultation-768.webp', 'flow-movement-assessment-768.webp', 'hizakozou-logo-option2-mark.webp']) {
+  for (const asset of ['photo-counseling-768.webp', 'photo-hip-assessment-768.webp', 'hizakozou-logo-option2-mark.webp']) {
     assert.ok(existsSync(new URL(`image/${asset}`, root)));
   }
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);

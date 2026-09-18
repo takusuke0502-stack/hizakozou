@@ -449,22 +449,22 @@ test("LP adds a readable six-reason clinic strengths section", () => {
       "特徴3",
       "整形外科学会も推奨する運動療法「MSMメソッド」を導入",
       "バキバキしない！医学的根拠に基づいたアプローチで<br>痛みを根本から見直します",
-      "image/clinic-leg-treatment-hp.webp",
-      "脚の動きを確認しながら運動療法を行う様子"
+      "image/photo-knee-exercise-768.webp",
+      "座った姿勢で膝を伸ばす運動を、施術者が支えながら確認している様子"
     ],
     [
       "特徴4",
       "足腰の慢性痛に特化した「豊富な知識と経験」",
       "長年諦めていた重度な腰痛・坐骨神経痛・膝の痛み・シビレにも対応",
-      "image/flow-counseling-board-768.webp",
+      "image/photo-plan-explanation-768.webp",
       "足腰の慢性痛についてホワイトボードを使って説明している様子"
     ],
     [
       "特徴5",
       "セルフケアを習得し、ご自身でカラダを改善できる「卒業」を目指します",
       "動画をまねするだけでは分からない、<br>あなたの身体に合ったセルフケアを個別に指導",
-      "image/clinic-treatment-web.webp",
-      "膝の動かし方を一緒に確認している様子"
+      "image/photo-selfcare-768.webp",
+      "四つ這いの姿勢で身体を支える運動を一緒に確認している様子"
     ],
     [
       "特徴6",
@@ -572,31 +572,31 @@ test("LP replaces the treatment flow with an accessible 6-step photo slider afte
     [
       "カウンセリング",
       "問診票をもとに、歩き始め、階段、立ち上がり、買い物など、日常のどの場面で膝が不安なのかを伺います。",
-      "image/flow-plan-consultation-768.webp",
+      "image/photo-counseling-768.webp",
       "カウンセリングでお悩みや日常の状態を伺っている様子"
     ],
     [
       "身体の状態チェック",
       "膝だけでなく、股関節・足首・姿勢・歩き方も確認し、どこに負担が集まりやすいかを見ていきます。",
-      "image/clinic-posture-check-web.webp",
-      "立った姿勢と身体のバランスを確認している様子"
+      "image/photo-standing-movement-768.webp",
+      "立った姿勢で膝を曲げ、身体の使い方を確認している様子"
     ],
     [
       "状態説明、施術方針の説明",
       "なぜ痛みが出やすいのか、これから何を目指すのかを、専門用語を使いすぎず分かりやすくお伝えします。",
-      "image/flow-counseling-board-768.webp",
+      "image/photo-plan-explanation-768.webp",
       "ホワイトボードを使って体の状態と施術方針を説明している様子"
     ],
     [
       "施術開始",
       "やさしく身体を整えながら、立つ・歩く・階段などの動きにつながるように運動療法も行います。",
-      "image/flow-treatment-session-768.webp",
+      "image/photo-knee-treatment-768.webp",
       "膝や股関節まわりへの施術の様子"
     ],
     [
       "セルフケアと施術後の説明",
       "ご自宅で気をつけることや簡単なセルフケア、施術後の状態と今後の目安をご案内します。",
-      "image/treatment-stretch-768.webp",
+      "image/photo-selfcare-768.webp",
       "自宅でできるセルフケアを説明する様子"
     ]
   ];
@@ -2524,11 +2524,11 @@ test("symptom pages replace the visual guide cards with the top-page flow slider
   const pagesWithFlow = [];
   const expectedImages = [
     "../image/flow-medical-interview-form-768.webp",
-    "../image/flow-counseling-board-768.webp",
-    "../image/flow-movement-assessment-768.webp",
-    "../image/flow-plan-consultation-768.webp",
-    "../image/flow-treatment-session-768.webp",
-    "../image/treatment-stretch-768.webp"
+    "../image/photo-plan-explanation-768.webp",
+    "../image/photo-standing-movement-768.webp",
+    "../image/photo-counseling-768.webp",
+    "../image/photo-knee-treatment-768.webp",
+    "../image/photo-selfcare-768.webp"
   ];
 
   for (const fileName of symptomPages) {
@@ -2664,7 +2664,7 @@ test("symptom treatment flow uses body-neutral image descriptions", () => {
     const flowBlock = symptomHtml.slice(flowStart, faqStart);
 
     assert.doesNotMatch(flowBlock, /股関節や膝の動きを確認している様子|膝や股関節まわりへの施術の様子/, `${fileName} should not describe the shared flow as knee-only`);
-    assert.match(flowBlock, /身体の動きや姿勢を確認している様子/);
+    assert.match(flowBlock, /立った姿勢で膝を曲げ、身体の使い方を確認している様子/);
     assert.match(flowBlock, /身体の状態に合わせて施術を行っている様子/);
   }
 });
@@ -3148,7 +3148,7 @@ test("lower back education redesign follows the requested patient-friendly seque
   assert.doesNotMatch(section, /<h3>自分に合う内容を確認する<\/h3>/);
   assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで腰痛について相談する/);
   assert.match(section, /src="\.\.\/image\/イラスト\/腰・神経\/骨盤と腰椎のゆがみタイプ\.webp"/);
-  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.match(section, /src="\.\.\/image\/photo-hip-assessment-768\.webp"/);
   assert.doesNotMatch(section, /過緊張|過可動|多裂筋|椎間関節|腰椎後弯位/);
   assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|frequency__phases|frequency__phase/);
 });
@@ -3219,7 +3219,7 @@ test("shoulder stiffness education follows the approved patient-friendly sequenc
   assert.equal((section.match(/class="shoulder-medical-note__item"/g) ?? []).length, 6, "the medical referral note should show six warning signs");
   assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで肩こりについて相談する/);
   assert.match(section, /src="\.\.\/image\/イラスト\/肩・首\/肩甲骨周囲の筋肉と肩こり\.webp"/);
-  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.match(section, /src="\.\.\/image\/photo-shoulder-assessment-768\.webp"/);
   assert.doesNotMatch(section, /根本原因|肩こりの正体|必ず改善|完治|根本治療|再発を防ぐ|頚部深層筋|前鋸筋|菱形筋|再稼働/);
   assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|frequency__phases|frequency__phase/);
 });
@@ -3288,7 +3288,7 @@ test("plantar fasciitis education follows the approved patient-friendly sequence
   assert.equal((section.match(/class="plantar-medical-note__item"/g) ?? []).length, 6, "the medical referral note should show six warning signs");
   assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで足底筋膜炎について相談する/);
   assert.match(section, /src="\.\.\/image\/イラスト\/足・手・その他\/足底筋膜と足裏の筋肉構造\.webp"/);
-  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.match(section, /src="\.\.\/image\/photo-foot-assessment-768\.webp"/);
   assert.doesNotMatch(section, /根本原因|完治|根本治療|再発しない|再発予防|過緊張|インナーマッスル|再教育|痛みの根っこ|原因を特定/);
   assert.doesNotMatch(section, /週1〜2回|2〜8回|安定期|frequency__phases|frequency__phase/);
 });
@@ -3357,7 +3357,7 @@ test("scoliosis education follows the approved patient-friendly sequence", () =>
   assert.equal((section.match(/class="scoliosis-home-guide__list"/g) ?? []).length, 2);
   assert.doesNotMatch(section, /LINEで側弯症について相談する/);
   assert.match(section, /src="\.\.\/image\/イラスト\/腰・神経\/脊柱側弯の姿勢比較\.webp"/);
-  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.match(section, /src="\.\.\/image\/photo-standing-movement-768\.webp"/);
   assert.doesNotMatch(section, /真っすぐにする|矯正|必ず改善|完治|根本治療|インナーマッスル|再稼働|頑張りすぎている筋肉/);
   assert.doesNotMatch(section, /最初の1〜2ヶ月|週1回程度|2週に1回|メンテナンス期|frequency__phases|frequency__phase/);
 });
@@ -3427,7 +3427,7 @@ test("TMJ education follows the approved patient-friendly sequence", () => {
   assert.equal((section.match(/class="tmj-medical-note__item"/g) ?? []).length, 6);
   assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで顎関節症について相談する/);
   assert.match(section, /src="\.\.\/image\/イラスト\/足・手・その他\/顎関節と頭蓋骨の構造\.webp"/);
-  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.match(section, /src="\.\.\/image\/photo-shoulder-assessment-768\.webp"/);
   assert.match(section, /歯科での確認/);
   assert.doesNotMatch(section, /根本原因|胸椎後弯|頭部前方変位|C0-C1|三叉神経|改善の近道|再起動|再稼働|頚部深層筋/);
   assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|2週に1回|メンテナンス期|frequency__phases|frequency__phase/);
@@ -3497,7 +3497,7 @@ test("frozen shoulder education follows the approved patient-friendly sequence",
   assert.equal((section.match(/class="frozen-medical-note__item"/g) ?? []).length, 6);
   assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで五十肩について相談する/);
   assert.match(section, /src="\.\.\/image\/イラスト\/肩・首\/肩関節の可動域と痛みの角度\.webp"/);
-  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.match(section, /src="\.\.\/image\/photo-shoulder-assessment-768\.webp"/);
   assert.doesNotMatch(section, /本当の原因|前方へのズレ|癒着|根本原因|根本治療|完治|必ず改善|再発しない|再稼働|サボった筋肉/);
   assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|2週に1回|メンテナンス期|frequency__phases|frequency__phase/);
 });
@@ -3610,7 +3610,7 @@ test("thoracic outlet education follows the approved patient-friendly sequence",
   assert.equal((section.match(/class="thoracic-medical-note__item"/g) ?? []).length, 6);
   assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで胸郭出口症候群について相談する/);
   assert.match(section, /src="\.\.\/image\/イラスト\/肩・首\/肩から腕にしびれが出る女性\.webp"/);
-  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.match(section, /src="\.\.\/image\/photo-shoulder-assessment-768\.webp"/);
   assert.doesNotMatch(section, /圧迫ポイントを特定|通り道を広げ|姿勢から改善|根本原因|根本治療|完治|必ず改善|再発しない|再稼働|サボった筋肉/);
   assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|2週に1回|メンテナンス期|frequency__phases|frequency__phase/);
 });
@@ -3696,7 +3696,7 @@ for (const config of upperLimbEducationPages) {
     assert.equal((section.match(new RegExp(`class="${config.prefix}-medical-note__item"`, "g")) ?? []).length, 6);
     assert.match(section, new RegExp(`href="https:\\/\\/lin\\.ee\\/X01F2mP"[^>]*>[\\s\\S]*${escapeRegExp(config.lineCta)}`));
     assert.match(section, new RegExp(`src="${escapeRegExp(config.causeImage)}"`));
-    assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+    assert.match(section, /src="\.\.\/image\/photo-shoulder-assessment-768\.webp"/);
     assert.doesNotMatch(section, /根本原因|根本治療|完治|必ず改善|再発しない|本当の原因|回復が可能/);
     assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|2〜8回|2週〜月1回|frequency__phases|frequency__phase/);
   });
@@ -3777,7 +3777,7 @@ test("sciatica education redesign mirrors the lower-back patient-friendly sequen
   assert.equal((section.match(/class="sciatica-medical-note__item"/g) ?? []).length, 6, "the medical referral note should show six warning signs");
   assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで坐骨神経痛について相談する/);
   assert.match(section, /src="\.\.\/image\/イラスト\/腰・神経\/脚の骨格と坐骨神経の走行\.webp"/);
-  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.match(section, /src="\.\.\/image\/photo-hip-assessment-768\.webp"/);
   assert.doesNotMatch(section, /ダブルクラッシュ|中枢側|末梢側|過緊張|硬結|再稼働/);
   assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|frequency__phases|frequency__phase/);
 });
@@ -3846,7 +3846,7 @@ test("spinal stenosis education redesign follows the approved patient-friendly s
   assert.equal((section.match(/class="stenosis-medical-note__item"/g) ?? []).length, 6, "the medical referral note should show six warning signs");
   assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで脊柱管狭窄症について相談する/);
   assert.match(section, /src="\.\.\/image\/spinal-stenosis-diagram\.webp"/);
-  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.match(section, /src="\.\.\/image\/photo-hip-assessment-768\.webp"/);
   assert.doesNotMatch(section, /必ず圧迫|脊柱管を広げる|腹横筋|インナーマッスル|再稼働|頑張りすぎている筋肉/);
   assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|frequency__phases|frequency__phase/);
 });
@@ -3915,7 +3915,7 @@ test("knee pain education redesign follows the approved patient-friendly sequenc
   assert.equal((section.match(/class="knee-medical-note__item"/g) ?? []).length, 6, "the medical referral note should show six warning signs");
   assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで膝痛について相談する/);
   assert.match(section, /src="\.\.\/image\/イラスト\/膝\/正常な膝関節と変形性膝関節症の比較\.webp"/);
-  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.match(section, /src="\.\.\/image\/photo-knee-treatment-768\.webp"/);
   assert.doesNotMatch(section, /軟骨を再生|変形を元に戻す|必ず改善|完治|根本治療|膝のズレを矯正/);
   assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|frequency__phases|frequency__phase/);
 });
@@ -3984,7 +3984,7 @@ test("hip pain education redesign follows the approved patient-friendly sequence
   assert.equal((section.match(/class="hip-medical-note__item"/g) ?? []).length, 6, "the medical referral note should show six warning signs");
   assert.match(section, /href="https:\/\/lin\.ee\/X01F2mP"[^>]*>[\s\S]*LINEで股関節痛について相談する/);
   assert.match(section, /src="\.\.\/image\/イラスト\/股関節\/変形性股関節症の股関節構造\.webp"/);
-  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.match(section, /src="\.\.\/image\/photo-hip-assessment-768\.webp"/);
   assert.doesNotMatch(section, /関節破綻|過緊張|トレンデレンブルグ|インナーマッスル|再起動|手術回避|正しい歩行/);
   assert.doesNotMatch(section, /最初の1〜2ヶ月|週1〜2回|frequency__phases|frequency__phase/);
 });
@@ -4057,7 +4057,7 @@ test("disc herniation education redesign follows the approved patient-friendly s
   assert.match(section, /src="\.\.\/image\/イラスト\/腰・神経\/椎間板ヘルニアによる神経圧迫\.webp"/);
   assert.match(section, /alt="正常な椎間板と腰椎椎間板ヘルニアによる神経圧迫、痛みやしびれが出る範囲を比較した図"/);
   assert.match(section, /width="1200" height="801"/);
-  assert.match(section, /src="\.\.\/image\/flow-movement-assessment-768\.webp"/);
+  assert.match(section, /src="\.\.\/image\/photo-hip-assessment-768\.webp"/);
   assert.doesNotMatch(section, /ヘルニアを引っ込める|神経を元に戻す|インナーマッスル|腹横筋|再稼働|手術回避/);
   assert.doesNotMatch(section, /最初の1〜2ヶ月|週1回程度|frequency__phases|frequency__phase/);
 });

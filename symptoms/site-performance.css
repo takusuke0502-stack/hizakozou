@@ -466,6 +466,17 @@
   }
 }
 
+/* Show the full professional photo in each assessment section. */
+body [class*="-assessment__media"] img[src*="/photo-"],
+body .lb-editorial-steps__photo img[src*="/photo-"] {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  object-position: center;
+}
+
 /* site-consultation-sections.css */
 .symptom-refresh-first-view,
 .symptom-refresh-section,
@@ -1974,6 +1985,13 @@
       50% { transform: translateX(8px); opacity: 1; }
       100% { transform: translateX(0); opacity: 0.5; }
     }
+
+/* Keep the full frame of the professional treatment photos. */
+.flow-slider__media--photo { aspect-ratio: 3 / 2; }
+
+.flow-slider__stage:has(.flow-slide.is-active .flow-slider__media--photo) { padding-top: 42px; }
+.flow-slider__stage:has(.flow-slide.is-active .flow-slider__media--photo) .flow-slider__counter { top: 4px; left: 12px; transform: none; }
+.flow-slider__stage:has(.flow-slide.is-active .flow-slider__media--photo) .flow-slider__arrow { top: calc(min(620px, 100vw - 32px) / 3 + 42px); }
 
 /* site-faq.css */
 /* Copied from the top-page FAQ design for symptom detail pages. */

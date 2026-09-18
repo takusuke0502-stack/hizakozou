@@ -321,3 +321,10 @@
       50% { transform: translateX(8px); opacity: 1; }
       100% { transform: translateX(0); opacity: 0.5; }
     }
+
+/* Keep the full frame of the professional treatment photos. */
+.flow-slider__media--photo { aspect-ratio: 3 / 2; }
+
+.flow-slider__stage:has(.flow-slide.is-active .flow-slider__media--photo) { padding-top: 42px; }
+.flow-slider__stage:has(.flow-slide.is-active .flow-slider__media--photo) .flow-slider__counter { top: 4px; left: 12px; transform: none; }
+.flow-slider__stage:has(.flow-slide.is-active .flow-slider__media--photo) .flow-slider__arrow { top: calc(min(620px, 100vw - 32px) / 3 + 42px); }

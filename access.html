@@ -95,6 +95,18 @@
       .store-info-list div { grid-template-columns: 1fr; gap: 0.25rem; }
       .map-frame { height: 300px; }
     }
+
+    .route-video-layout, .room-arrival-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 340px); gap: 1.5rem; align-items: center; }
+    .route-video-frame { width: min(100%, 320px); aspect-ratio: 9 / 16; margin: 0 auto; border-radius: 14px; overflow: hidden; background: #102c24; }
+    .route-video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .route-video-copy p + p { margin-top: 0.75rem; }
+    .room-arrival-photo { margin: 0; }
+    .room-arrival-photo img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    #route-video { scroll-margin-top: 100px; }
+    @media (max-width: 640px) {
+      .route-video-layout, .room-arrival-layout { grid-template-columns: 1fr; }
+      .route-video-frame { max-width: 280px; }
+    }
   </style>
 </head>
 <body>
@@ -193,6 +205,20 @@
         </div>
       </section>
 
+      <section id="route-video" class="access-card" aria-labelledby="route-video-title">
+        <div class="access-card__head"><h2 id="route-video-title">動画で見る、柏駅西口から当院まで</h2></div>
+        <div class="access-card__body route-video-layout">
+          <div class="route-video-copy">
+            <p>柏駅西口から当院までの道順を動画でご案内します。初めてお越しになる際に、駅からの景色や道順をご確認ください。</p>
+            <p>当院は「BoaSorte柏」の3階・305号室です。下の道順写真や地図もあわせてご覧いただけます。</p>
+            <a class="map-link" href="https://www.youtube.com/shorts/SRtz2wOoe9o" target="_blank" rel="noopener noreferrer">YouTubeで道順動画を見る</a>
+          </div>
+          <div class="route-video-frame">
+            <iframe src="https://www.youtube-nocookie.com/embed/SRtz2wOoe9o" title="柏駅西口から整体院ひざこぞうまでの道順動画" width="320" height="569" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
+      </section>
+
       <section class="access-card" aria-labelledby="route-title">
         <div class="access-card__head access-card__head--route">
           <div>
@@ -244,12 +270,16 @@
 
       <section class="access-card" aria-labelledby="room-title">
         <div class="access-card__head"><h2 id="room-title">エレベーター・305号室までの案内</h2></div>
-        <div class="access-card__body">
+        <div class="access-card__body room-arrival-layout">
           <ul class="info-list">
             <li><i data-lucide="building-2" aria-hidden="true"></i><span>建物内のエレベーターをご利用いただけます。</span></li>
             <li><i data-lucide="door-open" aria-hidden="true"></i><span>3階まで上がり、305号室までお越しください。</span></li>
             <li><i data-lucide="lock-keyhole" aria-hidden="true"></i><span>完全予約制のため、ご予約時間に合わせてお越しください。</span></li>
           </ul>
+          <figure class="room-arrival-photo">
+            <img src="image/photo-entrance-sign-768.webp" srcset="image/photo-entrance-sign-768.webp 768w, image/photo-entrance-sign-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 74px), 340px" alt="青緑色のドアに掲げられた、ひざこぞうの木製看板" width="768" height="512" loading="lazy" decoding="async">
+            <figcaption class="photo-note">ドアの「ひざこぞう」の表示が目印です。</figcaption>
+          </figure>
         </div>
       </section>
 

@@ -54,3 +54,14 @@
     line-height: 1.85;
   }
 }
+
+/* Show the full professional photo in each assessment section. */
+body [class*="-assessment__media"] img[src*="/photo-"],
+body .lb-editorial-steps__photo img[src*="/photo-"] {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  object-position: center;
+}
