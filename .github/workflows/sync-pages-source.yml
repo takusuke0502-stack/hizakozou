@@ -1,0 +1,19 @@
+name: Sync GitHub Pages source branch
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  sync-pages-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+
+      - name: Fast-forward Pages source branch to main
+        run: git push origin HEAD:refs/heads/codex/optimize-symptoms-social-meta
