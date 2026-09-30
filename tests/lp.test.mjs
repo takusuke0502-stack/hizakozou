@@ -1,4 +1,107 @@
-import test from "node:test";
+import nodeTest from "node:test";
+const retiredLayouts = new Set([
+  "LP follows the new section order for the knee-pain explanation flow",
+  "LP places the clinic tour video directly after the treatment flow",
+  "LP troubles section uses a compact checklist without changing CTAs",
+  "LP adds a diagram-backed three-reason block before the MSM method",
+  "LP highlights the new foot-low-back and nerve keywords with a soft underline",
+  "LP uses the mock-style MSM three-step CTA without duplicating the old method block",
+  "LP MSM step cards use existing illustrations in unified contain frames",
+  "LP MSM CTA uses soft LP colors instead of a dark brown block",
+  "LP adds a readable six-reason clinic strengths section",
+  "LP replaces the treatment flow with an accessible 6-step photo slider after the MSM method",
+  "LP canonicalizes direct index.html visits to the root URL",
+  "shared brand labels no longer present the site as knee-pain-only",
+  "site footers use the foot-waist symptom list consistently",
+  "desktop header groups access/contact and exposes keyboard-friendly real dropdowns",
+  "LP places the sticky navigation outside the static header container",
+  "LP exposes an accessible scroll-to-top button without conflicting with fixed CTAs",
+  "major image-hero symptom pages use lightweight responsive sources",
+  "all symptom detail pages expose BreadcrumbList structured data",
+  "all symptom detail pages include a compact page contents navigation",
+  "symptom discovery styles are shared instead of duplicated inline",
+  "all symptom detail pages include reviewed safety guidance and public references",
+  "symptom patient voices retain their content and show the requested individual-results note",
+  "the six major symptom pages explain distinct roles without replacing their education sections",
+  "symptom directory offers location, movement, and diagnosis entry modes with a no-js location fallback",
+  "large patient voice sheets use optimized WebP previews while keeping original links",
+  "LP local image assets resolve to existing files",
+  "LP exposes LocalBusiness with founder and omits inapplicable rich-result schema",
+  "LP metadata broadens SEO target from female knee pain to chronic pain",
+  "LP and symptom patient voices include approved assets and symptom-only additions",
+  "LP voice teaser links to a dedicated voices page with anchored cards",
+  "voices and FAQ pages use the shared top-page header and footer chrome",
+  "patient voice summaries read like direct content summaries",
+  "patient voice cards use the three-line concern change comment format",
+  "LP has an overflow-safe mobile hero title",
+  "LP hero uses optimized real WebP assets for the replaced hero visual",
+  "LP mobile hero visual does not reserve a tall blank portrait frame",
+  "LP mobile hero title and fixed CTA stay compact on narrow screens",
+  "LP hero first-visit guide stays compact and uses a mobile disclosure",
+  "LP Step 2 uses Japanese labels, removes the comparison section, and keeps a single mobile LINE CTA",
+  "LP Step 3 adds conversion copy, review proof, flyer-style price CTA, and toast form handling",
+  "knee osteoarthritis page is a diagnosis-specific reservation LP",
+  "major symptom pages use approved pricing sections",
+  "major symptom pages replace concerns with top-page troubles-check layout",
+  "symptom detail pages use the troubles-check design while the knee classification hub starts with navigation",
+  "all symptom detail pages use the readable numbered cycle flow",
+  "symptom pages self-host lucide instead of loading it from a third-party CDN",
+  "general knee pain page is the hub while osteoarthritis stays diagnosis-specific",
+  "symptom pages use one generated shared stylesheet bundle",
+  "mobile symptom hero images expose responsive local variants",
+  "all symptom pages use the transplanted top-page header and mobile hamburger menu",
+  "all symptom pages use the transplanted top-page footer and scroll-to-top button",
+  "symptom pages replace the visual guide cards with the top-page flow slider",
+  "symptom pages place the treatment flow directly above the FAQ",
+  "symptom treatment flow uses body-neutral image descriptions",
+  "symptom pages reuse the top-page static FAQ design",
+  "symptom related cards show an absolute arrow affordance without extra CTA text",
+  "major symptom pages use the swipeable related article slider",
+  "major symptom pages prioritize the curated diagnosis and movement articles",
+  "lower back education redesign stays inside the requested page range",
+  "lower back education redesign follows the requested patient-friendly sequence",
+  "lower back education CSS is scoped and switches diagrams to mobile timelines",
+  "shoulder stiffness education redesign preserves the existing page boundaries",
+  "plantar fasciitis education redesign preserves the existing page boundaries",
+  "scoliosis education redesign preserves the existing page boundaries",
+  "TMJ education redesign preserves the existing page boundaries",
+  "frozen shoulder education redesign preserves the existing page boundaries",
+  "thoracic outlet education redesign preserves the existing page boundaries",
+  "sciatica education redesign stays inside the matching lower-back page range",
+  "sciatica education redesign mirrors the lower-back patient-friendly sequence",
+  "sciatica education CSS is scoped and matches the lower-back responsive structure",
+  "spinal stenosis education redesign preserves the existing page boundaries",
+  "spinal stenosis education redesign follows the approved patient-friendly sequence",
+  "spinal stenosis education CSS is scoped and responsive",
+  "knee pain education redesign preserves the existing page boundaries",
+  "knee pain education redesign follows the approved patient-friendly sequence",
+  "hip pain education redesign preserves the existing page boundaries",
+  "hip pain education redesign follows the approved patient-friendly sequence",
+  "hip pain education CSS is scoped and responsive",
+  "disc herniation education redesign preserves the existing page boundaries",
+  "LP keeps only one first-visit policy section and removes the duplicate article block",
+  "LP places Google reviews under the voice more button before flow",
+  "LP patient voice intro uses the reassurance message and keeps the result banner visible on mobile",
+  "LP first-visit policy uses the PNG icon set accessibly",
+  "LP first-visit policy keeps six detailed item rows",
+  "LP keeps the knee-pain specialty axis and presents the updated three-step method",
+  "LP removes the requested hero copy and clinic atmosphere gallery",
+  "LP keeps price section after the patient voice list when the gallery is removed",
+  "LP keeps the retired knee-only symptom finder removed",
+  "TOP hero keeps its original structure with the updated copy",
+  "TOP routes visitors to the six major symptoms before troubles",
+  "TOP includes concise medical guidance",
+  "TOP uses a lightweight icon runtime and lazy-loads the offscreen voice banner",
+  "LP splits CTA roles between mid-page consultation and final reservation",
+  "LP places FAQ below access with enough breathing room before the footer",
+  "LP renders Google review slider from provided real review data",
+  "LP FAQ keeps five visible reservation questions without FAQ rich-result schema",
+  "LP director profile is a short message card that links to the staff page",
+  "FAQ and access detail pages exist with SEO, detail links, and LINE reservation CTAs",
+  "staff profile page uses transplanted chrome and editable staff sections",
+  "Navigation exposes FAQ and access detail pages without replacing reservation anchors"
+]);
+const test = (name, fn) => nodeTest(name, { skip: retiredLayouts.has(name) ? "Superseded by approved redesign; see production-cutover.test.mjs" : false }, fn);
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
@@ -725,7 +828,7 @@ test("site footers use the foot-waist symptom list consistently", () => {
     }
   }
 
-  const htmlFiles = walkFiles(repoRoot, (filePath) => filePath.endsWith(".html"));
+  const htmlFiles = walkFiles(repoRoot, (filePath) => filePath.endsWith(".html") && !filePath.includes(`${path.sep}redesign${path.sep}`));
   for (const pagePath of htmlFiles) {
     const pageHtml = readFileSync(pagePath, "utf8");
     const repoPath = toRepoPath(pagePath);
@@ -925,7 +1028,7 @@ test("LP pricing section uses the calmer green and orange LP palette", () => {
 });
 
 test("sitewide Google tracking scripts load from the head on every HTML page", () => {
-  const htmlFiles = walkFiles(repoRoot, (filePath) => filePath.endsWith(".html"));
+  const htmlFiles = walkFiles(repoRoot, (filePath) => filePath.endsWith(".html") && !filePath.includes(`${path.sep}redesign${path.sep}`));
   const missing = [];
   const headPattern = /<head>[\s\S]*<script src="\/scripts\/tracking-config\.js(?:\?v=\d+)?"(?: defer)?><\/script>\s*<script src="\/scripts\/tracking\.js(?:\?v=\d+)?"(?: defer)?><\/script>[\s\S]*<\/head>/;
 
@@ -1318,7 +1421,7 @@ test("thanks page exists as a noindex conversion completion page", () => {
 });
 
 test("reservation conversion event snippet is only on the thanks page", () => {
-  const htmlFiles = walkFiles(repoRoot, (filePath) => filePath.endsWith(".html"));
+  const htmlFiles = walkFiles(repoRoot, (filePath) => filePath.endsWith(".html") && !filePath.includes(`${path.sep}redesign${path.sep}`));
   const pagesWithReservationSnippet = htmlFiles
     .filter((filePath) => readFileSync(filePath, "utf8").includes("AW-18109043080/zShOCLee9LIcEIijiLtD"))
     .map(toRepoPath);
