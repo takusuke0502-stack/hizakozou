@@ -1,0 +1,89 @@
+@charset "UTF-8";
+/* TOP only: natural section heights and photo-first patient stories. */
+.home .welcome { min-height: 0; padding-top: 68px; padding-bottom: 100px; }
+.home .welcome .section-heading { padding-top: 0; transform: none; }
+.home .welcome .section-heading h2 { margin-top: 16px; margin-bottom: 24px; }
+.home .welcome__layout { grid-template-columns: minmax(0, 1fr) minmax(0, 443px); gap: clamp(35px, 5vw, 72px); align-items: center; }
+.home .welcome__visual { width: 100%; min-height: 0; margin: 0; padding-bottom: 62px; }
+.home .welcome__photo img { height: 540px; }
+.home .welcome__detail { right: -10px; bottom: 0; }
+.home .approach { padding-top: 64px; padding-bottom: 72px; }
+.home .approach .section-heading h2 { margin-top: 14px; margin-bottom: 12px; }
+.home .approach__rows { margin-top: 36px; gap: 58px; }
+.home .approach__rows article { gap: clamp(32px, 5vw, 72px); }
+.home .approach__links { margin-top: 32px; }
+.home .fit-guide { padding-block: 72px; }
+.home .fit-guide__columns { gap: 28px; align-items: stretch; }
+.home .fit-guide__group { min-width: 0; background: #fff; border: 1px solid #cce5df; border-top: 4px solid #187f79; border-radius: 8px; padding: 28px; }
+.home .fit-guide__group--other { border-top-color: #ac8752; }
+.home .fit-guide__group h3 { margin: 0 0 20px; }
+.home .fit-guide__group h4 { margin: 18px 0 10px; }
+.home .fit-guide__group li { padding-block: 13px; }
+.home .director { padding-block: 72px; }
+.home .director__layout { align-items: center; gap: clamp(32px, 5vw, 72px); }
+.home .director .section-heading h2 { margin-top: 14px; margin-bottom: 22px; }
+.home .director .section-heading > .home-director-prose { margin-bottom: 18px; }
+.home .director__photo { align-self: center; }
+.home .trust { padding-top: 72px; padding-bottom: 64px; }
+.home .home-patient-voices { background: #f5faf8; padding-block: 72px; }
+.home .home-patient-voices .section__inner { max-width: 1040px; }
+.home .home-voices-heading { text-align: center; margin-bottom: 32px; }
+.home .home-voices-heading .eyebrow { justify-content: center; margin-bottom: 14px; }
+.home .home-voices-heading h2 { display: inline-block; color: #183c3a; font-family: Meiryo, sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 48px); line-height: 1.5; margin: 0 0 18px; padding: 0 12px; background: linear-gradient(transparent 76%, #f8e5a3 76%); }
+.home .home-voices-heading > p:not(.eyebrow) { font-size: 16px; color: #283e46; line-height: 1.85; }
+.home .home-voice-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto 48px; }
+.home .home-voice-gallery__photo { display: block; border-radius: 8px; overflow: hidden; background: #fff; }
+.home .home-voice-gallery__photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; display: block; transition: transform .25s; }
+.home .home-voice-gallery__photo:hover img { transform: scale(1.025); }
+.home .home-voice-gallery__photo:focus-visible { outline: 3px solid #175ca4; outline-offset: 4px; }
+.home .home-voice-stories { display: grid; gap: 28px; max-width: 900px; margin: auto; }
+.home .home-voice-story { scroll-margin-top: 135px; background: #fff; border: 1px solid #bdd8ce; border-radius: 12px; padding: 32px; box-shadow: 0 8px 24px #183c3a07; }
+.home .home-voice-story h3 { font-family: inherit; font-size: clamp(23px, 2.3vw, 30px); line-height: 1.65; color: #fff; font-weight: 700; letter-spacing: 0; padding: 20px 24px; margin: 0 0 18px; background: #136b67; border-radius: 6px; text-align: center; }
+.home .home-voice-story__meta { text-align: center; margin-bottom: 20px; }
+.home .home-voice-story__meta p { font-size: 15px; line-height: 1.75; color: #283e46; }
+.home .home-voice-story__meta p span { margin-left: 10px; }
+.home .home-voice-story__meta .voice-card__symptom { font-size: 14px; font-weight: 700; color: #136b67; margin-bottom: 4px; }
+.home .home-voice-story__photo { max-width: 620px; margin: 0 auto 24px; }
+.home .home-voice-story__photo img { display: block; width: 100%; height: auto; border-radius: 6px; }
+.home .home-voice-story blockquote { padding: 0; border: 0; margin: 0; font-size: 16px; line-height: 1.95; color: #283e46; font-weight: 500; }
+.home .home-voice-story .under-link { margin-top: 20px; }
+.home .home-voice-story__note { margin: 20px 0 0; font-size: 12px; line-height: 1.8; color: #486862; }
+.home .home-voice-story--sheet .home-voice-story__photo { max-width: 250px; }
+.home .home-voice-story--sheet figcaption { font-size: 12px; text-align: center; color: #486862; margin-top: 8px; }
+.home .home-patient-voices .voice-note { text-align: center; margin: 28px 0 20px; }
+.home .home-voices-more { display: flex; max-width: 460px; margin: 0 auto; }
+@media (max-width: 1000px) {
+  .home .welcome__layout { grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); gap: 32px; }
+  .home .welcome__photo img { height: 450px; }
+  .home .welcome__visual { align-self: center; }
+  .home .fit-guide__group { padding: 23px; }
+}
+@media (max-width: 700px) {
+  .home .welcome { padding-top: 42px; padding-bottom: 65px; }
+  .home .welcome__layout { grid-template-columns: 1fr; gap: 24px; }
+  .home .welcome__visual { width: 100%; max-width: 420px; margin: 0 auto; padding-bottom: 48px; }
+  .home .welcome__photo { width: 100%; max-width: 100%; }
+  .home .welcome__photo img { height: auto; aspect-ratio: 4 / 3; }
+  .home .welcome__detail { right: 0; width: 132px; height: 96px; }
+  .home .approach { padding-block: 44px 52px; }
+  .home .approach__rows { margin-top: 28px; gap: 36px; }
+  .home .fit-guide, .home .director, .home .trust { padding-block: 52px; }
+  .home .fit-guide__columns { grid-template-columns: 1fr; gap: 20px; }
+  .home .fit-guide__group { padding: 22px; }
+  .home .director__layout { gap: 24px; }
+  .home .director__photo { width: min(100%, 340px); margin-left: 0; justify-self: center; }
+  .home .home-patient-voices { padding-block: 52px; }
+  .home .home-voices-heading { margin-bottom: 24px; }
+  .home .home-voices-heading h2 { font-size: 32px; }
+  .home .home-voice-gallery { gap: 10px; margin-bottom: 28px; }
+  .home .home-voice-gallery__photo { border-radius: 5px; }
+  .home .home-voice-stories { gap: 20px; }
+  .home .home-voice-story { padding: 18px; scroll-margin-top: 96px; }
+  .home .home-voice-story h3 { font-size: 21px; line-height: 1.65; padding: 16px 14px; }
+  .home .home-voice-story__photo { margin-bottom: 18px; }
+  .home .home-voice-story__meta p { font-size: 14px; }
+  .home .home-voice-story blockquote { font-size: 16px; }
+  .home .home-voice-story .under-link { font-size: 13px; gap: 10px; }
+  .home .home-voices-more { font-size: 14px; gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .home .home-voice-gallery__photo img { transition: none; } }

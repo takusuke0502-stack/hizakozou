@@ -1,0 +1,105 @@
+@charset "UTF-8";
+/* TOP typography only. Layout, photography and shared symptom styles stay intact. */
+.home main {
+  font-family: Meiryo, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  color: #283e46;
+  font-weight: 500;
+}
+.home main .section .section-heading > p:not(.eyebrow),
+.home main .approach__rows p,
+.home main .column__intro > p:not(.eyebrow),
+.home main .closing__inner > p:not(.eyebrow) {
+  color: #283e46;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.95;
+}
+.home main .eyebrow { font-size: 13px; font-weight: 700; color: #136b67; }
+.home .hero h1 {
+  font-family: Meiryo, "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: clamp(32px, 3vw, 43px);
+  font-weight: 700;
+  color: #183c3a;
+  letter-spacing: .045em;
+  line-height: 1.5;
+}
+.home .hero h1 em {
+  color: #136b67;
+  font-weight: 800;
+  font-style: normal;
+  background: linear-gradient(to right, transparent 72%, #f8e5a3 72%);
+}
+.home .hero__lead { font-size: 17px; font-weight: 700; color: #283e46; line-height: 1.85; }
+.home .first-info__inner strong { font-size: 17px; font-weight: 700; color: #183c3a; }
+.home .first-info__inner small { font-size: 14px; color: #365650; }
+.home main .section .section-heading h2,
+.home main .column__intro h2,
+.home main .news-showcase__intro h2,
+.home main .access__heading h2 {
+  font-family: Meiryo, "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: clamp(32px, 3vw, 40px);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .01em;
+  color: #183c3a;
+}
+.home main .home-title-accent { color: #136b67; font-weight: 700; }
+.home main .home-title-note { font-size: .69em; font-weight: 700; color: #365650; }
+.home main .home-text-accent { color: #175ca4; font-weight: 700; }
+.home main .home-director-name { font-size: 22px; color: #183c3a; }
+.home .director .muted { font-size: 14px; color: #365650; }
+.home .approach__rows h3 { font-family: inherit; font-size: clamp(23px, 2.3vw, 30px); line-height: 1.6; font-weight: 700; color: #183c3a; letter-spacing: 0; }
+.home .approach__number { font-size: 23px; color: #136b67; font-weight: 700; }
+.home .fit-guide__group h3 { font-size: 24px; font-weight: 700; color: #136b67; line-height: 1.6; }
+.home .fit-guide__group--other h3 { color: #283e46; }
+.home .fit-guide__group h4 { font-size: 16px; color: #283e46; }
+.home .fit-guide__group li { font-size: 16px; color: #283e46; line-height: 1.9; }
+.home .visit-flow h3 { font-family: inherit; font-size: 20px; line-height: 1.65; color: #136b67; font-weight: 700; }
+.home .visit-flow p { font-size: 15px; line-height: 1.9; color: #283e46; }
+.home .visit-flow li > div > span { font-size: 21px; color: #136b67; font-weight: 700; }
+.home .visit-flow__hint,
+.home .voice-carousel__hint,
+.home .column__hint { font-size: 13px; color: #365650; }
+.home .campaign-promo h2 { color: #183c3a; font-weight: 700; }
+.home .campaign-promo__price strong small { display: block; width: fit-content; }
+.home .campaign-promo__inner > div:first-child > p:not(.eyebrow) { font-size: 15px; color: #283e46; line-height: 1.85; }
+.home .visit-fee__service { font-size: 20px; font-weight: 700; color: #183c3a; }
+.home .visit-fee__time { font-size: 16px; color: #183c3a; font-weight: 700; }
+.home .visit-booking p { font-size: 15px; color: #283e46; line-height: 1.85; }
+.home .voice-preview__heading h3 { font-size: 28px; font-weight: 700; color: #183c3a; }
+.home .voice-card h4 { font-size: 19px; color: #183c3a; line-height: 1.75; }
+.home .voice-preview .voice-card blockquote { font-size: 15px; color: #283e46; line-height: 1.9; }
+.home .voice-card__person p { color: #283e46; }
+.home .voice-note { font-size: 13px; color: #365650; line-height: 1.85; }
+.home .column-card h3 { font-size: 17px; font-weight: 700; color: #183c3a; line-height: 1.65; }
+.home .news-showcase__list strong { font-size: 17px; color: #183c3a; line-height: 1.85; font-weight: 700; }
+.home .access__details dt { font-size: 14px; color: #136b67; font-weight: 700; }
+.home .access__details dd { font-size: 15px; color: #283e46; line-height: 1.85; }
+.home main .closing__inner h2 { font-size: clamp(26px, 3vw, 40px); line-height: 1.6; font-weight: 700; color: #183c3a; letter-spacing: 0; }
+.home .contact-form-wrap > h3 { font-size: 23px; color: #183c3a; font-weight: 700; }
+.home .contact-form-wrap > p { font-size: 15px; color: #283e46; }
+.home .contact-form__field input, .home .contact-form__field textarea { font-size: 16px; }
+@media (min-width: 1200px) { .home .hero h1 { height: 340px; } }
+@media (max-width: 600px) {
+  .home .hero h1 { font-size: clamp(30px, 8.5vw, 36px); letter-spacing: .005em; line-height: 1.5; }
+  .home .hero h1 em { background: linear-gradient(to bottom, transparent 73%, #f8e5a3 73%); }
+  .home .hero__lead { font-size: 16px; }
+  .home .campaign-promo__price strong small { display: block; }
+  .home .first-info__inner strong { font-size: 16px; }
+  .home .first-info__inner small { font-size: 13px; }
+  .home main .section .section-heading h2, .home main .column__intro h2,
+  .home main .news-showcase__intro h2, .home main .access__heading h2 { font-size: clamp(26px, 7.3vw, 30px); }
+  .home .approach__rows h3 { font-size: clamp(21px, 6vw, 25px); }
+  .home .fit-guide__group h3 { font-size: 21px; }
+  .home .visit-flow h3 { font-size: 19px; }
+  .home .visit-fee__service { font-size: 18px; }
+  .home .voice-preview__heading h3 { font-size: 26px; }
+  .home .voice-card h4 { font-size: 18px; }
+  .home .column-card h3 { font-size: 15px; line-height: 1.55; }
+  .home .column-card { min-height: 280px; max-height: none; }
+  .home .column-card h3 { display: block; overflow: visible; -webkit-line-clamp: unset; }
+  .home .news-showcase__list strong { font-size: 16px; }
+  .home .access__details dt { font-size: 13px; }
+  .home .access__details dd { font-size: 14px; }
+  .home main .closing__inner h2 { font-size: clamp(23px, 6.4vw, 28px); }
+}

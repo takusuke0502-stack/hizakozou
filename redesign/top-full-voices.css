@@ -1,0 +1,24 @@
+@charset "UTF-8";
+/* Complete patient answers remain expanded and readable. */
+.home .home-voice-story h3 { text-wrap: balance; }
+.home .home-voice-title-part { display: inline-block; white-space: nowrap; }
+.home .home-voice-responses { display: grid; gap: 16px; }
+.home .home-voice-response p {
+  font-size: 16px;
+  line-height: 1.95;
+  color: #283e46;
+  font-weight: 500;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.home .home-voice-response p + p { margin-top: 12px; }
+.home .home-voice-gallery__photo:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  width: calc((100% - 16px) / 2);
+  justify-self: center;
+}
+.home .home-voice-gallery__photo img { object-position: center 40%; }
+@media (max-width: 700px) {
+  .home .home-voice-responses { gap: 16px; }
+  .home .home-voice-gallery__photo:last-child:nth-child(odd) { width: calc((100% - 10px) / 2); }
+}
