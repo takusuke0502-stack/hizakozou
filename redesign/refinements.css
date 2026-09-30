@@ -1,0 +1,186 @@
+@charset "UTF-8";
+/* Prototype refinements: navigation, visit information, voices and access. */
+#first-visit,#price,.voices-page-card,.access-detail h2{scroll-margin-top:125px}
+.desktop-nav{gap:clamp(16px,1.8vw,28px)}
+.site-footer__inner{flex-wrap:wrap;gap:24px}
+.site-footer nav{flex-wrap:wrap;gap:12px 24px;max-width:740px}
+.site-footer small{width:100%;text-align:right}
+.mobile-nav{max-height:calc(100dvh - 84px);overflow-y:auto;overscroll-behavior:contain}
+.home .hero__round-cta{color:#183c3a}
+.home .hero__round-cta strong{font-size:20px;line-height:1.55;letter-spacing:.02em}
+.home .first-info__inner{width:calc(100% - 75px);max-width:900px;grid-template-columns:1.5fr 1fr 1fr 1fr}
+.home .first-info__inner small{display:block;font-size:13px;line-height:1.65;color:#386e64}
+.home .first-info__inner strong{font-size:15px}
+.home .first-info__inner strong small{display:inline;font-size:12px}
+.home .first-info__inner .first-info__label{font-size:12px;font-weight:700}
+.home .hero__lead{font-size:14px}
+.first-visit__booking{margin:34px auto 0;max-width:980px;display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:34px 38px;background:#edf7f3;border-top:1px solid #afcec4;border-bottom:1px solid #afcec4;align-items:center}
+.visit-fee{color:var(--ink);line-height:1.6}
+.visit-fee p{margin:0}
+.visit-fee .visit-fee__service{font-size:15px;font-weight:700;margin-bottom:14px}
+.visit-fee .visit-fee__regular{font-size:14px;color:var(--ink-soft)}
+.visit-fee__regular span{font-size:18px;white-space:nowrap}
+.visit-fee .visit-fee__campaign{margin:12px 0 6px}
+.visit-fee__campaign>span{font-size:14px;font-weight:700;display:block;color:var(--green)}
+.visit-fee .visit-fee__campaign strong{display:block;font-size:42px;line-height:1.3;font-weight:700;margin:3px 0 0;color:var(--green);letter-spacing:.02em}
+.visit-fee .visit-fee__campaign small{font-size:15px;font-weight:500;white-space:nowrap;margin-left:6px}
+.visit-fee .visit-fee__time{font-size:14px;font-weight:700}
+.visit-booking{font-size:13px;line-height:1.85}
+.visit-booking .visit-booking__payment{font-size:14px;margin-bottom:18px}
+.visit-booking .button{width:100%;margin-bottom:14px;gap:10px}
+.first-visit__aside>.visit-fee{margin-bottom:20px}
+.voice-preview{padding-top:50px}
+.voice-preview h3{font-size:22px;margin-bottom:25px;color:var(--green)}
+.voice-preview__grid{display:grid;grid-template-columns:1fr 1fr;gap:38px}
+.voice-preview__grid figure{border-top:1px solid #a9c9bc;padding-top:20px}
+.voice-preview blockquote{margin:0 0 14px;font-size:17px;line-height:1.85;color:var(--ink)}
+.voice-preview figcaption{font-size:13px;color:var(--ink-soft)}
+.voice-preview .under-link{margin-top:16px;font-size:13px}
+.voice-note{font-size:13px;line-height:1.8;color:var(--ink-soft);margin-top:25px}
+.detail-heading{padding:55px var(--pad) 60px;background:#e5f7f1}
+.detail-heading .section__inner{max-width:1080px}
+.detail-heading h1{font-size:clamp(32px,4.5vw,52px);margin:18px 0}
+.detail-heading p:not(.eyebrow){max-width:720px;font-size:15px;line-height:1.9}
+.detail-heading p.voice-note{font-size:13px;margin-top:22px}
+.detail-jumps{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:28px;font-size:14px;font-weight:700}
+.detail-jumps a{border-bottom:1px solid #77a799;padding:8px 0}
+.voice-list{max-width:1080px;padding:25px var(--pad) 70px}
+.voices-page-card{display:grid;grid-template-columns:200px minmax(0,1fr);gap:48px;padding:50px 0;border-bottom:1px solid var(--line)}
+.voices-page-card__sheet img{width:100%;height:auto;border:1px solid var(--line)}
+.voices-page-card__sheet figcaption{font-size:12px;color:var(--ink-soft);margin-top:10px}
+.voices-page-card__meta{font-size:13px;color:var(--ink-soft);margin-bottom:14px}
+.voices-page-card h2{font-size:24px;line-height:1.7;color:var(--green);margin-bottom:24px}
+.voice-transcript{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0}
+.voice-transcript summary{cursor:pointer;font-size:14px;font-weight:700;color:var(--green);padding:4px 0}
+.voices-page-card__rows p{margin:22px 0;font-size:15px;line-height:1.9}
+.voices-page-card__rows strong{display:block;font-size:14px;margin-bottom:7px;color:var(--green)}
+.access-wrap{max-width:1160px;margin:auto;padding:0 var(--pad) 70px}
+.access-card{padding:48px 0;border-bottom:1px solid var(--line)}
+.access-card__head{margin-bottom:25px}
+.access-card h2{font-size:clamp(23px,2.6vw,30px);color:var(--green);line-height:1.6}
+.access-card p,.access-card li{font-size:15px;line-height:1.9}
+.access-info-panel{display:grid;grid-template-columns:1.2fr 1fr;gap:60px}
+.store-info-list{margin:0}
+.store-info-list>div{display:grid;grid-template-columns:95px 1fr;gap:15px;padding:12px 0;border-bottom:1px solid var(--line)}
+.store-info-list dt{font-weight:700;font-size:14px}
+.store-info-list dd{margin:0;font-size:15px;overflow-wrap:anywhere}
+.hours-table{width:100%;border-collapse:collapse;align-self:start;font-size:15px}
+.hours-table caption{text-align:left;font-weight:700;font-size:17px;margin-bottom:12px}
+.hours-table th,.hours-table td{text-align:left;padding:12px 0;border-bottom:1px solid var(--line)}
+.hours-table th{font-size:14px}
+.route-video-layout{display:grid;grid-template-columns:1fr minmax(250px,.75fr);gap:45px;align-items:start}
+.route-video-copy p{margin-bottom:18px}
+.route-video-frame{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0}
+.route-video-frame summary{font-size:15px;font-weight:700;cursor:pointer;color:var(--green)}
+.route-video-frame iframe{display:block;width:min(100%,320px);height:500px;margin:20px auto 0;border:0}
+.map-link{display:inline-block;border-bottom:1px solid var(--green);color:var(--green);padding:5px 0;font-size:14px;font-weight:700}
+.route-track{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 26px}
+.route-card{position:relative;min-width:0}
+.route-card>strong{display:flex;align-items:center;justify-content:center;background:var(--green);color:#fff;width:36px;height:36px;margin-bottom:12px;font-size:17px}
+.route-card img{width:100%;height:300px;object-fit:contain;background:#f2f5f0}
+.route-card p{margin-top:14px}
+.route-scroll-hint{margin-top:10px;color:var(--ink-soft)}
+.simple-map{max-width:740px;margin:0 auto 36px}
+.simple-map img{width:100%;height:auto}
+.simple-map figcaption,.photo-note{font-size:13px;line-height:1.8;margin-top:12px;color:var(--ink-soft)}
+.access-map-subtitle{font-size:21px;margin-bottom:20px}
+.map-frame iframe{width:100%;height:340px;border:0;margin-bottom:15px;background:#e5eee8}
+.photo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.photo-grid img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#f2f5f0}
+.room-arrival-layout{display:grid;grid-template-columns:1fr .75fr;gap:45px;align-items:start}
+.info-list{margin:0;padding-left:1.3em}
+.info-list li{padding:4px 0}
+.room-arrival-photo img{width:100%;height:auto}
+.access-wrap>.closing{margin-top:50px;border-radius:28px;padding:55px 35px}
+.access-wrap>.closing h2{font-size:30px}
+@media(min-width:821px) and (max-width:1100px){
+ .desktop-nav{gap:14px;font-size:12px}
+ .home .first-info__inner{margin-left:25px;width:calc(100% - 25px)}
+ .home .first-info__inner strong{font-size:14px}
+ .home .first-info__inner small{font-size:13px}
+}
+@media(max-width:820px){
+ .home .first-info__inner{margin:0;width:100%;grid-template-columns:1.5fr 1fr 1fr 1fr}
+ .home .first-info__inner strong{font-size:14px}
+ .home .first-info__inner small{font-size:13px}
+ .home .first-info__inner>div{padding:0 8px}
+ .first-visit__booking{gap:26px;padding:28px}
+ .first-visit__grid figcaption{font-size:14px}
+ .site-footer nav{margin:0}
+ .site-footer small{text-align:left}
+ .access-info-panel{gap:30px}
+ .route-track{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .voices-page-card{grid-template-columns:160px minmax(0,1fr);gap:30px}
+ .voice-list{padding-left:var(--pad);padding-right:var(--pad)}
+}
+@media(max-width:600px){
+ #first-visit,#price,.voices-page-card,.access-detail h2{scroll-margin-top:105px}
+ .home-intro{min-height:0}
+ .home .hero__media{height:265px}
+ .home .hero__inset{width:125px;height:100px;top:190px;right:18px}
+ .home .hero__inset figcaption{font-size:10px;width:70px;height:50px;left:-35px;top:20px}
+ .home .hero__copy{width:100%;min-height:0;margin:0;padding:37px var(--pad) 23px;align-items:flex-start}
+ .home .hero h1{writing-mode:horizontal-tb;height:auto;white-space:normal;font-size:28px;line-height:1.48;letter-spacing:.015em;margin:0}
+ .home .hero h1 span{display:block}
+ .home .hero__lead{max-width:none;margin:12px 0 0;text-align:left;font-size:14px;line-height:1.8}
+ .home .hero__lead br{display:none}
+ .home .first-info{position:relative;top:auto;left:auto;width:100%;min-height:0;padding:22px var(--pad) 28px;background:#e7f9f5}
+ .home .first-info__inner{grid-template-columns:1fr 1fr;gap:20px 16px;margin:0;width:100%}
+ .home .first-info__inner>div,.home .first-info__inner>div:first-child{display:flex;flex-direction:row;text-align:left;align-items:flex-start;gap:8px;padding:0;border:0}
+ .home .first-info__icon{width:26px;height:26px;margin-top:2px;flex:none}
+ .home .first-info__inner strong{white-space:normal;font-size:14px;line-height:1.65;display:block}
+ .home .first-info__inner small,.home .first-info__inner .first-info__label{font-size:13px;line-height:1.6}
+ .home .first-info__inner strong small{font-size:12px}
+ .first-visit__grid{grid-template-columns:1fr;gap:18px;margin-top:28px}
+ .first-visit__grid figure{display:grid;grid-template-columns:110px minmax(0,1fr);align-items:center;gap:16px}
+ .first-visit__grid img{aspect-ratio:4/3;border-radius:7px}
+ .first-visit__grid figcaption{font-size:14px;line-height:1.8;padding:0}
+ .first-visit__booking{grid-template-columns:1fr;gap:24px;padding:24px 20px;margin-top:28px}
+ .visit-fee .visit-fee__service{font-size:14px}
+ .visit-fee .visit-fee__campaign strong{font-size:38px}
+ .visit-fee .visit-fee__campaign small{font-size:14px}
+ .visit-booking{border-top:1px solid #bed6ca;padding-top:20px}
+ .visit-booking .button{font-size:14px;padding:12px 16px}
+ .first-visit__aside{padding:25px}
+ .voice-preview{padding-top:35px}
+ .voice-preview h3{font-size:20px}
+ .voice-preview__grid{grid-template-columns:1fr;gap:26px}
+ .voice-preview blockquote{font-size:15px;line-height:1.9}
+ .detail-heading{padding:32px var(--pad) 38px}
+ .detail-heading h1{margin:12px 0 17px;font-size:32px}
+ .detail-heading p:not(.eyebrow){font-size:14px}
+ .detail-jumps{gap:8px 18px;font-size:13px}
+ .voice-list{padding-top:0;padding-bottom:45px}
+ .voices-page-card{grid-template-columns:80px minmax(0,1fr);gap:18px;padding:30px 0}
+ .voices-page-card__sheet{grid-column:1;grid-row:1}
+ .voices-page-card__sheet figcaption{font-size:12px;line-height:1.6}
+ .voices-page-card__body{display:contents}
+ .voices-page-card__meta{grid-column:2;grid-row:1;align-self:start;margin:0;font-size:13px;line-height:1.8}
+ .voices-page-card h2{grid-column:2;grid-row:1;font-size:18px;line-height:1.7;margin:55px 0 0}
+ .voice-transcript{grid-column:1/-1}
+ .voices-page-card__rows p{font-size:14px}
+ .access-wrap{padding-bottom:45px}
+ .access-card{padding:32px 0}
+ .access-card__head{margin-bottom:20px}
+ .access-card h2{font-size:23px}
+ .access-card p,.access-card li{font-size:14px}
+ .access-info-panel,.route-video-layout,.room-arrival-layout{grid-template-columns:1fr;gap:25px}
+ .store-info-list>div{grid-template-columns:75px 1fr;gap:12px}
+ .store-info-list dd{font-size:14px}
+ .route-track{grid-template-columns:1fr;gap:24px}
+ .route-card{display:grid;grid-template-columns:135px minmax(0,1fr);gap:10px 16px;align-items:start}
+ .route-card>strong{grid-column:2;grid-row:1;width:28px;height:28px;font-size:15px;margin:0}
+ .route-card>a{grid-column:1;grid-row:1/3}
+ .route-card img{width:135px;height:180px;object-fit:contain}
+ .route-card p{grid-column:2;grid-row:2;margin:0;font-size:14px;line-height:1.9}
+ .photo-grid{grid-template-columns:1fr;gap:22px}
+ .photo-grid figure{display:grid;grid-template-columns:135px minmax(0,1fr);gap:16px;align-items:center}
+ .photo-grid .photo-note{margin:0}
+ .simple-map{margin-bottom:25px}
+ .map-frame iframe{height:270px}
+ .access-wrap>.closing{padding:35px 22px}
+ .access-wrap>.closing h2{font-size:26px}
+ .access-wrap>.closing .button{min-width:0;width:100%}
+ .site-footer nav{gap:8px 20px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

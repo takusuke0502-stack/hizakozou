@@ -1,0 +1,261 @@
+@charset "UTF-8";
+/* Shared additions for the redesign preview. */
+
+/* The same navigation appears on every trial page. */
+.site-header__inner,.home .site-header__inner{
+  display:grid;grid-template-columns:minmax(270px,auto) minmax(0,1fr) auto;
+  grid-template-rows:auto auto;gap:10px 24px;min-height:114px;
+  padding:12px var(--pad) 10px;
+}
+.site-header .brand{grid-column:1;grid-row:1;min-width:0;display:flex;flex-direction:row;align-items:center;gap:12px}
+.site-header .brand__mark{width:50px;height:50px;flex:none;object-fit:contain}
+.site-header .brand__text{display:flex;flex-direction:column;min-width:0}
+.site-header .brand strong{font-size:clamp(19px,1.8vw,23px)}
+.site-header .header-location{grid-column:2;grid-row:1;justify-self:end}
+.site-header .desktop-nav,.home .site-header .desktop-nav{
+  grid-column:1/-1;grid-row:2;justify-content:center;flex-wrap:wrap;
+  gap:3px clamp(14px,1.7vw,27px);white-space:normal;
+  font-size:13px;line-height:1.5;
+}
+.site-header .desktop-nav a{padding:4px 0}
+.site-header .header-actions{grid-column:3;grid-row:1;display:flex;align-items:center;gap:9px}
+.site-header .header-actions .header-contact,.home .site-header .header-actions .header-contact{
+  display:inline-flex;grid-column:auto;grid-row:auto;min-width:0;margin:0;
+  padding:10px 15px;border-radius:9px;
+}
+.instagram-link{
+  width:43px;height:43px;display:inline-flex;align-items:center;justify-content:center;
+  color:var(--green);border:1px solid #aec8bd;border-radius:10px;flex:none;
+  transition:background .2s,border-color .2s;
+}
+.instagram-link:hover{background:#edf5f0;border-color:var(--green)}
+.instagram-link svg{width:22px;height:22px}
+.site-header .header-actions .menu-toggle{display:none}
+.site-footer__brand{font-weight:800;letter-spacing:.06em;white-space:nowrap}
+.site-footer__inner{align-items:flex-start}
+.site-footer nav{max-width:none;justify-content:flex-end}
+.mobile-nav[hidden]{display:none!important}
+
+/* Price information sits directly after the first view. */
+.campaign-promo{background:#f7f6f0;padding:22px var(--pad) 30px}
+#contact{scroll-margin-top:125px}
+.campaign-promo__inner{
+  max-width:1160px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) auto auto;
+  align-items:center;gap:clamp(20px,3vw,45px);border-top:1px solid #aebfb2;
+  border-bottom:1px solid #aebfb2;padding:25px 0;
+}
+.campaign-promo h2{font-size:clamp(19px,1.8vw,25px);margin:7px 0}
+.campaign-promo__inner>div:first-child>p:last-child{font-size:13px;color:var(--ink-soft);max-width:460px}
+.campaign-promo__price{display:flex;flex-direction:column;gap:2px;white-space:nowrap}
+.campaign-promo__price>span{font-size:13px;color:var(--ink-soft)}
+.campaign-promo__price s{text-decoration-thickness:1px}
+.campaign-promo__price strong{display:flex;align-items:baseline;gap:5px;font-size:34px;line-height:1.2;color:var(--green)}
+.campaign-promo__price strong small{font:700 12px "Yu Gothic",sans-serif;align-self:center;margin-right:6px}
+.campaign-promo__price strong em{font:600 12px "Yu Gothic",sans-serif;font-style:normal}
+.campaign-promo .button{white-space:nowrap;min-width:192px;justify-content:center}
+.first-visit__booking{border-left:4px solid var(--green);background:#eaf4ed}
+.first-visit__booking .visit-fee__campaign strong,.first-visit__aside .visit-fee__campaign strong{font-size:clamp(40px,4vw,54px)}
+.first-visit__aside .visit-fee__campaign strong{margin:0}
+.price-line-link{margin:20px 0 13px;width:100%;justify-content:center;font-size:13px}
+
+/* A short list of situations, with medical referral distinct from preference. */
+.fit-guide{background:#f7faf6}
+.fit-guide__columns{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);margin-top:48px}
+.fit-guide__group{border-top:3px solid var(--green);padding-top:19px}
+.fit-guide__group--other{border-color:#b79f77}
+.fit-guide__group h3{font-size:25px;color:var(--green);margin-bottom:17px}
+.fit-guide__group h4{font-size:13px;letter-spacing:.03em;color:var(--ink-soft);margin:19px 0 2px}
+.fit-guide__group h4:first-of-type{margin-top:7px}
+.fit-guide__group ul{padding:0;margin:0;list-style:none}
+.fit-guide__group li{position:relative;padding:13px 5px 13px 30px;border-bottom:1px solid var(--line);font-size:14px;line-height:1.75}
+.fit-guide__group li::before{content:"";position:absolute;left:4px;top:24px;width:9px;height:9px;border:2px solid var(--sage);border-radius:50%}
+.fit-guide__group--other li::before{border-color:#b79f77}
+
+/* Six visible steps on desktop; swipeable, readable steps on phones. */
+.visit-flow{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:27px 20px;margin:48px 0 0;padding:0}
+.visit-flow li{min-width:0;border-top:1px solid #9bbcad;padding-top:15px}
+.visit-flow img{width:100%;height:180px;object-fit:cover;border-radius:9px 35px 9px 9px}
+.visit-flow li>div{padding:14px 3px 0}
+.visit-flow li span{display:block;font:21px Georgia,serif;color:var(--sage)}
+.visit-flow h3{font:700 17px/1.5 "Yu Gothic",Meiryo,sans-serif;color:var(--green);margin:3px 0 7px}
+.visit-flow p{font-size:13px;line-height:1.7;color:var(--ink-soft)}
+.visit-flow__hint{display:none}
+.first-visit__booking{margin-top:55px}
+
+/* Symptom hub and individual pages share the knee page's rhythm. */
+.symptom-hub__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
+.symptom-hub__card{display:grid;grid-template-columns:43% minmax(0,1fr);min-height:210px;background:#f7f9f5;overflow:hidden;border-radius:8px 42px 8px 8px}
+.symptom-hub__card:hover{background:#e8f2eb}
+.symptom-hub__card img{width:100%;height:100%;min-height:210px;object-fit:cover}
+.symptom-hub__card>div{display:flex;flex-direction:column;justify-content:center;padding:25px}
+.symptom-hub__card h2{font-size:25px;color:var(--green)}
+.symptom-hub__card p{font-size:13px;color:var(--ink-soft);margin:12px 0}
+.symptom-hub__card span{font-size:12px;font-weight:800;color:var(--green)}
+.symptom-hub__note{margin-top:32px;font-size:13px;color:var(--ink-soft)}
+.symptom-hero .page-hero__photo img{object-position:center}
+.symptom-hero .page-hero__copy>p:last-of-type{max-width:465px}
+.symptom-hero .page-hero__copy{min-width:0}
+.symptom-hero h1{font-size:clamp(31px,3.2vw,44px)}
+.medical-note__box{background:#f9f9f4}
+.first-visit__aside{min-width:0}
+
+/* Contact form: preview validates locally and never transmits patient data. */
+.closing .closing__inner{max-width:900px}
+.contact-form-wrap{margin:54px auto 0;padding:38px clamp(19px,4vw,48px);background:#fff;color:var(--ink);text-align:left;border-radius:18px}
+.contact-form-wrap h3{font-size:25px;color:var(--green)}
+.contact-form-wrap>p{margin:8px 0 27px;font-size:13px!important;color:var(--ink-soft)!important}
+.contact-form__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 24px}
+.contact-form__field{min-width:0;display:flex;flex-direction:column}
+.contact-form__field--wide{grid-column:1/-1}
+.contact-form__field label{font-size:14px;font-weight:800;margin-bottom:5px}
+.contact-form__field label span,.contact-form__field label em{font-size:11px;font-weight:700;font-style:normal;margin-left:8px}
+.contact-form__field label span{color:#a44532}
+.contact-form__field label em{color:var(--ink-soft)}
+.contact-form__field input,.contact-form__field textarea{
+  width:100%;border:1px solid #acc3b4;background:#fff;color:var(--ink);border-radius:5px;
+  font:inherit;font-size:15px;line-height:1.55;padding:11px 13px;
+}
+.contact-form__field input{min-height:46px}
+.contact-form__field textarea{resize:vertical;min-height:116px}
+.contact-form__field [aria-invalid="true"]{border-color:#b45445}
+.contact-form__error{display:block;min-height:1.4em;color:#aa3f33;font-size:12px;line-height:1.4}
+.contact-form__consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.7;margin-top:9px;cursor:pointer}
+.contact-form__consent input{width:18px;height:18px;margin-top:2px;accent-color:var(--green);flex:none}
+.contact-form__consent a{text-decoration:underline;text-underline-offset:2px;color:var(--green)}
+.contact-form__submit{border:0;cursor:pointer;margin-top:9px;min-width:225px}
+.contact-form__submit:disabled{opacity:.6;cursor:wait}
+.closing p.contact-form__status{font-size:13px;color:var(--ink-soft);margin-top:13px}
+.privacy-content .section__inner{max-width:820px}
+.privacy-content h2{font-size:25px;color:var(--green);margin:30px 0 9px}
+.privacy-content h2:first-child{margin-top:0}
+.privacy-content p{font-size:15px;color:var(--ink-soft)}
+
+/* The trial column pages retain the original article text, citations and images. */
+.column-index__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.column-index__card{display:grid;grid-template-columns:35% minmax(0,1fr);background:#f8faf6;border:1px solid #e1e8de;border-radius:9px;overflow:hidden}
+.column-index__card:hover{background:#eef6ef}
+.column-index__card img{width:100%;height:100%;min-height:200px;object-fit:cover}
+.column-index__card>div{padding:18px 20px}
+.column-index__card time{font-size:11px;color:var(--ink-soft)}
+.column-index__card h2{font-size:19px;line-height:1.55;margin:6px 0;color:var(--green)}
+.column-index__card p{font-size:12px;line-height:1.65;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.column-index__card span{display:block;font-size:12px;font-weight:800;color:var(--green);margin-top:10px}
+.preview-article{color:var(--ink)}
+.preview-article img{max-width:100%;height:auto}
+.preview-article a:not(.button){overflow-wrap:anywhere}
+.preview-article .breadcrumb a,.preview-article .article-meta__date{color:var(--green)}
+.preview-article .article-content a{color:var(--green);text-decoration-color:var(--sage)}
+.preview-article .article-content--readable .article-section h2,
+.preview-article .article-content--readable-v3 .article-section h2{border-bottom-color:#bbd8c6}
+.preview-article .article-content--readable .article-section h2::after,
+.preview-article .article-content--readable-v3 .article-section h2::after{background:var(--sage)}
+.preview-article .pricing-cta{background:#e8f4ed}
+.preview-article__regular-price{font-size:14px;color:var(--ink-soft);margin:0 0 10px}
+.preview-article .article-card,.preview-article .article-content{min-width:0}
+
+@media(max-width:1100px){
+  .site-header .header-location{display:none}
+  .site-header__inner,.home .site-header__inner{grid-template-columns:minmax(0,1fr) auto}
+  .site-header .header-actions{grid-column:2}
+  .campaign-promo__inner{grid-template-columns:1fr auto}
+  .campaign-promo .button{grid-column:1/-1;justify-self:start}
+}
+@media(max-width:820px){
+  #contact{scroll-margin-top:105px}
+  .site-header__inner,.home .site-header__inner{display:flex;min-height:76px;padding:9px var(--pad)}
+  .site-header .brand{flex-shrink:1;margin-right:auto}
+  .site-header .desktop-nav,.site-header .header-location{display:none}
+  .site-header .header-actions{display:flex;gap:7px;margin-left:auto;flex:none}
+  .site-header .header-actions .menu-toggle{display:flex;margin:0}
+  .site-header .header-actions .header-contact,.home .site-header .header-actions .header-contact{
+    display:flex;width:44px;height:44px;min-width:44px;padding:3px 2px;flex-direction:column;justify-content:center;gap:0;
+  }
+  .site-header .header-actions .header-contact span{display:block;font-size:9px}
+  .site-header .header-actions .header-contact svg{width:19px;height:19px}
+  .site-header .instagram-link{width:44px;height:44px}
+  .site-header .menu-toggle{width:44px;height:44px}
+  .site-header .mobile-nav:not([hidden]){display:flex;max-height:calc(100dvh - 76px);overflow-y:auto;z-index:25;padding:12px var(--pad) 25px}
+  .site-header .mobile-nav a{font-size:14px;padding:10px 0}
+  .fit-guide__columns{gap:24px}
+  .visit-flow{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .symptom-hub__grid{grid-template-columns:1fr}
+  .column-index__grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .site-header .brand{gap:4px;min-width:0}
+  .site-header .brand__mark{width:33px;height:33px;flex:none}
+  .site-header .brand strong{font-size:clamp(13px,3.65vw,16px);letter-spacing:0}
+  .site-header .brand__small{font-size:8px;letter-spacing:0}
+  .site-header .header-actions .header-contact,.home .site-header .header-actions .header-contact,
+  .site-header .instagram-link,.site-header .menu-toggle{width:39px;height:42px;min-width:39px}
+  .site-header .header-actions{gap:5px}
+  .site-header .instagram-link svg{width:21px;height:21px}
+  .site-header .menu-toggle::after{font-size:8px}
+  .campaign-promo{padding:0 var(--pad) 18px}
+  .campaign-promo__inner{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:22px 0}
+  .campaign-promo h2{font-size:20px;margin:5px 0}
+  .campaign-promo__inner>div:first-child>p:last-child{font-size:12px}
+  .campaign-promo__price{display:flex;flex-direction:column;align-items:flex-start;gap:5px}
+  .campaign-promo__price>span{font-size:12px}
+  .campaign-promo__price strong{display:block;font-size:31px}
+  .campaign-promo__price strong small{display:block;font-size:12px;max-width:none;line-height:1.5;margin:0 0 2px}
+  .campaign-promo .button{width:100%;min-height:45px;margin-top:4px}
+  .fit-guide{padding-top:55px;padding-bottom:60px}
+  .fit-guide__columns{grid-template-columns:1fr;gap:34px;margin-top:29px}
+  .fit-guide__group h3{font-size:21px}
+  .fit-guide__group li{font-size:13px;padding:10px 4px 10px 27px}
+  .fit-guide__group li::before{top:21px}
+  .visit-flow__hint{display:block;margin:22px 0 0;font-size:12px;color:var(--green)}
+  .visit-flow{
+    display:flex;gap:13px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;
+    margin:13px calc(-1 * var(--pad)) 0;padding:0 var(--pad) 14px;
+  }
+  .visit-flow li{flex:0 0 min(80vw,300px);scroll-snap-align:start;padding-top:11px}
+  .visit-flow img{height:155px}
+  .visit-flow h3{font-size:16px}
+  .visit-flow p{font-size:13px}
+  .first-visit__booking{margin-top:25px}
+  .first-visit__aside{padding:24px}
+  .symptom-hub__card{grid-template-columns:34% minmax(0,1fr);min-height:140px}
+  .symptom-hub__card img{min-height:140px}
+  .symptom-hub__card>div{padding:14px}
+  .symptom-hub__card h2{font-size:19px}
+  .symptom-hub__card p{font-size:12px;margin:6px 0}
+  .symptom-hero h1{font-size:31px}
+  .contact-form-wrap{margin-top:44px;padding:25px 18px}
+  .contact-form-wrap h3{font-size:22px}
+  .contact-form__grid{grid-template-columns:1fr;gap:12px}
+  .contact-form__field--wide{grid-column:1}
+  .contact-form__submit{width:100%}
+  .column-index__card{grid-template-columns:36% minmax(0,1fr)}
+  .column-index__card img{min-height:165px}
+  .column-index__card>div{padding:12px}
+  .column-index__card h2{font-size:16px}
+  .column-index__card p{display:none}
+  .site-footer nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* Official social glyphs and LINE's brand green on prominent booking links. */
+.site-header .instagram-link svg{display:none}
+.site-header .instagram-link::before{content:"";display:block;width:24px;height:24px;background:url("/redesign/assets/instagram-glyph-black.svg") center/contain no-repeat}
+.site-header .header-actions .header-contact,.home .site-header .header-actions .header-contact{background:var(--line-green);color:#153d2d;gap:6px}
+.site-header .header-actions .header-contact:hover,.home .site-header .header-actions .header-contact:hover{background:#05b94e;color:#153d2d}
+.site-header .header-actions .header-contact svg{display:none}
+.site-header .header-actions .header-contact::before{content:"";display:block;flex:none;width:24px;height:24px;background:url("/redesign/assets/line-brand-icon.png") center/contain no-repeat}
+a.button--line[href*="lin.ee"]{background:var(--line-green);color:#153d2d;box-shadow:none;gap:10px;justify-content:center}
+a.button--line[href*="lin.ee"]:hover{background:#05b94e;color:#153d2d}
+a.button--line[href*="lin.ee"]::before{content:"";display:block;flex:0 0 24px;width:24px;height:24px;background:url("/redesign/assets/line-brand-icon.png") center/contain no-repeat}
+.home .hero__round-cta{background:var(--line-green);color:#153d2d;border-color:#fff;outline-color:var(--line-green)}
+.home .hero__round-cta:hover{background:#05b94e;color:#153d2d}
+.home .hero__round-cta svg{display:none}
+.home .hero__round-cta::before{content:"";display:block;flex:none;width:32px;height:32px;background:url("/redesign/assets/line-brand-icon.png") center/contain no-repeat}
+@media(max-width:820px){
+  .site-header .header-actions .header-contact,.home .site-header .header-actions .header-contact{width:44px;height:44px;min-width:44px;padding:2px}
+  .site-header .header-actions .header-contact::before{width:40px;height:40px}
+  .site-header .header-actions .header-contact span{display:none}
+  .home .hero__round-cta::before{width:40px;height:40px}
+}
+@media(max-width:600px){
+  a.button--line[href*="lin.ee"]::before{flex-basis:40px;width:40px;height:40px}
+  .site-header .instagram-link::before{width:24px;height:24px}
+}

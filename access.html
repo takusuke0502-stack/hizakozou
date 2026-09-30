@@ -1,186 +1,55 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>アクセス・道順｜柏駅西口徒歩約8分 整体院ひざこぞう</title>
-  <meta name="description" content="柏駅西口から整体院ひざこぞうまでのアクセス・道順をご案内します。建物入口、エレベーター、駐車場、近隣コインパーキングについてもご確認いただけます。">
-  <link rel="canonical" href="https://hizakozou.jp/access.html">
-  <meta property="og:title" content="アクセス・道順｜柏駅西口徒歩約8分 整体院ひざこぞう">
-  <meta property="og:description" content="柏駅西口から整体院ひざこぞうまでのアクセス・道順をご案内します。建物入口、エレベーター、駐車場、近隣コインパーキングについてもご確認いただけます。">
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://hizakozou.jp/access.html">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <script src="/scripts/tracking-config.js"></script>
-  <script src="/scripts/tracking.js"></script>
-  <link rel="preload" href="styles/main.css" as="style">
-  <link rel="stylesheet" href="styles/main.css">
-  <script src="scripts/vendor/lucide.min.js" defer></script>
-  <style>
-    body { background: #fbf7ed; color: #334155; }
-    .detail-header { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid #e7ddcb; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(12px); }
-    .detail-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: 1120px; margin: 0 auto; padding: 0.85rem 1rem; }
-    .detail-brand { display: flex; align-items: center; gap: 0.65rem; font-weight: 900; color: #174f3f; }
-    .detail-brand img { width: 40px; height: 40px; border-radius: 999px; }
-    .detail-links { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: flex-end; font-size: 0.86rem; font-weight: 900; color: #315c4b; }
-    .detail-links a { border: 1px solid #d8e6d7; border-radius: 999px; background: #fff; padding: 0.45rem 0.8rem; }
-    .access-hero { max-width: 960px; margin: 0 auto; padding: 4.5rem 1rem 2rem; text-align: center; }
-    .access-hero p:first-child { color: #e96a42; font-size: 0.86rem; font-weight: 900; letter-spacing: 0.08em; }
-    .access-hero h1 { margin-top: 0.5rem; color: #174f3f; font-size: clamp(2rem, 7vw, 3.5rem); font-weight: 900; line-height: 1.16; letter-spacing: 0; }
-    .access-hero p:last-child { max-width: 680px; margin: 1rem auto 0; color: #475569; font-weight: 700; line-height: 1.9; }
-    .access-wrap { max-width: 1120px; margin: 0 auto; padding: 0 1rem 4rem; }
-    .access-card { border: 1px solid #eadfcf; border-radius: 18px; background: #fff; box-shadow: 0 16px 38px rgba(49, 82, 65, 0.08); overflow: hidden; margin-top: 1rem; }
-    .access-card__head { padding: 1.15rem 1.25rem; border-bottom: 1px solid #eef0e7; background: linear-gradient(90deg, #fffaf1, #ffffff); }
-    .access-card__head--route { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
-    .access-card h2 { color: #174f3f; font-size: 1.3rem; font-weight: 900; line-height: 1.35; letter-spacing: 0; }
-    .access-card__body { padding: 1.25rem; }
-    .access-info-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr); gap: 1.25rem; align-items: start; }
-    .store-info-list { display: grid; gap: 0.85rem; }
-    .store-info-list div { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 0.75rem; padding-bottom: 0.85rem; border-bottom: 1px solid #eef0e7; }
-    .store-info-list dt { color: #174f3f; font-weight: 900; }
-    .store-info-list dd { margin: 0; color: #334155; font-weight: 800; line-height: 1.7; }
-    .store-info-list a { color: #174f3f; text-decoration: underline; text-underline-offset: 4px; }
-    .hours-table { width: 100%; border-collapse: collapse; overflow: hidden; border: 1px solid #dcebd9; border-radius: 12px; background: #fff; font-weight: 800; }
-    .hours-table caption { margin-bottom: 0.65rem; color: #174f3f; font-weight: 900; text-align: left; }
-    .hours-table th, .hours-table td { padding: 0.8rem 0.7rem; border-bottom: 1px solid #eef0e7; text-align: left; }
-    .hours-table th { width: 36%; background: #f6fbf5; color: #174f3f; }
-    .hours-table tr:last-child th, .hours-table tr:last-child td { border-bottom: 0; }
-    .summary-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-    .summary-item { border: 1px solid #dcebd9; border-radius: 14px; padding: 1rem; background: #fff; }
-    .summary-item i { color: #174f3f; margin-bottom: 0.6rem; }
-    .summary-item h3 { color: #174f3f; font-weight: 900; line-height: 1.45; }
-    .summary-item p, .access-card p, .route-card p, .access-card li { color: #475569; font-weight: 700; line-height: 1.85; }
-    .access-route-scroller { overflow: hidden; }
-    .access-route-controls { display: flex; gap: 0.55rem; flex: 0 0 auto; }
-    .access-route-arrow { display: inline-flex; align-items: center; justify-content: center; width: 2.7rem; height: 2.7rem; border: 1px solid #d8e6d7; border-radius: 999px; background: #fff; color: #174f3f; font-size: 1.55rem; font-weight: 900; box-shadow: 0 8px 20px rgba(49, 82, 65, 0.1); cursor: pointer; transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease; }
-    .access-route-arrow:hover, .access-route-arrow:focus-visible { background: #174f3f; color: #fff; outline: none; transform: translateY(-1px); }
-    .route-scroll-hint { margin: 0.4rem 0 0; color: #64748b; font-size: 0.86rem; font-weight: 800; line-height: 1.7; }
-    .route-track { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 1.25rem; padding: 1.25rem; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
-    .route-card { flex: 0 0 min(82vw, 440px); scroll-snap-align: start; border: 1px solid #eef0e7; border-radius: 14px; padding: 0.9rem; background: #fff; }
-    .route-card img { width: 100%; height: clamp(300px, 45vw, 520px); object-fit: contain; border-radius: 10px; border: 1px solid #eef0e7; background: #f8faf6; }
-    .photo-grid img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; border: 1px solid #eef0e7; }
-    .route-card strong { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; margin-bottom: 0.6rem; border-radius: 999px; background: #174f3f; color: #fff; font-weight: 900; }
-    .photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-    .photo-note { margin-top: 0.5rem; color: #64748b; font-size: 0.86rem; font-weight: 700; }
-    .map-frame { height: 360px; border-radius: 16px; overflow: hidden; border: 1px solid #d8e6d7; background: #eef3ec; }
-    .map-frame iframe { width: 100%; height: 100%; border: 0; }
-    .map-link { display: inline-flex; align-items: center; justify-content: center; margin-top: 0.9rem; border: 1px solid #cfe5cc; border-radius: 999px; background: #fff; color: #174f3f; padding: 0.7rem 1rem; font-weight: 900; text-decoration: none; }
-    .simple-map { margin: 0 0 1.2rem; }
-    .simple-map img { display: block; width: 100%; height: auto; border: 1px solid #d8e6d7; border-radius: 16px; background: #fff; }
-    .simple-map figcaption { margin-top: 0.65rem; color: #64748b; font-size: 0.9rem; font-weight: 800; line-height: 1.7; }
-    .access-map-subtitle { margin: 1.2rem 0 0.7rem; color: #174f3f; font-size: 1.05rem; font-weight: 900; letter-spacing: 0; }
-    .info-list { display: grid; gap: 0.8rem; }
-    .info-list li { display: flex; gap: 0.7rem; align-items: flex-start; border-bottom: 1px solid #eef0e7; padding-bottom: 0.8rem; }
-    .info-list li:last-child { border-bottom: 0; padding-bottom: 0; }
-    .info-list i { color: #174f3f; flex: 0 0 auto; margin-top: 0.22rem; }
-    .line-cta { border: 1px solid #d9ead7; border-radius: 24px; background: linear-gradient(135deg, #ffffff 0%, #f0f8ef 100%); padding: 2rem 1rem; text-align: center; box-shadow: 0 18px 42px rgba(49, 82, 65, 0.1); }
-    .line-cta h2 { color: #174f3f; font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 900; line-height: 1.35; letter-spacing: 0; }
-    .line-cta p { margin: 0.8rem auto 1.4rem; max-width: 620px; }
-    .line-button { display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; width: min(100%, 420px); border-radius: 14px; background: #06c755; color: #fff; padding: 1rem 1.25rem; font-size: 1.08rem; font-weight: 900; box-shadow: 0 14px 28px rgba(6, 199, 85, 0.24); }
-    .cta-mini-notes { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 0.8rem auto 1.25rem; color: #174f3f; font-size: 0.85rem; font-weight: 900; }
-    .cta-mini-notes span { border: 1px solid #d8e6d7; border-radius: 999px; background: #fff; padding: 0.35rem 0.75rem; }
-    .cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
-    .phone-button { display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; width: min(100%, 260px); border: 1px solid #d8e6d7; border-radius: 14px; background: #fff; color: #174f3f; padding: 1rem 1.25rem; font-weight: 900; }
-    @media (max-width: 920px) { .summary-grid, .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 860px) { .access-info-panel { grid-template-columns: 1fr; } }
-    @media (max-width: 640px) {
-      .detail-nav { align-items: flex-start; flex-direction: column; }
-      .detail-links { justify-content: flex-start; }
-      .access-card__head--route { display: block; }
-      .access-route-controls { display: none; }
-      .summary-grid, .photo-grid { grid-template-columns: 1fr; }
-      .route-track { padding: 1rem; scroll-padding-inline: 1rem; }
-      .route-card { flex-basis: min(88vw, 390px); }
-      .route-card img { height: min(78vh, 460px); }
-      .store-info-list div { grid-template-columns: 1fr; gap: 0.25rem; }
-      .map-frame { height: 300px; }
-    }
+<!doctype html>
+<html lang="ja" data-site-layout="redesign-v1"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="index,follow,max-image-preview:large"><meta name="description" content="柏駅西口から徒歩約8分。写真と動画で整体院ひざこぞうまでの道順、建物入口、エレベーター、駐車場をご案内します。"><title>アクセス・道順｜整体院ひざこぞう</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/redesign/styles.css?v=20260924j"><script src="/redesign/script.js" defer></script>  <link rel="stylesheet" href="/redesign/refinements.css?v=20260924a">
+<link rel="stylesheet" href="/redesign/site-updates.css?v=20260925b"><link rel="canonical" href="https://hizakozou.jp/access.html">
+<meta property="og:locale" content="ja_JP"><meta property="og:type" content="website"><meta property="og:site_name" content="整体院ひざこぞう">
+<meta property="og:url" content="https://hizakozou.jp/access.html"><meta property="og:title" content="アクセス・道順｜整体院ひざこぞう"><meta property="og:description" content="柏駅西口から徒歩約8分。写真と動画で整体院ひざこぞうまでの道順、建物入口、エレベーター、駐車場をご案内します。"><meta property="og:image" content="https://hizakozou.jp/image/access-step1-480.webp">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="アクセス・道順｜整体院ひざこぞう"><meta name="twitter:description" content="柏駅西口から徒歩約8分。写真と動画で整体院ひざこぞうまでの道順、建物入口、エレベーター、駐車場をご案内します。"><meta name="twitter:image" content="https://hizakozou.jp/image/access-step1-480.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://hizakozou.jp/access.html#webpage","url":"https://hizakozou.jp/access.html","name":"アクセス・道順｜整体院ひざこぞう","description":"柏駅西口から徒歩約8分。写真と動画で整体院ひざこぞうまでの道順、建物入口、エレベーター、駐車場をご案内します。","inLanguage":"ja-JP","isPartOf":{"@id":"https://hizakozou.jp/#website"}}</script>
 
-    .route-video-layout, .room-arrival-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 340px); gap: 1.5rem; align-items: center; }
-    .route-video-frame { width: min(100%, 320px); aspect-ratio: 9 / 16; margin: 0 auto; border-radius: 14px; overflow: hidden; background: #102c24; }
-    .route-video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
-    .route-video-copy p + p { margin-top: 0.75rem; }
-    .room-arrival-photo { margin: 0; }
-    .room-arrival-photo img { display: block; width: 100%; height: auto; border-radius: 12px; }
-    #route-video { scroll-margin-top: 100px; }
-    @media (max-width: 640px) {
-      .route-video-layout, .room-arrival-layout { grid-template-columns: 1fr; }
-      .route-video-frame { max-width: 280px; }
-    }
-  </style>
-</head>
-<body>
-  <header id="header" class="site-header">
-    <div class="site-header__lower">
-      <div class="site-header__inner">
-        <nav class="site-nav" aria-label="メインナビゲーション">
-          <a href="index.html#top" class="site-nav__item">
-            <span class="site-nav__jp">ホーム</span>
-            <span class="site-nav__en">HOME</span>
-          </a>
-          <a href="index.html#features" class="site-nav__item">
-            <span class="site-nav__jp">当院の特徴</span>
-            <span class="site-nav__en">FEATURE</span>
-          </a>
-          <div class="site-nav__item site-nav__item--has-dropdown">
-            <button type="button" class="site-nav__trigger" aria-haspopup="true" aria-controls="access-symptoms-menu" aria-expanded="false">
-              <span class="site-nav__label-main">
-                <span class="site-nav__jp">症状別</span>
-                <span class="site-nav__chevron" aria-hidden="true">▼</span>
-              </span>
-              <span class="site-nav__en">SYMPTOMS</span>
-            </button>
-            <div id="access-symptoms-menu" class="site-nav__dropdown" aria-label="症状別ページ">
-              <a href="symptoms/knee-osteoarthritis.html" class="site-nav__dropdown-link">変形性膝関節症</a>
-              <a href="symptoms/pes-anserine-bursitis.html" class="site-nav__dropdown-link">膝の内側の痛み</a>
-              <a href="symptoms/knee-effusion.html" class="site-nav__dropdown-link">膝に水がたまる</a>
-              <a href="symptoms/meniscus-knee-pain.html" class="site-nav__dropdown-link">半月板の違和感</a>
-              <a href="symptoms/knee-front-pain.html" class="site-nav__dropdown-link">膝の前側の痛み</a>
-              <a href="symptoms/knee-posterior-pain.html" class="site-nav__dropdown-link">膝の裏側の痛み</a>
-              <a href="symptoms/knee-lateral-pain.html" class="site-nav__dropdown-link">膝の外側の痛み</a>
-              <a href="symptoms/hip-osteoarthritis.html" class="site-nav__dropdown-link">股関節痛</a>
-            </div>
-          </div>
-          <a href="index.html#flow" class="site-nav__item">
-            <span class="site-nav__jp">施術の流れ</span>
-            <span class="site-nav__en">FLOW</span>
-          </a>
-          <a href="index.html#price" class="site-nav__item">
-            <span class="site-nav__jp">料金</span>
-            <span class="site-nav__en">PRICE</span>
-          </a>
-          <a href="blog/" class="site-nav__item">
-            <span class="site-nav__jp">コラム</span>
-            <span class="site-nav__en">COLUMN</span>
-          </a>
-          <a href="index.html#access" class="site-nav__item site-nav__item--contact">
-            <span class="site-nav__jp">アクセス・予約</span>
-            <span class="site-nav__en">ACCESS / CONTACT</span>
-          </a>
-        </nav>
-        <button id="menuBtn" class="site-menu-toggle" type="button" aria-controls="mobileNav" aria-expanded="false" aria-label="メニューを開く">
-          <span class="site-menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
-          <span class="site-menu-toggle__text">メニュー</span>
-        </button>
-        <nav class="site-mobile-nav hidden" id="mobileNav" aria-label="スマートフォン用ナビゲーション">
-          <a href="index.html#top" class="site-mobile-nav__item">ホーム</a>
-          <a href="index.html#features" class="site-mobile-nav__item">当院の特徴</a>
-          <a href="index.html#knee-type-nav" class="site-mobile-nav__item">症状別</a>
-          <a href="index.html#flow" class="site-mobile-nav__item">施術の流れ</a>
-          <a href="index.html#price" class="site-mobile-nav__item">料金</a>
-          <a href="blog/" class="site-mobile-nav__item">コラム</a>
-          <a href="access.html" class="site-mobile-nav__item">アクセス</a>
-          <a href="index.html#contact" class="site-mobile-nav__item site-mobile-nav__item--contact">予約</a>
-        </nav>
-      </div>
+<script src="/scripts/tracking-config.js?v=20260624" defer></script><script src="/scripts/tracking.js?v=20260624" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"整体院ひざこぞう","item":"https://hizakozou.jp/"},{"@type":"ListItem","position":2,"name":"アクセス・道順｜整体院ひざこぞう","item":"https://hizakozou.jp/access.html"}]}</script>
+</head><body class="access-page"><a class="skip-link" href="#main">本文へ移動</a><header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="/" aria-label="整体院ひざこぞう トップページ">
+      <img class="brand__mark" src="/redesign/assets/jumping-silhouette.png" alt="" width="56" height="56">
+      <span class="brand__text"><span class="brand__small">柏市の足腰専門整体院</span><strong>整体院ひざこぞう</strong></span>
+    </a>
+    <p class="header-location">柏駅西口 徒歩約8分<br><span>初回キャンペーン 1,980円・約90分</span></p>
+    <nav class="desktop-nav" aria-label="主要メニュー"><a href="/">TOP</a>
+<a href="/#first-visit">初回の流れ・料金</a>
+<a href="/msm.html">施術について</a>
+<a href="/symptoms/">症状別ページ</a>
+<a href="/staff.html">院長紹介</a>
+<a href="/voices.html">患者様のお声</a>
+<a href="/access.html" aria-current="page">アクセス</a>
+<a href="/blog/">コラム</a>
+<a href="/news.html">お知らせ</a></nav>
+    <div class="header-actions">
+      <a class="instagram-link" href="https://www.instagram.com/hizakozou_kashiwa/" target="_blank" rel="noopener noreferrer" aria-label="整体院ひざこぞうのInstagramを開く">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.8" cy="6.3" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="header-contact" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" aria-label="LINEで予約する"><svg aria-hidden="true" viewBox="0 0 48 48"><rect x="7" y="11" width="34" height="30" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 19h34M15 6v10M33 6v10" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>予約する</span></a>
+      <button class="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="メニューを開く"><span></span><span></span></button>
     </div>
-  </header>
-
-  <main>
-    <section class="access-hero">
-      <p>ACCESS</p>
+  </div>
+  <nav class="mobile-nav" id="mobile-menu" aria-label="スマートフォンメニュー" hidden><a href="/">TOP</a>
+<a href="/#first-visit">初回の流れ・料金</a>
+<a href="/msm.html">施術について</a>
+<a href="/symptoms/">症状別ページ</a>
+<a href="/staff.html">院長紹介</a>
+<a href="/voices.html">患者様のお声</a>
+<a href="/access.html" aria-current="page">アクセス</a>
+<a href="/blog/">コラム</a>
+<a href="/news.html">お知らせ</a>
+    <a href="/#contact">メールで問い合わせる</a>
+    <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで相談・予約</a>
+    <a href="tel:0471143274">電話で相談</a>
+  </nav>
+</header><main id="main" class="access-detail"><div class="breadcrumbs"><a href="/">TOP</a><span>／</span><span>アクセス・道順</span></div>
+    <section class="detail-heading"><div class="section__inner">
+      <p class="eyebrow">ACCESS</p>
       <h1>アクセス・道順</h1>
-      <p>柏駅西口から徒歩約8分。写真付きの道順、建物入口、エレベーター、駐車場の案内をまとめました。</p>
+      <p>柏駅西口から徒歩約8分。「柏第一小学校前」バス停からは徒歩1分です。写真付きの道順、建物入口、エレベーター、駐車場の案内をまとめました。</p><nav class="detail-jumps" aria-label="アクセスページ内メニュー"><a href="#route-title">写真で見る道順 ↓</a><a href="#map-title">地図 ↓</a><a href="#parking-title">駐車場 ↓</a></nav></div>
     </section>
 
     <div class="access-wrap">
@@ -191,7 +60,8 @@
             <div><dt>院名</dt><dd>整体院ひざこぞう</dd></div>
             <div><dt>電話番号</dt><dd><a href="tel:0471143274">04-7114-3274</a></dd></div>
             <div><dt>住所</dt><dd>千葉県柏市あけぼの4-4-3 BoaSorte柏305</dd></div>
-            <div><dt>アクセス</dt><dd>柏駅西口から徒歩約8分</dd></div>
+            <div><dt>電車・徒歩</dt><dd>柏駅西口から徒歩約8分</dd></div>
+            <div><dt>バス</dt><dd>「柏第一小学校前」バス停から徒歩1分</dd></div>
             <div><dt>ご予約</dt><dd>マンション内の完全予約制プライベート整体院です。</dd></div>
           </dl>
           <table class="hours-table">
@@ -213,9 +83,9 @@
             <p>当院は「BoaSorte柏」の3階・305号室です。下の道順写真や地図もあわせてご覧いただけます。</p>
             <a class="map-link" href="https://www.youtube.com/shorts/SRtz2wOoe9o" target="_blank" rel="noopener noreferrer">YouTubeで道順動画を見る</a>
           </div>
-          <div class="route-video-frame">
+          <details class="route-video-frame"><summary>道順動画をここで再生する</summary>
             <iframe src="https://www.youtube-nocookie.com/embed/SRtz2wOoe9o" title="柏駅西口から整体院ひざこぞうまでの道順動画" width="320" height="569" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div>
+          </details>
         </div>
       </section>
 
@@ -223,20 +93,17 @@
         <div class="access-card__head access-card__head--route">
           <div>
             <h2 id="route-title">柏駅西口からの道順</h2>
-            <p class="route-scroll-hint">横にスクロールして、写真を順番にご確認いただけます。</p>
+            <p class="route-scroll-hint">写真を押すと拡大できます。番号順にご確認ください。</p>
           </div>
-          <div class="access-route-controls" aria-label="道順写真の操作">
-            <button class="access-route-arrow" type="button" data-access-route-prev aria-label="前の道順写真を見る">‹</button>
-            <button class="access-route-arrow" type="button" data-access-route-next aria-label="次の道順写真を見る">›</button>
-          </div>
+
         </div>
         <div class="access-route-scroller">
-        <div class="access-card__body route-track" data-access-route-track tabindex="0" aria-label="柏駅西口からの道順を横にスクロールして確認できます">
-          <article class="route-card"><strong>1</strong><img src="image/access-step1-480.webp" srcset="image/access-step1-480.webp 480w, image/access-step1.webp 800w" alt="柏駅西口の写真" loading="lazy" decoding="async" width="800" height="600"><p>柏駅西口を出て、正面のエスカレーターまたは階段を降ります。</p></article>
-          <article class="route-card"><strong>2</strong><img src="image/access-step2-480.webp" srcset="image/access-step2-480.webp 480w, image/access-step2.webp 900w" alt="駅から院までの道順写真" loading="lazy" decoding="async" width="900" height="1200"><p>降りたら右へ曲がり、高島屋方面の歩道へ進みます。</p></article>
-          <article class="route-card"><strong>3</strong><img src="image/access-step3-480.webp" srcset="image/access-step3-480.webp 480w, image/access-step3.webp 900w" alt="駅から院までの道順写真" loading="lazy" decoding="async" width="900" height="1111"><p>高島屋を右手に直進し、国道6号線方面へ向かいます。</p></article>
-          <article class="route-card"><strong>4</strong><img src="image/access-step4-480.webp" srcset="image/access-step4-480.webp 480w, image/access-step4.webp 900w" alt="駅から院までの道順写真" loading="lazy" decoding="async" width="900" height="1198"><p>横断歩道を渡って、そのまま直進します。</p></article>
-          <article class="route-card"><strong>5</strong><img src="image/access-step5-480.webp" srcset="image/access-step5-480.webp 480w, image/access-step5.webp 900w" alt="BoaSorte柏の建物外観" loading="lazy" decoding="async" width="900" height="1201"><p>茶色のマンション「BoaSorte柏」が見えます。3階305号室が当院です。</p></article>
+        <div class="access-card__body route-track">
+          <article class="route-card"><strong>1</strong><a href="/image/access-step1.webp" target="_blank" rel="noopener noreferrer" aria-label="道順1の写真を拡大"><img src="/image/access-step1-480.webp" srcset="/image/access-step1-480.webp 480w, /image/access-step1.webp 800w" alt="柏駅西口の写真" loading="lazy" decoding="async" width="800" height="600"></a><p>柏駅西口を出て、正面のエスカレーターまたは階段を降ります。</p></article>
+          <article class="route-card"><strong>2</strong><a href="/image/access-step2.webp" target="_blank" rel="noopener noreferrer" aria-label="道順2の写真を拡大"><img src="/image/access-step2-480.webp" srcset="/image/access-step2-480.webp 480w, /image/access-step2.webp 900w" alt="駅から院までの道順写真" loading="lazy" decoding="async" width="900" height="1200"></a><p>降りたら右へ曲がり、高島屋方面の歩道へ進みます。</p></article>
+          <article class="route-card"><strong>3</strong><a href="/image/access-step3.webp" target="_blank" rel="noopener noreferrer" aria-label="道順3の写真を拡大"><img src="/image/access-step3-480.webp" srcset="/image/access-step3-480.webp 480w, /image/access-step3.webp 900w" alt="駅から院までの道順写真" loading="lazy" decoding="async" width="900" height="1111"></a><p>高島屋を右手に直進し、国道6号線方面へ向かいます。</p></article>
+          <article class="route-card"><strong>4</strong><a href="/image/access-step4.webp" target="_blank" rel="noopener noreferrer" aria-label="道順4の写真を拡大"><img src="/image/access-step4-480.webp" srcset="/image/access-step4-480.webp 480w, /image/access-step4.webp 900w" alt="駅から院までの道順写真" loading="lazy" decoding="async" width="900" height="1198"></a><p>横断歩道を渡って、そのまま直進します。</p></article>
+          <article class="route-card"><strong>5</strong><a href="/image/access-step5.webp" target="_blank" rel="noopener noreferrer" aria-label="道順5の写真を拡大"><img src="/image/access-step5-480.webp" srcset="/image/access-step5-480.webp 480w, /image/access-step5.webp 900w" alt="BoaSorte柏の建物外観" loading="lazy" decoding="async" width="900" height="1201"></a><p>茶色のマンション「BoaSorte柏」が見えます。3階305号室が当院です。</p></article>
         </div>
         </div>
       </section>
@@ -246,8 +113,8 @@
         <div class="access-card__body">
           <figure class="simple-map">
             <picture>
-              <source srcset="image/access-simple-map-480.webp 480w, image/access-simple-map-768.webp 768w, image/access-simple-map.webp 1200w" sizes="(max-width: 640px) 100vw, 960px">
-              <img src="image/access-simple-map.webp" alt="柏駅西口から当院までの簡易マップ" loading="lazy" decoding="async" width="1200" height="900">
+              <source srcset="/image/access-simple-map-480.webp 480w, /image/access-simple-map-768.webp 768w, /image/access-simple-map.webp 1200w" sizes="(max-width: 640px) 100vw, 960px">
+              <img src="/image/access-simple-map.webp" alt="柏駅西口から当院までの簡易マップ" loading="lazy" decoding="async" width="1200" height="900">
             </picture>
             <figcaption>柏駅西口から当院までの目安です。高島屋方面へ進み、国道6号線沿いを木曽路方面へお越しください。</figcaption>
           </figure>
@@ -262,9 +129,9 @@
       <section class="access-card" aria-labelledby="building-title">
         <div class="access-card__head"><h2 id="building-title">建物外観・建物入口</h2></div>
         <div class="access-card__body photo-grid">
-          <figure><img src="image/access-entrance-480.webp" srcset="image/access-entrance-480.webp 480w, image/access-entrance.webp 900w" alt="BoaSorte柏の建物玄関" loading="lazy" decoding="async" width="900" height="600"><figcaption class="photo-note">こちらがBoaSorte柏の建物玄関です。入口から中へお入りください。</figcaption></figure>
-          <figure><img src="image/access-exterior2-480.webp" srcset="image/access-exterior2-480.webp 480w, image/access-exterior2.webp 800w" alt="BoaSorte柏の建物外観" loading="lazy" decoding="async" width="800" height="600"><figcaption class="photo-note">こちらのマンションがBoaSorte柏です。</figcaption></figure>
-          <figure><img src="image/access-exterior3-480.webp" srcset="image/access-exterior3-480.webp 480w, image/access-exterior3.webp 800w" alt="305号室前の通路写真" loading="lazy" decoding="async" width="800" height="600"><figcaption class="photo-note">3階の305号室までお越しください。</figcaption></figure>
+          <figure><img src="/image/access-entrance-480.webp" srcset="/image/access-entrance-480.webp 480w, /image/access-entrance.webp 900w" alt="BoaSorte柏の建物玄関" loading="lazy" decoding="async" width="900" height="600"><figcaption class="photo-note">こちらがBoaSorte柏の建物玄関です。入口から中へお入りください。</figcaption></figure>
+          <figure><img src="/image/access-exterior2-480.webp" srcset="/image/access-exterior2-480.webp 480w, /image/access-exterior2.webp 800w" alt="BoaSorte柏の建物外観" loading="lazy" decoding="async" width="800" height="600"><figcaption class="photo-note">こちらのマンションがBoaSorte柏です。</figcaption></figure>
+          <figure><img src="/image/access-exterior3-480.webp" srcset="/image/access-exterior3-480.webp 480w, /image/access-exterior3.webp 800w" alt="305号室前の通路写真" loading="lazy" decoding="async" width="800" height="600"><figcaption class="photo-note">3階の305号室までお越しください。</figcaption></figure>
         </div>
       </section>
 
@@ -272,12 +139,12 @@
         <div class="access-card__head"><h2 id="room-title">エレベーター・305号室までの案内</h2></div>
         <div class="access-card__body room-arrival-layout">
           <ul class="info-list">
-            <li><i data-lucide="building-2" aria-hidden="true"></i><span>建物内のエレベーターをご利用いただけます。</span></li>
-            <li><i data-lucide="door-open" aria-hidden="true"></i><span>3階まで上がり、305号室までお越しください。</span></li>
-            <li><i data-lucide="lock-keyhole" aria-hidden="true"></i><span>完全予約制のため、ご予約時間に合わせてお越しください。</span></li>
+            <li><span>建物内のエレベーターをご利用いただけます。</span></li>
+            <li><span>3階まで上がり、305号室までお越しください。</span></li>
+            <li><span>完全予約制のため、ご予約時間に合わせてお越しください。</span></li>
           </ul>
           <figure class="room-arrival-photo">
-            <img src="image/photo-entrance-sign-768.webp" srcset="image/photo-entrance-sign-768.webp 768w, image/photo-entrance-sign-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 74px), 340px" alt="青緑色のドアに掲げられた、ひざこぞうの木製看板" width="768" height="512" loading="lazy" decoding="async">
+            <img src="/image/photo-entrance-sign-768.webp" srcset="/image/photo-entrance-sign-768.webp 768w, /image/photo-entrance-sign-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 74px), 340px" alt="青緑色のドアに掲げられた、ひざこぞうの木製看板" width="768" height="512" loading="lazy" decoding="async">
             <figcaption class="photo-note">ドアの「ひざこぞう」の表示が目印です。</figcaption>
           </figure>
         </div>
@@ -287,9 +154,9 @@
         <div class="access-card__head"><h2 id="parking-title">駐車場・近隣コインパーキング案内</h2></div>
         <div class="access-card__body">
           <ul class="info-list">
-            <li><i data-lucide="parking-circle" aria-hidden="true"></i><span>専用駐車場はありませんが、徒歩1〜2分以内にコインパーキングがあります。</span></li>
-            <li><i data-lucide="map" aria-hidden="true"></i><span>来院時に分かりやすい場所をご案内いたします。</span></li>
-            <li><i data-lucide="bike" aria-hidden="true"></i><span>自転車・徒歩で来る場合も、柏駅西口からの道順を目安にお越しください。</span></li>
+            <li><span>専用駐車場はありませんが、徒歩1〜2分以内にコインパーキングがあります。</span></li>
+            <li><span>来院時に分かりやすい場所をご案内いたします。</span></li>
+            <li><span>自転車・徒歩で来る場合も、柏駅西口からの道順を目安にお越しください。</span></li>
           </ul>
         </div>
       </section>
@@ -301,102 +168,27 @@
         </div>
       </section>
 
-      <section class="line-cta" aria-labelledby="access-cta-title">
-        <h2 id="access-cta-title">ご予約・ご相談はこちら</h2>
-        <p>お名前・お悩み・ご希望日時をお送りください。確認後、折り返しご連絡いたします。</p>
-        <div class="cta-mini-notes" aria-label="LINE予約の補足">
-          <span>会員登録不要</span>
-          <span>予約完了ではありません</span>
-        </div>
-        <div class="cta-actions">
-          <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" class="line-button"><i data-lucide="message-circle" aria-hidden="true"></i> LINEで相談・予約する</a>
-          <a href="tel:0471143274" class="phone-button"><i data-lucide="phone-call" aria-hidden="true"></i> 電話で確認する</a>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <footer class="hk-footer-section">
-    <div class="hk-footer-line" aria-hidden="true"></div>
-    <div class="hk-footer-inner">
-      <div class="hk-footer-top">
-        <a href="index.html#top" class="hk-footer-brand" aria-label="整体院ひざこぞう トップページへ">
-          <img src="image/hizakozou-logo-option2-mark.webp" alt="整体院ひざこぞう" class="hk-footer-brand-mark" width="160" height="160" loading="lazy" decoding="async">
-          <span class="hk-footer-brand-text" aria-hidden="true">
-            <span class="hk-footer-brand-eyebrow">柏市の足腰専門整体院</span>
-            <span class="hk-footer-brand-name">整体院ひざこぞう</span>
-            <span class="hk-footer-brand-note">国家資格者による整体</span>
-          </span>
-        </a>
-
-        <address class="hk-footer-info">
-          <strong>柏市の足腰専門整体院 整体院ひざこぞう</strong>
-          <span>千葉県柏市あけぼの4-4-3 BoaSorte柏 305</span>
-          <span>千葉県柏市｜腰痛・坐骨神経痛・股関節痛・膝痛など足腰の慢性痛相談</span>
-          <span>完全予約制／受付時間：9:00〜19:00／定休日：日曜</span>
-          <a href="tel:0471143274">TEL：04-7114-3274</a>
-        </address>
+      <section class="closing" id="contact" aria-labelledby="closing-title">
+      <div class="closing__inner">
+        <p class="eyebrow">CONTACT</p>
+        <h2 id="closing-title">足腰の悩み、<br>まずは聞かせてください。</h2>
+        <p>LINEには「歩くと膝がつらい」など、困っている動きを一言送るだけでも大丈夫です。</p>
+        <div class="closing__actions"><a class="button button--line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで初回相談 <span aria-hidden="true">↗</span></a><a class="button button--pale" href="tel:0471143274">04-7114-3274</a></div>
       </div>
-
-      <nav class="hk-footer-nav" aria-label="フッターナビゲーション">
-        <a href="index.html#top">ホーム</a>
-        <a href="index.html#troubles">お悩み</a>
-        <a href="index.html#seo-guide">当院の考え方</a>
-        <a href="index.html#flow">施術の流れ</a>
-        <a href="staff.html">院長紹介</a>
-        <a href="index.html#price">料金</a>
-        <a href="blog/">コラム</a>
-        <a href="faq.html">よくある質問</a>
-        <a href="access.html">アクセス</a>
-        <a href="index.html#contact">ご予約・お問合せ</a>
-      </nav>
-
-      <div class="hk-footer-symptoms">
-        <p class="hk-footer-symptoms-label">対応している主な症状</p>
-        <p>腰痛／ぎっくり腰／坐骨神経痛／脊柱管狭窄症／椎間板ヘルニア／股関節痛／変形性股関節症／膝の痛み／変形性膝関節症／足首・足裏の不調</p>
-      </div>
-
-      <p class="hk-footer-review">
-        施術を受けた方のご感想をお待ちしています。
-        <a href="https://g.page/r/CblTNpd2gz_7EBM" target="_blank" rel="noopener noreferrer">Google口コミを書く</a>
-      </p>
-
-      <p class="hk-footer-note">※当サイトに掲載されているお客様の声は個人の感想であり、成果を保証するものではありません。</p>
+    </section>
     </div>
-
-    <div class="hk-footer-copy">Copyright © 2026 整体院ひざこぞう All Rights Reserved.</div>
-  </footer>
-
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      window.lucide?.createIcons();
-
-      const menuBtn = document.getElementById('menuBtn');
-      const mobileNav = document.getElementById('mobileNav');
-      const setMenuState = (open) => {
-        mobileNav?.classList.toggle('hidden', !open);
-        menuBtn?.setAttribute('aria-expanded', String(open));
-        menuBtn?.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-      };
-      setMenuState(false);
-      menuBtn?.addEventListener('click', () => setMenuState(mobileNav?.classList.contains('hidden')));
-      mobileNav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuState(false)));
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') setMenuState(false);
-      });
-
-      const routeTrack = document.querySelector('[data-access-route-track]');
-      const scrollRoute = (direction) => {
-        if (!routeTrack) return;
-        const firstCard = routeTrack.querySelector('.route-card');
-        const gap = Number.parseFloat(window.getComputedStyle(routeTrack).columnGap || '0') || 0;
-        const scrollAmount = (firstCard?.getBoundingClientRect().width || routeTrack.clientWidth) + gap;
-        routeTrack.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-      };
-
-      document.querySelector('[data-access-route-prev]')?.addEventListener('click', () => scrollRoute(-1));
-      document.querySelector('[data-access-route-next]')?.addEventListener('click', () => scrollRoute(1));
-    });
-  </script>
-</body>
-</html>
+  </main><footer class="site-footer"><div class="site-footer__inner">
+  <a class="site-footer__brand" href="/">整体院ひざこぞう</a>
+  <nav aria-label="フッターメニュー"><a href="/">TOP</a>
+<a href="/#first-visit">初回の流れ・料金</a>
+<a href="/msm.html">施術について</a>
+<a href="/symptoms/">症状別ページ</a>
+<a href="/staff.html">院長紹介</a>
+<a href="/voices.html">患者様のお声</a>
+<a href="/access.html" aria-current="page">アクセス</a>
+<a href="/blog/">コラム</a>
+<a href="/news.html">お知らせ</a>
+    <a href="/#contact">メールで問い合わせる</a>
+  </nav>
+  <small>© 整体院ひざこぞう</small>
+</div></footer></body></html>

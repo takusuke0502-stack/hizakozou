@@ -1498,6 +1498,8 @@ async function updateSymptomPages(site, posts) {
 
     const fullPath = path.join(symptomsDir, fileName);
     let html = await fs.readFile(fullPath, "utf8");
+    // Authored production pages own their layout and clinical copy.
+    if (html.includes('data-site-layout="redesign-v1"') || html.includes('data-content-owner="author"')) continue;
     html = upsertRelatedStyles(html);
     html = upsertDetailedSymptomContent(html, config);
     html = upsertSymptomPatientVoices(html, config);
@@ -1587,6 +1589,7 @@ const symptomsDirectoryStyles = `
 async function updateSymptomsDirectoryPage(site) {
   const directoryPath = path.join(symptomsDir, "index.html");
   let html = await fs.readFile(directoryPath, "utf8");
+  if (html.includes('data-site-layout="redesign-v1"')) return;
 
   html = html.replace(/<title>[\s\S]*?<\/title>/, "<title>症状別ページ｜整体院ひざこぞう</title>");
   html = html.replace(
@@ -2010,6 +2013,9 @@ async function updateSitemap(site, posts) {
       changefreq: "weekly",
       priority: "0.9"
     },
+    ...await Promise.all(["staff.html", "voices.html", "access.html", "msm.html", "news.html", "privacy.html", "faq.html", "reservation.html"].map(async (file) => ({
+      loc: `${siteRoot}/${file}`, lastmod: await getFileLastmod(path.join(rootDir, file)), changefreq: "monthly", priority: "0.7"
+    }))),
     ...postEntries,
     ...symptomEntries
   ];

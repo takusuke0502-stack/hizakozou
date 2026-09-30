@@ -1,0 +1,205 @@
+@charset "UTF-8";
+/* Shared by hip-pain and sciatica. Colors follow the TOP page palette. */
+/* Pale: TOP MSM introduction. Warm: TOP first-visit campaign. */
+.hip-page{--hip-line:var(--line);--hip-pale:#e7f9f5;--hip-warm:#f7f6f0}
+.hip-page main{color:var(--ink)}
+.hip-page main p,.hip-page main li,.hip-page main dd{font-size:16px;line-height:1.85}
+.hip-page main p,.hip-page main dd{text-wrap:pretty}
+.hip-page main h2{color:var(--green);font-weight:600;font-size:clamp(29px,3.2vw,42px);line-height:1.48;letter-spacing:.01em}
+.hip-page main h3{color:var(--green-deep);font-weight:600;font-size:clamp(22px,2.25vw,28px);line-height:1.55;letter-spacing:0}
+.hip-page main h4{margin:0;font:700 18px/1.6 "Yu Gothic",Meiryo,sans-serif}
+.hip-wrap{width:min(100%,1240px);margin-inline:auto;padding-inline:var(--pad)}
+.hip-section{padding-block:clamp(48px,5.2vw,76px);scroll-margin-top:124px}
+.hip-page .hip-kicker{margin:0 0 16px;color:var(--green-deep);font-size:13px;font-weight:700;letter-spacing:.07em}
+.hip-prose p+p{margin-top:20px}
+.hip-prose strong{color:var(--green-deep);font-weight:700}
+.hip-page .hip-note{color:var(--ink-soft);font-size:14px;line-height:1.75}
+.hip-page .hip-text-link{color:var(--green-deep);display:inline-block;max-width:100%;padding-block:10px;border-bottom:1px solid var(--green-deep);font-size:15px;font-weight:700;line-height:1.65}
+.hip-text-link span{margin-left:10px}
+.hip-text-link:hover{color:var(--green)}
+.hip-hero{max-width:1440px;margin:auto;display:grid;grid-template-columns:minmax(0,52fr) minmax(0,48fr);background:var(--cream)}
+.hip-hero__photo{display:flex;align-items:center;min-width:0;background:var(--cream)}
+.hip-hero__photo img{width:100%;height:auto;aspect-ratio:3/2;object-fit:contain}
+.hip-hero__copy{padding:36px clamp(28px,4vw,62px) 36px}
+.hip-page .hip-hero h1{color:var(--green);font-weight:500;margin:0 0 18px;font-size:clamp(28px,3.1vw,45px);line-height:1.4;letter-spacing:.01em}
+.hip-page .hip-hero h1 em{color:var(--green);font-weight:600}
+.hip-page .hip-hero__lead{margin:0 0 20px;font-weight:500;line-height:1.75}
+.hip-hero__cta{width:100%;margin-top:14px;justify-content:center;font-size:15px;min-height:54px}
+.hip-offer{background:#fff;border-left:4px solid var(--gold);padding:15px 20px}
+.hip-page .hip-offer__regular{font-size:14px;color:var(--ink-soft);line-height:1.5}
+.hip-offer__regular s{margin-left:6px;text-decoration-thickness:1px}
+.hip-page .hip-offer__price{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:6px 0;line-height:1.3;color:var(--green-deep)}
+.hip-offer__price>span{font-size:14px;font-weight:700}
+.hip-offer__price strong{color:var(--green);display:block;white-space:nowrap;font-family:Arial,sans-serif;font-size:40px;letter-spacing:-.045em}
+.hip-offer__price small{color:var(--green-deep);margin-left:4px;font:700 12px/1.5 "Yu Gothic",Meiryo,sans-serif;letter-spacing:0}
+.hip-page .hip-offer__detail{font-size:14px;line-height:1.7}
+.hip-offer__detail b{display:inline-block;white-space:nowrap;margin-left:5px}
+.hip-jump{display:flex;justify-content:center;gap:clamp(20px,6vw,80px);padding-block:18px;border-bottom:1px solid var(--hip-line)}
+.hip-jump a{padding:6px 0;font-size:14px;font-weight:700;white-space:nowrap}
+.hip-jump span{margin-left:10px;color:var(--green-deep)}
+.hip-reason{background:var(--hip-pale)}
+.hip-split{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
+.hip-sources{margin-top:18px;border-top:1px solid var(--hip-line);padding-top:12px}
+.hip-sources summary{cursor:pointer;font-size:14px;font-weight:700;padding:8px 0}
+.hip-page .hip-sources p,.hip-page .hip-sources li{font-size:14px;line-height:1.75}
+.hip-sources p{margin-top:8px}
+.hip-sources ul{padding-left:20px;margin-bottom:0}
+.hip-sources a{color:var(--green-deep);text-decoration:underline;text-underline-offset:4px}
+
+.hip-voices{background:var(--cream)}
+.hip-section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:26px}
+.hip-section-head>p{font-size:14px!important}
+@media(min-width:821px){.hip-voices .hip-section-head>p{display:none}}
+.hip-voices__track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 24px)/2);gap:24px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scroll-padding-inline:2px;padding:2px 2px 14px;scrollbar-color:var(--sage) var(--sage-light)}
+.hip-voice{display:flex;flex-direction:column;gap:20px;scroll-snap-align:start;min-width:0;background:white;border-top:3px solid var(--sage);padding:25px}
+.hip-page .hip-voice__who{font-size:13px;font-weight:700;color:var(--green-deep);margin-bottom:10px}
+.hip-page .hip-voice h3{font-size:24px}
+.hip-voice blockquote{margin:16px 0 12px;padding-left:16px;border-left:2px solid var(--line)}
+.hip-voice>figure{margin-top:auto;display:grid;grid-template-columns:110px 1fr;align-items:center;gap:16px;border-top:1px solid var(--hip-line);padding-top:18px}
+.hip-voice>figure img{max-height:154px;width:110px;object-fit:contain;object-position:left center;border:1px solid var(--line);background:var(--cream)}
+.hip-voice>figure figcaption{font-size:13px;color:var(--ink-soft)}
+.hip-voices__note{margin-top:12px}
+.hip-first__grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hip-first h2{margin-bottom:22px}
+.hip-first__flow{padding-left:22px;margin:18px 0 12px}
+.hip-first__flow li{padding-block:3px}
+.hip-offer--full{background:var(--hip-warm);padding:30px}
+.hip-page .hip-offer--full .hip-offer__price{display:block;margin:12px 0}
+.hip-offer--full .hip-offer__price>span{font-size:18px}
+.hip-offer--full .hip-offer__price strong{font-size:66px;margin-top:4px}
+.hip-offer--full .hip-offer__price small{font-size:16px}
+.hip-page .hip-offer--full .hip-offer__detail{font-size:16px;margin:12px 0 22px}
+.hip-offer--full .hip-offer__detail b{margin-left:0}
+.hip-offer--full .button{width:100%;justify-content:center;font-size:16px}
+.hip-page .hip-offer__message{font-size:14px;margin-top:15px;line-height:1.8}
+.hip-contact-links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px}
+.hip-contact-links a{color:var(--green-deep);font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:4px;padding-block:7px}
+.hip-faq{padding-top:10px}
+.hip-faq__grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:50px}
+.hip-faq__items{min-width:0}
+.hip-faq details{border-top:1px solid var(--hip-line)}
+.hip-faq summary{padding:18px 28px 18px 0;position:relative;cursor:pointer;list-style:none;font-size:16px;font-weight:700;line-height:1.7}
+.hip-faq summary::-webkit-details-marker{display:none}
+.hip-faq summary::after{content:"＋";position:absolute;right:0;top:18px;font-weight:400}
+.hip-faq details[open] summary::after{content:"−"}
+.hip-faq details>div{padding:0 0 22px}
+.hip-faq details p+p{margin-top:12px}
+.hip-medical-note{border-left:3px solid #b79f77;padding:14px 18px;background:var(--hip-warm);margin-top:22px}
+.hip-page .hip-medical-note h3{font:700 16px/1.7 "Yu Gothic",Meiryo,sans-serif}
+.hip-page .hip-medical-note p{font-size:14px;margin-top:6px}
+@media(max-width:1100px) and (min-width:821px){.hip-hero__copy{padding:30px 28px}.hip-page .hip-hero h1{font-size:32px}.hip-offer__price{flex-wrap:wrap}.hip-offer__price>span{width:100%}}
+@media(max-width:820px){
+ .hip-section{scroll-margin-top:80px}
+ .hip-hero{grid-template-columns:1fr}
+ .hip-hero__copy{padding:28px var(--pad);grid-row:1}
+ .hip-hero__photo{grid-row:2}
+ .hip-hero__photo img{width:100%;max-height:440px;object-fit:contain}
+ .hip-page .hip-hero h1{font-size:clamp(29px,4.8vw,38px)}
+ .hip-hero__copy>.hip-kicker{margin-bottom:12px}
+ .hip-offer--compact{max-width:560px}
+ .hip-hero__cta{max-width:560px}
+ .hip-split,.hip-first__grid,.hip-faq__grid{grid-template-columns:1fr;gap:24px}
+ .hip-split h2 br{display:none}
+ .hip-voices__track{grid-auto-columns:85%}
+ .hip-voice{display:grid;grid-template-columns:minmax(0,1fr) 122px;gap:20px}
+ .hip-voice>figure{display:flex;flex-direction:column;align-items:center;border-top:0;border-left:1px solid var(--hip-line);padding:0 0 0 14px;margin:0;justify-content:center;gap:10px}
+ .hip-first__grid{gap:30px}
+ .hip-offer--full .hip-offer__price strong{font-size:58px}
+}
+@media(max-width:560px){
+ .hip-section{padding-block:44px}
+ .hip-page main h2{font-size:29px}
+ .hip-page main h3{font-size:23px}
+ .hip-page .hip-hero h1{font-size:29px;margin-bottom:14px;letter-spacing:0}
+ .hip-hero__copy{padding:22px 20px 26px}
+ .hip-page .hip-hero__lead{font-size:16px;margin-bottom:18px}
+ .hip-hero__lead br{display:none}
+ .hip-page .hip-offer__price{flex-wrap:wrap;gap:3px 12px;margin:6px 0}
+ .hip-offer__price>span{font-size:13px}
+ .hip-offer__price strong{font-size:39px}
+ .hip-offer--compact{padding:13px 14px}
+ .hip-page .hip-offer__detail{font-size:13px}
+ .hip-hero__photo img{max-height:none}
+ .hip-jump{gap:0;justify-content:space-between;padding-block:12px}
+ .hip-jump a{font-size:12px;white-space:normal;line-height:1.7}
+ .hip-jump span{margin-left:3px}
+ .hip-split{gap:20px}
+ .hip-split h2 br{display:block}
+
+ .hip-section-head{display:block;margin-bottom:20px}
+ .hip-section-head>p{margin-top:12px}
+ .hip-voices__track{grid-auto-columns:92%;gap:16px}
+ .hip-voice{display:flex;padding:20px;gap:16px}
+ .hip-page .hip-voice h3{font-size:21px}
+ .hip-voice h3 br{display:none}
+ .hip-voice blockquote{padding-left:12px;margin-top:14px}
+ .hip-voice>figure{display:grid;grid-template-columns:82px 1fr;border-left:0;border-top:1px solid var(--hip-line);padding:16px 0 0;gap:12px;align-items:center;margin-top:auto}
+ .hip-voice>figure img{width:82px;max-height:120px}
+ .hip-voice>figure figcaption{font-size:13px}
+ .hip-offer--full{padding:25px 22px}
+ .hip-offer--full .hip-offer__price>span{font-size:17px}
+ .hip-offer--full .hip-offer__price strong{font-size:59px}
+ .hip-offer__message br{display:none}
+ .hip-faq{padding-top:0}
+}
+@media(prefers-reduced-motion:reduce){.hip-page{scroll-behavior:auto}.hip-page .button{transition:none}}
+/* Disease overview and treatment rationale on this page. */
+.hip-page #hip-reason-title span{display:inline-block}
+.hip-page #hip-reason-title{max-width:12em}
+.hip-condition__cause{border-top:1px solid var(--hip-line);margin-top:32px;padding-top:30px}
+.hip-page .hip-condition__cause h3{font-family:inherit;font-size:24px;line-height:1.6;font-weight:600}
+@media(max-width:820px){.hip-page #hip-reason-title{max-width:none}}
+@media(max-width:560px){
+ .hip-condition__cause{margin-top:26px;padding-top:24px;gap:16px}
+ .hip-page .hip-condition__cause h3{font-size:22px}
+ .hip-page .hip-hero h1{font-size:28px}
+}
+/* This page's MSM explanation. The three elements are not numbered steps. */
+.hip-msm-overview{margin-top:32px;padding-top:12px;border-top:1px solid var(--hip-line)}
+.hip-msm-panorama{margin:0}
+.hip-msm-panorama img{display:block;width:100%;height:auto}
+.hip-msm-methods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:18px}
+.hip-msm-method{min-width:0}
+.hip-msm-method+.hip-msm-method{border-left:1px solid var(--hip-line);padding-left:28px}
+.hip-page .hip-msm-term{font-size:14px;font-weight:700;line-height:1.5;color:var(--green-deep);margin:0 0 10px}
+.hip-msm-term span{display:block;font-size:13px;margin-top:2px;font-weight:500}
+.hip-page .hip-msm-method h3{font-family:inherit;font-size:21px;line-height:1.65;font-weight:600;margin:0 0 10px;text-wrap:balance}
+.hip-msm-scene{display:none}
+.hip-page .hip-msm-caption{margin-top:24px;padding:17px 20px;border-left:3px solid var(--sage);background:var(--hip-pale);font-size:16px;font-weight:600}
+.hip-msm-practice{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:36px;align-items:center;margin-top:36px}
+.hip-msm-practice figure{margin:0}
+.hip-msm-practice img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain}
+.hip-msm-practice figcaption{font-size:14px;line-height:1.7;color:var(--ink-soft);margin-top:8px}
+.hip-msm-practice .hip-text-link{margin-top:12px}
+@media(max-width:820px){
+ .hip-msm-methods{gap:20px}
+ .hip-msm-method+.hip-msm-method{padding-left:18px}
+ .hip-page .hip-msm-method h3{font-size:19px}
+ .hip-msm-practice{gap:24px}
+}
+@media(max-width:560px){
+ .hip-msm-overview{margin-top:26px;padding-top:0}
+ .hip-msm-panorama{display:none}
+ .hip-msm-methods{grid-template-columns:1fr;margin-top:0;gap:0}
+ .hip-msm-method{display:grid;grid-template-columns:108px minmax(0,1fr);gap:15px;align-items:center;padding-block:24px}
+ .hip-msm-method+.hip-msm-method{border-left:0;border-top:1px solid var(--hip-line);padding-left:0}
+ .hip-msm-scene{display:block;overflow:hidden;min-width:0}
+ .hip-msm-scene img{display:block;max-width:none;height:auto;transform-origin:top left}
+ .hip-msm-scene--mobility{aspect-ratio:1.05}
+ .hip-msm-scene--mobility img{width:285.714286%}
+ .hip-msm-scene--stability{aspect-ratio:1.17}
+ .hip-msm-scene--stability img{width:256.410256%;transform:translateX(-34%)}
+ .hip-msm-scene--movement{aspect-ratio:.84}
+ .hip-msm-scene--movement img{width:357.142857%;transform:translateX(-72%)}
+ .hip-page .hip-msm-method h3{font-size:19px;line-height:1.6;text-wrap:pretty}
+ .hip-page .hip-msm-term{margin-bottom:8px;font-size:13px}
+ .hip-msm-term span{display:inline;font-size:12px;margin-left:5px}
+ .hip-page .hip-msm-caption{margin-top:0;padding:15px 17px}
+ .hip-msm-practice{grid-template-columns:1fr;gap:18px;margin-top:28px}
+ .hip-msm-practice .hip-text-link{margin-top:10px}
+}
+
+/* User-provided introduction before the stretching explanation. */
+.hip-reason__intro{max-width:900px;margin-bottom:30px}
+.hip-reason__intro .hip-kicker{margin-bottom:12px}
+@media(max-width:560px){.hip-reason__intro{margin-bottom:26px}}

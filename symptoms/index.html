@@ -1,662 +1,97 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>症状別ページ｜整体院ひざこぞう</title>
-  <meta name="description" content="腰・お尻・脚、股関節、膝、足首・足裏、首・肩・腕・手、背骨・姿勢・顎の症状別ページを部位から探せます。">
-  <link rel="canonical" href="https://hizakozou.jp/symptoms/">
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <script src="/scripts/tracking-config.js" defer></script>
-  <script src="/scripts/tracking.js" defer></script>
-  <script src="../scripts/vendor/lucide.min.js" defer></script>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    body { margin: 0; font-family: "BIZ UDPGothic", "Noto Sans JP", system-ui, sans-serif; line-height: 1.8; color: #263b34; background: #fff; }
-    a { color: inherit; }
-    .page { min-height: 100vh; padding: 88px 18px 72px; background: #fff; }
-    .symptom-directory-hero { width: min(960px, 100%); margin: 0 auto; padding: clamp(34px, 6vw, 64px) 0 clamp(48px, 7vw, 76px); border-bottom: 1px solid #dfe4dc; }
-    .symptom-directory-hero__label { margin: 0 0 12px; color: #356b2f; font-size: .82rem; font-weight: 900; letter-spacing: .08em; }
-    .symptom-directory-hero h1 { position: relative; margin: 0 0 26px; padding-bottom: 18px; color: #223b2d; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.35; letter-spacing: 0; }
-    .symptom-directory-hero h1::after { content: ""; position: absolute; left: 0; bottom: 0; width: 52px; height: 3px; background: #356b2f; }
-    .symptom-directory-hero__lead { max-width: 720px; margin: 0; color: #59635d; font-size: clamp(1rem, 2vw, 1.12rem); font-weight: 700; line-height: 1.9; }
-    .symptom-directory-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .symptom-directory-hero__button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 11px 18px; border: 1px solid #356b2f; border-radius: 8px; background: #356b2f; color: #fff; font-size: .94rem; font-weight: 900; text-decoration: none; }
-    .symptom-directory-hero__button--secondary { background: #fff; color: #234d24; }
-    .symptom-directory-hero__button:hover, .symptom-directory-hero__button:focus-visible { outline: 3px solid rgba(53,107,47,.18); outline-offset: 3px; }
-    .symptom-directory { width: min(960px, 100%); margin: 0 auto; padding: clamp(58px, 8vw, 92px) 0 0; }
-    .symptom-directory__heading { margin-bottom: clamp(34px, 5vw, 52px); }
-    .symptom-directory__heading h2 { position: relative; margin: 0 0 18px; padding-bottom: 15px; color: #223b2d; font-size: clamp(1.65rem, 3vw, 2.2rem); line-height: 1.45; letter-spacing: 0; }
-    .symptom-directory__heading h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 46px; height: 3px; background: #356b2f; }
-    .symptom-directory__heading p { margin: 0; color: #59635d; font-size: .98rem; font-weight: 700; line-height: 1.85; }
-    .symptom-directory__modes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0 0 clamp(34px, 5vw, 52px); }
-    .symptom-directory__mode { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: center; min-height: 58px; padding: 10px 14px; border: 1px solid #cbd8c6; border-radius: 8px; background: #fff; color: #365047; font: inherit; font-size: .9rem; font-weight: 900; line-height: 1.45; text-align: left; cursor: pointer; }
-    .symptom-directory__mode-number { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #aebfa8; border-radius: 50%; color: #356b2f; font-size: .78rem; }
-    .symptom-directory__mode[aria-selected="true"] { border-color: #356b2f; background: #f2f7ef; color: #234d24; box-shadow: inset 0 -3px 0 #356b2f; }
-    .symptom-directory__mode[aria-selected="true"] .symptom-directory__mode-number { border-color: #356b2f; background: #356b2f; color: #fff; }
-    .symptom-directory__mode:hover, .symptom-directory__mode:focus-visible { outline: 3px solid rgba(53,107,47,.16); outline-offset: 2px; }
-    .symptom-directory__panel[hidden] { display: none; }
-    .symptom-directory__panel-heading { margin: 0 0 22px; padding-left: 14px; border-left: 4px solid #d58b40; }
-    .symptom-directory__panel-heading h3 { margin: 0; color: #223b2d; font-size: clamp(1.25rem, 2.4vw, 1.6rem); line-height: 1.5; }
-    .symptom-directory__panel-heading p { margin: .4rem 0 0; color: #69736c; font-size: .86rem; font-weight: 700; line-height: 1.7; }
-    .symptom-directory__groups { columns: 2; column-gap: clamp(44px, 6vw, 72px); }
-    .symptom-directory__quick-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; border-top: 1px solid #e5e9e2; }
-    .symptom-directory__group { display: inline-block; width: 100%; min-width: 0; margin-bottom: 34px; padding: 34px 0 6px; border-top: 1px solid #dfe4dc; break-inside: avoid; }
-    .symptom-directory__group-header { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: start; margin-bottom: 19px; }
-    .symptom-directory__group-icon { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid #aebfa8; border-radius: 50%; color: #356b2f; }
-    .symptom-directory__group-icon svg { width: 20px; height: 20px; stroke-width: 1.8; }
-    .symptom-directory__group h3 { margin: 0 0 5px; color: #223b2d; font-size: 1.24rem; line-height: 1.45; }
-    .symptom-directory__group-description { margin: 0; color: #69736c; font-size: .84rem; font-weight: 700; line-height: 1.7; }
-    .symptom-directory__links { display: grid; gap: 0; border-top: 1px solid #e5e9e2; }
-    .symptom-directory__link { position: relative; display: grid; gap: 4px; min-height: 76px; padding: 14px 46px 14px 4px; border-bottom: 1px solid #e5e9e2; text-decoration: none; }
-    .symptom-directory__link-title { color: #234d24; font-size: .98rem; font-weight: 900; line-height: 1.5; }
-    .symptom-directory__link-description { color: #69736c; font-size: .79rem; font-weight: 700; line-height: 1.65; }
-    .symptom-directory__link-arrow { position: absolute; right: 4px; top: 50%; display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid #cbd8c6; border-radius: 50%; color: #356b2f; font-size: 20px; font-weight: 900; line-height: 1; transform: translateY(-50%); transition: background .2s, color .2s, transform .2s; }
-    .symptom-directory__link:hover, .symptom-directory__link:focus-visible { background: #fafcf8; outline: 3px solid rgba(53,107,47,.15); outline-offset: 2px; }
-    .symptom-directory__link:hover .symptom-directory__link-arrow, .symptom-directory__link:focus-visible .symptom-directory__link-arrow { background: #356b2f; color: #fff; transform: translateY(-50%) translateX(2px); }
-    @media (max-width: 767px) {
-      .page { padding: 60px 16px 94px; }
-      .symptom-directory-hero { padding-top: 30px; padding-bottom: 52px; }
-      .symptom-directory-hero__actions { display: grid; }
-      .symptom-directory-hero__button { width: 100%; }
-      .symptom-directory__modes { grid-template-columns: 1fr; gap: 8px; }
-      .symptom-directory__mode { min-height: 52px; }
-      .symptom-directory__groups { columns: 1; }
-      .symptom-directory__quick-links { grid-template-columns: 1fr; }
-      .symptom-directory__group { margin-bottom: 24px; padding-top: 30px; }
-      .symptom-directory__group-header { gap: 12px; }
-      .symptom-directory__link { min-height: 72px; }
-    }
+<!doctype html>
+<html lang="ja" data-site-layout="redesign-v1"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index,follow,max-image-preview:large"><meta name="description" content="膝、腰、坐骨神経痛、股関節、脊柱管狭窄症など、足腰の症状から詳細をご覧いただけます。">
+<title>症状別ページ｜整体院ひざこぞう</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-  </style>
-  <link rel="stylesheet" href="site-performance.css?v=20260726">
-  <meta property="og:locale" content="ja_JP">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="症状別ページ｜整体院ひざこぞう">
-  <meta property="og:description" content="腰・お尻・脚、股関節、膝、足首・足裏、首・肩・腕・手、背骨・姿勢・顎の症状別ページを部位から探せます。">
-  <meta property="og:url" content="https://hizakozou.jp/symptoms/">
-  <meta property="og:site_name" content="整体院ひざこぞう">
-  <meta property="og:image" content="https://hizakozou.jp/ogp.webp">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="症状別ページ｜整体院ひざこぞう">
-  <meta name="twitter:description" content="腰・お尻・脚、股関節、膝、足首・足裏、首・肩・腕・手、背骨・姿勢・顎の症状別ページを部位から探せます。">
-  <meta name="twitter:image" content="https://hizakozou.jp/ogp.webp">
-</head>
-<body>
-  <header id="header" class="site-header">
-    <div class="site-header__upper">
-      <div class="site-header__inner site-header__inner--upper">
-        <a href="../index.html#top" class="site-brand" aria-label="整体院ひざこぞう トップページへ">
-          <span class="site-brand__mark" aria-hidden="true">
-            <img src="../image/hizakozou-logo-option2-mark.webp" alt="" width="160" height="160" decoding="async">
-          </span>
-          <span class="site-brand__text">
-            <span class="site-brand__eyebrow">柏市の足腰専門整体院</span>
-            <span class="site-brand__name">整体院ひざこぞう</span>
-            <span class="site-brand__note">国家資格者による整体</span>
-          </span>
-        </a>
+<link rel="stylesheet" href="/redesign/styles.css?v=20260924j">
+<link rel="stylesheet" href="/redesign/refinements.css?v=20260924a">
+<link rel="stylesheet" href="/redesign/site-updates.css?v=20260925b">
+<script src="/redesign/script.js" defer></script><style>.additional-symptoms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px;margin-top:28px}.additional-symptoms a{display:block;padding:14px 0;line-height:1.8}.route-anchor{scroll-margin-top:100px}@media(max-width:600px){.additional-symptoms{grid-template-columns:1fr}}</style>
+<link rel="canonical" href="https://hizakozou.jp/symptoms/">
+<meta property="og:locale" content="ja_JP"><meta property="og:type" content="website"><meta property="og:site_name" content="整体院ひざこぞう">
+<meta property="og:url" content="https://hizakozou.jp/symptoms/"><meta property="og:title" content="症状別ページ｜整体院ひざこぞう"><meta property="og:description" content="膝、腰、坐骨神経痛、股関節、脊柱管狭窄症など、足腰の症状から詳細をご覧いただけます。"><meta property="og:image" content="https://hizakozou.jp/image/photo-knee-treatment-1200.webp">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="症状別ページ｜整体院ひざこぞう"><meta name="twitter:description" content="膝、腰、坐骨神経痛、股関節、脊柱管狭窄症など、足腰の症状から詳細をご覧いただけます。"><meta name="twitter:image" content="https://hizakozou.jp/image/photo-knee-treatment-1200.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://hizakozou.jp/symptoms/#webpage","url":"https://hizakozou.jp/symptoms/","name":"症状別ページ｜整体院ひざこぞう","description":"膝、腰、坐骨神経痛、股関節、脊柱管狭窄症など、足腰の症状から詳細をご覧いただけます。","inLanguage":"ja-JP","isPartOf":{"@id":"https://hizakozou.jp/#website"}}</script>
 
-        <div class="site-header-badges" aria-label="整体院ひざこぞうの特徴">
-          <span class="site-header-badge">
-            <i data-lucide="map-pin" aria-hidden="true"></i>
-            <span>柏駅西口<br>徒歩8分</span>
-          </span>
-          <span class="site-header-badge site-header-badge--soft">
-            <i data-lucide="calendar-check-2" aria-hidden="true"></i>
-            <span>完全<br>予約制</span>
-          </span>
-          <span class="site-header-badge">
-            <i data-lucide="user-check" aria-hidden="true"></i>
-            <span>国家資格者<br>が対応</span>
-          </span>
-        </div>
-
-        <div class="site-header-contact">
-          <span class="site-header-contact__label">ご予約・ご相談はこちら</span>
-          <a href="tel:0471143274" class="site-header-phone" aria-label="電話で相談する 04-7114-3274">
-            <span class="site-header-phone__icon" aria-hidden="true"><i data-lucide="phone-call"></i></span>
-            <span class="site-header-phone__number">04-7114-3274</span>
-          </a>
-        </div>
-
-        <button id="menuBtn" class="site-menu-toggle" type="button" aria-controls="mobileNav" aria-expanded="false" aria-label="メニューを開く">
-          <span class="site-menu-toggle__bars" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-          <span class="site-menu-toggle__text">メニュー</span>
-        </button>
-      </div>
+<script src="/scripts/tracking-config.js?v=20260624" defer></script><script src="/scripts/tracking.js?v=20260624" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"整体院ひざこぞう","item":"https://hizakozou.jp/"},{"@type":"ListItem","position":2,"name":"症状別ページ｜整体院ひざこぞう","item":"https://hizakozou.jp/symptoms/"}]}</script>
+</head><body>
+<a class="skip-link" href="#main">本文へ移動</a><header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="/" aria-label="整体院ひざこぞう トップページ">
+      <img class="brand__mark" src="/redesign/assets/jumping-silhouette.png" alt="" width="56" height="56">
+      <span class="brand__text"><span class="brand__small">柏市の足腰専門整体院</span><strong>整体院ひざこぞう</strong></span>
+    </a>
+    <p class="header-location">柏駅西口 徒歩約8分<br><span>初回キャンペーン 1,980円・約90分</span></p>
+    <nav class="desktop-nav" aria-label="主要メニュー"><a href="/">TOP</a>
+<a href="/#first-visit">初回の流れ・料金</a>
+<a href="/msm.html">施術について</a>
+<a href="/symptoms/" aria-current="page">症状別ページ</a>
+<a href="/staff.html">院長紹介</a>
+<a href="/voices.html">患者様のお声</a>
+<a href="/access.html">アクセス</a>
+<a href="/blog/">コラム</a>
+<a href="/news.html">お知らせ</a></nav>
+    <div class="header-actions">
+      <a class="instagram-link" href="https://www.instagram.com/hizakozou_kashiwa/" target="_blank" rel="noopener noreferrer" aria-label="整体院ひざこぞうのInstagramを開く">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.8" cy="6.3" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="header-contact" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" aria-label="LINEで予約する"><svg aria-hidden="true" viewBox="0 0 48 48"><rect x="7" y="11" width="34" height="30" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 19h34M15 6v10M33 6v10" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>予約する</span></a>
+      <button class="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="メニューを開く"><span></span><span></span></button>
     </div>
-  </header>
-
-    <div class="site-header__lower">
-      <div class="site-header__inner">
-        <nav class="site-nav" aria-label="メインナビゲーション">
-          <a href="../index.html#top" class="site-nav__item">
-            <span class="site-nav__jp">ホーム</span>
-            <span class="site-nav__en">HOME</span>
-          </a>
-          <div class="site-nav__item site-nav__item--has-dropdown">
-            <button type="button" class="site-nav__trigger" aria-haspopup="true" aria-controls="site-about-menu" aria-expanded="false">
-              <span class="site-nav__label-main">
-                <span class="site-nav__jp">当院について</span>
-                <span class="site-nav__chevron" aria-hidden="true">▼</span>
-              </span>
-              <span class="site-nav__en">ABOUT</span>
-            </button>
-            <div id="site-about-menu" class="site-nav__dropdown" aria-label="当院について">
-              <a href="../staff.html" class="site-nav__dropdown-link">代表紹介</a>
-              <a href="../index.html#knee-msm-reasons" class="site-nav__dropdown-link">当院の特徴</a>
-              <a href="../index.html#msm-method" class="site-nav__dropdown-link">MSMメソッドとは？</a>
-            </div>
-          </div>
-          <div class="site-nav__item site-nav__item--has-dropdown">
-            <button type="button" class="site-nav__trigger" aria-haspopup="true" aria-controls="site-symptoms-menu" aria-expanded="false">
-              <span class="site-nav__label-main">
-                <span class="site-nav__jp">症状別</span>
-                <span class="site-nav__chevron" aria-hidden="true">▼</span>
-              </span>
-              <span class="site-nav__en">SYMPTOMS</span>
-            </button>
-            <div id="site-symptoms-menu" class="site-nav__dropdown" aria-label="症状別ページ">
-              <a href="./lower-back-pain.html" class="site-nav__dropdown-link">腰痛</a>
-              <a href="./sciatica.html" class="site-nav__dropdown-link">坐骨神経痛</a>
-              <a href="./spinal-stenosis.html" class="site-nav__dropdown-link">脊柱管狭窄症</a>
-              <a href="./lumbar-disc-herniation.html" class="site-nav__dropdown-link">椎間板ヘルニア</a>
-              <a href="./hip-osteoarthritis.html" class="site-nav__dropdown-link">股関節痛</a>
-              <a href="./knee-osteoarthritis.html" class="site-nav__dropdown-link">変形性膝関節症</a>
-              <a href="./index.html" class="site-nav__dropdown-link">すべての症状を見る</a>
-            </div>
-          </div>
-          <a href="../index.html#flow" class="site-nav__item">
-            <span class="site-nav__jp">施術の流れ</span>
-            <span class="site-nav__en">FLOW</span>
-          </a>
-          <a href="../index.html#price" class="site-nav__item">
-            <span class="site-nav__jp">料金</span>
-            <span class="site-nav__en">PRICE</span>
-          </a>
-          <a href="../blog/" class="site-nav__item">
-            <span class="site-nav__jp">コラム</span>
-            <span class="site-nav__en">COLUMN</span>
-          </a>
-          <a href="../index.html#access" class="site-nav__item site-nav__item--contact">
-            <span class="site-nav__jp">アクセス・予約</span>
-            <span class="site-nav__en">ACCESS / CONTACT</span>
-          </a>
-        </nav>
-
-        <nav class="site-mobile-nav hidden" id="mobileNav" aria-label="スマートフォン用ナビゲーション">
-          <a href="../index.html#top" class="site-mobile-nav__item">ホーム</a>
-          <div class="site-mobile-nav__group" aria-label="当院について">
-            <p class="site-mobile-nav__heading">当院について</p>
-            <div class="site-mobile-nav__links">
-              <a href="../staff.html" class="site-mobile-nav__subitem">代表紹介</a>
-              <a href="../index.html#knee-msm-reasons" class="site-mobile-nav__subitem">当院の特徴</a>
-              <a href="../index.html#msm-method" class="site-mobile-nav__subitem">MSMメソッドとは？</a>
-            </div>
-          </div>
-          <div class="site-mobile-nav__group" aria-label="症状別ページ">
-            <p class="site-mobile-nav__heading">症状別</p>
-            <div class="site-mobile-nav__links">
-              <a href="./lower-back-pain.html" class="site-mobile-nav__subitem">腰痛</a>
-              <a href="./sciatica.html" class="site-mobile-nav__subitem">坐骨神経痛</a>
-              <a href="./spinal-stenosis.html" class="site-mobile-nav__subitem">脊柱管狭窄症</a>
-              <a href="./lumbar-disc-herniation.html" class="site-mobile-nav__subitem">椎間板ヘルニア</a>
-              <a href="./hip-osteoarthritis.html" class="site-mobile-nav__subitem">股関節痛</a>
-              <a href="./knee-osteoarthritis.html" class="site-mobile-nav__subitem">変形性膝関節症</a>
-              <a href="./index.html" class="site-mobile-nav__subitem">すべての症状を見る</a>
-            </div>
-          </div>
-          <a href="../index.html#flow" class="site-mobile-nav__item">流れ</a>
-          <a href="../index.html#price" class="site-mobile-nav__item">料金</a>
-          <a href="../blog/" class="site-mobile-nav__item">コラム</a>
-          <a href="../faq.html" class="site-mobile-nav__item">FAQ</a>
-          <a href="../access.html" class="site-mobile-nav__item">アクセス</a>
-          <a href="../index.html#contact" class="site-mobile-nav__item site-mobile-nav__item--contact">予約</a>
-        </nav>
-      </div>
-    </div>
-
-  <main class="page">
-    <span id="top" class="page-top-anchor" aria-hidden="true"></span>
-    <section class="symptom-directory-hero" aria-labelledby="page-title">
-      <p class="symptom-directory-hero__label">SYMPTOMS</p>
-      <h1 id="page-title">症状別ページ</h1>
-      <p class="symptom-directory-hero__lead">痛む場所や、つらさを感じる動作に近いページからご覧ください。病名が分からない場合も、気になる部位から探せます。</p>
-      <div class="symptom-directory-hero__actions">
-        <a class="symptom-directory-hero__button" href="../index.html#contact">相談・予約へ進む</a>
-        <a class="symptom-directory-hero__button symptom-directory-hero__button--secondary" href="../index.html">トップページへ戻る</a>
-      </div>
-    </section>
-
-    <section class="symptom-directory" aria-labelledby="symptom-directory-title">
-      <div class="symptom-directory__heading">
-        <h2 id="symptom-directory-title">自分に近い探し方を選んでください</h2>
-        <p>病名が分からなくても大丈夫です。痛む場所、つらい動作、医療機関で言われた名前のいずれかから探せます。</p>
-      </div>
-      <div class="symptom-directory__modes" role="tablist" aria-label="症状ページの探し方">
-        <button type="button" id="directory-tab-location" class="symptom-directory__mode" role="tab" aria-selected="true" data-directory-mode="location" aria-controls="directory-panel-location" tabindex="0">
-          <span class="symptom-directory__mode-number" aria-hidden="true">1</span>
-          <span>痛む場所から探す</span>
-        </button>
-        <button type="button" id="directory-tab-movement" class="symptom-directory__mode" role="tab" aria-selected="false" data-directory-mode="movement" aria-controls="directory-panel-movement" tabindex="-1">
-          <span class="symptom-directory__mode-number" aria-hidden="true">2</span>
-          <span>つらい動作から探す</span>
-        </button>
-        <button type="button" id="directory-tab-diagnosis" class="symptom-directory__mode" role="tab" aria-selected="false" data-directory-mode="diagnosis" aria-controls="directory-panel-diagnosis" tabindex="-1">
-          <span class="symptom-directory__mode-number" aria-hidden="true">3</span>
-          <span>病院で言われた名前から探す</span>
-        </button>
-      </div>
-      <div id="directory-panel-location" class="symptom-directory__panel" role="tabpanel" aria-labelledby="directory-tab-location" data-directory-panel="location">
-        <div class="symptom-directory__panel-heading">
-          <h3>痛む場所から探す</h3>
-          <p>同じ場所の痛みでも状態には個人差があります。近い内容が複数ある場合は、あわせてご確認ください。</p>
-        </div>
-        <div class="symptom-directory__groups">
-
-        <section class="symptom-directory__group" aria-labelledby="symptom-group-waist-leg">
-          <div class="symptom-directory__group-header">
-            <span class="symptom-directory__group-icon" aria-hidden="true"><i data-lucide="person-standing"></i></span>
-            <div>
-              <h3 id="symptom-group-waist-leg">腰・お尻・脚</h3>
-              <p class="symptom-directory__group-description">腰の重さや、お尻から脚にかけての痛み・しびれが気になる方へ。</p>
-            </div>
-          </div>
-          <div class="symptom-directory__links">
-
-            <a class="symptom-directory__link" href="lower-back-pain.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">腰痛</span>
-              <span class="symptom-directory__link-description">立ち上がりや長時間同じ姿勢で腰がつらい方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="sciatica.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">坐骨神経痛</span>
-              <span class="symptom-directory__link-description">お尻から脚にかけて痛みやしびれがある方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="spinal-stenosis.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">脊柱管狭窄症</span>
-              <span class="symptom-directory__link-description">歩くと脚がつらく、休むと少し楽になる方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="lumbar-disc-herniation.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">腰椎椎間板ヘルニア</span>
-              <span class="symptom-directory__link-description">腰からお尻、脚へ広がる症状が気になる方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-          </div>
-        </section>
-        <section class="symptom-directory__group" aria-labelledby="symptom-group-hip">
-          <div class="symptom-directory__group-header">
-            <span class="symptom-directory__group-icon" aria-hidden="true"><i data-lucide="accessibility"></i></span>
-            <div>
-              <h3 id="symptom-group-hip">股関節</h3>
-              <p class="symptom-directory__group-description">歩き始めや立ち上がりで、足の付け根やお尻が痛む方へ。</p>
-            </div>
-          </div>
-          <div class="symptom-directory__links">
-
-            <a class="symptom-directory__link" href="hip-osteoarthritis.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">股関節痛・変形性股関節症</span>
-              <span class="symptom-directory__link-description">歩行や体重をかけた時の股関節痛が気になる方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-          </div>
-        </section>
-        <section class="symptom-directory__group" aria-labelledby="symptom-group-knee">
-          <div class="symptom-directory__group-header">
-            <span class="symptom-directory__group-icon" aria-hidden="true"><i data-lucide="activity"></i></span>
-            <div>
-              <h3 id="symptom-group-knee">膝</h3>
-              <p class="symptom-directory__group-description">痛む場所や動作、腫れ・引っかかりなどから近いページを探せます。</p>
-            </div>
-          </div>
-          <div class="symptom-directory__links">
-
-            <a class="symptom-directory__link" href="knee-osteoarthritis.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">変形性膝関節症</span>
-              <span class="symptom-directory__link-description">医療機関で変形性膝関節症と言われた方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="knee-effusion.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">膝に水がたまる・腫れる</span>
-              <span class="symptom-directory__link-description">膝の腫れや重さが気になる方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="pes-anserine-bursitis.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">膝の内側の痛み</span>
-              <span class="symptom-directory__link-description">膝の内側やや下の痛みが気になる方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="knee-lateral-pain.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">膝の外側の痛み</span>
-              <span class="symptom-directory__link-description">歩くと膝の外側が張る、痛む方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="knee-posterior-pain.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">膝の裏側の痛み</span>
-              <span class="symptom-directory__link-description">膝裏の張りや曲げ伸ばしの重さがある方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="knee-front-pain.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">膝の前側・お皿まわりの痛み</span>
-              <span class="symptom-directory__link-description">階段や立ち上がりで前側が痛む方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="meniscus-knee-pain.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">半月板・膝の引っかかり</span>
-              <span class="symptom-directory__link-description">曲げ伸ばしで引っかかりや不安がある方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="bowlegs-knee-pain.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">O脚・膝のゆがみ</span>
-              <span class="symptom-directory__link-description">脚の形や膝内側への負担が気になる方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="knee-hyperextension.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">反張膝・膝が伸びすぎる</span>
-              <span class="symptom-directory__link-description">立つと膝が後ろへ入りやすい方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="ankle-stiffness-knee-pain.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">足首の硬さと膝痛</span>
-              <span class="symptom-directory__link-description">足元の使いにくさが膝に響く方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-          </div>
-        </section>
-        <section class="symptom-directory__group" aria-labelledby="symptom-group-foot">
-          <div class="symptom-directory__group-header">
-            <span class="symptom-directory__group-icon" aria-hidden="true"><i data-lucide="footprints"></i></span>
-            <div>
-              <h3 id="symptom-group-foot">足首・足裏</h3>
-              <p class="symptom-directory__group-description">歩き始めの足裏やかかとの痛みが気になる方へ。</p>
-            </div>
-          </div>
-          <div class="symptom-directory__links">
-
-            <a class="symptom-directory__link" href="plantar-fasciitis.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">足底筋膜炎・足裏の痛み</span>
-              <span class="symptom-directory__link-description">朝の一歩目や歩行時に足裏が痛む方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-          </div>
-        </section>
-        <section class="symptom-directory__group" aria-labelledby="symptom-group-upper-body">
-          <div class="symptom-directory__group-header">
-            <span class="symptom-directory__group-icon" aria-hidden="true"><i data-lucide="hand"></i></span>
-            <div>
-              <h3 id="symptom-group-upper-body">首・肩・腕・手</h3>
-              <p class="symptom-directory__group-description">首肩のこり、腕や手のしびれ、肩や肘の動かしづらさがある方へ。</p>
-            </div>
-          </div>
-          <div class="symptom-directory__links">
-
-            <a class="symptom-directory__link" href="shoulder-stiffness.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">肩こり</span>
-              <span class="symptom-directory__link-description">首肩の重さや頭痛を伴うこりが気になる方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="frozen-shoulder.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">五十肩・肩が上がらない</span>
-              <span class="symptom-directory__link-description">腕を上げる、後ろへ回す動作がつらい方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="cervical-spondylosis.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">頚椎症・首の痛み</span>
-              <span class="symptom-directory__link-description">首の痛みや腕へのしびれが続く方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="thoracic-outlet.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">胸郭出口症候群</span>
-              <span class="symptom-directory__link-description">首肩から腕にかけてしびれやだるさがある方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="carpal-tunnel.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">手根管症候群・手のしびれ</span>
-              <span class="symptom-directory__link-description">手指のしびれや細かな作業のしにくさがある方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="elbow-tendinopathy.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">肘の痛み・テニス肘</span>
-              <span class="symptom-directory__link-description">物を持つ、ひねる動作で肘が痛む方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-          </div>
-        </section>
-        <section class="symptom-directory__group" aria-labelledby="symptom-group-posture-jaw">
-          <div class="symptom-directory__group-header">
-            <span class="symptom-directory__group-icon" aria-hidden="true"><i data-lucide="scan-face"></i></span>
-            <div>
-              <h3 id="symptom-group-posture-jaw">背骨・姿勢・顎</h3>
-              <p class="symptom-directory__group-description">姿勢の左右差や背骨のカーブ、顎の動かしづらさが気になる方へ。</p>
-            </div>
-          </div>
-          <div class="symptom-directory__links">
-
-            <a class="symptom-directory__link" href="scoliosis.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">側弯症・姿勢の左右差</span>
-              <span class="symptom-directory__link-description">背骨のカーブや肩・骨盤の左右差が気になる方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="symptom-directory__link" href="tmj.html" data-tracking-content-group="symptom-directory">
-              <span class="symptom-directory__link-title">顎関節症・あごの痛み</span>
-              <span class="symptom-directory__link-description">口を開けると痛む、音が鳴る方へ。</span>
-              <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-            </a>
-          </div>
-        </section>
-        </div>
-      </div>
-      <div id="directory-panel-movement" class="symptom-directory__panel" role="tabpanel" aria-labelledby="directory-tab-movement" data-directory-panel="movement" hidden>
-        <div class="symptom-directory__panel-heading">
-          <h3>つらい動作から探す</h3>
-          <p>日常生活で困っている場面に近い項目を選んでください。</p>
-        </div>
-        <div class="symptom-directory__quick-links">
-
-          <a class="symptom-directory__link" href="plantar-fasciitis.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">朝の一歩目が痛い</span>
-            <span class="symptom-directory__link-description">かかと・足裏の痛みが気になる方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="lower-back-pain.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">立ち上がると腰が痛い</span>
-            <span class="symptom-directory__link-description">動き始めの腰の重さや痛みが気になる方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="knee-osteoarthritis.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">立ち上がると膝が痛い</span>
-            <span class="symptom-directory__link-description">椅子から立つ時の膝痛が気になる方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="knee-front-pain.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">階段で膝が痛い</span>
-            <span class="symptom-directory__link-description">膝の前側やお皿まわりが気になる方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="spinal-stenosis.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">長く歩くと脚がしびれる</span>
-            <span class="symptom-directory__link-description">休むと変化する脚の症状がある方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="frozen-shoulder.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">腕を上げると肩が痛い</span>
-            <span class="symptom-directory__link-description">腕を上げる、後ろへ回す動作がつらい方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="elbow-tendinopathy.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">物を持つ・ひねると肘が痛い</span>
-            <span class="symptom-directory__link-description">家事や仕事で肘へ負担がかかる方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="tmj.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">口を開けると顎が痛い</span>
-            <span class="symptom-directory__link-description">顎の痛み、音、動かしにくさが気になる方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-        </div>
-      </div>
-      <div id="directory-panel-diagnosis" class="symptom-directory__panel" role="tabpanel" aria-labelledby="directory-tab-diagnosis" data-directory-panel="diagnosis" hidden>
-        <div class="symptom-directory__panel-heading">
-          <h3>病院で言われた名前から探す</h3>
-          <p>医療機関で伝えられた診断名に近いページからご確認ください。</p>
-        </div>
-        <div class="symptom-directory__quick-links">
-
-          <a class="symptom-directory__link" href="knee-osteoarthritis.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">変形性膝関節症</span>
-            <span class="symptom-directory__link-description">歩き始めや階段で膝痛が続く方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="hip-osteoarthritis.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">変形性股関節症</span>
-            <span class="symptom-directory__link-description">股関節の痛みや歩きづらさがある方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="lumbar-disc-herniation.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">腰椎椎間板ヘルニア</span>
-            <span class="symptom-directory__link-description">腰から脚へ広がる症状がある方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="spinal-stenosis.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">脊柱管狭窄症</span>
-            <span class="symptom-directory__link-description">歩くと脚がつらくなる方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="cervical-spondylosis.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">頚椎症</span>
-            <span class="symptom-directory__link-description">首の痛みや腕のしびれが続く方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="frozen-shoulder.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">五十肩</span>
-            <span class="symptom-directory__link-description">肩が上がらない、夜間も痛む方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="thoracic-outlet.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">胸郭出口症候群</span>
-            <span class="symptom-directory__link-description">首肩から腕にしびれやだるさがある方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="carpal-tunnel.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">手根管症候群</span>
-            <span class="symptom-directory__link-description">手指のしびれや細かな作業のしにくさがある方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="scoliosis.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">側弯症</span>
-            <span class="symptom-directory__link-description">背骨のカーブや姿勢の左右差が気になる方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-          <a class="symptom-directory__link" href="tmj.html" data-tracking-content-group="symptom-directory">
-            <span class="symptom-directory__link-title">顎関節症</span>
-            <span class="symptom-directory__link-description">顎の痛み、音、動かしにくさがある方へ。</span>
-            <span class="symptom-directory__link-arrow" aria-hidden="true">›</span>
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer class="hk-footer-section">
-    <div class="hk-footer-line" aria-hidden="true"></div>
-    <div class="hk-footer-inner">
-      <div class="hk-footer-top">
-        <a href="../index.html#top" class="hk-footer-brand" aria-label="整体院ひざこぞう トップページへ">
-          <img src="../image/hizakozou-logo-option2-mark.webp" alt="整体院ひざこぞう" class="hk-footer-brand-mark" width="160" height="160" loading="lazy" decoding="async">
-          <span class="hk-footer-brand-text" aria-hidden="true">
-            <span class="hk-footer-brand-eyebrow">柏市の足腰専門整体院</span>
-            <span class="hk-footer-brand-name">整体院ひざこぞう</span>
-            <span class="hk-footer-brand-note">国家資格者による整体</span>
-          </span>
-        </a>
-
-        <address class="hk-footer-info">
-          <strong>柏市の足腰専門整体院 整体院ひざこぞう</strong>
-          <span>千葉県柏市あけぼの4-4-3 BoaSorte柏 305</span>
-          <span>千葉県柏市｜腰痛・坐骨神経痛・股関節痛・膝痛など足腰の慢性痛相談</span>
-          <span>完全予約制／受付時間：9:00〜19:00／定休日：日曜</span>
-          <a href="tel:0471143274">TEL：04-7114-3274</a>
-        </address>
-      </div>
-
-      <nav class="hk-footer-nav" aria-label="フッターナビゲーション">
-        <a href="../index.html#top">ホーム</a>
-        <a href="../index.html#troubles">お悩み</a>
-        <a href="../index.html#seo-guide">当院の考え方</a>
-        <a href="../index.html#flow">施術の流れ</a>
-        <a href="../index.html#profile">院長紹介</a>
-        <a href="../index.html#price">料金</a>
-        <a href="../blog/">コラム</a>
-        <a href="../faq.html">よくある質問</a>
-        <a href="../access.html">アクセス</a>
-        <a href="../index.html#contact">ご予約・お問合せ</a>
-      </nav>
-
-      <div class="hk-footer-symptoms">
-        <p class="hk-footer-symptoms-label">対応している主な症状</p>
-        <p>腰痛／ぎっくり腰／坐骨神経痛／脊柱管狭窄症／椎間板ヘルニア／股関節痛／変形性股関節症／膝の痛み／変形性膝関節症／足首・足裏の不調</p>
-      </div>
-
-      <p class="hk-footer-review">
-        施術を受けた方のご感想をお待ちしています。
-        <a href="https://g.page/r/CblTNpd2gz_7EBM" target="_blank" rel="noopener noreferrer">Google口コミを書く</a>
-      </p>
-
-      <p class="hk-footer-note">※当サイトに掲載されているお客様の声は個人の感想であり、成果を保証するものではありません。</p>
-    </div>
-
-    <div class="hk-footer-copy">Copyright © 2026 整体院ひざこぞう All Rights Reserved.</div>
-  </footer>
-
-  <button type="button" class="page-top-button" aria-label="ページ上部へ戻る">
-    <span aria-hidden="true">↑</span>
-    TOP
-  </button>
-  <script src="site-header.js" defer></script>
-<!-- SYMPTOM_DIRECTORY_SCRIPT_START -->
-  <script>
-    (() => {
-      const root = document.querySelector('.symptom-directory');
-      if (!root) return;
-      const tabs = Array.from(root.querySelectorAll('[data-directory-mode]'));
-      const panels = Array.from(root.querySelectorAll('[data-directory-panel]'));
-      if (!tabs.length || !panels.length) return;
-      root.classList.add('is-enhanced');
-
-      const activate = (nextTab, focus = false) => {
-        const mode = nextTab.dataset.directoryMode;
-        tabs.forEach((tab) => {
-          const selected = tab === nextTab;
-          tab.setAttribute('aria-selected', String(selected));
-          tab.tabIndex = selected ? 0 : -1;
-        });
-        panels.forEach((panel) => {
-          panel.hidden = panel.dataset.directoryPanel !== mode;
-        });
-        if (focus) nextTab.focus();
-      };
-
-      tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => activate(tab));
-        tab.addEventListener('keydown', (event) => {
-          let nextIndex = index;
-          if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
-          if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
-          if (event.key === 'Home') nextIndex = 0;
-          if (event.key === 'End') nextIndex = tabs.length - 1;
-          if (nextIndex === index && !['Home', 'End'].includes(event.key)) return;
-          event.preventDefault();
-          activate(tabs[nextIndex], true);
-        });
-      });
-    })();
-  </script>
-  <!-- SYMPTOM_DIRECTORY_SCRIPT_END -->
-</body>
-</html>
+  </div>
+  <nav class="mobile-nav" id="mobile-menu" aria-label="スマートフォンメニュー" hidden><a href="/">TOP</a>
+<a href="/#first-visit">初回の流れ・料金</a>
+<a href="/msm.html">施術について</a>
+<a href="/symptoms/" aria-current="page">症状別ページ</a>
+<a href="/staff.html">院長紹介</a>
+<a href="/voices.html">患者様のお声</a>
+<a href="/access.html">アクセス</a>
+<a href="/blog/">コラム</a>
+<a href="/news.html">お知らせ</a>
+    <a href="/#contact">メールで問い合わせる</a>
+    <a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで相談・予約</a>
+    <a href="tel:0471143274">電話で相談</a>
+  </nav>
+</header>
+<main id="main"><nav class="breadcrumbs"><a href="/">TOP</a><span aria-hidden="true">／</span><span>症状別ページ</span></nav>
+<section class="detail-heading"><div class="section__inner"><p class="eyebrow">SYMPTOMS</p><h1>症状別ページ</h1><p>足腰のお悩みを、困っている動作からお選びください。診断や治療については医療機関での説明を優先し、当院では身体の動きと日常の過ごし方を一緒に確認します。</p></div></section>
+<section class="section symptom-hub"><div class="section__inner"><div class="symptom-hub__grid"><a class="symptom-hub__card" href="/symptoms/knee-pain.html"><img src="/image/photo-knee-treatment-1200.webp" alt="院長が患者の膝の動きを確認する様子" loading="lazy"><div><h2>膝の痛み</h2><p>歩き始め・立ち上がり・階段で膝がつらい</p><span>詳しく見る <span aria-hidden="true">→</span></span></div></a><a class="symptom-hub__card" href="/symptoms/lower-back-pain.html"><img src="/image/photo-standing-movement-1200.webp" alt="院長が患者の立つ動きを確認する様子" loading="lazy"><div><h2>腰痛</h2><p>起き上がりや、座ったあとの一歩がつらい</p><span>詳しく見る <span aria-hidden="true">→</span></span></div></a><a class="symptom-hub__card" href="/symptoms/sciatica.html"><img src="/image/photo-hip-assessment-1200.webp" alt="院長が患者の脚を支えて動きを確認する様子" loading="lazy"><div><h2>坐骨神経痛</h2><p>お尻から脚へ痛みやしびれが広がる</p><span>詳しく見る <span aria-hidden="true">→</span></span></div></a><a class="symptom-hub__card" href="/symptoms/hip-osteoarthritis.html"><img src="/image/photo-hip-assessment-1200.webp" alt="院長が患者の脚を支え、股関節の動きを確認する様子" loading="lazy"><div><h2>変形性股関節症</h2><p>歩き始め・階段・靴下をはくときの痛み</p><span>詳しく見る <span aria-hidden="true">→</span></span></div></a><a class="symptom-hub__card" href="/symptoms/spinal-stenosis.html"><img src="/image/photo-foot-assessment-1200.webp" alt="院長が患者の足の動きを確かめる様子" loading="lazy"><div><h2>脊柱管狭窄症</h2><p>少し歩くと脚がつらく、途中で休みたくなる</p><span>詳しく見る <span aria-hidden="true">→</span></span></div></a></div><p class="symptom-hub__note">急な強い痛みやしびれ、けがの後の症状などは、まず医療機関にご相談ください。</p></div></section>
+<section class="section"><div class="section__inner"><h2>その他の症状から探す</h2><div class="additional-symptoms"><a class="under-link" href="/symptoms/ankle-stiffness-knee-pain.html">柏市で足首の硬さからくる膝痛が気になる方へ <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/bowlegs-knee-pain.html">柏市でO脚・膝のゆがみと膝痛が気になる方へ <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/carpal-tunnel.html">手根管症候群・手のしびれ <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/cervical-spondylosis.html">頚椎症・首の痛み <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/elbow-tendinopathy.html">テニス肘・ゴルフ肘（上腕骨上顆炎） <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/frozen-shoulder.html">五十肩（肩関節周囲炎） <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/knee-effusion.html">柏市で膝に水がたまる・膝の腫れの相談 <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/knee-front-pain.html">柏市で膝の前側・お皿まわりが痛い方へ <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/knee-hyperextension.html">柏市で反張膝・膝が伸びすぎる痛みが気になる方へ <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/knee-lateral-pain.html">膝の外側の痛み（腸脛靭帯炎・外側半月板） <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/knee-osteoarthritis.html">柏市で変形性膝関節症にお悩みの方へ <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/knee-posterior-pain.html">膝の裏側の痛み（ベーカー嚢腫・ハムストリング腱症） <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/lumbar-disc-herniation.html">腰椎椎間板ヘルニア <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/meniscus-knee-pain.html">柏市で半月板損傷・膝の引っかかりが気になる方へ <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/pes-anserine-bursitis.html">柏市で膝の内側が痛い・鵞足炎の相談 <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/plantar-fasciitis.html">足底筋膜炎・かかとの痛み <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/scoliosis.html">側弯症 <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/shoulder-stiffness.html">肩こり <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/thoracic-outlet.html">胸郭出口症候群 <span aria-hidden="true">→</span></a>
+<a class="under-link" href="/symptoms/tmj.html">顎関節症 <span aria-hidden="true">→</span></a></div></div></section>
+<section class="closing"><div class="closing__inner"><p class="eyebrow">CONTACT</p><h2>どのページを選べばよいか<br>迷ったら。</h2><p>困っている動きや症状を、LINEやメールでお聞かせください。</p><div class="closing__actions"><a class="button button--line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで相談する <span aria-hidden="true">↗</span></a><a class="button button--pale" href="/#contact">メールで問い合わせる</a></div></div></section></main>
+<footer class="site-footer"><div class="site-footer__inner">
+  <a class="site-footer__brand" href="/">整体院ひざこぞう</a>
+  <nav aria-label="フッターメニュー"><a href="/">TOP</a>
+<a href="/#first-visit">初回の流れ・料金</a>
+<a href="/msm.html">施術について</a>
+<a href="/symptoms/" aria-current="page">症状別ページ</a>
+<a href="/staff.html">院長紹介</a>
+<a href="/voices.html">患者様のお声</a>
+<a href="/access.html">アクセス</a>
+<a href="/blog/">コラム</a>
+<a href="/news.html">お知らせ</a>
+    <a href="/#contact">メールで問い合わせる</a>
+  </nav>
+  <small>© 整体院ひざこぞう</small>
+</div></footer>
+</body></html>
