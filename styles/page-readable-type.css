@@ -1,0 +1,61 @@
+@charset "UTF-8";
+/* Readable typography for the three information pages only. */
+:is(.msm-page, .access-page, .voices-page) #main {
+  --page-body-size: 18px;
+  --page-copy-color: #233b43;
+  font-family: Meiryo, "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: var(--page-body-size);
+  font-weight: 600;
+  line-height: 1.9;
+  color: var(--page-copy-color);
+}
+:is(.msm-page, .access-page, .voices-page) #main :is(h1, h2, h3) {
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: .01em;
+  text-wrap: balance;
+}
+:is(.msm-page, .access-page, .voices-page) #main :is(p:not(.eyebrow), li, dt, dd, th, td) {
+  font-size: var(--page-body-size);
+  font-weight: 600;
+  line-height: 1.9;
+  color: var(--page-copy-color);
+}
+:is(.msm-page, .access-page, .voices-page) #main strong { font-weight: 700; }
+:is(.msm-page, .access-page, .voices-page) #main :is(summary, .button, .under-link, .map-link, .detail-jumps a) {
+  font-family: inherit;
+  font-size: var(--page-body-size);
+  font-weight: 700;
+  line-height: 1.65;
+}
+:is(.msm-page, .access-page, .voices-page) #main figcaption {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.8;
+  color: var(--page-copy-color);
+}
+:is(.msm-page, .access-page, .voices-page) #main .eyebrow {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+}
+:is(.msm-page, .access-page, .voices-page) #main .closing { --page-copy-color: #fff; }
+.msm-page #main .method-title-detail { display: inline-block; }
+.msm-page #main .page-hero__lead { font-family: inherit; font-size: 22px; font-weight: 700; }
+.access-page #main .access-card h2 { font-size: clamp(25px, 2.8vw, 32px); }
+.access-page #main .store-info-list dt,
+.access-page #main .hours-table th { font-weight: 700; }
+.voices-page #main .voices-page-card h2 { font-size: 26px; line-height: 1.65; }
+.voices-page #main .voices-page-card__rows strong { font-size: inherit; }
+.voices-page #main p.voice-note { font-size: 16px; }
+@media (max-width: 600px) {
+  :is(.msm-page, .access-page, .voices-page) #main { --page-body-size: 17px; }
+  :is(.msm-page, .access-page, .voices-page) #main figcaption { font-size: 15px; }
+  .msm-page #main .method-description__copy h2 { font-size: clamp(23px, 6.9vw, 26px); }
+  .access-page #main .store-info-list > div { grid-template-columns: 95px minmax(0, 1fr); }
+  .msm-page #main .page-hero__lead { font-size: 19px; }
+  .voices-page #main .voices-page-card h2 { font-size: 21px; grid-row: 2; margin: 0; }
+  .voices-page #main .voices-page-card__sheet { grid-row: 1 / 3; }
+  .voices-page #main .voice-transcript { grid-row: 3; }
+  .voices-page #main p.voice-note { font-size: 15px; }
+}
