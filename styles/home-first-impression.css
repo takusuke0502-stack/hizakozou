@@ -1,23 +1,10 @@
 @charset "UTF-8";
 /* Scoped to the published TOP. Improve photographic depth without changing files. */
-.home .hero__media img,
-.home .hero__inset img,
-.home .welcome__photo img,
 .home .welcome__detail img,
-.home .approach__rows img,
 .home .director__photo img,
-.home .trust__layout figure img,
 .home .home-voice-gallery__photo img,
 .home .home-voice-story__photo img {
   filter: saturate(1.14) contrast(1.07) brightness(.98);
-}
-/* Add warmth and depth to the first-visit photos, preserving source images. */
-.home .visit-flow img {
-  filter: brightness(.98) sepia(.08) saturate(1.22) contrast(1.04);
-}
-.home .visit-flow img[src*="photo-counseling-"],
-.home .visit-flow img[src*="photo-plan-explanation-"] {
-  filter: brightness(.97) sepia(.14) saturate(1.25) contrast(1.03);
 }
 /* Decorative flourish follows the rounded shapes of the hero photos. */
 .home .hero-decoration {

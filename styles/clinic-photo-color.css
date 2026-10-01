@@ -1,0 +1,20 @@
+@charset "UTF-8";
+/* Color correction only for reviewed clinical photos; preserve original files. */
+img:is(
+  [src*="/flow-medical-interview-form-"],
+  [src*="/photo-foot-assessment-"],
+  [src*="/photo-hip-assessment-"],
+  [src*="/photo-knee-exercise-"],
+  [src*="/photo-knee-treatment-"],
+  [src*="/photo-selfcare-"],
+  [src*="/photo-standing-movement-"]
+) {
+  filter: brightness(.98) sepia(.08) saturate(1.22) contrast(1.04);
+}
+/* These two photos have a stronger cool cast around faces and hands. */
+img:is([src*="/photo-counseling-"], [src*="/photo-plan-explanation-"]) {
+  filter: brightness(.97) sepia(.14) saturate(1.25) contrast(1.03);
+}
+img[src*="/hero-consultation.webp"] {
+  filter: brightness(.99) sepia(.08) saturate(1.15) contrast(1.04);
+}
