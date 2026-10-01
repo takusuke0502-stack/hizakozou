@@ -11,26 +11,16 @@
 .home .home-voice-story__photo img {
   filter: saturate(1.14) contrast(1.07) brightness(.98);
 }
-.home .hero-process {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
+/* Decorative flourish follows the rounded shapes of the hero photos. */
+.home .hero-decoration {
+  display: block;
   width: 100%;
-  max-width: 340px;
-  margin-top: 16px;
-  padding: 13px 10px;
-  border-top: 1px solid #b9d9d2;
-  border-bottom: 1px solid #b9d9d2;
-  background: #eef8f4;
-  border-radius: 8px;
-  color: #17463f;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.55;
-  white-space: nowrap;
+  max-width: 320px;
+  height: 42px;
+  margin-top: 14px;
+  flex: none;
+  pointer-events: none;
 }
-.home .hero-process__arrow { color: #187f79; font-size: 17px; }
 .home .hero-visit-link { display: none; }
 /* Readable comparison: solid headings and distinct checklist rows. */
 .home .fit-guide { padding-block: 48px; background: #f4f7f6; font-family: Meiryo, "Hiragino Kaku Gothic ProN", sans-serif; }
@@ -121,9 +111,6 @@
 @media (min-width: 821px) {
   .home .fit-guide .section-heading h2 br { display: none; }
 }
-@media (max-width: 1100px) and (min-width: 601px) {
-  .home .hero-process { gap: 5px; font-size: 11px; padding: 10px 6px; }
-}
 @media (max-width: 600px) {
   .home .hero__media { height: 240px; }
   .home .hero__inset { top: 172px; }
@@ -146,7 +133,7 @@
   }
   .home .hero h1 { font-size: clamp(29px, 8vw, 34px); line-height: 1.45; letter-spacing: .01em; }
   .home .hero__lead { margin-top: 12px; font-size: 16px; }
-  .home .hero-process { max-width: none; margin-top: 16px; font-size: 13px; }
+  .home .hero-decoration { align-self: center; margin-top: 8px; height: 38px; }
   .home .hero-visit-link {
     display: flex;
     align-items: center;
