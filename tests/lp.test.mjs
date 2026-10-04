@@ -310,7 +310,9 @@ test("LP places the clinic tour video directly after the treatment flow", () => 
 });
 
 test("LP removes the long-knee-pain accordion guide block", () => {
-  assert.doesNotMatch(html, /id="seo-guide"/);
+  // Keep old article URLs working with an empty anchor, not the retired long block.
+  assert.doesNotMatch(html, /<(?:section|details)\b[^>]*id="seo-guide"/);
+  assert.match(html, /<span id="seo-guide" class="route-anchor" aria-hidden="true"><\/span>/);
   assert.doesNotMatch(html, /なぜ膝の痛みが長引くのか？/);
   assert.doesNotMatch(html, /湿布・注射を続けているのに、なぜ繰り返すのか/);
   assert.doesNotMatch(html, /膝をかばう動きが、別の負担を増やすことがある/);

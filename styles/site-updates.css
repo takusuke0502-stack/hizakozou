@@ -1,0 +1,24 @@
+/* Compact, in-flow links/notices. No fixed banners or obstructive popups. */
+.faq-entry{max-width:1160px;margin:0 auto;padding:14px var(--pad,20px);border-bottom:1px solid #d4e5dc;font-size:15px;line-height:1.65}
+.faq-entry a{color:#176b67;font-weight:700;text-decoration:underline;text-underline-offset:4px;display:inline-block;padding:8px 0}
+.site-notice-strip[hidden],.site-notice-strip [hidden],.dated-notices [hidden]{display:none!important}
+.site-notice-strip{background:#fff8e6;border-bottom:1px solid #e2d5b7;color:#514322}
+.site-notice-strip__inner{max-width:1160px;margin:auto;padding:10px var(--pad,20px);display:flex;gap:8px 24px;align-items:baseline}
+.site-notice-strip__inner>p{font-size:13px;font-weight:800;white-space:nowrap;margin:0}
+.site-notice-strip ul{list-style:none;padding:0;margin:0;flex:1;min-width:0}
+.site-notice-strip li+li{border-top:1px solid #e2d5b7}
+.site-notice-strip a{display:flex;align-items:baseline;gap:6px 14px;padding:6px 0;color:inherit;font-size:14px;line-height:1.6}
+.site-notice-strip__date{font-size:12px;flex-shrink:0}
+.site-notice-strip a>span:last-child{margin-left:auto}
+.dated-notices{margin:0 0 34px;padding:24px 0;border-top:1px solid #b7cfc2;border-bottom:1px solid #b7cfc2}
+.dated-notices h2{font-size:24px;margin:0 0 9px;color:#176b67}
+.dated-notices__intro,.dated-notices__empty{font-size:14px;line-height:1.8}
+.dated-notices__list{list-style:none;margin:0;padding:0}
+.dated-notices__list>li{padding:20px 0;scroll-margin-top:140px}
+.dated-notices__list>li+li{border-top:1px solid #d4e5dc}
+.dated-notices__published{font-size:12px;color:#52645a;margin:0 0 6px}
+.dated-notices h3{font-size:20px;line-height:1.6;margin:0 0 8px;color:#176b67}
+.dated-notices__period{font-size:14px;font-weight:700;margin:0 0 10px}
+.dated-notices__message{font-size:15px;line-height:1.85;white-space:pre-line;overflow-wrap:anywhere;margin:0}
+.faq-entry a:focus-visible,.site-notice-strip a:focus-visible{outline:3px solid #176b67;outline-offset:4px}
+@media(max-width:600px){.faq-entry{font-size:14px;padding-top:8px;padding-bottom:8px}.site-notice-strip__inner{display:block;padding-top:8px;padding-bottom:8px}.site-notice-strip__inner>p{font-size:12px}.site-notice-strip a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 8px}.site-notice-strip__date{grid-column:1/-1}.site-notice-strip a>span:last-child{grid-row:2;grid-column:2}.dated-notices{margin-bottom:24px;padding:20px 0}.dated-notices h2{font-size:22px}.dated-notices h3{font-size:18px}.dated-notices__period{font-size:13px}}
