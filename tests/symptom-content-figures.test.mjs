@@ -125,6 +125,12 @@ for (const page of selfCheckPages.filter(page => !["lower-back-pain.html", "scia
       new URL(`../symptoms/${page.file}`, import.meta.url),
       "utf8",
     );
+    if(html.includes('data-content-owner="author"')) {
+      const medical=html.indexOf('aria-labelledby="posterior-medical-title"'),anatomy=html.indexOf('aria-labelledby="posterior-cause-title"');
+      assert.ok(medical>0&&anatomy>medical,'medical guidance precedes the anatomical explanation');
+      const figure=html.match(/<figure class="lateral-cause-visual">[\s\S]*?<\/figure>/)?.[0]||'';
+      assert.match(figure,/posterior-480\.webp/);assert.match(figure,/posterior-768\.webp/);assert.match(figure,/posterior-1200\.webp/);assert.match(figure,/<figcaption>/);return;
+    }
     const sectionStart = html.indexOf(`aria-labelledby="${page.cautionId}"`);
     const sectionEnd = html.indexOf("</section>", sectionStart);
     const section = html.slice(sectionStart, sectionEnd);

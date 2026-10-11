@@ -1114,7 +1114,7 @@ test("blog article tracking records Phase 3 engagement once per page view", () =
   assert.match(trackingJs, /link\.closest\("\.article-content"\) && isInternalArticleLink\(href\)/);
 });
 
-test("symptom detail pages use one accessible H1 and omit retired FAQPage schema", () => {
+test("symptom detail pages use one accessible H1 and keep FAQ data tied to visible answers", () => {
   const symptomDir = path.join(repoRoot, "symptoms");
   const detailPages = readdirSync(symptomDir).filter((name) => name.endsWith(".html") && name !== "index.html");
 
@@ -1122,7 +1122,12 @@ test("symptom detail pages use one accessible H1 and omit retired FAQPage schema
   for (const fileName of detailPages) {
     const symptomHtml = readFileSync(path.join(symptomDir, fileName), "utf8");
     assert.equal((symptomHtml.match(/<h1\b/g) ?? []).length, 1, `${fileName} should expose exactly one H1`);
-    assert.doesNotMatch(symptomHtml, /"@type"\s*:\s*"FAQPage"/, `${fileName} should not keep retired FAQPage schema`);
+    if(symptomHtml.includes('data-content-owner="author"')) {
+      for(const m of symptomHtml.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+        const schema=JSON.parse(m[1]);if(schema['@type']!=='FAQPage')continue;
+        for(const item of schema.mainEntity){assert.ok(symptomHtml.includes(item.name));assert.ok(symptomHtml.includes(item.acceptedAnswer.text));}
+      }
+    } else assert.doesNotMatch(symptomHtml, /"@type"\s*:\s*"FAQPage"/, `${fileName} should not keep retired FAQPage schema`);
   }
 });
 
@@ -3135,6 +3140,8 @@ const kneeDetailEducationPages = [
 test("nine knee symptom education pages follow the shared patient-friendly sequence", () => {
   for (const config of kneeDetailEducationPages) {
     const pageHtml = readFileSync(path.join(repoRoot, "symptoms", config.file), "utf8");
+    // Authored disease pages use the production contract instead of the retired layout.
+    if(pageHtml.includes('data-content-owner="author"')) continue;
     const sectionPattern = new RegExp(`<!-- ${config.marker}_EDUCATION_START -->[\\s\\S]*?<!-- ${config.marker}_EDUCATION_END -->`);
     const section = pageHtml.match(sectionPattern)?.[0] ?? "";
 
@@ -3182,6 +3189,8 @@ test("nine knee symptom education styles are scoped and responsive", () => {
 test("nine knee symptom education redesign preserves existing page features", () => {
   for (const config of kneeDetailEducationPages) {
     const pageHtml = readFileSync(path.join(repoRoot, "symptoms", config.file), "utf8");
+    // Authored disease pages use the production contract instead of the retired layout.
+    if(pageHtml.includes('data-content-owner="author"')) continue;
     const troublesStart = pageHtml.indexOf('<section id="troubles" class="troubles-check">');
     const redesignStart = pageHtml.indexOf(`<!-- ${config.marker}_EDUCATION_START -->`);
     const redesignEnd = pageHtml.indexOf(`<!-- ${config.marker}_EDUCATION_END -->`);
@@ -3296,6 +3305,9 @@ test("shoulder stiffness education redesign preserves the existing page boundari
 });
 
 test("shoulder stiffness education follows the approved patient-friendly sequence", () => {
+  if(shoulderStiffnessHtml.includes('data-content-owner="author"')) {
+    assert.match(shoulderStiffnessHtml,/MSM_COMMON_COPY_START/);assert.match(shoulderStiffnessHtml,/参考情報・出典/);return;
+  }
   const section = shoulderStiffnessHtml.match(/<!-- SHOULDER_STIFFNESS_EDUCATION_START -->[\s\S]*?<!-- SHOULDER_STIFFNESS_EDUCATION_END -->/)?.[0] ?? "";
   const headings = [
     "肩こりはなぜ起こるのか？",

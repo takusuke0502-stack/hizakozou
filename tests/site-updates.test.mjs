@@ -95,10 +95,10 @@ test('empty archive says not published rather than claiming the clinic is open',
 for (const page of servicePages) {
   test(`${page}: FAQ is reachable from all three common navigation menus`, () => {
     const html = read(page);
-    const navs = [...html.matchAll(/<nav\b[^>]*aria-label="(?:主要メニュー|スマートフォンメニュー|フッターメニュー)"[^>]*>[\s\S]*?<\/nav>/g)];
+    const navs = [...html.matchAll(/<nav\b[^>]*aria-label="(?:主要メニュー|スマートフォンメニュー|フッターメニュー|メインナビゲーション|スマートフォン用ナビゲーション|フッターナビゲーション)"[^>]*>[\s\S]*?<\/nav>/g)];
     assert.equal(navs.length,3);
-    for (const nav of navs) assert.equal((nav[0].match(/href="\/faq.html"/g)||[]).length,1);
-    assert.equal(updateServicePage(page,html,productionNotices),html,'generation is idempotent');
+    for (const nav of navs) assert.equal((nav[0].match(/href="(?:\/|\.\.\/)faq.html"/g)||[]).length,1);
+    if(!html.includes('data-content-owner="author"')) assert.equal(updateServicePage(page,html,productionNotices),html,'generation is idempotent');
   });
 }
 test('old article links and FAQ menu links target the current explanations', () => {

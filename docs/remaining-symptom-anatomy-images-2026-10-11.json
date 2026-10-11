@@ -1,0 +1,183 @@
+[
+  {
+    "key": "lumbar",
+    "prompt": "Create a polished Japanese patient-education medical illustration for a physical-therapy clinic website. Square image 1024x1024. Warm very pale ivory background. Thick smooth black contours, crisp clean flat filled shapes, subtle smooth shading, ivory bones, mint cartilage, dusty pink muscles, golden yellow nerves, dark navy large printed Japanese labels. Professional friendly educational diagram, matching bold outlined colored anatomical infographic. No sketch strokes, no watercolor, no handwritten text, no photo. Spacious composition and just a few legible labels; NO claims of treatment effects or pain inevitability. Diagram must be anatomically coherent. Title 「腰の骨と神経」. One lateral cutaway schematic of adult lumbar spine showing five stacked ivory vertebrae L1-L5, mint discs between vertebrae, spinal canal behind vertebral bodies with the cauda equina yellow bundles, one yellow nerve root exiting between two vertebrae, the sacrum inferiorly. Large printed labels 「腰椎」「椎間板」「神経」 with thin leader lines. No red pain star, no misalignment, no tilted pelvis, no cause arrows. Show neutral anatomy.",
+    "source": "C:\\Users\\takus\\.codex\\generated_images\\01a105c1-6b5a-7bd0-9b6c-7d94183e0d5f\\exec-1eef1730-c8bb-4920-ba3e-13d962ce128d.png",
+    "target": "image/illustrations/remaining-symptoms-20261011/lumbar",
+    "outputs": [
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/lumbar-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 38748
+      },
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/lumbar-768.webp",
+        "width": 768,
+        "height": 768,
+        "bytes": 75250
+      },
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/lumbar-1200.webp",
+        "width": 1200,
+        "height": 1200,
+        "bytes": 137420
+      }
+    ]
+  },
+  {
+    "key": "sciatic",
+    "prompt": "Create a polished Japanese patient-education medical illustration for a physical-therapy clinic website. Square image 1024x1024. Warm very pale ivory background. Thick smooth black contours, crisp clean flat filled shapes, subtle smooth shading, ivory bones, mint cartilage, dusty pink muscles, golden yellow nerves, dark navy large printed Japanese labels. Professional friendly educational diagram, matching bold outlined colored anatomical infographic. No sketch strokes, no watercolor, no handwritten text, no photo. Spacious composition and just a few legible labels; NO claims of treatment effects or pain inevitability. Diagram must be anatomically coherent. Title 「坐骨神経の通り道」. Back view of an adult pelvis and both legs from waist to mid-calves, translucent skin and simple ivory pelvis. On one leg only, golden-yellow sciatic nerve emerges beneath pelvis and descends down the POSTERIOR thigh, splitting near popliteal fossa into tibial branch continuing centrally behind calf and common fibular nerve branch curving laterally. Show root bundle emerging from lower spine within pelvis merging sciatic nerve. Labels only 「腰から出る神経」「坐骨神経」「膝の裏で枝分かれ」. Calm neutral diagram, no red pain area, do not present piriformis compression as universal cause.",
+    "source": "C:\\Users\\takus\\.codex\\generated_images\\01a105c1-6b5a-7bd0-9b6c-7d94183e0d5f\\exec-63e0c274-0304-4ec7-9a92-caeb2c788b04.png",
+    "target": "image/illustrations/remaining-symptoms-20261011/sciatic",
+    "outputs": [
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/sciatic-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 35538
+      },
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/sciatic-768.webp",
+        "width": 768,
+        "height": 768,
+        "bytes": 70234
+      },
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/sciatic-1200.webp",
+        "width": 1200,
+        "height": 1200,
+        "bytes": 129684
+      }
+    ]
+  },
+  {
+    "key": "shoulder",
+    "prompt": "Create a polished Japanese patient-education medical illustration for a physical-therapy clinic website. Square image 1024x1024. Warm very pale ivory background. Thick smooth black contours, crisp clean flat filled shapes, subtle smooth shading, ivory bones, mint cartilage, dusty pink muscles, golden yellow nerves, dark navy large printed Japanese labels. Professional friendly educational diagram, matching bold outlined colored anatomical infographic. No sketch strokes, no watercolor, no handwritten text, no photo. Spacious composition and just a few legible labels; NO claims of treatment effects or pain inevitability. Diagram must be anatomically coherent. Title 「首・肩・背中の筋肉」. Back view adult upper torso from back of head to lower thorax, arms cropped at mid-upper arm. Large superficial trapezius muscle bilaterally in dusty pink, clearly triangular extending occiput/nuchal midline down to mid-thoracic vertebral column and laterally to scapular spine/shoulder. Small corner inset shows trapezius lifted to reveal levator scapulae running from upper cervical region to superior medial angle of scapula. Ivory scapula and spine glimpsed in inset. Exactly three navy labels 「僧帽筋」「肩甲挙筋」「肩甲骨」 and title. Each leader points correctly. Not an injury, no asymmetry or slouching.",
+    "source": "C:\\Users\\takus\\.codex\\generated_images\\01a105c1-6b5a-7bd0-9b6c-7d94183e0d5f\\exec-d414cf05-d78c-4364-a635-229a2a479477.png",
+    "target": "image/illustrations/remaining-symptoms-20261011/shoulder",
+    "outputs": [
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/shoulder-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 53930
+      },
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/shoulder-768.webp",
+        "width": 768,
+        "height": 768,
+        "bytes": 113794
+      },
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/shoulder-1200.webp",
+        "width": 1200,
+        "height": 1200,
+        "bytes": 219448
+      }
+    ]
+  },
+  {
+    "key": "posterior",
+    "prompt": "Create a polished Japanese patient-education medical illustration for a physical-therapy clinic website. Square image 1024x1024. Warm very pale ivory background. Thick smooth black contours, crisp clean flat filled shapes, subtle smooth shading, ivory bones, mint cartilage, dusty pink muscles, golden yellow nerves, dark navy large printed Japanese labels. Professional friendly educational diagram, matching bold outlined colored anatomical infographic. No sketch strokes, no watercolor, no handwritten text, no photo. Spacious composition and just a few legible labels; NO claims of treatment effects or pain inevitability. Diagram must be anatomically coherent. Title 「膝の裏側の位置」. Adult RIGHT knee schematic seen directly FROM BEHIND. Clear printed orientation: 「外側」 left of image, 「内側」 right of image. Ivory distal femur/proximal tibia and small fibular head on image LEFT (lateral). Dusty pink hamstring tendons descend along sides, calf heads below. Small mint blue fluid-filled Baker cyst at POSTEROMEDIAL joint line on image RIGHT, lying between semimembranosus tendon and medial gastrocnemius, not lateral, not directly center. Use only two structure labels 「膝裏の腱」「ベーカー嚢腫」, their leader lines accurate. No huge mass, no blood vessels/nerve compression, no pain star. Friendly simplified but correct topography. Label does not imply every posterior pain is a cyst.",
+    "source": "C:\\Users\\takus\\.codex\\generated_images\\01a105c1-6b5a-7bd0-9b6c-7d94183e0d5f\\exec-f34f0b96-84a5-47f0-995a-83b6da3bfbb1.png",
+    "target": "image/illustrations/remaining-symptoms-20261011/posterior",
+    "outputs": [
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/posterior-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 39048
+      },
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/posterior-768.webp",
+        "width": 768,
+        "height": 768,
+        "bytes": 78034
+      },
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/posterior-1200.webp",
+        "width": 1200,
+        "height": 1200,
+        "bytes": 142504
+      }
+    ]
+  },
+  {
+    "key": "bowlegs",
+    "prompt": "Create a polished Japanese patient-education medical illustration for a physical-therapy clinic website. Square image 1024x1024. Warm very pale ivory background. Thick smooth black contours, crisp clean flat filled shapes, subtle smooth shading, ivory bones, mint cartilage, dusty pink muscles, golden yellow nerves, dark navy large printed Japanese labels. Professional friendly educational diagram, matching bold outlined colored anatomical infographic. No sketch strokes, no watercolor, no handwritten text, no photo. Spacious composition and just a few legible labels; NO claims of treatment effects or pain inevitability. Diagram must be anatomically coherent. Title 「O脚（内反膝）」. A simple frontal view of one adult pelvis with both legs and ankles. Feet gently together and inner ankles nearly touching, but knees apart symmetrically showing moderate genu varum; femur and tibia as bone outlines inside skin silhouette. Two labels only 「膝の間が開く」「骨と関節の並び」. No red pain marks, no outward force arrows, no before-after, no surgery or correction. Visually coherent feet stance, upright neutral torso.",
+    "source": "C:\\Users\\takus\\.codex\\generated_images\\01a105c1-6b5a-7bd0-9b6c-7d94183e0d5f\\exec-851fc634-49fa-457c-959b-865289f3e6cc.png",
+    "target": "image/illustrations/remaining-symptoms-20261011/bowlegs",
+    "outputs": [
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/bowlegs-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 28596
+      },
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/bowlegs-768.webp",
+        "width": 768,
+        "height": 768,
+        "bytes": 55826
+      },
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/bowlegs-1200.webp",
+        "width": 1200,
+        "height": 1200,
+        "bytes": 99440
+      }
+    ]
+  },
+  {
+    "key": "hyperextension",
+    "prompt": "Create a polished Japanese patient-education medical illustration for a physical-therapy clinic website. Square image 1024x1024. Warm very pale ivory background. Thick smooth black contours, crisp clean flat filled shapes, subtle smooth shading, ivory bones, mint cartilage, dusty pink muscles, golden yellow nerves, dark navy large printed Japanese labels. Professional friendly educational diagram, matching bold outlined colored anatomical infographic. No sketch strokes, no watercolor, no handwritten text, no photo. Spacious composition and just a few legible labels; NO claims of treatment effects or pain inevitability. Diagram must be anatomically coherent. Title 「反張膝」. Side view of adult RIGHT leg from proximal thigh to foot, foot toes point image RIGHT (anterior). Knee extends beyond straight, with knee center distinctly shifted image LEFT (posterior) relative to straight vertical reference line through hip and ankle. Ivory femur/tibia in soft skin outline, mint cartilage, pink small muscle. Center label 「膝が後ろへ伸びる」 with leader to knee. Small label by foot 「横から見た図」. This must be hyperextension, not knee flexion: knee posterior to straight leg reference. Moderate angle, not extreme grotesque anatomy. No red pain star or injury.",
+    "source": "C:/Users/takus/Downloads/hizakozou-main/image/イラスト/膝/anatomy-knee-hyperextension.webp",
+    "target": null,
+    "revisions": [
+      {
+        "source": "C:\\Users\\takus\\.codex\\generated_images\\01a105c1-6b5a-7bd0-9b6c-7d94183e0d5f\\exec-13930b68-07e7-435f-a051-ee537e57eeb6.png",
+        "reason": "屈曲方向を示すため不採用"
+      },
+      {
+        "source": "C:\\Users\\takus\\.codex\\generated_images\\01a105c1-6b5a-7bd0-9b6c-7d94183e0d5f\\exec-0c4d065a-c09e-45f6-a0e2-15fe4bd45128.png",
+        "reason": "修正後も膝が前方にあり不採用"
+      },
+      {
+        "source": "C:\\Users\\takus\\.codex\\generated_images\\01a105c1-6b5a-7bd0-9b6c-7d94183e0d5f\\exec-62b6ab8b-7b52-4ba6-a8f3-e5347f9184fd.png",
+        "reason": "再修正後も屈曲方向を示すため不採用"
+      }
+    ],
+    "mode": "reused",
+    "correctionPrompts": [
+      "Correct the knee posture in the FIRST image. It currently shows knee flexion with knee bulging FORWARD (image RIGHT), which is medically wrong for 反張膝. SECOND image is pose-reference only and shows the CORRECT hyperextension geometry. Keep the first image's bold navy printed labels, ivory background, thick black outlines and colored anatomical style. Redraw the leg in the POSE of SECOND image: toes pointing RIGHT; hip center directly above ankle center, both about x=50% of leg area; dashed vertical reference through hip and ankle; the KNEE JOINT CENTER must be BEHIND this line, meaning image LEFT about 12% of canvas width. FEMUR slopes down-left from hip to knee, TIBIA slopes down-right from knee to ankle, creating a shallow backward bow and NOT a forward bend. Femur, patella and tibia must articulate correctly. Keep title exactly 「反張膝」 and caption 「膝が後ろへ伸びる」, with leader pointing to knee. Label 「横から見た図」. Show only one leg, no injury/red pain star, no new claims. It is essential that knee center be LEFT of both hip and ankle (posterior) with toes RIGHT; copy reference pose accurately.",
+      "Use case scientific-educational, edit target only. Restyle the attached leg diagram as a clean colored medical infographic with bold smooth dark outlines, pale ivory background, cream bones, mint joint surface and dusty pink muscles. CRUCIAL: preserve exactly the attached leg POSE and relative bone positions. Do not change the femur/tibia angles or the knee's posterior displacement. Foot faces RIGHT. The knee is behind the straight line from hip to ankle, clearly to image LEFT. Preserve the existing vertical hip-to-ankle reference alignment; its geometry is correct. Do not invent new angles or move the knee forward. Remove the red glow and all pain symbols. Add printed navy title at upper right 「反張膝」 and below it 「膝が後ろへ伸びる」, a navy leader to the posterior knee. Leave plentiful breathing room. Retain anatomically coherent hip, femur, knee, tibia and foot, one leg only. Not hand-drawn or rough sketch. Most important is matching the ORIGINAL attachment pose pixel-for-pixel before applying clean outlined coloring."
+    ]
+  },
+  {
+    "key": "ankle",
+    "prompt": "Create a polished Japanese patient-education medical illustration for a physical-therapy clinic website. Square image 1024x1024. Warm very pale ivory background. Thick smooth black contours, crisp clean flat filled shapes, subtle smooth shading, ivory bones, mint cartilage, dusty pink muscles, golden yellow nerves, dark navy large printed Japanese labels. Professional friendly educational diagram, matching bold outlined colored anatomical infographic. No sketch strokes, no watercolor, no handwritten text, no photo. Spacious composition and just a few legible labels; NO claims of treatment effects or pain inevitability. Diagram must be anatomically coherent. Title 「足首を曲げる動き（背屈）」. Single lateral view of foot and lower leg during a supported forward weight shift. Toes image RIGHT. Sole flat and heel resting on horizontal ground, tibia inclines forward to image RIGHT over the planted foot; ivory tibia/talus/calcaneus shown in cutaway, mint articular surface. Dashed upright tibia reference, curved arrow at ankle indicating tibia moving anteriorly over foot. Only labels 「すねが前へ傾く」「かかとは床につく」. NO red knee, no propagation arrow to knee, no claims of cause, no forefoot lifted. Coherent ankle biomechanics.",
+    "source": "C:\\Users\\takus\\.codex\\generated_images\\01a105c1-6b5a-7bd0-9b6c-7d94183e0d5f\\exec-3c00af32-7eb2-4773-92ba-42e44b36efb9.png",
+    "target": "image/illustrations/remaining-symptoms-20261011/ankle",
+    "outputs": [
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/ankle-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 34938
+      },
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/ankle-768.webp",
+        "width": 768,
+        "height": 768,
+        "bytes": 67316
+      },
+      {
+        "path": "image/illustrations/remaining-symptoms-20261011/ankle-1200.webp",
+        "width": 1200,
+        "height": 1200,
+        "bytes": 120048
+      }
+    ]
+  }
+]

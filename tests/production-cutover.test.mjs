@@ -5,20 +5,20 @@ import path from 'node:path';
 import vm from 'node:vm';
 const root=new URL('../',import.meta.url);
 const read=f=>readFileSync(new URL(f,root),'utf8');
-const pages=['index.html','staff.html','voices.html','access.html','msm.html','news.html','privacy.html','symptoms/index.html','symptoms/knee-pain.html','symptoms/lower-back-pain.html','symptoms/sciatica.html','symptoms/hip-osteoarthritis.html','symptoms/spinal-stenosis.html'];
+const pages=['index.html','staff.html','voices.html','access.html','msm.html','news.html','privacy.html','symptoms/index.html','symptoms/knee-pain.html','symptoms/lower-back-pain.html','symptoms/sciatica.html','symptoms/hip-osteoarthritis.html','symptoms/spinal-stenosis.html','symptoms/shoulder-stiffness.html','symptoms/knee-posterior-pain.html','symptoms/bowlegs-knee-pain.html','symptoms/knee-hyperextension.html','symptoms/ankle-stiffness-knee-pain.html'];
 const site='https://hizakozou.jp';
 const fileFor=url=>decodeURIComponent(url.pathname).replace(/^\//,'')+(url.pathname.endsWith('/')?'index.html':'');
 const referenced=html=>[...html.matchAll(/\b(?:href|src|poster)="([^"]+)"/g)].map(m=>m[1]).concat([...html.matchAll(/\bsrcset="([^"]+)"/g)].flatMap(m=>m[1].split(',').map(v=>v.trim().split(/\s+/)[0])));
 for(const file of pages) {
  test(`${file}: production SEO and tracking are enabled`,()=>{
   const html=read(file),url=site+'/'+file.replace(/index\.html$/,'');
-  assert.match(html,/data-site-layout="redesign-v1"/);
+  assert.match(html,/(?:data-site-layout="redesign-v1"|data-content-owner="author")/);
   assert.match(html,/name="robots" content="index,follow,max-image-preview:large"/);
   assert(html.includes(`rel="canonical" href="${url}"`));
   assert(html.includes(`property="og:url" content="${url}"`));
   const head=html.split('</head>')[0];assert.match(head,/src="\/scripts\/tracking-config\.js/);assert.match(head,/src="\/scripts\/tracking\.js/);
   const schemas=[...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m=>JSON.parse(m[1]));
-  assert(schemas.some(s=>s['@type']==='WebPage'&&s.url===url));
+  assert(schemas.some(s=>['WebPage','MedicalWebPage'].includes(s['@type'])&&s.url===url));
   if(file!=='index.html')assert(schemas.some(s=>s['@type']==='BreadcrumbList'));
   assert.equal((html.match(/<h1\b/g)||[]).length,1);
   const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'duplicate IDs');
@@ -56,10 +56,12 @@ test('LINE and phone destinations retain the approved contact details',()=>{
 });
 test('production symptom illustrations and safety sections are retained',()=>{
  for(const file of pages.filter(f=>f.startsWith('symptoms/')&&f!=='symptoms/index.html')){
-  const html=read(file);assert.match(html,/<picture\b/);assert.match(html,/<details\b/);assert.match(html,/受診/);assert.match(html,/医療機関/);
+  const html=read(file);assert.match(html,/(?:<picture\b|<img\b[^>]*srcset=)/);assert.match(html,/<details\b/);assert.match(html,/受診/);assert.match(html,/医療機関/);
   if(/sciatica|spinal-stenosis|hip-osteoarthritis/.test(file))assert.match(html,/(?:参考|出典)/);
  }
- assert(read('symptoms/sciatica.html').includes('ダブルクラッシュ症候群'));
+ for(const file of pages.filter(f=>f.startsWith('symptoms/')&&read(f).includes('remaining-refresh-page'))){
+  const html=read(file);assert.match(html,/MSMメソッド/);assert.match(html,/過労筋/);assert.match(html,/サボり筋/);assert.match(html,/参考情報・出典/);
+ }
  assert(read('symptoms/spinal-stenosis.html').includes('なぜ腰を反ってしまうのか'));
 });
 function formHarness(response, values={}){
