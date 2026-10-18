@@ -2616,14 +2616,14 @@ function buildSymptomFooter(site = {}) {
 
       <nav class="hk-footer-nav" aria-label="フッターナビゲーション">
         <a href="../index.html#top">ホーム</a>
-        <a href="../index.html#troubles">お悩み</a>
-        <a href="../index.html#seo-guide">当院の考え方</a>
-        <a href="../index.html#flow">施術の流れ</a>
-        <a href="../index.html#profile">院長紹介</a>
+        <a href="../symptoms/knee-pain.html">膝の痛みについて</a>
+        <a href="/msm.html">施術について（MSMメソッド）</a>
+        <a href="/#first-visit">初回の流れ・料金</a>
+        <a href="../staff.html">院長紹介</a>
         <a href="../index.html#price">料金</a>
         <a href="../blog/">コラム</a>
         <a href="../faq.html">よくある質問</a>
-        <a href="../access.html">アクセス</a>
+        <a href="../access.html">アクセス・道順</a>
         <a href="../index.html#contact">ご予約・お問合せ</a>
       </nav>
 

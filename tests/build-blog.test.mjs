@@ -141,7 +141,7 @@ test("blog index uses the same taskbar links as the LP", () => {
   assert.match(html, /<nav class="site-mobile-nav hidden" id="mobileNav"/);
   assert.match(html, /href="\/#top"[\s\S]*ホーム/);
   assert.match(html, /href="\.\/"[\s\S]*コラム/);
-  assert.match(html, /href="\/access\.html"[\s\S]*アクセス・予約/);
+  assert.match(html, /href="\/access\.html"[\s\S]*アクセス・道順/);
   assert.doesNotMatch(html, /膝の痛み・慢性痛の読みもの/);
   assert.doesNotMatch(html, /膝痛専門 お役立ち情報一覧/);
   assert.doesNotMatch(html, /膝痛専門 お役立ち情報/);
