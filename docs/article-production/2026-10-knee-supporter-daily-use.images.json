@@ -1,0 +1,39 @@
+{
+  "created": "2026-10-31",
+  "tool": "built-in image_gen",
+  "transparentBackground": false,
+  "slug": "knee-supporter-daily-use",
+  "assets": [
+    {
+      "key": "hero",
+      "prompt": "A warm, polished editorial watercolor illustration for a Japanese patient education website. Cream and white background, muted teal and sage, restrained warm terracotta details, natural paper grain, clear legible shapes. Landscape 3:2 composition. Anatomically natural hands and legs. No text, no letters, no measurements, no logos, no watermark, no diagnostic overlays, no red pain lightning. Fictional adult, not a testimonial or real patient. Cover image: a Japanese man in his mid sixties with short grey hair, a soft oatmeal sweater and loose beige trousers rolled just above one knee sits on a sturdy chair at home, both feet supported on the floor. A simple plain teal soft elastic knee sleeve is worn on the exposed knee. He calmly looks down and lightly rests his hands near the fabric, checking comfort before an ordinary short outing. No rigid hinges, no medical immobilizer, no forceful tightening. Keep the entire man, knees and hands within the central 80 percent for mobile cropping, quiet reassuring everyday mood.",
+      "outputs": [
+        "image/blog/knee-supporter-daily-use/knee-supporter-daily-use-hero-480.webp",
+        "image/blog/knee-supporter-daily-use/knee-supporter-daily-use-hero-768.webp",
+        "image/blog/knee-supporter-daily-use/knee-supporter-daily-use-hero-1200.webp"
+      ]
+    },
+    {
+      "key": "fit",
+      "prompt": "A warm, polished editorial watercolor illustration for a Japanese patient education website. Cream and white background, muted teal and sage, restrained warm terracotta details, natural paper grain, clear legible shapes. Landscape 3:2 composition. Anatomically natural hands and legs. No text, no letters, no measurements, no logos, no watermark, no diagnostic overlays, no red pain lightning. Fictional adult, not a testimonial or real patient. Inline educational scene: a large close-up of the same older Japanese man's bent knee and lower thigh with a plain teal soft knitted elastic knee sleeve, while seated securely with the lower leg pointing naturally downward. One relaxed hand gently smooths a small fabric wrinkle near the side of the knee; the other rests on his thigh. The sleeve looks smooth and comfortably fitted with no deep skin indentations, no pinching and no straps. Show the whole sleeve and enough surrounding thigh and calf for orientation. This illustrates checking position and wrinkles, not a technique for tightening or proof of treatment benefit. Simple uncluttered home background.",
+      "outputs": [
+        "image/blog/knee-supporter-daily-use/knee-supporter-daily-use-fit-480.webp",
+        "image/blog/knee-supporter-daily-use/knee-supporter-daily-use-fit-768.webp",
+        "image/blog/knee-supporter-daily-use/knee-supporter-daily-use-fit-1200.webp"
+      ]
+    },
+    {
+      "key": "skin",
+      "prompt": "A warm, polished editorial watercolor illustration for a Japanese patient education website. Cream and white background, muted teal and sage, restrained warm terracotta details, natural paper grain, clear legible shapes. Landscape 3:2 composition. Anatomically natural hands and legs. No text, no letters, no measurements, no logos, no watermark, no diagnostic overlays, no red pain lightning. Fictional adult, not a testimonial or real patient. Inline educational scene: the same older Japanese man seated safely in a bright home, his plain teal soft elastic knee sleeve fully removed and resting folded on a low stool beside him. His trouser leg is rolled above the knee and he looks at the exposed knee and calf, one hand lightly resting near the knee while checking the skin. Skin is intact and natural with no wounds, redness, dramatic swelling or discoloration. Both legs anatomically clear, feet supported. This illustrates a routine skin check for an ordinary removable soft support, not an instruction to remove a prescribed post-injury brace. Large, uncluttered central scene readable on a phone.",
+      "outputs": [
+        "image/blog/knee-supporter-daily-use/knee-supporter-daily-use-skin-480.webp",
+        "image/blog/knee-supporter-daily-use/knee-supporter-daily-use-skin-768.webp",
+        "image/blog/knee-supporter-daily-use/knee-supporter-daily-use-skin-1200.webp"
+      ]
+    }
+  ],
+  "existingPhoto": {
+    "path": "image/clinic-posture-check-web.webp",
+    "inspection": "立った姿勢を確認する院内写真として目視確認。装具の処方・調整や施術結果の説明には使わない。"
+  }
+}

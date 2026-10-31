@@ -600,7 +600,7 @@ test("buildPostContent places readable article author review below the article b
     }
   }, []);
 
-  assert.ok(html.indexOf("article-readable-overview") < html.indexOf("慢性痛について"), "INDEX should appear before article body");
+  assert.doesNotMatch(html, /article-readable-overview|この記事の内容/);
   assert.ok(html.indexOf("慢性痛について") < html.indexOf("article-trust-panel"), "author block should appear after readable article body");
   assert.match(html, /article-trust-panel__references/);
   assert.match(html, /厚生労働省 慢性疼痛治療ガイドライン/);
@@ -733,7 +733,7 @@ test("symptom related navigation stays compact on every configured page", () => 
   }
 });
 
-test("buildPostContent adds article takeaways and a middle consultation CTA", () => {
+test("buildPostContent starts with article content and keeps consultation guidance in the body", () => {
   const post = {
     title: "膝の痛みで来院前に知りたいこと",
     description: "膝の痛みを来院前に整理します。",
@@ -765,13 +765,13 @@ test("buildPostContent adds article takeaways and a middle consultation CTA", ()
 
   const html = buildPostContent({ ...site, name: "整体院ひざこぞう", subtitle: "柏市の整体院", phone: "04-7114-3274" }, post, []);
 
-  assert.match(html, /article-readable-overview/);
+  assert.doesNotMatch(html, /article-readable-overview|先に確認したいこと/);
   assert.doesNotMatch(html, /article-takeaways/);
   assert.doesNotMatch(html, /article-toc--inline/);
   assert.match(html, /article-toc--side/);
   assert.match(html, /href="#section-1"/);
   assert.match(html, /id="section-1"/);
-  assert.match(html, /この記事の内容/);
+  assert.doesNotMatch(html, /この記事の内容/);
   assert.match(html, /article-mid-cta/);
   assert.match(html, /読んでいて自分も近いと感じたら/);
   assert.match(html, /symptom-card--article/);
@@ -1039,4 +1039,23 @@ test("blog data site anchors use the canonical home URL", () => {
 
   assert.equal(data.site.contactAnchor, "/#contact");
   assert.equal(data.site.defaultEyecatch, "/image/knee-symptom-wide.webp");
+});
+
+test("article reference disclosure keeps sources accessible and TOC anchors valid", () => {
+  const html = buildPostContent(site, {
+    ...posts[0],
+    cta: site.cta,
+    layout: "readable-v3",
+    sections: [
+      { heading: "普段の使い方", body: ["必要な説明は本文に残します。"] },
+      { heading: "参考資料", body: ["[確認できる資料](https://example.org/research)"] }
+    ],
+    faq: []
+  }, []);
+
+  assert.match(html, /<section class="article-references"><details>\s*<summary id="section-2">参考資料<\/summary>/);
+  assert.match(html, /href="#section-2"/);
+  assert.match(html, /href="https:\/\/example\.org\/research"/);
+  assert.match(html, /<section class="article-section"><h2 id="section-1">普段の使い方<\/h2>/);
+  assert.doesNotMatch(html, /<section class="article-references"><details[^>]*\bopen/);
 });

@@ -1,0 +1,39 @@
+{
+  "created": "2026-10-21",
+  "tool": "built-in image_gen",
+  "transparentBackground": false,
+  "slug": "knee-pain-shoe-fit",
+  "assets": [
+    {
+      "key": "hero",
+      "prompt": "Use case: illustration-story. Asset type: landscape 3:2 cover image for a Japanese patient education column about choosing shoes when knees hurt. Create a refined, warm editorial illustration: a Japanese woman around 65 with short gray hair, sage cardigan and beige trousers sits safely on a sturdy entrance bench in a bright uncluttered Japanese home, looking thoughtfully at a pair of plain teal lace-up walking shoes in her hands. Both her feet remain supported naturally. Calm reassuring expression, no dramatic pain pose. Soft cream background, muted teal and sage, restrained warm terracotta accents, clean shapes and gentle paper texture matching a trusted Japanese physiotherapy clinic website. Focus on shoe fit and everyday life, not an advertisement. Keep the woman, hands and shoes completely inside the central 80 percent for mobile cropping. No text, no numbers, no logo, no watermarks, no anatomical overlays. Anatomically natural hands and feet.",
+      "outputs": [
+        "image/blog/knee-pain-shoe-fit/knee-pain-shoe-fit-hero-480.webp",
+        "image/blog/knee-pain-shoe-fit/knee-pain-shoe-fit-hero-768.webp",
+        "image/blog/knee-pain-shoe-fit/knee-pain-shoe-fit-hero-1200.webp"
+      ]
+    },
+    {
+      "key": "fit",
+      "prompt": "Use case: scientific-educational. Asset type: landscape 3:2 inline illustration for a Japanese patient education article about checking everyday shoe fit. Three equally large, uncluttered visual vignettes on a cream background with generous gutters, all depicting the same plain teal lace-up walking shoe worn with a light neutral sock. Vignette one: a clean simplified cutaway side view of the toe box showing toes comfortably inside with modest empty space beyond the longest toe, no measurement labels. Vignette two: close side view of the back of a comfortably fitting shoe and socked heel with no large gap. Vignette three: two natural hands gently fastening laces over the instep of the shoe while the foot rests safely on the floor. Muted teal, sage and cream, soft restrained watercolor editorial style, clear readable silhouettes, all toe and heel details large enough at phone width. Illustrate practical fitting observations, no claim that this cures knee pain. No text, no letters, no arrows pointing into skin, no numbers, no checkmarks or crosses, no brands.",
+      "outputs": [
+        "image/blog/knee-pain-shoe-fit/knee-pain-shoe-fit-fit-480.webp",
+        "image/blog/knee-pain-shoe-fit/knee-pain-shoe-fit-fit-768.webp",
+        "image/blog/knee-pain-shoe-fit/knee-pain-shoe-fit-fit-1200.webp"
+      ]
+    },
+    {
+      "key": "sole",
+      "prompt": "Use case: illustration-story. Asset type: landscape 3:2 inline patient education image about inspecting one's existing walking shoes before buying replacements. Close view of an older Japanese adult's anatomically natural hands holding two plain teal walking shoes side by side above their lap while seated. One shoe turned to reveal the full lightly worn outsole, with a small but visible uneven worn patch near an outer heel; the other shoe shown from side profile so its intact heel and lace fastenings are clear. The wear is a neutral observation, not an illustrated diagnosis or a claimed cause of knee pain. A subtle low wooden bench and cream home-entry background. Warm calm editorial watercolor illustration, muted teal, sage, cream, gentle paper grain, distinct contours. Keep shoes complete and central, with sufficient detail visible on a phone. No text, no logo, no labels, no arrows, no red pain graphics, no checkmarks, no watermarks.",
+      "outputs": [
+        "image/blog/knee-pain-shoe-fit/knee-pain-shoe-fit-sole-480.webp",
+        "image/blog/knee-pain-shoe-fit/knee-pain-shoe-fit-sole-768.webp",
+        "image/blog/knee-pain-shoe-fit/knee-pain-shoe-fit-sole-1200.webp"
+      ]
+    }
+  ],
+  "existingInlinePhoto": {
+    "path": "image/flow-plan-consultation-768.webp",
+    "inspection": "院内で話を伺う実写として確認。靴の計測・インソール作製の説明には使わない。"
+  }
+}

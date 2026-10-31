@@ -188,3 +188,51 @@
   .article-page .article-content figure { padding: 8px; margin-block: 28px; }
   .article-page .article-content figcaption { padding: 0 6px 6px; }
 }
+
+/* References are available on request without interrupting the article. */
+.article-page.article-page .article-content .article-references {
+  margin: 32px 0;
+  padding-top: 14px;
+  border-top: 1px solid #e0e3e5;
+  color: #5d656b;
+}
+.article-page.article-page .article-references summary {
+  width: fit-content;
+  color: #5d656b;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.8;
+  scroll-margin-top: 90px;
+}
+.article-page.article-page .article-references summary:focus-visible {
+  outline: 2px solid #367ba4;
+  outline-offset: 4px;
+}
+.article-page.article-page .article-content .article-references p,
+.article-page.article-page .article-content .article-references li,
+.article-page.article-page .article-content .article-references a {
+  color: #5d656b;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.article-page.article-page .article-content .article-references p { margin: 12px 0 8px; }
+.article-page.article-page .article-content .article-references ul {
+  display: block;
+  margin: 0;
+  padding: 0 0 0 20px;
+  border: 0;
+  background: transparent;
+  list-style: disc;
+}
+.article-page.article-page .article-content .article-references li {
+  margin: 5px 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.article-page.article-page .article-references li::before { content: none; }
+.article-page.article-page .article-references a { text-decoration: underline; text-underline-offset: 2px; }
+.article-page.article-page .article-references a:hover { color: #153a5e; }

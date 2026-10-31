@@ -32,21 +32,6 @@ const ARTICLE_REVIEWER = {
   profileUrl: CLINIC_FACTS.profileUrl
 };
 const FIRST_VISIT = CLINIC_FACTS.firstVisit;
-const ARTICLE_OVERVIEW_PRESETS = {
-  "chronic-pain": {
-    points: [
-      "痛みが長引くと、膝そのものだけでなく歩き方・不安・生活動作も関係しやすくなります。",
-      "階段や歩き始めで不安がある場合は、膝だけでなく股関節・足首・腰の使い方も確認します。",
-      "強い腫れや熱感などがあるときは、整体の前に医療機関で状態を確認することが大切です。"
-    ],
-    medicalHeading: "先に医療機関へ相談したい目安",
-    medicalItems: [
-      "急に痛みが強くなった、または日ごとに悪化している",
-      "膝が大きく腫れている、熱感がある、体重をかけにくい",
-      "転倒や事故のあとから痛みが続いている"
-    ]
-  }
-};
 const ARTICLE_REFERENCE_PRESETS = {
   "elbow-pain": [
     {
@@ -3160,7 +3145,6 @@ export function buildPostContent(site, post, relatedPosts) {
       : buildArticleToc(articleSections, "inline");
   const sideTocHtml = buildArticleToc(articleSections, "side");
   const takeawaysHtml = isReadableLayout ? "" : buildArticleTakeaways(post);
-  const readableOverviewHtml = isReadableLayout ? buildArticleReadableOverview(post, articleSections) : "";
   const readableLeadHtml = isReadableLayout ? buildArticleReadableLead(post) : "";
   const articleTrustHtml = buildArticleTrustPanel(site, post);
   const faqHtml = post.faq.length ? `
@@ -3233,7 +3217,6 @@ export function buildPostContent(site, post, relatedPosts) {
   const contentClass = ["article-content", "card-surface", "prose-surface", isReadableLayout ? "article-content--readable" : "", isReadableV3 ? "article-content--readable-v3" : ""].filter(Boolean).join(" ");
   const heroLeadText = isReadableLayout ? post.description : (post.lead || post.description);
   const contentLeadHtml = readableLeadHtml ? `\n          ${readableLeadHtml}` : "";
-  const contentIntroHtml = readableOverviewHtml ? `\n          ${readableOverviewHtml}` : "";
   const contentTrustHtml = articleTrustHtml ? `\n          ${articleTrustHtml}` : "";
 
   return `
@@ -3272,7 +3255,7 @@ export function buildPostContent(site, post, relatedPosts) {
     </section>
     <section class="${mainClass}">
       <div class="${layoutClass}">
-        <div class="${contentClass}">${contentLeadHtml}${contentIntroHtml}
+        <div class="${contentClass}">${contentLeadHtml}
           ${tocHtml}
           ${takeawaysHtml}
           ${sectionsHtml}
@@ -3340,40 +3323,6 @@ function buildArticleReadableLead(post) {
 
   return `<section class="article-readable-lead" aria-label="記事の導入">
 ${paragraphs}
-          </section>`;
-}
-
-function buildArticleReadableOverview(post, sections) {
-  const preset = ARTICLE_OVERVIEW_PRESETS[post.referencePreset] || {
-    points: sections.slice(0, 3).map((section) => section.heading).filter(Boolean),
-    medicalHeading: "先に確認したいこと",
-    medicalItems: [
-      "急に痛みやしびれが強くなった場合は、医療機関での確認を優先してください。",
-      "不安があるときは、無理に自己判断せず専門家へ相談してください。"
-    ]
-  };
-
-  const points = preset.points
-    .map((item) => `<li>${escapeHtml(item)}</li>`)
-    .join("");
-  const medicalItems = preset.medicalItems
-    .map((item) => `<li>${escapeHtml(item)}</li>`)
-    .join("");
-
-  return `<section class="article-readable-overview" aria-labelledby="article-readable-overview-title">
-            <div class="article-readable-overview__main">
-              <p class="article-readable-overview__label">INDEX</p>
-              <h2 id="article-readable-overview-title">この記事の内容</h2>
-              <ul>
-${points}
-              </ul>
-            </div>
-            <div class="article-readable-overview__medical" aria-labelledby="article-readable-medical-title">
-              <h3 id="article-readable-medical-title">${escapeHtml(preset.medicalHeading)}</h3>
-              <ul>
-${medicalItems}
-              </ul>
-            </div>
           </section>`;
 }
 
@@ -3555,6 +3504,13 @@ function renderSection(section) {
         </section>
       `).join("")
     : "";
+
+  if (/^(?:参考にした資料|参考資料|参考文献)$/.test(String(section.heading || "").trim())) {
+    return `<section class="article-references"><details>
+          <summary${section.id ? ` id="${escapeHtml(section.id)}"` : ""}>${escapeHtml(section.heading)}</summary>
+          ${body}${subsections}
+        </details></section>`;
+  }
 
   return `<section class="${classNames}">${heading}${body}${subsections}</section>`;
 }
