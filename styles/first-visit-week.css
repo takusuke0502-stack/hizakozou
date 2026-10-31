@@ -1,0 +1,80 @@
+.first-visit-week {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 28px auto;
+  align-items: center;
+  gap: 8px 14px;
+  margin: 12px 0;
+  padding: 16px 20px;
+  border: 1px solid #eee7d5;
+  border-radius: 4px;
+  background: #fffdf5;
+  color: #172c36;
+  line-height: 1.5;
+  scroll-margin-top: 140px;
+}
+.first-visit-week[hidden], .first-visit-week [hidden] { display: none; }
+.first-visit-week .first-visit-week__period,
+.first-visit-week .first-visit-week__limit { margin: 0; color: #172c36; font-size: 18px; font-weight: 700; }
+.first-visit-week time { white-space: nowrap; }
+.first-visit-week__limit strong { font-size: 1.25em; font-weight: 800; }
+.first-visit-week__arrow { width: 28px; height: 28px; object-fit: contain; }
+.first-visit-week[data-first-visit-week] .first-visit-week__availability,
+.home .campaign-promo .first-visit-week[data-first-visit-week] .first-visit-week__availability {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 3px;
+  margin: 0;
+  color: #d52b15;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.first-visit-week__availability strong { color: inherit; font-size: 64px; font-weight: 800; line-height: 1; }
+.first-visit-week .first-visit-week__note,
+.home .campaign-promo .first-visit-week[data-first-visit-week] .first-visit-week__note {
+  grid-column: 1 / -1;
+  max-width: none;
+  margin: 2px 0 0;
+  color: #53615f;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+.campaign-promo { scroll-margin-top: 130px; }
+.campaign-promo__inner > .first-visit-week { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr) 40px minmax(0, 1fr); width: 100%; margin: 0 0 8px; }
+.campaign-promo__intro > p:last-child { max-width: 460px; color: var(--ink-soft); font-size: 13px; }
+.campaign-promo .first-visit-week__period,
+.campaign-promo .first-visit-week__limit { font-size: clamp(19px, 2.2vw, 28px); }
+.campaign-promo .first-visit-week__arrow { width: 40px; height: 40px; }
+.home .campaign-promo .first-visit-week[data-first-visit-week] .first-visit-week__availability { font-size: 38px; }
+.campaign-promo .first-visit-week__availability strong { font-size: 82px; }
+.visit-booking .first-visit-week { margin-top: 0; padding: 12px; gap: 6px 8px; text-align: left; }
+.visit-booking .first-visit-week__period,
+.visit-booking .first-visit-week__limit { font-size: 14px; }
+.visit-booking .first-visit-week[data-first-visit-week] .first-visit-week__availability { font-size: 20px; }
+.visit-booking .first-visit-week__availability strong { font-size: 44px; }
+.first-visit-week[data-first-visit-week][data-availability="unknown"] .first-visit-week__availability,
+.first-visit-week[data-first-visit-week][data-availability="closed"] .first-visit-week__availability,
+.home .campaign-promo .first-visit-week[data-first-visit-week][data-availability="unknown"] .first-visit-week__availability,
+.home .campaign-promo .first-visit-week[data-first-visit-week][data-availability="closed"] .first-visit-week__availability { white-space: normal; font-size: 14px; }
+.first-visit-week[data-availability="unknown"] .first-visit-week__arrow,
+.first-visit-week[data-availability="closed"] .first-visit-week__arrow { visibility: hidden; }
+@media (max-width: 900px) {
+  .visit-booking .first-visit-week { grid-template-columns: 1fr; }
+  .visit-booking .first-visit-week__arrow { display: none; }
+  .visit-booking .first-visit-week[data-first-visit-week] .first-visit-week__availability { justify-content: flex-start; }
+}
+@media (max-width: 600px) {
+  .first-visit-week { padding: 14px 12px; gap: 6px 8px; }
+  .campaign-promo__inner > .first-visit-week { grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr); }
+  .campaign-promo .first-visit-week__period,
+  .campaign-promo .first-visit-week__limit { font-size: 15px; }
+  .campaign-promo .first-visit-week__arrow { width: 20px; height: 20px; }
+  .home .campaign-promo .first-visit-week[data-first-visit-week] .first-visit-week__availability { font-size: 21px; }
+  .campaign-promo .first-visit-week__availability strong { font-size: 46px; }
+  .visit-booking .first-visit-week[data-first-visit-week] .first-visit-week__availability { font-size: 18px; }
+  .visit-booking .first-visit-week__period,
+  .visit-booking .first-visit-week__limit { font-size: 13px; }
+}

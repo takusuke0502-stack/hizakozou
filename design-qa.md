@@ -184,3 +184,52 @@ Final result: passed. No P0, P1, or P2 issues were found in the redesigned educa
 - [P3] The exact icon metaphors differ slightly from the illustration-style source because the implementation intentionally reuses the site's established Lucide icon set.
 
 final result: passed
+
+---
+
+## Additional QA: weekly discount capacity
+
+# Discount banner design QA
+
+final result: passed
+
+## Target and evidence
+
+Scope: the supplied discount-capacity banner adapted inside the existing hizakozou website. Source: `C:/Users/takus/AppData/Local/Temp/codex-clipboard-be137e49-bf26-44ba-b56a-d433153a0eb0.png` (998 x 148). The reference's 6 total / 2 remaining and November 10 deadline are replaced by the user's explicit weekly cap of 5 / remaining 3 and the current Sunday deadline of November 1. Those are intentional content changes.
+
+The source and final screenshots were opened together in one comparison input, including the focused card and the surrounding page context. Final evidence in `C:/Users/takus/Downloads/hizakozou-main/output/new-article-20261031/`:
+
+- `discount-proof-card.png`: final desktop campaign and price card, 1168 x 403, cropped from the actual in-app-browser screenshot using its recorded viewport coordinates.
+- `discount-proof-full.png`: uncropped screenshot for that evidence.
+- `discount-home-390-final.png`, `discount-home-768-final.png`, `discount-home-1440-final.png`.
+- `discount-knee-390.png`, `discount-knee-768.png`, `discount-knee-1440.png`.
+- `discount-home-booking-768.png`: narrow booking-column layout.
+
+CSS viewports: 390/768/1440 x 1000. In-app capture includes the browser's scrollbar/frame scaling; the 1440 x 1000 view yielded 1425 x 990 pixels. The proof crop was scaled from the recorded geometry. Raw clip captures that did not honor the requested position were excluded from comparison.
+
+## Findings and fixes
+
+1. P1, fixed: existing home-page paragraph rules overrode the count's red color and type size. Scoped component rules now render the count in `rgb(213,43,21)` on both pages.
+2. P2, fixed: the narrow tablet booking column broke the left-hand label into fragments. Booking columns use a vertical arrangement at narrow viewports. The extra “初回割引” prefix was moved into the explanatory note so “5名様限定” remains compact.
+3. P2, fixed: the preview fragment originally targeted a hidden loading element. The homepage link now targets the always-present campaign section. The counter is shown only after usable display data is available.
+
+## Required fidelity surfaces
+
+- Fonts and typography: existing Japanese site fonts retained. Dark bold deadline and quota on the left, larger red remaining numeral on the right. Desktop uses an 82px numeral; mobile uses 46px in the main banner. Narrow booking-column adaptations preserve readability.
+- Spacing and layout rhythm: reference's left details / centered arrow / right count retained in the main banner, with the site's existing card padding and a small explanatory line. No overflow at any checked width. Narrow booking fields stack intentionally.
+- Colors and tokens: warm near-white panel, dark text, red count; surrounding green clinic style retained. No fabricated scarcity animation.
+- Image quality and assets: existing clinic photos and pricing artwork unchanged. Arrow uses the licensed Lucide Static SVG instead of a custom drawing. The final screenshot crop is QA evidence only; the supplied reference was not edited.
+- Copy and content: “5名様限定”, “残り3名様”, Sunday deadline, and the distinction between discount applications and subsequently arranged appointment dates are present. Numbers come from the shared week-specific configuration. Zero and unknown states have separate messages; unit tests cover them.
+
+## Functional checks
+
+All three placements show capacity 5 and remaining 3. No console errors. Existing LINE destinations remain intact; no reservation or message was submitted. The temporary responsive viewport override was reset. Thirteen date/availability tests pass; the complete suite has 201 passes, 100 pre-existing skips, and the same two pre-existing FAQ-navigation failures.
+
+No P0/P1/P2 findings remain. Accepted P3 adaptation: the deadline may occupy two lines on mobile because the banner sits inside the existing clinic card. No publication was performed.
+
+
+### Publication follow-up: remaining 2
+
+User authorized publication and set remaining places to 2 on 2026-11-01. The shared configuration was updated from 3 to 2. All three rendered placements show capacity 5 and remaining 2. Screenshot: `C:/Users/takus/Downloads/hizakozou-main/output/new-article-20261031/discount-remaining-2-local.png`. The IAB confirmation API returned an unavailable error; the existing Playwright verification browser was used as the documented unavailable-browser fallback. Full suite: 201 passed, 100 skipped, same two pre-existing failures.
+
+final result: passed

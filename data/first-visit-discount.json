@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "weeklyCapacity": 5,
+  "weeks": {
+    "2026-10-26": {
+      "remaining": 2
+    }
+  }
+}

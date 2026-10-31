@@ -31,6 +31,8 @@
 <link rel="stylesheet" href="/styles/home-first-impression.css?v=20261002a">
 <link rel="stylesheet" href="/styles/site-updates.css?v=20261004a">
 <script type="module" src="/scripts/site-notices.js?v=20261004a"></script>
+<link rel="stylesheet" href="/styles/first-visit-week.css?v=20261031b">
+<script type="module" src="/scripts/first-visit-week.js?v=20261031b"></script>
 </head>
 <body class="home">
   <a class="skip-link" href="#main">本文へ移動</a>
@@ -112,9 +114,15 @@
     </section>
     </div>
 
-    <section class="campaign-promo" aria-label="初回キャンペーンのご案内">
+    <section class="campaign-promo" id="first-visit-discount" aria-label="初回キャンペーンのご案内">
       <div class="campaign-promo__inner">
-        <div><p class="eyebrow">FIRST VISIT</p><h2><span>初回カウンセリング</span><span>＋全身整体</span></h2><p>身体の状態を確認し、施術方針をお伝えしてから進めます。所要時間は約90分です。</p></div>
+        <div class="first-visit-week" data-first-visit-week hidden>
+  <div class="first-visit-week__offer"><p class="first-visit-week__period"><span data-first-visit-week-period></span>まで</p><p class="first-visit-week__limit" data-first-visit-week-limit hidden><strong data-first-visit-week-capacity></strong>名様限定</p></div>
+  <img class="first-visit-week__arrow" src="/image/icons/discount-arrow-right.svg" alt="" aria-hidden="true" width="28" height="28">
+  <p class="first-visit-week__availability" data-first-visit-week-availability role="status" aria-live="polite"></p>
+  <p class="first-visit-week__note">初回割引は期間内のお申し込みが対象です。施術日時はLINEで相談後に確定します。</p>
+</div>
+        <div class="campaign-promo__intro"><p class="eyebrow">FIRST VISIT</p><h2><span>初回カウンセリング</span><span>＋全身整体</span></h2><p>身体の状態を確認し、施術方針をお伝えしてから進めます。所要時間は約90分です。</p></div>
         <div class="campaign-promo__price"><span>通常施術費 <s>10,000円（税込）</s></span><strong><small>初回キャンペーン</small>1,980<em>円（税込）</em></strong></div>
         <a class="button button--line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで初回相談・予約 <span aria-hidden="true">↗</span></a>
       </div>
@@ -208,7 +216,12 @@
           <li><img src="/image/photo-knee-treatment-768.webp" alt="院長が患者の脚を支えて施術する様子" loading="lazy" width="768" height="512"><div><span>05</span><h3>施術開始</h3><p>身体の反応を見ながら施術し、状態に合った動きも取り入れます。</p></div></li>
           <li><img src="/image/photo-selfcare-768.webp" alt="院長と患者が自宅でもできる身体の動かし方を試す様子" loading="lazy" width="768" height="512"><div><span>06</span><h3>セルフケアと施術後の説明</h3><p>家で試せる動きを一緒に確認し、施術後の状態と今後の目安をご説明します。</p></div></li>
         </ol>
-        <div class="first-visit__booking" id="price"><div class="visit-fee"><p class="visit-fee__service">初回カウンセリング＋全身整体</p><p class="visit-fee__regular">通常施術費 <span>10,000円</span>（税込）</p><p class="visit-fee__campaign"><span>初回キャンペーン</span><strong>1,980<small>円（税込）</small></strong></p><p class="visit-fee__time">所要時間 約90分</p></div><div class="visit-booking"><p class="visit-booking__payment">お支払い：現金・各種クレジットカード・PayPay</p><a class="button button--line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで初回の相談・予約 <span aria-hidden="true">↗</span></a><p>お悩みとご希望日時をお送りください。<br>返信で日時を確認してから、ご予約が確定します。</p></div></div>
+        <div class="first-visit__booking" id="price"><div class="visit-fee"><p class="visit-fee__service">初回カウンセリング＋全身整体</p><p class="visit-fee__regular">通常施術費 <span>10,000円</span>（税込）</p><p class="visit-fee__campaign"><span>初回キャンペーン</span><strong>1,980<small>円（税込）</small></strong></p><p class="visit-fee__time">所要時間 約90分</p></div><div class="visit-booking"><div class="first-visit-week" data-first-visit-week hidden>
+  <div class="first-visit-week__offer"><p class="first-visit-week__period"><span data-first-visit-week-period></span>まで</p><p class="first-visit-week__limit" data-first-visit-week-limit hidden><strong data-first-visit-week-capacity></strong>名様限定</p></div>
+  <img class="first-visit-week__arrow" src="/image/icons/discount-arrow-right.svg" alt="" aria-hidden="true" width="28" height="28">
+  <p class="first-visit-week__availability" data-first-visit-week-availability role="status" aria-live="polite"></p>
+  <p class="first-visit-week__note">初回割引は期間内のお申し込みが対象です。施術日時はLINEで相談後に確定します。</p>
+</div><p class="visit-booking__payment">お支払い：現金・各種クレジットカード・PayPay</p><a class="button button--line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで初回の相談・予約 <span aria-hidden="true">↗</span></a><p>お悩みとご希望日時をお送りください。<br>返信で日時を確認してから、ご予約が確定します。</p></div></div>
       </div>
     </section>
 
