@@ -1,0 +1,13 @@
+{
+  "created": "2026-11-01",
+  "tool": "built-in image_gen",
+  "prompts": [
+    "Use case: illustration-story. Create one wide 3:2 editorial illustration for a Japanese knee pain clinic's patient education blog. A single middle-aged Japanese woman in pale blue comfortable clothing standing at a kitchen counter washing a cup, seen in full-body side profile, normal realistic proportions, feet clearly visible and fully on the floor, knees nearly straight with only a subtle natural backwards resting tendency, no dramatic deformity. Calm daily-life scene, clean warm off-white background, restrained navy outlines, muted sky blue and warm beige accents, soft watercolor and crisp readable forms, plenty of breathing room. No text, no labels, no arrows, no X-ray, no anatomy inset, no medical device, no dramatic pain, no before-after claim. This depicts the everyday situation of standing for a long time, not an exercise or a corrective pose. Ensure arms, hands, legs and feet anatomically plausible.",
+    "Use case: illustration-story. Create one wide 3:2 editorial illustration for the same Japanese patient education clinic blog visual language: restrained navy outlines, muted pale blue clothing, cream/beige bright interior, gentle watercolor with crisp readable forms. A middle-aged Japanese woman has paused standing household work and is now sitting comfortably upright on a stable backed chair by a kitchen counter, both feet flat on the floor, knees comfortably bent, hands resting on thighs, looking relaxed. Entire person and chair and both feet fully visible with generous margins. A small subtle wall clock evokes taking a break, without readable numerals. This is about interrupting long standing, not a therapeutic exercise. No text, labels, medical diagrams, pain symbols, arrows, before/after layout, white coat, weights. One scene only, no collage. Human anatomy and chair structure plausible."
+  ],
+  "sourcePaths": [
+    "exec-94dfd74f-1af2-49bd-a7de-23fd7815ce30.png",
+    "exec-d86236ea-0bc7-4250-87ec-201d60a3905d.png"
+  ],
+  "outputs": "image/blog/knee-hyperextension-standing/knee-hyperextension-standing-{standing,break}-{480,768,1200}.webp"
+}
