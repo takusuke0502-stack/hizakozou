@@ -1,3 +1,4 @@
+import { loadSiteChrome, renderSiteHeader, buildSiteChrome } from "./site-chrome.mjs";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -1161,10 +1162,11 @@ const relatedArticleSliderScript = `
 `.trim();
 
 export async function buildBlog() {
-  const [rawData, indexTemplate, postTemplate] = await Promise.all([
+  const [rawData, indexTemplate, postTemplate, chrome] = await Promise.all([
     fs.readFile(dataPath, "utf8"),
     fs.readFile(path.join(templatesDir, "blog-index-template.html"), "utf8"),
-    fs.readFile(path.join(templatesDir, "blog-post-template.html"), "utf8")
+    fs.readFile(path.join(templatesDir, "blog-post-template.html"), "utf8"),
+    loadSiteChrome()
   ]);
 
   const blogData = JSON.parse(rawData);
@@ -1176,6 +1178,9 @@ export async function buildBlog() {
     .sort((a, b) => b.date.localeCompare(a.date));
 
   const indexHtml = renderTemplate(indexTemplate, {
+    SITE_HEADER: renderSiteHeader(chrome, "/blog/"),
+    SITE_FOOTER: chrome.footer,
+    SITE_CONTACT: chrome.contact,
     SEO_HEAD: buildIndexSeo(blogData.site),
     CSS_PATH: "assets/blog.css",
     HOME_PATH: "/",
@@ -1197,6 +1202,9 @@ export async function buildBlog() {
       await fs.mkdir(postDir, { recursive: true });
       const relatedPosts = selectBlogRelatedPosts(post, posts);
       const postHtml = renderTemplate(postTemplate, {
+        SITE_HEADER: renderSiteHeader(chrome, "/blog/"),
+        SITE_FOOTER: chrome.footer,
+        SITE_CONTACT: chrome.contact,
         SEO_HEAD: buildPostSeo(blogData.site, post),
         CSS_PATH: "../../assets/blog.css",
         HOME_PATH: "/",
@@ -1220,6 +1228,7 @@ export async function buildBlog() {
 
   await fs.writeFile(path.join(rootDir, "blog.html"), cleanGeneratedText(buildBlogRedirectHtml()), "utf8");
   await fs.writeFile(path.join(rootDir, "blog-detail.html"), cleanGeneratedText(buildLegacyDetailRedirectHtml()), "utf8");
+  await buildSiteChrome();
   await updateSitemap(blogData.site, posts);
 
   console.log(`Generated ${posts.length} static blog post(s), updated symptom related articles, and regenerated sitemap.xml.`);

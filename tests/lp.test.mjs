@@ -1036,6 +1036,8 @@ test("sitewide Google tracking scripts load from the head on every HTML page", (
 
   for (const filePath of htmlFiles) {
     const pageHtml = readFileSync(filePath, "utf8");
+    // Shared HTML fragments are not independently served documents.
+    if (filePath.includes(`${path.sep}templates${path.sep}`) && !/<html\b/.test(pageHtml)) continue;
     if (!headPattern.test(pageHtml)) {
       missing.push(toRepoPath(filePath));
     }

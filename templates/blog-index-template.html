@@ -9,77 +9,19 @@
   <script src="/scripts/tracking-config.js" defer></script>
   <script src="/scripts/tracking.js" defer></script>
 
+  <link rel="stylesheet" href="/styles/site-chrome.css?v=20261104a">
+  <link rel="stylesheet" href="/styles/column-refresh.css?v=20261104a">
+  <script src="/scripts/site-chrome.js?v=20261104a" defer></script>
 </head>
 <body class="blog-page">
-  <header id="header" class="site-header">
-    <div class="site-header__lower">
-      <div class="site-header__inner">
-        <nav class="site-nav" aria-label="メインナビゲーション">
-          <a href="{{HOME_PATH}}#top" class="site-nav__item"><span class="site-nav__jp">ホーム</span><span class="site-nav__en">HOME</span></a>
-          <a href="/msm.html" class="site-nav__item"><span class="site-nav__jp">施術について</span><span class="site-nav__en">MSM METHOD</span></a>
-          <a href="/symptoms/knee-pain.html" class="site-nav__item"><span class="site-nav__jp">膝の痛みについて</span><span class="site-nav__en">KNEE PAIN</span></a>
-          <a href="{{HOME_PATH}}#first-visit" class="site-nav__item"><span class="site-nav__jp">初回の流れ・料金</span><span class="site-nav__en">FIRST VISIT</span></a>
-          <a href="/faq.html" class="site-nav__item"><span class="site-nav__jp">よくある質問</span><span class="site-nav__en">FAQ</span></a>
-          <a href="{{BLOG_PATH}}" class="site-nav__item"><span class="site-nav__jp">コラム</span><span class="site-nav__en">COLUMN</span></a>
-          <a href="{{ACCESS_PATH}}" class="site-nav__item site-nav__item--contact"><span class="site-nav__jp">アクセス・道順</span><span class="site-nav__en">ACCESS</span></a>
-        </nav>
-        <button id="menuBtn" class="site-menu-toggle" type="button" aria-controls="mobileNav" aria-expanded="false" aria-label="メニューを開く">
-          <span class="site-menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
-          <span class="site-menu-toggle__text">メニュー</span>
-        </button>
-        <nav class="site-mobile-nav hidden" id="mobileNav" aria-label="スマートフォン用ナビゲーション">
-          <a href="{{HOME_PATH}}#top" class="site-mobile-nav__item">ホーム</a>
-          <a href="/msm.html" class="site-mobile-nav__item">施術について</a>
-          <a href="/symptoms/" class="site-mobile-nav__item">症状別</a>
-          <a href="{{HOME_PATH}}#first-visit" class="site-mobile-nav__item">初回の流れ・料金</a>
-          <a href="{{HOME_PATH}}#price" class="site-mobile-nav__item">料金</a>
-          <a href="{{BLOG_PATH}}" class="site-mobile-nav__item">コラム</a>
-          <a href="{{ACCESS_PATH}}" class="site-mobile-nav__item">アクセス・道順</a>
-          <a href="{{CONTACT_PATH}}" class="site-mobile-nav__item site-mobile-nav__item--contact">予約</a>
-          <a href="/symptoms/knee-pain.html" class="site-mobile-nav__item">膝の痛みについて</a>
-          <a href="/staff.html" class="site-mobile-nav__item">院長紹介</a>
-          <a href="/faq.html" class="site-mobile-nav__item">よくある質問</a>
-        </nav>
-      </div>
-    </div>
-  </header>
-  <main>
+  {{SITE_HEADER}}
+  <main id="main">
     {{PAGE_CONTENT}}
   </main>
-  <footer class="site-footer">
-    <div class="shell footer-grid">
-      <div>
-        <p class="footer-title">柏市の足腰専門整体院 整体院ひざこぞう</p>
-        <p class="footer-text">千葉県柏市｜腰痛・坐骨神経痛・股関節痛・膝痛など足腰の慢性痛相談</p>
-      </div>
-      <div class="footer-links">
-        <a href="{{HOME_PATH}}">トップへ戻る</a>
-        <a href="/symptoms/knee-pain.html">膝の痛みについて</a>
-        <a href="/#first-visit">初回の流れ・料金</a>
-        <a href="/msm.html">施術について（MSMメソッド）</a>
-        <a href="/staff.html">院長紹介</a>
-        <a href="/access.html">アクセス・道順</a>
-        <a href="/faq.html">よくある質問</a>
-        <a href="{{BLOG_PATH}}">ブログ一覧</a>
-        <a href="{{CONTACT_PATH}}">LINEで相談する</a>
-      </div>
-    </div>
-  </footer>
+  {{SITE_CONTACT}}
+  {{SITE_FOOTER}}
   <script>
     (() => {
-      const menuBtn = document.getElementById('menuBtn');
-      const mobileNav = document.getElementById('mobileNav');
-      const setMenuState = (open) => {
-        mobileNav?.classList.toggle('hidden', !open);
-        menuBtn?.setAttribute('aria-expanded', String(open));
-        menuBtn?.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-      };
-      setMenuState(false);
-      menuBtn?.addEventListener('click', () => setMenuState(mobileNav?.classList.contains('hidden')));
-      mobileNav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuState(false)));
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') setMenuState(false);
-      });
 
       const filterForm = document.querySelector('[data-blog-filter-form]');
       const searchInput = filterForm?.querySelector('[data-blog-search]');
@@ -117,7 +59,8 @@
       });
       filterForm?.addEventListener('input', applyFilters);
       filterForm?.addEventListener('change', applyFilters);
-      filterForm?.addEventListener('reset', () => queueMicrotask(applyFilters));
+      // Wait for the browser to restore the form's default values.
+      filterForm?.addEventListener('reset', () => requestAnimationFrame(applyFilters));
       applyFilters();
     })();
   </script>

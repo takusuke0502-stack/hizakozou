@@ -1,0 +1,25 @@
+/* Match the existing green/Mincho design without loading conflicting LP classes. */
+body.article-page.article-page{--primary:#285847;--accent:#285847;--editorial-ink:#285847;--readable-blue:#285847;--readable-blue-soft:#e8eee6;color:#263c32;background:#f8f7f2;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif}
+.article-page #main h1,.article-page #main .article-body h2,.article-page #main .article-section h2,.article-page #main .section-heading h2,.article-page #main .article-title,.article-page #main .column-page-title{font-family:Meiryo,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-weight:700;letter-spacing:.025em;color:#285847}
+.article-page #main h1{font-size:clamp(26px,3.1vw,40px);line-height:1.55;background:transparent;padding:0;border:0}
+.article-page #main .article-lead{font-size:16px;font-weight:400;line-height:2;color:#4e6358}
+.article-page #main .article-section h2,.article-page #main .article-body h2{font-size:clamp(23px,2.6vw,30px);line-height:1.6;background:transparent;border:0;border-bottom:1px solid #d9e0d7;padding:0 0 16px;color:#285847}
+.article-page #main .article-section p,.article-page #main .article-section li,.article-page #main .article-body p,.article-page #main .article-body li{font-weight:400;line-height:2;color:#263c32}
+.article-page #main .article-section h3{color:#285847}
+.article-page #main .article-section strong,.article-page #main .article-body strong{color:#285847}
+.article-page #main .readable-contact{background:#f8f7f2;border-color:#d9e0d7}
+.article-page #main .related-heading,.article-page #main .readable-contact h2{font-family:Meiryo,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:#285847}
+
+.article-page #main .article-hero-wrap,.article-page #main .article-main{background:#f8f7f2}
+.article-page #main .eyebrow,.article-page #main .article-toc a,.article-page #main .faq-item__label{color:#285847}
+.article-page #main .article-content .faq-section,.article-page #main .article-content .faq-block{border-color:#d9e0d7}
+.article-page #main .article-content .article-mid-cta__button{background:#285847;color:#fff}
+.article-page #main .article-content .article-section h3{font-size:19px;line-height:1.7;text-decoration:none}
+.article-page #main .article-content .article-section > h2{border-radius:0}
+
+.blog-page #main h1,.blog-page #main h2,.blog-page #main .section-title{font-family:Meiryo,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:#285847;font-weight:700}
+.blog-page{--readable-blue:#285847;--readable-blue-soft:#e8eee6;--primary:#285847;--primary-strong:#1e4437;--accent:#285847;--accent-strong:#1e4437;background:#f8f7f2;color:#263c32}
+.article-page #main .article-meta time,.article-page #main .article-date{color:#4e6358}
+
+.article-page #main .article-section p a,.article-page #main .article-section li a{color:#285847;text-decoration-color:#789b83}
+.article-page #main .article-meta{color:#4e6358}

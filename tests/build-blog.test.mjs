@@ -135,12 +135,22 @@ test("blog index uses the same taskbar links as the LP", () => {
   assert.match(html, /<title>足腰・慢性痛の読みもの｜整体院ひざこぞう<\/title>/);
   assert.match(html, /<meta property="og:title" content="足腰・慢性痛の読みもの｜整体院ひざこぞう">/);
   assert.match(html, /<meta name="twitter:title" content="足腰・慢性痛の読みもの｜整体院ひざこぞう">/);
-  assert.match(html, /<header id="header" class="site-header">/);
-  assert.match(html, /<nav class="site-nav" aria-label="メインナビゲーション">/);
-  assert.match(html, /<button id="menuBtn" class="site-menu-toggle"/);
-  assert.match(html, /<nav class="site-mobile-nav hidden" id="mobileNav"/);
-  assert.match(html, /href="\/#top"[\s\S]*ホーム/);
-  assert.match(html, /href="\.\/"[\s\S]*コラム/);
+  const home = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+  const nav = page => page.match(/<nav class="clinic-desktop-nav"[^>]*>([\s\S]*?)<\/nav>/)[1].replace(/ aria-current="page"/g, "");
+  assert.equal(nav(html), nav(home));
+  const { posts: published } = JSON.parse(readFileSync(new URL("../data/blog-posts.json", import.meta.url), "utf8"));
+  for (const post of published) {
+    const article = readFileSync(new URL(`../blog/posts/${post.slug}/index.html`, import.meta.url), "utf8");
+    assert.equal(nav(article), nav(home), `${post.slug}: desktop links stay consistent after generation`);
+    assert.equal((article.match(/<header class="clinic-header">/g) ?? []).length, 1);
+    assert.equal((article.match(/id="clinic-mobile-menu"/g) ?? []).length, 1);
+    assert.doesNotMatch(article, /\{\{SITE_(?:HEADER|FOOTER|CONTACT)\}\}/);
+  }
+  assert.equal((nav(html).match(/<a /g) ?? []).length, 7);
+  assert.match(nav(html), /href="\/faq\.html"/);
+  assert.match(nav(html), /href="\/staff\.html"/);
+  assert.match(html, /aria-controls="clinic-mobile-menu"/);
+  assert.match(html, /id="clinic-mobile-menu"[^>]*hidden/);
   assert.match(html, /href="\/access\.html"[\s\S]*アクセス・道順/);
   assert.doesNotMatch(html, /膝の痛み・慢性痛の読みもの/);
   assert.doesNotMatch(html, /膝痛専門 お役立ち情報一覧/);
@@ -990,7 +1000,7 @@ test("generated blog pages use canonical root links instead of index.html", () =
     assert.doesNotMatch(pageHtml, /\/index\.html/, `${pageName} should not link to /index.html`);
   }
 
-  assert.match(blogIndexHtml, /href="\/#access"/);
+  assert.match(blogIndexHtml, /href="\/access\.html"/);
   assert.match(blogIndexHtml, /href="\/symptoms\/"/);
   assert.match(dailyCareHtml, /<a href="\/">トップ<\/a>/);
   assert.match(dailyCareHtml, /href="\/symptoms\/"/);

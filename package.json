@@ -9,7 +9,8 @@
     "prepare:blog-images": "node scripts/prepare-blog-images.mjs",
     "check:blog-links": "node scripts/check-blog-links.mjs",
     "build:site-updates": "node scripts/build-site-updates.mjs",
-    "test": "node tests/build-blog.test.mjs && node tests/lp.test.mjs && node tests/first-visit-week.test.mjs && node tests/symptom-content-figures.test.mjs && node tests/blog-links.test.mjs && node tests/production-cutover.test.mjs && node tests/site-updates.test.mjs"
+    "test": "node tests/build-blog.test.mjs && node tests/lp.test.mjs && node tests/first-visit-week.test.mjs && node tests/symptom-content-figures.test.mjs && node tests/blog-links.test.mjs && node tests/production-cutover.test.mjs && node tests/site-updates.test.mjs",
+    "build:chrome": "node scripts/site-chrome.mjs"
   },
   "devDependencies": {
     "sharp": "^0.34.3"

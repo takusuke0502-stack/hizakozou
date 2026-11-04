@@ -133,3 +133,15 @@ test('generate explicitly labeled notice fixtures for browser checks', async () 
     await writeFile(new URL(page,output),updateServicePage(page,html,fixtures),'utf8');
   }
 });
+
+test('FAQ structured data matches every visible question and answer', () => {
+  const html = read('faq.html');
+  const text = value => value.replace(/<[^>]*>/g, '').trim();
+  const visible = [...html.matchAll(/<details class="faq-card">([\s\S]*?)<\/details>/g)].map(([, block]) => ({
+    question: text(block.match(/<summary>([\s\S]*?)<\/summary>/)[1]).replace(/^Q\.\s*/, ''),
+    answer: text(block.match(/<p>([\s\S]*?)<\/p>/)[1])
+  }));
+  const schema = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+  assert.equal(visible.length, 19);
+  assert.deepEqual(schema.mainEntity.map(item => ({question: item.name, answer: item.acceptedAnswer.text})), visible);
+});

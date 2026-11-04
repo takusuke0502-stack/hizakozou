@@ -27,41 +27,50 @@
   <script src="/scripts/tracking-config.js" defer></script>
   <script src="/scripts/tracking.js" defer></script>
 
+  <link rel="stylesheet" href="/styles/site-chrome.css?v=20261104a">
+  <link rel="stylesheet" href="/styles/column-refresh.css?v=20261104a">
+  <script src="/scripts/site-chrome.js?v=20261104a" defer></script>
 </head>
 <body class="article-page">
-  <header id="header" class="site-header">
-    <div class="site-header__lower">
-      <div class="site-header__inner">
-        <nav class="site-nav" aria-label="メインナビゲーション">
-          <a href="/#top" class="site-nav__item"><span class="site-nav__jp">ホーム</span><span class="site-nav__en">HOME</span></a>
-          <a href="/msm.html" class="site-nav__item"><span class="site-nav__jp">施術について</span><span class="site-nav__en">MSM METHOD</span></a>
-          <a href="/symptoms/knee-pain.html" class="site-nav__item"><span class="site-nav__jp">膝の痛みについて</span><span class="site-nav__en">KNEE PAIN</span></a>
-          <a href="/#first-visit" class="site-nav__item"><span class="site-nav__jp">初回の流れ・料金</span><span class="site-nav__en">FIRST VISIT</span></a>
-          <a href="/faq.html" class="site-nav__item"><span class="site-nav__jp">よくある質問</span><span class="site-nav__en">FAQ</span></a>
-          <a href="../../" class="site-nav__item"><span class="site-nav__jp">コラム</span><span class="site-nav__en">COLUMN</span></a>
-          <a href="/access.html" class="site-nav__item site-nav__item--contact"><span class="site-nav__jp">アクセス・道順</span><span class="site-nav__en">ACCESS</span></a>
-        </nav>
-        <button id="menuBtn" class="site-menu-toggle" type="button" aria-controls="mobileNav" aria-expanded="false" aria-label="メニューを開く">
-          <span class="site-menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
-          <span class="site-menu-toggle__text">メニュー</span>
-        </button>
-        <nav class="site-mobile-nav hidden" id="mobileNav" aria-label="スマートフォン用ナビゲーション">
-          <a href="/#top" class="site-mobile-nav__item">ホーム</a>
-          <a href="/msm.html" class="site-mobile-nav__item">施術について</a>
-          <a href="/symptoms/" class="site-mobile-nav__item">症状別</a>
-          <a href="/#first-visit" class="site-mobile-nav__item">初回の流れ・料金</a>
-          <a href="/#price" class="site-mobile-nav__item">料金</a>
-          <a href="../../" class="site-mobile-nav__item">コラム</a>
-          <a href="/access.html" class="site-mobile-nav__item">アクセス・道順</a>
-          <a href="/#access" class="site-mobile-nav__item site-mobile-nav__item--contact">予約</a>
-          <a href="/symptoms/knee-pain.html" class="site-mobile-nav__item">膝の痛みについて</a>
-          <a href="/staff.html" class="site-mobile-nav__item">院長紹介</a>
-          <a href="/faq.html" class="site-mobile-nav__item">よくある質問</a>
-        </nav>
-      </div>
+  <header class="clinic-header">
+  <div class="clinic-header__inner">
+    <a class="clinic-brand" href="/" aria-label="整体院ひざこぞう トップページ">
+      <img class="clinic-brand__mark" src="/redesign/assets/jumping-silhouette.png" alt="" width="56" height="56">
+      <span class="clinic-brand__text"><span class="clinic-brand__small">柏市の足腰専門整体院</span><strong>整体院ひざこぞう</strong></span>
+    </a>
+    <p class="clinic-header-location">柏駅西口 徒歩約8分<br><span>初回キャンペーン 1,980円・約90分</span></p>
+    <nav class="clinic-desktop-nav" aria-label="主要メニュー"><a href="/">TOP</a>
+<a href="/symptoms/knee-pain.html">膝の痛みについて</a>
+<a href="/#first-visit">初回の流れ・料金</a>
+<a href="/msm.html">施術について（MSMメソッド）</a>
+<a href="/staff.html">院長紹介</a>
+<a href="/access.html">アクセス・道順</a>
+<a href="/faq.html">よくある質問</a></nav>
+    <div class="clinic-header-actions">
+      <a class="clinic-instagram-link" href="https://www.instagram.com/hizakozou_kashiwa/" target="_blank" rel="noopener noreferrer" aria-label="整体院ひざこぞうのInstagramを開く">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.8" cy="6.3" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="clinic-header-contact" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer" aria-label="LINEで予約する"><svg aria-hidden="true" viewBox="0 0 48 48"><rect x="7" y="11" width="34" height="30" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 19h34M15 6v10M33 6v10" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>予約する</span></a>
+      <button class="clinic-menu-toggle" type="button" aria-controls="clinic-mobile-menu" aria-expanded="false" aria-label="メニューを開く"><span></span><span></span></button>
     </div>
-  </header>
-  <main>
+  </div>
+  <nav class="clinic-mobile-nav" id="clinic-mobile-menu" aria-label="スマートフォンメニュー" hidden><a href="/">TOP</a>
+<a href="/symptoms/knee-pain.html">膝の痛みについて</a>
+<a href="/#first-visit">初回の流れ・料金</a>
+<a href="/msm.html">施術について（MSMメソッド）</a>
+<a href="/staff.html">院長紹介</a>
+<a href="/access.html">アクセス・道順</a>
+<a href="/faq.html">よくある質問</a>
+<a href="/voices.html">患者様のお声</a>
+<a href="/symptoms/">症状別ページ</a>
+<a href="/blog/" aria-current="page">コラム</a>
+<a href="/news.html">お知らせ</a>
+<a href="/#contact">メールで問い合わせる</a>
+<a href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで相談・予約</a>
+<a href="tel:0471143274">電話で相談</a></nav>
+</header>
+
+  <main id="main">
 
     <section class="article-hero-wrap">
       <div class="shell">
@@ -410,42 +419,38 @@
       </div>
     </section>
 
-
   </main>
-  <footer class="site-footer">
-    <div class="shell footer-grid">
-      <div>
-        <p class="footer-title">柏市の足腰専門整体院 整体院ひざこぞう</p>
-        <p class="footer-text">千葉県柏市｜腰痛・坐骨神経痛・股関節痛・膝痛など足腰の慢性痛相談</p>
-      </div>
-      <div class="footer-links">
-        <a href="/">トップへ戻る</a>
-        <a href="/symptoms/knee-pain.html">膝の痛みについて</a>
-        <a href="/#first-visit">初回の流れ・料金</a>
-        <a href="/msm.html">施術について（MSMメソッド）</a>
-        <a href="/staff.html">院長紹介</a>
-        <a href="/access.html">アクセス・道順</a>
-        <a href="/faq.html">よくある質問</a>
-        <a href="../../">ブログ一覧</a>
-        <a href="/#access">LINEで相談する</a>
-      </div>
+  <section class="clinic-contact" aria-labelledby="clinic-contact-title">
+  <div><h2 id="clinic-contact-title">ご予約・ご相談</h2>
+  <p>お悩みや、ご希望の日時をLINEでお送りください。<br>返信で日時を確認してから、ご予約が確定します。</p>
+  <div class="clinic-contact__actions"><a class="clinic-contact__line" href="https://lin.ee/X01F2mP" target="_blank" rel="noopener noreferrer">LINEで相談・予約</a><a class="clinic-contact__phone" href="tel:0471143274">電話で相談 04-7114-3274</a></div>
+  <p class="clinic-contact__note">完全予約制／受付時間 9:00〜19:00／日曜定休</p></div>
+</section>
+
+  <footer class="clinic-footer">
+  <div class="clinic-footer__inner">
+    <div><a class="clinic-footer__brand" href="/">整体院ひざこぞう</a>
+      <p class="footer-title">柏市の足腰専門整体院 整体院ひざこぞう</p>
+      <p class="footer-text">千葉県柏市｜腰痛・坐骨神経痛・股関節痛・膝痛など足腰の慢性痛相談</p>
+      <address>〒277-0841 千葉県柏市あけぼの4-4-3 BoaSorte柏305<br>完全予約制／受付時間 9:00〜19:00／日曜定休<br><a href="tel:0471143274">TEL：04-7114-3274</a></address>
     </div>
-  </footer>
+    <nav aria-label="フッターメニュー"><a href="/">TOP</a>
+<a href="/symptoms/knee-pain.html">膝の痛みについて</a>
+<a href="/#first-visit">初回の流れ・料金</a>
+<a href="/msm.html">施術について（MSMメソッド）</a>
+<a href="/staff.html">院長紹介</a>
+<a href="/access.html">アクセス・道順</a>
+<a href="/faq.html">よくある質問</a>
+<a href="/voices.html">患者様のお声</a>
+<a href="/symptoms/">症状別ページ</a>
+<a href="/blog/">コラム</a>
+<a href="/news.html">お知らせ</a>
+<a href="/#contact">お問い合わせ</a></nav>
+  </div><p class="clinic-footer__copyright">© 整体院ひざこぞう</p>
+</footer>
+
   <script>
     (() => {
-      const menuBtn = document.getElementById('menuBtn');
-      const mobileNav = document.getElementById('mobileNav');
-      const setMenuState = (open) => {
-        mobileNav?.classList.toggle('hidden', !open);
-        menuBtn?.setAttribute('aria-expanded', String(open));
-        menuBtn?.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-      };
-      setMenuState(false);
-      menuBtn?.addEventListener('click', () => setMenuState(mobileNav?.classList.contains('hidden')));
-      mobileNav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuState(false)));
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') setMenuState(false);
-      });
 
       const tocLinks = Array.from(document.querySelectorAll('[data-article-toc] a[href^="#"]'));
       const headings = [...new Set(tocLinks

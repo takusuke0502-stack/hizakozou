@@ -233,3 +233,63 @@ No P0/P1/P2 findings remain. Accepted P3 adaptation: the deadline may occupy two
 User authorized publication and set remaining places to 2 on 2026-11-01. The shared configuration was updated from 3 to 2. All three rendered placements show capacity 5 and remaining 2. Screenshot: `C:/Users/takus/Downloads/hizakozou-main/output/new-article-20261031/discount-remaining-2-local.png`. The IAB confirmation API returned an unavailable error; the existing Playwright verification browser was used as the documented unavailable-browser fallback. Full suite: 201 passed, 100 skipped, same two pre-existing failures.
 
 final result: passed
+
+---
+
+# FAQ・コラム・トップ写真整理 実施記録（2026-11-04）
+
+対象はユーザー指定の1・2・3。ローカルに反映済み。コミット・プッシュ・本番公開は未実施。
+
+## 変更内容
+
+1. FAQを既存の新デザインへ統一。6カテゴリー・19問の質問と回答は変更せず、表示本文と一致するFAQPage構造化データを19問で再生成。
+2. 全81記事とコラム一覧を生成元のテンプレートから統一。既存のロゴ・Instagram・LINEの素材を使用。デスクトップの共通メニューはTOPと優先6ページの7項目。患者様のお声・症状別・コラム・お知らせはスマホメニューとフッターに残す。
+3. トップの写真を整理。説明・カウンセリング・立ち上がり・セルフケアは初回の流れに残し、施術説明は股関節確認の1枚と3つの説明へ整理。院内紹介は3つのリンク、お知らせはテキスト、アクセスは室内と入口の2枚。患者様の写真は5枚の一覧に残し、本文での重複5枚を外す。お声と原本へのリンクは保持。
+
+追加の修正: 腰痛・坐骨神経痛ページのヘッダー外に残っていた旧メニューを除去。一覧の検索条件クリア後に件数が戻らない問題を、フォームのリセット完了後に更新する形へ修正。
+
+## Source visual truth / 比較条件
+
+- 既存の院長紹介ページを基準とした。実装前のHTMLは `C:/Users/takus/Downloads/hizakozou-main/output/muse-implementation-20261104/before/staff.html` に保存。
+- Source capture: `screens/source-staff-desktop.png`。
+- Implementation capture: `screens/faq-desktop-final.png`、`screens/column-desktop-final.png`、`screens/column-body-desktop-final.png`。
+- 同じIAB・CSS viewport 1440×900、取得PNGはいずれも1425×891。deviceScaleFactorを変更せず、元のPNGのまま比較。スクリーンショットはスクロールバー等のブラウザー領域を除いた取得寸法として別記した。
+- 全体比較: sourceとFAQ最終版を同じツール結果内で表示し比較。異なるページ内容のため、本文の構成や写真とFAQの有無は一致を求めず、書体・色・共通部品・余白の関係を確認。
+- 細部比較: `screens/comparison-header.png`。同じ幅のヘッダーを上下に配置。11項目から7項目への変更、ナビの読みやすい14px、現在ページの下線は意図した変更。
+- 追加画面幅: 390×844、768×1024。PNG寸法は `screens/dimensions.json` を参照。リサイズ直後の不完全なタブレット取得は採用せず、安定後に撮り直した。
+
+## 比較履歴と修正
+
+- [P2、解消] 初回実装でLINEボタンが白いカレンダー表示になっていた。既存のLINE素材・緑色・形に合わせ、Instagramも既存素材に統一。ヘッダーの2段構成と高さを既存と合わせた。`comparison-header.png` で修正後を比較。
+- [P2、解消] 初回の見出しが明朝体で、院長紹介の現行見出しと異なった。既存のゴシック系書体へ合わせ、FAQの背景も既存のミント系へ統一。修正後のFAQ・記事の画面で確認。
+- [P2、解消] 一覧のカテゴリー・日付・記事本文の見出しに旧青色が残った。限定したCSSで配色と優先順位を整理。最終の一覧・記事画面で確認。
+- [機能、解消] 検索「靴」で4件になった後、条件クリアで77件へ戻ることを実画面で確認。
+
+## 5つの確認面
+
+- 書体: 既存のゴシック系見出しに統一。本文16pxを基本に維持し、見出しの折り返しとFAQの長い質問を確認。
+- 余白・構成: FAQのカテゴリ間隔、1枚の写真と施術説明、写真のない院内紹介・お知らせ、アクセス2枚、写真を外したお声本文を確認。3画面幅で横にはみ出す箇所なし。
+- 色: 既存の緑・ミント・白を使用。記事は読書用の明るい背景を保つ。LINEは既存の緑。キーボードフォーカスはオレンジの輪郭を確認。
+- 画像: ロゴと各SNSの元素材を使用。院内写真の場面と隣の説明が対応し、スマホでも要点が見える。既存画像の削除・新規撮影はなし。
+- 内容: FAQ19問・全81記事の本文を実装前と照合。SEOメタ情報・title・h1・canonical・robotsも保持。写真整理以外の本文変更は、院内紹介の案内文とリンク追加のみ。
+
+## 動作・検証
+
+- `npm run generate:blog:source -- --source content/source/2026-11-spinal-stenosis-posture-chest-up.md` 実行。81記事の生成差分を確認。
+- `npm run build:chrome` の再実行は変更0件。
+- `npm test`: 204件合格、失敗0件。既存デザイン向けの100件は従来どおりスキップ。
+- `npm run check:blog-links`: 82ページ・4,013参照を確認。
+- 独立したHTML検査: 公開用120ページ・10,546参照のファイルとアンカーを確認し、リンク切れ0件。共通ヘッダー116ページを確認。
+- FAQの開閉、Enterキーでの開閉、モバイルメニューの開閉・Escape・FAQへの移動、記事の目次内リンク、検索・条件クリアを実画面で確認。
+- FAQ・コラム・トップ・腰痛ページのコンソールエラー0件。LINEや電話へ実際の送信・発信はしていない。
+- `git diff --check` 問題なし。既存の未コミット10ファイルの本文は実装前バックアップと比較して保持。
+- GitNexusのbuildBlogは直接依存1件・LOW。ただし索引が古く、新規部品とインライン処理は未索引。ソース・全生成差分・上記検証で範囲を確認した。
+
+## 保守と残る範囲
+
+- 共通部分の編集元は `templates/site-header.html`、`site-footer.html`、`site-contact.html`。記事は既存どおりMarkdownから生成する。固定ページの共通部分は `npm run build:chrome`、記事は通常の生成コマンドで更新する。
+- 構造化データが検索結果に表示される保証やサイトリンクの指定はしていない。今回の確認はローカル。すべての記事を個別に3画面幅で目視したものではなく、共通処理の全出力照合と代表ページの画面確認を組み合わせた。
+- MUSEのトリミング見本ファイルは未受領のため使用していない。
+- 制作の本文・医療内容は変更していないため、新たなClaude文章確認は依頼していない。
+
+final result: passed
