@@ -1,0 +1,41 @@
+{
+  "created": "2026-11-04",
+  "tool": "built-in image_gen",
+  "transparentBackground": false,
+  "slug": "spinal-stenosis-posture-chest-up",
+  "assets": [
+    {
+      "key": "hero",
+      "prompt": "Use case: illustration-story. Create a wide 3:2 patient education blog cover for a Japanese clinic, discussing lumbar spinal stenosis and avoiding forcing oneself into an uncomfortable upright posture. One Japanese man around 68 with short grey hair and pale blue cardigan stands in side profile in a quiet warm home hallway, near a stable chair. Neutral thoughtful expression, natural relaxed nearly upright posture with a very mild forward inclination, no forced arching or slouch. Show the entire person including both feet with generous margins; human anatomy realistic. Refined editorial watercolor and fine navy outlines, muted sky blue, warm cream, light wood and sage accents. Keep the person central, large enough for phone screens. No text, numbers, labels, arrows, pain icons, skeletons, X-ray, before/after or cure claim. This is an everyday-life illustration, not a prescribed exercise, not a diagnostic posture chart.",
+      "generatedSource": "C:\\Users\\takus\\.codex\\generated_images\\01a14ca1-3c38-7a80-aac0-852c6bc10937\\exec-cae4831c-345d-45eb-9251-548cd03b0408.png",
+      "outputs": [
+        "image/blog/spinal-stenosis-posture-chest-up/spinal-stenosis-posture-chest-up-hero-v2-480.webp",
+        "image/blog/spinal-stenosis-posture-chest-up/spinal-stenosis-posture-chest-up-hero-v2-768.webp",
+        "image/blog/spinal-stenosis-posture-chest-up/spinal-stenosis-posture-chest-up-hero-v2-1200.webp"
+      ],
+      "firstSource": "C:\\Users\\takus\\.codex\\generated_images\\01a14ca1-3c38-7a80-aac0-852c6bc10937\\exec-b277cf99-bfb0-449f-8bb3-a6e65d9a6876.png",
+      "editPrompt": "Edit this illustration as a crop-safe blog cover, preserving the same warm watercolor style, older Japanese man, blue cardigan, cream home hallway and nearby wooden chair. WIDEN TO A 16:9 LANDSCAPE COMPOSITION. The whole man from top of hair to soles must be fully visible within the CENTRAL 65 PERCENT OF IMAGE HEIGHT: leave at least 18 percent blank-ish room above his hair and below his feet. Make him a little smaller by pulling the camera back; keep him centered horizontally. This is necessary because the website also crops the image to a centered 16:9 rectangle on small screens. His entire face, full hair, full legs, feet must survive that crop. Natural relaxed stance, no forced arching, no dramatic hunched posture. Calm room with restrained furnishing, warm cream, pale blue, sage. No new people, no words, no labels, no arrows, no medical diagrams. Wide generous clean margins are essential. Preserve the original original concept as an everyday life image, not a before-after or exercise instruction."
+    },
+    {
+      "key": "break",
+      "prompt": "Use case: illustration-story. Wide 3:2 gentle editorial watercolor for a Japanese spine patient education article. One Japanese older man around 68 with short grey hair wearing a muted blue cardigan is taking a brief seated break from household work in a warm uncluttered dining room. He sits safely in a sturdy backed chair, both feet flat on the floor, hands resting naturally on thighs, trunk comfortably inclined forward a little without deep rounding or straining, relaxed thoughtful expression. Full-body figure and entire chair within central 80 percent, large readable silhouette for smartphone. Refined navy outlines, warm cream background, pale blue and sage, light wooden furniture. No medical devices, no exercise equipment, no stopwatch, no text, no labels or arrows, no pain symbols, no before-after. Image communicates interrupting prolonged standing, not holding one position as a treatment. Natural hands, feet and chair structure.",
+      "generatedSource": "C:\\Users\\takus\\.codex\\generated_images\\01a14ca1-3c38-7a80-aac0-852c6bc10937\\exec-a9cccddb-1a7b-4827-a245-b01dba1f6e6f.png",
+      "outputs": [
+        "image/blog/spinal-stenosis-posture-chest-up/spinal-stenosis-posture-chest-up-break-480.webp",
+        "image/blog/spinal-stenosis-posture-chest-up/spinal-stenosis-posture-chest-up-break-768.webp",
+        "image/blog/spinal-stenosis-posture-chest-up/spinal-stenosis-posture-chest-up-break-1200.webp"
+      ]
+    },
+    {
+      "key": "notes",
+      "prompt": "Use case: illustration-story. Wide 3:2 gentle editorial watercolor illustration for a Japanese patient education blog about lumbar spinal stenosis: recording the situation in which back or leg symptoms occur before a consultation. A Japanese woman around 68 in a muted sage cardigan sits comfortably at a light wooden table in a bright quiet home, writing a short note in a small open notebook with a pen. A simple small clock and a closed plain pale-blue booklet on table, no medical apparatus. Three-quarter side view showing face, hands and notebook clearly, human anatomy natural, no closeup tiny details. Restrained navy outlines, warm cream and pale blue palette, soft daylight, plenty of breathing room, large central subject readable on smartphone. Notebook may have a few abstract strokes but absolutely no readable writing, letters, numbers, logos, captions, arrows, anatomical overlays or claims. Not a real patient testimonial.",
+      "generatedSource": "C:\\Users\\takus\\.codex\\generated_images\\01a14ca1-3c38-7a80-aac0-852c6bc10937\\exec-9db34835-f6a9-4a63-84c1-e3bf8b5a57da.png",
+      "outputs": [
+        "image/blog/spinal-stenosis-posture-chest-up/spinal-stenosis-posture-chest-up-notes-480.webp",
+        "image/blog/spinal-stenosis-posture-chest-up/spinal-stenosis-posture-chest-up-notes-768.webp",
+        "image/blog/spinal-stenosis-posture-chest-up/spinal-stenosis-posture-chest-up-notes-1200.webp"
+      ]
+    }
+  ],
+  "existingBodyPhoto": "/image/clinic-posture-check-web.webp"
+}
